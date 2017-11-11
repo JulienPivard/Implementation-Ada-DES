@@ -1,0 +1,188 @@
+--  Dernière modification : Vendredi 03 novembre[11] 2017
+--  Auteur : PIVARD Julien
+
+project Build is
+
+   --  Les énumérations sont des types accepté.
+   type T_Mode_Compilation     is ("debug", "release");
+   type T_Verbeux              is ("non", "oui");
+   type T_Strict               is ("non", "oui");
+
+   --  Le premier paramètre est le nom de la variable.
+   --  Le second paramètre est la valeur par défaut.
+   --  À utiliser avec
+   --  -d pour afficher la progression et -p pour créer les dossier
+   --  gprbuild -d -p -Pbuild.gpr -Xmode=release
+   Mode_Compilation    : T_Mode_Compilation    := External ("mode", "debug");
+   Verbeux             : T_Verbeux             := External ("verb", "non");
+   Strict              : T_Strict              := External ("stri", "non");
+
+   Procedure_Principal         := "client";
+   Nom_Executable              := "executable";
+
+   --  Le nom du fichier qui contient la procédure principale.
+   for Main        use (Procedure_Principal);
+
+   --  Pour ignorer des fichiers sources de la compilation
+   for Ignore_Source_Sub_Dirs use (".git");
+   --  Le ** permet d'inclure tous les sous répertoire.
+   for Source_Dirs use ("src/**");
+
+   for Object_Dir  use "obj/" & Mode_Compilation;
+   for Exec_Dir    use "bin/" & Mode_Compilation;
+
+   --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
+   --  gnatef est la pour afficher le chemin complet des fichiers dans les
+   --  messages erreurs et avertissements.
+   --  gnatU : Permet de marquer les messages erreurs avec le tag error:
+   --  gnatif pour pouvoir utiliser les accents dans les noms de variables.
+   --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
+   --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
+   --  gnateE : Génère des informations supplémentaires dans les exceptions
+   --  gnatyy équivaut à 3aAbcefhiklmnprst
+   Options :=
+      (
+         "-gnata",
+         "-gnatef",
+         "-gnatU",
+         "-gnat2012",
+         "-gnatW8",
+         "-gnateE",
+         "-gnatyy",
+         "-gnatif"
+      );
+
+   --  gnatu : Liste toutes les unitées utilisé pour cette compilation
+   --  gnatv : Active le mode verbose
+   case Verbeux is
+      when "oui" =>
+         Options := Options & ("-gnatu", "-gnatv");
+      when "non" =>
+         null;
+   end case;
+
+   --  gnatg applique -gnatwae et -gnatyg pour coller au style du code GNAT
+   --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
+   --  gnatw.e active les avertissements pour les variables non utilisé.
+   --  gnaty : les options
+   --  3 : taille indentation
+   --  a : vérifie la casse
+   --  A : Préciser le numéro du tableau dans les attributs si multidimension
+   --  b : aucuns espaces en fin de ligne
+   --  B : Interdit and/or simple sauf cas particulier and then or else requis
+   --  c : style des commentaires avec deux espaces
+   --  d : Pas de fin de ligne windows
+   --  e : vérifie le nom des blocs et exit
+   --  f : Pas de tabulation verticale
+   --  h : pas de caractères tabulation
+   --  i : vérifie la position du then du if
+   --  k : vérifie la casse des mots réservé qui doivent être en minuscule
+   --  l : Vérifie la position de mots clef les uns par rapport aux autres
+   --  m : Taille maximum des lignes 79
+   --  n : Vérifie la casse des noms standard
+   --  O : Override doit être marqué
+   --  r : Vérifie que la casse des identificateurs est cohérente tout le long
+   --  s : Vérifie que tout corps possède une partie spécification séparée
+   --  S : Pas de code sur la même ligne que then ou else
+   --  t : Les espaces dans les lignes
+   --  n : vérifie la casse des entités standard
+   --  p : vérifie la casse des pragma
+   --  u : vérifie les lignes vide
+   --  x : vérifie les parenthèses inutile
+   case Strict is
+      when "oui" =>
+         Options := Options & ("-gnatg");
+      when "non" =>
+         Options := Options & ("-gnatw.e", "-gnatw.Y", "-gnatyBdOSux");
+   end case;
+
+   --  Configuration pour la documentation
+   package Ide is
+      for Documentation_Dir use "doc";
+   end Ide;
+
+   --  Les commentaires qui commencent par "--<" sont de la documentation
+   --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.html
+   package Documentation is
+
+      case strict is
+         when "oui" =>
+            null;
+         when "non" =>
+            for Doc_Pattern use "^<";
+      end case;
+
+   end Documentation;
+
+   --  Pour un bon tuto
+   --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
+   ----------------------------------------------------------------------------
+   package Naming is   --<<<  Pour changer les noms
+
+      --  Pour lier le nom dans le code et le nom du fichier de spec
+      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
+      --  Même chose mais pour le corps.
+      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
+
+   end Naming;
+
+   --  package Binder          for command BIND (invoking gnatbind)
+   --  package Check           for command CHECK (invoking gnatcheck)
+   --  package Compiler        for command COMP or COMPILE
+   --  package Cross_Reference for command XREF (invoking gnatxref)
+   --  package Eliminate       for command ELIM (invoking gnatelim)
+   --  package Finder          for command FIND (invoking gnatfind)
+   --  package Gnatls          for command LS or LIST (invoking gnatls)
+   --  package Gnatstub        for command STUB (invoking gnatstub)
+   --  package Linker          for command LINK (invoking gnatlink)
+   --  package Check           for command CHECK (invoking gnatcheck)
+   --  package Metrics         for command METRIC (invoking gnatmetric)
+   --  package Pretty_Printer  for command PP or PRETTY (invoking gnatpp)
+   ----------------------------------------------------------------------------
+   package Builder is  --<<<  pour gprbuild
+
+      --  Pour changer le nom du binaire de client à executable après le use.
+      case Mode_Compilation is
+         when "debug" | "release" =>
+            for Executable ("client") use Nom_Executable;
+      end case;
+
+   end Builder;
+
+   ----------------------------------------------------------------------------
+   package Compiler is --<<<  pour le compiler
+
+      case Mode_Compilation is
+         when "debug" =>
+            for Default_Switches ("Ada") use Options & ("-g");
+         when "release" =>
+            for Default_Switches ("Ada") use Options & ("-O3");
+      end case;
+
+   end Compiler;
+
+   ----------------------------------------------------------------------------
+   package Cross_Reference is  --<<<  Pour gnatxref
+
+      for Default_Switches ("Ada") use
+         (
+            "-f",
+            "-v",
+            "-u",
+            "-d"
+         );
+
+   end Cross_Reference;
+
+   --  Uniquement pour ada.
+   --  Vas créer des fichiers « sources » pour élaborer les interruptions
+   --  initialiser les variables globales ...
+   ----------------------------------------------------------------------------
+   package Binder is   --<<<  pour le binder
+   end Binder;
+
+   ----------------------------------------------------------------------------
+   package Linker is   --<<<  pour le linker
+   end Linker;
+
+end Build;

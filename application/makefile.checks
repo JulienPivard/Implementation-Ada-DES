@@ -1,0 +1,58 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Mardi 17 octobre[10] 2017
+
+# Organise les vérification du fichier de configuration
+# On vérifie que ACTIVER_DEBUG vaut bien [true|false]
+ifneq ($(ACTIVER_DEBUG), true)
+  ifneq ($(ACTIVER_DEBUG), false)
+    $(error Dans makefile.conf:35: [ACTIVER_DEBUG] doit être true ou false)
+  endif
+endif
+
+# Organise les vérification du fichier de configuration
+# On vérifie que ACTIVER_VERB vaut bien [true|false]
+ifneq ($(ACTIVER_VERB), true)
+  ifneq ($(ACTIVER_VERB), false)
+    $(error Dans makefile.conf:39: [ACTIVER_VERB] doit être true ou false)
+  endif
+endif
+
+# Organise les vérification du fichier de configuration
+# On vérifie que ACTIVER_STRICT vaut bien [true|false]
+ifneq ($(ACTIVER_STRICT), true)
+  ifneq ($(ACTIVER_STRICT), false)
+    $(error Dans makefile.conf:43: [ACTIVER_STRICT] doit être true ou false)
+  endif
+endif
+
+# On notifie si le nom de l'app n'est pas changé
+ifeq ($(NOMAPP), nomapplication)
+    $(info makefile.conf:31:        Le nom du programme [NOMAPP] doit être changé)
+endif
+
+# On notifie si le nom de l'app est vide.
+ifeq ($(NOMAPP), )
+    $(info makefile.conf:31:        Le nom du programme [NOMAPP] est vide)
+endif
+
+# Pour activer le mode debug
+ifeq ($(ACTIVER_DEBUG), true)
+    MODE	= debug
+else
+    MODE	= release
+endif
+
+# Pour activer le mode verbose
+ifeq ($(ACTIVER_VERB), true)
+    VERBEUX	= oui
+else
+    VERBEUX	= non
+endif
+
+# Pour activer le mode strict
+ifeq ($(ACTIVER_STRICT), true)
+    STRICT	= oui
+else
+    STRICT	= non
+endif

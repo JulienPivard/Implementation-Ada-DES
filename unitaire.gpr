@@ -1,0 +1,107 @@
+--  Dernière modification : Jeudi 26 octobre[10] 2017
+--  auteur : PIVARD Julien
+with "aunit";
+with "application/build.gpr";
+
+project Unitaire is
+
+   Procedure_Principal           := "main_test_harnais";
+   Nom_Executable                := "test_unitaire_executable";
+
+   --  Le nom du fichier qui contient la procédure principale.
+   for Main          use (Procedure_Principal);
+
+   --  Pour ignorer des fichiers sources de la compilation
+   for Ignore_Source_Sub_Dirs    use (".git");
+   --  Le ** permet d'inclure tous les sous répertoire.
+   for Source_Dirs   use ("tests/**");
+
+   for Object_Dir    use "obj/";
+   for Exec_Dir      use "bin/";
+
+   --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
+   --  gnatef est la pour afficher le chemin complet des fichiers dans les
+   --  messages erreurs et avertissements.
+   --  gnatU : Permet de marquer les messages erreurs avec le tag error:
+   --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
+   --  gnatw.e active les avertissements pour les variables non utilisé.
+   --  gnatif pour pouvoir utiliser les accents dans les noms de variables.
+   --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
+   --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
+   --  gnatyy équivaut à 3aAbcefhiklmnprst
+   --  gnaty
+   --  3 : taille indentation
+   --  a : vérifie la casse
+   --  A : Préciser numéro du tableau dans les attributs quand multidimension
+   --  b : aucuns espaces en fin de ligne
+   --  B : Interdit and/or simple sauf cas particulier and then or else requis
+   --  c : style des commentaires avec deux espaces
+   --  d : Pas de fin de ligne windows
+   --  e : vérifie le nom des blocs et exit
+   --  f : Pas de tabulation verticale
+   --  h : pas de caractères tabulation
+   --  i : vérifie la position du then du if
+   --  k : vérifie la casse des mots réservé qui doivent être en minuscule
+   --  l : Vérifie la position de mots clef les uns par rapport aux autres
+   --  m : Taille maximum des lignes 79
+   --  n : Vérifie la casse des noms standard
+   --  O : Override doit être marqué
+   --  r : Vérifie que la casse des identificateurs est cohérente tout le long
+   --  s : Vérifie que tout corps possède une partie spécification séparée
+   --  S : Pas de code sur la même ligne que then ou else
+   --  t : Les espaces dans les lignes
+   --  n : vérifie la casse des entités standard
+   --  p : vérifie la casse des pragma
+   --  u : vérifie les lignes vide
+   --  x : vérifie les parenthèses inutile
+   --  gnateE : Génère des informations supplémentaires dans les exceptions
+   Options :=
+      (
+         "-gnata",
+         "-gnatef",
+         "-gnatU",
+         "-gnat2012",
+         "-gnatyy",
+         "-gnatyBdOSux",
+         "-gnatw.e",
+         "-gnatw.Y",
+         "-gnatW8",
+         "-gnateE",
+         "-gnatif"
+      );
+
+   --  Pour un bon tuto
+   --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
+   package Naming is   --<<<  Pour changer les noms
+
+      --  Pour lier le nom dans le code et le nom du fichier de spec
+      --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
+      --  Même chose mais pour le corps.
+      --for Body ("MyPack.MyChild") use "mypack.mychild.body";
+
+   end Naming;
+
+   package Builder is  --<<<  pour gprbuild
+
+      --  Pour changer le nom du binaire de main_test_harnais à
+      --  test_unitaire_executable après le use.
+      for Executable ("main_test_harnais") use Nom_Executable;
+
+   end Builder;
+
+   package Compiler is --<<<  pour le compiler
+
+      for Default_Switches ("Ada") use Options;
+
+   end Compiler;
+
+   --  Uniquement pour ada.
+   --  Vas créer des fichiers « sources » pour élaborer les interruptions
+   --  initialiser les variables globales ...
+   package Binder is   --<<<  pour le binder
+   end Binder;
+
+   package Linker is   --<<<  pour le linker
+   end Linker;
+
+end Unitaire;
