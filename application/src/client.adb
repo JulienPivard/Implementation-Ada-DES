@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 17 octobre[10] 2017
+--           Dernière modification : Mardi 21 novembre[11] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -10,6 +10,12 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Ada.Command_Line;
 with Ada.Directories;
+
+--  with Ada.Sequential_IO;
+
+with Des_P.Bloc_32_P;
+with Des_P.Bloc_32_P.Bloc_IO;
+with Des_P.Bloc_32_P.Constructeur_P;
 
 procedure Client is
 
@@ -31,9 +37,17 @@ procedure Client is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
+   --  package Lecteur_32_IO is new Ada.Sequential_IO
+   --  (Des_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T);
+   c : Des_P.Bloc_32_P.Constructeur_P.Constructeur_Bloc_32_T;
+   --  f : Lecteur_32_IO.File_Type;
+   brut : constant Des_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T :=
+      2#1111_0000_1111_0000_1111_0000_1111_0000#;
+   bloc : Des_P.Bloc_32_P.Bloc_32_T;
+
 begin
 
-   if Nb_Arguments = 0 then
+   if Nb_Arguments = 1 then
 
       Afficher_Aide;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
@@ -54,7 +68,17 @@ begin
 
    end if;
 
-   --  Mettez votre code ici
+   --  Lecteur_32_IO.Open (f, Lecteur_32_IO.In_File, "test.txt");
+
+   --  Lecteur_32_IO.Read (f, brut);
+
+   c.Preparer_Nouveau_Bloc_32 (brut);
+   c.Construire_Bloc;
+   bloc := c.Recuperer_Bloc_32;
+
+   Des_P.Bloc_32_P.Bloc_IO.Put_Line (bloc);
+
+   --  Lecteur_32_IO.Close (f);
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
