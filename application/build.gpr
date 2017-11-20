@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 03 novembre[11] 2017
+--  Dernière modification : Lundi 20 novembre[11] 2017
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -96,14 +96,11 @@ project Build is
          Options := Options & ("-gnatw.e", "-gnatw.Y", "-gnatyBdOSux");
    end case;
 
-   --  Configuration pour la documentation
-   package Ide is
-      for Documentation_Dir use "doc";
-   end Ide;
-
    --  Les commentaires qui commencent par "--<" sont de la documentation
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.html
    package Documentation is
+
+      for Documentation_Dir use "doc";
 
       case strict is
          when "oui" =>
