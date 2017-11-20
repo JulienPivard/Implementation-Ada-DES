@@ -4,7 +4,8 @@ with Des_P.Bloc_32_P.Test_P;
 
 package body Bloc_Suite is
 
-   package Caller is new AUnit.Test_Caller (Des_P.Bloc_32_P.Test_P.Test_Fix_T);
+   package Caller is new AUnit.Test_Caller
+      (Des_P.Bloc_32_P.Test_P.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Bloc_Suite return AUnit.Test_Suites.Access_Test_Suite is
