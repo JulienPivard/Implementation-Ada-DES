@@ -53,7 +53,8 @@ package Des_P.Bloc_32_P is
 
 private
 
-   type Tableau_Bit_T is array (Interval_Bloc_32_T range 1 .. 32) of Bit_T;
+   type Tableau_Bit_T is array
+      (Interval_Bloc_32_T range Interval_Bloc_32_T'Range) of Bit_T;
 
    type Bloc_32_T is new Ada.Finalization.Controlled with
       record
