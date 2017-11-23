@@ -17,7 +17,7 @@ package body Des_P.Bloc_32_P.Constructeur_P is
       subtype Puissance_T is Natural range 0 .. 32;
       Puissance : Puissance_T := Puissance_T'First;
    begin
-      for I in Interval_Bloc_32_T'Range loop
+      for I in reverse Interval_Bloc_32_T'Range loop
          if (Constructeur.Brut and (Masque * 2**Puissance)) > 0 then
             Bit := 1;
          else
