@@ -7,7 +7,7 @@ package Des_P.Bloc_32_P.Constructeur_P.Test_P is
       2#1111_0000_1111_0000_1111_0000_1111_0000#;
    --   32   28   24   20   16   12   8    4
    resultat_attendu : array (Interval_Bloc_32_T range Interval_Bloc_32_T'Range)
-   of Bit_T := (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 => 0, others => 1);
+   of Bit_T := (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 => 1, others => 0);
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
