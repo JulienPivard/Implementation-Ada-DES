@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 14 septembre[09] 2017
+# Dernière modification : jeudi 23 novembre[11] 2017
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -51,7 +51,8 @@ help:
 	@echo " - all		: Compile les tests unitaire."
 	@echo "    - build"
 	@echo "    - $(CIBLECOMPILE)"
-	@echo " - run		: Execute les tests unitaires ou l'application"
+	@echo " - run		: Execute les tests unitaires"
+	@echo " - runapp	: Execute l'application"
 	@echo " - clean	: Efface tous les fichiers généré par la compilation des tests unitaire sauf les exécutables."
 	@echo " - distclean	: Efface tous les fichiers généré par la compilation des tests unitaires."
 	@echo " - cleanall	: Efface tous les fichiers généré par la compilation des tests unitaires et de l'application sauf les exécutables."
