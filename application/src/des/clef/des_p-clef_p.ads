@@ -4,6 +4,8 @@ with Des_P.Sous_Clef_P;
 
 package Des_P.Clef_P is
 
+   pragma Pure;
+
    --  Un bit de la clef.
    type Bit_T is range 0 .. 1;
 

@@ -4,9 +4,10 @@ with Des_P.Clef_P;
 
 package body Des_P.Sous_Clef_P.Constructeur_P.Test_P is
 
-   --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   --  obtenu à partir de
+   --  La clef de 56 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
+   --  Donne la sous clef suivante :
+   --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
    resultat_attendu : constant Tableau_Bits_T :=
       (0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1,
       1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0);

@@ -2,6 +2,8 @@ with Des_P.Clef_P;
 
 package Des_P.Sous_Clef_P.Constructeur_P is
 
+   pragma Pure;
+
    --  Constructeur de la sous clef de 48 bits.
    type Constructeur_Sous_Clef_T is tagged private;
 
