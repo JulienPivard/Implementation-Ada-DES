@@ -28,8 +28,8 @@ package body Des_P.Bloc_32_P.Test_P is
       for I in Interval_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.bloc.Tableau_Bit (I) = b,
-            "Le bit " & Interval_Bloc_32_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+            "Le bit " & I'Img &
+            " vaut : " & T.bloc.Tableau_Bit (I)'Img &
             " au lieu de 0"
             );
       end loop;
@@ -45,15 +45,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -70,15 +70,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -95,15 +95,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -120,15 +120,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -145,15 +145,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -170,15 +170,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -195,15 +195,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -220,15 +220,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -245,15 +245,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -270,15 +270,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -295,15 +295,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -320,15 +320,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -345,15 +345,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -370,15 +370,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -395,15 +395,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -420,15 +420,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -445,15 +445,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -470,15 +470,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -495,15 +495,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -520,15 +520,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -545,15 +545,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -570,15 +570,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -595,15 +595,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -620,15 +620,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -645,15 +645,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -670,15 +670,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -695,15 +695,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -720,15 +720,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -745,15 +745,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -770,15 +770,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -795,15 +795,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -820,15 +820,15 @@ package body Des_P.Bloc_32_P.Test_P is
          if I = p then
             AUnit.Assertions.Assert
                (T.bloc.Lire_Bit (p) = b,
-               "Le bit " & Interval_Bloc_32_T'Image (p) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & p'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 1"
                );
          else
             AUnit.Assertions.Assert
                (T.bloc.Tableau_Bit (I) = 0,
-               "Le bit " & Interval_Bloc_32_T'Image (I) &
-               " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
+               "Le bit " & I'Img &
+               " vaut : " & T.bloc.Tableau_Bit (I)'Img &
                " au lieu de 0"
                );
          end if;
@@ -851,9 +851,9 @@ package body Des_P.Bloc_32_P.Test_P is
       for I in Interval_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
-            "Le bit " & Interval_Bloc_32_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.bloc.Tableau_Bit (I)) &
-            " au lieu de " & Bit_T'Image (attendu (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.bloc.Tableau_Bit (I)'Img &
+            " au lieu de " & attendu (I)'Img
             );
       end loop;
    end Test_Change_Bits_Aleatoirement;

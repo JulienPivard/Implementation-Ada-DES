@@ -29,8 +29,8 @@ package body Des_P.Bloc_32_P.Constructeur_P.Test_P is
       for I in Interval_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.constructeur.Bloc.Lire_Bit (I) = b,
-            "Le bit " & Interval_Bloc_32_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.constructeur.Bloc.Lire_Bit (I)) &
+            "Le bit " & I'Img &
+            " vaut : " & T.constructeur.Bloc.Lire_Bit (I)'Img &
             " au lieu de 0"
             );
       end loop;
@@ -47,9 +47,9 @@ package body Des_P.Bloc_32_P.Constructeur_P.Test_P is
       for I in Interval_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.constructeur.Bloc.Lire_Bit (I) = resultat_attendu (I),
-            "Le bit " & Interval_Bloc_32_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.constructeur.Bloc.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (resultat_attendu (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.constructeur.Bloc.Lire_Bit (I)'Img &
+            " au lieu de " & resultat_attendu (I)'Img
             );
       end loop;
    end Test_Construction;
@@ -67,9 +67,9 @@ package body Des_P.Bloc_32_P.Constructeur_P.Test_P is
       for I in Interval_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (bloc_resultat.Lire_Bit (I) = resultat_attendu (I),
-            "Le bit " & Interval_Bloc_32_T'Image (I) &
-            " vaut : " & Bit_T'Image (bloc_resultat.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (resultat_attendu (I))
+            "Le bit " & I'Img &
+            " vaut : " & bloc_resultat.Lire_Bit (I)'Img &
+            " au lieu de " & resultat_attendu (I)'Img
             );
       end loop;
    end Test_Recuperation;

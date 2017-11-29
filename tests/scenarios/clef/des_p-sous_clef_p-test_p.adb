@@ -32,9 +32,9 @@ package body Des_P.Sous_Clef_P.Test_P is
       for I in Interval_Sous_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.sous_clef.Lire_Bit (I) = bits_attendu (I),
-            "Le bit " & Interval_Sous_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.sous_clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (bits_attendu (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.sous_clef.Lire_Bit (I)'Img &
+            " au lieu de " & bits_attendu (I)'Img
             );
       end loop;
    end Test_Lecture_Bit;
@@ -55,9 +55,9 @@ package body Des_P.Sous_Clef_P.Test_P is
       for I in Interval_Sous_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.sous_clef.Lire_Bit (I) = bits_attendu (I),
-            "Le bit " & Interval_Sous_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.sous_clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (bits_attendu (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.sous_clef.Lire_Bit (I)'Img &
+            " au lieu de " & bits_attendu (I)'Img
             );
       end loop;
    end Test_Bits_Aleatoire;

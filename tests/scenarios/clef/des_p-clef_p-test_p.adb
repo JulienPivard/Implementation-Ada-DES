@@ -60,8 +60,8 @@ package body Des_P.Clef_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (T.clef.Decalage = decalage_attendu,
-         "Le decalage est de " & Decalage_T'Image (T.clef.Decalage) &
-         " au lieu de " & Decalage_T'Image (decalage_attendu)
+         "Le decalage est de " & T.clef.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
          );
    end Test_Decaler_0_Bit_A_Gauche;
 
@@ -72,8 +72,8 @@ package body Des_P.Clef_P.Test_P is
       T.clef.Decaler_Bits_A_Gauche;
       AUnit.Assertions.Assert
          (T.clef.Decalage = decalage_attendu,
-         "Le decalage est de " & Decalage_T'Image (T.clef.Decalage) &
-         " au lieu de " & Decalage_T'Image (decalage_attendu)
+         "Le decalage est de " & T.clef.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
          );
    end Test_Decaler_1_Bit_A_Gauche;
 
@@ -84,8 +84,8 @@ package body Des_P.Clef_P.Test_P is
       T.clef.Decaler_Bits_A_Gauche (decalage_attendu);
       AUnit.Assertions.Assert
          (T.clef.Decalage = decalage_attendu,
-         "Le decalage est de " & Decalage_T'Image (T.clef.Decalage) &
-         " au lieu de " & Decalage_T'Image (decalage_attendu)
+         "Le decalage est de " & T.clef.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
          );
    end Test_Decaler_2_Bit_A_Gauche;
 
@@ -96,8 +96,8 @@ package body Des_P.Clef_P.Test_P is
       T.clef.Decaler_Bits_A_Gauche (decalage_attendu);
       AUnit.Assertions.Assert
          (T.clef.Decalage = decalage_attendu,
-         "Le decalage est de " & Decalage_T'Image (T.clef.Decalage) &
-         " au lieu de " & Decalage_T'Image (decalage_attendu)
+         "Le decalage est de " & T.clef.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
          );
    end Test_Decaler_3_Bit_A_Gauche;
 
@@ -107,9 +107,9 @@ package body Des_P.Clef_P.Test_P is
       for I in Intervalle_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = c56 (I),
-            "Le bit " & Intervalle_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (c56 (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
+            " au lieu de " & c56 (I)'Img
             );
       end loop;
    end Test_Lire_Bit_Sans_Decalage;
@@ -121,9 +121,9 @@ package body Des_P.Clef_P.Test_P is
       for I in Intervalle_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = c56_1_decalage (I),
-            "Le bit " & Intervalle_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (c56_1_decalage (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
+            " au lieu de " & c56_1_decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_1_Decalage;
@@ -135,9 +135,9 @@ package body Des_P.Clef_P.Test_P is
       for I in Intervalle_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = c56_2_decalage (I),
-            "Le bit " & Intervalle_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (c56_2_decalage (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
+            " au lieu de " & c56_2_decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_2_Decalage;
@@ -149,9 +149,9 @@ package body Des_P.Clef_P.Test_P is
       for I in Intervalle_Clef_T'Range loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = c56_3_decalage (I),
-            "Le bit " & Intervalle_Clef_T'Image (I) &
-            " vaut : " & Bit_T'Image (T.clef.Lire_Bit (I)) &
-            " au lieu de " & Bit_T'Image (c56_3_decalage (I))
+            "Le bit " & I'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
+            " au lieu de " & c56_3_decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_3_Decalage;
