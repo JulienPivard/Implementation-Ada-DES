@@ -4,9 +4,9 @@ with AUnit.Options;
 
 with Bloc_32_Suite_P;
 with Constructeur_Bloc_32_Suite_P;
-with Sous_Clef_Suite;
-with Clef_Suite;
-with Constructeur_Sous_Clef_Suite;
+with Clef_48_Suite_P;
+--  with Clef_Suite;
+--  with Constructeur_Sous_Clef_Suite;
 
 procedure Main_Test_Harnais is
 
@@ -14,12 +14,12 @@ procedure Main_Test_Harnais is
       (Bloc_32_Suite_P.Fonc_Bloc_32_Suite);
    procedure runner_constructeur_bloc_32 is new AUnit.Run.Test_Runner
       (Constructeur_Bloc_32_Suite_P.Fonc_Constructeur_Bloc_32_Suite);
-   procedure runner_sous_clef is new AUnit.Run.Test_Runner
-      (Sous_Clef_Suite.Fonc_Sous_Clef_Suite);
-   procedure runner_clef is new AUnit.Run.Test_Runner
-      (Clef_Suite.Fonc_Clef_Suite);
-   procedure runner_construct_sous_clef is new AUnit.Run.Test_Runner
-      (Constructeur_Sous_Clef_Suite.Fonc_Constructeur_Sous_Clef_Suite);
+   procedure runner_clef_48 is new AUnit.Run.Test_Runner
+      (Clef_48_Suite_P.Fonc_Clef_48_Suite);
+   --  procedure runner_clef is new AUnit.Run.Test_Runner
+   --     (Clef_Suite.Fonc_Clef_Suite);
+   --  procedure runner_construct_sous_clef is new AUnit.Run.Test_Runner
+   --     (Constructeur_Sous_Clef_Suite.Fonc_Constructeur_Sous_Clef_Suite);
 
    options : constant AUnit.Options.AUnit_Options :=
       (
@@ -35,7 +35,7 @@ begin
 
    runner_bloc_32 (reporter, options);
    runner_constructeur_bloc_32 (reporter, options);
-   runner_sous_clef (reporter, options);
-   runner_clef (reporter, options);
-   runner_construct_sous_clef (reporter, options);
+   runner_clef_48 (reporter, options);
+   --  runner_clef (reporter, options);
+   --  runner_construct_sous_clef (reporter, options);
 end Main_Test_Harnais;

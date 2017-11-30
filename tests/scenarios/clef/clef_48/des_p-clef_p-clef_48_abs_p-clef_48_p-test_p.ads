@@ -1,11 +1,11 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Sous_Clef_P.Test_P is
+package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         sous_clef : Sous_Clef_T;
+         clef_48 : Clef_48_T;
       end record;
 
    overriding
@@ -18,4 +18,4 @@ package Des_P.Sous_Clef_P.Test_P is
 
    procedure Test_Bits_Aleatoire (T : in out Test_Fixt_T);
 
-end Des_P.Sous_Clef_P.Test_P;
+end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P;

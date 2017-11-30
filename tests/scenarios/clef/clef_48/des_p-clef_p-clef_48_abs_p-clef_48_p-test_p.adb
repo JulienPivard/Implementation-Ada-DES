@@ -2,15 +2,15 @@ with AUnit.Assertions;
 
 with Ada.Numerics.Discrete_Random;
 
-package body Des_P.Sous_Clef_P.Test_P is
+package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C : Sous_Clef_T;
+      C : Clef_48_T;
    begin
       C.Bits := (others => 0);
-      T.sous_clef := C;
+      T.clef_48 := C;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -26,14 +26,14 @@ package body Des_P.Sous_Clef_P.Test_P is
          (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 | 41 .. 44 => 1,
          others => 0);
    begin
-      T.sous_clef.Bits :=
+      T.clef_48.Bits :=
          (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 | 41 .. 44 => 1,
          others => 0);
-      for I in Interval_Sous_Clef_T'Range loop
+      for I in Intervalle_Clef_48_T'Range loop
          AUnit.Assertions.Assert
-            (T.sous_clef.Lire_Bit (I) = bits_attendu (I),
+            (T.clef_48.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.sous_clef.Lire_Bit (I)'Img &
+            " vaut : " & T.clef_48.Lire_Bit (I)'Img &
             " au lieu de " & bits_attendu (I)'Img
             );
       end loop;
@@ -47,19 +47,19 @@ package body Des_P.Sous_Clef_P.Test_P is
       bits_attendu : Tableau_Bits_T;
    begin
       Bit_Aleatoire.Reset (generateur);
-      for I in Interval_Sous_Clef_T'Range loop
+      for I in Intervalle_Clef_48_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          bits_attendu (I) := b;
-         T.sous_clef.Bits (I) := b;
+         T.clef_48.Bits (I) := b;
       end loop;
-      for I in Interval_Sous_Clef_T'Range loop
+      for I in Intervalle_Clef_48_T'Range loop
          AUnit.Assertions.Assert
-            (T.sous_clef.Lire_Bit (I) = bits_attendu (I),
+            (T.clef_48.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.sous_clef.Lire_Bit (I)'Img &
+            " vaut : " & T.clef_48.Lire_Bit (I)'Img &
             " au lieu de " & bits_attendu (I)'Img
             );
       end loop;
    end Test_Bits_Aleatoire;
 
-end Des_P.Sous_Clef_P.Test_P;
+end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P;
