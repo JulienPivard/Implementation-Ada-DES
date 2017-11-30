@@ -46,4 +46,27 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
       return Clef.Constructeur.all.Recuperer_Clef_48;
    end Lire_Clef_48;
 
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Initialize (Clef : in out Clef_Simplifie_T) is
+   begin
+      Clef.Champ := (others => 0);
+      Clef.Constructeur := null;
+   end Initialize;
+
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Finalize (Clef : in out Clef_Simplifie_T) is
+   begin
+      Clef.Champ := (others => 0);
+      Clef.Constructeur := null;
+   end Finalize;
+
+   ---------------------------------------------------------------------------
+   overriding
+   procedure Adjust (Clef : in out Clef_Simplifie_T) is
+   begin
+      null;
+   end Adjust;
+
 end Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;

@@ -7,7 +7,6 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
    is
       Clef_48 : Clef_48_T;
    begin
-      Clef_48.Bits := (others => 0);
       Constructeur.Clef_48 := Clef_48;
    end Preparer_Nouvelle_Clef_48;
 

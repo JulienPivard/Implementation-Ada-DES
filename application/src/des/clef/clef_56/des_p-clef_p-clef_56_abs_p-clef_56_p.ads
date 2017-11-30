@@ -62,6 +62,24 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    function Lire_Clef_48 (Clef : Clef_56_T)
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T;
 
+   overriding
+   --  Création d'une clef vide par défaut.
+   --  @param Clef
+   --  La clef.
+   procedure Initialize (Clef : in out Clef_56_T);
+
+   overriding
+   --  Supprime la clef.
+   --  @param Clef
+   --  La clef.
+   procedure Finalize (Clef : in out Clef_56_T);
+
+   overriding
+   --  Ajuste le contenu après l'affectation.
+   --  @param Clef
+   --  La clef.
+   procedure Adjust (Clef : in out Clef_56_T);
+
 private
 
    --  L'intervalle des demi tableau de bits de la clef.

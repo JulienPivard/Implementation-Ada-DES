@@ -30,6 +30,15 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
    function Lire_Clef_48 (Clef : Clef_Simplifie_T)
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T;
 
+   overriding
+   procedure Initialize (Clef : in out Clef_Simplifie_T);
+
+   overriding
+   procedure Finalize (Clef : in out Clef_Simplifie_T);
+
+   overriding
+   procedure Adjust (Clef : in out Clef_Simplifie_T);
+
 private
 
    type Clef_Simplifie_T is new Clef_56_Abs_T with

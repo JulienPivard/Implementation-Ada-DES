@@ -23,6 +23,24 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
       (Clef : Clef_48_T; Position : Intervalle_Clef_48_T)
       return Bit_T;
 
+   overriding
+   --  Création d'une clef vide par défaut.
+   --  @param Clef
+   --  La clef.
+   procedure Initialize (Clef : in out Clef_48_T);
+
+   overriding
+   --  Supprime la clef.
+   --  @param Clef
+   --  La clef.
+   procedure Finalize (Clef : in out Clef_48_T);
+
+   overriding
+   --  Ajuste le contenu après l'affectation.
+   --  @param Clef
+   --  La clef.
+   procedure Adjust (Clef : in out Clef_48_T);
+
 private
 
    --  La sous clefs rangé dans un tableau de bits.
