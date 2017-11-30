@@ -11,7 +11,7 @@ package body Clef_48_Suite_P is
    function Fonc_Clef_48_Suite return AUnit.Test_Suites.Access_Test_Suite is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test clef 48 bits )";
+      nom_test : constant String := "(Test clef 48 bits) ";
    begin
 
       ptr_test_suite.all.Add_Test

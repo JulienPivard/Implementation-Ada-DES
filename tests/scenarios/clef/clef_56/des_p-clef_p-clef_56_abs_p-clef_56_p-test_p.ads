@@ -1,11 +1,11 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Clef_P.Test_P is
+package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         clef : Clef_T;
+         clef_56 : Clef_56_T;
       end record;
 
    overriding
@@ -30,4 +30,4 @@ package Des_P.Clef_P.Test_P is
 
    procedure Test_Lire_Bit_3_Decalage (T : in out Test_Fixt_T);
 
-end Des_P.Clef_P.Test_P;
+end Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P;
