@@ -1,3 +1,10 @@
+--  @summary
+--  Une sous clef de 48 bits.
+--  @description
+--  La représentation de la sous clef est construite à partir de la clef.
+--  Le constructeur de la sous clef va en selectionner 48 sur les 56 que
+--  compte la clef.
+--  @group Clef
 package Des_P.Sous_Clef_P is
 
    pragma Pure;

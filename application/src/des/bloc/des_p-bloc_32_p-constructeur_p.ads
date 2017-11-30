@@ -1,3 +1,8 @@
+--  @summary
+--  Constructeur de bloc de 32 bits.
+--  @description
+--  Construit le bloc de 32 bits à partir d'un bloc brut.
+--  @group Constructeur_Bloc
 package Des_P.Bloc_32_P.Constructeur_P is
 
    pragma Pure;

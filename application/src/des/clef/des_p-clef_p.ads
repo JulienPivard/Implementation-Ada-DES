@@ -2,6 +2,12 @@ with Ada.Finalization;
 
 with Des_P.Sous_Clef_P;
 
+--  @summary
+--  La clef permettant de crypter les données.
+--  @description
+--  La représentation d'une clef. Construite à partir d'une clef de 64 bits,
+--  celle-ci n'en compte que 56 sélectionné par le constructeur.
+--  @group Clef
 package Des_P.Clef_P is
 
    pragma Pure;

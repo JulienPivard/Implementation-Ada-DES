@@ -1,5 +1,11 @@
 with Ada.Finalization;
 
+--  @summary
+--  Un bloc de 32 bits de données.
+--  @description
+--  Cette représentation permet de manipuler facilement des
+--  blocs de 32 bits sans avoir à en connaitre le détail.
+--  @group Bloc
 package Des_P.Bloc_32_P is
 
    pragma Pure;

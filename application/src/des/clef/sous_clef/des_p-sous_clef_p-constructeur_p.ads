@@ -1,5 +1,12 @@
 with Des_P.Clef_P;
 
+--  @summary
+--  Le constructeur de sous clef.
+--  @description
+--  Construit une sous clef à partir d'une clef. Cette sous clef sera
+--  composé de 48 bits de la clef. Le constructeur va sélectionner
+--  ces bits selon le tableau PC-2 du standard DES.
+--  @group
 package Des_P.Sous_Clef_P.Constructeur_P is
 
    pragma Pure;
