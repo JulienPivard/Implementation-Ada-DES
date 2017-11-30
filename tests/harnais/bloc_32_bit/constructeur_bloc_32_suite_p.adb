@@ -2,13 +2,14 @@ with AUnit.Test_Caller;
 
 with Des_P.Bloc_32_P.Constructeur_P.Test_P;
 
-package body Constructeur_Suite is
+package body Constructeur_Bloc_32_Suite_P is
 
    package Caller is new AUnit.Test_Caller
       (Des_P.Bloc_32_P.Constructeur_P.Test_P.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Constructeur_Suite return AUnit.Test_Suites.Access_Test_Suite
+   function Fonc_Constructeur_Bloc_32_Suite
+      return AUnit.Test_Suites.Access_Test_Suite
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
@@ -38,6 +39,6 @@ package body Constructeur_Suite is
 
       return ptr_test_suite;
 
-   end Fonc_Constructeur_Suite;
+   end Fonc_Constructeur_Bloc_32_Suite;
 
-end Constructeur_Suite;
+end Constructeur_Bloc_32_Suite_P;
