@@ -78,6 +78,38 @@ package body Clef_56_Suite_P is
          )
       );
 
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'une clef de 48 bits avec 0 decalage",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Construire_Clef_48_0_Decalages'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'une clef de 48 bits avec 1 decalage",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Construire_Clef_48_1_Decalages'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'une clef de 48 bits avec 2 decalage",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Construire_Clef_48_2_Decalages'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'une clef de 48 bits avec 3 decalage",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Construire_Clef_48_3_Decalages'Access
+         )
+      );
+
       return ptr_test_suite;
 
    end Fonc_Clef_56_Suite;

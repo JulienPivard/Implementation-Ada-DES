@@ -24,7 +24,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
          of Des_P.Clef_P.Clef_56_Abs_P.Intervalle_Clef_56_T :=
             (
                14, 17, 11, 24,  1,  5,
-               3, 28, 15,  6, 21, 10,
+               3,  28, 15,  6, 21, 10,
                23, 19, 12,  4, 26,  8,
                16,  7, 27, 20, 13, 12,
                41, 52, 31, 37, 47, 55,
