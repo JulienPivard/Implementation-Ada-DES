@@ -18,14 +18,14 @@ package Des_P.Clef_P.Constructeur_48_Abs_P is
 
    --  Prépare une nouvelle sous clef vide.
    --  @param Constructeur
-   --  Le constructeur de la sous clef.
+   --  Le constructeur de la clef de 48.
    procedure Preparer_Nouvelle_Clef_48
       (Constructeur : in out Constructeur_Clef_48_Abs_T)
    is abstract;
 
-   --  Construit la sous clefs de 48 bits avec la clef de 56.
+   --  Construit la clefs de 48 bits avec la clef de 56.
    --  @param Constructeur
-   --  Le constructeur de la sous clef.
+   --  Le constructeur de la clef.
    --  @param Clef
    --  La clef à partir de laquelle on va construire la sous clef.
    procedure Construire_Clef_48
@@ -35,10 +35,10 @@ package Des_P.Clef_P.Constructeur_48_Abs_P is
    )
    is abstract;
 
-   --  Permet de récupérer la sous clefs terminée.
+   --  Permet de récupérer la clef de 48 terminée.
    --  @param Constructeur
-   --  Le constructeur de la sous clef.
-   --  @return La sous clef.
+   --  Le constructeur de la clef de 48.
+   --  @return La clef de 48.
    function Recuperer_Clef_48
       (Constructeur : Constructeur_Clef_48_Abs_T)
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T
