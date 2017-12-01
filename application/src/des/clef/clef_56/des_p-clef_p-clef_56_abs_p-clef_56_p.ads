@@ -14,20 +14,12 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    --  La clef de 56 bits.
    type Clef_56_T is new Clef_56_Abs_T with private;
 
-   --  Initialise une nouvelle clef mise à zéro.
-   --  @param Constructeur_Clef_48
-   --  Le constructeur de clef de 48 bits.
-   --  @return La clef mise à zéro.
-   function Initialiser
-      (Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class)
-      return Clef_56_T;
-
    --  Initialise une nouvelle clef vide.
    --  @param Clef
-   --  La clef à initialiser.
+   --  La clef à modifier.
    --  @param Constructeur_Clef_48
    --  Le constructeur de clef de 48 bits.
-   procedure Initialiser
+   procedure Ecrire_Constructeur
    (
       Clef : out Clef_56_T;
       Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class

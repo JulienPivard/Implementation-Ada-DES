@@ -35,6 +35,7 @@ begin
 
    runner_bloc_32 (reporter, options);
    runner_constructeur_bloc_32 (reporter, options);
+
    runner_clef_48 (reporter, options);
    runner_clef_56 (reporter, options);
    runner_construct_48_clef (reporter, options);

@@ -1,29 +1,15 @@
 package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
 
    ---------------------------------------------------------------------------
-   function Initialiser
-      (Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class)
-      return Clef_56_T
-   is
-      Clef : Clef_56_T;
-   begin
-      Clef.Initialiser (Constructeur_Clef_48);
-      return Clef;
-   end Initialiser;
-
-   ---------------------------------------------------------------------------
-   procedure Initialiser
+   procedure Ecrire_Constructeur
       (
          Clef : out Clef_56_T;
          Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class
       )
    is
    begin
-      Clef.Decalage := 0;
-      Clef.C1 := (others => 0);
-      Clef.C2 := (others => 0);
       Clef.Constructeur := Constructeur_Clef_48;
-   end Initialiser;
+   end Ecrire_Constructeur;
 
    ---------------------------------------------------------------------------
    overriding

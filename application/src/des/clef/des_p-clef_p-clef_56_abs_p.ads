@@ -39,7 +39,7 @@ package Des_P.Clef_P.Clef_56_Abs_P is
       (Clef : Clef_56_Abs_T; Position : Intervalle_Clef_56_T)
       return Bit_T is abstract;
 
-   --  Permet de générer une sous clef. Cette clef est construite
+   --  Permet de générer une clef de 48 bits. Cette clef est construite
    --  grâce au décalage PC-2 décrit dans le standard DES.
    --  @param Clef
    --  La clef de 56 bits.

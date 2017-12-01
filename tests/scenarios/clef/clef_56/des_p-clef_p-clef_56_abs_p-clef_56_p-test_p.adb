@@ -119,7 +119,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       champ2 : constant Champ_De_Bits_T :=
          (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => 0, others => 1);
    begin
-      clef_56.Constructeur := new Constructeur_Clef_48_T;
+      clef_56.Ecrire_Constructeur (new Constructeur_Clef_48_T);
       clef_56.C1 := champ1;
       clef_56.C2 := champ2;
       T.clef_56 := clef_56;
