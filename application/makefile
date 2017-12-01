@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 03 novembre[11] 2017
+# Dernière modification : jeudi 30 novembre[11] 2017
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -26,12 +26,19 @@ doc:
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
+.PHONY: cleandoc
+cleandoc:
+	$(RM) $(OPTRM) doc
+
+###################
 .PHONY: help
 help:
 	@echo "Liste des commandes :"
 	@echo " - all		: Compile l'application."
 	@echo "    - build"
 	@echo "    - $(CIBLECOMPILE)"
+	@echo " - doc		: Génère la documentation du programme."
+	@echo " - cleandoc	: Supprime la documentation généré."
 	@echo " - run		: Execute l'application avec les paramètres défini."
 	@echo " - clean	: Efface tous les fichiers généré par le compilateur sauf les exécutables."
 	@echo " - distclean	: Efface tous les fichiers généré par le compilateur."
