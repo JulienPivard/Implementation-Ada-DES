@@ -111,6 +111,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
       clef_56 : Clef_56_T;
+      constr : constant access Constructeur_Clef_48_T :=
+         new Constructeur_Clef_48_T;
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
       champ1 : constant Champ_De_Bits_T :=
@@ -119,7 +121,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       champ2 : constant Champ_De_Bits_T :=
          (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => 0, others => 1);
    begin
-      clef_56.Ecrire_Constructeur (new Constructeur_Clef_48_T);
+      clef_56.Ecrire_Constructeur (constr);
       clef_56.C1 := champ1;
       clef_56.C2 := champ2;
       T.clef_56 := clef_56;
