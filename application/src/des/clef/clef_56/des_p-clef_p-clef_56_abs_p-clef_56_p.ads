@@ -14,7 +14,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    --  La clef de 56 bits.
    type Clef_56_T is new Clef_56_Abs_T with private;
 
-   --  Initialise une nouvelle clef vide.
+   --  Modifie le constructeur de clef de 48 bits.
    --  @param Clef
    --  La clef à modifier.
    --  @param Constructeur_Clef_48

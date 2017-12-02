@@ -13,6 +13,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
 
    pragma Pure;
 
+   --  Constructeur concret de clef 48 bits.
    type Constructeur_Clef_48_T is new
    Des_P.Clef_P.Constructeur_48_Abs_P.Constructeur_Clef_48_Abs_T with private;
 

@@ -18,7 +18,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
          Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
       )
    is
-      --  Correspond au tableau de correspondance pour l'opération PC-2 de DES
+      --  Tiré au tableau de correspondance PC-2 de DES.
       T : constant array
          (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
          of Des_P.Clef_P.Clef_56_Abs_P.Intervalle_Clef_56_T :=
