@@ -7,15 +7,21 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
 
    type Clef_Simplifie_T is new Clef_64_Abs_T with private;
 
-   type Champ_De_Bits_T is array
+   type Tableau_Bits_T is array
       (Intervalle_Clef_64_T range Intervalle_Clef_64_T'Range) of Bit_T;
 
    procedure Init
       (
          Clef : out Clef_Simplifie_T;
-         Champ : Champ_De_Bits_T;
+         Champ : Tableau_Bits_T;
          Constructeur : access Constructeur_Clef_56_Abs_T'Class
       );
+
+   overriding
+   function Possede_Constructeur_56 (Clef : Clef_Simplifie_T) return Boolean;
+
+   overriding
+   function Possede_Constructeur_48 (Clef : Clef_Simplifie_T) return Boolean;
 
    overriding
    function Lire_Bit
@@ -39,7 +45,7 @@ private
 
    type Clef_Simplifie_T is new Clef_64_Abs_T with
       record
-         Champ : Champ_De_Bits_T;
+         Champ : Tableau_Bits_T;
          Constructeur : access Constructeur_Clef_56_Abs_T'Class;
       end record;
 

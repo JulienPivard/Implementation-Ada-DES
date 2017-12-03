@@ -16,6 +16,23 @@ package Des_P.Clef_P.Clef_64_Abs_P is
    --  L'intervalle de bits de la clef.
    type Intervalle_Clef_64_T is range 1 .. 64;
 
+   --  Indique si un constructeur de clef 56 bits à été attribué.
+   --  @param Clef
+   --  La clef de 64 bits.
+   --  @return La clef possède un constructeur de clef 56 bits initialisé.
+   function Possede_Constructeur_56 (Clef : Clef_64_Abs_T)
+      return Boolean is abstract;
+
+   --  Indique si un constructeur de clef 48 bits à été attribué.
+   --  Si la clef de 64 ne possède pas de clef 48, les clef de 56
+   --  qui seront construite n'auront pas de constructeur de clef
+   --  48.
+   --  @param Clef
+   --  La clef de 48 bits.
+   --  @return La clef possède un constructeur de clef 48 bits initialisé.
+   function Possede_Constructeur_48 (Clef : Clef_64_Abs_T)
+      return Boolean is abstract;
+
    --  Lit un bit spécifié.
    --  @param Clef
    --  La clef dont on veut lire un bit.

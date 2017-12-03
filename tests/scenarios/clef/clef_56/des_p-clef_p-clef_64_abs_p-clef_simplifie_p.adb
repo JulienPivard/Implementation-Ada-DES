@@ -4,7 +4,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
    procedure Init
       (
          Clef : out Clef_Simplifie_T;
-         Champ : Champ_De_Bits_T;
+         Champ : Tableau_Bits_T;
          Constructeur : access Constructeur_Clef_56_Abs_T'Class
       )
    is
@@ -12,6 +12,26 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
       Clef.Champ := Champ;
       Clef.Constructeur := Constructeur;
    end Init;
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Possede_Constructeur_56 (Clef : Clef_Simplifie_T)
+      return Boolean
+   is
+      pragma Unreferenced (Clef);
+   begin
+      return True;
+   end Possede_Constructeur_56;
+
+   ---------------------------------------------------------------------------
+   overriding
+   function Possede_Constructeur_48 (Clef : Clef_Simplifie_T)
+      return Boolean
+   is
+      pragma Unreferenced (Clef);
+   begin
+      return True;
+   end Possede_Constructeur_48;
 
    ---------------------------------------------------------------------------
    overriding
