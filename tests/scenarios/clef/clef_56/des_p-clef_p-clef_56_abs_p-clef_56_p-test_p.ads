@@ -14,6 +14,8 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
+   procedure Test_Possede_Constructeur_48 (T : in out Test_Fixt_T);
+
    procedure Test_Decaler_0_Bit_A_Gauche (T : in out Test_Fixt_T);
 
    procedure Test_Decaler_1_Bit_A_Gauche (T : in out Test_Fixt_T);

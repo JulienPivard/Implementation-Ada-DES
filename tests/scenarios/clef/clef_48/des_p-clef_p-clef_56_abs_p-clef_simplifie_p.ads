@@ -18,6 +18,10 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
       );
 
    overriding
+   function Possede_Constructeur_48 (Clef : Clef_Simplifie_T)
+      return Boolean;
+
+   overriding
    procedure Decaler_Bits_A_Gauche
       (Clef : in out Clef_Simplifie_T; Nb_Decalage : Decalage_T := 1);
 

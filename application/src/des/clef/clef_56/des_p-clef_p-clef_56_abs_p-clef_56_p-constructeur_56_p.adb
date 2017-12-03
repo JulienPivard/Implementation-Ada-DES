@@ -46,6 +46,18 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
 
    ---------------------------------------------------------------------------
    overriding
+   procedure Construire_Ajouter_Constructeur_48
+   (
+      Constructeur : in out Constructeur_Clef_56_T;
+      Constructeur_48 : access Constructeur_Clef_48_Abs_T'Class
+   )
+   is
+   begin
+      Constructeur.Clef_56.Constructeur := Constructeur_48;
+   end Construire_Ajouter_Constructeur_48;
+
+   ---------------------------------------------------------------------------
+   overriding
    function Recuperer_Clef_56 (Constructeur : Constructeur_Clef_56_T)
       return Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T
    is

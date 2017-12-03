@@ -16,6 +16,14 @@ package body Clef_56_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Verifie la presence d'un constructeur de clef 48 bits",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Possede_Constructeur_48'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Pas de decalage vers la gauche",
          Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
             Test_Decaler_0_Bit_A_Gauche'Access

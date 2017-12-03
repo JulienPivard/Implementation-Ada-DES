@@ -26,6 +26,13 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    );
 
    overriding
+   --  Indique si un constructeur de clef 48 bits à été attribué.
+   --  @param Clef
+   --  La clef de 56 bits.
+   --  @return La clef possède un constructeur de clef 48 bits initialisé.
+   function Possede_Constructeur_48 (Clef : Clef_56_T) return Boolean;
+
+   overriding
    --  Décale les bits de la clef vers la gauche
    --  @param Clef
    --  La clef dont on veut décaler les bits.

@@ -8,7 +8,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  33   37   41   45   49   53   57   61
    champ_bits_de_depart : constant
-   Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P.Champ_De_Bits_T :=
+   Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P.Tableau_Bits_T :=
       (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
       41 .. 44 | 49 .. 52 | 57 .. 60 => 1, others => 0);
 
@@ -51,28 +51,38 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
       bit_attendu : constant Bit_T := 0;
+      bit_lu : Bit_T;
    begin
       T.constructeur.all.Preparer_Nouvelle_Clef_56;
       for I in Intervalle_Clef_56_T'Range loop
+         bit_lu := T.constructeur.all.Clef_56.Lire_Bit (I);
          AUnit.Assertions.Assert
-         (T.constructeur.all.Clef_56.Lire_Bit (I) = bit_attendu,
-         "Le bit " & I'Img &
-         " vaut " & T.constructeur.all.Clef_56.Lire_Bit (I)'Img &
-         " au lieu de " & bit_attendu'Img);
+         (
+            bit_lu = bit_attendu,
+            "Le bit " & I'Img &
+            " vaut " & bit_lu'Img &
+            " au lieu de " & bit_attendu'Img
+         );
       end loop;
    end Test_Preparation;
 
    ---------------------------------------------------------------------------
    procedure Test_Construire (T : in out Test_Fixt_T) is
+      bit_lu : Bit_T;
+      bit_attendu : Bit_T;
    begin
       T.constructeur.all.Preparer_Nouvelle_Clef_56;
       T.constructeur.all.Construire_Clef_56 (T.clef_64);
       for I in Intervalle_Clef_56_T'Range loop
+         bit_lu := T.constructeur.all.Clef_56.Lire_Bit (I);
+         bit_attendu := resultat_attendu (I);
          AUnit.Assertions.Assert
-         (T.constructeur.all.Clef_56.Lire_Bit (I) = resultat_attendu (I),
-         "Le bit " & I'Img &
-         " vaut " & T.constructeur.all.Clef_56.Lire_Bit (I)'Img &
-         " au lieu de " & resultat_attendu (I)'Img);
+         (
+            bit_lu = bit_attendu,
+            "Le bit " & I'Img &
+            " vaut " & bit_lu'Img &
+            " au lieu de " & bit_attendu'Img
+         );
       end loop;
       null;
    end Test_Construire;
@@ -80,16 +90,22 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
       clef_construite : Clef_56_T;
+      bit_lu : Bit_T;
+      bit_attendu : Bit_T;
    begin
       T.constructeur.all.Preparer_Nouvelle_Clef_56;
       T.constructeur.all.Construire_Clef_56 (T.clef_64);
       clef_construite := T.constructeur.all.Recuperer_Clef_56;
       for I in Intervalle_Clef_56_T'Range loop
+         bit_lu := clef_construite.Lire_Bit (I);
+         bit_attendu := resultat_attendu (I);
          AUnit.Assertions.Assert
-         (clef_construite.Lire_Bit (I) = resultat_attendu (I),
-         "Le bit " & I'Img &
-         " vaut " & clef_construite.Lire_Bit (I)'Img &
-         " au lieu de " & resultat_attendu (I)'Img);
+         (
+            bit_lu = bit_attendu,
+            "Le bit " & I'Img &
+            " vaut " & bit_lu'Img &
+            " au lieu de " & bit_attendu'Img
+         );
       end loop;
    end Test_Recuperation;
 

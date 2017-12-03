@@ -1,4 +1,5 @@
 with AUnit.Assertions;
+
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 
 package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
@@ -133,6 +134,22 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    begin
       T.clef_56.Constructeur := null;
    end Tear_Down;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Possede_Constructeur_48 (T : in out Test_Fixt_T) is
+   begin
+      AUnit.Assertions.Assert
+         (T.clef_56.Possede_Constructeur_48,
+         "La clef devrait posseder un constructeur 48 bits, " &
+         "mais n'en a pas."
+         );
+      T.clef_56.Constructeur := null;
+      AUnit.Assertions.Assert
+         (not T.clef_56.Possede_Constructeur_48,
+         "La clef ne devrait pas posseder un " &
+         "constructeur 48 bits, mais en a un."
+         );
+   end Test_Possede_Constructeur_48;
 
    ---------------------------------------------------------------------------
    procedure Test_Decaler_0_Bit_A_Gauche (T : in out Test_Fixt_T) is

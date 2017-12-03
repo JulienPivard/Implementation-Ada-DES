@@ -13,6 +13,13 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
 
    ---------------------------------------------------------------------------
    overriding
+   function Possede_Constructeur_48 (Clef : Clef_56_T) return Boolean is
+   begin
+      return Clef.Constructeur /= null;
+   end Possede_Constructeur_48;
+
+   ---------------------------------------------------------------------------
+   overriding
    procedure Decaler_Bits_A_Gauche
       (Clef : in out Clef_56_T; Nb_Decalage : Decalage_T := 1)
    is
