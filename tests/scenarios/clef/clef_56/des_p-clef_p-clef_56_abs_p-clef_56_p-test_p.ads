@@ -22,6 +22,12 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
 
    procedure Test_Decaler_3_Bit_A_Gauche (T : in out Test_Fixt_T);
 
+   procedure Test_1_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
+
+   procedure Test_2_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
+
+   procedure Test_3_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
+
    procedure Test_Lire_Bit_Sans_Decalage (T : in out Test_Fixt_T);
 
    procedure Test_Lire_Bit_1_Decalage (T : in out Test_Fixt_T);
@@ -29,6 +35,12 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    procedure Test_Lire_Bit_2_Decalage (T : in out Test_Fixt_T);
 
    procedure Test_Lire_Bit_3_Decalage (T : in out Test_Fixt_T);
+
+   procedure Test_Lire_Bit_1_Decalage_Successif (T : in out Test_Fixt_T);
+
+   procedure Test_Lire_Bit_2_Decalage_Successif (T : in out Test_Fixt_T);
+
+   procedure Test_Lire_Bit_3_Decalage_Successif (T : in out Test_Fixt_T);
 
    procedure Test_Construire_Clef_48_0_Decalages (T : in out Test_Fixt_T);
 
