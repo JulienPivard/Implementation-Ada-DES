@@ -4,11 +4,14 @@ with AUnit.Options;
 
 with Bloc_32_Suite_P;
 with Constructeur_Bloc_32_Suite_P;
+
 with Clef_48_Suite_P;
 with Clef_56_Suite_P;
 with Clef_64_Suite_P;
+
 with Constructeur_Clef_48_Suite_P;
 with Constructeur_Clef_56_Suite_P;
+with Constructeur_Clef_64_Suite_P;
 
 procedure Main_Test_Harnais is
 
@@ -23,10 +26,13 @@ procedure Main_Test_Harnais is
       (Clef_56_Suite_P.Fonc_Clef_56_Suite);
    procedure runner_clef_64 is new AUnit.Run.Test_Runner
       (Clef_64_Suite_P.Fonc_Clef_64_Suite);
+
    procedure runner_construct_48_clef is new AUnit.Run.Test_Runner
       (Constructeur_Clef_48_Suite_P.Fonc_Constructeur_Clef_48_Suite);
    procedure runner_construct_56_clef is new AUnit.Run.Test_Runner
       (Constructeur_Clef_56_Suite_P.Fonc_Constructeur_Clef_56_Suite);
+   procedure runner_construct_64_clef is new AUnit.Run.Test_Runner
+      (Constructeur_Clef_64_Suite_P.Fonc_Constructeur_Clef_64_Suite);
 
    options : constant AUnit.Options.AUnit_Options :=
       (
@@ -46,6 +52,8 @@ begin
    runner_clef_48 (reporter, options);
    runner_clef_56 (reporter, options);
    runner_clef_64 (reporter, options);
+
    runner_construct_48_clef (reporter, options);
    runner_construct_56_clef (reporter, options);
+   runner_construct_64_clef (reporter, options);
 end Main_Test_Harnais;
