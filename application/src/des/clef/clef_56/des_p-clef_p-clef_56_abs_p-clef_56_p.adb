@@ -50,6 +50,10 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T
    is
    begin
+      if Clef.Constructeur = null then
+         raise Constructeur_48_Absent_E with
+         "La clef de 56 n'a pas de constructeur de clef de 48";
+      end if;
       Clef.Constructeur.all.Preparer_Nouvelle_Clef_48;
       Clef.Constructeur.all.Construire_Clef_48 (Clef);
       return Clef.Constructeur.all.Recuperer_Clef_48;
