@@ -44,6 +44,8 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
 
    procedure Test_Lire_Bit_3_Decalage_Successif (T : in out Test_Fixt_T);
 
+   procedure Test_Construire_Clef_48_Exception (T : in out Test_Fixt_T);
+
    procedure Test_Construire_Clef_48_0_Decalages (T : in out Test_Fixt_T);
 
    procedure Test_Construire_Clef_48_1_Decalages (T : in out Test_Fixt_T);
@@ -51,5 +53,11 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    procedure Test_Construire_Clef_48_2_Decalages (T : in out Test_Fixt_T);
 
    procedure Test_Construire_Clef_48_3_Decalages (T : in out Test_Fixt_T);
+
+   ---------------------------------------------------------------------------
+   --                         Procédure d'exception                         --
+   ---------------------------------------------------------------------------
+
+   procedure Declencher_Exception_Constructeur_48;
 
 end Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P;

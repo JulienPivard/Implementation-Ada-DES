@@ -127,6 +127,20 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
    end Test_Possede_Constructeur_48;
 
    ---------------------------------------------------------------------------
+   procedure Test_Construire_Clef_56_Exception (T : in out Test_Fixt_T) is
+      pragma Unreferenced (T);
+      Exception_Constructeur_56_Absent : constant
+         AUnit.Assertions.Throwing_Exception_Proc :=
+         Declencher_Exception_Constructeur_56'Access;
+   begin
+      AUnit.Assertions.Assert_Exception
+      (
+         Exception_Constructeur_56_Absent,
+         "La clef ne devrait pas posséder de constructeur 48"
+      );
+   end Test_Construire_Clef_56_Exception;
+
+   ---------------------------------------------------------------------------
    procedure Test_Construire_Clef_56 (T : in out Test_Fixt_T) is
       clef_56 : constant Clef_56_T := T.clef_64.Lire_Clef_56;
       bit_lu : Bit_T;
@@ -210,5 +224,16 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
          );
       end loop;
    end Test_Bits_Aleatoire;
+
+   ---------------------------------------------------------------------------
+   --                         Procédure d'exception                         --
+   ---------------------------------------------------------------------------
+   procedure Declencher_Exception_Constructeur_56 is
+      c : Clef_56_T;
+      clef_64 : Clef_64_T;
+   begin
+      c := clef_64.Lire_Clef_56;
+      pragma Unreferenced (c);
+   end Declencher_Exception_Constructeur_56;
 
 end Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P;

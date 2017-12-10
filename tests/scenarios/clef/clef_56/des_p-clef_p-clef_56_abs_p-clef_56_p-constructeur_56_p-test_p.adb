@@ -1,5 +1,7 @@
 with AUnit.Assertions;
 
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+
 package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
 
    --  La clef de 64 bits:
@@ -65,6 +67,24 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
          );
       end loop;
    end Test_Preparation;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Constructeur_48 (T : in out Test_Fixt_T) is
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+      c : constant access Constructeur_Clef_48_T := new Constructeur_Clef_48_T;
+   begin
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_56.Constructeur = null,
+         "Aucun constructeur de 48 ne devrait être présent dans la clef de 56"
+      );
+      T.constructeur.all.Construire_Ajouter_Constructeur_48 (c);
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_56.Constructeur = c,
+         "Le constructeur 48 n'a pas été ajouté dans la clef de 56."
+      );
+   end Test_Ajouter_Constructeur_48;
 
    ---------------------------------------------------------------------------
    procedure Test_Construire (T : in out Test_Fixt_T) is

@@ -72,10 +72,6 @@ private
    type Constructeur_Clef_64_T is new Constructeur_Clef_64_Abs_T with
       record
          Clef_64 : Clef_64_T;
-         Constructeur_56 : access Des_P.Clef_P.Constructeur_56_Abs_P.
-            Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Des_P.Clef_P.Constructeur_48_Abs_P.
-            Constructeur_Clef_48_Abs_T'Class;
       end record;
 
 end Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;

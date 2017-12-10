@@ -7,8 +7,6 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    is
       C : Clef_64_T;
    begin
-      C.Constructeur_56 := null;
-      C.Constructeur_48 := null;
       Constructeur.Clef_64 := C;
    end Preparer_Nouvelle_Clef_64;
 
@@ -43,7 +41,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
       )
    is
    begin
-      Constructeur.Constructeur_56 := Constructeur_56;
+      Constructeur.Clef_64.Constructeur_56 := Constructeur_56;
    end Construire_Ajouter_Constructeur_56;
 
    ---------------------------------------------------------------------------
@@ -56,7 +54,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
       )
    is
    begin
-      Constructeur.Constructeur_48 := Constructeur_48;
+      Constructeur.Clef_64.Constructeur_48 := Constructeur_48;
    end Construire_Ajouter_Constructeur_48;
 
    ---------------------------------------------------------------------------

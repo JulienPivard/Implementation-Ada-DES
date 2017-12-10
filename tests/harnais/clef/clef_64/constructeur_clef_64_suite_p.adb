@@ -25,6 +25,20 @@ package body Constructeur_Clef_64_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Ajout d'un constructeur 56",
+         Test_Ajouter_Constructeur_56'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Ajout d'un constructeur 48",
+         Test_Ajouter_Constructeur_48'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Construction d'une clef de 64",
          Test_Construire'Access
          )

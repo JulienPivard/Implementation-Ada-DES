@@ -43,7 +43,8 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
    is
    begin
       if Clef.Constructeur_56 = null then
-         raise Constructeur_56_Absent_E;
+         raise Erreur_Constructeur_56_Absent with
+         "La clef de 64 n'a pas de constructeur de clef 56";
       end if;
       Clef.Constructeur_56.all.Preparer_Nouvelle_Clef_56;
       Clef.Constructeur_56.all.Construire_Clef_56 (Clef);

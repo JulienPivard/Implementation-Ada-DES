@@ -10,7 +10,7 @@ package Des_P.Clef_P.Clef_64_Abs_P is
 
    pragma Pure;
 
-   Constructeur_56_Absent_E : exception;
+   Erreur_Constructeur_56_Absent : exception;
 
    --  La clef de 64 bits.
    type Clef_64_Abs_T is abstract new Clef_Abstraite_T with private;

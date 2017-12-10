@@ -31,6 +31,13 @@ package body Clef_64_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Verifie la levee d'exception absence de constructeur 56",
+         Test_Construire_Clef_56_Exception'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Construction d'une clef de 56 bits",
          Test_Construire_Clef_56'Access
          )

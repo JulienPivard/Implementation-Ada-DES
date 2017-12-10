@@ -136,6 +136,14 @@ package body Clef_56_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Verifie la levee d'exception absence de constructeur 48",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_Construire_Clef_48_Exception'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Construction d'une clef de 48 bits avec 0 decalage",
          Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
             Test_Construire_Clef_48_0_Decalages'Access

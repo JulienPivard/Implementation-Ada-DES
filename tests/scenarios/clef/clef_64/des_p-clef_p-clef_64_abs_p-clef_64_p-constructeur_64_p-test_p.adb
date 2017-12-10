@@ -1,5 +1,8 @@
 with AUnit.Assertions;
 
+with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+
 package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
 
    clef_brut_64 : constant Clef_64_Brut_T :=
@@ -46,6 +49,42 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
          );
       end loop;
    end Test_Preparation;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Constructeur_56 (T : in out Test_Fixt_T) is
+      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+      c : constant access Constructeur_Clef_56_T := new Constructeur_Clef_56_T;
+   begin
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_64.Constructeur_56 = null,
+         "La clef de 64 ne devrait pas avoir de constructeur 56."
+      );
+      T.constructeur.all.Construire_Ajouter_Constructeur_56 (c);
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_64.Constructeur_56 = c,
+         "Le constructeur de 56 n'a pas été ajouté à la clef de 64."
+      );
+   end Test_Ajouter_Constructeur_56;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_Constructeur_48 (T : in out Test_Fixt_T) is
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+      c : constant access Constructeur_Clef_48_T := new Constructeur_Clef_48_T;
+   begin
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_64.Constructeur_48 = null,
+         "La clef de 64 ne devrait pas avoir de constructeur 56."
+      );
+      T.constructeur.all.Construire_Ajouter_Constructeur_48 (c);
+      AUnit.Assertions.Assert
+      (
+         T.constructeur.all.Clef_64.Constructeur_48 = c,
+         "Le constructeur de 56 n'a pas été ajouté à la clef de 64."
+      );
+   end Test_Ajouter_Constructeur_48;
 
    ---------------------------------------------------------------------------
    procedure Test_Construire (T : in out Test_Fixt_T) is
