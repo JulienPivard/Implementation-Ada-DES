@@ -1,4 +1,4 @@
-package body Des_P.Bloc_32_P.Constructeur_P is
+package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
 
    ---------------------------------------------------------------------------
    procedure Preparer_Nouveau_Bloc_32
@@ -36,4 +36,4 @@ package body Des_P.Bloc_32_P.Constructeur_P is
       return Constructeur.Bloc;
    end Recuperer_Bloc_32;
 
-end Des_P.Bloc_32_P.Constructeur_P;
+end Des_P.Bloc_P.Bloc_32_P.Constructeur_P;

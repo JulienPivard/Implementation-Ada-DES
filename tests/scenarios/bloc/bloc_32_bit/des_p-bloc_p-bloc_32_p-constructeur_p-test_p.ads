@@ -1,7 +1,7 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Bloc_32_P.Constructeur_P.Test_P is
+package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
 
    brut_attendu : constant Bloc_32_Brut_T :=
       2#1111_0000_1111_0000_1111_0000_1111_0000#;
@@ -26,4 +26,4 @@ package Des_P.Bloc_32_P.Constructeur_P.Test_P is
 
    procedure Test_Recuperation (T : in out Test_Fixt_T);
 
-end Des_P.Bloc_32_P.Constructeur_P.Test_P;
+end Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;

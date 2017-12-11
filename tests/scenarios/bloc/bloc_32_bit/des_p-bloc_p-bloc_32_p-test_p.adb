@@ -2,7 +2,7 @@ with AUnit.Assertions;
 
 with Ada.Numerics.Discrete_Random;
 
-package body Des_P.Bloc_32_P.Test_P is
+package body Des_P.Bloc_P.Bloc_32_P.Test_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -858,4 +858,4 @@ package body Des_P.Bloc_32_P.Test_P is
       end loop;
    end Test_Change_Bits_Aleatoirement;
 
-end Des_P.Bloc_32_P.Test_P;
+end Des_P.Bloc_P.Bloc_32_P.Test_P;

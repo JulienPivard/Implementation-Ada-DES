@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-package body Des_P.Bloc_32_P.Bloc_IO is
+package body Des_P.Bloc_P.Bloc_32_P.Bloc_IO is
 
    ---------------------------------------------------------------------------
    procedure Put (Bloc : Bloc_32_T) is
@@ -25,4 +25,4 @@ package body Des_P.Bloc_32_P.Bloc_IO is
       Ada.Text_IO.New_Line (1);
    end Put_Line;
 
-end Des_P.Bloc_32_P.Bloc_IO;
+end Des_P.Bloc_P.Bloc_32_P.Bloc_IO;

@@ -1,4 +1,4 @@
-package body Des_P.Bloc_32_P is
+package body Des_P.Bloc_P.Bloc_32_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -38,4 +38,4 @@ package body Des_P.Bloc_32_P is
       return B.Tableau_Bit (Position);
    end Lire_Bit;
 
-end Des_P.Bloc_32_P;
+end Des_P.Bloc_P.Bloc_32_P;

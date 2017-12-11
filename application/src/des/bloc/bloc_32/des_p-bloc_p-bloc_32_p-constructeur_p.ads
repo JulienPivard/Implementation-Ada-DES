@@ -3,7 +3,7 @@
 --  @description
 --  Construit le bloc de 32 bits à partir d'un bloc brut.
 --  @group Constructeur_Bloc
-package Des_P.Bloc_32_P.Constructeur_P is
+package Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
 
    pragma Pure;
 
@@ -12,8 +12,8 @@ package Des_P.Bloc_32_P.Constructeur_P is
 
    --  Le brut de 32 bits qui va être raffiné en
    --  un bloc de 32 bits plus facile à manipuler.
-   type Bloc_32_Brut_T is mod 2**32;
-   for Bloc_32_Brut_T'Size use 32;
+   type Bloc_32_Brut_T is mod 2**32
+      with Size => 32;
 
    --  Initialise un nouveau bloc vide de 32 bits.
    --  @param Constructeur
@@ -43,4 +43,4 @@ private
          Bloc : Bloc_32_T;
       end record;
 
-end Des_P.Bloc_32_P.Constructeur_P;
+end Des_P.Bloc_P.Bloc_32_P.Constructeur_P;

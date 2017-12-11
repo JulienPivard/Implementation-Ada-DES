@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 21 novembre[11] 2017
+--           Dernière modification : lundi 11 décembre[12] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -13,9 +13,9 @@ with Ada.Directories;
 
 --  with Ada.Sequential_IO;
 
-with Des_P.Bloc_32_P;
-with Des_P.Bloc_32_P.Bloc_IO;
-with Des_P.Bloc_32_P.Constructeur_P;
+with Des_P.Bloc_P.Bloc_32_P;
+with Des_P.Bloc_P.Bloc_32_P.Bloc_IO;
+with Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
 
 procedure Client is
 
@@ -39,11 +39,11 @@ procedure Client is
 
    --  package Lecteur_32_IO is new Ada.Sequential_IO
    --  (Des_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T);
-   c : Des_P.Bloc_32_P.Constructeur_P.Constructeur_Bloc_32_T;
+   c : Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Constructeur_Bloc_32_T;
    --  f : Lecteur_32_IO.File_Type;
-   brut : constant Des_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T :=
+   brut : constant Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T :=
       2#1111_0000_1111_0000_1111_0000_1111_0000#;
-   bloc : Des_P.Bloc_32_P.Bloc_32_T;
+   bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
 begin
 
@@ -76,7 +76,7 @@ begin
    c.Construire_Bloc;
    bloc := c.Recuperer_Bloc_32;
 
-   Des_P.Bloc_32_P.Bloc_IO.Put_Line (bloc);
+   Des_P.Bloc_P.Bloc_32_P.Bloc_IO.Put_Line (bloc);
 
    --  Lecteur_32_IO.Close (f);
 
