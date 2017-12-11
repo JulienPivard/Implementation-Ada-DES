@@ -23,7 +23,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
 
    ---------------------------------------------------------------------------
    procedure Ecrire_Bit
-      (B : in out Bloc_32_T; Position : Interval_Bloc_32_T; Bit : Bit_T)
+      (B : in out Bloc_32_T; Position : Intervalle_Bloc_32_T; Bit : Bit_T)
    is
    begin
       B.Tableau_Bit (Position) := Bit;
@@ -31,7 +31,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
 
    ---------------------------------------------------------------------------
    function Lire_Bit
-      (B : Bloc_32_T; Position : Interval_Bloc_32_T)
+      (B : Bloc_32_T; Position : Intervalle_Bloc_32_T)
       return Bit_T
    is
    begin

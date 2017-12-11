@@ -26,7 +26,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
          (T.constructeur.Brut = brut_attendu,
          "Le brut de 32 bits ne vaut pas la bonne valeur."
          );
-      for I in Interval_Bloc_32_T'Range loop
+      for I in Intervalle_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.constructeur.Bloc.Lire_Bit (I) = b,
             "Le bit " & I'Img &
@@ -44,7 +44,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
          (T.constructeur.Brut = brut_attendu,
          "Le brut de 32 bits a été modifié durant la construction."
          );
-      for I in Interval_Bloc_32_T'Range loop
+      for I in Intervalle_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (T.constructeur.Bloc.Lire_Bit (I) = resultat_attendu (I),
             "Le bit " & I'Img &
@@ -64,7 +64,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
          "Le brut de 32 bits a été modifié durant la construction."
          );
       bloc_resultat := T.constructeur.Recuperer_Bloc_32;
-      for I in Interval_Bloc_32_T'Range loop
+      for I in Intervalle_Bloc_32_T'Range loop
          AUnit.Assertions.Assert
             (bloc_resultat.Lire_Bit (I) = resultat_attendu (I),
             "Le bit " & I'Img &
