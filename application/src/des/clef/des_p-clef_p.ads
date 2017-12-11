@@ -10,7 +10,8 @@ package Des_P.Clef_P is
    pragma Pure;
 
    --  Un bit de la clef.
-   type Bit_T is range 0 .. 1;
+   type Bit_T is range 0 .. 1
+      with Size => 1;
 
    --  Une clef permettant de crypter/décrypter.
    type Clef_Abstraite_T is abstract
