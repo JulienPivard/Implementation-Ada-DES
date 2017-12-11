@@ -852,7 +852,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Tableau_Bit (I)'Img &
+            " vaut : " & T.bloc.Lire_Bit (I)'Img &
             " au lieu de " & attendu (I)'Img
             );
       end loop;
