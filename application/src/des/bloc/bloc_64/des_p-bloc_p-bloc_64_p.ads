@@ -82,7 +82,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  La position du bit qu'on veut écrire dans le bloc gauche.
    --  @param Bit
    --  Le bit qu'on veut écrire.
-   procedure Ecrire_Bit_Bloc
+   procedure Ecrire_Bit
    (
       B : in out Bloc_64_T;
       Bloc_G_Ou_D : Position_Bloc_T;
@@ -99,7 +99,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  @param Position
    --  La position du bit qu'on veut lire dans le bloc gauche ou droit.
    --  @return Le bit lu.
-   function Lire_Bit_Bloc
+   function Lire_Bit
    (
       B : Bloc_64_T;
       Bloc_G_Ou_D : Position_Bloc_T;

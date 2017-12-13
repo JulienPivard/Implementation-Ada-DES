@@ -51,7 +51,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
          P := P - Limite;
       end if;
       P_Dans_Intervalle_32 := Intervalle_Bloc_32_T (P);
-      Ecrire_Bit_Bloc (B, G_Ou_D, P_Dans_Intervalle_32, Bit);
+      Ecrire_Bit (B, G_Ou_D, P_Dans_Intervalle_32, Bit);
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
@@ -74,11 +74,11 @@ package body Des_P.Bloc_P.Bloc_64_P is
          P := P - Limite;
       end if;
       P_Dans_Intervalle_32 := Intervalle_Bloc_32_T (P);
-      return Lire_Bit_Bloc (B, G_Ou_D, P_Dans_Intervalle_32);
+      return Lire_Bit (B, G_Ou_D, P_Dans_Intervalle_32);
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
-   procedure Ecrire_Bit_Bloc
+   procedure Ecrire_Bit
       (
          B : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
@@ -92,10 +92,10 @@ package body Des_P.Bloc_P.Bloc_64_P is
          Position_Bloc := Position_Bloc + 1;
       end if;
       B.Blocs_32 (Position_Bloc).Ecrire_Bit (Position, Bit);
-   end Ecrire_Bit_Bloc;
+   end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
-   function Lire_Bit_Bloc
+   function Lire_Bit
       (
          B : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
@@ -109,6 +109,6 @@ package body Des_P.Bloc_P.Bloc_64_P is
          Position_Bloc := Position_Bloc + 1;
       end if;
       return B.Blocs_32 (Position_Bloc).Lire_Bit (Position);
-   end Lire_Bit_Bloc;
+   end Lire_Bit;
 
 end Des_P.Bloc_P.Bloc_64_P;
