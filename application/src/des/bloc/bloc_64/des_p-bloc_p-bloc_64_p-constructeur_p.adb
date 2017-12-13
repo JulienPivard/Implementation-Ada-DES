@@ -1,26 +1,26 @@
-package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
+package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
 
    ---------------------------------------------------------------------------
-   procedure Preparer_Nouveau_Bloc_32
+   procedure Preparer_Nouveau_Bloc_64
       (
-         Constructeur : in out Constructeur_Bloc_32_T;
-         Brut : Bloc_32_Brut_T
+         Constructeur : in out Constructeur_Bloc_64_T;
+         Brut : Bloc_64_Brut_T
       )
    is
-      B : Bloc_32_T;
+      B : Bloc_64_T;
    begin
       Constructeur.Brut := Brut;
       Constructeur.Bloc := B;
-   end Preparer_Nouveau_Bloc_32;
+   end Preparer_Nouveau_Bloc_64;
 
    ---------------------------------------------------------------------------
    procedure Construire_Bloc
-      (Constructeur : in out Constructeur_Bloc_32_T)
+      (Constructeur : in out Constructeur_Bloc_64_T)
    is
       Bit : Bit_T;
-      Masque : Bloc_32_Brut_T := 1;
+      Masque : Bloc_64_Brut_T := 1;
    begin
-      for I in reverse Intervalle_Bloc_32_T'Range loop
+      for I in reverse Intervalle_Bloc_64_T'Range loop
          if (Constructeur.Brut and Masque) > 0 then
             Bit := 1;
          else
@@ -32,12 +32,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------
-   function Recuperer_Bloc_32
-      (Constructeur : Constructeur_Bloc_32_T)
-      return Bloc_32_T
+   function Recuperer_Bloc_64
+      (Constructeur : Constructeur_Bloc_64_T)
+      return Bloc_64_T
    is
    begin
       return Constructeur.Bloc;
-   end Recuperer_Bloc_32;
+   end Recuperer_Bloc_64;
 
-end Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+end Des_P.Bloc_P.Bloc_64_P.Constructeur_P;

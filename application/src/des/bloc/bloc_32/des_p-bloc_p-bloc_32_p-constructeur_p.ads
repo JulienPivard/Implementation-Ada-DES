@@ -21,19 +21,24 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
    --  @param Brut
    --  Le brut de 32 bits.
    procedure Preparer_Nouveau_Bloc_32
-      (Constructeur : in out Constructeur_Bloc_32_T; Brut : Bloc_32_Brut_T);
+      (
+         Constructeur : in out Constructeur_Bloc_32_T;
+         Brut : Bloc_32_Brut_T
+      );
 
    --  Raffine le brut de 32 bits pour construire le bloc de 32 bits.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
-   procedure Construire_Bloc (Constructeur : in out Constructeur_Bloc_32_T);
+   procedure Construire_Bloc
+      (Constructeur : in out Constructeur_Bloc_32_T);
 
    --  Récupère le bloc de 32 bits terminé.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
    --  @return Le bloc de 32 bits.
-   function Recuperer_Bloc_32 (Constructeur : Constructeur_Bloc_32_T) return
-      Bloc_32_T;
+   function Recuperer_Bloc_32
+      (Constructeur : Constructeur_Bloc_32_T)
+      return Bloc_32_T;
 
 private
 
