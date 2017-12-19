@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : lundi 11 décembre[12] 2017
+--           Dernière modification : mardi 19 décembre[12] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -11,11 +11,13 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
---  with Ada.Sequential_IO;
+with Ada.Sequential_IO;
 
-with Des_P.Bloc_P.Bloc_32_P;
-with Des_P.Bloc_P.Bloc_32_P.Bloc_IO;
-with Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+with Des_P.Bloc_P.Bloc_64_P;
+with Des_P.Bloc_P.Bloc_64_P.Bloc_IO;
+with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+
+pragma Elaborate_All (Des_P.Bloc_P.Bloc_64_P);
 
 procedure Client is
 
@@ -37,13 +39,18 @@ procedure Client is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   --  package Lecteur_32_IO is new Ada.Sequential_IO
-   --  (Des_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T);
-   c : Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Constructeur_Bloc_32_T;
-   --  f : Lecteur_32_IO.File_Type;
-   brut : constant Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Bloc_32_Brut_T :=
-      2#1111_0000_1111_0000_1111_0000_1111_0000#;
-   bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+   package Lecteur_64_IO is new Ada.Sequential_IO
+   (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
+   c : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
+   f : Lecteur_64_IO.File_Type;
+   brut : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+   --  brut : constant Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
+   --  2#11110000_11110000_11110000_11110000_
+   --  11110000_11110000_11110000_11110000#;
+   bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+
+   bloc_64 : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+   pragma Unreferenced (bloc_64);
 
 begin
 
@@ -68,17 +75,17 @@ begin
 
    end if;
 
-   --  Lecteur_32_IO.Open (f, Lecteur_32_IO.In_File, "test.txt");
+   Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, "test.txt");
 
-   --  Lecteur_32_IO.Read (f, brut);
+   Lecteur_64_IO.Read (f, brut);
 
-   c.Preparer_Nouveau_Bloc_32 (brut);
+   c.Preparer_Nouveau_Bloc_64 (brut);
    c.Construire_Bloc;
-   bloc := c.Recuperer_Bloc_32;
+   bloc := c.Recuperer_Bloc_64;
 
-   Des_P.Bloc_P.Bloc_32_P.Bloc_IO.Put_Line (bloc);
+   Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (bloc);
 
-   --  Lecteur_32_IO.Close (f);
+   Lecteur_64_IO.Close (f);
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
