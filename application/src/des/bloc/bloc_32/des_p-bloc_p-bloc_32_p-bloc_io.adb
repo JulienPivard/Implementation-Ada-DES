@@ -9,12 +9,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Bloc_IO is
    begin
       for I in Intervalle_Bloc_32_T'Range loop
          if c > 8 then
-            Bit_IO.Put (Bloc.Tableau_Bit (I), 2);
-            c := 2;
+            Bit_IO.Put (Bloc.Bits (I), 2);
+            c := 1;
          else
-            Bit_IO.Put (Bloc.Tableau_Bit (I), 1);
-            c := c + 1;
+            Bit_IO.Put (Bloc.Bits (I), 1);
          end if;
+         c := c + 1;
       end loop;
    end Put;
 

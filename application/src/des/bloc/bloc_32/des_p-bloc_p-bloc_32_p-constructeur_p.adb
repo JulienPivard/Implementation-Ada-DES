@@ -26,7 +26,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          else
             Bit := 0;
          end if;
-         Constructeur.Bloc.Ecrire_Bit (I, Bit);
+         Constructeur.Bloc.Bits (I) := Bit;
          Masque := Masque * 2;
       end loop;
    end Construire_Bloc;

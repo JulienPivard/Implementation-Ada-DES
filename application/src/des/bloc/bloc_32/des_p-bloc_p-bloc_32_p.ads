@@ -40,7 +40,11 @@ package Des_P.Bloc_P.Bloc_32_P is
    --  @param Bit
    --  Le bit qu'on veut écrire.
    procedure Ecrire_Bit
-      (B : in out Bloc_32_T; Position : Intervalle_Bloc_32_T; Bit : Bit_T);
+   (
+      B : in out Bloc_32_T;
+      Position : Intervalle_Bloc_32_T;
+      Bit : Bit_T
+   );
 
    --  Lit le bit demandé dans le bloc de 32.
    --  @param B
@@ -48,17 +52,22 @@ package Des_P.Bloc_P.Bloc_32_P is
    --  @param Position
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
-   function Lire_Bit (B : Bloc_32_T; Position : Intervalle_Bloc_32_T)
-      return Bit_T;
+   function Lire_Bit
+   (
+      B : Bloc_32_T;
+      Position : Intervalle_Bloc_32_T
+   )
+   return Bit_T;
 
 private
 
-   type Tableau_Bit_T is array
-      (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range) of Bit_T;
+   type Tableau_Bits_T is array
+      (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
+      of Bit_T;
 
    type Bloc_32_T is new Bloc_Abstrait_T with
       record
-         Tableau_Bit : Tableau_Bit_T;
+         Bits : Tableau_Bits_T;
       end record;
 
 end Des_P.Bloc_P.Bloc_32_P;

@@ -4,7 +4,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
    overriding
    procedure Initialize (B : in out Bloc_32_T) is
    begin
-      B.Tableau_Bit := (others => 0);
+      B.Bits := (others => 0);
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -23,19 +23,26 @@ package body Des_P.Bloc_P.Bloc_32_P is
 
    ---------------------------------------------------------------------------
    procedure Ecrire_Bit
-      (B : in out Bloc_32_T; Position : Intervalle_Bloc_32_T; Bit : Bit_T)
+      (
+         B : in out Bloc_32_T;
+         Position : Intervalle_Bloc_32_T;
+         Bit : Bit_T
+      )
    is
    begin
-      B.Tableau_Bit (Position) := Bit;
+      B.Bits (Position) := Bit;
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
    function Lire_Bit
-      (B : Bloc_32_T; Position : Intervalle_Bloc_32_T)
+      (
+         B : Bloc_32_T;
+         Position : Intervalle_Bloc_32_T
+      )
       return Bit_T
    is
    begin
-      return B.Tableau_Bit (Position);
+      return B.Bits (Position);
    end Lire_Bit;
 
 end Des_P.Bloc_P.Bloc_32_P;
