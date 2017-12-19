@@ -1,24 +1,18 @@
-with Ada.Finalization;
-
 --  @summary
 --  Un bloc de 32 bits de données.
 --  @description
 --  Cette représentation permet de manipuler facilement des
 --  blocs de 32 bits sans avoir à en connaitre le détail.
 --  @group Bloc
-package Des_P.Bloc_32_P is
+package Des_P.Bloc_P.Bloc_32_P is
 
    pragma Pure;
 
-   --  Représente un bit.
-   type Bit_T is range 0 .. 1;
-   for Bit_T'Size use 1;
-
    --  L'intervalle pour accéder à notre bloc de 32 bits.
-   type Interval_Bloc_32_T is range 1 .. 32;
+   type Intervalle_Bloc_32_T is range 1 .. 32;
 
    --  Représente un bloc de 32 bits.
-   type Bloc_32_T is new Ada.Finalization.Controlled with private;
+   type Bloc_32_T is new Bloc_Abstrait_T with private;
 
    overriding
    --  Création d'un bloc de 32 bits avec la valeur 0.
@@ -46,7 +40,11 @@ package Des_P.Bloc_32_P is
    --  @param Bit
    --  Le bit qu'on veut écrire.
    procedure Ecrire_Bit
-      (B : in out Bloc_32_T; Position : Interval_Bloc_32_T; Bit : Bit_T);
+   (
+      B : in out Bloc_32_T;
+      Position : Intervalle_Bloc_32_T;
+      Bit : Bit_T
+   );
 
    --  Lit le bit demandé dans le bloc de 32.
    --  @param B
@@ -54,17 +52,22 @@ package Des_P.Bloc_32_P is
    --  @param Position
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
-   function Lire_Bit (B : Bloc_32_T; Position : Interval_Bloc_32_T)
-      return Bit_T;
+   function Lire_Bit
+   (
+      B : Bloc_32_T;
+      Position : Intervalle_Bloc_32_T
+   )
+   return Bit_T;
 
 private
 
-   type Tableau_Bit_T is array
-      (Interval_Bloc_32_T range Interval_Bloc_32_T'Range) of Bit_T;
+   type Tableau_Bits_T is array
+      (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
+      of Bit_T with Size => 32, Pack;
 
-   type Bloc_32_T is new Ada.Finalization.Controlled with
+   type Bloc_32_T is new Bloc_Abstrait_T with
       record
-         Tableau_Bit : Tableau_Bit_T;
+         Bits : Tableau_Bits_T;
       end record;
 
-end Des_P.Bloc_32_P;
+end Des_P.Bloc_P.Bloc_32_P;

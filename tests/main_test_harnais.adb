@@ -3,7 +3,9 @@ with AUnit.Run;
 with AUnit.Options;
 
 with Bloc_32_Suite_P;
+with Bloc_64_Suite_P;
 with Constructeur_Bloc_32_Suite_P;
+with Constructeur_Bloc_64_Suite_P;
 
 with Clef_48_Suite_P;
 with Clef_56_Suite_P;
@@ -17,8 +19,12 @@ procedure Main_Test_Harnais is
 
    procedure runner_bloc_32 is new AUnit.Run.Test_Runner
       (Bloc_32_Suite_P.Fonc_Bloc_32_Suite);
+   procedure runner_bloc_64 is new AUnit.Run.Test_Runner
+      (Bloc_64_Suite_P.Fonc_Bloc_64_Suite);
    procedure runner_constructeur_bloc_32 is new AUnit.Run.Test_Runner
       (Constructeur_Bloc_32_Suite_P.Fonc_Constructeur_Bloc_32_Suite);
+   procedure runner_constructeur_bloc_64 is new AUnit.Run.Test_Runner
+      (Constructeur_Bloc_64_Suite_P.Fonc_Constructeur_Bloc_64_Suite);
 
    procedure runner_clef_48 is new AUnit.Run.Test_Runner
       (Clef_48_Suite_P.Fonc_Clef_48_Suite);
@@ -47,7 +53,9 @@ begin
    AUnit.Reporter.Text.Set_Use_ANSI_Colors (reporter, True);
 
    runner_bloc_32 (reporter, options);
+   runner_bloc_64 (reporter, options);
    runner_constructeur_bloc_32 (reporter, options);
+   runner_constructeur_bloc_64 (reporter, options);
 
    runner_clef_48 (reporter, options);
    runner_clef_56 (reporter, options);

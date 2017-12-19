@@ -1,7 +1,9 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Bloc_32_P.Test_P is
+package Des_P.Bloc_P.Bloc_32_P.Test_P is
+
+   type Bit_IO_T is range 0 .. 1;
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
@@ -116,4 +118,4 @@ package Des_P.Bloc_32_P.Test_P is
    procedure Test_Change_Bits_Aleatoirement
       (T : in out Test_Fixt_T);
 
-end Des_P.Bloc_32_P.Test_P;
+end Des_P.Bloc_P.Bloc_32_P.Test_P;
