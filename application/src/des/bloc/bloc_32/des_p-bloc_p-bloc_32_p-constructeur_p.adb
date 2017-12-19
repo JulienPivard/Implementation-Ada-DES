@@ -17,18 +17,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
    procedure Construire_Bloc
       (Constructeur : in out Constructeur_Bloc_32_T)
    is
-      Bit : Bit_T;
-      Masque : Bloc_32_Brut_T := 1;
+      Resultat : Tableau_Bits_T with Address => Constructeur.Brut'Address;
    begin
-      for I in reverse Intervalle_Bloc_32_T'Range loop
-         if (Constructeur.Brut and Masque) > 0 then
-            Bit := 1;
-         else
-            Bit := 0;
-         end if;
-         Constructeur.Bloc.Bits (I) := Bit;
-         Masque := Masque * 2;
-      end loop;
+      Constructeur.Bloc.Bits := Resultat;
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------

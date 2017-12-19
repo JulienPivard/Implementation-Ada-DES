@@ -11,8 +11,7 @@ package Des_P.Bloc_P is
    pragma Pure;
 
    --  Représente un bit.
-   type Bit_T is range 0 .. 1
-      with Size => 1;
+   subtype Bit_T is Boolean;
 
    --  Représente un bloc de bits.
    type Bloc_Abstrait_T is abstract

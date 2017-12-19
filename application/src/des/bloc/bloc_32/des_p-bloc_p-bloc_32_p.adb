@@ -4,7 +4,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
    overriding
    procedure Initialize (B : in out Bloc_32_T) is
    begin
-      B.Bits := (others => 0);
+      B.Bits := (others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------

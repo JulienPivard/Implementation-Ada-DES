@@ -63,7 +63,7 @@ private
 
    type Tableau_Bits_T is array
       (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-      of Bit_T;
+      of Bit_T with Size => 32, Pack;
 
    type Bloc_32_T is new Bloc_Abstrait_T with
       record

@@ -1,3 +1,5 @@
+with Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+
 package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
 
    ---------------------------------------------------------------------------
@@ -17,18 +19,31 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
    procedure Construire_Bloc
       (Constructeur : in out Constructeur_Bloc_64_T)
    is
-      Bit : Bit_T;
-      Masque : Bloc_64_Brut_T := 1;
+      use Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+      type Bloc_Intermediaire is
+         record
+            Bloc_1 : Bloc_32_Brut_T;
+            Bloc_2 : Bloc_32_Brut_T;
+         end record
+      with Size => 64;
+
+      for Bloc_Intermediaire use
+         record
+            Bloc_1 at 0 range 0 .. 31;
+            Bloc_2 at 4 range 0 .. 31;
+         end record;
+
+      Resultat : Bloc_Intermediaire with Address => Constructeur.Brut'Address;
+
+      C_32 : Constructeur_Bloc_32_T;
    begin
-      for I in reverse Intervalle_Bloc_64_T'Range loop
-         if (Constructeur.Brut and Masque) > 0 then
-            Bit := 1;
-         else
-            Bit := 0;
-         end if;
-         Constructeur.Bloc.Ecrire_Bit (I, Bit);
-         Masque := Masque * 2;
-      end loop;
+      C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_1);
+      C_32.Construire_Bloc;
+      Constructeur.Bloc.Blocs_32 (0) := C_32.Recuperer_Bloc_32;
+
+      C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_2);
+      C_32.Construire_Bloc;
+      Constructeur.Bloc.Blocs_32 (1) := C_32.Recuperer_Bloc_32;
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------
