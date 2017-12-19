@@ -3,6 +3,8 @@ with AUnit.Test_Fixtures;
 
 package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
 
+   type Bit_IO_T is range 0 .. 1;
+
    --  valeur du brut
    brut_attendu : constant Bloc_32_Brut_T :=
       2#1111_0000_1111_0000_1111_0000_1111_0000#;
@@ -11,7 +13,7 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    resultat_attendu : constant array
       (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
       of Bit_T :=
-      (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 => 1, others => 0);
+      (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 => False, others => True);
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record

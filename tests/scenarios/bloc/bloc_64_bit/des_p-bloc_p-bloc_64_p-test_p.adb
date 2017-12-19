@@ -28,7 +28,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T)
    is
-      b : constant Bit_T := 0;
+      b : constant Bit_T := False;
+      valeur_bit : Bit_IO_T;
    begin
       AUnit.Assertions.Assert
          (T.bloc.Decalage = 0,
@@ -36,11 +37,12 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          " au lieu de 0 apres 0 decalages."
          );
       for I in Intervalle_Bloc_64_T'Range loop
+         valeur_bit := (if T.bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = b,
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & b'Img
+            " vaut : " & valeur_bit'Img &
+            " au lieu de 0"
             );
       end loop;
    end Test_Initialisation;
@@ -55,6 +57,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -68,11 +71,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -91,6 +96,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -107,17 +113,21 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -136,6 +146,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -160,11 +171,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -178,11 +191,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu_apres_echange (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu_apres_echange (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
       end loop;
@@ -202,6 +217,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -224,17 +240,21 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -248,18 +268,22 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_droite (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_gauche (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
       end loop;
@@ -279,6 +303,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -303,11 +328,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -321,11 +348,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu_apres_echange (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu_apres_echange (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
       end loop;
@@ -340,11 +369,14 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_64_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (I) = attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (I)'Img &
-            " au lieu de " & attendu (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
+            " APRES 2 echange."
             );
       end loop;
 
@@ -363,6 +395,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
+      bit_resulta, bit_attendu : Bit_IO_T;
    begin
 
       Bit_Aleatoire.Reset (generateur);
@@ -385,17 +418,21 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
             );
       end loop;
 
@@ -409,18 +446,22 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_droite (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_gauche (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
             " APRES 1 echange."
             );
       end loop;
@@ -435,19 +476,23 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       --  Vérification du contenu.
       for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
             "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Gauche, I)'Img &
-            " au lieu de " & attendu_gauche (I)'Img &
-            " APRES 2 echanges."
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
+            " APRES 2 echange."
             );
+         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
             "Le bit bloc DROITE " & I'Img &
-            " vaut : " & T.bloc.Lire_Bit (Droite, I)'Img &
-            " au lieu de " & attendu_droite (I)'Img &
-            " APRES 2 echanges."
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img &
+            " APRES 2 echange."
             );
       end loop;
 
