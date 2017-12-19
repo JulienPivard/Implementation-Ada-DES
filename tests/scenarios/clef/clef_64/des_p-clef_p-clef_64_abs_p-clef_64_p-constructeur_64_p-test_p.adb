@@ -15,7 +15,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
    --  33   37   41   45   49   53   57   61
    resultat_attendu : constant Tableau_Bits_T :=
       (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
-      41 .. 44 | 49 .. 52 | 57 .. 60 => 1, others => 0);
+      41 .. 44 | 49 .. 52 | 57 .. 60 => False, others => True);
 
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
@@ -34,7 +34,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
-      bit_attendu : constant Bit_T := 0;
+      bit_attendu : constant Bit_T := False;
       bit_lu : Bit_T;
    begin
       T.constructeur.all.Preparer_Nouvelle_Clef_64;

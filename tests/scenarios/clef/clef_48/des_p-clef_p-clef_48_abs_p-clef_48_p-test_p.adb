@@ -9,7 +9,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       C : Clef_48_T;
    begin
-      C.Bits := (others => 0);
+      C.Bits := (others => False);
       T.clef_48 := C;
    end Set_Up;
 
@@ -23,12 +23,12 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Lecture_Bit (T : in out Test_Fixt_T) is
       bits_attendu : constant Tableau_Bits_T :=
-         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 | 41 .. 44 => 1,
-         others => 0);
+         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
+         33 .. 36 | 41 .. 44 => False, others => True);
    begin
       T.clef_48.Bits :=
-         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 | 41 .. 44 => 1,
-         others => 0);
+         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
+         33 .. 36 | 41 .. 44 => False, others => True);
       for I in Intervalle_Clef_48_T'Range loop
          AUnit.Assertions.Assert
             (T.clef_48.Lire_Bit (I) = bits_attendu (I),

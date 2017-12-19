@@ -59,7 +59,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
    overriding
    procedure Initialize (Clef : in out Clef_Simplifie_T) is
    begin
-      Clef.Champ := (others => 0);
+      Clef.Champ := (others => False);
       Clef.Constructeur := null;
    end Initialize;
 
@@ -67,7 +67,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
    overriding
    procedure Finalize (Clef : in out Clef_Simplifie_T) is
    begin
-      Clef.Champ := (others => 0);
+      Clef.Champ := (others => False);
       Clef.Constructeur := null;
    end Finalize;
 

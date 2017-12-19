@@ -12,28 +12,28 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    c56 : constant array
       (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
       of Bit_T := (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
-         33 .. 36 | 41 .. 44 | 49 .. 52 => 1, others => 0);
+         33 .. 36 | 41 .. 44 | 49 .. 52 => False, others => True);
 
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
    c56_1_decalage : constant array
       (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
       of Bit_T := (1 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 28 |
-         32 .. 35 | 40 .. 43 | 48 .. 51 => 1, others => 0);
+         32 .. 35 | 40 .. 43 | 48 .. 51 => False, others => True);
 
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
    c56_2_decalage : constant array
       (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
       of Bit_T := (1 .. 2 | 7 .. 10 | 15 .. 18 | 23 .. 28 |
-         31 .. 34 | 39 .. 42 | 47 .. 50 => 1, others => 0);
+         31 .. 34 | 39 .. 42 | 47 .. 50 => False, others => True);
 
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
    c56_3_decalage : constant array
       (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
       of Bit_T := (1 .. 1 | 6 .. 9 | 14 .. 17 | 22 .. 28 |
-         30 .. 33 | 38 .. 41 | 46 .. 49 => 1, others => 0);
+         30 .. 33 | 38 .. 41 | 46 .. 49 => False, others => True);
 
    --  La clef de 56 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
@@ -43,14 +43,14 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
       of Bit_T :=
       (
-         0, 1, 1, 0, 1, 0,
-         1, 1, 0, 0, 0, 1,
-         0, 1, 1, 1, 1, 0,
-         0, 0, 1, 1, 0, 1,
-         1, 1, 0, 0, 0, 0,
-         0, 0, 1, 0, 1, 0,
-         1, 1, 0, 0, 1, 0,
-         0, 1, 1, 1, 0, 0
+         True, False, False, True, False, True,
+         False, False, True, True, True, False,
+         True, False, False, False, False, True,
+         True, True, False, False, True, False,
+         False, False, True, True, True, True,
+         True, True, False, True, False, True,
+         False, False, True, True, False, True,
+         True, False, False, False, True, True
       );
 
    --  La clef de 56 bits:
@@ -61,14 +61,14 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
       of Bit_T :=
       (
-         0, 1, 1, 1, 1, 0,
-         1, 1, 0, 0, 0, 1,
-         0, 1, 0, 0, 1, 1,
-         1, 0, 1, 0, 0, 0,
-         1, 0, 0, 0, 0, 0,
-         0, 1, 1, 0, 1, 1,
-         0, 1, 0, 0, 1, 0,
-         0, 1, 1, 0, 0, 1
+         True, False, False, False, False, True,
+         False, False, True, True, True, False,
+         True, False, True, True, False, False,
+         False, True, False, True, True, True,
+         False, True, True, True, True, True,
+         True, False, False, True, False, False,
+         True, False, True, True, False, True,
+         True, False, False, True, True, False
       );
 
    --  La clef de 56 bits:
@@ -79,14 +79,14 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
       of Bit_T :=
       (
-         0, 1, 0, 1, 1, 0,
-         0, 1, 1, 0, 0, 1,
-         1, 0, 0, 0, 1, 1,
-         1, 1, 1, 0, 0, 0,
-         1, 0, 1, 0, 1, 0,
-         0, 1, 0, 0, 1, 1,
-         0, 1, 1, 0, 1, 0,
-         0, 1, 1, 0, 0, 1
+         True, False, True, False, False, True,
+         True, False, False, True, True, False,
+         False, True, True, True, False, False,
+         False, False, False, True, True, True,
+         False, True, False, True, False, True,
+         True, False, True, True, False, False,
+         True, False, False, True, False, True,
+         True, False, False, True, True, False
       );
 
    --  La clef de 56 bits:
@@ -97,14 +97,14 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
       of Bit_T :=
       (
-         1, 1, 0, 1, 1, 0,
-         0, 1, 1, 1, 0, 0,
-         1, 0, 0, 0, 1, 1,
-         1, 1, 1, 0, 0, 0,
-         1, 0, 1, 0, 1, 0,
-         1, 1, 0, 0, 1, 1,
-         0, 1, 1, 0, 0, 0,
-         1, 0, 0, 0, 0, 1
+         False, False, True, False, False, True,
+         True, False, False, False, True, True,
+         False, True, True, True, False, False,
+         False, False, False, True, True, True,
+         False, True, False, True, False, True,
+         False, False, True, True, False, False,
+         True, False, False, True, True, True,
+         False, True, True, True, True, False
       );
 
    ---------------------------------------------------------------------------
@@ -117,10 +117,10 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
       champ1 : constant Champ_De_Bits_T :=
-         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => 1, others => 0);
+         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => False, others => True);
       --  0000 1111 0000 1111 0000 1111 0000
       champ2 : constant Champ_De_Bits_T :=
-         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => 0, others => 1);
+         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => True, others => False);
    begin
       clef_56.Ecrire_Constructeur (constr);
       clef_56.C1 := champ1;

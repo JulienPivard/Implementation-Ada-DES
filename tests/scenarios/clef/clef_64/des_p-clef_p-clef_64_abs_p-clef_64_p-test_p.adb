@@ -24,7 +24,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
    bits_64_attendu : constant Tableau_Bits_T :=
       (
          1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
-         41 .. 44 | 49 .. 52 | 57 .. 60 => 1, others => 0
+         41 .. 44 | 49 .. 52 | 57 .. 60 => False, others => True
       );
 
    --  La bits clef de 56 bits attendu après construction avec la
@@ -36,33 +36,33 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
    bits_56_attendu : constant array
    (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range) of Bit_T :=
       (
-         1, 1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1, 1,
-         0, 0, 0, 0, 0, 0, 0,
-         0, 0, 0, 0, 0, 0, 0,
-         0, 0, 0, 0, 0, 0, 0,
-         0, 0, 0, 1, 1, 1, 1
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True,
+         True, True, True, False, False, False, False
       );
 
    --  La bits clef de 48 bits attendu après construction avec la
    --  clef de 56 bits ci-dessus.
    --  1111 1111 1111 1111 1111 1111
-   --  1    5    9    13   17   21
+   --  False    5    9    13   17   21
    --  0000 0100 0000 0001 0100 0000
    --  25   29   33   37   41   45
    bits_48_attendu : constant array
    (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range) of Bit_T :=
       (
-         1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1,
-         1, 1, 1, 1, 1, 1,
-         0, 0, 0, 0, 0, 1,
-         0, 0, 0, 0, 0, 0,
-         0, 0, 0, 1, 0, 1,
-         0, 0, 0, 0, 0, 0
+         False, False, False, False, False, False,
+         False, False, False, False, False, False,
+         False, False, False, False, False, False,
+         False, False, False, False, False, False,
+         True, True, True, True, True, False,
+         True, True, True, True, True, True,
+         True, True, True, False, True, False,
+         True, True, True, True, True, True
       );
 
    ---------------------------------------------------------------------------
@@ -79,7 +79,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
       clef_64.Bits :=
       (
          1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
-         41 .. 44 | 49 .. 52 | 57 .. 60 => 1, others => 0
+         41 .. 44 | 49 .. 52 | 57 .. 60 => False, others => True
       );
       clef_64.Constructeur_48 := constr_48;
       clef_64.Constructeur_56 := constr_56;

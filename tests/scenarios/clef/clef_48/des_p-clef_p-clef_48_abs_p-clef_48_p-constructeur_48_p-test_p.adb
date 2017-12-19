@@ -6,7 +6,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    champ_bits_de_depart : constant Champ_De_Bits_T :=
       (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
-      41 .. 44 | 49 .. 52 => 1, others => 0);
+      41 .. 44 | 49 .. 52 => False, others => True);
 
    --  La clef de 56 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
@@ -14,14 +14,14 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
    resultat_attendu : constant Tableau_Bits_T :=
       (
-         0, 1, 1, 0, 1, 0,
-         1, 1, 0, 0, 0, 1,
-         0, 1, 1, 1, 1, 0,
-         0, 0, 1, 1, 0, 1,
-         1, 1, 0, 0, 0, 0,
-         0, 0, 1, 0, 1, 0,
-         1, 1, 0, 0, 1, 0,
-         0, 1, 1, 1, 0, 0
+         True, False, False, True, False, True,
+         False, False, True, True, True, False,
+         True, False, False, False, False, True,
+         True, True, False, False, True, False,
+         False, False, True, True, True, True,
+         True, True, False, True, False, True,
+         False, False, True, True, False, True,
+         True, False, False, False, True, True
       );
 
    ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
-      bit_attendu : constant Bit_T := 0;
+      bit_attendu : constant Bit_T := False;
    begin
       T.constructeur.all.Preparer_Nouvelle_Clef_48;
       for I in Intervalle_Clef_48_T'Range loop
