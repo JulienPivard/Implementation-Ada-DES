@@ -64,8 +64,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    procedure Initialize (Clef : in out Clef_56_T) is
    begin
       Clef.Decalage := 0;
-      Clef.C1 := (others => 0);
-      Clef.C2 := (others => 0);
+      Clef.C1 := (others => False);
+      Clef.C2 := (others => False);
       Clef.Constructeur := null;
    end Initialize;
 
@@ -73,8 +73,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    overriding
    procedure Finalize (Clef : in out Clef_56_T) is
    begin
-      Clef.C1 := (others => 0);
-      Clef.C2 := (others => 0);
+      Clef.C1 := (others => False);
+      Clef.C2 := (others => False);
       Clef.Constructeur := null;
    end Finalize;
 

@@ -17,18 +17,6 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
    --  La clef de 64 bits.
    type Clef_64_T is new Clef_64_Abs_T with private;
 
-   --  Modifie le constructeur de clef de 56 bits.
-   --  @param Clef
-   --  La clef à laquelle on va ajouter un constructeur.
-   --  @param Constructeur_Clef_56
-   --  Le constructeur de clef de 56 bits.
-   procedure Ecrire_Constructeur
-      (
-         Clef : out Clef_64_T;
-         Constructeur_Clef_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class := null
-      );
-
    overriding
    --  Indique si un constructeur de clef 56 bits à été attribué.
    --  @param Clef
@@ -87,7 +75,8 @@ private
 
    --  Tableau des bits de la clef.
    type Tableau_Bits_T is array
-      (Intervalle_Clef_64_T range Intervalle_Clef_64_T'Range) of Bit_T;
+      (Intervalle_Clef_64_T range Intervalle_Clef_64_T'Range)
+      of Bit_T with Size => 64, Pack;
 
    type Clef_64_T is new Clef_64_Abs_T with
       record

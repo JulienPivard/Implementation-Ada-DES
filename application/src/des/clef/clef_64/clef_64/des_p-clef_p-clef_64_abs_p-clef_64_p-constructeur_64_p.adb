@@ -18,17 +18,9 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
          Brut : Clef_64_Brut_T
       )
    is
-      Bit : Bit_T;
-      Masque : constant Clef_64_Brut_T := 1;
-
-      subtype Puissance_T is Natural range 0 .. 64;
-      Puissance : Puissance_T := Puissance_T'First;
+      Resultat : Tableau_Bits_T with Address => Brut'Address;
    begin
-      for I in reverse Intervalle_Clef_64_T'Range loop
-         Bit := (if (Brut and Masque * (2**Puissance)) > 0 then 1 else 0);
-         Constructeur.Clef_64.Bits (I) := Bit;
-         Puissance := Puissance_T'Succ (Puissance);
-      end loop;
+      Constructeur.Clef_64.Bits := Resultat;
    end Construire_Clef_64;
 
    ---------------------------------------------------------------------------
