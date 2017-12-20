@@ -35,7 +35,7 @@ procedure Client is
             Ada.Text_IO.Standard_Error,
             Ada.Directories.Base_Name (Ada.Command_Line.Command_Name)
          );
-      Put (Standard_Error, " [arguments]");
+      Put (Standard_Error, " <nom_fichier>");
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
    ---------------------------------------------------------------------------
@@ -55,7 +55,7 @@ procedure Client is
 
 begin
 
-   if Nb_Arguments = 1 then
+   if Nb_Arguments = 0 then
 
       Afficher_Aide;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
@@ -76,8 +76,14 @@ begin
 
    end if;
 
-   Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, "test.txt");
+   Ouverture_Fichier :
+   declare
+      Nom_Fichier : constant String := Ada.Command_Line.Argument (1);
+      use Ada.Directories;
+   begin
 
+      Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, Nom_Fichier);
+   end Ouverture_Fichier;
 
    Lecture_Fichier :
    loop
