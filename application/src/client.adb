@@ -22,6 +22,7 @@ pragma Elaborate_All (Des_P.Bloc_P.Bloc_64_P);
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
+   Nb_Arguments_Max : constant Natural := 1;
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide;
@@ -64,12 +65,12 @@ begin
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
       return;
 
-   elsif Nb_Arguments > 1 then
+   elsif Nb_Arguments > Nb_Arguments_Max then
 
       Afficher_Aide;
       Put (Standard_Error, "Trop d'arguments. ");
       Put_Line (Standard_Error, "Les arguments suivants sont invalide : ");
-      for i in 1 .. Nb_Arguments loop
+      for i in Nb_Arguments_Max + 1 .. Nb_Arguments loop
          Put (Standard_Error, "  - ");
          Ada.Text_IO.Put_Line
             (Ada.Text_IO.Standard_Error, Ada.Command_Line.Argument (i));
@@ -95,7 +96,7 @@ begin
          return;
       end if;
 
-      Depassement_Octets_Fichier := (Ada.Directories.Size (Nom_Fichier) mod 8);
+      Depassement_Octets_Fichier := Ada.Directories.Size (Nom_Fichier) mod 8;
 
       --  La taille est en octet, 64 bits fait 8 octets,
       --  d'où l'utilisation de mod 8.
