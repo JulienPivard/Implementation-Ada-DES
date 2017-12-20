@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : mardi 19 décembre[12] 2017
+--           Dernière modification : Mercredi 20 décembre[12] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -29,6 +29,7 @@ procedure Client is
    procedure Afficher_Aide is
    begin
       Put_Line (Standard_Error, "Utilisation du programme :");
+      Ada.Text_IO.Put ("   ");
       Ada.Text_IO.Put
          (
             Ada.Text_IO.Standard_Error,
@@ -77,13 +78,18 @@ begin
 
    Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, "test.txt");
 
-   Lecteur_64_IO.Read (f, brut);
 
-   c.Preparer_Nouveau_Bloc_64 (brut);
-   c.Construire_Bloc;
-   bloc := c.Recuperer_Bloc_64;
+   Lecture_Fichier :
+   loop
+      exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (f);
+      Lecteur_64_IO.Read (f, brut);
 
-   Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (bloc);
+      c.Preparer_Nouveau_Bloc_64 (brut);
+      c.Construire_Bloc;
+      bloc := c.Recuperer_Bloc_64;
+
+      Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (bloc);
+   end loop Lecture_Fichier;
 
    Lecteur_64_IO.Close (f);
 
