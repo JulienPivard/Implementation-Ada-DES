@@ -91,6 +91,17 @@ begin
          return;
       end if;
 
+      if not (((Ada.Directories.Size (Nom_Fichier) * 8) mod 64) = 0) then
+         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
+         Ada.Text_IO.Put_Line
+            (
+               Ada.Text_IO.Standard_Error,
+               "   La taille du fichier n'est pas un multiple de 64"
+            );
+         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+         return;
+      end if;
+
       Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, Nom_Fichier);
    end Ouverture_Fichier;
 
