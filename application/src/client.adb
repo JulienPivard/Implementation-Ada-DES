@@ -52,6 +52,9 @@ procedure Client is
 
    Fichier : Lecteur_64_IO.File_Type;
 
+   --  TODO À retirer dans la version finale.
+   package Numero_Ligne_IO is new Ada.Text_IO.Integer_IO (Integer);
+   Compteur_Ligne : Integer := 1;
 
 begin
 
@@ -122,7 +125,11 @@ begin
       C_64.Construire_Bloc;
       Bloc := C_64.Recuperer_Bloc_64;
 
+      Numero_Ligne_IO.Put (Item => Compteur_Ligne, Width => 3);
+      Ada.Text_IO.Put ("   ");
       Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (Bloc);
+
+      Compteur_Ligne := Compteur_Ligne + 1;
    end loop Lecture_Fichier;
 
    Lecteur_64_IO.Close (Fichier);
