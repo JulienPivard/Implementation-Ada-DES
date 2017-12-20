@@ -79,6 +79,7 @@ begin
    Ouverture_Fichier :
    declare
       Nom_Fichier : constant String := Ada.Command_Line.Argument (1);
+      Depassement_Octets_Fichier : Ada.Directories.File_Size;
       use Ada.Directories;
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
@@ -91,13 +92,20 @@ begin
          return;
       end if;
 
-      if not (((Ada.Directories.Size (Nom_Fichier) * 8) mod 64) = 0) then
+      Depassement_Octets_Fichier := (Ada.Directories.Size (Nom_Fichier) mod 8);
+
+      --  La taille est en octet, 64 bits fait 8 octets,
+      --  d'où l'utilisation de mod 8.
+      if not (Depassement_Octets_Fichier = 0) then
          Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
          Ada.Text_IO.Put_Line
             (
                Ada.Text_IO.Standard_Error,
-               "   La taille du fichier n'est pas un multiple de 64"
+               "   La taille du fichier n'est pas un multiple de 64 bits."
             );
+         Ada.Text_IO.Put ("   ");
+         Ada.Text_IO.Put (Depassement_Octets_Fichier'Img);
+         Ada.Text_IO.Put (" Octets de trop.");
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
