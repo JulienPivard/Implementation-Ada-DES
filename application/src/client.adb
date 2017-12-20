@@ -81,6 +81,15 @@ begin
       Nom_Fichier : constant String := Ada.Command_Line.Argument (1);
       use Ada.Directories;
    begin
+      if not Ada.Directories.Exists (Nom_Fichier) then
+         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
+         Ada.Wide_Wide_Text_IO.Put (Standard_Error, "   Le fichier [");
+         Ada.Text_IO.Put (Ada.Text_IO.Standard_Error, Nom_Fichier);
+         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "] n'existe pas");
+
+         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+         return;
+      end if;
 
       Lecteur_64_IO.Open (f, Lecteur_64_IO.In_File, Nom_Fichier);
    end Ouverture_Fichier;
