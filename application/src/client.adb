@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 20 décembre[12] 2017
+--           Dernière modification : jeudi 21 décembre[12] 2017
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -109,7 +109,8 @@ begin
             );
          Ada.Text_IO.Put ("   ");
          Ada.Text_IO.Put (Depassement_Octets_Fichier'Img);
-         Ada.Text_IO.Put (" Octets de trop.");
+         Ada.Text_IO.Put_Line (" Octets de trop.");
+
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
