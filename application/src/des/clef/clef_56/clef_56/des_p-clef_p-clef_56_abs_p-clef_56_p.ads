@@ -85,8 +85,7 @@ private
    subtype Intervalle_Demi_Clef_T is Decalage_T;
 
    --  Tableau des bits de la clef. Intervalle de 0 à 27
-   type Champ_De_Bits_T is array
-      (Intervalle_Demi_Clef_T range Intervalle_Demi_Clef_T'Range) of Bit_T;
+   type Champ_De_Bits_T is array (Intervalle_Demi_Clef_T) of Bit_T;
 
    type Clef_56_T is new Clef_56_Abs_T with
       record

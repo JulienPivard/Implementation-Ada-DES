@@ -33,8 +33,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
    --  1    5    9    13   17   21   25
    --  0000 0000 0000 0000 0000 0000 1111
    --  29   33   37   41   45   49   53
-   bits_56_attendu : constant array
-   (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range) of Bit_T :=
+   bits_56_attendu : constant array (Intervalle_Clef_56_T) of Bit_T :=
       (
          False, False, False, False, False, False, False,
          False, False, False, False, False, False, False,
@@ -52,8 +51,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Test_P is
    --  False    5    9    13   17   21
    --  0000 0100 0000 0001 0100 0000
    --  25   29   33   37   41   45
-   bits_48_attendu : constant array
-   (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range) of Bit_T :=
+   bits_48_attendu : constant array (Intervalle_Clef_48_T) of Bit_T :=
       (
          False, False, False, False, False, False,
          False, False, False, False, False, False,

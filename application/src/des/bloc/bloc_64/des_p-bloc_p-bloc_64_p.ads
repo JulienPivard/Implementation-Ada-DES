@@ -115,8 +115,7 @@ private
    --  position 1 et celui de droite est placé en position 1
    --  Les blocs ne sont jamais réellement échangé mais
    --  seulement décalé grâce à un opérateur de décalage.
-   type Tableau_Bloc_T is array
-      (Decalage_T range Decalage_T'Range)
+   type Tableau_Bloc_T is array (Decalage_T)
       of Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
    type Bloc_64_T is new Bloc_Abstrait_T with

@@ -52,9 +52,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array
-         (Intervalle_Bloc_64_T range Intervalle_Bloc_64_T'Range)
-         of Bit_T;
+      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -88,12 +86,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
-      attendu_droite : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
+      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -138,12 +132,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array
-         (Intervalle_Bloc_64_T range Intervalle_Bloc_64_T'Range)
-         of Bit_T;
-      attendu_apres_echange : array
-         (Intervalle_Bloc_64_T range Intervalle_Bloc_64_T'Range)
-         of Bit_T;
+      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
+      attendu_apres_echange : array (Intervalle_Bloc_64_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -209,12 +199,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
-      attendu_droite : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
+      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -295,12 +281,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array
-         (Intervalle_Bloc_64_T range Intervalle_Bloc_64_T'Range)
-         of Bit_T;
-      attendu_apres_echange : array
-         (Intervalle_Bloc_64_T range Intervalle_Bloc_64_T'Range)
-         of Bit_T;
+      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
+      attendu_apres_echange : array (Intervalle_Bloc_64_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -387,12 +369,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
-      attendu_droite : array
-         (Intervalle_Bloc_32_T range Intervalle_Bloc_32_T'Range)
-         of Bit_T;
+      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;

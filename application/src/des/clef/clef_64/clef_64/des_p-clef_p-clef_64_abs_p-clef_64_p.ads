@@ -74,9 +74,8 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
 private
 
    --  Tableau des bits de la clef.
-   type Tableau_Bits_T is array
-      (Intervalle_Clef_64_T range Intervalle_Clef_64_T'Range)
-      of Bit_T with Size => 64, Pack;
+   type Tableau_Bits_T is array (Intervalle_Clef_64_T) of Bit_T
+      with Size => 64, Pack;
 
    type Clef_64_T is new Clef_64_Abs_T with
       record

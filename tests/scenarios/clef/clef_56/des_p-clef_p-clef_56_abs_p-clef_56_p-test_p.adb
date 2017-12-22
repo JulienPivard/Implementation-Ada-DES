@@ -9,39 +9,33 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
 
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56 : constant array
-      (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
-      of Bit_T := (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
-         33 .. 36 | 41 .. 44 | 49 .. 52 => False, others => True);
+   c56 : constant array (Intervalle_Clef_56_T) of Bit_T :=
+      (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
+      41 .. 44 | 49 .. 52 => False, others => True);
 
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_1_decalage : constant array
-      (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
-      of Bit_T := (1 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 28 |
-         32 .. 35 | 40 .. 43 | 48 .. 51 => False, others => True);
+   c56_1_decalage : constant array (Intervalle_Clef_56_T) of Bit_T :=
+      (1 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 28 | 32 .. 35 |
+      40 .. 43 | 48 .. 51 => False, others => True);
 
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_2_decalage : constant array
-      (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
-      of Bit_T := (1 .. 2 | 7 .. 10 | 15 .. 18 | 23 .. 28 |
-         31 .. 34 | 39 .. 42 | 47 .. 50 => False, others => True);
+   c56_2_decalage : constant array (Intervalle_Clef_56_T) of Bit_T :=
+      (1 .. 2 | 7 .. 10 | 15 .. 18 | 23 .. 28 | 31 .. 34 |
+      39 .. 42 | 47 .. 50 => False, others => True);
 
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_3_decalage : constant array
-      (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range)
-      of Bit_T := (1 .. 1 | 6 .. 9 | 14 .. 17 | 22 .. 28 |
-         30 .. 33 | 38 .. 41 | 46 .. 49 => False, others => True);
+   c56_3_decalage : constant array (Intervalle_Clef_56_T) of Bit_T :=
+      (1 .. 1 | 6 .. 9 | 14 .. 17 | 22 .. 28 | 30 .. 33 |
+      38 .. 41 | 46 .. 49 => False, others => True);
 
    --  La clef de 56 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_0_decalage : constant array
-      (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
-      of Bit_T :=
+   c48_0_decalage : constant array (Intervalle_Clef_48_T) of Bit_T :=
       (
          True, False, False, True, False, True,
          False, False, True, True, True, False,
@@ -57,9 +51,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_1_decalage : constant array
-      (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
-      of Bit_T :=
+   c48_1_decalage : constant array (Intervalle_Clef_48_T) of Bit_T :=
       (
          True, False, False, False, False, True,
          False, False, True, True, True, False,
@@ -75,9 +67,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_2_decalage : constant array
-      (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
-      of Bit_T :=
+   c48_2_decalage : constant array (Intervalle_Clef_48_T) of Bit_T :=
       (
          True, False, True, False, False, True,
          True, False, False, True, True, False,
@@ -93,9 +83,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_3_decalage : constant array
-      (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range)
-      of Bit_T :=
+   c48_3_decalage : constant array (Intervalle_Clef_48_T) of Bit_T :=
       (
          False, False, True, False, False, True,
          True, False, False, False, True, True,

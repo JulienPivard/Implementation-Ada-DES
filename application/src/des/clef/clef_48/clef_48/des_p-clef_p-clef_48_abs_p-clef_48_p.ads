@@ -44,8 +44,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
 private
 
    --  La sous clefs rangé dans un tableau de bits.
-   type Tableau_Bits_T is array
-      (Intervalle_Clef_48_T range Intervalle_Clef_48_T'Range) of Bit_T;
+   type Tableau_Bits_T is array (Intervalle_Clef_48_T) of Bit_T;
 
    type Clef_48_T is new Clef_48_Abs_T with
       record

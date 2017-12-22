@@ -7,8 +7,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
 
    type Clef_Simplifie_T is new Clef_64_Abs_T with private;
 
-   type Tableau_Bits_T is array
-      (Intervalle_Clef_64_T range Intervalle_Clef_64_T'Range) of Bit_T;
+   type Tableau_Bits_T is array (Intervalle_Clef_64_T) of Bit_T;
 
    procedure Init
       (

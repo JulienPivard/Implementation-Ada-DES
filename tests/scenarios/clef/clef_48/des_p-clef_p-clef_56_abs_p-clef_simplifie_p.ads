@@ -7,8 +7,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
 
    type Clef_Simplifie_T is new Clef_56_Abs_T with private;
 
-   type Champ_De_Bits_T is array
-      (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range) of Bit_T;
+   type Champ_De_Bits_T is array (Intervalle_Clef_56_T) of Bit_T;
 
    procedure Init
       (

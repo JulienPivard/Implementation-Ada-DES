@@ -19,8 +19,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
       )
    is
       --  Tiré du tableau de correspondance PC-1 de DES.
-      T1 : constant array
-      (Intervalle_Demi_Clef_T range Intervalle_Demi_Clef_T'Range)
+      T1 : constant array (Intervalle_Demi_Clef_T)
       of Des_P.Clef_P.Clef_64_Abs_P.Intervalle_Clef_64_T :=
          (
             57, 49, 41, 33, 25, 17,  9,
@@ -28,8 +27,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
             10,  2, 59, 51, 43, 35, 27,
             19, 11,  3, 60, 52, 44, 36
          );
-      T2 : constant array
-      (Intervalle_Demi_Clef_T range Intervalle_Demi_Clef_T'Range)
+      T2 : constant array (Intervalle_Demi_Clef_T)
       of Des_P.Clef_P.Clef_64_Abs_P.Intervalle_Clef_64_T :=
          (
             63, 55, 47, 39, 31, 23, 15,

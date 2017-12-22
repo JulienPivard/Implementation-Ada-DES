@@ -18,8 +18,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
    --  clef de 64 bits ci-dessus.
    --  1111 1111 1111 1111 1111 1111 1111
    --  0000 0000 0000 0000 0000 0000 1111
-   resultat_attendu : constant array
-   (Intervalle_Clef_56_T range Intervalle_Clef_56_T'Range) of Bit_T :=
+   resultat_attendu : constant array (Intervalle_Clef_56_T) of Bit_T :=
       (
          False, False, False, False, False, False, False,
          False, False, False, False, False, False, False,
