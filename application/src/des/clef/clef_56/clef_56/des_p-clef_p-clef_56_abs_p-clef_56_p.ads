@@ -3,8 +3,7 @@ with Des_P.Clef_P.Constructeur_48_Abs_P;
 --  @summary
 --  La clef de 56 bits permettant de crypter les données.
 --  @description
---  La représentation d'une clef de 56 bits, construite à partir d'une
---  clef de 64 bits. Le constructeur se charge de sélectionner les bits.
+--  La représentation d'une clef de 56 bits, dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
 
@@ -84,6 +83,8 @@ private
    --  L'intervalle des demi tableau de bits de la clef.
    subtype Intervalle_Demi_Clef_T is Decalage_T;
 
+   --  Les bits de la clef de 56 sont divisée en deux groupes
+   --  de même taille.
    --  Tableau des bits de la clef. Intervalle de 0 à 27
    type Champ_De_Bits_T is array (Intervalle_Demi_Clef_T) of Bit_T;
 

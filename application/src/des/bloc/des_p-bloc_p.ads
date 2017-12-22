@@ -10,7 +10,7 @@ package Des_P.Bloc_P is
 
    pragma Pure;
 
-   --  Représente un bit.
+   --  Représente un bit du bloc.
    subtype Bit_T is Boolean;
 
    --  Représente un bloc de bits.

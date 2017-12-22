@@ -1,15 +1,13 @@
 --  @summary
 --  Une clef concrète de 48 bits.
 --  @description
---  La représentation d'une clef de 48 bits est construite
---  à partir de la clef de 56. Le constructeur se charge de
---  sélectionner les bits.
+--  La représentation d'une clef de 48 bits dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
 
    pragma Pure;
 
-   --  La sous clef abstraite.
+   --  La clef de 48 bits.
    type Clef_48_T is new Clef_48_Abs_T with private;
 
    overriding
@@ -17,14 +15,14 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
    --  @param Clef
    --  La clef dont on veut lire un bit.
    --  @param Position
-   --  La position du bit dans la sous clef.
+   --  La position du bit dans la clef.
    --  @return Le bit lu.
    function Lire_Bit
       (Clef : Clef_48_T; Position : Intervalle_Clef_48_T)
       return Bit_T;
 
    overriding
-   --  Création d'une clef vide par défaut.
+   --  Création d'une clef vide par défaut valeur 0.
    --  @param Clef
    --  La clef.
    procedure Initialize (Clef : in out Clef_48_T);
@@ -43,7 +41,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
 
 private
 
-   --  La sous clefs rangé dans un tableau de bits.
+   --  Les bits de la clefs rangé dans un tableau. Un bit par case.
    type Tableau_Bits_T is array (Intervalle_Clef_48_T) of Bit_T;
 
    type Clef_48_T is new Clef_48_Abs_T with

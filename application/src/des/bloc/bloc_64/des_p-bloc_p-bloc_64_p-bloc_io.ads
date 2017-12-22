@@ -1,7 +1,7 @@
 --  @summary
---  Affichage du contenu d'un bloc de 32 bits.
+--  Affichage du contenu d'un bloc.
 --  @description
---  Affiche le contenu d'un bloc de 32 bits de gauche à droite.
+--  Affiche le contenu d'un bloc de gauche à droite.
 --  À gauche les bits qui apparaissent en premier dans le bloc
 --  et à droite les derniers.
 --  @group Affichage

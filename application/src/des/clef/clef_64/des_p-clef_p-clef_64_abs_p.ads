@@ -3,8 +3,7 @@ with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 --  @summary
 --  Une clef abstraite de 64 bits.
 --  @description
---  La représentation d'une clef de 64 bits est construite
---  à partir d'un bloc de bits brut.
+--  La représentation d'une clef de 64 bits dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_64_Abs_P is
 
@@ -35,7 +34,7 @@ package Des_P.Clef_P.Clef_64_Abs_P is
    function Possede_Constructeur_48 (Clef : Clef_64_Abs_T)
       return Boolean is abstract;
 
-   --  Lit un bit spécifié.
+   --  Lit le bit à la position spécifié.
    --  @param Clef
    --  La clef dont on veut lire un bit.
    --  @param Position

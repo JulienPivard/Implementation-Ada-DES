@@ -61,6 +61,13 @@ package Des_P.Bloc_P.Bloc_32_P is
 
 private
 
+   --  Le tableau de bits. Une case par bit.
+   --  La taille du tableau est fixée à 32 bits dans un soucis
+   --  de faciliter la manipulation par l'implémentation.
+   --  Initialement le choix s'était porté sur un simple tableau
+   --  mais forcer sa représentation en taille fixe a permis
+   --  l'utilisation de méthode de création plus fiable,
+   --  notamment pour ne pas fausser l'ordre des bits lut.
    type Tableau_Bits_T is array (Intervalle_Bloc_32_T) of Bit_T
       with Size => 32, Pack;
 

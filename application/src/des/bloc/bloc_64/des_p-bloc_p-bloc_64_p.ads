@@ -16,7 +16,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  Représente un bloc de 64 bits.
    type Bloc_64_T is new Bloc_Abstrait_T with private;
 
-   --  Désigne le bloc de gauche ou le bloc de droite.
+   --  Désigne le bloc de 32 bits de gauche ou le bloc de droite.
    --  @value Gauche
    --  Le bloc de 32 bits de gauche.
    --  @value Droite
@@ -41,7 +41,9 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  Le bloc de 64 bits.
    procedure Adjust (B : in out Bloc_64_T);
 
-   --  Intervertit les blocs de 32 bits gauche et droite.
+   --  Fait passer le bloc de 32 bits de gauche à droite et
+   --  le bloc de 32 bits de droite à gauche. L'ordre des bits
+   --  à l'intérieur des bloc de 32 n'est bien entendu pas modifié.
    --  @param B
    --  Le bloc de 64 bits.
    procedure Intervertir_Blocs (B : in out Bloc_64_T);
@@ -73,7 +75,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    ) return Bit_T;
 
    --  Écrit le bit à la position demandé dans le bloc
-   --  gauche de 32 bits du bloc de 64.
+   --  gauche ou droite de 32 bits du bloc de 64.
    --  @param B
    --  Le bloc de 64 bits.
    --  @param Bloc_G_Ou_D
@@ -112,8 +114,8 @@ private
    type Decalage_T is mod 2;
 
    --  Les deux blocs de 32 bits. Celui de gauche est placé en
-   --  position 1 et celui de droite est placé en position 1
-   --  Les blocs ne sont jamais réellement échangé mais
+   --  position 0 et celui de droite est placé en position 1.
+   --  Les blocs ne sont jamais physiquement échangé mais
    --  seulement décalé grâce à un opérateur de décalage.
    type Tableau_Bloc_T is array (Decalage_T)
       of Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;

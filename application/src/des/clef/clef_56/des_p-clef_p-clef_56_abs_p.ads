@@ -3,9 +3,7 @@ with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
 --  @summary
 --  Une clef abstraite de 56 bits.
 --  @description
---  La représentation d'une clef de 56 bits est construite
---  à partir d'une clef de 64. Le constructeur se charge de
---  sélectionner les bits.
+--  La représentation d'une clef de 56 bits dans le standard DES
 --  @group Clef
 package Des_P.Clef_P.Clef_56_Abs_P is
 
@@ -16,7 +14,7 @@ package Des_P.Clef_P.Clef_56_Abs_P is
    --  La clef de 56 bits.
    type Clef_56_Abs_T is abstract new Clef_Abstraite_T with private;
 
-   --  L'intervalle de bit qui est contenu dans la clef.
+   --  L'intervalle d'accès aux bits contenu dans la clef.
    type Intervalle_Clef_56_T is range 1 .. 56;
 
    --  Le nombre de décalage à gauche.
@@ -29,7 +27,7 @@ package Des_P.Clef_P.Clef_56_Abs_P is
    function Possede_Constructeur_48 (Clef : Clef_56_Abs_T)
       return Boolean is abstract;
 
-   --  Décale les bits de la clef vers la gauche
+   --  Décale (par un rotation) les bits de la clef vers la gauche
    --  @param Clef
    --  La clef dont on veut décaler les bits.
    --  @param Nb_Decalage

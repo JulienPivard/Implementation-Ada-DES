@@ -1,9 +1,7 @@
 --  @summary
 --  Une clef abstraite de 48 bits.
 --  @description
---  La représentation d'une clef de 48 bits est construite
---  à partir de la clef de 56. Le constructeur se charge de
---  sélectionner les bits.
+--  La représentation d'une clef de 48 bits dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_48_Abs_P is
 

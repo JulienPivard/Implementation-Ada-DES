@@ -4,8 +4,7 @@ with Des_P.Clef_P.Constructeur_56_Abs_P;
 --  @summary
 --  La clef de 64 bits permettant de crypter les données.
 --  @description
---  La représentation d'une clef de 64 bits, construite à partir
---  de 64 bits brut.
+--  La représentation d'une clef de 64 bits, dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
 
@@ -35,7 +34,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
    function Possede_Constructeur_48 (Clef : Clef_64_T) return Boolean;
 
    overriding
-   --  Lit un bit spécifié.
+   --  Lit le bit à la position spécifié.
    --  @param Clef
    --  La clef dont on veut lire un bit.
    --  @param Position
@@ -73,7 +72,9 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
 
 private
 
-   --  Tableau des bits de la clef.
+   --  Tableau des bits de la clef. Un bit par case.
+   --  Cette représentation à été choisie pour faciliter la
+   --  construction depuis la forme brut des bits.
    type Tableau_Bits_T is array (Intervalle_Clef_64_T) of Bit_T
       with Size => 64, Pack;
 
