@@ -25,31 +25,31 @@ package Des_P.Bloc_P.Bloc_64_P is
 
    overriding
    --  Création d'un bloc de 64 bits avec la valeur 0.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Initialize (B : in out Bloc_64_T);
+   procedure Initialize (Bloc : in out Bloc_64_T);
 
    overriding
    --  Supprime le bloc.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Finalize (B : in out Bloc_64_T);
+   procedure Finalize (Bloc : in out Bloc_64_T);
 
    overriding
    --  Ajuste le contenu après l'affectation.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Adjust (B : in out Bloc_64_T);
+   procedure Adjust (Bloc : in out Bloc_64_T);
 
    --  Fait passer le bloc de 32 bits de gauche à droite et
    --  le bloc de 32 bits de droite à gauche. L'ordre des bits
    --  à l'intérieur des bloc de 32 n'est bien entendu pas modifié.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Intervertir_Blocs (B : in out Bloc_64_T);
+   procedure Intervertir_Blocs (Bloc : in out Bloc_64_T);
 
    --  Écrit le bit à la position demandé dans le bloc de 64.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Position
    --  La position du bit qu'on veut écrire.
@@ -57,26 +57,26 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  Le bit qu'on veut écrire.
    procedure Ecrire_Bit
    (
-      B : in out Bloc_64_T;
+      Bloc : in out Bloc_64_T;
       Position : Intervalle_Bloc_64_T;
       Bit : Bit_T
    );
 
    --  Lit le bit demandé dans le bloc de 64.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Position
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
    function Lire_Bit
    (
-      B : Bloc_64_T;
+      Bloc : Bloc_64_T;
       Position : Intervalle_Bloc_64_T
    ) return Bit_T;
 
    --  Écrit le bit à la position demandé dans le bloc
    --  gauche ou droite de 32 bits du bloc de 64.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Bloc_G_Ou_D
    --  Désigne le bloc gauche ou droite à écrire.
@@ -86,7 +86,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  Le bit qu'on veut écrire.
    procedure Ecrire_Bit
    (
-      B : in out Bloc_64_T;
+      Bloc : in out Bloc_64_T;
       Bloc_G_Ou_D : Position_Bloc_T;
       Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T;
       Bit : Bit_T
@@ -94,7 +94,7 @@ package Des_P.Bloc_P.Bloc_64_P is
 
    --  Lit le bit à la position demandé dans le bloc
    --  de 32 bits, gauche ou droit, du bloc de 64.
-   --  @param B
+   --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Bloc_G_Ou_D
    --  Désigne le bloc gauche ou droite à lire.
@@ -103,7 +103,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  @return Le bit lu.
    function Lire_Bit
    (
-      B : Bloc_64_T;
+      Bloc : Bloc_64_T;
       Bloc_G_Ou_D : Position_Bloc_T;
       Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
    ) return Bit_T;
