@@ -39,11 +39,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
    begin
       C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_1);
       C_32.Construire_Bloc;
-      Constructeur.Bloc.Blocs_32 (0) := C_32.Recuperer_Bloc_32;
+      Constructeur.Bloc.Blocs_32 (Gauche) := C_32.Recuperer_Bloc_32;
 
       C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_2);
       C_32.Construire_Bloc;
-      Constructeur.Bloc.Blocs_32 (1) := C_32.Recuperer_Bloc_32;
+      Constructeur.Bloc.Blocs_32 (Droite) := C_32.Recuperer_Bloc_32;
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------

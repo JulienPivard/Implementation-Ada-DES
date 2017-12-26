@@ -7,8 +7,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
       G, D : Bloc_32_T;
    begin
       B.Decalage := 0;
-      B.Blocs_32 (B.Decalage) := G;
-      B.Blocs_32 (B.Decalage + 1) := D;
+      B.Blocs_32 (Gauche + B.Decalage) := G;
+      B.Blocs_32 (Droite + B.Decalage) := D;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -86,12 +86,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
          Bit : Bit_T
       )
    is
-      Position_Bloc : Decalage_T := B.Decalage;
    begin
-      if Bloc_G_Ou_D = Droite then
-         Position_Bloc := Position_Bloc + 1;
-      end if;
-      B.Blocs_32 (Position_Bloc).Ecrire_Bit (Position, Bit);
+      B.Blocs_32 (Bloc_G_Ou_D + B.Decalage).Ecrire_Bit (Position, Bit);
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
@@ -103,12 +99,28 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
       return Bit_T
    is
-      Position_Bloc : Decalage_T := B.Decalage;
    begin
-      if Bloc_G_Ou_D = Droite then
-         Position_Bloc := Position_Bloc + 1;
-      end if;
-      return B.Blocs_32 (Position_Bloc).Lire_Bit (Position);
+      return B.Blocs_32 (Bloc_G_Ou_D + B.Decalage).Lire_Bit (Position);
    end Lire_Bit;
+
+   ---------------------------------------------------------------------------
+   function "+" (Left : Position_Bloc_T; Right : Decalage_T)
+      return Position_Bloc_T
+   is
+      Cote_Tmp : constant Decalage_T := Position_Bloc_T'Pos (Left);
+      Cote_Apres_Decalage : constant Decalage_T := Cote_Tmp + Right;
+   begin
+      return Position_Bloc_T'Val (Cote_Apres_Decalage);
+   end "+";
+
+   ---------------------------------------------------------------------------
+   function "+" (Left : Decalage_T; Right : Position_Bloc_T)
+      return Position_Bloc_T
+   is
+      Cote_Tmp : constant Decalage_T := Position_Bloc_T'Pos (Right);
+      Cote_Apres_Decalage : constant Decalage_T := Cote_Tmp + Left;
+   begin
+      return Position_Bloc_T'Val (Cote_Apres_Decalage);
+   end "+";
 
 end Des_P.Bloc_P.Bloc_64_P;

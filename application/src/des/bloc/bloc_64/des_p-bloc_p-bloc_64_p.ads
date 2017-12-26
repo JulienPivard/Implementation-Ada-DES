@@ -112,12 +112,34 @@ private
 
    --  Type modulaire permettant de connaitre le bloc de droite.
    type Decalage_T is mod 2;
+   for Position_Bloc_T use
+      (Gauche => Decalage_T'First, Droite => Decalage_T'Last);
+
+   --  Permet de décaler les cotés gauche et droite selon un
+   --  décalage numérique modulaire.
+   --  @param Left
+   --  La partie gauche de l'opérande.
+   --  @param Right
+   --  La partie droite de l'opérande.
+   --  @return Le coté décalé.
+   function "+" (Left : Position_Bloc_T; Right : Decalage_T)
+      return Position_Bloc_T;
+
+   --  Permet de décaler les cotés gauche et droite selon un
+   --  décalage numérique modulaire.
+   --  @param Left
+   --  La partie gauche de l'opérande.
+   --  @param Right
+   --  La partie droite de l'opérande.
+   --  @return Le coté décalé.
+   function "+" (Left : Decalage_T; Right : Position_Bloc_T)
+      return Position_Bloc_T;
 
    --  Les deux blocs de 32 bits. Celui de gauche est placé en
    --  position 0 et celui de droite est placé en position 1.
    --  Les blocs ne sont jamais physiquement échangé mais
    --  seulement décalé grâce à un opérateur de décalage.
-   type Tableau_Bloc_T is array (Decalage_T)
+   type Tableau_Bloc_T is array (Position_Bloc_T)
       of Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
    type Bloc_64_T is new Bloc_Abstrait_T with
