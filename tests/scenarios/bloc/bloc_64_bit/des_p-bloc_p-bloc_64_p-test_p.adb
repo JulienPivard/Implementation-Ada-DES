@@ -28,7 +28,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T)
    is
-      b : constant Bit_T := False;
+      b : constant Bit_IO_T := 0;
       valeur_bit : Bit_IO_T;
    begin
       AUnit.Assertions.Assert
@@ -39,7 +39,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       for I in Intervalle_Bloc_64_T'Range loop
          valeur_bit := (if T.bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = b,
+            (valeur_bit = b,
             "Le bit " & I'Img &
             " vaut : " & valeur_bit'Img &
             " au lieu de 0"
@@ -72,7 +72,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -110,7 +110,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -118,7 +118,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -164,7 +164,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -184,7 +184,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu_apres_echange (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -229,7 +229,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -237,7 +237,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -257,7 +257,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -266,7 +266,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -313,7 +313,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -333,7 +333,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu_apres_echange (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -354,7 +354,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu (I),
+            (bit_resulta = bit_attendu,
             "Le bit " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -399,7 +399,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -407,7 +407,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img
@@ -427,7 +427,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -436,7 +436,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -457,7 +457,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Gauche, I) = attendu_gauche (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc GAUCHE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
@@ -466,7 +466,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (Droite, I) = attendu_droite (I),
+            (bit_resulta = bit_attendu,
             "Le bit bloc DROITE " & I'Img &
             " vaut : " & bit_resulta'Img &
             " au lieu de " & bit_attendu'Img &
