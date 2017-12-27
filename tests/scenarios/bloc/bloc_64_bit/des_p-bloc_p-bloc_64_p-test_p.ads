@@ -37,4 +37,22 @@ package Des_P.Bloc_P.Bloc_64_P.Test_P is
    procedure Test_Bits_Aleatoire_Par_Bloc_2_Echanges
       (T : in out Test_Fixt_T);
 
+   procedure Test_Lecture_Bloc_32_Aleatoire
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ecriture_Bloc_32_Aleatoire
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Lecture_Bloc_32_Aleatoire_1_Echange
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ecriture_Bloc_32_Aleatoire_1_Echange
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Lecture_Bloc_32_Aleatoire_2_Echange
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ecriture_Bloc_32_Aleatoire_2_Echange
+      (T : in out Test_Fixt_T);
+
 end Des_P.Bloc_P.Bloc_64_P.Test_P;

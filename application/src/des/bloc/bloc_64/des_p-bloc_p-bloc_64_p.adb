@@ -104,6 +104,30 @@ package body Des_P.Bloc_P.Bloc_64_P is
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
+   procedure Ecrire_Bloc
+      (
+         Bloc : in out Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T;
+         Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+      )
+   is
+   begin
+      Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage) := Bloc_32;
+   end Ecrire_Bloc;
+
+   ---------------------------------------------------------------------------
+   function Lire_Bloc
+      (
+         Bloc : Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T
+      )
+      return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+   is
+   begin
+      return Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage);
+   end Lire_Bloc;
+
+   ---------------------------------------------------------------------------
    function "+" (Left : Position_Bloc_T; Right : Decalage_T)
       return Position_Bloc_T
    is

@@ -108,6 +108,33 @@ package Des_P.Bloc_P.Bloc_64_P is
       Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
    ) return Bit_T;
 
+   --  Écrit le bloc de 32 bits à droite ou à gauche dans le
+   --  bloc de 64 bits.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+   --  @param Bloc_G_Ou_D
+   --  Désigne le bloc gauche ou droite à écrire.
+   --  @param Bloc_32
+   --  Le bloc de 32 bits.
+   procedure Ecrire_Bloc
+   (
+      Bloc : in out Bloc_64_T;
+      Bloc_G_Ou_D : Position_Bloc_T;
+      Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+   );
+
+   --  Permet de lire le bloc de 32 bits de gauche ou de droite.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+   --  @param Bloc_G_Ou_D
+   --  Désigne le bloc de 32 bits de droite ou de gauche.
+   --  @return Le bloc de 32 bits qui à été désigné.
+   function Lire_Bloc
+   (
+      Bloc : Bloc_64_T;
+      Bloc_G_Ou_D : Position_Bloc_T
+   ) return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+
 private
 
    --  Type modulaire permettant de connaitre le bloc de droite.
