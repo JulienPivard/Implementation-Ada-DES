@@ -45,4 +45,12 @@ package body Des_P.Bloc_P.Bloc_32_P is
       return B.Bits (Position);
    end Lire_Bit;
 
+   ---------------------------------------------------------------------------
+   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T is
+      Resultat : Bloc_32_T;
+   begin
+      Resultat.Bits := Bloc.Bits xor Autre.Bits;
+      return Resultat;
+   end "xor";
+
 end Des_P.Bloc_P.Bloc_32_P;

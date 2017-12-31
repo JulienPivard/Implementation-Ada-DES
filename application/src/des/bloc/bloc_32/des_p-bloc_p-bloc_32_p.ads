@@ -59,6 +59,14 @@ package Des_P.Bloc_P.Bloc_32_P is
    )
    return Bit_T;
 
+   --  Effectue un xor bit à bit entre les deux blocs de 32.
+   --  @param Bloc
+   --  Le bloc de 32 bits.
+   --  @param Autre
+   --  L'autre bloc de 32 bits.
+   --  @return Le résultat du xor bit à bit entre les deux blocs.
+   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T;
+
 private
 
    --  Le tableau de bits. Une case par bit.

@@ -252,6 +252,13 @@ package body Bloc_32_Suite_P is
             )
          );
 
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Ou Exclusif",
+            Des_P.Bloc_P.Bloc_32_P.Test_P.Test_Ou_Exclusif'Access
+            )
+         );
+
       return ptr_test_suite;
 
    end Fonc_Bloc_32_Suite;

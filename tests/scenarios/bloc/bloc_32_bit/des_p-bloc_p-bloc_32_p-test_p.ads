@@ -118,4 +118,7 @@ package Des_P.Bloc_P.Bloc_32_P.Test_P is
    procedure Test_Change_Bits_Aleatoirement
       (T : in out Test_Fixt_T);
 
+   procedure Test_Ou_Exclusif
+      (T : in out Test_Fixt_T);
+
 end Des_P.Bloc_P.Bloc_32_P.Test_P;

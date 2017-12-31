@@ -931,4 +931,71 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
 
    end Test_Change_Bits_Aleatoirement;
 
+   ---------------------------------------------------------------------------
+   procedure Test_Ou_Exclusif (T : in out Test_Fixt_T) is
+      B1 : Bloc_32_T;
+      B2 : Bloc_32_T;
+      I, J : Intervalle_Bloc_32_T;
+      Valeur : Bit_T;
+      attendu : constant Tableau_Bits_T :=
+         (False, False, False, False, True, True, True, True,
+         True, True, True, True, False, False, False, False,
+         False, False, False, False, True, True, True, True,
+         True, True, True, True, False, False, False, False);
+      valeur_bit_resulta, valeur_bit_attendu : Bit_IO_T;
+   begin
+      I := Intervalle_Bloc_32_T'First;
+      Valeur := False;
+      Autour :
+      loop
+         J := Intervalle_Bloc_32_T'First;
+         Interne :
+         loop
+            B1.Bits (I) := Valeur;
+            exit Autour when I = Intervalle_Bloc_32_T'Last;
+            I := Intervalle_Bloc_32_T'Succ (I);
+            J := Intervalle_Bloc_32_T'Succ (J);
+            exit Interne when J > 4;
+         end loop Interne;
+         if Valeur = Bit_T'Last then
+            Valeur := False;
+         else
+            Valeur := True;
+         end if;
+      end loop Autour;
+
+      I := Intervalle_Bloc_32_T'First;
+      Valeur := False;
+      Autour_Bis :
+      loop
+         J := Intervalle_Bloc_32_T'First;
+         Interne_Bis :
+         loop
+            B2.Bits (I) := Valeur;
+            exit Autour_Bis when I = Intervalle_Bloc_32_T'Last;
+            I := Intervalle_Bloc_32_T'Succ (I);
+            J := Intervalle_Bloc_32_T'Succ (J);
+            exit Interne_Bis when J > 8;
+         end loop Interne_Bis;
+         if Valeur then
+            Valeur := False;
+         else
+            Valeur := True;
+         end if;
+      end loop Autour_Bis;
+
+      T.bloc := B1 xor B2;
+
+      for I in Intervalle_Bloc_32_T'Range loop
+         valeur_bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+         valeur_bit_attendu := (if attendu (I) then 1 else 0);
+         AUnit.Assertions.Assert
+            (T.bloc.Lire_Bit (I) = attendu (I),
+            "Le bit " & I'Img &
+            " vaut : " & valeur_bit_resulta'Img &
+            " au lieu de " & valeur_bit_attendu'Img
+            );
+      end loop;
+   end Test_Ou_Exclusif;
+
 end Des_P.Bloc_P.Bloc_32_P.Test_P;
