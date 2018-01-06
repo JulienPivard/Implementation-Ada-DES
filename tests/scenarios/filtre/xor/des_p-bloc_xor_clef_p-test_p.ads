@@ -5,6 +5,8 @@ with Des_P.Bloc_P.Bloc_48_P;
 
 package Des_P.Bloc_Xor_Clef_P.Test_P is
 
+   type Bit_IO_T is range 0 .. 1;
+
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
          bloc : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
