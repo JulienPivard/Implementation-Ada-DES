@@ -8,7 +8,7 @@ with Des_P.Clef_P.Clef_64_Abs_P;
 --  Cette clef sera composé de 56 bits provenant de la
 --  clef de 64. Le constructeur va sélectionner ces bits
 --  selon le tableau PC-1 du standard DES.
---  @group Clef
+--  @group Constructeur_Clef
 package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
 
    pragma Pure;
