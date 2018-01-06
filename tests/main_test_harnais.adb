@@ -3,16 +3,17 @@ with AUnit.Run;
 with AUnit.Options;
 
 with Suite_De_Tests_Bloc_P;
-
 with Suite_De_Tests_Clef_P;
+with Suite_De_Tests_Filtre_P;
 
 procedure Main_Test_Harnais is
 
    procedure runner_suite_tests_bloc is new AUnit.Run.Test_Runner
       (Suite_De_Tests_Bloc_P.Fonc_Suite);
-
    procedure runner_suite_tests_clef is new AUnit.Run.Test_Runner
       (Suite_De_Tests_Clef_P.Fonc_Suite);
+   procedure runner_suite_tests_filtre is new AUnit.Run.Test_Runner
+      (Suite_De_Tests_Filtre_P.Fonc_Suite);
 
    options : constant AUnit.Options.AUnit_Options :=
       (
@@ -28,4 +29,5 @@ begin
 
    runner_suite_tests_bloc (reporter, options);
    runner_suite_tests_clef (reporter, options);
+   runner_suite_tests_filtre (reporter, options);
 end Main_Test_Harnais;
