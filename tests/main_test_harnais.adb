@@ -2,11 +2,7 @@ with AUnit.Reporter.Text;
 with AUnit.Run;
 with AUnit.Options;
 
-with Bloc_32_Suite_P;
-with Bloc_64_Suite_P;
-with Permutations_64_Suite_P;
-with Constructeur_Bloc_32_Suite_P;
-with Constructeur_Bloc_64_Suite_P;
+with Suite_De_Tests_Bloc_P;
 
 with Clef_48_Suite_P;
 with Clef_56_Suite_P;
@@ -18,17 +14,8 @@ with Constructeur_Clef_64_Suite_P;
 
 procedure Main_Test_Harnais is
 
-   procedure runner_bloc_32 is new AUnit.Run.Test_Runner
-      (Bloc_32_Suite_P.Fonc_Bloc_32_Suite);
-   procedure runner_bloc_64 is new AUnit.Run.Test_Runner
-      (Bloc_64_Suite_P.Fonc_Bloc_64_Suite);
-   procedure runner_permutations_64 is new AUnit.Run.Test_Runner
-      (Permutations_64_Suite_P.Fonc_Permutations_64_Suite);
-
-   procedure runner_constructeur_bloc_32 is new AUnit.Run.Test_Runner
-      (Constructeur_Bloc_32_Suite_P.Fonc_Constructeur_Bloc_32_Suite);
-   procedure runner_constructeur_bloc_64 is new AUnit.Run.Test_Runner
-      (Constructeur_Bloc_64_Suite_P.Fonc_Constructeur_Bloc_64_Suite);
+   procedure runner_suite_tests_bloc is new AUnit.Run.Test_Runner
+      (Suite_De_Tests_Bloc_P.Fonc_Suite);
 
    procedure runner_clef_48 is new AUnit.Run.Test_Runner
       (Clef_48_Suite_P.Fonc_Clef_48_Suite);
@@ -56,12 +43,7 @@ procedure Main_Test_Harnais is
 begin
    AUnit.Reporter.Text.Set_Use_ANSI_Colors (reporter, True);
 
-   runner_bloc_32 (reporter, options);
-   runner_bloc_64 (reporter, options);
-   runner_permutations_64 (reporter, options);
-
-   runner_constructeur_bloc_32 (reporter, options);
-   runner_constructeur_bloc_64 (reporter, options);
+   runner_suite_tests_bloc (reporter, options);
 
    runner_clef_48 (reporter, options);
    runner_clef_56 (reporter, options);
