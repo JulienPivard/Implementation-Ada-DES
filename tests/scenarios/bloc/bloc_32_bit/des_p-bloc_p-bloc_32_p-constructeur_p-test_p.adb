@@ -19,7 +19,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    end Tear_Down;
 
    ---------------------------------------------------------------------------
-   procedure Test_Preparation (T : in out Test_Fixt_T) is
+   procedure Test_Preparation
+      (T : in out Test_Fixt_T)
+   is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
@@ -35,7 +37,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    end Test_Preparation;
 
    ---------------------------------------------------------------------------
-   procedure Test_Construction (T : in out Test_Fixt_T) is
+   procedure Test_Construction
+      (T : in out Test_Fixt_T)
+   is
       bit_resulta, bit_attendu : Bit_IO_T;
    begin
       T.constructeur.Construire_Bloc (brut_attendu);
@@ -52,7 +56,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    end Test_Construction;
 
    ---------------------------------------------------------------------------
-   procedure Test_Recuperation (T : in out Test_Fixt_T) is
+   procedure Test_Recuperation
+      (T : in out Test_Fixt_T)
+   is
       bloc_resultat : Bloc_32_T;
       bit_resulta, bit_attendu : Bit_IO_T;
    begin

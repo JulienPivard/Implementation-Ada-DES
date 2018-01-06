@@ -24,10 +24,13 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Preparation (T : in out Test_Fixt_T);
+   procedure Test_Preparation
+      (T : in out Test_Fixt_T);
 
-   procedure Test_Construction (T : in out Test_Fixt_T);
+   procedure Test_Construction
+      (T : in out Test_Fixt_T);
 
-   procedure Test_Recuperation (T : in out Test_Fixt_T);
+   procedure Test_Recuperation
+      (T : in out Test_Fixt_T);
 
 end Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;

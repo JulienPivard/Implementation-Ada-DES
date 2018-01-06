@@ -11,6 +11,7 @@ package body Constructeur_Bloc_32_Suite_P is
    function Fonc_Constructeur_Bloc_32_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
+      use Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
       nom_test : constant String := "(Test Constructeur Bloc 32 bits) ";
@@ -19,21 +20,21 @@ package body Constructeur_Bloc_32_Suite_P is
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Preparation bloc vide",
-         Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P.Test_Preparation'Access
+         Test_Preparation'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Construction d'un bloc",
-         Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P.Test_Construction'Access
+         (nom_test & "Construction d'un bloc a partir d'un brut",
+         Test_Construction'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Recuperation d'un bloc fini",
-         Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P.Test_Recuperation'Access
+         Test_Recuperation'Access
          )
       );
 
