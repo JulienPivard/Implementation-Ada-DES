@@ -7,7 +7,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       c : Constructeur_Bloc_32_T;
    begin
-      c.Preparer_Nouveau_Bloc_32 (brut_attendu);
+      c.Preparer_Nouveau_Bloc;
       T.constructeur := c;
    end Set_Up;
 
@@ -23,10 +23,6 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
-      AUnit.Assertions.Assert
-         (T.constructeur.Brut = brut_attendu,
-         "Le brut de 32 bits ne vaut pas la bonne valeur."
-         );
       for I in Intervalle_Bloc_32_T'Range loop
          valeur_bit := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -42,11 +38,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    procedure Test_Construction (T : in out Test_Fixt_T) is
       bit_resulta, bit_attendu : Bit_IO_T;
    begin
-      T.constructeur.Construire_Bloc;
-      AUnit.Assertions.Assert
-         (T.constructeur.Brut = brut_attendu,
-         "Le brut de 32 bits a été modifié durant la construction."
-         );
+      T.constructeur.Construire_Bloc (brut_attendu);
       for I in Intervalle_Bloc_32_T'Range loop
          bit_resulta := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if resultat_attendu (I) then 1 else 0);
@@ -64,12 +56,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
       bloc_resultat : Bloc_32_T;
       bit_resulta, bit_attendu : Bit_IO_T;
    begin
-      T.constructeur.Construire_Bloc;
-      AUnit.Assertions.Assert
-         (T.constructeur.Brut = brut_attendu,
-         "Le brut de 32 bits a été modifié durant la construction."
-         );
-      bloc_resultat := T.constructeur.Recuperer_Bloc_32;
+      T.constructeur.Construire_Bloc (brut_attendu);
+      bloc_resultat := T.constructeur.Recuperer_Bloc;
       for I in Intervalle_Bloc_32_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if resultat_attendu (I) then 1 else 0);

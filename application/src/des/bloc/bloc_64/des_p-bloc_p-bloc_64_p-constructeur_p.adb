@@ -3,21 +3,20 @@ with Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
 package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
 
    ---------------------------------------------------------------------------
-   procedure Preparer_Nouveau_Bloc_64
+   procedure Preparer_Nouveau_Bloc
+      (Constructeur : in out Constructeur_Bloc_64_T)
+   is
+      B : Bloc_64_T;
+   begin
+      Constructeur.Bloc := B;
+   end Preparer_Nouveau_Bloc;
+
+   ---------------------------------------------------------------------------
+   procedure Construire_Bloc
       (
          Constructeur : in out Constructeur_Bloc_64_T;
          Brut : Bloc_64_Brut_T
       )
-   is
-      B : Bloc_64_T;
-   begin
-      Constructeur.Brut := Brut;
-      Constructeur.Bloc := B;
-   end Preparer_Nouveau_Bloc_64;
-
-   ---------------------------------------------------------------------------
-   procedure Construire_Bloc
-      (Constructeur : in out Constructeur_Bloc_64_T)
    is
       use Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
       type Bloc_Intermediaire is
@@ -33,26 +32,26 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
             Bloc_2 at 4 range 0 .. 31;
          end record;
 
-      Resultat : Bloc_Intermediaire with Address => Constructeur.Brut'Address;
+      Resultat : Bloc_Intermediaire with Address => Brut'Address;
 
       C_32 : Constructeur_Bloc_32_T;
    begin
-      C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_1);
-      C_32.Construire_Bloc;
-      Constructeur.Bloc.Blocs_32 (Gauche) := C_32.Recuperer_Bloc_32;
+      C_32.Preparer_Nouveau_Bloc;
+      C_32.Construire_Bloc (Resultat.Bloc_1);
+      Constructeur.Bloc.Blocs_32 (Gauche) := C_32.Recuperer_Bloc;
 
-      C_32.Preparer_Nouveau_Bloc_32 (Resultat.Bloc_2);
-      C_32.Construire_Bloc;
-      Constructeur.Bloc.Blocs_32 (Droite) := C_32.Recuperer_Bloc_32;
+      C_32.Preparer_Nouveau_Bloc;
+      C_32.Construire_Bloc (Resultat.Bloc_2);
+      Constructeur.Bloc.Blocs_32 (Droite) := C_32.Recuperer_Bloc;
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------
-   function Recuperer_Bloc_64
+   function Recuperer_Bloc
       (Constructeur : Constructeur_Bloc_64_T)
       return Bloc_64_T
    is
    begin
       return Constructeur.Bloc;
-   end Recuperer_Bloc_64;
+   end Recuperer_Bloc;
 
 end Des_P.Bloc_P.Bloc_64_P.Constructeur_P;

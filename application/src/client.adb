@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : jeudi 21 décembre[12] 2017
+--           Dernière modification : Samedi 06 janvier[01] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -123,9 +123,9 @@ begin
       exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
       Lecteur_64_IO.Read (Fichier, Brut);
 
-      C_64.Preparer_Nouveau_Bloc_64 (Brut);
-      C_64.Construire_Bloc;
-      Bloc := C_64.Recuperer_Bloc_64;
+      C_64.Preparer_Nouveau_Bloc;
+      C_64.Construire_Bloc (Brut);
+      Bloc := C_64.Recuperer_Bloc;
 
       Numero_Ligne_IO.Put (Item => Compteur_Ligne, Width => 3);
       Ada.Text_IO.Put ("   ");
