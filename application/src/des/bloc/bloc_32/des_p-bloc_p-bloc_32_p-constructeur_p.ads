@@ -1,3 +1,5 @@
+with Des_P.Bloc_P.Bloc_48_P;
+
 --  @summary
 --  Constructeur de bloc de 32 bits.
 --  @description
@@ -30,6 +32,29 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       (
          Constructeur : in out Constructeur_Bloc_32_T;
          Brut : Bloc_32_Brut_T
+      );
+
+   --  Construit un bloc de 32 bits par permutation de la table P
+   --  à partir d'un autre bloc de même taille.
+   --  @param Constructeur
+   --  Le constructeur de bloc de 32 bits.
+   --  @param Brut
+   --  L'autre bloc de 32 bits.
+   procedure Construire_Bloc
+      (
+         Constructeur : in out Constructeur_Bloc_32_T;
+         Brut : Bloc_32_T
+      );
+
+   --  Construit un bloc de 32 bits réduction d'un bloc de 48 bits.
+   --  @param Constructeur
+   --  Le constructeur de bloc de 32 bits.
+   --  @param Brut
+   --  le bloc de 48 bits.
+   procedure Construire_Bloc
+      (
+         Constructeur : in out Constructeur_Bloc_32_T;
+         Brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
       );
 
    --  Récupère le bloc de 32 bits terminé.

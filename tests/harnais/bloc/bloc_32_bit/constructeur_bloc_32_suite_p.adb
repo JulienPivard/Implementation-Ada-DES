@@ -27,7 +27,21 @@ package body Constructeur_Bloc_32_Suite_P is
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Construction d'un bloc a partir d'un brut",
-         Test_Construction'Access
+         Test_Construction_Avec_Brut'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'un bloc a partir d'un bloc de 32 bits",
+         Test_Construction_Avec_Bloc_32'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Construction d'un bloc a partir d'un bloc de 48 bits",
+         Test_Construction_Avec_Bloc_48'Access
          )
       );
 
