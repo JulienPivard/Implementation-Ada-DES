@@ -4,6 +4,7 @@ with AUnit.Options;
 
 with Bloc_32_Suite_P;
 with Bloc_64_Suite_P;
+with Permutations_64_Suite_P;
 with Constructeur_Bloc_32_Suite_P;
 with Constructeur_Bloc_64_Suite_P;
 
@@ -21,6 +22,9 @@ procedure Main_Test_Harnais is
       (Bloc_32_Suite_P.Fonc_Bloc_32_Suite);
    procedure runner_bloc_64 is new AUnit.Run.Test_Runner
       (Bloc_64_Suite_P.Fonc_Bloc_64_Suite);
+   procedure runner_permutations_64 is new AUnit.Run.Test_Runner
+      (Permutations_64_Suite_P.Fonc_Permutations_64_Suite);
+
    procedure runner_constructeur_bloc_32 is new AUnit.Run.Test_Runner
       (Constructeur_Bloc_32_Suite_P.Fonc_Constructeur_Bloc_32_Suite);
    procedure runner_constructeur_bloc_64 is new AUnit.Run.Test_Runner
@@ -54,6 +58,8 @@ begin
 
    runner_bloc_32 (reporter, options);
    runner_bloc_64 (reporter, options);
+   runner_permutations_64 (reporter, options);
+
    runner_constructeur_bloc_32 (reporter, options);
    runner_constructeur_bloc_64 (reporter, options);
 
