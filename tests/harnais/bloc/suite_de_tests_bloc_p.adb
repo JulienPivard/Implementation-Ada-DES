@@ -1,5 +1,6 @@
 with Bloc_32_Suite_P;
 with Constructeur_Bloc_32_Suite_P;
+with Bloc_48_Suite_P;
 with Bloc_64_Suite_P;
 with Constructeur_Bloc_64_Suite_P;
 with Permutations_64_Suite_P;
@@ -15,6 +16,8 @@ package body Suite_De_Tests_Bloc_P is
          (Bloc_32_Suite_P.Fonc_Bloc_32_Suite);
       ptr_test_suite.all.Add_Test
          (Constructeur_Bloc_32_Suite_P.Fonc_Constructeur_Bloc_32_Suite);
+      ptr_test_suite.all.Add_Test
+         (Bloc_48_Suite_P.Fonc_Bloc_48_Suite);
       ptr_test_suite.all.Add_Test
          (Bloc_64_Suite_P.Fonc_Bloc_64_Suite);
       ptr_test_suite.all.Add_Test
