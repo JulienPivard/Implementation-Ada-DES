@@ -1,5 +1,5 @@
 with Des_P.Clef_P.Constructeur_48_Abs_P;
-with Des_P.Clef_P.Clef_56_Abs_P;
+limited with Des_P.Clef_P.Clef_56_Abs_P;
 
 --  @summary
 --  Le constructeur concret de clef de 48 bits.
