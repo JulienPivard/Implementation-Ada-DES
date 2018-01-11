@@ -44,6 +44,9 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
    end Tear_Down;
 
    ---------------------------------------------------------------------------
+   --                              scénarios                                --
+   ---------------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
       bit_attendu : constant Bit_T := False;
    begin

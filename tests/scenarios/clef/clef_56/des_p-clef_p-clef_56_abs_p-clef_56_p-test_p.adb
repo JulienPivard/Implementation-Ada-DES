@@ -124,6 +124,9 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    end Tear_Down;
 
    ---------------------------------------------------------------------------
+   --                              scénarios                                --
+   ---------------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    procedure Test_Possede_Constructeur_48 (T : in out Test_Fixt_T) is
    begin
       AUnit.Assertions.Assert
