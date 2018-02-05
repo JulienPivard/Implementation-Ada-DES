@@ -23,336 +23,336 @@ package body Bloc_48_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 1ier bit",
+            (nom_test & "Modification 1er bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_1er_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 2ieme bit",
+            (nom_test & "Modification 2e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_2eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 3ieme bit",
+            (nom_test & "Modification 3e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_3eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 4ieme bit",
+            (nom_test & "Modification 4e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_4eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 5ieme bit",
+            (nom_test & "Modification 5e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_5eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 6ieme bit",
+            (nom_test & "Modification 6e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_6eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 7ieme bit",
+            (nom_test & "Modification 7e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_7eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 8ieme bit",
+            (nom_test & "Modification 8e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_8eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 9ieme bit",
+            (nom_test & "Modification 9e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_9eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 10ieme bit",
+            (nom_test & "Modification 10e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_10eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 11ieme bit",
+            (nom_test & "Modification 11e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_11eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 12ieme bit",
+            (nom_test & "Modification 12e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_12eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 13ieme bit",
+            (nom_test & "Modification 13e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_13eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 14ieme bit",
+            (nom_test & "Modification 14e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_14eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 15ieme bit",
+            (nom_test & "Modification 15e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_15eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 16ieme bit",
+            (nom_test & "Modification 16e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_16eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 17ieme bit",
+            (nom_test & "Modification 17e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_17eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 18ieme bit",
+            (nom_test & "Modification 18e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_18eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 19ieme bit",
+            (nom_test & "Modification 19e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_19eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 20ieme bit",
+            (nom_test & "Modification 20e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_20eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 21ieme bit",
+            (nom_test & "Modification 21e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_21eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 22ieme bit",
+            (nom_test & "Modification 22e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_22eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 23ieme bit",
+            (nom_test & "Modification 23e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_23eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 24ieme bit",
+            (nom_test & "Modification 24e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_24eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 25ieme bit",
+            (nom_test & "Modification 25e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_25eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 26ieme bit",
+            (nom_test & "Modification 26e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_26eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 27ieme bit",
+            (nom_test & "Modification 27e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_27eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 28ieme bit",
+            (nom_test & "Modification 28e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_28eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 29ieme bit",
+            (nom_test & "Modification 29e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_29eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 30ieme bit",
+            (nom_test & "Modification 30e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_30eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 31ieme bit",
+            (nom_test & "Modification 31e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_31eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 32ieme bit",
+            (nom_test & "Modification 32e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_32eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 33ieme bit",
+            (nom_test & "Modification 33e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_33eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 34ieme bit",
+            (nom_test & "Modification 34e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_34eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 35ieme bit",
+            (nom_test & "Modification 35e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_35eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 36ieme bit",
+            (nom_test & "Modification 36e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_36eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 37ieme bit",
+            (nom_test & "Modification 37e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_37eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 38ieme bit",
+            (nom_test & "Modification 38e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_38eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 39ieme bit",
+            (nom_test & "Modification 39e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_39eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 40ieme bit",
+            (nom_test & "Modification 40e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_40eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 41ieme bit",
+            (nom_test & "Modification 41e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_41eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 42ieme bit",
+            (nom_test & "Modification 42e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_42eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 43ieme bit",
+            (nom_test & "Modification 43e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_43eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 44ieme bit",
+            (nom_test & "Modification 44e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_44eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 45ieme bit",
+            (nom_test & "Modification 45e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_45eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 46ieme bit",
+            (nom_test & "Modification 46e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_46eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 47ieme bit",
+            (nom_test & "Modification 47e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_47eme_Bit'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 48ieme bit",
+            (nom_test & "Modification 48e bit",
             Des_P.Bloc_P.Bloc_48_P.Test_P.Test_48eme_Bit'Access
             )
          );
