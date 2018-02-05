@@ -8,6 +8,13 @@ package Des_P.Filtre_P.Filtre_Simple_P is
    type Filtre_Simple_T is new Filtre_Abstrait_T with private;
 
    overriding
+   procedure Modifier_Numero
+      (
+         Filtre : in out Filtre_Simple_T;
+         Numero : Numero_Filtre_T
+      );
+
+   overriding
    procedure Filtrer
       (
          Filtre : Filtre_Simple_T;

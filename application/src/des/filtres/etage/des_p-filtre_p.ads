@@ -13,6 +13,22 @@ package Des_P.Filtre_P is
    --  Un filtre abstrait.
    type Filtre_Abstrait_T is abstract tagged private;
 
+   --  Le numéro du filtre représente la position
+   --  dans la suite des filtres
+   type Numero_Filtre_T is range 0 .. 17;
+
+   --  Modifie le numéro du filtre.
+   --  @param Filtre
+   --  Le filtre.
+   --  @param Numero
+   --  Le numéro à attribuer au filtre.
+   procedure Modifier_Numero
+      (
+         Filtre : in out Filtre_Abstrait_T;
+         Numero : Numero_Filtre_T
+      )
+   is abstract;
+
    --  Filtre le bloc de 64 bits avec la clef de 56 bits.
    --  @param Filtre
    --  Le filtre.

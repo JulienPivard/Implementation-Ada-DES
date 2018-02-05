@@ -1,11 +1,11 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Etage_P.Test_P is
+package Des_P.Etage_P.Filtrage_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Etage : access Etage_T;
+         Etage : Etage_T;
       end record;
 
    overriding
@@ -13,6 +13,8 @@ package Des_P.Etage_P.Test_P is
 
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
+
+   ---------------------------------------------------------------------------
 
    procedure Test_Initialisation_Avec_Successeur
       (T : in out Test_Fixt_T);
@@ -38,4 +40,10 @@ package Des_P.Etage_P.Test_P is
    procedure Test_Iterer_Avec_Successeur
       (T : in out Test_Fixt_T);
 
-end Des_P.Etage_P.Test_P;
+   procedure Test_Ajouter_1_Successeur
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Ajouter_2_Successeur
+      (T : in out Test_Fixt_T);
+
+end Des_P.Etage_P.Filtrage_P.Test_P;

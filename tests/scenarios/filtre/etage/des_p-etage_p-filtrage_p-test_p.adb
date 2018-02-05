@@ -5,12 +5,12 @@ use  Des_P.Filtre_P.Filtre_Simple_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
 use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
 
-package body Des_P.Etage_P.Test_P is
+package body Des_P.Etage_P.Filtrage_P.Test_P is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      Etage : constant access Etage_T := new Etage_T (False);
+      Etage : constant Etage_T := Construire_Etage_Sans_Successeur;
    begin
       T.Etage := Etage;
    end Set_Up;
@@ -34,12 +34,12 @@ package body Des_P.Etage_P.Test_P is
       Etage : constant Etage_T := Construire_Etage_Sans_Successeur;
    begin
       AUnit.Assertions.Assert
-         (Etage.Avec_Successeur = False,
-         "L'etage ne devrai pas posseder de successeur."
+         (Etage.Successeur.Is_Empty,
+         "L'etage ne devrait pas posseder de successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur = False,
-         "L'etage ne devrai pas posseder de successeur."
+         "L'etage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Sans_Successeur;
 
@@ -51,12 +51,12 @@ package body Des_P.Etage_P.Test_P is
          Construire_Etage_Avec_Successeur (T.Etage);
    begin
       AUnit.Assertions.Assert
-         (Etage.Avec_Successeur,
-         "L'etage devrai posseder un successeur."
+         (Etage.Successeur.Is_Empty = False,
+         "L'etage devrait posseder un successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur,
-         "L'etage ne devrai pas posseder de successeur."
+         "L'etage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Avec_Successeur;
 
@@ -66,17 +66,27 @@ package body Des_P.Etage_P.Test_P is
    is
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
    begin
       AUnit.Assertions.Assert
          (
-            Etage.Filtre = null,
+            Etage.Filtre.Is_Empty,
             "L'etage ne devrait pas comporter de filtre."
          );
-      Etage.Ajouter_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
-            Etage.Filtre /= null,
+            not Etage.Possede_Filtre,
+            "L'etage ne devrait pas comporter de filtre."
+         );
+      Etage.Modifier_Filtre (Filtre);
+      AUnit.Assertions.Assert
+         (
+            not Etage.Filtre.Is_Empty,
+            "L'etage devrait comporter un filtre."
+         );
+      AUnit.Assertions.Assert
+         (
+            Etage.Possede_Filtre,
             "L'etage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Sans_Successeur;
@@ -86,17 +96,17 @@ package body Des_P.Etage_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
    begin
       AUnit.Assertions.Assert
          (
-            Etage.Filtre = null,
+            Etage.Filtre.Is_Empty,
             "L'etage ne devrait pas comporter de filtre."
          );
-      Etage.Ajouter_Filtre (Filtre);
+      Etage.Modifier_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
-            Etage.Filtre /= null,
+            not Etage.Filtre.Is_Empty,
             "L'etage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Avec_Successeur;
@@ -110,7 +120,7 @@ package body Des_P.Etage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Clef_56_T;
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
@@ -120,7 +130,7 @@ package body Des_P.Etage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Ajouter_Filtre (Filtre);
+      Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc, Clef);
       for I in Intervalle_Bloc_64_T'Range loop
          resultat := Bloc.Lire_Bit (I);
@@ -146,7 +156,7 @@ package body Des_P.Etage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Clef_56_T;
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
@@ -156,7 +166,7 @@ package body Des_P.Etage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Ajouter_Filtre (Filtre);
+      Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc, Clef);
       for I in Intervalle_Bloc_64_T'Range loop
          resultat := Bloc.Lire_Bit (I);
@@ -183,7 +193,7 @@ package body Des_P.Etage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Clef_56_T;
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
@@ -193,7 +203,7 @@ package body Des_P.Etage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Ajouter_Filtre (Filtre);
+      Etage.Modifier_Filtre (Filtre);
       Etage.Iterer (Bloc, Clef);
       for I in Intervalle_Bloc_64_T'Range loop
          resultat := Bloc.Lire_Bit (I);
@@ -216,10 +226,10 @@ package body Des_P.Etage_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       use Des_P.Bloc_P.Bloc_64_P;
-      Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
+      Etage : Etage_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Clef_56_T;
-      Filtre : constant access Filtre_Simple_T := new Filtre_Simple_T;
+      Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
@@ -229,8 +239,9 @@ package body Des_P.Etage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      T.Etage.all.Ajouter_Filtre (Filtre);
-      Etage.Ajouter_Filtre (Filtre);
+      T.Etage.Modifier_Filtre (Filtre);
+      Etage.Modifier_Filtre (Filtre);
+      Etage.Modifier_Successeur (T.Etage);
       Etage.Iterer (Bloc, Clef);
       for I in Intervalle_Bloc_64_T'Range loop
          resultat := Bloc.Lire_Bit (I);
@@ -248,4 +259,73 @@ package body Des_P.Etage_P.Test_P is
       end loop;
    end Test_Iterer_Avec_Successeur;
 
-end Des_P.Etage_P.Test_P;
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_1_Successeur
+      (T : in out Test_Fixt_T)
+   is
+      Etage : Etage_T;
+   begin
+      AUnit.Assertions.Assert
+         (
+            not Etage.Possede_Successeur,
+            "L'estage ne devrait pas avoir de successeur"
+         );
+      Etage.Ajouter_Successeur (T.Etage);
+      AUnit.Assertions.Assert
+         (
+            Etage.Possede_Successeur,
+            "L'estage devrait avoir un successeur"
+         );
+      AUnit.Assertions.Assert
+         (
+            not Etage.Successeur.Element.Possede_Successeur,
+            "L'estage a l'interieur de l'estage ne devrait pas avoir de" &
+            " successeur."
+         );
+   end Test_Ajouter_1_Successeur;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Ajouter_2_Successeur
+      (T : in out Test_Fixt_T)
+   is
+      Etage_1 : Etage_T;
+      Etage_2 : Etage_T;
+   begin
+      AUnit.Assertions.Assert
+         (
+            not Etage_1.Possede_Successeur,
+            "L'estage ne devrait pas avoir de successeur"
+         );
+      Etage_1.Ajouter_Successeur (T.Etage);
+      AUnit.Assertions.Assert
+         (
+            Etage_1.Possede_Successeur,
+            "L'estage devrait avoir un successeur"
+         );
+      AUnit.Assertions.Assert
+         (
+            not Etage_1.Successeur.Element.Possede_Successeur,
+            "L'estage a l'interieur de l'estage ne devrait pas avoir de" &
+            " successeur."
+         );
+
+      AUnit.Assertions.Assert
+         (
+            not Etage_2.Possede_Successeur,
+            "L'estage ne devrait pas avoir de successeur"
+         );
+      Etage_1.Ajouter_Successeur (Etage_2);
+      AUnit.Assertions.Assert
+         (
+            Etage_1.Possede_Successeur,
+            "L'estage devrait avoir un successeur"
+         );
+      AUnit.Assertions.Assert
+         (
+            Etage_1.Successeur.Element.Possede_Successeur,
+            "L'estage a l'interieur de l'estage devrait avoir un" &
+            " successeur."
+         );
+   end Test_Ajouter_2_Successeur;
+
+end Des_P.Etage_P.Filtrage_P.Test_P;
