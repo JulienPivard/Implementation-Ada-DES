@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 23 janvier[01] 2018
+--           Dernière modification : Lundi 05 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -22,7 +22,21 @@ with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
 use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
+use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
+use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
+
+with Des_P.Bloc_Xor_Clef_P;
+use  Des_P.Bloc_Xor_Clef_P;
+
+with Des_P.Bloc_P.Bloc_64_P.Permutations_P;
+
+with Des_P.Bloc_P.Bloc_48_P;
+use  Des_P.Bloc_P.Bloc_48_P;
+with Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
+use  Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
 
 procedure Client is
 
@@ -45,7 +59,7 @@ procedure Client is
       Put_Line (Standard_Error, "");
       Put_Line (Standard_Error, "-c --crypter");
       Put_Line (Standard_Error, "  Crypte le fichier avec la clef.");
-      Put_Line (Standard_Error, "-d --décrypter");
+      Put_Line (Standard_Error, "-d --decrypter");
       Put_Line (Standard_Error, "  Décrypte le ficher avec la clef.");
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
@@ -70,7 +84,13 @@ procedure Client is
    package Numero_Ligne_IO is new Ada.Text_IO.Integer_IO (Integer);
    Compteur_Ligne : Integer := 1;
 
+   Bloc_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+   C_B_48 : Constructeur_Bloc_48_T;
+
    Clef : Clef_64_T;
+   Clef_56 : Clef_56_T;
+   Clef_48 : Clef_48_T;
+
 begin
 
    if Nb_Arguments = 0 then
@@ -109,9 +129,9 @@ begin
       declare
          Crypt_Decrypt : constant String := Ada.Command_Line.Argument (1);
       begin
-         if Crypt_Decrypt = "-c" or Crypt_Decrypt = "--crypter" then
+         if Crypt_Decrypt = "-c" or else Crypt_Decrypt = "--crypter" then
             Action := Crypter;
-         elsif Crypt_Decrypt = "-d" or Crypt_Decrypt = "--décrypter" then
+         elsif Crypt_Decrypt = "-d" or else Crypt_Decrypt = "--decrypter" then
             Action := Decrypter;
          else
             Put (Standard_Error, "L'argument [");
@@ -229,10 +249,22 @@ begin
       Ada.Text_IO.Put ("   ");
       Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (Bloc);
 
+      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante (Bloc);
+
       Compteur_Ligne := Compteur_Ligne + 1;
    end loop Lecture_Fichier;
 
    Lecteur_64_IO.Close (Fichier);
+
+   Clef_56 := Clef.Lire_Clef_56;
+
+   Clef_48 := Clef_56.Lire_Clef_48;
+
+   C_B_48.Preparer_Nouveau_Bloc;
+   C_B_48.Construire_Bloc (Bloc.Lire_Bloc (Des_P.Bloc_P.Bloc_64_P.Gauche));
+   Bloc_48 := C_B_48.Recuperer_Bloc;
+
+   Bloc_48 := Bloc_48 xor Clef_48;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
