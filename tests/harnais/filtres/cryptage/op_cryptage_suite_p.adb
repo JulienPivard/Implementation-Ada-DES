@@ -14,7 +14,7 @@ package body Op_Cryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre permutation final) ";
+      nom_test : constant String := "(Tests filtre final) ";
    begin
 
       ptr_test_suite.all.Add_Test

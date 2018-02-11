@@ -11,7 +11,7 @@ package body Etage_Suite_P is
    function Fonc_Suite return AUnit.Test_Suites.Access_Test_Suite is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test etage) ";
+      nom_test : constant String := "(Test etage sequentiel) ";
       use Des_P.Etage_P.Filtrage_P.Test_P;
    begin
 
