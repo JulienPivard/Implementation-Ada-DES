@@ -1,6 +1,7 @@
 with Xor_Suite_P;
 with Etage_Suite_P;
 with Ip_Cryptage_Suite_P;
+with Op_Cryptage_Suite_P;
 
 package body Suite_De_Tests_Filtre_P is
 
@@ -11,6 +12,7 @@ package body Suite_De_Tests_Filtre_P is
       ptr_test_suite.all.Add_Test (Xor_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test (Etage_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test (Ip_Cryptage_Suite_P.Fonc_Suite);
+      ptr_test_suite.all.Add_Test (Op_Cryptage_Suite_P.Fonc_Suite);
 
       return ptr_test_suite;
    end Fonc_Suite;
