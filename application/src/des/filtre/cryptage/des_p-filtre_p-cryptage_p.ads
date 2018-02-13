@@ -31,6 +31,11 @@ package Des_P.Filtre_P.Cryptage_P is
 
 private
 
+   Table_Decalage : constant
+      array (Numero_Filtre_T)
+      of Des_P.Clef_P.Clef_56_Abs_P.Decalage_T :=
+      (0, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 0);
+
    type Cryptage_Abstrait_T is abstract
       new Filtre_Abstrait_T with null record;
 
