@@ -19,7 +19,7 @@ package body Corps_Cryptage_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Permutation initial",
+            (nom_test & "Premier niveau de filtre",
             Test_Cryptage_Niveau_1'Access
             )
          );
