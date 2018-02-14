@@ -26,9 +26,15 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
 
    procedure Test_1_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
 
+   procedure Test_1_Decalage_Successif_A_Droite (T : in out Test_Fixt_T);
+
    procedure Test_2_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
 
+   procedure Test_2_Decalage_Successif_A_Droite (T : in out Test_Fixt_T);
+
    procedure Test_3_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T);
+
+   procedure Test_3_Decalage_Successif_A_Droite (T : in out Test_Fixt_T);
 
    procedure Test_Lire_Bit_Sans_Decalage (T : in out Test_Fixt_T);
 

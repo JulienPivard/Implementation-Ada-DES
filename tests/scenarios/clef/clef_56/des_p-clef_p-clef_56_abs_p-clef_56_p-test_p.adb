@@ -151,6 +151,18 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
          "Le decalage est de " & T.clef_56.Decalage'Img &
          " au lieu de " & decalage_attendu'Img
          );
+      T.clef_56.Decaler_Bits_A_Gauche (Decalage_T'Last + 1);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decaler_Bits_A_Gauche (-Decalage_T'Last - 1);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
    end Test_Decaler_0_Bit_A_Gauche;
 
    ---------------------------------------------------------------------------
@@ -158,6 +170,20 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       decalage_attendu : constant Decalage_T := 1;
    begin
       T.clef_56.Decaler_Bits_A_Gauche (decalage_attendu);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (Decalage_T'Last + 2);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (-Decalage_T'Last);
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
          "Le decalage est de " & T.clef_56.Decalage'Img &
@@ -175,6 +201,20 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
          "Le decalage est de " & T.clef_56.Decalage'Img &
          " au lieu de " & decalage_attendu'Img
          );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (Decalage_T'Last + 3);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (-Decalage_T'Last + 1);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
    end Test_Decaler_2_Bit_A_Gauche;
 
    ---------------------------------------------------------------------------
@@ -182,6 +222,20 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
       decalage_attendu : constant Decalage_T := 3;
    begin
       T.clef_56.Decaler_Bits_A_Gauche (decalage_attendu);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (Decalage_T'Last + 4);
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decalage := 0;
+      T.clef_56.Decaler_Bits_A_Gauche (-Decalage_T'Last + 2);
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
          "Le decalage est de " & T.clef_56.Decalage'Img &
@@ -203,6 +257,21 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    end Test_1_Decalage_Successif_A_Gauche;
 
    ---------------------------------------------------------------------------
+   procedure Test_1_Decalage_Successif_A_Droite
+      (T : in out Test_Fixt_T)
+   is
+      decalage_attendu : Decalage_T := 0;
+   begin
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 27;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+   end Test_1_Decalage_Successif_A_Droite;
+
+   ---------------------------------------------------------------------------
    procedure Test_2_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T) is
       decalage_attendu : Decalage_T := 0;
    begin
@@ -221,6 +290,28 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
          " au lieu de " & decalage_attendu'Img
          );
    end Test_2_Decalage_Successif_A_Gauche;
+
+   ---------------------------------------------------------------------------
+   procedure Test_2_Decalage_Successif_A_Droite
+      (T : in out Test_Fixt_T)
+   is
+      decalage_attendu : Decalage_T := 0;
+   begin
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 27;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 26;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+   end Test_2_Decalage_Successif_A_Droite;
 
    ---------------------------------------------------------------------------
    procedure Test_3_Decalage_Successif_A_Gauche (T : in out Test_Fixt_T) is
@@ -248,6 +339,35 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
          " au lieu de " & decalage_attendu'Img
          );
    end Test_3_Decalage_Successif_A_Gauche;
+
+   ---------------------------------------------------------------------------
+   procedure Test_3_Decalage_Successif_A_Droite
+      (T : in out Test_Fixt_T)
+   is
+      decalage_attendu : Decalage_T := 0;
+   begin
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 27;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 26;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      decalage_attendu := 25;
+      AUnit.Assertions.Assert
+         (T.clef_56.Decalage = decalage_attendu,
+         "Le decalage est de " & T.clef_56.Decalage'Img &
+         " au lieu de " & decalage_attendu'Img
+         );
+   end Test_3_Decalage_Successif_A_Droite;
 
    ---------------------------------------------------------------------------
    procedure Test_Lire_Bit_Sans_Decalage (T : in out Test_Fixt_T) is

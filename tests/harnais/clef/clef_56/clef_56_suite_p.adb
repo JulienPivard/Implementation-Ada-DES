@@ -64,6 +64,14 @@ package body Clef_56_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Decalage de un bit successivement vers la droite",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_1_Decalage_Successif_A_Droite'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Decalage de deux bits successivement vers la gauche",
          Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
             Test_2_Decalage_Successif_A_Gauche'Access
@@ -72,9 +80,25 @@ package body Clef_56_Suite_P is
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
+         (nom_test & "Decalage de deux bits successivement vers la droite",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_2_Decalage_Successif_A_Droite'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
          (nom_test & "Decalage de trois bits successivement vers la gauche",
          Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
             Test_3_Decalage_Successif_A_Gauche'Access
+         )
+      );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Decalage de trois bits successivement vers la droite",
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P.
+            Test_3_Decalage_Successif_A_Droite'Access
          )
       );
 

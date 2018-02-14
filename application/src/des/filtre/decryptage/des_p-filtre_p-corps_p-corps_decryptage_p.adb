@@ -17,12 +17,12 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P is
          (Des_P.Bloc_P.Bloc_64_P.Droite);
       Resultat_F : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       use type Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+      use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
    begin
       --  Passage du bloc de gauche dans la fonction f
       Resultat_F := Fonction_F (Gauche, Clef.Lire_Clef_48);
       --  Décalage à gauche de la clef.
-      Clef.Decaler_Bits_A_Gauche (Table_Decalage
-         (Filtre.Numero - Numero_Filtre_T'Last));
+      Clef.Decaler_Bits_A_Gauche (-1 * Table_Decalage (Filtre.Numero));
 
       Droite := Droite xor Resultat_F;
 
