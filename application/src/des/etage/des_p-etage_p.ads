@@ -66,7 +66,7 @@ package Des_P.Etage_P is
    procedure Modifier_Filtre
       (
          Etage : in out Etage_Abstrait_T;
-         Filtre : Des_P.Filtre_P.Filtre_Abstrait_T'Class
+         Filtre : Des_P.Filtre_P.Filtre_Interface_T'Class
       )
    is abstract;
 

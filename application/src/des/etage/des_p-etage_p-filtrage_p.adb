@@ -67,7 +67,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Modifier_Filtre
       (
          Etage : in out Etage_T;
-         Filtre : Des_P.Filtre_P.Filtre_Abstrait_T'Class
+         Filtre : Des_P.Filtre_P.Filtre_Interface_T'Class
       )
    is
    begin

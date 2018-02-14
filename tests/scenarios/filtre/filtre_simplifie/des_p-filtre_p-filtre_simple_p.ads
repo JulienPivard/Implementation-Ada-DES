@@ -5,14 +5,7 @@ package Des_P.Filtre_P.Filtre_Simple_P is
 
    pragma Pure;
 
-   type Filtre_Simple_T is new Filtre_Abstrait_T with private;
-
-   overriding
-   procedure Modifier_Numero
-      (
-         Filtre : in out Filtre_Simple_T;
-         Numero : Numero_Filtre_T
-      );
+   type Filtre_Simple_T is new Filtre_Interface_T with private;
 
    overriding
    procedure Filtrer
@@ -24,6 +17,6 @@ package Des_P.Filtre_P.Filtre_Simple_P is
 
 private
 
-   type Filtre_Simple_T is new Filtre_Abstrait_T with null record;
+   type Filtre_Simple_T is new Filtre_Interface_T with null record;
 
 end Des_P.Filtre_P.Filtre_Simple_P;

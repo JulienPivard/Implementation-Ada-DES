@@ -1,9 +1,9 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
-use  Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
+with Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P.Test_P;
+use  Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P.Test_P;
 
-package body Corps_Cryptage_Suite_P is
+package body Sortie_Decryptage_Suite_P is
 
    package Caller is new AUnit.Test_Caller
       (Test_Fixt_T);
@@ -14,13 +14,13 @@ package body Corps_Cryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre principal) ";
+      nom_test : constant String := "(Tests filtre decryptage final) ";
    begin
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Premier niveau de filtre",
-            Test_Cryptage_Niveau_1'Access
+            (nom_test & "Permutation final",
+            Test_Permutation_Sortante'Access
             )
          );
 
@@ -28,4 +28,4 @@ package body Corps_Cryptage_Suite_P is
 
    end Fonc_Suite;
 
-end Corps_Cryptage_Suite_P;
+end Sortie_Decryptage_Suite_P;

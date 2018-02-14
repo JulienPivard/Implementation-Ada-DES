@@ -9,6 +9,8 @@ with Des_P.Clef_P.Clef_48_Abs_P;
 --  @group XOR
 package Des_P.Bloc_Xor_Clef_P is
 
+   pragma Pure;
+
    --  Le xor entre le bloc et la clef de 48 bits.
    --  @param Gauche
    --  Le bloc de 48 bits.
