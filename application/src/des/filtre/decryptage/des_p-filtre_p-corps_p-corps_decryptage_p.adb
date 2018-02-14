@@ -11,22 +11,23 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P is
          Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
       )
    is
-      Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
+      Gauche : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
          (Des_P.Bloc_P.Bloc_64_P.Gauche);
-      Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
+      Droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
          (Des_P.Bloc_P.Bloc_64_P.Droite);
       Resultat_F : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       use type Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
-      --  Décalage à gauche de la clef.
-      Clef.Decaler_Bits_A_Gauche (Table_Decalage (Filtre.Numero));
       --  Passage du bloc de gauche dans la fonction f
-      Resultat_F := Fonction_F (Droite, Clef.Lire_Clef_48);
+      Resultat_F := Fonction_F (Gauche, Clef.Lire_Clef_48);
+      --  Décalage à gauche de la clef.
+      Clef.Decaler_Bits_A_Gauche (Table_Decalage
+         (Filtre.Numero - Numero_Filtre_T'Last));
 
-      Gauche := Gauche xor Resultat_F;
+      Droite := Droite xor Resultat_F;
 
       --  On remet les blocs à leur place.
-      Bloc.Ecrire_Bloc (Des_P.Bloc_P.Bloc_64_P.Gauche, Gauche);
+      Bloc.Ecrire_Bloc (Des_P.Bloc_P.Bloc_64_P.Droite, Droite);
 
       --  On échange les blocs gauche et droite.
       Bloc.Intervertir_Blocs;
