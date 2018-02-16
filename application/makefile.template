@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : jeudi 30 novembre[11] 2017
+# Dernière modification : Vendredi 16 février[02] 2018
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	= 1.4.0
+MAKEFILE_V	= 1.5.0
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -55,3 +55,13 @@ distclean: clean
 	@echo "└───────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) bin
 	@echo "─────────────────────────────────────────────────────────────────"
+
+###################
+.PHONY: compter
+compter:
+	find `ls` -type f | xargs cat | wc $(OPTCOMPTAGE)
+
+###################
+.PHONY: compterdetail
+compterdetail:
+	find `ls` -type f | xargs wc $(OPTCOMPTAGE)
