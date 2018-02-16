@@ -1,5 +1,5 @@
 with Des_P.Bloc_P.Bloc_32_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
+with Des_P.Clef_P.Clef_48_Abs_P;
 
 --  @summary
 --  Représentation abstraite des filtres de DES.
@@ -35,7 +35,7 @@ private
    function Fonction_F
       (
          Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T'Class
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
