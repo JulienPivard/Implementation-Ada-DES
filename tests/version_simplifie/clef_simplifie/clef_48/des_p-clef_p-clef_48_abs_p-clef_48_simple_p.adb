@@ -1,4 +1,4 @@
-package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P is
+package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -36,4 +36,4 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P is
       null;
    end Adjust;
 
-end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;

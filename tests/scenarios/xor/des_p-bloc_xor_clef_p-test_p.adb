@@ -1,6 +1,6 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
 
 package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
@@ -33,7 +33,7 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Xor_G_D (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
       use Des_P.Bloc_P.Bloc_48_P;
 
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -57,7 +57,7 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Xor_D_G (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
       use Des_P.Bloc_P.Bloc_48_P;
 
       bit_resulta, bit_attendu : Bit_IO_T;
