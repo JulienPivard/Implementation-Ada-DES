@@ -2,6 +2,7 @@ with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 
 package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
 
@@ -12,14 +13,14 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
       (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
       of Des_P.Bloc_P.Bit_T :=
       (
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True,
+         False, False, False, True, False, True, False, False,
+         False, True, False, True, False, True, True, True,
+         True, True, False, True, False, False, True, True,
+         True, False, True, True, False, True, False, True
       );
 
    ---------------------------------------------------------------------------
@@ -53,24 +54,43 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
    procedure Test_Cryptage_Niveau_1
       (T : in out Test_Fixt_T)
    is
-      --  Valeur attendu      TODO
-      --  11111111 11111111 00000000 00000000      TODO
-      --  11111111 11111111 00000000 00000000      TODO
+      --  Valeur attendu
+      --  00001111 00001111 00001111 00001111
+      --  00001111 00001111 00001111 00001111
       attendu : constant array
          (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
          of Des_P.Bloc_P.Bit_T :=
          (
-            True, True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True, True,
-            False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False, False,
-            True, True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True, True,
-            False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False, False
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True
          );
+
+      use Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
+      --  Valeur attendu
+      --  11111000 X0011000 0X110X10 X0111101 00X10X11 00X10010 11000X11
+      contenu_clef : constant Champ_De_Bits_T :=
+         (
+            True, True, True, True, True, False, False, False,
+            True, False, False, True, True, False, False, False,
+            False, True, True, True, False, True, True, False,
+            True, False, True, True, True, True, False, True,
+            False, False, True, True, False, True, True, True,
+            False, False, True, True, False, False, True, False,
+            True, True, False, False, False, True, True, True
+         );
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
       Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P.Clef_Simplifie_T;
+      Constructeur : constant access Constructeur_Clef_48_T :=
+         new Constructeur_Clef_48_T;
    begin
+
+      Clef.Init (contenu_clef, Constructeur);
 
       T.Filtre.Filtrer (T.Bloc, Clef);
 
