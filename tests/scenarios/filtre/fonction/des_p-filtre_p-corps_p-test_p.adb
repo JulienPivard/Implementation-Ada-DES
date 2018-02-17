@@ -1,6 +1,6 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
 
 package body Des_P.Filtre_P.Corps_P.Test_P is
 
@@ -10,10 +10,10 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
       (Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T)
       of Des_P.Bloc_P.Bit_T :=
       (
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False,
-         True, True, True, True, False, False, False, False
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True,
+         False, False, False, False, True, True, True, True
       );
 
    ---------------------------------------------------------------------------
@@ -41,22 +41,33 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Fonction_F (T : in out Test_Fixt_T) is
-      --  Valeur attendu      TODO
-      --  11111111 11111111 00000000 00000000      TODO
-      --  11111111 11111111 00000000 00000000      TODO
+      --  Valeur attendu
+      --  00011011 01011000
+      --  11011100 10111010
       attendu : constant array
          (Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T)
          of Des_P.Bloc_P.Bit_T :=
          (
-            True, True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True, True,
-            False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False, False
+            False, False, False, True, True, False, True, True,
+            False, True, False, True, True, False, False, False,
+            True, True, False, True, True, True, False, False,
+            True, False, True, True, True, False, True, False
          );
-      Clef :
-      Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+      C : constant Champ_De_Bits_T :=
+         (
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True
+         );
+      Clef : Clef_48_Simplifie_T;
       Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
+
+      Init (Clef, C);
 
       Bloc := Fonction_F (T.Bloc, Clef);
 
