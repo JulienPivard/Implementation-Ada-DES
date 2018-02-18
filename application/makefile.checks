@@ -1,6 +1,17 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 16 février[02] 2018
+# Dernière modification : Dimanche 18 février[02] 2018
+
+# Les options sont désactivée si vide
+ifeq ($(ACTIVER_DEBUG), )
+    ACTIVER_DEBUG	= false
+endif
+ifeq ($(ACTIVER_VERB), )
+    ACTIVER_VERB	= false
+endif
+ifeq ($(ACTIVER_STRICT), )
+    ACTIVER_STRICT	= false
+endif
 
 # Organise les vérification du fichier de configuration
 # On vérifie que ACTIVER_DEBUG vaut bien [true|false]
