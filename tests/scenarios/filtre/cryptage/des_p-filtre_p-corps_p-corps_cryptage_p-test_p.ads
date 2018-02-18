@@ -1,6 +1,8 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
+with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
+
 package Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
    type Bit_IO_T is range 0 .. 1;
@@ -9,6 +11,7 @@ package Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
       record
          Filtre : Corps_T;
          Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
       end record;
 
    overriding

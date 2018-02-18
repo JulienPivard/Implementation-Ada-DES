@@ -1,18 +1,18 @@
 with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Lecteur_Clef_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
+with Des_P.Filtre_P.Clef_Tests_P;
 
 package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
    --  Nombre de départ
-   --  11110000 11110000 11110000 11110000
-   --  11110000 11110000 11110000 11110000
+   --  00001111 00001111 00001111 00001111
+   --  00001111 00001111 00001111 00001111
    depart : constant array
       (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
       of Des_P.Bloc_P.Bit_T :=
@@ -32,6 +32,14 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       Filtre : Corps_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+      Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
+      Constructeur_48 : constant access Constructeur_Clef_48_T :=
+         new Constructeur_Clef_48_T;
+      Constructeur_56 : constant access Constructeur_Clef_56_T :=
+         new Constructeur_Clef_56_T;
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
@@ -41,6 +49,14 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
       Filtre.Modifier_Numero (1);
       T.Filtre := Filtre;
       T.Bloc := Bloc;
+
+      Clef.Init
+         (
+            Des_P.Filtre_P.Clef_Tests_P.contenu_clef,
+            Constructeur_56,
+            Constructeur_48
+         );
+      T.Clef := Clef;
 
    end Set_Up;
 
@@ -75,28 +91,6 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
             True, False, True, True, False, True, False, True
          );
 
-      use Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
-      --  Valeur attendu
-      --  X0X1000X 0001011X 00110XXX 00XX100X
-      --  1101100X 1111011X 1011110X 10X00X1X
-      contenu_clef : constant Champ_De_Bits_T :=
-         (
-            False, False, True, True, False, True, True, True,
-            False, False, True, True, True, False, False, True,
-            True, True, False, False, True, False, False, True,
-            True, True, True, False, False, True, True, True,
-            True, False, True, True, True, True, False, True,
-            True, False, True, False, False, True, True, True,
-            True, True, False, True, False, False, True, True,
-            True, False, False, False, True, True, True, True
-         );
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
-      Constructeur_48 : constant access Constructeur_Clef_48_T :=
-         new Constructeur_Clef_48_T;
-      Constructeur_56 : constant access Constructeur_Clef_56_T :=
-         new Constructeur_Clef_56_T;
       Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T;
 
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Lecteur_Clef_P;
@@ -119,8 +113,7 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
          );
    begin
 
-      Clef.Init (contenu_clef, Constructeur_56, Constructeur_48);
-      Clef_56 := Clef.Lire_Clef_56;
+      Clef_56 := T.Clef.Lire_Clef_56;
 
       for I in Des_P.Clef_P.Clef_56_Abs_P.Intervalle_Clef_56_T'Range loop
          declare
