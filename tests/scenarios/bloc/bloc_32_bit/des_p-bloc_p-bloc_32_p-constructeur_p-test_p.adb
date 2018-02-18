@@ -19,6 +19,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    end Tear_Down;
 
    ---------------------------------------------------------------------------
+   --                              scénarios                                --
+   ---------------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    procedure Test_Preparation
       (T : in out Test_Fixt_T)
    is
@@ -106,60 +109,79 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    is
       bit_resulta, bit_attendu : Bit_IO_T;
       brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      res_attendu : Bloc_32_T;
    begin
-      brut.Ecrire_Bit (1, True);
-      brut.Ecrire_Bit (2, False);
-      brut.Ecrire_Bit (3, False);
-      brut.Ecrire_Bit (4, False);
-      brut.Ecrire_Bit (5, False);
-      brut.Ecrire_Bit (6, True);    -- 1 0000 1
+      res_attendu.Bits :=
+         (
+            True, True, True, False,
+            False, False, False, True,
+            False, True, True, True,
+            False, False, False, True,
+            True, False, False, True,
+            True, False, False, True,
+            True, False, False, True,
+            True, False, True, True
+         );
+      brut.Ecrire_Bit (1, False);
+      brut.Ecrire_Bit (2, True);
+      brut.Ecrire_Bit (3, True);
+      brut.Ecrire_Bit (4, True);
+      brut.Ecrire_Bit (5, True);
+      brut.Ecrire_Bit (6, False);    -- 0 1111 0
+
       brut.Ecrire_Bit (7, True);
-      brut.Ecrire_Bit (8, True);
+      brut.Ecrire_Bit (8, False);
       brut.Ecrire_Bit (9, True);
-      brut.Ecrire_Bit (10, False);
+      brut.Ecrire_Bit (10, True);
       brut.Ecrire_Bit (11, False);
-      brut.Ecrire_Bit (12, True);   -- 1 1100 1
+      brut.Ecrire_Bit (12, False);   -- 1 0110 0
+
       brut.Ecrire_Bit (13, False);
       brut.Ecrire_Bit (14, False);
       brut.Ecrire_Bit (15, True);
       brut.Ecrire_Bit (16, True);
-      brut.Ecrire_Bit (17, False);
-      brut.Ecrire_Bit (18, False);  --  0 0110 0
-      brut.Ecrire_Bit (19, False);
-      brut.Ecrire_Bit (20, False);
+      brut.Ecrire_Bit (17, True);
+      brut.Ecrire_Bit (18, True);  --  0 0111 1
+
+      brut.Ecrire_Bit (19, True);
+      brut.Ecrire_Bit (20, True);
       brut.Ecrire_Bit (21, True);
-      brut.Ecrire_Bit (22, False);
+      brut.Ecrire_Bit (22, True);
       brut.Ecrire_Bit (23, False);
-      brut.Ecrire_Bit (24, False);  --  0 0100 0
-      brut.Ecrire_Bit (25, True);
+      brut.Ecrire_Bit (24, True);  --  1 1110 1
+
+      brut.Ecrire_Bit (25, False);
       brut.Ecrire_Bit (26, True);
-      brut.Ecrire_Bit (27, False);
-      brut.Ecrire_Bit (28, False);
+      brut.Ecrire_Bit (27, True);
+      brut.Ecrire_Bit (28, True);
       brut.Ecrire_Bit (29, True);
-      brut.Ecrire_Bit (30, True);   --  1 1001 1
+      brut.Ecrire_Bit (30, False);    -- 0 1111 0
+
       brut.Ecrire_Bit (31, True);
-      brut.Ecrire_Bit (32, True);
+      brut.Ecrire_Bit (32, False);
       brut.Ecrire_Bit (33, True);
-      brut.Ecrire_Bit (34, False);
-      brut.Ecrire_Bit (35, True);
-      brut.Ecrire_Bit (36, True);   --  1 1101 1
+      brut.Ecrire_Bit (34, True);
+      brut.Ecrire_Bit (35, False);
+      brut.Ecrire_Bit (36, False);   -- 1 0110 0
+
       brut.Ecrire_Bit (37, False);
       brut.Ecrire_Bit (38, False);
       brut.Ecrire_Bit (39, True);
-      brut.Ecrire_Bit (40, False);
-      brut.Ecrire_Bit (41, False);
-      brut.Ecrire_Bit (42, False);  --  0 0100 0
-      brut.Ecrire_Bit (43, False);
+      brut.Ecrire_Bit (40, True);
+      brut.Ecrire_Bit (41, True);
+      brut.Ecrire_Bit (42, True);  --  0 0111 1
+
+      brut.Ecrire_Bit (43, True);
       brut.Ecrire_Bit (44, True);
       brut.Ecrire_Bit (45, True);
-      brut.Ecrire_Bit (46, False);
-      brut.Ecrire_Bit (47, True);
-      brut.Ecrire_Bit (48, False);  --  0 1101 0
+      brut.Ecrire_Bit (46, True);
+      brut.Ecrire_Bit (47, False);
+      brut.Ecrire_Bit (48, True);  --  1 1110 1
 
       T.constructeur.Construire_Bloc (brut);
       for I in Intervalle_Bloc_32_T'Range loop
          bit_resulta := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if resultat_attendu (I) then 1 else 0);
+         bit_attendu := (if res_attendu.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
             (bit_resulta = bit_attendu,
             "Le bit " & I'Img &

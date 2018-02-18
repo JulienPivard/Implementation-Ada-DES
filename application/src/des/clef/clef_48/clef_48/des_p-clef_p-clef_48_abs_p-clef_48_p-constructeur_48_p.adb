@@ -1,3 +1,5 @@
+with Des_P.Clef_P.Clef_56_Abs_P;
+
 package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
 
    ---------------------------------------------------------------------------

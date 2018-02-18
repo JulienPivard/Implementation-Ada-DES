@@ -56,6 +56,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
    end Tear_Down;
 
    ---------------------------------------------------------------------------
+   --                              scénarios                                --
+   ---------------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;

@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Samedi 06 janvier[01] 2018
+--           Dernière modification : Lundi 05 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -17,12 +17,31 @@ with Des_P.Bloc_P.Bloc_64_P;
 with Des_P.Bloc_P.Bloc_64_P.Bloc_IO;
 with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
-pragma Elaborate_All (Des_P.Bloc_P.Bloc_64_P);
+with Des_P.Clef_P.Constructeur_64_Abs_P;
+with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
+with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
+use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
+with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
+use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
+use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
+
+with Des_P.Bloc_Xor_Clef_P;
+use  Des_P.Bloc_Xor_Clef_P;
+
+with Des_P.Bloc_P.Bloc_64_P.Permutations_P;
+
+with Des_P.Bloc_P.Bloc_48_P;
+use  Des_P.Bloc_P.Bloc_48_P;
+with Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
+use  Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
 
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
-   Nb_Arguments_Max : constant Natural := 1;
+   Nb_Arguments_Max : constant Natural := 3;
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide;
@@ -36,10 +55,18 @@ procedure Client is
             Ada.Text_IO.Standard_Error,
             Ada.Directories.Base_Name (Ada.Command_Line.Command_Name)
          );
-      Put (Standard_Error, " <nom_fichier>");
+      Put (Standard_Error, " [option] <nom_fichier> <clef>");
+      Put_Line (Standard_Error, "");
+      Put_Line (Standard_Error, "-c --crypter");
+      Put_Line (Standard_Error, "  Crypte le fichier avec la clef.");
+      Put_Line (Standard_Error, "-d --decrypter");
+      Put_Line (Standard_Error, "  Décrypte le ficher avec la clef.");
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
    ---------------------------------------------------------------------------
+
+   type Action_T is (Crypter, Decrypter);
+   Action : Action_T := Crypter;
 
    package Lecteur_64_IO is new Ada.Sequential_IO
    (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
@@ -56,6 +83,13 @@ procedure Client is
    --  TODO À retirer dans la version finale.
    package Numero_Ligne_IO is new Ada.Text_IO.Integer_IO (Integer);
    Compteur_Ligne : Integer := 1;
+
+   Bloc_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+   C_B_48 : Constructeur_Bloc_48_T;
+
+   Clef : Clef_64_T;
+   Clef_56 : Clef_56_T;
+   Clef_48 : Clef_48_T;
 
 begin
 
@@ -78,11 +112,95 @@ begin
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
+   elsif Nb_Arguments < 2 then
+
+      Afficher_Aide;
+      Put_Line
+         (
+            Standard_Error,
+            "Vous devez donner au moins le <nom_fichier> et la <clef>."
+         );
+      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+      return;
+
    end if;
+
+   if Nb_Arguments = 3 then
+      declare
+         Crypt_Decrypt : constant String := Ada.Command_Line.Argument (1);
+      begin
+         if Crypt_Decrypt = "-c" or else Crypt_Decrypt = "--crypter" then
+            Action := Crypter;
+         elsif Crypt_Decrypt = "-d" or else Crypt_Decrypt = "--decrypter" then
+            Action := Decrypter;
+         else
+            Put (Standard_Error, "L'argument [");
+            Ada.Text_IO.Put (Ada.Text_IO.Standard_Error, Crypt_Decrypt);
+            Put_Line
+               (
+                  Standard_Error,
+                  "] n'est pas valable"
+               );
+            Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+            return;
+         end if;
+      end;
+   end if;
+
+   case Action is
+      when Crypter =>
+         Ada.Text_IO.Put_Line (Action'Img);
+      when Decrypter =>
+         Ada.Text_IO.Put_Line (Action'Img);
+   end case;
+
+   Lire_Clef :
+   declare
+      Position_Clef : constant Positive :=
+         (if Nb_Arguments = 3 then 3 else 2);
+      Clef_Brut : String := Ada.Command_Line.Argument (Position_Clef);
+      Taille_Clef : Natural;
+   begin
+      Taille_Clef := Clef_Brut'Size / 8;
+      if Taille_Clef /= 8 then
+         Put_Line (Standard_Error, "██████ Erreur !");
+         Put_Line (Standard_Error,
+               "   La taille de la clef doit être de 8 octets exactement.");
+         Ada.Text_IO.Put ("   ");
+         Put ("Taille actuelle de la clef : ");
+         Ada.Text_IO.Put (Taille_Clef'Img);
+         Ada.Text_IO.Put_Line (" octets.");
+
+         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+         return;
+      end if;
+
+      declare
+         use  Des_P.Clef_P.Constructeur_64_Abs_P;
+         use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
+         use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
+         use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+         Brut_Clef : Clef_64_Brut_T with Address => Clef_Brut'Address;
+         C_C_64 : Constructeur_Clef_64_T;
+         C_C_56 : constant access Constructeur_Clef_56_T :=
+            new Constructeur_Clef_56_T;
+         C_C_48 : constant access Constructeur_Clef_48_T :=
+            new Constructeur_Clef_48_T;
+      begin
+         C_C_64.Preparer_Nouvelle_Clef_64;
+         C_C_64.Construire_Clef_64 (Brut_Clef);
+         C_C_64.Construire_Ajouter_Constructeur_56 (C_C_56);
+         C_C_64.Construire_Ajouter_Constructeur_48 (C_C_48);
+         Clef := C_C_64.Recuperer_Clef_64;
+      end;
+   end Lire_Clef;
 
    Ouverture_Fichier :
    declare
-      Nom_Fichier : constant String := Ada.Command_Line.Argument (1);
+      Position_Nom_Fic : constant Positive :=
+         (if Nb_Arguments = 3 then 2 else 1);
+      Nom_Fichier : constant String := Ada.Command_Line.Argument
+         (Position_Nom_Fic);
       Depassement_Octets_Fichier : Ada.Directories.File_Size;
       use Ada.Directories;
    begin
@@ -131,10 +249,22 @@ begin
       Ada.Text_IO.Put ("   ");
       Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (Bloc);
 
+      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante (Bloc);
+
       Compteur_Ligne := Compteur_Ligne + 1;
    end loop Lecture_Fichier;
 
    Lecteur_64_IO.Close (Fichier);
+
+   Clef_56 := Clef.Lire_Clef_56;
+
+   Clef_48 := Clef_56.Lire_Clef_48;
+
+   C_B_48.Preparer_Nouveau_Bloc;
+   C_B_48.Construire_Bloc (Bloc.Lire_Bloc (Des_P.Bloc_P.Bloc_64_P.Gauche));
+   Bloc_48 := C_B_48.Recuperer_Bloc;
+
+   Bloc_48 := Bloc_48 xor Clef_48;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;

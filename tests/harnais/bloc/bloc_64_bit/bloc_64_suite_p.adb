@@ -39,7 +39,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bits change aleatoirement " &
-            "avec 1 echange gauche droite",
+            "avec 1 eschange gauche droite",
             Test_Bits_Aleatoire_1_Echange'Access
             )
          );
@@ -47,7 +47,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bits change aleatoirement acces par bloc " &
-            "avec 1 echange gauche droite",
+            "avec 1 eschange gauche droite",
             Test_Bits_Aleatoire_Par_Bloc_1_Echange'Access
             )
          );
@@ -55,7 +55,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bits change aleatoirement " &
-            "avec 2 echanges gauche droite",
+            "avec 2 eschanges gauche droite",
             Test_Bits_Aleatoire_2_Echanges'Access
             )
          );
@@ -63,7 +63,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bits change aleatoirement acces par bloc " &
-            "avec 2 echanges gauche droite",
+            "avec 2 eschanges gauche droite",
             Test_Bits_Aleatoire_Par_Bloc_2_Echanges'Access
             )
          );
@@ -87,7 +87,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bloc de 32 bits aleatoire accede par la " &
-            "fonction Lire_Bloc apres 1 echange",
+            "fonction Lire_Bloc apres 1 eschange",
             Test_Lecture_Bloc_32_Aleatoire_1_Echange'Access
             )
          );
@@ -95,7 +95,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bloc de 32 bits aleatoire ecrit par la " &
-            "fonction Ecrire_Bloc apres 1 echange",
+            "fonction Ecrire_Bloc apres 1 eschange",
             Test_Ecriture_Bloc_32_Aleatoire_1_Echange'Access
             )
          );
@@ -103,7 +103,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bloc de 32 bits aleatoire accede par la " &
-            "fonction Lire_Bloc apres 1 echange",
+            "fonction Lire_Bloc apres 1 eschange",
             Test_Lecture_Bloc_32_Aleatoire_2_Echange'Access
             )
          );
@@ -111,7 +111,7 @@ package body Bloc_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Bloc de 32 bits aleatoire ecrit par la " &
-            "fonction Ecrire_Bloc apres 1 echange",
+            "fonction Ecrire_Bloc apres 1 eschange",
             Test_Ecriture_Bloc_32_Aleatoire_2_Echange'Access
             )
          );

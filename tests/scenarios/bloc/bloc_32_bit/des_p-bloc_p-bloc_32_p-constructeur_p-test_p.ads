@@ -10,6 +10,7 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
       2#0000_1111_0000_1111_0000_1111_0000_1111#;
    --   32   28   24   20   16   12   8    4
 
+   --  11110000_11110000_11110000_11110000
    resultat_attendu : constant array (Intervalle_Bloc_32_T) of Bit_T :=
       (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 => True, others => False);
 
