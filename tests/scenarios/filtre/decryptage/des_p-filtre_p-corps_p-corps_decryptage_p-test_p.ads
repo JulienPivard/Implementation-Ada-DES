@@ -17,7 +17,7 @@ package Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Cryptage_Niveau_1
+   procedure Test_Decryptage_Niveau_1
       (T : in out Test_Fixt_T);
 
 end Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P;
