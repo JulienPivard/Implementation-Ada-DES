@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 16 février[02] 2018
+# Dernière modification : Dimanche 18 février[02] 2018
 
 ###################
 # Point d'entrée #
@@ -59,9 +59,9 @@ distclean: clean
 ###################
 .PHONY: compter
 compter:
-	find `ls` -type f | xargs cat | wc $(OPTCOMPTAGE)
+	find $(DOSSIERSRC) -type f | xargs cat | wc $(OPTCOMPTAGE)
 
 ###################
 .PHONY: compterdetail
 compterdetail:
-	find `ls` -type f | xargs wc $(OPTCOMPTAGE)
+	find $(DOSSIERSRC) -type f | xargs wc $(OPTCOMPTAGE)
