@@ -14,12 +14,12 @@ package body Corps_Cryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre principal) ";
+      nom_test : constant String := "(Tests filtre cryptage principal) ";
    begin
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Premier niveau de filtre",
+            (nom_test & "1er niveau de filtre",
             Test_Cryptage_Niveau_1'Access
             )
          );
