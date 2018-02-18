@@ -77,18 +77,18 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
       use Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
       --  Valeur attendu
-      --  0001011X 00110XXX 00XX100X 1100100X
-      --  1111011X 1011110X 10X00X1X 1X0X001X
+      --  X0X1000X 0001011X 00110XXX 00XX100X
+      --  1101100X 1111011X 1011110X 10X00X1X
       contenu_clef : constant Champ_De_Bits_T :=
          (
-            False, False, False, True, False, True, True, True,
             False, False, True, True, False, True, True, True,
             False, False, True, True, True, False, False, True,
             True, True, False, False, True, False, False, True,
-            True, True, True, True, False, True, True, True,
+            True, True, True, False, False, True, True, True,
             True, False, True, True, True, True, False, True,
             True, False, True, False, False, True, True, True,
-            True, True, False, True, False, False, True, True
+            True, True, False, True, False, False, True, True,
+            True, False, False, False, True, True, True, True
          );
       use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
@@ -104,17 +104,18 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
       --  Valeur attendu
-      --  11111000 X0011000 0X110X10 X0111101 00X10X11 00X10010 11000X11
+      --  11111100 0X001100 00X110X1 0X01 1110 100X10X1 100X1001 011000X1
       contenu_clef_attendu : constant
       Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P.Champ_De_Bits_T :=
          (
-            True, True, True, True, True, False, False, False,
-            True, False, False, True, True, False, False, False,
-            False, True, True, True, False, True, True, False,
-            True, False, True, True, True, True, False, True,
-            False, False, True, True, False, True, True, True,
-            False, False, True, True, False, False, True, False,
-            True, True, False, False, False, True, True, True
+            True, True, True, True, True, True, False, False,
+            False, True, False, False, True, True, False, False,
+            False, False, True, True, True, False, True, True,
+            False, True, False, True,
+            True, True, True, False,
+            True, False, False, True, True, False, True, True,
+            True, False, False, True, True, False, False, True,
+            False, True, True, False, False, False, True, True
          );
    begin
 
@@ -130,19 +131,17 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
          begin
             AUnit.Assertions.Assert
                (bit_resulta = bit_attendu,
-               "Le bit " & I'Img &
+               "Le bit de la clef " & I'Img &
                " vaut : " & bit_resulta'Img &
                " au lieu de " & bit_attendu'Img
                );
          end;
       end loop;
 
-      Clef_56.Decaler_Bits_A_Gauche (-1);
-
       T.Filtre.Filtrer (T.Bloc, Clef_56);
 
       AUnit.Assertions.Assert
-         (Lire_Decalage_Clef (Clef_56) = 0,
+         (Lire_Decalage_Clef (Clef_56) = 1,
          "Le decalage de la clef vaut : " &
          Lire_Decalage_Clef (Clef_56) 'Img &
          " au lieu de 1"
