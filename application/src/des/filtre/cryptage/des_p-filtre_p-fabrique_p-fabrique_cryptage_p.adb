@@ -41,4 +41,12 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
       return Filtre;
    end Fabriquer_Sortie;
 
+   ---------------------------------------------------------------------------
+   overriding
+   function Lire_Extention (Fabrique : Fabrique_Cryptage_T) return String is
+      pragma Unreferenced (Fabrique);
+   begin
+      return "crypt";
+   end Lire_Extention;
+
 end Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P;

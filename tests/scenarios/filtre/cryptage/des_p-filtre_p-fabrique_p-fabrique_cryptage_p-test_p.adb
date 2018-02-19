@@ -63,4 +63,16 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Test_P is
          );
    end Test_Fabrication_Sortie;
 
+   ---------------------------------------------------------------------------
+   procedure Test_Lire_Extention
+      (T : in out Test_Fixt_T)
+   is
+   begin
+      AUnit.Assertions.Assert
+         ("crypt" = T.Fab.Lire_Extention,
+         "La fabrique devrait avoir pour extension crypt mais a : " &
+         T.Fab.Lire_Extention
+         );
+   end Test_Lire_Extention;
+
 end Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Test_P;

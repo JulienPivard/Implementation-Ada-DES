@@ -20,6 +20,10 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P is
    function Fabriquer_Sortie (Fabrique : Fabrique_Decryptage_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
 
+   overriding
+   function Lire_Extention (Fabrique : Fabrique_Decryptage_T)
+      return String;
+
 private
 
    type Fabrique_Decryptage_T is new Fabrique_Interface_T with null record;
