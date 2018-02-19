@@ -5,6 +5,7 @@ with Ada.Sequential_IO;
 with Des_P.Bloc_P.Bloc_64_P;
 with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 with Des_P.Clef_P.Clef_56_Abs_P;
+with Des_P.Filtre_P.Corps_P;
 
 package body Des_P.Chaine_P.Sequentiel_P is
 
@@ -17,10 +18,26 @@ package body Des_P.Chaine_P.Sequentiel_P is
          Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_Abs_T'Class
       )
    is
-      pragma Unreferenced (Fabrique);
+      Tete, Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
    begin
       Chaine.Clef := Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder
          (Clef.Lire_Clef_56);
+
+      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+      for I in Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
+         declare
+            E : Des_P.Etage_P.Filtrage_P.Etage_T;
+            F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+               Fabrique.Fabriquer_Corps;
+         begin
+            F.Modifier_Numero (I);
+            E.Modifier_Filtre (F);
+            Etage.Ajouter_Successeur (E);
+         end;
+      end loop;
+      Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
+
+      Chaine.Tete := Tete;
    end Initiliser;
 
    ---------------------------------------------------------------------------

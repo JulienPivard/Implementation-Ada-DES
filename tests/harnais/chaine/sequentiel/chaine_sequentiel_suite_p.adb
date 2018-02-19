@@ -24,6 +24,13 @@ package body Chaine_Sequentiel_Suite_P is
             )
          );
 
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Filtrage",
+            Test_Filtre'Access
+            )
+         );
+
       return ptr_test_suite;
 
    end Fonc_Suite;

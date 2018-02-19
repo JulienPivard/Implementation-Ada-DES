@@ -23,11 +23,20 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    procedure Test_Initialisation (T : in out Test_Fixt_T) is
       pragma Unreferenced (T);
    begin
-
       AUnit.Assertions.Assert
          (False,
-         "A implémenter !!!!!"
+         "A implementer !!!!!"
          );
    end Test_Initialisation;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre (T : in out Test_Fixt_T) is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert
+         (False,
+         "A implementer !!!!!"
+         );
+   end Test_Filtre;
 
 end Des_P.Chaine_P.Sequentiel_P.Test_P;

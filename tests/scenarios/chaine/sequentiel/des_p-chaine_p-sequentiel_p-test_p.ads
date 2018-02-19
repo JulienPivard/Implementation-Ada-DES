@@ -17,4 +17,7 @@ package Des_P.Chaine_P.Sequentiel_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T);
 
+   procedure Test_Filtre
+      (T : in out Test_Fixt_T);
+
 end Des_P.Chaine_P.Sequentiel_P.Test_P;
