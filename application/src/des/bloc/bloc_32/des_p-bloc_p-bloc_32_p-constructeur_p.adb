@@ -299,4 +299,18 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       return Constructeur.Bloc;
    end Recuperer_Bloc;
 
+   ---------------------------------------------------------------------------
+   function Transformer_En_Brut
+      (
+         Constructeur : in out Constructeur_Bloc_32_T;
+         Bloc : Bloc_32_T
+      )
+      return Bloc_32_Brut_T
+   is
+      pragma Unreferenced (Constructeur);
+      Brut : Bloc_32_Brut_T with Address => Bloc.Bits'Address;
+   begin
+      return Brut;
+   end Transformer_En_Brut;
+
 end Des_P.Bloc_P.Bloc_32_P.Constructeur_P;

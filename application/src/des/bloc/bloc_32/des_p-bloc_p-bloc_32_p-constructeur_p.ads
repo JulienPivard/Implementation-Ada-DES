@@ -65,6 +65,19 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       (Constructeur : Constructeur_Bloc_32_T)
       return Bloc_32_T;
 
+   --  Transforme un bloc de 32 bits en son brut équivalent.
+   --  @param Constructeur
+   --  Le constructeur de bloc de 32 bits.
+   --  @param Bloc
+   --  Le bloc de 32 bits.
+   --  @return Le brut de 32 bits.
+   function Transformer_En_Brut
+      (
+         Constructeur : in out Constructeur_Bloc_32_T;
+         Bloc : Bloc_32_T
+      )
+      return Bloc_32_Brut_T;
+
 private
 
    type Constructeur_Bloc_32_T is tagged

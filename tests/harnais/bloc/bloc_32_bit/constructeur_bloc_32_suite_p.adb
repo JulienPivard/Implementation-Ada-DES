@@ -52,6 +52,13 @@ package body Constructeur_Bloc_32_Suite_P is
          )
       );
 
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Transformation d'un bloc en un brut",
+         Test_Transformation_Brut'Access
+         )
+      );
+
       return ptr_test_suite;
 
    end Fonc_Constructeur_Bloc_32_Suite;

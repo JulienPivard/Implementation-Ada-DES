@@ -40,6 +40,19 @@ package Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
       (Constructeur : Constructeur_Bloc_64_T)
       return Bloc_64_T;
 
+   --  Transforme un bloc de 64 bits en son équivalent en brut.
+   --  @param Constructeur
+   --  Le constructeur de bloc de 64 bits.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+   --  @return Le brut de 64 bits.
+   function Transformer_En_Brut
+      (
+         Constructeur : in out Constructeur_Bloc_64_T;
+         Bloc : Bloc_64_T
+      )
+      return Bloc_64_Brut_T;
+
 private
 
    type Constructeur_Bloc_64_T is tagged

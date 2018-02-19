@@ -40,4 +40,7 @@ package Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
    procedure Test_Recuperation
       (T : in out Test_Fixt_T);
 
+   procedure Test_Transformation_Brut
+      (T : in out Test_Fixt_T);
+
 end Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;

@@ -1,6 +1,7 @@
 with AUnit.Test_Caller;
 
 with Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Test_P;
+use  Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Test_P;
 
 package body Constructeur_Bloc_64_Suite_P is
 
@@ -36,6 +37,14 @@ package body Constructeur_Bloc_64_Suite_P is
          Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Test_P.Test_Recuperation'Access
          )
       );
+
+      ptr_test_suite.all.Add_Test
+      (Caller.Create
+         (nom_test & "Transformation d'un bloc en un brut",
+         Test_Transformation_Brut'Access
+         )
+      );
+
       return ptr_test_suite;
 
    end Fonc_Constructeur_Bloc_64_Suite;

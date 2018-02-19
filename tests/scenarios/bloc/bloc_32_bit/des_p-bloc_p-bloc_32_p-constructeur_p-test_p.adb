@@ -212,4 +212,32 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P is
       end loop;
    end Test_Recuperation;
 
+   ---------------------------------------------------------------------------
+   procedure Test_Transformation_Brut
+      (T : in out Test_Fixt_T)
+   is
+      bit_resulta, bit_attendu : Bit_IO_T;
+      bloc_resultat : Bloc_32_T;
+      brut_recupere : Bloc_32_Brut_T;
+   begin
+      T.constructeur.Construire_Bloc (brut_attendu);
+      bloc_resultat := T.constructeur.Recuperer_Bloc;
+      for I in Intervalle_Bloc_32_T'Range loop
+         bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
+         bit_attendu := (if resultat_attendu (I) then 1 else 0);
+         AUnit.Assertions.Assert
+            (bit_resulta = bit_attendu,
+            "Le bit " & I'Img &
+            " vaut : " & bit_resulta'Img &
+            " au lieu de " & bit_attendu'Img
+            );
+      end loop;
+      brut_recupere := T.constructeur.Transformer_En_Brut (bloc_resultat);
+      AUnit.Assertions.Assert
+         (brut_recupere = brut_attendu,
+         "Le brut recuprer vaut : " & brut_recupere'Img &
+         " au lieu de " & brut_attendu'Img
+         );
+   end Test_Transformation_Brut;
+
 end Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
