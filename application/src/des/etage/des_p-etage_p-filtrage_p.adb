@@ -76,22 +76,6 @@ package body Des_P.Etage_P.Filtrage_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Filtrer
-      (
-         Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
-      )
-   is
-   begin
-      if not Possede_Filtre (Etage) then
-         raise Pas_De_Filtre_E;
-      end if;
-      Etage.Filtre.Element.Filtrer (Bloc, Clef);
-   end Filtrer;
-
-   ---------------------------------------------------------------------------
-   overriding
    procedure Iterer
       (
          Etage : Etage_T;
@@ -105,5 +89,22 @@ package body Des_P.Etage_P.Filtrage_P is
          Etage.Successeur.Element.Iterer (Bloc, Clef);
       end if;
    end Iterer;
+
+   ---------------------------------------------------------------------------
+   --                               Partie privée                           --
+   ---------------------------------------------------------------------------
+   procedure Filtrer
+      (
+         Etage : Etage_T;
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+      )
+   is
+   begin
+      if not Possede_Filtre (Etage) then
+         raise Pas_De_Filtre_E;
+      end if;
+      Etage.Filtre.Element.Filtrer (Bloc, Clef);
+   end Filtrer;
 
 end Des_P.Etage_P.Filtrage_P;

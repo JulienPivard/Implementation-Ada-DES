@@ -82,21 +82,6 @@ package Des_P.Etage_P.Filtrage_P is
       );
 
    overriding
-   --  Filtre le bloc de 64 bits avec une clef.
-   --  @param Etage
-   --  L'étage.
-   --  @param Bloc
-   --  Le bloc de 64 bits.
-   --  @param Clef
-   --  la clef de 56 bits.
-   procedure Filtrer
-      (
-         Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
-      );
-
-   overriding
    --  Déclenche les filtre en cascade jusqu'à ce qu'il n'y ai
    --  plus de successeur.
    --  @param Etage
@@ -113,6 +98,20 @@ package Des_P.Etage_P.Filtrage_P is
       );
 
 private
+
+   --  Filtre le bloc de 64 bits avec une clef.
+   --  @param Etage
+   --  L'étage.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+   --  @param Clef
+   --  la clef de 56 bits.
+   procedure Filtrer
+      (
+         Etage : Etage_T;
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+      );
 
    package Holder_P is new Ada.Containers.Indefinite_Holders
       (Etage_Abstrait_T'Class);
