@@ -15,6 +15,13 @@ package Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P is
       Des_P.Filtre_P.Decryptage_P.Decryptage_Interface_T with private;
 
    overriding
+   --  Filtre le bloc de 64 bits avec la clef de 56 bits.
+   --  @param Filtre
+   --  Le filtre.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+   --  @param Clef
+   --  la clef de 56 bits.
    procedure Filtrer
       (
          Filtre : Sortie_T;
