@@ -9,6 +9,8 @@ with Des_P.Clef_P.Clef_64_Abs_P;
 --  @group Chaine
 package Des_P.Chaine_P is
 
+   pragma Pure;
+
    --  L'interface de la chaine de filtre.
    type Chaine_Interface_T is interface;
 

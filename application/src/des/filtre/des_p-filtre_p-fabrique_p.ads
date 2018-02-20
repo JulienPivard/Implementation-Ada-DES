@@ -9,6 +9,8 @@ with Des_P.Filtre_P.Sortie_P;
 --  @group Filtre
 package Des_P.Filtre_P.Fabrique_P is
 
+   pragma Pure;
+
    --  L'interface de la fabrique de filtre.
    type Fabrique_Interface_T is interface;
 

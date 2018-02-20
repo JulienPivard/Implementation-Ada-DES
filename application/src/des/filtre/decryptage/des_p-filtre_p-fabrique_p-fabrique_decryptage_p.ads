@@ -5,6 +5,8 @@
 --  @group Filtre
 package Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P is
 
+   pragma Pure;
+
    --  Une fabrique de filtre de décryptage.
    type Fabrique_Decryptage_T is new Fabrique_Interface_T with private;
 
