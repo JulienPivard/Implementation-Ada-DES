@@ -81,7 +81,7 @@ package body Des_P.Chaine_P.Sequentiel_P is
          C_64.Construire_Bloc (Brut);
          Bloc := C_64.Recuperer_Bloc;
 
-         Chaine.Tete.Filtrer (Bloc, Clef);
+         Chaine.Tete.Iterer (Bloc, Clef);
 
          Brut := C_64.Transformer_En_Brut (Bloc);
 
