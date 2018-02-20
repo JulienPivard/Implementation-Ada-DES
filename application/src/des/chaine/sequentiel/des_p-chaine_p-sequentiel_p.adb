@@ -18,12 +18,11 @@ package body Des_P.Chaine_P.Sequentiel_P is
          Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_Abs_T'Class
       )
    is
-      Tete, Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
    begin
       Chaine.Clef := Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder
          (Clef.Lire_Clef_56);
 
-      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+      Chaine.Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
       for I in Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -32,12 +31,15 @@ package body Des_P.Chaine_P.Sequentiel_P is
          begin
             F.Modifier_Numero (I);
             E.Modifier_Filtre (F);
-            Etage.Ajouter_Successeur (E);
+            Chaine.Tete.Ajouter_Successeur (E);
          end;
       end loop;
-      Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
-
-      Chaine.Tete := Tete;
+      declare
+         Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
+      begin
+         Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
+         Chaine.Tete.Ajouter_Successeur (Etage);
+      end;
    end Initiliser;
 
    ---------------------------------------------------------------------------

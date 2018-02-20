@@ -17,9 +17,8 @@ with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P;
 with Des_P.Filtre_P.Fabrique_P.Holder_P;
 
 with Des_P.Clef_P.Constructeur_64_Abs_P;
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
-use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
+with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 
@@ -53,7 +52,7 @@ procedure Client is
    type Action_T is (Crypter, Decrypter);
    Action : Action_T := Crypter;
 
-   Clef : Clef_64_T;
+   Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Clef_64_T;
 
 begin
 
@@ -159,7 +158,8 @@ begin
       Nom_Fichier : constant String := Ada.Command_Line.Argument
          (Position_Nom_Fic);
       Depassement_Octets_Fichier : Ada.Directories.File_Size;
-      use Ada.Directories;
+      use type Ada.Directories.File_Size;
+
       Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
       Fabrique : Des_P.Filtre_P.Fabrique_P.Holder_P.Holder;
       Fab_Crypt :
