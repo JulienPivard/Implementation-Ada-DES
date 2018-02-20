@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 05 février[02] 2018
+--           Dernière modification : Mardi 20 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -11,32 +11,17 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
-with Ada.Sequential_IO;
-
-with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Bloc_P.Bloc_64_P.Bloc_IO;
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+with Des_P.Chaine_P.Sequentiel_P;
+with Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Holder_P;
 
 with Des_P.Clef_P.Constructeur_64_Abs_P;
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
 use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
-use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
-use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P;
-
-with Des_P.Bloc_Xor_Clef_P;
-use  Des_P.Bloc_Xor_Clef_P;
-
-with Des_P.Bloc_P.Bloc_64_P.Permutations_P;
-
-with Des_P.Bloc_P.Bloc_48_P;
-use  Des_P.Bloc_P.Bloc_48_P;
-with Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
-use  Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
 
 procedure Client is
 
@@ -68,28 +53,7 @@ procedure Client is
    type Action_T is (Crypter, Decrypter);
    Action : Action_T := Crypter;
 
-   package Lecteur_64_IO is new Ada.Sequential_IO
-   (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
-
-   C_64 : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
-   Brut : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-   --  Brut : constant Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-   --  2#11110000_11110000_11110000_11110000_
-   --  11110000_11110000_11110000_11110000#;
-   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-
-   Fichier : Lecteur_64_IO.File_Type;
-
-   --  TODO À retirer dans la version finale.
-   package Numero_Ligne_IO is new Ada.Text_IO.Integer_IO (Integer);
-   Compteur_Ligne : Integer := 1;
-
-   Bloc_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-   C_B_48 : Constructeur_Bloc_48_T;
-
    Clef : Clef_64_T;
-   Clef_56 : Clef_56_T;
-   Clef_48 : Clef_48_T;
 
 begin
 
@@ -147,13 +111,6 @@ begin
       end;
    end if;
 
-   case Action is
-      when Crypter =>
-         Ada.Text_IO.Put_Line (Action'Img);
-      when Decrypter =>
-         Ada.Text_IO.Put_Line (Action'Img);
-   end case;
-
    Lire_Clef :
    declare
       Position_Clef : constant Positive :=
@@ -203,6 +160,12 @@ begin
          (Position_Nom_Fic);
       Depassement_Octets_Fichier : Ada.Directories.File_Size;
       use Ada.Directories;
+      Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
+      Fabrique : Des_P.Filtre_P.Fabrique_P.Holder_P.Holder;
+      Fab_Crypt :
+      Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_Cryptage_T;
+      Fab_Decrypt :
+      Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_Decryptage_T;
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
@@ -233,38 +196,18 @@ begin
          return;
       end if;
 
-      Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Fichier);
+      case Action is
+         when Crypter =>
+            Fabrique := Des_P.Filtre_P.Fabrique_P.Holder_P.To_Holder
+               (Fab_Crypt);
+         when Decrypter =>
+            Fabrique := Des_P.Filtre_P.Fabrique_P.Holder_P.To_Holder
+               (Fab_Decrypt);
+      end case;
+
+      Chaine.Initiliser (Fabrique.Element, Clef);
+      Chaine.Filtrer (Nom_Fichier, Fabrique.Element.Lire_Extention);
    end Ouverture_Fichier;
-
-   Lecture_Fichier :
-   loop
-      exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
-      Lecteur_64_IO.Read (Fichier, Brut);
-
-      C_64.Preparer_Nouveau_Bloc;
-      C_64.Construire_Bloc (Brut);
-      Bloc := C_64.Recuperer_Bloc;
-
-      Numero_Ligne_IO.Put (Item => Compteur_Ligne, Width => 3);
-      Ada.Text_IO.Put ("   ");
-      Des_P.Bloc_P.Bloc_64_P.Bloc_IO.Put_Line (Bloc);
-
-      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante (Bloc);
-
-      Compteur_Ligne := Compteur_Ligne + 1;
-   end loop Lecture_Fichier;
-
-   Lecteur_64_IO.Close (Fichier);
-
-   Clef_56 := Clef.Lire_Clef_56;
-
-   Clef_48 := Clef_56.Lire_Clef_48;
-
-   C_B_48.Preparer_Nouveau_Bloc;
-   C_B_48.Construire_Bloc (Bloc.Lire_Bloc (Des_P.Bloc_P.Bloc_64_P.Gauche));
-   Bloc_48 := C_B_48.Recuperer_Bloc;
-
-   Bloc_48 := Bloc_48 xor Clef_48;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
