@@ -1,4 +1,4 @@
---  with Ada.Directories;
+with Ada.Directories;
 
 with Ada.Sequential_IO;
 
@@ -60,11 +60,17 @@ package body Des_P.Chaine_P.Sequentiel_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
          Chaine.Clef.Element;
+      Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
 
+      if Ada.Directories.Exists (Nom_Alternatif) then
+         Lecteur_64_IO.Open
+            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
+      else
+         Lecteur_64_IO.Create
+            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
+      end if;
       Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Fichier);
-      Lecteur_64_IO.Open
-         (Resultat, Lecteur_64_IO.Out_File, Nom_Fichier & "." & Extension);
 
       Lecture_Fichier :
       loop
