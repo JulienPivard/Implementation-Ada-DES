@@ -21,7 +21,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       Fabrique :
       Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_Decryptage_T;
    begin
-      Tete.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
+      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
       for I in reverse Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -36,7 +36,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
       begin
-         Etage.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+         Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
          Tete.Ajouter_Successeur (Etage);
       end;
 
