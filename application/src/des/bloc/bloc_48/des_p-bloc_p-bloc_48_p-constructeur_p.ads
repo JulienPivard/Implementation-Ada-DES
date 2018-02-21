@@ -4,7 +4,7 @@ with Des_P.Bloc_P.Bloc_32_P;
 --  Constructeur de bloc de 48 bits.
 --  @description
 --  Construit le bloc de 48 bits à partir d'un bloc brut.
---  @group Constructeur_Bloc
+--  @group Bloc Constructeur
 package Des_P.Bloc_P.Bloc_48_P.Constructeur_P is
 
    pragma Pure;

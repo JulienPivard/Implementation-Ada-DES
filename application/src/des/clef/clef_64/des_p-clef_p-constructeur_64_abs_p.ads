@@ -6,7 +6,7 @@ with Des_P.Clef_P.Constructeur_48_Abs_P;
 --  Le constructeur abstrait de clef de 64 bits.
 --  @description
 --  Construit une clef de 64 bits à partir d'un brut de 64 bits.
---  @group Constructeur_Clef
+--  @group Clef Constructeur
 package Des_P.Clef_P.Constructeur_64_Abs_P is
 
    pragma Pure;

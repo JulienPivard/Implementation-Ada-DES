@@ -6,7 +6,7 @@ with Des_P.Filtre_P;
 --  Un étage de DES
 --  @description
 --  Un étage abstrait de DES paramétré par un filtre.
---  @group Filtre
+--  @group Étage
 package Des_P.Etage_P is
 
    pragma Pure;

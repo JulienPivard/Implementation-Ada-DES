@@ -5,7 +5,7 @@ with Des_P.Filtre_P.Cryptage_P;
 --  @description
 --  Filtre de cryptage permutation final qui va servir à paramétrer le
 --  dernier étage des filtres.
---  @group Filtre
+--  @group Filtre Cryptage
 package Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P is
 
    pragma Pure;

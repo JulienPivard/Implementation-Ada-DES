@@ -9,7 +9,7 @@ private with Des_P.Filtre_P.Holder_P;
 --  Un étage de DES
 --  @description
 --  Un étage de DES paramétré par un filtre.
---  @group Filtre
+--  @group Étage
 package Des_P.Etage_P.Filtrage_P is
 
    Pas_De_Filtre_E : exception;

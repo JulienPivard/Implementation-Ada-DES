@@ -5,7 +5,7 @@ with Des_P.Filtre_P.Decryptage_P;
 --  @description
 --  Filtre de décryptage permutation final qui va servir à
 --  paramétrer le premier étage des filtres.
---  @group Filtre
+--  @group Filtre Décryptage
 package Des_P.Filtre_P.Entree_P.Entree_Decryptage_P is
 
    pragma Pure;

@@ -5,7 +5,7 @@ with Des_P.Filtre_P.Cryptage_P;
 --  @description
 --  Filtre de cryptage permutation initial qui va servir à paramétrer le
 --  premier étage des filtres.
---  @group Filtre
+--  @group Filtre Cryptage
 package Des_P.Filtre_P.Entree_P.Entree_Cryptage_P is
 
    pragma Pure;

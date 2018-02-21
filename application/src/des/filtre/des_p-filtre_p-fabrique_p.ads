@@ -6,7 +6,7 @@ with Des_P.Filtre_P.Sortie_P;
 --  Interface fabrique abstraite de filtre.
 --  @description
 --  Fabrique de filtres qui permet de fabriquer une famille de filtre.
---  @group Filtre
+--  @group Filtre Fabrique
 package Des_P.Filtre_P.Fabrique_P is
 
    pragma Pure;

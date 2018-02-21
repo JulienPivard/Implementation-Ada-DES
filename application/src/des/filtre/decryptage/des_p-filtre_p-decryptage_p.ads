@@ -3,7 +3,7 @@
 --  @description
 --  Filtre abstrait de décryptage qui va servir à paramétrer chaque étage
 --  de la chaine.
---  @group Filtre
+--  @group Filtre Décryptage
 package Des_P.Filtre_P.Decryptage_P is
 
    pragma Pure;

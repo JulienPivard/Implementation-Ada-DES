@@ -2,7 +2,7 @@
 --  Constructeur de bloc de 64 bits.
 --  @description
 --  Construit le bloc de 64 bits à partir d'un bloc brut de 64.
---  @group Constructeur_Bloc
+--  @group Bloc Constructeur
 package Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
 
    pragma Pure;

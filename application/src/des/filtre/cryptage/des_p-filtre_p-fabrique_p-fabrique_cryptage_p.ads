@@ -2,7 +2,7 @@
 --  Une fabrique abstraite de filtre de cryptage.
 --  @description
 --  Fabrique de filtres qui permet de fabriquer des filtres de cryptage.
---  @group Filtre
+--  @group Filtre Fabrique Cryptage
 package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
 
    pragma Pure;

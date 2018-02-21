@@ -2,7 +2,7 @@
 --  Une fabrique abstraite de filtre de décryptage.
 --  @description
 --  Fabrique de filtres qui permet de fabriquer des filtres de décryptage.
---  @group Filtre
+--  @group Filtre Fabrique Décryptage
 package Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P is
 
    pragma Pure;
