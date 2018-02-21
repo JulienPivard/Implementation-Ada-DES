@@ -1,4 +1,6 @@
 with Chaine_Sequentiel_Suite_P;
+with Constructeur_Chaine_Cryptage_Suite_P;
+with Constructeur_Chaine_Decryptage_Suite_P;
 
 package body Suite_De_Tests_Chaine_P is
 
@@ -7,6 +9,10 @@ package body Suite_De_Tests_Chaine_P is
          AUnit.Test_Suites.New_Suite;
    begin
       ptr_test_suite.all.Add_Test (Chaine_Sequentiel_Suite_P.Fonc_Suite);
+      ptr_test_suite.all.Add_Test
+         (Constructeur_Chaine_Cryptage_Suite_P.Fonc_Suite);
+      ptr_test_suite.all.Add_Test
+         (Constructeur_Chaine_Decryptage_Suite_P.Fonc_Suite);
 
       return ptr_test_suite;
    end Fonc_Suite;
