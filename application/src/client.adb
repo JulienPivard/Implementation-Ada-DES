@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 20 février[02] 2018
+--           Dernière modification : Mercredi 21 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -12,9 +12,8 @@ with Ada.Command_Line;
 with Ada.Directories;
 
 with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Holder_P;
+with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
 with Des_P.Clef_P.Constructeur_64_Abs_P;
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
@@ -160,12 +159,11 @@ begin
       Depassement_Octets_Fichier : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
 
+      use Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+      use Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
       Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
-      Fabrique : Des_P.Filtre_P.Fabrique_P.Holder_P.Holder;
-      Fab_Crypt :
-      Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_Cryptage_T;
-      Fab_Decrypt :
-      Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_Decryptage_T;
+      Const_Crypt : Constructeur_Cryptage_T;
+      Const_Decrypt : Constructeur_Decryptage_T;
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
@@ -198,14 +196,15 @@ begin
 
       case Action is
          when Crypter =>
-            Fabrique := Des_P.Filtre_P.Fabrique_P.Holder_P.To_Holder
-               (Fab_Crypt);
+            Const_Crypt.Initialiser;
+            Const_Crypt.Construire (Clef);
+            Chaine := Const_Crypt.Recuperer_Chaine;
          when Decrypter =>
-            Fabrique := Des_P.Filtre_P.Fabrique_P.Holder_P.To_Holder
-               (Fab_Decrypt);
+            Const_Decrypt.Initialiser;
+            Const_Decrypt.Construire (Clef);
+            Chaine := Const_Decrypt.Recuperer_Chaine;
       end case;
 
-      Chaine.Initiliser (Fabrique.Element, Clef);
       Chaine.Filtrer
          (
             Nom_Fichier,

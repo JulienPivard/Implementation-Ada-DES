@@ -11,39 +11,6 @@ package body Des_P.Chaine_P.Sequentiel_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Initiliser
-      (
-         Chaine : in out Chaine_T;
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Fabrique_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_Abs_T'Class
-      )
-   is
-   begin
-      Chaine.Clef := Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder
-         (Clef.Lire_Clef_56);
-
-      Chaine.Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
-      for I in Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
-         declare
-            E : Des_P.Etage_P.Filtrage_P.Etage_T;
-            F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Fabrique.Fabriquer_Corps;
-         begin
-            F.Modifier_Numero (I);
-            E.Modifier_Filtre (F);
-            Chaine.Tete.Ajouter_Successeur (E);
-         end;
-      end loop;
-      declare
-         Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
-      begin
-         Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
-         Chaine.Tete.Ajouter_Successeur (Etage);
-      end;
-   end Initiliser;
-
-   ---------------------------------------------------------------------------
-   overriding
    procedure Filtrer
       (
          Chaine : Chaine_T;

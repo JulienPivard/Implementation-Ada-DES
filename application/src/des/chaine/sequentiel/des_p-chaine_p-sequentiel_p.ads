@@ -13,21 +13,6 @@ package Des_P.Chaine_P.Sequentiel_P is
    type Chaine_T is new Chaine_Interface_T with private;
 
    overriding
-   --  Initialise la chaine de filtre grâce à la fabrique fournie.
-   --  @param Chaine
-   --  La chaine de filtre.
-   --  @param Fabrique
-   --  La fabrique abstraite de filtre.
-   --  @param Clef
-   --  La clef de cryptage décryptage.
-   procedure Initiliser
-      (
-         Chaine : in out Chaine_T;
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Fabrique_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_Abs_T'Class
-      );
-
-   overriding
    --  Lance le filtrage du fichier avec la clef. La version crypté ou
    --  décrypté est écrite dans un autre fichier avec l'extension crypt ou
    --  decrypt selon le filtrage effectué.
