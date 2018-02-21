@@ -38,13 +38,6 @@ package body Fabrique_Decryptage_Suite_P is
             )
          );
 
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Extension",
-            Test_Lire_Extention'Access
-            )
-         );
-
       return ptr_test_suite;
 
    end Fonc_Suite;
