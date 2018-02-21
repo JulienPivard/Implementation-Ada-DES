@@ -64,6 +64,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
             Lire_Etage_Suivant (T.C.Chaine.Tete);
          C : Integer := 1;
          Num_Lu : Numero_Filtre_T;
+         Num_Attendu : Numero_Filtre_T;
       begin
          AUnit.Assertions.Assert
             (T.C.Chaine.Tete.Possede_Filtre,
@@ -87,10 +88,11 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             Num_Lu := Lire_Numero_Filtre (Corps_T (Lire_Filtre (Etage)));
+            Num_Attendu := Numero_Filtre_T'Last - Numero_Filtre_T (C) + 1;
             AUnit.Assertions.Assert
-               (Num_Lu = Numero_Filtre_T (C),
+               (Num_Lu = Num_Attendu,
                "L'estage : " & C'Img & " a le numero : " &
-               Num_Lu'Img & " au lieu de " & C'Img
+               Num_Lu'Img & " au lieu de " & Num_Attendu'Img
                );
             C := C + 1;
             Etage := Lire_Etage_Suivant (Etage);
@@ -132,6 +134,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
             Lire_Etage_Suivant (Chaine.Tete);
          C : Integer := 1;
          Num_Lu : Numero_Filtre_T;
+         Num_Attendu : Numero_Filtre_T;
       begin
          AUnit.Assertions.Assert
             (Chaine.Tete.Possede_Filtre,
@@ -155,10 +158,11 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             Num_Lu := Lire_Numero_Filtre (Corps_T (Lire_Filtre (Etage)));
+            Num_Attendu := Numero_Filtre_T'Last - Numero_Filtre_T (C) + 1;
             AUnit.Assertions.Assert
-               (Num_Lu = Numero_Filtre_T (C),
+               (Num_Lu = Num_Attendu,
                "L'estage : " & C'Img & " a le numero : " &
-               Num_Lu'Img & " au lieu de " & C'Img
+               Num_Lu'Img & " au lieu de " & Num_Attendu'Img
                );
             C := C + 1;
             Etage := Lire_Etage_Suivant (Etage);
