@@ -206,7 +206,15 @@ begin
       end case;
 
       Chaine.Initiliser (Fabrique.Element, Clef);
-      Chaine.Filtrer (Nom_Fichier, Fabrique.Element.Lire_Extention);
+      Chaine.Filtrer
+         (
+            Nom_Fichier,
+            (
+               case Action is
+                  when Crypter => "crypt",
+                  when Decrypter => "decrypt"
+            )
+         );
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);

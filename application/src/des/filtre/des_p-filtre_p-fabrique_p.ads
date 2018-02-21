@@ -38,12 +38,4 @@ package Des_P.Filtre_P.Fabrique_P is
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class
    is abstract;
 
-   --  Permet de savoir quel est le type de filtre.
-   --  @param Fabrique
-   --  La fabrique de filtre
-   --  @return Le type du filtre.
-   function Lire_Extention (Fabrique : Fabrique_Interface_T)
-      return String
-   is abstract;
-
 end Des_P.Filtre_P.Fabrique_P;

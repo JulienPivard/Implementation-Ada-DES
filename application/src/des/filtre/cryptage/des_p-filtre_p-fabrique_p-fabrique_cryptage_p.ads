@@ -34,14 +34,6 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    function Fabriquer_Sortie (Fabrique : Fabrique_Cryptage_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
 
-   overriding
-   --  Permet de savoir quel est le type de filtre.
-   --  @param Fabrique
-   --  La fabrique de filtre
-   --  @return Le type du filtre.
-   function Lire_Extention (Fabrique : Fabrique_Cryptage_T)
-      return String;
-
 private
 
    type Fabrique_Cryptage_T is new Fabrique_Interface_T with null record;
