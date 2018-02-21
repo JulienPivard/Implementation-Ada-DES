@@ -8,14 +8,14 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    pragma Pure;
 
    --  Une fabrique de filtre de cryptage.
-   type Fabrique_Cryptage_T is new Fabrique_Interface_T with private;
+   type Fabrique_T is new Fabrique_Interface_T with private;
 
    overriding
    --  Fabrique un filtre de permutation initial.
    --  @param Fabrique
    --  La fabrique de filtre
    --  @return Un filtre initial.
-   function Fabriquer_Entree (Fabrique : Fabrique_Cryptage_T)
+   function Fabriquer_Entree (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class;
 
    overriding
@@ -23,7 +23,7 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    --  @param Fabrique
    --  La fabrique de filtre
    --  @return Un filtre principal.
-   function Fabriquer_Corps (Fabrique : Fabrique_Cryptage_T)
+   function Fabriquer_Corps (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class;
 
    overriding
@@ -31,11 +31,11 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    --  @param Fabrique
    --  La fabrique de filtre
    --  @return Un filtre initial inverse.
-   function Fabriquer_Sortie (Fabrique : Fabrique_Cryptage_T)
+   function Fabriquer_Sortie (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
 
 private
 
-   type Fabrique_Cryptage_T is new Fabrique_Interface_T with null record;
+   type Fabrique_T is new Fabrique_Interface_T with null record;
 
 end Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P;

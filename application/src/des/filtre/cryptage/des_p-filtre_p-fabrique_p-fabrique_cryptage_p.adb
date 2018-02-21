@@ -7,7 +7,7 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    ---------------------------------------------------------------------------
    overriding
    function Fabriquer_Entree
-      (Fabrique : Fabrique_Cryptage_T)
+      (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class
    is
       pragma Unreferenced (Fabrique);
@@ -19,7 +19,7 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    ---------------------------------------------------------------------------
    overriding
    function Fabriquer_Corps
-      (Fabrique : Fabrique_Cryptage_T)
+      (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class
    is
       pragma Unreferenced (Fabrique);
@@ -32,7 +32,7 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
    ---------------------------------------------------------------------------
    overriding
    function Fabriquer_Sortie
-      (Fabrique : Fabrique_Cryptage_T)
+      (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class
    is
       pragma Unreferenced (Fabrique);

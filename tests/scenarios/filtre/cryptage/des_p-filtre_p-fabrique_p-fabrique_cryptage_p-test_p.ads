@@ -5,7 +5,7 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         Fab : Fabrique_Cryptage_T;
+         Fab : Fabrique_T;
       end record;
 
    overriding
