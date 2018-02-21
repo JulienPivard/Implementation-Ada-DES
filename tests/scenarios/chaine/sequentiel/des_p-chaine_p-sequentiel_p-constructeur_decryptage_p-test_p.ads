@@ -5,7 +5,7 @@ package Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         null;
+         C : Constructeur_Decryptage_T;
       end record;
 
    overriding
