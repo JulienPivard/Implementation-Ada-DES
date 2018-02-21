@@ -43,21 +43,21 @@ package body Des_P.Filtre_P.Entree_P.Entree_Decryptage_P.Test_P is
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False
          );
-      --  Valeur attendue
-      --  00000000 00000000 00000000 00000000
-      --  11111111 11111111 11111111 11111111
+      --  Valeur attendu
+      --  11111111 11111111 00000000 00000000
+      --  11111111 11111111 00000000 00000000
       Attendu : constant array
          (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
          of Des_P.Bloc_P.Bit_T :=
          (
-            False, False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False, False,
+            True, True, True, True, True, True, True, True,
+            True, True, True, True, True, True, True, True,
             False, False, False, False, False, False, False, False,
             False, False, False, False, False, False, False, False,
             True, True, True, True, True, True, True, True,
             True, True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True, True
+            False, False, False, False, False, False, False, False,
+            False, False, False, False, False, False, False, False
          );
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P.Clef_Simplifie_T;

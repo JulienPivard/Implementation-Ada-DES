@@ -14,7 +14,7 @@ package body Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P is
       pragma Unreferenced (Filtre);
       pragma Unreferenced (Clef);
    begin
-      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante (Bloc);
+      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Sortante (Bloc);
    end Filtrer;
 
 end Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P;
