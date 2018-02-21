@@ -19,6 +19,13 @@ package body Chaine_Sequentiel_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
+            (nom_test & "Execution du filtrage",
+            Test_Execution'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
             (nom_test & "Filtrage",
             Test_Filtre'Access
             )

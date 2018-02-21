@@ -1,5 +1,6 @@
 private with Des_P.Clef_P.Clef_56_Abs_P.Holder_P;
 private with Des_P.Etage_P.Filtrage_P;
+private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
 --  @summary
 --  Chaine de filtre séquentiel.
@@ -30,6 +31,17 @@ package Des_P.Chaine_P.Sequentiel_P is
       );
 
 private
+
+   --  Execute le filtrage du fichier.
+   --  @param Chaine
+   --  La chaine de filtre.
+   --  @param Brut
+   --  Le bloc de bits brut.
+   procedure Execution
+      (
+         Chaine : Chaine_T;
+         Brut : in out Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T
+      );
 
    type Chaine_T is new Chaine_Interface_T with
       record

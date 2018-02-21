@@ -29,4 +29,14 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          );
    end Test_Filtre;
 
+   ---------------------------------------------------------------------------
+   procedure Test_Execution (T : in out Test_Fixt_T) is
+      pragma Unreferenced (T);
+   begin
+      AUnit.Assertions.Assert
+         (False,
+         "A implementer !!!!!"
+         );
+   end Test_Execution;
+
 end Des_P.Chaine_P.Sequentiel_P.Test_P;

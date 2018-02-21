@@ -3,9 +3,7 @@ with Ada.Directories;
 with Ada.Sequential_IO;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 with Des_P.Clef_P.Clef_56_Abs_P;
-with Des_P.Filtre_P.Corps_P;
 
 package body Des_P.Chaine_P.Sequentiel_P is
 
@@ -24,11 +22,7 @@ package body Des_P.Chaine_P.Sequentiel_P is
       Fichier : Lecteur_64_IO.File_Type;
       Resultat : Lecteur_64_IO.File_Type;
 
-      C_64 : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
       Brut : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
-         Chaine.Clef.Element;
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
 
@@ -46,13 +40,7 @@ package body Des_P.Chaine_P.Sequentiel_P is
          exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
          Lecteur_64_IO.Read (Fichier, Brut);
 
-         C_64.Preparer_Nouveau_Bloc;
-         C_64.Construire_Bloc (Brut);
-         Bloc := C_64.Recuperer_Bloc;
-
-         Chaine.Tete.Iterer (Bloc, Clef);
-
-         Brut := C_64.Transformer_En_Brut (Bloc);
+         Chaine.Execution (Brut);
 
          Lecteur_64_IO.Write (Resultat, Brut);
       end loop Lecture_Fichier;
@@ -63,5 +51,27 @@ package body Des_P.Chaine_P.Sequentiel_P is
       pragma Unreferenced (Fichier);
 
    end Filtrer;
+
+   ---------------------------------------------------------------------------
+   procedure Execution
+      (
+         Chaine : Chaine_T;
+         Brut : in out Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T
+      )
+   is
+      C_64 : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
+      Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+      Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
+         Chaine.Clef.Element;
+   begin
+      C_64.Preparer_Nouveau_Bloc;
+      C_64.Construire_Bloc (Brut);
+      Bloc := C_64.Recuperer_Bloc;
+
+      Chaine.Tete.Iterer (Bloc, Clef);
+      pragma Unreferenced (Clef);
+
+      Brut := C_64.Transformer_En_Brut (Bloc);
+   end Execution;
 
 end Des_P.Chaine_P.Sequentiel_P;
