@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : jeudi 30 novembre[11] 2017
+# Dernière modification : Mercredi 21 février[02] 2018
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -19,6 +19,20 @@ $(CIBLECOMPILE): build
 	@echo "───────────────────────────────"
 	@echo "[OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo
+
+###################
+.PHONY: crypt
+crypt:
+	@echo "───────────────────────────────"
+	@echo "Cryptage"
+	$(EXECUTABLE) $(ARGSCRYPT)
+
+###################
+.PHONY: decrypt
+decrypt:
+	@echo "───────────────────────────────"
+	@echo "Décryptage"
+	$(EXECUTABLE) $(ARGSDECRYPT)
 
 ###################
 .PHONY: doc
