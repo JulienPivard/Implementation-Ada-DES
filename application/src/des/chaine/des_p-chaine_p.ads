@@ -1,3 +1,5 @@
+with Des_P.Clef_P.Clef_56_Abs_P;
+
 --  @summary
 --  Interface de chaine de filtre.
 --  @description
@@ -27,5 +29,14 @@ package Des_P.Chaine_P is
          Extension : String
       )
    is abstract;
+
+private
+
+   type Position_Filtre_T is range 1 .. 16;
+
+   Table_Decalage : constant
+      array (Position_Filtre_T)
+      of Des_P.Clef_P.Clef_56_Abs_P.Decalage_T :=
+      (1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1);
 
 end Des_P.Chaine_P;
