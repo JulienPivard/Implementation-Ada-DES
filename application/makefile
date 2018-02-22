@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 21 février[02] 2018
+# Dernière modification : Jeudi 22 février[02] 2018
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -33,6 +33,12 @@ decrypt:
 	@echo "───────────────────────────────"
 	@echo "Décryptage"
 	$(EXECUTABLE) $(ARGSDECRYPT)
+
+###################
+.PHONY: comparer
+comparer:
+	@echo "Comparaison : "
+	diff $(VARNOMFICHIER) $(VARNOMFICHIER).crypt.decrypt
 
 ###################
 .PHONY: doc
