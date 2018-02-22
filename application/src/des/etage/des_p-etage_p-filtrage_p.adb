@@ -91,14 +91,13 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Iterer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
    begin
-      Etage.Filtrer (Bloc, Clef);
+      Etage.Filtrer (Bloc);
       if Etage.Possede_Successeur then
-         Etage.Successeur.Element.Iterer (Bloc, Clef);
+         Etage.Successeur.Element.Iterer (Bloc);
       end if;
    end Iterer;
 
@@ -108,15 +107,14 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Filtrer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
    begin
       if not Possede_Filtre (Etage) then
          raise Pas_De_Filtre_E;
       end if;
-      Etage.Filtre.Element.Filtrer (Bloc, Clef);
+      Etage.Filtre.Element.Filtrer (Bloc, Etage.Clef.Element);
    end Filtrer;
 
 end Des_P.Etage_P.Filtrage_P;

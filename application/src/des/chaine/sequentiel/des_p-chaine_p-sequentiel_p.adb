@@ -3,7 +3,6 @@ with Ada.Directories;
 with Ada.Sequential_IO;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_56_Abs_P;
 
 package body Des_P.Chaine_P.Sequentiel_P is
 
@@ -61,15 +60,12 @@ package body Des_P.Chaine_P.Sequentiel_P is
    is
       C_64 : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
-         Chaine.Clef.Element;
    begin
       C_64.Preparer_Nouveau_Bloc;
       C_64.Construire_Bloc (Brut);
       Bloc := C_64.Recuperer_Bloc;
 
-      Chaine.Tete.Iterer (Bloc, Clef);
-      pragma Unreferenced (Clef);
+      Chaine.Tete.Iterer (Bloc);
 
       Brut := C_64.Transformer_En_Brut (Bloc);
    end Execution;

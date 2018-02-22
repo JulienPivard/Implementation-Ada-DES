@@ -104,16 +104,18 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
             17361641481138401520;
    begin
-      T.Chaine.Clef :=
-         Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder (T.Clef.Lire_Clef_56);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_C : Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_T;
+         Clef_56 : constant Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
+            T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
+         Tete.Modifier_Clef (Clef_56.Lire_Clef_48);
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
+            Etage.Modifier_Clef (Clef_56.Lire_Clef_48);
             Etage.Modifier_Filtre (F_C.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
          end;
@@ -126,16 +128,18 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             );
       end;
 
-      T.Chaine.Clef :=
-         Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder (T.Clef.Lire_Clef_56);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_D : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
+         Clef_56 : constant Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
+            T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
+         Tete.Modifier_Clef (Clef_56.Lire_Clef_48);
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
+            Etage.Modifier_Clef (Clef_56.Lire_Clef_48);
             Etage.Modifier_Filtre (F_D.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
          end;
@@ -161,8 +165,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
             15799177843826553255;
    begin
-      T.Chaine.Clef :=
-         Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder (T.Clef.Lire_Clef_56);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_C : Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_T;
@@ -170,6 +172,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
+         Tete.Modifier_Clef (Clef_56.Lire_Clef_48);
          for I in Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
             declare
                E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -187,6 +190,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
+            Etage.Modifier_Clef (Clef_56.Lire_Clef_48);
             Etage.Modifier_Filtre (F_C.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
          end;
@@ -199,8 +203,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             );
       end;
 
-      T.Chaine.Clef :=
-         Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder (T.Clef.Lire_Clef_56);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_D : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
@@ -208,6 +210,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
+         Tete.Modifier_Clef (Clef_56.Lire_Clef_48);
          for I in reverse Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
             declare
                E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -226,6 +229,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
+            Etage.Modifier_Clef (Clef_56.Lire_Clef_48);
             Etage.Modifier_Filtre (F_D.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
          end;

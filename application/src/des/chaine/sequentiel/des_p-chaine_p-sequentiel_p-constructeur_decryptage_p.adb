@@ -23,6 +23,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
          Clef.Lire_Clef_56;
    begin
       Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+      Tete.Modifier_Clef (Clef_56.Lire_Clef_48);
       for I in reverse Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -41,12 +42,11 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
       begin
+         Etage.Modifier_Clef (Clef_56.Lire_Clef_48);
          Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
          Tete.Ajouter_Successeur (Etage);
       end;
 
-      Constructeur.Chaine.Clef :=
-         Des_P.Clef_P.Clef_56_Abs_P.Holder_P.To_Holder (Clef.Lire_Clef_56);
       Constructeur.Chaine.Tete := Tete;
    end Construire;
 

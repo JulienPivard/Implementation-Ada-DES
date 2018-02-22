@@ -1,7 +1,7 @@
 with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
 
 package body Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Test_P is
 
@@ -60,7 +60,7 @@ package body Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Test_P is
             True, True, True, True, True, True, True, True
          );
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P.Clef_Simplifie_T;
+      Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop

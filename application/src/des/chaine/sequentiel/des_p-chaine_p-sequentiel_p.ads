@@ -1,4 +1,3 @@
-private with Des_P.Clef_P.Clef_56_Abs_P.Holder_P;
 private with Des_P.Etage_P.Filtrage_P;
 private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
@@ -45,8 +44,6 @@ private
 
    type Chaine_T is new Chaine_Interface_T with
       record
-         Clef : Des_P.Clef_P.Clef_56_Abs_P.Holder_P.Holder :=
-            Des_P.Clef_P.Clef_56_Abs_P.Holder_P.Empty_Holder;
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
       end record;
 

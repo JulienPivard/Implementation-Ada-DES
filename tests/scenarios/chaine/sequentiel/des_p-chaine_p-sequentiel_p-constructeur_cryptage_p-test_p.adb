@@ -39,10 +39,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
       use type Des_P.Etage_P.Filtrage_P.Etage_T;
    begin
       AUnit.Assertions.Assert
-         (T.C.Chaine.Clef.Is_Empty,
-         "La clef devrait être vide."
-         );
-      AUnit.Assertions.Assert
          (T.C.Chaine.Tete = E,
          "La tète devrait être un étage vide"
          );
