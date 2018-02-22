@@ -11,62 +11,62 @@ package body Etage_Suite_P is
    function Fonc_Suite return AUnit.Test_Suites.Access_Test_Suite is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test etage sequentiel) ";
+      nom_test : constant String := "(Test estage sequentiel) ";
       use Des_P.Etage_P.Filtrage_P.Test_P;
    begin
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Creation d'un etage sans successeur",
+            (nom_test & "Creation d'un estage sans successeur",
             Test_Initialisation_Sans_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Creation d'un etage avec un successeur",
+            (nom_test & "Creation d'un estage avec un successeur",
             Test_Initialisation_Avec_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Ajout d'un filtre a un etage sans successeur",
+            (nom_test & "Ajout d'un filtre a un estage sans successeur",
             Test_Ajout_Filtre_Sans_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Ajout d'un filtre a un etage avec successeur",
+            (nom_test & "Ajout d'un filtre a un estage avec successeur",
             Test_Ajout_Filtre_Avec_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Filtrage d'un etage sans successeur",
+            (nom_test & "Filtrage d'un estage sans successeur",
             Test_Filtrer_Sans_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Filtrage d'un etage avec successeur",
+            (nom_test & "Filtrage d'un estage avec successeur",
             Test_Filtrer_Avec_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Lance l'iteration sur un etage sans successeur",
+            (nom_test & "Lance l'iteration sur un estage sans successeur",
             Test_Iterer_Sans_Successeur'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Lance l'iteration sur un etage avec successeur",
+            (nom_test & "Lance l'iteration sur un estage avec successeur",
             Test_Iterer_Avec_Successeur'Access
             )
          );

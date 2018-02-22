@@ -37,11 +37,11 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (Etage.Successeur.Is_Empty,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur = False,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Sans_Successeur;
 
@@ -54,11 +54,11 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (Etage.Successeur.Is_Empty = False,
-         "L'etage devrait posseder un successeur."
+         "L'estage devrait posseder un successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Avec_Successeur;
 
@@ -70,12 +70,12 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (T.Etage.Clef.Is_Empty,
-         "L'etage ne devrait pas posseder de clef."
+         "L'estage ne devrait pas posseder de clef."
          );
       T.Etage.Modifier_Clef (C);
       AUnit.Assertions.Assert
          (T.Etage.Clef.Is_Empty = False,
-         "L'etage devrait posseder une clef."
+         "L'estage devrait posseder une clef."
          );
    end Test_Modifier_Clef_48;
 
@@ -90,23 +90,23 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       AUnit.Assertions.Assert
          (
             Etage.Filtre.Is_Empty,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       AUnit.Assertions.Assert
          (
             not Etage.Possede_Filtre,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       Etage.Modifier_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
             not Etage.Filtre.Is_Empty,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
       AUnit.Assertions.Assert
          (
             Etage.Possede_Filtre,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Sans_Successeur;
 
@@ -120,13 +120,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       AUnit.Assertions.Assert
          (
             Etage.Filtre.Is_Empty,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       Etage.Modifier_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
             not Etage.Filtre.Is_Empty,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Avec_Successeur;
 
