@@ -12,7 +12,7 @@ package Des_P.Etage_P is
    pragma Pure;
 
    --  Un étage du standard DES.
-   type Etage_Abstrait_T is abstract tagged private;
+   type Etage_Abstrait_T is interface;
 
    --  Vérifie si l'étage possède un filtre.
    --  @param Etage
@@ -85,9 +85,5 @@ package Des_P.Etage_P is
          Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
       )
    is abstract;
-
-private
-
-   type Etage_Abstrait_T is abstract tagged null record;
 
 end Des_P.Etage_P;
