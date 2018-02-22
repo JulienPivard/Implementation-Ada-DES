@@ -166,6 +166,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_C : Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_T;
+         Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
+            T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
          for I in Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
@@ -176,6 +178,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             begin
                F.Modifier_Numero (I);
                E.Modifier_Filtre (F);
+               Clef_56.Decaler_Bits_A_Gauche
+                  (Table_Decalage (Position_Filtre_T (I)));
+               E.Modifier_Clef (Clef_56.Lire_Clef_48);
                Tete.Ajouter_Successeur (E);
             end;
          end loop;
@@ -199,6 +204,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_D : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
+         Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
+            T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
          for I in reverse Des_P.Filtre_P.Corps_P.Numero_Filtre_T'Range loop
@@ -206,9 +213,13 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                E : Des_P.Etage_P.Filtrage_P.Etage_T;
                F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
                   F_D.Fabriquer_Corps;
+               use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
             begin
                F.Modifier_Numero (I);
                E.Modifier_Filtre (F);
+               E.Modifier_Clef (Clef_56.Lire_Clef_48);
+               Clef_56.Decaler_Bits_A_Gauche
+                  (-1 * Table_Decalage (Position_Filtre_T (I)));
                Tete.Ajouter_Successeur (E);
             end;
          end loop;

@@ -8,6 +8,8 @@ with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Lecteur_Clef_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
 with Des_P.Filtre_P.Clef_Tests_P;
 
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+
 package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
    --  Nombre de départ
@@ -111,6 +113,18 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
             True, False, False, True, True, False, False, True,
             False, True, True, False, False, False, True, True
          );
+      Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T := T.Bloc;
+      Champs_48 : constant
+      Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
+         (
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True,
+            False, False, False, False, True, True, True, True
+         );
+      Clef_48 : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P.Clef_48_T;
    begin
 
       Clef_56 := T.Clef.Lire_Clef_56;
@@ -143,6 +157,24 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
          declare
             b : constant Des_P.Bloc_P.Bit_T := T.Bloc.Lire_Bit (I);
+            bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
+            bit_attendu : constant Bit_IO_T := (if attendu (I) then 1 else 0);
+         begin
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end;
+      end loop;
+
+      Clef_48.Init (Champs_48);
+      T.Filtre.Filtrer (Bloc, Clef_48);
+
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
+         declare
+            b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
             bit_attendu : constant Bit_IO_T := (if attendu (I) then 1 else 0);
          begin

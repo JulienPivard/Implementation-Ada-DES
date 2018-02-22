@@ -2,12 +2,14 @@ with AUnit.Assertions;
 
 with Des_P.Etage_P.Filtrage_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P;
 with Des_P.Etage_P.Filtrage_P.Explorer_P;
 with Des_P.Filtre_P.Entree_P.Entree_Cryptage_P;
 with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;
 with Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P;
 with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Lecteur_P;
+
+with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
 
@@ -49,11 +51,14 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Construction (T : in out Test_Fixt_T) is
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P.Clef_Simplifie_T;
-      Const : constant access Constructeur_Clef_56_T :=
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
+      Const_56 : constant access Constructeur_Clef_56_T :=
          new Constructeur_Clef_56_T;
+      Const_48 : constant access Constructeur_Clef_48_T :=
+         new Constructeur_Clef_48_T;
    begin
-      C_64.Init ((others => False), Const);
+      C_64.Init ((others => False), Const_56, Const_48);
       T.C.Construire (C_64);
       declare
          use Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Lecteur_P;
@@ -115,12 +120,15 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P.Clef_Simplifie_T;
-      Const : constant access Constructeur_Clef_56_T :=
+      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
+      Const_56 : constant access Constructeur_Clef_56_T :=
          new Constructeur_Clef_56_T;
+      Const_48 : constant access Constructeur_Clef_48_T :=
+         new Constructeur_Clef_48_T;
       Chaine : Chaine_T;
    begin
-      C_64.Init ((others => False), Const);
+      C_64.Init ((others => False), Const_56, Const_48);
       T.C.Construire (C_64);
       Chaine := T.C.Recuperer_Chaine;
       declare

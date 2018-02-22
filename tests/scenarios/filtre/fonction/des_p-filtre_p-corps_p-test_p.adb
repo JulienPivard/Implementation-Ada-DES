@@ -63,7 +63,7 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True
          );
-      Clef : Clef_48_Simplifie_T;
+      Clef : Clef_48_T;
       Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
 

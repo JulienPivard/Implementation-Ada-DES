@@ -1,5 +1,6 @@
 with Des_P.Clef_P.Clef_56_Abs_P;
 with Des_P.Bloc_P.Bloc_64_P;
+with Des_P.Clef_P.Clef_48_Abs_P;
 
 --  @summary
 --  Représentation abstraite des filtres de DES.
@@ -25,6 +26,14 @@ package Des_P.Filtre_P is
          Filtre : Filtre_Interface_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
          Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+      )
+   is abstract;
+
+   procedure Filtrer
+      (
+         Filtre : Filtre_Interface_T;
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       )
    is abstract;
 

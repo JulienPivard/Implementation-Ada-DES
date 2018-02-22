@@ -15,6 +15,14 @@ package Des_P.Filtre_P.Filtre_Simple_P is
          Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
       );
 
+   overriding
+   procedure Filtrer
+      (
+         Filtre : Filtre_Simple_T;
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+      );
+
 private
 
    type Filtre_Simple_T is new Filtre_Interface_T with null record;
