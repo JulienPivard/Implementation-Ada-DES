@@ -22,14 +22,14 @@ $(CIBLECOMPILE): build
 
 ###################
 .PHONY: crypt
-crypt:
+crypt: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Cryptage"
 	$(EXECUTABLE) $(ARGSCRYPT)
 
 ###################
 .PHONY: decrypt
-decrypt:
+decrypt: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Décryptage"
 	$(EXECUTABLE) $(ARGSDECRYPT)
