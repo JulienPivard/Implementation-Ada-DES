@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 21 février[02] 2018
+--           Dernière modification : Jeudi 22 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -10,6 +10,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Ada.Command_Line;
 with Ada.Directories;
+
+with Ada.Calendar;
 
 with Des_P.Chaine_P.Sequentiel_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
@@ -205,15 +207,35 @@ begin
             Chaine := Const_Decrypt.Recuperer_Chaine;
       end case;
 
-      Chaine.Filtrer
-         (
-            Nom_Fichier,
+      Mesure_Temps :
+      declare
+         Debut, Fin : Ada.Calendar.Time;
+         Duree : Duration;
+         package Duree_IO is new Ada.Text_IO.Fixed_IO (Duration);
+         use type Ada.Calendar.Time;
+      begin
+         Debut := Ada.Calendar.Clock;
+         Chaine.Filtrer
             (
-               case Action is
-                  when Crypter => "crypt",
-                  when Decrypter => "decrypt"
-            )
-         );
+               Nom_Fichier,
+               (
+                  case Action is
+                     when Crypter => "crypt",
+                     when Decrypter => "decrypt"
+               )
+            );
+         Fin := Ada.Calendar.Clock;
+         Duree := Fin - Debut;
+
+         --------------------------------------
+         Ada.Text_IO.New_Line (1);
+         Ada.Text_IO.Put ("Temps séquentielle : ");
+         Duree_IO.Put (Duree);
+         Ada.Text_IO.Put_Line (" s");
+         Ada.Text_IO.New_Line (1);
+         --------------------------------------
+      end Mesure_Temps;
+
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
