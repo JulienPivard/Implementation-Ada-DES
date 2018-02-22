@@ -4,6 +4,7 @@ with Des_P.Filtre_P;
 
 private with Ada.Containers.Indefinite_Holders;
 private with Des_P.Filtre_P.Holder_P;
+private with Des_P.Clef_P.Clef_48_Abs_P.Holder_P;
 
 --  @summary
 --  Un étage de DES
@@ -82,6 +83,18 @@ package Des_P.Etage_P.Filtrage_P is
       );
 
    overriding
+   --  Modifie la clef de 48 bits.
+   --  @param Etage
+   --  L'étage.
+   --  @param Clef
+   --  la clef de 56 bits.
+   procedure Modifier_Clef
+      (
+         Etage : in out Etage_T;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+      );
+
+   overriding
    --  Déclenche les filtre en cascade jusqu'à ce qu'il n'y ai
    --  plus de successeur.
    --  @param Etage
@@ -120,6 +133,7 @@ private
       record
          Filtre : Des_P.Filtre_P.Holder_P.Holder;
          Successeur : Holder_P.Holder;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Etage_P.Filtrage_P;

@@ -5,6 +5,8 @@ use  Des_P.Filtre_P.Filtre_Simple_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
 use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
 
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
+
 package body Des_P.Etage_P.Filtrage_P.Test_P is
 
    ---------------------------------------------------------------------------
@@ -59,6 +61,23 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
          "L'etage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Avec_Successeur;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Modifier_Clef_48
+      (T : in out Test_Fixt_T)
+   is
+      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
+   begin
+      AUnit.Assertions.Assert
+         (T.Etage.Clef.Is_Empty,
+         "L'etage ne devrait pas posseder de clef."
+         );
+      T.Etage.Modifier_Clef (C);
+      AUnit.Assertions.Assert
+         (T.Etage.Clef.Is_Empty = False,
+         "L'etage devrait posseder une clef."
+         );
+   end Test_Modifier_Clef_48;
 
    ---------------------------------------------------------------------------
    procedure Test_Ajout_Filtre_Sans_Successeur
