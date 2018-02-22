@@ -35,8 +35,8 @@ decrypt: $(DEPEND)
 	$(EXECUTABLE) $(ARGSDECRYPT)
 
 ###################
-.PHONY: comparer
-comparer:
+.PHONY: fichier_comparer
+fichier_comparer:
 	@echo "Comparaison : "
 	diff $(VARNOMFICHIER) $(VARNOMFICHIER).crypt.decrypt
 
