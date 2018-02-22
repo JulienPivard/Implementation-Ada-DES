@@ -6,7 +6,6 @@ with Des_P.Etage_P.Filtrage_P.Explorer_P;
 with Des_P.Filtre_P.Entree_P.Entree_Decryptage_P;
 with Des_P.Filtre_P.Corps_P.Corps_Decryptage_P;
 with Des_P.Filtre_P.Sortie_P.Sortie_Decryptage_P;
-with Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Lecteur_P;
 
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
@@ -57,15 +56,12 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
       C_64.Init ((others => False), Const_56, Const_48);
       T.C.Construire (C_64);
       declare
-         use Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Lecteur_P;
          use Des_P.Filtre_P.Corps_P.Corps_Decryptage_P;
          use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Lire_Etage_Suivant (T.C.Chaine.Tete);
          C : Integer := 1;
-         Num_Lu : Numero_Filtre_T;
-         Num_Attendu : Numero_Filtre_T;
       begin
          AUnit.Assertions.Assert
             (T.C.Chaine.Tete.Possede_Filtre,
@@ -87,13 +83,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
                (Lire_Filtre (Etage) in
                Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
-               );
-            Num_Lu := Lire_Numero_Filtre (Corps_T (Lire_Filtre (Etage)));
-            Num_Attendu := Numero_Filtre_T'Last - Numero_Filtre_T (C) + 1;
-            AUnit.Assertions.Assert
-               (Num_Lu = Num_Attendu,
-               "L'estage : " & C'Img & " a le numero : " &
-               Num_Lu'Img & " au lieu de " & Num_Attendu'Img
                );
             C := C + 1;
             Etage := Lire_Etage_Suivant (Etage);
@@ -130,15 +119,12 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
       T.C.Construire (C_64);
       Chaine := T.C.Recuperer_Chaine;
       declare
-         use Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Lecteur_P;
          use Des_P.Filtre_P.Corps_P.Corps_Decryptage_P;
          use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Lire_Etage_Suivant (Chaine.Tete);
          C : Integer := 1;
-         Num_Lu : Numero_Filtre_T;
-         Num_Attendu : Numero_Filtre_T;
       begin
          AUnit.Assertions.Assert
             (Chaine.Tete.Possede_Filtre,
@@ -160,13 +146,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
                (Lire_Filtre (Etage) in
                Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
-               );
-            Num_Lu := Lire_Numero_Filtre (Corps_T (Lire_Filtre (Etage)));
-            Num_Attendu := Numero_Filtre_T'Last - Numero_Filtre_T (C) + 1;
-            AUnit.Assertions.Assert
-               (Num_Lu = Num_Attendu,
-               "L'estage : " & C'Img & " a le numero : " &
-               Num_Lu'Img & " au lieu de " & Num_Attendu'Img
                );
             C := C + 1;
             Etage := Lire_Etage_Suivant (Etage);

@@ -46,7 +46,4 @@ package Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Ajouter_2_Successeur
       (T : in out Test_Fixt_T);
 
-   procedure Test_Modifier_Clef_48
-      (T : in out Test_Fixt_T);
-
 end Des_P.Etage_P.Filtrage_P.Test_P;

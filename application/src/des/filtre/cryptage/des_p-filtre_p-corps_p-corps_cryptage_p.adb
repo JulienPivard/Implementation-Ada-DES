@@ -7,11 +7,9 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
    procedure Filtrer
       (
          Filtre : Corps_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
-      pragma Unreferenced (Filtre);
       Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
          (Des_P.Bloc_P.Bloc_64_P.Gauche);
       Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
@@ -20,7 +18,7 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
       use type Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       --  Passage du bloc de gauche dans la fonction f
-      Resultat_F := Fonction_F (Droite, Clef);
+      Resultat_F := Fonction_F (Droite, Filtre.Clef.Element);
 
       Gauche := Gauche xor Resultat_F;
 
@@ -33,14 +31,14 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Modifier_Numero
+   procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
-         Numero : Numero_Filtre_T
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       )
    is
    begin
-      Filtre.Numero := Numero;
-   end Modifier_Numero;
+      Filtre.Clef := Des_P.Clef_P.Clef_48_Abs_P.Holder_P.To_Holder (Clef);
+   end Modifier_Clef;
 
 end Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;

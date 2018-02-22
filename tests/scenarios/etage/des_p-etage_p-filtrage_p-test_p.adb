@@ -2,7 +2,6 @@ with AUnit.Assertions;
 
 with Des_P.Filtre_P.Filtre_Simple_P;
 use  Des_P.Filtre_P.Filtre_Simple_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
 
 package body Des_P.Etage_P.Filtrage_P.Test_P is
 
@@ -58,23 +57,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
          "L'estage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Avec_Successeur;
-
-   ---------------------------------------------------------------------------
-   procedure Test_Modifier_Clef_48
-      (T : in out Test_Fixt_T)
-   is
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
-   begin
-      AUnit.Assertions.Assert
-         (T.Etage.Clef.Is_Empty,
-         "L'estage ne devrait pas posseder de clef."
-         );
-      T.Etage.Modifier_Clef (C);
-      AUnit.Assertions.Assert
-         (T.Etage.Clef.Is_Empty = False,
-         "L'estage devrait posseder une clef."
-         );
-   end Test_Modifier_Clef_48;
 
    ---------------------------------------------------------------------------
    procedure Test_Ajout_Filtre_Sans_Successeur
@@ -137,7 +119,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
          if (I mod 2) = 0 then
@@ -146,7 +127,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Modifier_Clef (C);
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
       for I in Intervalle_Bloc_64_T'Range loop
@@ -174,7 +154,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
          if (I mod 2) = 0 then
@@ -183,7 +162,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Modifier_Clef (C);
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
       for I in Intervalle_Bloc_64_T'Range loop
@@ -212,7 +190,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
          if (I mod 2) = 0 then
@@ -221,7 +198,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      Etage.Modifier_Clef (C);
       Etage.Modifier_Filtre (Filtre);
       Etage.Iterer (Bloc);
       for I in Intervalle_Bloc_64_T'Range loop
@@ -249,7 +225,6 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
       for I in Intervalle_Bloc_64_T'Range loop
          if (I mod 2) = 0 then
@@ -258,9 +233,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
             Bloc.Ecrire_Bit (I, False);
          end if;
       end loop;
-      T.Etage.Modifier_Clef (C);
       T.Etage.Modifier_Filtre (Filtre);
-      Etage.Modifier_Clef (C);
       Etage.Modifier_Filtre (Filtre);
       Etage.Modifier_Successeur (T.Etage);
       Etage.Iterer (Bloc);

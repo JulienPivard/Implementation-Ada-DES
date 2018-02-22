@@ -1,4 +1,3 @@
-with Des_P.Clef_P.Clef_56_Abs_P;
 with Des_P.Bloc_P.Bloc_32_P;
 with Des_P.Clef_P.Clef_48_Abs_P;
 
@@ -15,35 +14,32 @@ package Des_P.Filtre_P.Corps_P is
    --  Un filtre de corps abstrait.
    type Corps_Abstrait_T is abstract new Filtre_Interface_T with private;
 
-   --  Le numéro du filtre représente la position
-   --  dans la suite des filtres
-   type Numero_Filtre_T is range 1 .. 16;
-
    --  Modifie le numéro du filtre.
    --  @param Filtre
    --  Le filtre.
-   --  @param Numero
-   --  Le numéro à attribuer au filtre.
-   procedure Modifier_Numero
+   --  @param Clef
+   --  la clef de 48 bits.
+   procedure Modifier_Clef
       (
          Filtre : in out Corps_Abstrait_T;
-         Numero : Numero_Filtre_T
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       )
    is abstract;
 
 private
 
+   --  Fonction de cryptage/décryptage F.
+   --  @param Bloc
+   --  Le bloc de 32 bits
+   --  @paral Clef
+   --  La clef de 48 bits
+   --  @return Le bloc transformé
    function Fonction_F
       (
          Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
          Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-
-   Table_Decalage : constant
-      array (Numero_Filtre_T)
-      of Des_P.Clef_P.Clef_56_Abs_P.Decalage_T :=
-      (1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1);
 
    type Corps_Abstrait_T is abstract new Filtre_Interface_T with null record;
 

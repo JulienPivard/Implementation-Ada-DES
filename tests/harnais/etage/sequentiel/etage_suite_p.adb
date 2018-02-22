@@ -85,13 +85,6 @@ package body Etage_Suite_P is
             )
          );
 
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Modification de la clef de 48 stocke",
-            Test_Modifier_Clef_48'Access
-            )
-         );
-
       return ptr_test_suite;
 
    end Fonc_Suite;

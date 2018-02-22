@@ -7,6 +7,7 @@ with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 with Des_P.Filtre_P.Clef_Tests_P;
 
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
 
 package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
 
@@ -46,7 +47,6 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
-      Filtre.Modifier_Numero (1);
       T.Filtre := Filtre;
       T.Bloc := Bloc;
 
@@ -110,7 +110,8 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
    begin
 
       Clef_48.Init (Champs_48);
-      T.Filtre.Filtrer (Bloc, Clef_48);
+      T.Filtre.Modifier_Clef (Clef_48);
+      T.Filtre.Filtrer (Bloc);
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
          declare
@@ -128,5 +129,22 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
       end loop;
 
    end Test_Cryptage_Niveau_1;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Modifier_Clef_48
+      (T : in out Test_Fixt_T)
+   is
+      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
+   begin
+      AUnit.Assertions.Assert
+         (T.Filtre.Clef.Is_Empty,
+         "L'estage ne devrait pas posseder de clef."
+         );
+      T.Filtre.Modifier_Clef (C);
+      AUnit.Assertions.Assert
+         (T.Filtre.Clef.Is_Empty = False,
+         "L'estage devrait posseder une clef."
+         );
+   end Test_Modifier_Clef_48;
 
 end Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;

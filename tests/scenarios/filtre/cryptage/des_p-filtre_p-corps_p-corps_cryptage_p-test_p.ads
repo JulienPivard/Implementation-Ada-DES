@@ -23,4 +23,7 @@ package Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
    procedure Test_Cryptage_Niveau_1
       (T : in out Test_Fixt_T);
 
+   procedure Test_Modifier_Clef_48
+      (T : in out Test_Fixt_T);
+
 end Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;

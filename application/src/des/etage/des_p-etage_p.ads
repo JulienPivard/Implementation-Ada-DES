@@ -1,4 +1,3 @@
-with Des_P.Clef_P.Clef_48_Abs_P;
 with Des_P.Bloc_P.Bloc_64_P;
 with Des_P.Filtre_P;
 
@@ -70,26 +69,12 @@ package Des_P.Etage_P is
       )
    is abstract;
 
-   --  Modifie la clef de 48 bits.
-   --  @param Etage
-   --  L'étage.
-   --  @param Clef
-   --  la clef de 56 bits.
-   procedure Modifier_Clef
-      (
-         Etage : in out Etage_Abstrait_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
-      )
-   is abstract;
-
    --  Déclenche les filtre en cascade jusqu'à ce qu'il n'y ai
    --  plus de successeur.
    --  @param Etage
    --  L'étage.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   --  @param Clef
-   --  la clef de 56 bits.
    procedure Iterer
       (
          Etage : Etage_Abstrait_T;

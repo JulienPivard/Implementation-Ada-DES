@@ -5,8 +5,6 @@
 --  @group Filtre Fabrique Cryptage
 package Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
 
-   pragma Pure;
-
    --  Une fabrique de filtre de cryptage.
    type Fabrique_T is new Fabrique_Interface_T with private;
 

@@ -20,13 +20,10 @@ package Des_P.Filtre_P.Entree_P.Entree_Decryptage_P is
    --  Le filtre.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   --  @param Clef
-   --  la clef de 48 bits.
    procedure Filtrer
       (
          Filtre : Entree_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       );
 
 private

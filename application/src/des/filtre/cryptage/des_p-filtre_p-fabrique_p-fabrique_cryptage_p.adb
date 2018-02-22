@@ -25,7 +25,7 @@ package body Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P is
       pragma Unreferenced (Fabrique);
       Filtre : Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Corps_T;
    begin
-      Filtre.Modifier_Numero (Des_P.Filtre_P.Corps_P.Numero_Filtre_T'First);
+      --  Filtre.Modifier_Clef (Clef);
       return Filtre;
    end Fabriquer_Corps;
 

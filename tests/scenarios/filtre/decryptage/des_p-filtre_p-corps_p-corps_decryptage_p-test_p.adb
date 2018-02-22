@@ -46,7 +46,6 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
-      Filtre.Modifier_Numero (1);
       T.Filtre := Filtre;
       T.Bloc := Bloc;
 
@@ -110,7 +109,8 @@ package body Des_P.Filtre_P.Corps_P.Corps_Decryptage_P.Test_P is
    begin
 
       Clef_48.Init (Champs_48);
-      T.Filtre.Filtrer (Bloc, Clef_48);
+      T.Filtre.Modifier_Clef (Clef_48);
+      T.Filtre.Filtrer (Bloc);
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
          declare

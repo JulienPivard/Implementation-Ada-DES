@@ -1,7 +1,6 @@
 with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
 
 package body Des_P.Filtre_P.Entree_P.Entree_Cryptage_P.Test_P is
 
@@ -60,14 +59,13 @@ package body Des_P.Filtre_P.Entree_P.Entree_Cryptage_P.Test_P is
             False, False, False, False, False, False, False, False
          );
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
-      T.Filtre.Filtrer (Bloc, Clef);
+      T.Filtre.Filtrer (Bloc);
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
          declare

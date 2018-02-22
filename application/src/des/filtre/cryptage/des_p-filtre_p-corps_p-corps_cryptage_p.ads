@@ -1,5 +1,7 @@
 with Des_P.Filtre_P.Cryptage_P;
 
+private with Des_P.Clef_P.Clef_48_Abs_P.Holder_P;
+
 --  @summary
 --  Représentation du filtre de permutation principal de cryptage DES.
 --  @description
@@ -7,8 +9,6 @@ with Des_P.Filtre_P.Cryptage_P;
 --  reste des étages.
 --  @group Filtre Cryptage
 package Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
-
-   pragma Pure;
 
    --  Le filtre de cryptage principal.
    type Corps_T is new Corps_Abstrait_T and
@@ -20,25 +20,22 @@ package Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
    --  Le filtre.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   --  @param Clef
-   --  la clef de 48 bits.
    procedure Filtrer
       (
          Filtre : Corps_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       );
 
    overriding
-   --  Modifie le numéro du filtre.
+   --  Modifie la clef du filtre.
    --  @param Filtre
    --  Le filtre.
-   --  @param Numero
-   --  Le numéro à attribuer au filtre.
-   procedure Modifier_Numero
+   --  @param Clef
+   --  la clef de 48 bits.
+   procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
-         Numero : Numero_Filtre_T
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
       );
 
 private
@@ -46,7 +43,7 @@ private
    type Corps_T is new Corps_Abstrait_T and
       Des_P.Filtre_P.Cryptage_P.Cryptage_Interface_T with
       record
-         Numero : Numero_Filtre_T;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;
