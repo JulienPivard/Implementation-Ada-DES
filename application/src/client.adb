@@ -228,8 +228,17 @@ begin
          --------------------------------------
          Ada.Text_IO.New_Line (1);
          Ada.Text_IO.Put ("Temps séquentielle : ");
+         Ada.Text_IO.New_Line (1);
          Duree_IO.Put (Duree);
          Ada.Text_IO.Put_Line (" s");
+         if Duree > 60.0 then
+            Duree_IO.Put (Duree / 60.0);
+            Ada.Text_IO.Put_Line (" min");
+         end if;
+         if Duree > 3600.0 then
+            Duree_IO.Put (Duree / 3600.0);
+            Ada.Text_IO.Put_Line (" h");
+         end if;
          Ada.Text_IO.New_Line (1);
          --------------------------------------
       end Mesure_Temps;
