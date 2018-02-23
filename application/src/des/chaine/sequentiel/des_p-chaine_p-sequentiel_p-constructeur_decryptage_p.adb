@@ -21,22 +21,20 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       Fabrique : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
       Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
          Clef.Lire_Clef_56;
+      use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
    begin
       Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
       for I in reverse Numero_Filtre_T'Range loop
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
-            F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Fabrique.Fabriquer_Corps;
-            use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
+            F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+               Fabrique.Fabriquer_Corps (Clef_56.Lire_Clef_48);
          begin
-
-            F.Modifier_Clef (Clef_56.Lire_Clef_48);
-            Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
 
             E.Modifier_Filtre (F);
             Tete.Ajouter_Successeur (E);
          end;
+         Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
       end loop;
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;

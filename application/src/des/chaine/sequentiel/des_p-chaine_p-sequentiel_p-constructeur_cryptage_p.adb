@@ -25,14 +25,12 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
    begin
       Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
       for I in Numero_Filtre_T'Range loop
+         Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
-            F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Fabrique.Fabriquer_Corps;
+            F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+               Fabrique.Fabriquer_Corps (Clef_56.Lire_Clef_48);
          begin
-
-            Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
-            F.Modifier_Clef (Clef_56.Lire_Clef_48);
 
             E.Modifier_Filtre (F);
             Tete.Ajouter_Successeur (E);

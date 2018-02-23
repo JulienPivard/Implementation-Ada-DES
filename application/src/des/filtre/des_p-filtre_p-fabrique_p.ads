@@ -2,6 +2,8 @@ with Des_P.Filtre_P.Entree_P;
 with Des_P.Filtre_P.Corps_P;
 with Des_P.Filtre_P.Sortie_P;
 
+with Des_P.Clef_P.Clef_48_Abs_P;
+
 --  @summary
 --  Interface fabrique abstraite de filtre.
 --  @description
@@ -25,8 +27,14 @@ package Des_P.Filtre_P.Fabrique_P is
    --  Fabrique un filtre principal.
    --  @param Fabrique
    --  La fabrique de filtre
+   --  @param Clef
+   --  La clef de 48 bits
    --  @return Un filtre principal.
-   function Fabriquer_Corps (Fabrique : Fabrique_Interface_T)
+   function Fabriquer_Corps
+      (
+         Fabrique : Fabrique_Interface_T;
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+      )
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class
    is abstract;
 

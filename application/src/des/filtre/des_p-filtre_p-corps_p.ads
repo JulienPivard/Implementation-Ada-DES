@@ -31,7 +31,7 @@ private
    --  Fonction de cryptage/décryptage F.
    --  @param Bloc
    --  Le bloc de 32 bits
-   --  @paral Clef
+   --  @param Clef
    --  La clef de 48 bits
    --  @return Le bloc transformé
    function Fonction_F
