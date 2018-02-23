@@ -35,7 +35,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
       end if;
       declare
          Const : Des_P.Clef_P.Constructeur_56_Abs_P.
-            Constructeur_Clef_56_Abs_T'Class := Clef.Constructeur_56.Element;
+            Const_Clef_56_Abs_T'Class := Clef.Constructeur_56.Element;
       begin
          Const.Preparer_Nouvelle_Clef_56;
          Const.Construire_Clef_56 (Clef);

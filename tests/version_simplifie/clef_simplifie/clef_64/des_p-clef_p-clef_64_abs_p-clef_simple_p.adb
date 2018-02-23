@@ -5,7 +5,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
       (
          Clef : out Clef_Simple_T;
          Champ : Champ_De_Bits_T;
-         Constructeur_56 : Constructeur_Clef_56_Abs_T'Class;
+         Constructeur_56 : Const_Clef_56_Abs_T'Class;
          Constructeur_48 : Const_Clef_48_Abs_T'Class
       )
    is
@@ -50,7 +50,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
       return Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T
    is
       Const : Des_P.Clef_P.Constructeur_56_Abs_P.
-         Constructeur_Clef_56_Abs_T'Class := Clef.Constructeur_56.Element;
+         Const_Clef_56_Abs_T'Class := Clef.Constructeur_56.Element;
    begin
       Const.Preparer_Nouvelle_Clef_56;
       Const.Construire_Clef_56 (Clef);

@@ -10,7 +10,7 @@ with Des_P.Clef_P.Constructeur_48_Abs_P;
 package Des_P.Clef_P.Constructeur_64_Abs_P is
 
    --  Constructeur de clef abstraite de 64 bits.
-   type Constructeur_Clef_64_Abs_T is abstract tagged private;
+   type Const_Clef_64_Abs_T is abstract tagged private;
 
    --  Le bloc de données brut que vas utiliser le constructeur
    --  pour construire la clef de 64 bits.
@@ -21,7 +21,7 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    --  @param Constructeur
    --  Le constructeur de la clef de 64 bits.
    procedure Preparer_Nouvelle_Clef_64
-      (Constructeur : in out Constructeur_Clef_64_Abs_T)
+      (Constructeur : in out Const_Clef_64_Abs_T)
    is abstract;
 
    --  Construit la clefs de 64 bits avec le brut de 64 bits.
@@ -31,7 +31,7 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    --  Le brut à partir duquel on va construire la clef.
    procedure Construire_Clef_64
    (
-      Constructeur : in out Constructeur_Clef_64_Abs_T;
+      Constructeur : in out Const_Clef_64_Abs_T;
       Brut : Clef_64_Brut_T
    )
    is abstract;
@@ -43,9 +43,9 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    --  Le constructeur de clef 56 bits.
    procedure Construire_Ajouter_Constructeur_56
    (
-      Constructeur : in out Constructeur_Clef_64_Abs_T;
+      Constructeur : in out Const_Clef_64_Abs_T;
       Constructeur_56 :
-         Des_P.Clef_P.Constructeur_56_Abs_P.Constructeur_Clef_56_Abs_T'Class
+         Des_P.Clef_P.Constructeur_56_Abs_P.Const_Clef_56_Abs_T'Class
    )
    is abstract;
 
@@ -56,7 +56,7 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    --  Le constructeur de clef 48 bits.
    procedure Construire_Ajouter_Constructeur_48
    (
-      Constructeur : in out Constructeur_Clef_64_Abs_T;
+      Constructeur : in out Const_Clef_64_Abs_T;
       Constructeur_48 :
          Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
    )
@@ -67,12 +67,12 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    --  Le constructeur de la clef de 64.
    --  @return La clef de 64.
    function Recuperer_Clef_64
-      (Constructeur : in out Constructeur_Clef_64_Abs_T)
+      (Constructeur : in out Const_Clef_64_Abs_T)
       return Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Clef_64_T
    is abstract;
 
 private
 
-   type Constructeur_Clef_64_Abs_T is abstract tagged null record;
+   type Const_Clef_64_Abs_T is abstract tagged null record;
 
 end Des_P.Clef_P.Constructeur_64_Abs_P;

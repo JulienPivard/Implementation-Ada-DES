@@ -29,7 +29,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
       (
          Constructeur : in out Constructeur_Clef_64_T;
          Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.
-            Constructeur_Clef_56_Abs_T'Class
+            Const_Clef_56_Abs_T'Class
       )
    is
    begin

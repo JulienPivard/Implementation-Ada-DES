@@ -10,7 +10,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    use Des_P.Clef_P.Constructeur_64_Abs_P;
 
    --  Constructeur concret de clef de 64 bits.
-   type Constructeur_Clef_64_T is new Constructeur_Clef_64_Abs_T with private;
+   type Constructeur_Clef_64_T is new Const_Clef_64_Abs_T with private;
 
    overriding
    --  Prépare une nouvelle clef vide.
@@ -41,7 +41,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    (
       Constructeur : in out Constructeur_Clef_64_T;
       Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.
-         Constructeur_Clef_56_Abs_T'Class
+         Const_Clef_56_Abs_T'Class
    );
 
    overriding
@@ -68,7 +68,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
 
 private
 
-   type Constructeur_Clef_64_T is new Constructeur_Clef_64_Abs_T with
+   type Constructeur_Clef_64_T is new Const_Clef_64_Abs_T with
       record
          Clef_64 : Clef_64_T;
       end record;

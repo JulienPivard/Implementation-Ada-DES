@@ -14,7 +14,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
 
    --  Constructeur concret de clef de 56 bits.
    type Constructeur_Clef_56_T is new
-      Des_P.Clef_P.Constructeur_56_Abs_P.Constructeur_Clef_56_Abs_T
+      Des_P.Clef_P.Constructeur_56_Abs_P.Const_Clef_56_Abs_T
       with private;
 
    overriding
@@ -61,7 +61,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
 private
 
    type Constructeur_Clef_56_T is new
-      Des_P.Clef_P.Constructeur_56_Abs_P.Constructeur_Clef_56_Abs_T with
+      Des_P.Clef_P.Constructeur_56_Abs_P.Const_Clef_56_Abs_T with
       record
          Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T;
       end record;

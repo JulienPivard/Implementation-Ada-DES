@@ -14,7 +14,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
       (
          Clef : out Clef_Simplifie_T;
          Champ : Tableau_Bits_T;
-         Constructeur : Constructeur_Clef_56_Abs_T'Class
+         Constructeur : Const_Clef_56_Abs_T'Class
       );
 
    overriding
