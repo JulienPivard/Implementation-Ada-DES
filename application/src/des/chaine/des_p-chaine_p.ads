@@ -33,11 +33,11 @@ package Des_P.Chaine_P is
 private
 
    --  La position du filtre dans la chaine.
-   type Position_Filtre_T is range 1 .. 16;
+   type Numero_Filtre_T is range 1 .. 16;
 
    --  Table pour connaitre le nombre de décalages à appliquer à la clef
    Table_Decalage : constant
-      array (Position_Filtre_T)
+      array (Numero_Filtre_T)
       of Des_P.Clef_P.Clef_56_Abs_P.Decalage_T :=
       (1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1);
 

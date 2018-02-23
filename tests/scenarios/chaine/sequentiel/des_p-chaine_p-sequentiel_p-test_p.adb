@@ -164,7 +164,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
-         for I in Position_Filtre_T'Range loop
+         for I in Numero_Filtre_T'Range loop
             declare
                E : Des_P.Etage_P.Filtrage_P.Etage_T;
                F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
@@ -198,7 +198,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             T.Clef.Lire_Clef_56;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
-         for I in reverse Position_Filtre_T'Range loop
+         for I in reverse Numero_Filtre_T'Range loop
             declare
                E : Des_P.Etage_P.Filtrage_P.Etage_T;
                F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
