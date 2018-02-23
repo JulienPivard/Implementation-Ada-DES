@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
-use  Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
+with Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P;
+use  Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P;
 
 package body Corps_Cryptage_Suite_P is
 

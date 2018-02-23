@@ -3,9 +3,9 @@ with AUnit.Assertions;
 with Des_P.Etage_P.Filtrage_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
 with Des_P.Etage_P.Filtrage_P.Explorer_P;
-with Des_P.Filtre_P.Entree_P.Entree_Cryptage_P;
-with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;
-with Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P;
+with Des_P.Filtre_P.Entree_P.Cryptage_P;
+with Des_P.Filtre_P.Corps_P.Cryptage_P;
+with Des_P.Filtre_P.Sortie_P.Cryptage_P;
 
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
 with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
@@ -54,7 +54,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
       C_64.Init ((others => False), Const_56, Const_48);
       T.C.Construire (C_64);
       declare
-         use Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;
+         use Des_P.Filtre_P.Corps_P.Cryptage_P;
          use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
@@ -67,7 +67,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
             );
          AUnit.Assertions.Assert
             (Lire_Filtre (T.C.Chaine.Tete) in
-            Des_P.Filtre_P.Entree_P.Entree_Cryptage_P.Entree_T,
+            Des_P.Filtre_P.Entree_P.Cryptage_P.Entree_T,
             "L'estage : " & C'Img & " n'est pas une entree"
             );
          Verif_Successeur :
@@ -79,7 +79,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
                );
             AUnit.Assertions.Assert
                (Lire_Filtre (Etage) in
-               Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Corps_T,
+               Des_P.Filtre_P.Corps_P.Cryptage_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             C := C + 1;
@@ -91,7 +91,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
             );
          AUnit.Assertions.Assert
             (Lire_Filtre (Etage) in
-            Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Sortie_T,
+            Des_P.Filtre_P.Sortie_P.Cryptage_P.Sortie_T,
             "L'estage : " & C'Img & " n'est pas une sortie"
             );
          AUnit.Assertions.Assert
@@ -115,7 +115,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
       T.C.Construire (C_64);
       Chaine := T.C.Recuperer_Chaine;
       declare
-         use Des_P.Filtre_P.Corps_P.Corps_Cryptage_P;
+         use Des_P.Filtre_P.Corps_P.Cryptage_P;
          use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
@@ -128,7 +128,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
             );
          AUnit.Assertions.Assert
             (Lire_Filtre (Chaine.Tete) in
-            Des_P.Filtre_P.Entree_P.Entree_Cryptage_P.Entree_T,
+            Des_P.Filtre_P.Entree_P.Cryptage_P.Entree_T,
             "L'estage : " & C'Img & " n'est pas une entree"
             );
          Verif_Successeur :
@@ -140,7 +140,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
                );
             AUnit.Assertions.Assert
                (Lire_Filtre (Etage) in
-               Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Corps_T,
+               Des_P.Filtre_P.Corps_P.Cryptage_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             C := C + 1;
@@ -152,7 +152,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
             );
          AUnit.Assertions.Assert
             (Lire_Filtre (Etage) in
-            Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Sortie_T,
+            Des_P.Filtre_P.Sortie_P.Cryptage_P.Sortie_T,
             "L'estage : " & C'Img & " n'est pas une sortie"
             );
          AUnit.Assertions.Assert

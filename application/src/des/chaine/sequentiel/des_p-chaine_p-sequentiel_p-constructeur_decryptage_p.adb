@@ -1,4 +1,4 @@
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
 with Des_P.Filtre_P.Corps_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
@@ -18,7 +18,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       )
    is
       Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-      Fabrique : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
+      Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
       Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
          Clef.Lire_Clef_56;
       use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;

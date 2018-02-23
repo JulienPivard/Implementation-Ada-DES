@@ -1,7 +1,7 @@
 with AUnit.Assertions;
 
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
 
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
 with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
@@ -104,7 +104,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    begin
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_C : Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_T;
+         F_C : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
          declare
@@ -124,7 +124,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_D : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
+         F_D : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
          declare
@@ -157,7 +157,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    begin
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_C : Des_P.Filtre_P.Fabrique_P.Fabrique_Cryptage_P.Fabrique_T;
+         F_C : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
          Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
             T.Clef.Lire_Clef_56;
       begin
@@ -190,7 +190,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_D : Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Fabrique_T;
+         F_D : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
          Clef_56 : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class :=
             T.Clef.Lire_Clef_56;
          use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
