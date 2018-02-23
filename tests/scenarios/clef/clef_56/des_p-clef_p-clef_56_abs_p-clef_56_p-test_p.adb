@@ -100,8 +100,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
       clef_56 : Clef_56_T;
-      constr : constant access Constructeur_Clef_48_T :=
-         new Constructeur_Clef_48_T;
+      constr : Constructeur_Clef_48_T;
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
       champ1 : constant Champ_De_Bits_T :=
@@ -120,7 +119,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T) is
    begin
-      T.clef_56.Constructeur := null;
+      T.clef_56.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Tear_Down;
 
    ---------------------------------------------------------------------------
@@ -134,7 +134,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Test_P is
          "La clef devrait posseder un constructeur 48 bits, " &
          "mais n'en a pas."
          );
-      T.clef_56.Constructeur := null;
+      T.clef_56.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
       AUnit.Assertions.Assert
          (not T.clef_56.Possede_Constructeur_48,
          "La clef ne devrait pas posseder un " &

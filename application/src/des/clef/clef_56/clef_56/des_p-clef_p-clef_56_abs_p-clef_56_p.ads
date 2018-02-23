@@ -1,5 +1,7 @@
 with Des_P.Clef_P.Constructeur_48_Abs_P;
 
+private with Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P;
+
 --  @summary
 --  La clef de 56 bits permettant de crypter les données.
 --  @description
@@ -7,7 +9,6 @@ with Des_P.Clef_P.Constructeur_48_Abs_P;
 --  @group Clef
 package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
 
-   pragma Pure;
    use Des_P.Clef_P.Constructeur_48_Abs_P;
 
    --  La clef de 56 bits.
@@ -21,7 +22,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    procedure Ecrire_Constructeur
    (
       Clef : out Clef_56_T;
-      Constructeur_Clef_48 : access Const_Clef_48_Abs_T'Class
+      Constructeur_Clef_48 : Const_Clef_48_Abs_T'Class
    );
 
    overriding
@@ -93,7 +94,7 @@ private
          Decalage : Decalage_T;
          C1 : Champ_De_Bits_T;
          C2 : Champ_De_Bits_T;
-         Constructeur : access Const_Clef_48_Abs_T'Class;
+         Constructeur : Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;

@@ -5,12 +5,14 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
       (
          Clef : out Clef_Simplifie_T;
          Champ : Tableau_Bits_T;
-         Constructeur : access Constructeur_Clef_56_Abs_T'Class
+         Constructeur : Constructeur_Clef_56_Abs_T'Class
       )
    is
    begin
       Clef.Champ := Champ;
-      Clef.Constructeur := Constructeur;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.To_Holder
+            (Constructeur);
    end Init;
 
    ---------------------------------------------------------------------------
@@ -49,10 +51,12 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
       (Clef : Clef_Simplifie_T)
       return Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T
    is
+      Const : Des_P.Clef_P.Constructeur_56_Abs_P.
+         Constructeur_Clef_56_Abs_T'Class := Clef.Constructeur.Element;
    begin
-      Clef.Constructeur.all.Preparer_Nouvelle_Clef_56;
-      Clef.Constructeur.all.Construire_Clef_56 (Clef);
-      return Clef.Constructeur.all.Recuperer_Clef_56;
+      Const.Preparer_Nouvelle_Clef_56;
+      Const.Construire_Clef_56 (Clef);
+      return Const.Recuperer_Clef_56;
    end Lire_Clef_56;
 
    ---------------------------------------------------------------------------
@@ -60,7 +64,8 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
    procedure Initialize (Clef : in out Clef_Simplifie_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Empty_Holder;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -68,7 +73,8 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
    procedure Finalize (Clef : in out Clef_Simplifie_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Empty_Holder;
    end Finalize;
 
    ---------------------------------------------------------------------------

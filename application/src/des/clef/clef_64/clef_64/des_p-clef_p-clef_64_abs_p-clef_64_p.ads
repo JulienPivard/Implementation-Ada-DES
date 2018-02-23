@@ -1,14 +1,15 @@
 with Des_P.Clef_P.Constructeur_48_Abs_P;
 with Des_P.Clef_P.Constructeur_56_Abs_P;
 
+with Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P;
+with Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P;
+
 --  @summary
 --  La clef de 64 bits permettant de crypter les données.
 --  @description
 --  La représentation d'une clef de 64 bits, dans le standard DES.
 --  @group Clef
 package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P is
-
-   pragma Pure;
 
    use Des_P.Clef_P.Constructeur_48_Abs_P;
    use Des_P.Clef_P.Constructeur_56_Abs_P;
@@ -81,8 +82,8 @@ private
    type Clef_64_T is new Clef_64_Abs_T with
       record
          Bits : Tableau_Bits_T;
-         Constructeur_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Const_Clef_48_Abs_T'Class;
+         Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Holder;
+         Constructeur_48 : Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;

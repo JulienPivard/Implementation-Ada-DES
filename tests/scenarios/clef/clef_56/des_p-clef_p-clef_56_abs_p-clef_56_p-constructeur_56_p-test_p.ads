@@ -2,6 +2,7 @@ with AUnit;
 with AUnit.Test_Fixtures;
 
 with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P;
+with Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P;
 
 package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
 
@@ -9,7 +10,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : access Constructeur_Clef_56_T;
+         constructeur : Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Holder;
          clef_64 : Clef_Simplifie_T;
       end record;
 

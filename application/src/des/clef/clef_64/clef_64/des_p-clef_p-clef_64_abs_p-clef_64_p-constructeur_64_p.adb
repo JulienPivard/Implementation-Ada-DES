@@ -28,12 +28,14 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    procedure Construire_Ajouter_Constructeur_56
       (
          Constructeur : in out Constructeur_Clef_64_T;
-         Constructeur_56 : access Des_P.Clef_P.Constructeur_56_Abs_P.
+         Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.
             Constructeur_Clef_56_Abs_T'Class
       )
    is
    begin
-      Constructeur.Clef_64.Constructeur_56 := Constructeur_56;
+      Constructeur.Clef_64.Constructeur_56 :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.To_Holder
+            (Constructeur_56);
    end Construire_Ajouter_Constructeur_56;
 
    ---------------------------------------------------------------------------
@@ -41,12 +43,14 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    procedure Construire_Ajouter_Constructeur_48
       (
          Constructeur : in out Constructeur_Clef_64_T;
-         Constructeur_48 : access Des_P.Clef_P.Constructeur_48_Abs_P.
+         Constructeur_48 : Des_P.Clef_P.Constructeur_48_Abs_P.
             Const_Clef_48_Abs_T'Class
       )
    is
    begin
-      Constructeur.Clef_64.Constructeur_48 := Constructeur_48;
+      Constructeur.Clef_64.Constructeur_48 :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.To_Holder
+            (Constructeur_48);
    end Construire_Ajouter_Constructeur_48;
 
    ---------------------------------------------------------------------------

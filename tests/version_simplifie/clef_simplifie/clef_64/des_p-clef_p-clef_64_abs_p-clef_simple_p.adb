@@ -5,14 +5,18 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
       (
          Clef : out Clef_Simple_T;
          Champ : Champ_De_Bits_T;
-         Constructeur_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Const_Clef_48_Abs_T'Class
+         Constructeur_56 : Constructeur_Clef_56_Abs_T'Class;
+         Constructeur_48 : Const_Clef_48_Abs_T'Class
       )
    is
    begin
       Clef.Champ := Champ;
-      Clef.Constructeur_56 := Constructeur_56;
-      Clef.Constructeur_48 := Constructeur_48;
+      Clef.Constructeur_56 :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.To_Holder
+            (Constructeur_56);
+      Clef.Constructeur_48 :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.To_Holder
+            (Constructeur_48);
    end Init;
 
    ---------------------------------------------------------------------------
@@ -45,12 +49,13 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
    function Lire_Clef_56 (Clef : Clef_Simple_T)
       return Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T
    is
+      Const : Des_P.Clef_P.Constructeur_56_Abs_P.
+         Constructeur_Clef_56_Abs_T'Class := Clef.Constructeur_56.Element;
    begin
-      Clef.Constructeur_56.all.Preparer_Nouvelle_Clef_56;
-      Clef.Constructeur_56.all.Construire_Clef_56 (Clef);
-      Clef.Constructeur_56.all.Construire_Ajouter_Constructeur_48
-         (Clef.Constructeur_48);
-      return Clef.Constructeur_56.all.Recuperer_Clef_56;
+      Const.Preparer_Nouvelle_Clef_56;
+      Const.Construire_Clef_56 (Clef);
+      Const.Construire_Ajouter_Constructeur_48 (Clef.Constructeur_48.Element);
+      return Const.Recuperer_Clef_56;
    end Lire_Clef_56;
 
    ---------------------------------------------------------------------------
@@ -58,8 +63,10 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
    procedure Initialize (Clef : in out Clef_Simple_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur_56 := null;
-      Clef.Constructeur_48 := null;
+      Clef.Constructeur_56 :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Empty_Holder;
+      Clef.Constructeur_48 :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -67,8 +74,10 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
    procedure Finalize (Clef : in out Clef_Simple_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur_56 := null;
-      Clef.Constructeur_48 := null;
+      Clef.Constructeur_56 :=
+         Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Empty_Holder;
+      Clef.Constructeur_48 :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Finalize;
 
    ---------------------------------------------------------------------------

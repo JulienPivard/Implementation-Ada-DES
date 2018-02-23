@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 22 février[02] 2018
+--           Dernière modification : Vendredi 23 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -139,10 +139,8 @@ begin
          use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
          Brut_Clef : Clef_64_Brut_T with Address => Clef_Brut'Address;
          C_C_64 : Constructeur_Clef_64_T;
-         C_C_56 : constant access Constructeur_Clef_56_T :=
-            new Constructeur_Clef_56_T;
-         C_C_48 : constant access Constructeur_Clef_48_T :=
-            new Constructeur_Clef_48_T;
+         C_C_56 : Constructeur_Clef_56_T;
+         C_C_48 : Constructeur_Clef_48_T;
       begin
          C_C_64.Preparer_Nouvelle_Clef_64;
          C_C_64.Construire_Clef_64 (Brut_Clef);

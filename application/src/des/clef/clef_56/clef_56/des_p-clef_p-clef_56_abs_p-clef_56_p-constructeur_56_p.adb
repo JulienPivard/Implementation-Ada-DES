@@ -49,11 +49,13 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
    procedure Construire_Ajouter_Constructeur_48
    (
       Constructeur : in out Constructeur_Clef_56_T;
-      Constructeur_48 : access Const_Clef_48_Abs_T'Class
+      Constructeur_48 : Const_Clef_48_Abs_T'Class
    )
    is
    begin
-      Constructeur.Clef_56.Constructeur := Constructeur_48;
+      Constructeur.Clef_56.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.To_Holder
+         (Constructeur_48);
    end Construire_Ajouter_Constructeur_48;
 
    ---------------------------------------------------------------------------

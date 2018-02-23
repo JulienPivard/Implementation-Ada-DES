@@ -7,8 +7,6 @@ with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
 --  @group Clef
 package Des_P.Clef_P.Clef_64_Abs_P is
 
-   pragma Pure;
-
    Erreur_Constructeur_56_Absent : exception;
 
    --  La clef de 64 bits.

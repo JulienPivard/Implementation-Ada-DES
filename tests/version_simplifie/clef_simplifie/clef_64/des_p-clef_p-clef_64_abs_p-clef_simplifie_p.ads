@@ -1,8 +1,9 @@
 with Des_P.Clef_P.Constructeur_56_Abs_P;
 
+with Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P;
+
 package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
 
-   pragma Pure;
    use Des_P.Clef_P.Constructeur_56_Abs_P;
 
    type Clef_Simplifie_T is new Clef_64_Abs_T with private;
@@ -13,7 +14,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P is
       (
          Clef : out Clef_Simplifie_T;
          Champ : Tableau_Bits_T;
-         Constructeur : access Constructeur_Clef_56_Abs_T'Class
+         Constructeur : Constructeur_Clef_56_Abs_T'Class
       );
 
    overriding
@@ -45,7 +46,7 @@ private
    type Clef_Simplifie_T is new Clef_64_Abs_T with
       record
          Champ : Tableau_Bits_T;
-         Constructeur : access Constructeur_Clef_56_Abs_T'Class;
+         Constructeur : Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Clef_P.Clef_64_Abs_P.Clef_Simplifie_P;

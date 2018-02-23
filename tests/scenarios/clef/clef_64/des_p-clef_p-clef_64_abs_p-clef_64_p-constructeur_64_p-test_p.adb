@@ -19,8 +19,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
 
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      constr : constant access Constructeur_Clef_64_T :=
-         new Constructeur_Clef_64_T;
+      constr : Constructeur_Clef_64_T;
    begin
       T.constructeur := constr;
    end Set_Up;
@@ -28,8 +27,9 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T) is
+      constr : Constructeur_Clef_64_T;
    begin
-      T.constructeur := null;
+      T.constructeur := constr;
    end Tear_Down;
 
    ---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
       bit_attendu : constant Bit_T := False;
       bit_lu : Bit_T;
    begin
-      T.constructeur.all.Preparer_Nouvelle_Clef_64;
+      T.constructeur.Preparer_Nouvelle_Clef_64;
       for I in Intervalle_Clef_64_T'Range loop
-         bit_lu := T.constructeur.all.Clef_64.Lire_Bit (I);
+         bit_lu := T.constructeur.Clef_64.Lire_Bit (I);
          AUnit.Assertions.Assert
          (
             bit_lu = bit_attendu,
@@ -55,18 +55,22 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Ajouter_Constructeur_56 (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      c : constant access Constructeur_Clef_56_T := new Constructeur_Clef_56_T;
+      use type Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.
+         Constructeur_Clef_56_T;
+      c : Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.
+         Constructeur_Clef_56_T;
    begin
       AUnit.Assertions.Assert
       (
-         T.constructeur.all.Clef_64.Constructeur_56 = null,
+         T.constructeur.Clef_64.Constructeur_56.Is_Empty,
          "La clef de 64 ne devrait pas avoir de constructeur 56."
       );
-      T.constructeur.all.Construire_Ajouter_Constructeur_56 (c);
+      T.constructeur.Construire_Ajouter_Constructeur_56 (c);
       AUnit.Assertions.Assert
       (
-         T.constructeur.all.Clef_64.Constructeur_56 = c,
+         Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P.
+         Constructeur_Clef_56_T
+         (T.constructeur.Clef_64.Constructeur_56.Element) = c,
          "Le constructeur de 56 n'a pas été ajouté à la clef de 64."
       );
    end Test_Ajouter_Constructeur_56;
@@ -74,17 +78,19 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Ajouter_Constructeur_48 (T : in out Test_Fixt_T) is
       use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-      c : constant access Constructeur_Clef_48_T := new Constructeur_Clef_48_T;
+      c : Constructeur_Clef_48_T;
    begin
       AUnit.Assertions.Assert
       (
-         T.constructeur.all.Clef_64.Constructeur_48 = null,
+         T.constructeur.Clef_64.Constructeur_48.Is_Empty,
          "La clef de 64 ne devrait pas avoir de constructeur 56."
       );
-      T.constructeur.all.Construire_Ajouter_Constructeur_48 (c);
+      T.constructeur.Construire_Ajouter_Constructeur_48 (c);
       AUnit.Assertions.Assert
       (
-         T.constructeur.all.Clef_64.Constructeur_48 = c,
+         Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.
+         Constructeur_Clef_48_T
+            (T.constructeur.Clef_64.Constructeur_48.Element) = c,
          "Le constructeur de 56 n'a pas été ajouté à la clef de 64."
       );
    end Test_Ajouter_Constructeur_48;
@@ -94,10 +100,10 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
       bit_lu : Bit_T;
       bit_attendu : Bit_T;
    begin
-      T.constructeur.all.Preparer_Nouvelle_Clef_64;
-      T.constructeur.all.Construire_Clef_64 (clef_brut_64);
+      T.constructeur.Preparer_Nouvelle_Clef_64;
+      T.constructeur.Construire_Clef_64 (clef_brut_64);
       for I in Intervalle_Clef_64_T'Range loop
-         bit_lu := T.constructeur.all.Clef_64.Lire_Bit (I);
+         bit_lu := T.constructeur.Clef_64.Lire_Bit (I);
          bit_attendu := resultat_attendu (I);
          AUnit.Assertions.Assert
          (
@@ -115,9 +121,9 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P.Test_P is
       bit_lu : Bit_T;
       bit_attendu : Bit_T;
    begin
-      T.constructeur.all.Preparer_Nouvelle_Clef_64;
-      T.constructeur.all.Construire_Clef_64 (clef_brut_64);
-      clef_construite := T.constructeur.all.Recuperer_Clef_64;
+      T.constructeur.Preparer_Nouvelle_Clef_64;
+      T.constructeur.Construire_Clef_64 (clef_brut_64);
+      clef_construite := T.constructeur.Recuperer_Clef_64;
       for I in Intervalle_Clef_64_T'Range loop
          bit_lu := clef_construite.Lire_Bit (I);
          bit_attendu := resultat_attendu (I);

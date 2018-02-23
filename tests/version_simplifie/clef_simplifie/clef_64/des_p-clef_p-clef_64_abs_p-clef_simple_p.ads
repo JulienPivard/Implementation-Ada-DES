@@ -1,9 +1,10 @@
 with Des_P.Clef_P.Constructeur_48_Abs_P;
 with Des_P.Clef_P.Constructeur_56_Abs_P;
 
-package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
+with Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P;
+with Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P;
 
-   pragma Pure;
+package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
 
    use Des_P.Clef_P.Constructeur_48_Abs_P;
    use Des_P.Clef_P.Constructeur_56_Abs_P;
@@ -16,8 +17,8 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
       (
          Clef : out Clef_Simple_T;
          Champ : Champ_De_Bits_T;
-         Constructeur_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Const_Clef_48_Abs_T'Class
+         Constructeur_56 : Constructeur_Clef_56_Abs_T'Class;
+         Constructeur_48 : Const_Clef_48_Abs_T'Class
       );
 
    overriding
@@ -49,8 +50,8 @@ private
    type Clef_Simple_T is new Clef_64_Abs_T with
       record
          Champ : Champ_De_Bits_T;
-         Constructeur_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Const_Clef_48_Abs_T'Class;
+         Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.Holder_P.Holder;
+         Constructeur_48 : Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Holder;
       end record;
 
 end Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;

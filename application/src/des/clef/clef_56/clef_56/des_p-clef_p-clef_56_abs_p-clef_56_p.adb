@@ -4,18 +4,20 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    procedure Ecrire_Constructeur
       (
          Clef : out Clef_56_T;
-         Constructeur_Clef_48 : access Const_Clef_48_Abs_T'Class
+         Constructeur_Clef_48 : Const_Clef_48_Abs_T'Class
       )
    is
    begin
-      Clef.Constructeur := Constructeur_Clef_48;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.To_Holder
+            (Constructeur_Clef_48);
    end Ecrire_Constructeur;
 
    ---------------------------------------------------------------------------
    overriding
    function Possede_Constructeur_48 (Clef : Clef_56_T) return Boolean is
    begin
-      return Clef.Constructeur /= null;
+      return not Clef.Constructeur.Is_Empty;
    end Possede_Constructeur_48;
 
    ---------------------------------------------------------------------------
@@ -50,13 +52,18 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T
    is
    begin
-      if Clef.Constructeur = null then
+      if Clef.Constructeur.Is_Empty then
          raise Erreur_Constructeur_48_Absent with
          "La clef de 56 n'a pas de constructeur de clef de 48";
       end if;
-      Clef.Constructeur.all.Preparer_Nouvelle_Clef_48;
-      Clef.Constructeur.all.Construire_Clef_48 (Clef);
-      return Clef.Constructeur.all.Recuperer_Clef_48;
+      declare
+         Const : Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
+         := Clef.Constructeur.Element;
+      begin
+         Const.Preparer_Nouvelle_Clef_48;
+         Const.Construire_Clef_48 (Clef);
+         return Const.Recuperer_Clef_48;
+      end;
    end Lire_Clef_48;
 
    ---------------------------------------------------------------------------
@@ -66,7 +73,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
       Clef.Decalage := 0;
       Clef.C1 := (others => False);
       Clef.C2 := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -75,7 +83,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    begin
       Clef.C1 := (others => False);
       Clef.C2 := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Finalize;
 
    ---------------------------------------------------------------------------

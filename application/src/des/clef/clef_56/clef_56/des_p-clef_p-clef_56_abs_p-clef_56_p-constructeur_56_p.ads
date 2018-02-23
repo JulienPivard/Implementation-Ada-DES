@@ -1,5 +1,6 @@
-limited with Des_P.Clef_P.Clef_64_Abs_P;
 with Des_P.Clef_P.Constructeur_56_Abs_P;
+
+limited with Des_P.Clef_P.Clef_64_Abs_P;
 
 --  @summary
 --  Le constructeur concret de clef de 56 bits.
@@ -10,8 +11,6 @@ with Des_P.Clef_P.Constructeur_56_Abs_P;
 --  selon le tableau PC-1 du standard DES.
 --  @group Clef Constructeur
 package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
-
-   pragma Pure;
 
    --  Constructeur concret de clef de 56 bits.
    type Constructeur_Clef_56_T is new
@@ -47,7 +46,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P is
    procedure Construire_Ajouter_Constructeur_48
    (
       Constructeur : in out Constructeur_Clef_56_T;
-      Constructeur_48 : access Const_Clef_48_Abs_T'Class
+      Constructeur_48 : Const_Clef_48_Abs_T'Class
    );
 
    overriding

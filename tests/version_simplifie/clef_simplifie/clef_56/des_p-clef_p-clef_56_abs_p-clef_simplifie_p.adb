@@ -5,12 +5,14 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
       (
          Clef : out Clef_Simplifie_T;
          Champ : Champ_De_Bits_T;
-         Constructeur : access Const_Clef_48_Abs_T'Class
+         Constructeur : Const_Clef_48_Abs_T'Class
       )
    is
    begin
       Clef.Champ := Champ;
-      Clef.Constructeur := Constructeur;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.To_Holder
+            (Constructeur);
    end Init;
 
    ---------------------------------------------------------------------------
@@ -50,10 +52,12 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
       (Clef : Clef_Simplifie_T)
       return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T
    is
+      Const : Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
+      := Clef.Constructeur.Element;
    begin
-      Clef.Constructeur.all.Preparer_Nouvelle_Clef_48;
-      Clef.Constructeur.all.Construire_Clef_48 (Clef);
-      return Clef.Constructeur.all.Recuperer_Clef_48;
+      Const.Preparer_Nouvelle_Clef_48;
+      Const.Construire_Clef_48 (Clef);
+      return Const.Recuperer_Clef_48;
    end Lire_Clef_48;
 
    ---------------------------------------------------------------------------
@@ -61,7 +65,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
    procedure Initialize (Clef : in out Clef_Simplifie_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -69,7 +74,8 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
    procedure Finalize (Clef : in out Clef_Simplifie_T) is
    begin
       Clef.Champ := (others => False);
-      Clef.Constructeur := null;
+      Clef.Constructeur :=
+         Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Empty_Holder;
    end Finalize;
 
    ---------------------------------------------------------------------------

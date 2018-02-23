@@ -7,7 +7,6 @@ with Des_P.Clef_P.Constructeur_64_Abs_P;
 --  @group Clef Constructeur
 package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
 
-   pragma Pure;
    use Des_P.Clef_P.Constructeur_64_Abs_P;
 
    --  Constructeur concret de clef de 64 bits.
@@ -41,7 +40,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    procedure Construire_Ajouter_Constructeur_56
    (
       Constructeur : in out Constructeur_Clef_64_T;
-      Constructeur_56 : access Des_P.Clef_P.Constructeur_56_Abs_P.
+      Constructeur_56 : Des_P.Clef_P.Constructeur_56_Abs_P.
          Constructeur_Clef_56_Abs_T'Class
    );
 
@@ -54,7 +53,7 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    procedure Construire_Ajouter_Constructeur_48
    (
       Constructeur : in out Constructeur_Clef_64_T;
-      Constructeur_48 : access
+      Constructeur_48 :
          Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
    );
 

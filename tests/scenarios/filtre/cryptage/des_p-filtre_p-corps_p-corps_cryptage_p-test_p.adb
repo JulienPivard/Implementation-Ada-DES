@@ -37,10 +37,8 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P is
       use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
       use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
       Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
-      Constructeur_48 : constant access Constructeur_Clef_48_T :=
-         new Constructeur_Clef_48_T;
-      Constructeur_56 : constant access Constructeur_Clef_56_T :=
-         new Constructeur_Clef_56_T;
+      Constructeur_48 : Constructeur_Clef_48_T;
+      Constructeur_56 : Constructeur_Clef_56_T;
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
