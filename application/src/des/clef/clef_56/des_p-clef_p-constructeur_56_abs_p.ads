@@ -45,8 +45,8 @@ package Des_P.Clef_P.Constructeur_56_Abs_P is
    procedure Construire_Ajouter_Constructeur_48
    (
       Constructeur : in out Constructeur_Clef_56_Abs_T;
-      Constructeur_48 : access Des_P.Clef_P.Constructeur_48_Abs_P.
-         Constructeur_Clef_48_Abs_T'Class
+      Constructeur_48 : access
+         Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
    )
    is abstract;
 

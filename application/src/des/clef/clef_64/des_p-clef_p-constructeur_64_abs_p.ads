@@ -60,7 +60,7 @@ package Des_P.Clef_P.Constructeur_64_Abs_P is
    (
       Constructeur : in out Constructeur_Clef_64_Abs_T;
       Constructeur_48 : access Des_P.Clef_P.Constructeur_48_Abs_P.
-         Constructeur_Clef_48_Abs_T'Class
+         Const_Clef_48_Abs_T'Class
    )
    is abstract;
 

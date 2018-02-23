@@ -34,7 +34,7 @@ package body Des_P.Filtre_P.Corps_P.Corps_Cryptage_P is
    procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
       )
    is
    begin

@@ -15,7 +15,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
 
    --  Constructeur concret de clef 48 bits.
    type Constructeur_Clef_48_T is new
-   Des_P.Clef_P.Constructeur_48_Abs_P.Constructeur_Clef_48_Abs_T with private;
+      Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T with private;
 
    overriding
    --  Prépare une nouvelle sous clef vide.
@@ -48,7 +48,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P is
 private
 
    type Constructeur_Clef_48_T is new
-      Des_P.Clef_P.Constructeur_48_Abs_P.Constructeur_Clef_48_Abs_T with
+      Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T with
       record
          Clef_48 : Clef_48_T;
       end record;

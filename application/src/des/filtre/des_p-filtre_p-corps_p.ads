@@ -22,7 +22,7 @@ package Des_P.Filtre_P.Corps_P is
    procedure Modifier_Clef
       (
          Filtre : in out Corps_Abstrait_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
       )
    is abstract;
 
@@ -37,7 +37,7 @@ private
    function Fonction_F
       (
          Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 

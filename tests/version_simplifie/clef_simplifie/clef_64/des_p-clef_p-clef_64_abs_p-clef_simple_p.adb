@@ -6,7 +6,7 @@ package body Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P is
          Clef : out Clef_Simple_T;
          Champ : Champ_De_Bits_T;
          Constructeur_56 : access Constructeur_Clef_56_Abs_T'Class;
-         Constructeur_48 : access Constructeur_Clef_48_Abs_T'Class
+         Constructeur_48 : access Const_Clef_48_Abs_T'Class
       )
    is
    begin

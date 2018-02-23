@@ -8,7 +8,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P is
    pragma Pure;
 
    --  La clef de 48 bits.
-   type Clef_48_T is new Clef_48_Abs_T with private;
+   type Clef_48_T is new Clef_48_Abstrait_T with private;
 
    overriding
    --  Permet de lire le bit n de la clef.
@@ -44,7 +44,7 @@ private
    --  Les bits de la clefs rangé dans un tableau. Un bit par case.
    type Tableau_Bits_T is array (Intervalle_Clef_48_T) of Bit_T;
 
-   type Clef_48_T is new Clef_48_Abs_T with
+   type Clef_48_T is new Clef_48_Abstrait_T with
       record
          Bits : Tableau_Bits_T;
       end record;

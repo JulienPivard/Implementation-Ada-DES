@@ -54,8 +54,8 @@ package Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P is
    procedure Construire_Ajouter_Constructeur_48
    (
       Constructeur : in out Constructeur_Clef_64_T;
-      Constructeur_48 : access Des_P.Clef_P.Constructeur_48_Abs_P.
-         Constructeur_Clef_48_Abs_T'Class
+      Constructeur_48 : access
+         Des_P.Clef_P.Constructeur_48_Abs_P.Const_Clef_48_Abs_T'Class
    );
 
    overriding

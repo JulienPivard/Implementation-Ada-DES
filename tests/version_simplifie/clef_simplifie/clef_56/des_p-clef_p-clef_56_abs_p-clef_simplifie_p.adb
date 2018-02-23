@@ -5,7 +5,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P is
       (
          Clef : out Clef_Simplifie_T;
          Champ : Champ_De_Bits_T;
-         Constructeur : access Constructeur_Clef_48_Abs_T'Class
+         Constructeur : access Const_Clef_48_Abs_T'Class
       )
    is
    begin

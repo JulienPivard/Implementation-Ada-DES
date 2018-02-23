@@ -26,7 +26,7 @@ package Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P is
    function Fabriquer_Corps
       (
          Fabrique : Fabrique_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
       )
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class;
 

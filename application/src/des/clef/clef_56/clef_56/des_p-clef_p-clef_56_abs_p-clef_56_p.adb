@@ -4,7 +4,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    procedure Ecrire_Constructeur
       (
          Clef : out Clef_56_T;
-         Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class
+         Constructeur_Clef_48 : access Const_Clef_48_Abs_T'Class
       )
    is
    begin

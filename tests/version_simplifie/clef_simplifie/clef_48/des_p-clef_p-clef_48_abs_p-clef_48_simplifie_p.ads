@@ -2,7 +2,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P is
 
    pragma Pure;
 
-   type Clef_48_T is new Clef_48_Abs_T with private;
+   type Clef_48_T is new Clef_48_Abstrait_T with private;
 
    type Champ_De_Bits_T is array (Intervalle_Clef_48_T) of Bit_T;
 
@@ -31,7 +31,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P is
 
 private
 
-   type Clef_48_T is new Clef_48_Abs_T with
+   type Clef_48_T is new Clef_48_Abstrait_T with
       record
          Bits : Champ_De_Bits_T;
       end record;

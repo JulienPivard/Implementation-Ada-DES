@@ -21,7 +21,7 @@ package Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P is
    procedure Ecrire_Constructeur
    (
       Clef : out Clef_56_T;
-      Constructeur_Clef_48 : access Constructeur_Clef_48_Abs_T'Class
+      Constructeur_Clef_48 : access Const_Clef_48_Abs_T'Class
    );
 
    overriding
@@ -93,7 +93,7 @@ private
          Decalage : Decalage_T;
          C1 : Champ_De_Bits_T;
          C2 : Champ_De_Bits_T;
-         Constructeur : access Constructeur_Clef_48_Abs_T'Class;
+         Constructeur : access Const_Clef_48_Abs_T'Class;
       end record;
 
 end Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;

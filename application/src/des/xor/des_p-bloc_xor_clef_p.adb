@@ -6,7 +6,7 @@ package body Des_P.Bloc_Xor_Clef_P is
    function "xor"
       (
          Gauche : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-         Droite : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class
+         Droite : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
       )
       return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
    is
@@ -27,7 +27,7 @@ package body Des_P.Bloc_Xor_Clef_P is
    ---------------------------------------------------------------------------
    function "xor"
       (
-         Gauche : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abs_T'Class;
+         Gauche : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class;
          Droite : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
       )
       return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T

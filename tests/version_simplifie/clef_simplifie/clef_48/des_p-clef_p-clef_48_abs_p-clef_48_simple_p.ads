@@ -2,7 +2,7 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P is
 
    pragma Pure;
 
-   type Clef_48_Simplifie_T is new Clef_48_Abs_T with private;
+   type Clef_48_Simplifie_T is new Clef_48_Abstrait_T with private;
 
    overriding
    function Lire_Bit
@@ -23,6 +23,6 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P is
 
 private
 
-   type Clef_48_Simplifie_T is new Clef_48_Abs_T with null record;
+   type Clef_48_Simplifie_T is new Clef_48_Abstrait_T with null record;
 
 end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
