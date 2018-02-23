@@ -49,24 +49,6 @@ package Des_P.Clef_P.Clef_64_Abs_P is
    function Lire_Clef_56 (Clef : Clef_64_Abs_T)
       return Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Clef_56_T is abstract;
 
-   overriding
-   --  Création d'une clef vide par défaut.
-   --  @param Clef
-   --  La clef.
-   procedure Initialize (Clef : in out Clef_64_Abs_T) is abstract;
-
-   overriding
-   --  Supprime la clef.
-   --  @param Clef
-   --  La clef.
-   procedure Finalize (Clef : in out Clef_64_Abs_T) is abstract;
-
-   overriding
-   --  Ajuste le contenu après l'affectation.
-   --  @param Clef
-   --  La clef.
-   procedure Adjust (Clef : in out Clef_64_Abs_T) is abstract;
-
 private
 
    type Clef_64_Abs_T is abstract new Clef_Abstraite_T with null record;
