@@ -18,8 +18,8 @@ with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
 with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
-with Des_P.Clef_P.Clef_64_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
+with Des_P.Clef_P.Clef_64_P;
 
 procedure Client is
 
@@ -58,14 +58,16 @@ begin
    if Nb_Arguments = 0 then
 
       Afficher_Aide;
-      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
+      Ada.Command_Line.Set_Exit_Status
+         (Ada.Command_Line.Success);
       return;
 
    elsif Nb_Arguments > Nb_Arguments_Max then
 
       Afficher_Aide;
       Put (Standard_Error, "Trop d'arguments. ");
-      Put_Line (Standard_Error, "Les arguments suivants sont invalide : ");
+      Put_Line
+         (Standard_Error, "Les arguments suivants sont invalide : ");
       for i in Nb_Arguments_Max + 1 .. Nb_Arguments loop
          Put (Standard_Error, "  - ");
          Ada.Text_IO.Put_Line
@@ -82,28 +84,40 @@ begin
             Standard_Error,
             "Vous devez donner au moins le <nom_fichier> et la <clef>."
          );
-      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+      Ada.Command_Line.Set_Exit_Status
+         (Ada.Command_Line.Failure);
       return;
 
    end if;
 
    if Nb_Arguments = 3 then
       declare
-         Crypt_Decrypt : constant String := Ada.Command_Line.Argument (1);
+         Crypt_Decrypt : constant String :=
+            Ada.Command_Line.Argument (1);
       begin
-         if Crypt_Decrypt = "-c" or else Crypt_Decrypt = "--crypter" then
+         if
+            Crypt_Decrypt = "-c"
+            or else
+            Crypt_Decrypt = "--crypter"
+         then
             Action := Crypter;
-         elsif Crypt_Decrypt = "-d" or else Crypt_Decrypt = "--decrypter" then
+         elsif
+            Crypt_Decrypt = "-d"
+            or else
+            Crypt_Decrypt = "--decrypter"
+         then
             Action := Decrypter;
          else
             Put (Standard_Error, "L'argument [");
-            Ada.Text_IO.Put (Ada.Text_IO.Standard_Error, Crypt_Decrypt);
+            Ada.Text_IO.Put
+               (Ada.Text_IO.Standard_Error, Crypt_Decrypt);
             Put_Line
                (
                   Standard_Error,
                   "] n'est pas valable"
                );
-            Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+            Ada.Command_Line.Set_Exit_Status
+               (Ada.Command_Line.Failure);
             return;
          end if;
       end;
@@ -131,9 +145,11 @@ begin
       end if;
 
       declare
-         Brut_Clef : Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T
+         Brut_Clef :
+         Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T
             with Address => Clef_Brut'Address;
-         C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         C_C_64 :
+         Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
       begin
          C_C_64.Preparer_Nouvelle_Clef;
          C_C_64.Construire_Clef (Brut_Clef);
@@ -147,7 +163,7 @@ begin
          (if Nb_Arguments = 3 then 2 else 1);
       Nom_Fichier : constant String := Ada.Command_Line.Argument
          (Position_Nom_Fic);
-      Depassement_Octets_Fichier : Ada.Directories.File_Size;
+      Octets_En_Trop : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
 
       use Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
@@ -157,31 +173,35 @@ begin
       Const_Decrypt : Constructeur_Decryptage_T;
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
-         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
-         Ada.Wide_Wide_Text_IO.Put (Standard_Error, "   Le fichier [");
-         Ada.Text_IO.Put (Ada.Text_IO.Standard_Error, Nom_Fichier);
-         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "] n'existe pas");
+         Put_Line (Standard_Error, "██████ Erreur !");
+         Put (Standard_Error, "   Le fichier [");
+         Ada.Text_IO.Put
+            (Ada.Text_IO.Standard_Error, Nom_Fichier);
+         Put_Line (Standard_Error, "] n'existe pas");
 
-         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+         Ada.Command_Line.Set_Exit_Status
+            (Ada.Command_Line.Failure);
          return;
       end if;
 
-      Depassement_Octets_Fichier := Ada.Directories.Size (Nom_Fichier) mod 8;
+      Octets_En_Trop :=
+         Ada.Directories.Size (Nom_Fichier) mod 8;
 
       --  La taille est en octet, 64 bits fait 8 octets,
       --  d'où l'utilisation de mod 8.
-      if not (Depassement_Octets_Fichier = 0) then
-         Ada.Wide_Wide_Text_IO.Put_Line (Standard_Error, "██████ Erreur !");
+      if not (Octets_En_Trop = 0) then
+         Put_Line (Standard_Error, "██████ Erreur !");
          Ada.Text_IO.Put_Line
             (
                Ada.Text_IO.Standard_Error,
                "   La taille du fichier n'est pas un multiple de 64 bits."
             );
          Ada.Text_IO.Put ("   ");
-         Ada.Text_IO.Put (Depassement_Octets_Fichier'Img);
+         Ada.Text_IO.Put (Octets_En_Trop'Img);
          Ada.Text_IO.Put_Line (" Octets de trop.");
 
-         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+         Ada.Command_Line.Set_Exit_Status
+            (Ada.Command_Line.Failure);
          return;
       end if;
 
@@ -200,7 +220,8 @@ begin
       declare
          Debut, Fin : Ada.Calendar.Time;
          Duree : Duration;
-         package Duree_IO is new Ada.Text_IO.Fixed_IO (Duration);
+         package Duree_IO is new
+         Ada.Text_IO.Fixed_IO (Duration);
          use type Ada.Calendar.Time;
       begin
          Debut := Ada.Calendar.Clock;
