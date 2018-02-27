@@ -17,7 +17,7 @@ package Des_P.Filtre_P.Sortie_P.Cryptage_P is
       P_Cryptage_P.Cryptage_Interface_T with private;
 
    overriding
-   --  Filtre le bloc de 64 bits avec la clef de 48 bits.
+   --  Filtre le bloc de 64 bits.
    --  @param Filtre
    --  Le filtre.
    --  @param Bloc

@@ -1,4 +1,4 @@
-with Des_P.Clef_P.Clef_64_Abs_P;
+with Des_P.Clef_P.Clef_64_I_P;
 
 --  @summary
 --  Constructeur de chaine de filtres.
@@ -24,7 +24,7 @@ package Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
    procedure Construire
       (
          Constructeur : in out Constructeur_Decryptage_T;
-         Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_Abs_T'Class
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       );
 
    --  Récupère la chaine construite.

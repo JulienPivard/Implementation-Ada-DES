@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 23 février[02] 2018
+--           Dernière modification : Mardi 27 février[02] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -17,11 +17,9 @@ with Des_P.Chaine_P.Sequentiel_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
-with Des_P.Clef_P.Constructeur_64_Abs_P;
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P;
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
+with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+with Des_P.Clef_P.Clef_64_P;
+with Des_P.Clef_P.Clef_64_P.Constructeur_P;
 
 procedure Client is
 
@@ -53,7 +51,7 @@ procedure Client is
    type Action_T is (Crypter, Decrypter);
    Action : Action_T := Crypter;
 
-   Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Clef_64_T;
+   Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
 begin
 
@@ -133,20 +131,13 @@ begin
       end if;
 
       declare
-         use  Des_P.Clef_P.Constructeur_64_Abs_P;
-         use  Des_P.Clef_P.Clef_64_Abs_P.Clef_64_P.Constructeur_64_P;
-         use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-         use  Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-         Brut_Clef : Clef_64_Brut_T with Address => Clef_Brut'Address;
-         C_C_64 : Constructeur_Clef_64_T;
-         C_C_56 : Constructeur_Clef_56_T;
-         C_C_48 : Constructeur_Clef_48_T;
+         Brut_Clef : Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T
+            with Address => Clef_Brut'Address;
+         C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
       begin
-         C_C_64.Preparer_Nouvelle_Clef_64;
-         C_C_64.Construire_Clef_64 (Brut_Clef);
-         C_C_64.Construire_Ajouter_Constructeur_56 (C_C_56);
-         C_C_64.Construire_Ajouter_Constructeur_48 (C_C_48);
-         Clef := C_C_64.Recuperer_Clef_64;
+         C_C_64.Preparer_Nouvelle_Clef;
+         C_C_64.Construire_Clef (Brut_Clef);
+         Clef := C_C_64.Recuperer_Clef;
       end;
    end Lire_Clef;
 

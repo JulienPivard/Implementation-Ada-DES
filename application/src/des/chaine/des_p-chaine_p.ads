@@ -1,4 +1,4 @@
-with Des_P.Clef_P.Clef_56_Abs_P;
+private with Des_P.Clef_P.Clef_56_I_P;
 
 --  @summary
 --  Interface de chaine de filtre.
@@ -38,7 +38,7 @@ private
    --  Table pour connaitre le nombre de décalages à appliquer à la clef
    Table_Decalage : constant
       array (Numero_Filtre_T)
-      of Des_P.Clef_P.Clef_56_Abs_P.Decalage_T :=
+      of Des_P.Clef_P.Clef_56_I_P.Decalage_T :=
       (1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1);
 
 end Des_P.Chaine_P;

@@ -1,6 +1,6 @@
 with Des_P.Filtre_P.Cryptage_Interface_P;
 
-private with Des_P.Clef_P.Clef_48_Abs_P.Holder_P;
+private with Des_P.Clef_P.Clef_48_I_P.Holder_P;
 
 --  @summary
 --  Représentation du filtre de permutation principal de cryptage DES.
@@ -37,7 +37,7 @@ package Des_P.Filtre_P.Corps_P.Cryptage_P is
    procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
+         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       );
 
 private
@@ -45,7 +45,7 @@ private
    type Corps_T is new Corps_Abstrait_T and
       P_Cryptage_P.Cryptage_Interface_T with
       record
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Holder_P.Holder;
+         Clef : Des_P.Clef_P.Clef_48_I_P.Holder_P.Holder;
       end record;
 
 end Des_P.Filtre_P.Corps_P.Cryptage_P;

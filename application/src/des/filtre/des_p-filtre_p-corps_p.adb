@@ -9,7 +9,7 @@ package body Des_P.Filtre_P.Corps_P is
    function Fonction_F
       (
          Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
+         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
    is

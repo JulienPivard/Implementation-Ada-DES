@@ -34,11 +34,11 @@ package body Des_P.Filtre_P.Corps_P.Decryptage_P is
    procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
-         Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
+         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
    is
    begin
-      Filtre.Clef := Des_P.Clef_P.Clef_48_Abs_P.Holder_P.To_Holder (Clef);
+      Filtre.Clef := Des_P.Clef_P.Clef_48_I_P.Holder_P.To_Holder (Clef);
    end Modifier_Clef;
 
 end Des_P.Filtre_P.Corps_P.Decryptage_P;

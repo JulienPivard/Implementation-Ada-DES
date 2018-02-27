@@ -6,19 +6,17 @@ package body Des_P.Bloc_Xor_Clef_P is
    function "xor"
       (
          Gauche : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-         Droite : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class
+         Droite : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
       return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
    is
-      use Des_P.Bloc_P.Bloc_48_P;
-      use Des_P.Clef_P.Clef_48_Abs_P;
-      use Des_P.Bloc_P;
-      B : Bloc_48_T;
-      Bit : Bit_T;
+      B : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      Bit : Des_P.Bloc_P.Bit_T;
+      I_Bis : Des_P.Clef_P.Clef_48_I_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_48_T loop
-         Bit :=
-            Gauche.Lire_Bit (I) xor Droite.Lire_Bit (Intervalle_Clef_48_T (I));
+      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_Bloc_48_T loop
+         I_Bis := Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
+         Bit := Gauche.Lire_Bit (I) xor Droite.Lire_Bit (I_Bis);
          B.Ecrire_Bit (I, Bit);
       end loop;
       return B;
@@ -27,7 +25,7 @@ package body Des_P.Bloc_Xor_Clef_P is
    ---------------------------------------------------------------------------
    function "xor"
       (
-         Gauche : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Abstrait_T'Class;
+         Gauche : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class;
          Droite : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
       )
       return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
