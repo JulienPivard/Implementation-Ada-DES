@@ -8,7 +8,7 @@ package Des_P.Bloc_P.Bloc_48_P is
 
    pragma Pure;
 
-   type Intervalle_Bloc_48_T is range 1 .. 48;
+   type Intervalle_T is range 1 .. 48;
    --  L'intervalle pour accéder à notre bloc de 48 bits.
 
    type Bloc_48_T is new Bloc_Abstrait_T with private;
@@ -35,7 +35,7 @@ package Des_P.Bloc_P.Bloc_48_P is
    procedure Ecrire_Bit
       (
          B : in out Bloc_48_T;
-         Position : Intervalle_Bloc_48_T;
+         Position : Intervalle_T;
          Bit : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 48.
@@ -49,7 +49,7 @@ package Des_P.Bloc_P.Bloc_48_P is
    function Lire_Bit
       (
          B : Bloc_48_T;
-         Position : Intervalle_Bloc_48_T
+         Position : Intervalle_T
       )
       return Bit_T;
    --  Lit le bit demandé dans le bloc de 48.
@@ -61,7 +61,7 @@ package Des_P.Bloc_P.Bloc_48_P is
 
 private
 
-   type Tableau_Bits_T is array (Intervalle_Bloc_48_T) of Bit_T
+   type Tableau_Bits_T is array (Intervalle_T) of Bit_T
       with Size => 48, Pack;
    --  Le tableau de bits. Une case par bit.
    --  La taille du tableau est fixée à 48 bits dans un soucis

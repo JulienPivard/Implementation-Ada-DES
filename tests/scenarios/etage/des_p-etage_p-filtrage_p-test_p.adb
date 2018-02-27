@@ -113,14 +113,14 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Filtrer_Sans_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -129,7 +129,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       end loop;
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -149,13 +149,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Filtrer_Avec_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -164,7 +164,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       end loop;
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -184,14 +184,14 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Iterer_Sans_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -200,7 +200,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       end loop;
       Etage.Modifier_Filtre (Filtre);
       Etage.Iterer (Bloc);
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -220,13 +220,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Iterer_Avec_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       Etage : Etage_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -237,7 +237,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage.Modifier_Filtre (Filtre);
       Etage.Modifier_Successeur (T.Etage);
       Etage.Iterer (Bloc);
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := True;

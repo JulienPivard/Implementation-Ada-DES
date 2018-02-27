@@ -13,7 +13,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
    --  00001111 00001111 00001111 00001111
    --  00001111 00001111 00001111 00001111
    depart : constant array
-      (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
+      (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
       of Des_P.Bloc_P.Bit_T :=
       (
          False, False, False, False, True, True, True, True,
@@ -34,7 +34,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
       Clef : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
@@ -64,7 +64,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
       --  00001111 00001111 00001111 00001111
       --  00010100 01010111 11010011 10110101
       attendu : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
+         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
          of Des_P.Bloc_P.Bit_T :=
          (
             False, False, False, False, True, True, True, True,
@@ -99,7 +99,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
       T.Filtre.Modifier_Clef (Clef_48);
       T.Filtre.Filtrer (Bloc);
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          declare
             b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);

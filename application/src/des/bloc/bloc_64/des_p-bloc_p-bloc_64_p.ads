@@ -10,7 +10,7 @@ package Des_P.Bloc_P.Bloc_64_P is
 
    pragma Pure;
 
-   type Intervalle_Bloc_64_T is range 1 .. 64;
+   type Intervalle_T is range 1 .. 64;
    --  L'intervalle pour accéder aux bits du bloc de 64 bits.
 
    type Bloc_64_T is new Bloc_Abstrait_T with private;
@@ -55,7 +55,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    procedure Ecrire_Bit
       (
          Bloc : in out Bloc_64_T;
-         Position : Intervalle_Bloc_64_T;
+         Position : Intervalle_T;
          Bit : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 64.
@@ -69,7 +69,7 @@ package Des_P.Bloc_P.Bloc_64_P is
    function Lire_Bit
       (
          Bloc : Bloc_64_T;
-         Position : Intervalle_Bloc_64_T
+         Position : Intervalle_T
       )
       return Bit_T;
    --  Lit le bit demandé dans le bloc de 64.
@@ -83,7 +83,7 @@ package Des_P.Bloc_P.Bloc_64_P is
       (
          Bloc : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T;
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
          Bit : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc
@@ -101,7 +101,7 @@ package Des_P.Bloc_P.Bloc_64_P is
       (
          Bloc : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T
       )
       return Bit_T;
    --  Lit le bit à la position demandé dans le bloc

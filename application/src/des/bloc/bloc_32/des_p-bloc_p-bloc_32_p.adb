@@ -25,7 +25,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
    procedure Ecrire_Bit
       (
          B : in out Bloc_32_T;
-         Position : Intervalle_Bloc_32_T;
+         Position : Intervalle_T;
          Bit : Bit_T
       )
    is
@@ -37,7 +37,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
    function Lire_Bit
       (
          B : Bloc_32_T;
-         Position : Intervalle_Bloc_32_T
+         Position : Intervalle_T
       )
       return Bit_T
    is

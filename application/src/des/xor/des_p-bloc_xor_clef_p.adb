@@ -14,7 +14,7 @@ package body Des_P.Bloc_Xor_Clef_P is
       Bit : Des_P.Bloc_P.Bit_T;
       I_Bis : Des_P.Clef_P.Clef_48_I_P.Intervalle_T;
    begin
-      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_Bloc_48_T loop
+      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_T loop
          I_Bis := Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
          Bit := Gauche.Lire_Bit (I) xor Droite.Lire_Bit (I_Bis);
          B.Ecrire_Bit (I, Bit);

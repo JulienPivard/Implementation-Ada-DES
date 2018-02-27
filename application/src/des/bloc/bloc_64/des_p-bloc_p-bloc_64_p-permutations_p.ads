@@ -25,7 +25,7 @@ package Des_P.Bloc_P.Bloc_64_P.Permutations_P is
 private
 
    type Table_Permutations_T is array
-      (Intervalle_Bloc_64_T) of Intervalle_Bloc_64_T;
+      (Intervalle_T) of Intervalle_T;
    --  Représentation des tables de permutations
 
 end Des_P.Bloc_P.Bloc_64_P.Permutations_P;

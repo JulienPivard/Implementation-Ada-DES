@@ -8,7 +8,8 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
       use Des_P.Bloc_P.Bloc_32_P;
       c : Constructeur_Bloc_48_T;
       b : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-      I : Intervalle_Bloc_32_T := Intervalle_Bloc_32_T'First;
+      I : Des_P.Bloc_P.Bloc_32_P.Intervalle_T :=
+         Des_P.Bloc_P.Bloc_32_P.Intervalle_T'First;
    begin
       c.Preparer_Nouveau_Bloc;
       T.constructeur := c;
@@ -18,31 +19,32 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
       loop
          for J in 1 .. 3 loop
             b.Ecrire_Bit (I, True);
-            I := Intervalle_Bloc_32_T'Succ (I);
+            I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
          b.Ecrire_Bit (I, False);
-         I := Intervalle_Bloc_32_T'Succ (I);
+         I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
          b.Ecrire_Bit (I, False);
-         I := Intervalle_Bloc_32_T'Succ (I);
+         I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
          for J in 1 .. 7 loop
             b.Ecrire_Bit (I, True);
-            I := Intervalle_Bloc_32_T'Succ (I);
+            I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
          b.Ecrire_Bit (I, False);
-         I := Intervalle_Bloc_32_T'Succ (I);
+         I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
          for J in 1 .. 2 loop
             b.Ecrire_Bit (I, True);
-            I := Intervalle_Bloc_32_T'Succ (I);
+            I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
          b.Ecrire_Bit (I, False);
-         exit Construit_Bloc_32 when I = Intervalle_Bloc_32_T'Last;
-         I := Intervalle_Bloc_32_T'Succ (I);
+         exit Construit_Bloc_32 when
+            I = Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last;
+         I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
       end loop Construit_Bloc_32;
       T.brut := b;
@@ -63,7 +65,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.constructeur.Bloc.Lire_Bit (I) = b,
@@ -79,7 +81,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
       bit_resulta, bit_attendu : Bit_IO_T;
    begin
       T.constructeur.Construire_Bloc (T.brut);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if resultat_attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -98,7 +100,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
    begin
       T.constructeur.Construire_Bloc (T.brut);
       bloc_resultat := T.constructeur.Recuperer_Bloc;
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if resultat_attendu (I) then 1 else 0);
          AUnit.Assertions.Assert

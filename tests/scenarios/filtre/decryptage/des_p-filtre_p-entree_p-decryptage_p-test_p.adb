@@ -30,7 +30,7 @@ package body Des_P.Filtre_P.Entree_P.Decryptage_P.Test_P is
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
       Depart : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
+         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
          of Des_P.Bloc_P.Bit_T :=
          (
             True, True, True, True, False, False, False, False,
@@ -46,7 +46,7 @@ package body Des_P.Filtre_P.Entree_P.Decryptage_P.Test_P is
       --  11111111 11111111 00000000 00000000
       --  11111111 11111111 00000000 00000000
       Attendu : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T)
+         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
          of Des_P.Bloc_P.Bit_T :=
          (
             True, True, True, True, True, True, True, True,
@@ -61,13 +61,13 @@ package body Des_P.Filtre_P.Entree_P.Decryptage_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
    begin
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, Depart (I));
       end loop;
 
       T.Filtre.Filtrer (Bloc);
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          declare
             B : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             Bit_Resulta : constant Bit_IO_T := (if B then 1 else 0);

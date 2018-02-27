@@ -26,7 +26,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Bits (I) = b,
@@ -39,12 +39,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_1er_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 1;
+      p : constant Intervalle_T := 1;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -66,12 +66,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_2eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 2;
+      p : constant Intervalle_T := 2;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -93,12 +93,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_3eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 3;
+      p : constant Intervalle_T := 3;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -120,12 +120,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_4eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 4;
+      p : constant Intervalle_T := 4;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -147,12 +147,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_5eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 5;
+      p : constant Intervalle_T := 5;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -174,12 +174,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_6eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 6;
+      p : constant Intervalle_T := 6;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -201,12 +201,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_7eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 7;
+      p : constant Intervalle_T := 7;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -228,12 +228,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_8eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 8;
+      p : constant Intervalle_T := 8;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -255,12 +255,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_9eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 9;
+      p : constant Intervalle_T := 9;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -282,12 +282,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_10eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 10;
+      p : constant Intervalle_T := 10;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -309,12 +309,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_11eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 11;
+      p : constant Intervalle_T := 11;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -336,12 +336,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_12eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 12;
+      p : constant Intervalle_T := 12;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -363,12 +363,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_13eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 13;
+      p : constant Intervalle_T := 13;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -390,12 +390,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_14eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 14;
+      p : constant Intervalle_T := 14;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -417,12 +417,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_15eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 15;
+      p : constant Intervalle_T := 15;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -444,12 +444,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_16eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 16;
+      p : constant Intervalle_T := 16;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -471,12 +471,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_17eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 17;
+      p : constant Intervalle_T := 17;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -498,12 +498,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_18eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 18;
+      p : constant Intervalle_T := 18;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -525,12 +525,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_19eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 19;
+      p : constant Intervalle_T := 19;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -552,12 +552,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_20eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 20;
+      p : constant Intervalle_T := 20;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -579,12 +579,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_21eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 21;
+      p : constant Intervalle_T := 21;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -606,12 +606,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_22eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 22;
+      p : constant Intervalle_T := 22;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -633,12 +633,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_23eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 23;
+      p : constant Intervalle_T := 23;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -660,12 +660,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_24eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 24;
+      p : constant Intervalle_T := 24;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -687,12 +687,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_25eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 25;
+      p : constant Intervalle_T := 25;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -714,12 +714,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_26eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 26;
+      p : constant Intervalle_T := 26;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -741,12 +741,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_27eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 27;
+      p : constant Intervalle_T := 27;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -768,12 +768,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_28eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 28;
+      p : constant Intervalle_T := 28;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -795,12 +795,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_29eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 29;
+      p : constant Intervalle_T := 29;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -822,12 +822,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_30eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 30;
+      p : constant Intervalle_T := 30;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -849,12 +849,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_31eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 31;
+      p : constant Intervalle_T := 31;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -876,12 +876,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_32eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 32;
+      p : constant Intervalle_T := 32;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -903,12 +903,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_33eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 33;
+      p : constant Intervalle_T := 33;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -930,12 +930,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_34eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 34;
+      p : constant Intervalle_T := 34;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -957,12 +957,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_35eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 35;
+      p : constant Intervalle_T := 35;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -984,12 +984,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_36eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 36;
+      p : constant Intervalle_T := 36;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1011,12 +1011,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_37eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 37;
+      p : constant Intervalle_T := 37;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1038,12 +1038,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_38eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 38;
+      p : constant Intervalle_T := 38;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1065,12 +1065,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_39eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 39;
+      p : constant Intervalle_T := 39;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1092,12 +1092,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_40eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 40;
+      p : constant Intervalle_T := 40;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1119,12 +1119,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_41eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 41;
+      p : constant Intervalle_T := 41;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1146,12 +1146,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_42eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 42;
+      p : constant Intervalle_T := 42;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1173,12 +1173,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_43eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 43;
+      p : constant Intervalle_T := 43;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1200,12 +1200,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_44eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 44;
+      p : constant Intervalle_T := 44;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1227,12 +1227,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_45eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 45;
+      p : constant Intervalle_T := 45;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1254,12 +1254,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_46eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 46;
+      p : constant Intervalle_T := 46;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1281,12 +1281,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_47eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 47;
+      p : constant Intervalle_T := 47;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1308,12 +1308,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_48eme_Bit (T : in out Test_Fixt_T) is
-      p : constant Intervalle_Bloc_48_T := 48;
+      p : constant Intervalle_T := 48;
       b : constant Bit_T := True;
       valeur_bit : Bit_IO_T;
    begin
       T.bloc.Ecrire_Bit (p, b);
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          if I = p then
             AUnit.Assertions.Assert
@@ -1344,13 +1344,13 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (I, b);
          attendu (I) := b;
       end loop;
 
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          valeur_bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert

@@ -3,7 +3,6 @@ with AUnit.Assertions;
 with Ada.Numerics.Discrete_Random;
 
 with Des_P.Bloc_P.Bloc_32_P;
-use  Des_P.Bloc_P.Bloc_32_P;
 
 package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
@@ -36,7 +35,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          "Le decalage vaut " & T.bloc.Decalage'Img &
          " au lieu de 0 apres 0 decalages."
          );
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
             (valeur_bit = b,
@@ -52,7 +51,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
+      attendu : array (Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -61,14 +60,14 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (I, b);
          attendu (I) := b;
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -86,8 +85,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
-      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
+      attendu_droite : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -96,7 +95,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -106,7 +105,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -132,8 +131,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
-      attendu_apres_echange : array (Intervalle_Bloc_64_T) of Bit_T;
+      attendu : array (Intervalle_T) of Bit_T;
+      attendu_apres_echange : array (Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -148,7 +147,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (I, b);
          attendu (I) := b;
@@ -160,7 +159,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -180,7 +179,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -199,8 +198,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
-      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
+      attendu_droite : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -215,7 +214,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -225,7 +224,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -253,7 +252,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -281,8 +280,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu : array (Intervalle_Bloc_64_T) of Bit_T;
-      attendu_apres_echange : array (Intervalle_Bloc_64_T) of Bit_T;
+      attendu : array (Intervalle_T) of Bit_T;
+      attendu_apres_echange : array (Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -297,7 +296,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (I, b);
          attendu (I) := b;
@@ -309,7 +308,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -329,7 +328,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -350,7 +349,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -369,8 +368,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche : array (Intervalle_Bloc_32_T) of Bit_T;
-      attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
+      attendu_droite : array (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
       bit_resulta, bit_attendu : Bit_IO_T;
@@ -385,7 +384,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -395,7 +394,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       end loop;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -423,7 +422,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -453,7 +452,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -481,7 +480,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       lu_gauche, lu_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -496,7 +496,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -508,7 +508,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -533,7 +533,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       ecrit_gauche, ecrit_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -548,7 +549,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          ecrit_gauche.Ecrire_Bit (I, b);
          attendu_gauche (I) := b;
@@ -561,7 +562,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -586,7 +587,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       lu_gauche, lu_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -601,7 +603,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -613,7 +615,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -637,7 +639,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -664,7 +666,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       ecrit_gauche, ecrit_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -679,7 +682,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          ecrit_gauche.Ecrire_Bit (I, b);
          attendu_gauche (I) := b;
@@ -692,7 +695,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -714,7 +717,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -739,7 +742,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -766,7 +769,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       lu_gauche, lu_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -781,7 +785,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (Gauche, I, b);
          attendu_gauche (I) := b;
@@ -793,7 +797,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -817,7 +821,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -843,7 +847,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if lu_gauche.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -870,7 +874,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       b : Bit_T;
-      attendu_gauche, attendu_droite : array (Intervalle_Bloc_32_T) of Bit_T;
+      attendu_gauche, attendu_droite : array
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T) of Bit_T;
       ecrit_gauche, ecrit_droite : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
       generateur : Bit_Aleatoire.Generator;
@@ -885,7 +890,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          ecrit_gauche.Ecrire_Bit (I, b);
          attendu_gauche (I) := b;
@@ -898,7 +903,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -920,7 +925,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -945,7 +950,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -969,7 +974,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
@@ -994,7 +999,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
          bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert

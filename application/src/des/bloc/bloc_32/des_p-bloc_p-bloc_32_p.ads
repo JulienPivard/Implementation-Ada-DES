@@ -8,7 +8,7 @@ package Des_P.Bloc_P.Bloc_32_P is
 
    pragma Pure;
 
-   type Intervalle_Bloc_32_T is range 1 .. 32;
+   type Intervalle_T is range 1 .. 32;
    --  L'intervalle pour accéder à notre bloc de 32 bits.
 
    type Bloc_32_T is new Bloc_Abstrait_T with private;
@@ -35,7 +35,7 @@ package Des_P.Bloc_P.Bloc_32_P is
    procedure Ecrire_Bit
       (
          B : in out Bloc_32_T;
-         Position : Intervalle_Bloc_32_T;
+         Position : Intervalle_T;
          Bit : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 32.
@@ -49,7 +49,7 @@ package Des_P.Bloc_P.Bloc_32_P is
    function Lire_Bit
       (
          B : Bloc_32_T;
-         Position : Intervalle_Bloc_32_T
+         Position : Intervalle_T
       )
    return Bit_T;
    --  Lit le bit demandé dans le bloc de 32.
@@ -69,7 +69,7 @@ package Des_P.Bloc_P.Bloc_32_P is
 
 private
 
-   type Tableau_Bits_T is array (Intervalle_Bloc_32_T) of Bit_T
+   type Tableau_Bits_T is array (Intervalle_T) of Bit_T
       with Size => 32, Pack;
    --  Le tableau de bits. Une case par bit.
    --  La taille du tableau est fixée à 32 bits dans un soucis

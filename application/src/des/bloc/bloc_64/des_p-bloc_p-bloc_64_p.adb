@@ -35,22 +35,21 @@ package body Des_P.Bloc_P.Bloc_64_P is
    procedure Ecrire_Bit
       (
          Bloc : in out Bloc_64_T;
-         Position : Intervalle_Bloc_64_T;
+         Position : Intervalle_T;
          Bit : Bit_T
       )
    is
-      use Des_P.Bloc_P.Bloc_32_P;
       G_Ou_D : Position_Bloc_T := Gauche;
-      P : Intervalle_Bloc_64_T := Position;
-      P_Dans_Intervalle_32 : Intervalle_Bloc_32_T;
-      Limite : constant Intervalle_Bloc_64_T :=
-         Intervalle_Bloc_64_T (Intervalle_Bloc_32_T'Last);
+      P : Intervalle_T := Position;
+      P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+      Limite : constant Intervalle_T :=
+         Intervalle_T (Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last);
    begin
       if Position > Limite then
          G_Ou_D := Droite;
          P := P - Limite;
       end if;
-      P_Dans_Intervalle_32 := Intervalle_Bloc_32_T (P);
+      P_Dans_Intervalle_32 := Des_P.Bloc_P.Bloc_32_P.Intervalle_T (P);
       Ecrire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32, Bit);
    end Ecrire_Bit;
 
@@ -58,22 +57,22 @@ package body Des_P.Bloc_P.Bloc_64_P is
    function Lire_Bit
       (
          Bloc : Bloc_64_T;
-         Position : Intervalle_Bloc_64_T
+         Position : Intervalle_T
       )
       return Bit_T
    is
       use Des_P.Bloc_P.Bloc_32_P;
       G_Ou_D : Position_Bloc_T := Gauche;
-      P : Intervalle_Bloc_64_T := Position;
-      P_Dans_Intervalle_32 : Intervalle_Bloc_32_T;
-      Limite : constant Intervalle_Bloc_64_T :=
-         Intervalle_Bloc_64_T (Intervalle_Bloc_32_T'Last);
+      P : Intervalle_T := Position;
+      P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+      Limite : constant Intervalle_T :=
+         Intervalle_T (Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last);
    begin
       if Position > Limite then
          G_Ou_D := Droite;
          P := P - Limite;
       end if;
-      P_Dans_Intervalle_32 := Intervalle_Bloc_32_T (P);
+      P_Dans_Intervalle_32 := Des_P.Bloc_P.Bloc_32_P.Intervalle_T (P);
       return Lire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32);
    end Lire_Bit;
 
@@ -82,7 +81,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       (
          Bloc : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T;
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
          Bit : Bit_T
       )
    is
@@ -95,7 +94,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       (
          Bloc : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T
       )
       return Bit_T
    is

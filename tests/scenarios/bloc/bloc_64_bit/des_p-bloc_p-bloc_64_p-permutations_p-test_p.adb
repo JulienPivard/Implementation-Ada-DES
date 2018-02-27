@@ -27,7 +27,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      depart : constant array (Intervalle_Bloc_64_T) of Bit_T :=
+      depart : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -41,7 +41,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Valeur attendu
       --  11111111 11111111 00000000 00000000
       --  11111111 11111111 00000000 00000000
-      attendu : constant array (Intervalle_Bloc_64_T) of Bit_T :=
+      attendu : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, True, True, True, True,
             True, True, True, True, True, True, True, True,
@@ -53,13 +53,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
             False, False, False, False, False, False, False, False
          );
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          T.bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
       Permutation_Entrante (T.bloc);
 
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          declare
             b : constant Bit_T := T.bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
@@ -83,7 +83,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      depart : constant array (Intervalle_Bloc_64_T) of Bit_T :=
+      depart : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -97,7 +97,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Valeur attendue
       --  00000000 00000000 00000000 00000000
       --  11111111 11111111 11111111 11111111
-      attendu : constant array (Intervalle_Bloc_64_T) of Bit_T :=
+      attendu : constant array (Intervalle_T) of Bit_T :=
          (
             False, False, False, False, False, False, False, False,
             False, False, False, False, False, False, False, False,
@@ -109,13 +109,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
             True, True, True, True, True, True, True, True
          );
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          T.bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
       Permutation_Sortante (T.bloc);
 
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          declare
             b : constant Bit_T := T.bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
