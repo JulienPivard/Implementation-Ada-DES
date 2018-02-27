@@ -40,19 +40,22 @@ package Des_P.Clef_P.Clef_56_P is
    --  @return Le bit lu.
 
    overriding
-   procedure Initialize (Clef : in out Clef_T);
+   procedure Initialize
+      (Clef : in out Clef_T);
    --  Création d'une clef vide par défaut.
    --  @param Clef
    --  La clef.
 
    overriding
-   procedure Finalize (Clef : in out Clef_T);
+   procedure Finalize
+      (Clef : in out Clef_T);
    --  Supprime la clef.
    --  @param Clef
    --  La clef.
 
    overriding
-   procedure Adjust (Clef : in out Clef_T);
+   procedure Adjust
+      (Clef : in out Clef_T);
    --  Ajuste le contenu après l'affectation.
    --  @param Clef
    --  La clef.
@@ -62,7 +65,8 @@ private
    subtype Intervalle_Demi_Clef_T is Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    --  L'intervalle des demi tableau de bits de la clef.
 
-   type Champ_De_Bits_T is array (Intervalle_Demi_Clef_T) of Bit_T;
+   type Champ_De_Bits_T is array
+      (Intervalle_Demi_Clef_T) of Bit_T;
    --  Les bits de la clef de 56 sont divisée en deux groupes
    --  de même taille.
    --  Tableau des bits de la clef. Intervalle de 0 à 27

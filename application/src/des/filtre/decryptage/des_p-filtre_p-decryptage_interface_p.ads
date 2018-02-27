@@ -8,7 +8,7 @@ package Des_P.Filtre_P.Decryptage_Interface_P is
 
    pragma Pure;
 
-   --  Un filtre de cryptage abstrait.
    type Decryptage_Interface_T is interface and Filtre_Interface_T;
+   --  Un filtre de cryptage abstrait.
 
 end Des_P.Filtre_P.Decryptage_Interface_P;

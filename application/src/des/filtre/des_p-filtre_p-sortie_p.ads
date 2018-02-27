@@ -8,9 +8,9 @@ package Des_P.Filtre_P.Sortie_P is
 
    pragma Pure;
 
-   --  Un filtre de sortie abstrait.
    type Sortie_Abstrait_T is abstract new
       Filtre_Interface_T with private;
+   --  Un filtre de sortie abstrait.
 
 private
 

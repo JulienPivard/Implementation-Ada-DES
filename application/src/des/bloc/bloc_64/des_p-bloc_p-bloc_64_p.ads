@@ -10,44 +10,54 @@ package Des_P.Bloc_P.Bloc_64_P is
 
    pragma Pure;
 
-   --  L'intervalle pour accéder aux bits du bloc de 64 bits.
    type Intervalle_Bloc_64_T is range 1 .. 64;
+   --  L'intervalle pour accéder aux bits du bloc de 64 bits.
 
-   --  Représente un bloc de 64 bits.
    type Bloc_64_T is new Bloc_Abstrait_T with private;
+   --  Représente un bloc de 64 bits.
 
+   type Position_Bloc_T is (Gauche, Droite);
    --  Désigne le bloc de 32 bits de gauche ou le bloc de droite.
    --  @value Gauche
    --  Le bloc de 32 bits de gauche.
    --  @value Droite
    --  Le bloc de 32 bits de droite.
-   type Position_Bloc_T is (Gauche, Droite);
 
    overriding
+   procedure Initialize
+      (Bloc : in out Bloc_64_T);
    --  Création d'un bloc de 64 bits avec la valeur 0.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Initialize (Bloc : in out Bloc_64_T);
 
    overriding
+   procedure Finalize
+      (Bloc : in out Bloc_64_T);
    --  Supprime le bloc.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Finalize (Bloc : in out Bloc_64_T);
 
    overriding
+   procedure Adjust
+      (Bloc : in out Bloc_64_T);
    --  Ajuste le contenu après l'affectation.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Adjust (Bloc : in out Bloc_64_T);
 
+   procedure Intervertir_Blocs
+      (Bloc : in out Bloc_64_T);
    --  Fait passer le bloc de 32 bits de gauche à droite et
    --  le bloc de 32 bits de droite à gauche. L'ordre des bits
    --  à l'intérieur des bloc de 32 n'est bien entendu pas modifié.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   procedure Intervertir_Blocs (Bloc : in out Bloc_64_T);
 
+   procedure Ecrire_Bit
+      (
+         Bloc : in out Bloc_64_T;
+         Position : Intervalle_Bloc_64_T;
+         Bit : Bit_T
+      );
    --  Écrit le bit à la position demandé dans le bloc de 64.
    --  @param Bloc
    --  Le bloc de 64 bits.
@@ -55,25 +65,27 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  La position du bit qu'on veut écrire.
    --  @param Bit
    --  Le bit qu'on veut écrire.
-   procedure Ecrire_Bit
-   (
-      Bloc : in out Bloc_64_T;
-      Position : Intervalle_Bloc_64_T;
-      Bit : Bit_T
-   );
 
+   function Lire_Bit
+      (
+         Bloc : Bloc_64_T;
+         Position : Intervalle_Bloc_64_T
+      )
+      return Bit_T;
    --  Lit le bit demandé dans le bloc de 64.
    --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Position
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
-   function Lire_Bit
-   (
-      Bloc : Bloc_64_T;
-      Position : Intervalle_Bloc_64_T
-   ) return Bit_T;
 
+   procedure Ecrire_Bit
+      (
+         Bloc : in out Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T;
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T;
+         Bit : Bit_T
+      );
    --  Écrit le bit à la position demandé dans le bloc
    --  gauche ou droite de 32 bits du bloc de 64.
    --  @param Bloc
@@ -84,14 +96,14 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  La position du bit qu'on veut écrire dans le bloc gauche.
    --  @param Bit
    --  Le bit qu'on veut écrire.
-   procedure Ecrire_Bit
-   (
-      Bloc : in out Bloc_64_T;
-      Bloc_G_Ou_D : Position_Bloc_T;
-      Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T;
-      Bit : Bit_T
-   );
 
+   function Lire_Bit
+      (
+         Bloc : Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T;
+         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
+      )
+      return Bit_T;
    --  Lit le bit à la position demandé dans le bloc
    --  de 32 bits, gauche ou droit, du bloc de 64.
    --  @param Bloc
@@ -101,13 +113,13 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  @param Position
    --  La position du bit qu'on veut lire dans le bloc gauche ou droit.
    --  @return Le bit lu.
-   function Lire_Bit
-   (
-      Bloc : Bloc_64_T;
-      Bloc_G_Ou_D : Position_Bloc_T;
-      Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_Bloc_32_T
-   ) return Bit_T;
 
+   procedure Ecrire_Bloc
+      (
+         Bloc : in out Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T;
+         Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+      );
    --  Écrit le bloc de 32 bits à droite ou à gauche dans le
    --  bloc de 64 bits.
    --  @param Bloc
@@ -116,32 +128,34 @@ package Des_P.Bloc_P.Bloc_64_P is
    --  Désigne le bloc gauche ou droite à écrire.
    --  @param Bloc_32
    --  Le bloc de 32 bits.
-   procedure Ecrire_Bloc
-   (
-      Bloc : in out Bloc_64_T;
-      Bloc_G_Ou_D : Position_Bloc_T;
-      Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
-   );
 
+   function Lire_Bloc
+      (
+         Bloc : Bloc_64_T;
+         Bloc_G_Ou_D : Position_Bloc_T
+      )
+      return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    --  Permet de lire le bloc de 32 bits de gauche ou de droite.
    --  @param Bloc
    --  Le bloc de 64 bits.
    --  @param Bloc_G_Ou_D
    --  Désigne le bloc de 32 bits de droite ou de gauche.
    --  @return Le bloc de 32 bits qui à été désigné.
-   function Lire_Bloc
-   (
-      Bloc : Bloc_64_T;
-      Bloc_G_Ou_D : Position_Bloc_T
-   ) return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
 private
 
-   --  Type modulaire permettant de connaitre le bloc de droite.
    type Decalage_T is mod 2;
+   --  Type modulaire permettant de connaitre le bloc de droite.
+
    for Position_Bloc_T use
       (Gauche => Decalage_T'First, Droite => Decalage_T'Last);
 
+   function "+"
+      (
+         Left : Position_Bloc_T;
+         Right : Decalage_T
+      )
+      return Position_Bloc_T;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
    --  @param Left
@@ -149,9 +163,13 @@ private
    --  @param Right
    --  La partie droite de l'opérande.
    --  @return Le coté décalé.
-   function "+" (Left : Position_Bloc_T; Right : Decalage_T)
-      return Position_Bloc_T;
 
+   function "+"
+      (
+         Left : Decalage_T;
+         Right : Position_Bloc_T
+      )
+      return Position_Bloc_T;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
    --  @param Left
@@ -159,15 +177,13 @@ private
    --  @param Right
    --  La partie droite de l'opérande.
    --  @return Le coté décalé.
-   function "+" (Left : Decalage_T; Right : Position_Bloc_T)
-      return Position_Bloc_T;
 
+   type Tableau_Bloc_T is array (Position_Bloc_T)
+      of Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    --  Les deux blocs de 32 bits. Celui de gauche est placé en
    --  position 0 et celui de droite est placé en position 1.
    --  Les blocs ne sont jamais physiquement échangé mais
    --  seulement décalé grâce à un opérateur de décalage.
-   type Tableau_Bloc_T is array (Position_Bloc_T)
-      of Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
    type Bloc_64_T is new Bloc_Abstrait_T with
       record

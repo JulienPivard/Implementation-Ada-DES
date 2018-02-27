@@ -23,10 +23,10 @@ package Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P is
    --  Le constructeur de la clef de 56.
 
    procedure Construire_Clef
-   (
-      Constructeur : in out Constructeur_Interface_T;
-      Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
-   )
+      (
+         Constructeur : in out Constructeur_Interface_T;
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+      )
    is abstract;
    --  Construit la clefs de 56 bits avec la clef de 64.
    --  @param Constructeur

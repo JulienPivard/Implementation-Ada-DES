@@ -28,19 +28,22 @@ package Des_P.Clef_P.Clef_64_P is
    --  @return Le bit lu.
 
    overriding
-   procedure Initialize (Clef : in out Clef_T);
+   procedure Initialize
+      (Clef : in out Clef_T);
    --  Création d'une clef vide par défaut.
    --  @param Clef
    --  La clef.
 
    overriding
-   procedure Finalize (Clef : in out Clef_T);
+   procedure Finalize
+      (Clef : in out Clef_T);
    --  Supprime la clef.
    --  @param Clef
    --  La clef.
 
    overriding
-   procedure Adjust (Clef : in out Clef_T);
+   procedure Adjust
+      (Clef : in out Clef_T);
    --  Ajuste le contenu après l'affectation.
    --  @param Clef
    --  La clef.

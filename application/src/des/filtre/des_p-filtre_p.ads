@@ -9,19 +9,19 @@ package Des_P.Filtre_P is
 
    pragma Pure;
 
-   --  Un filtre abstrait.
    type Filtre_Interface_T is interface;
+   --  Un filtre abstrait.
 
-   --  Filtre le bloc de 64 bits avec la clef de 48 bits.
-   --  @param Filtre
-   --  Le filtre.
-   --  @param Bloc
-   --  Le bloc de 64 bits.
    procedure Filtrer
       (
          Filtre : Filtre_Interface_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is abstract;
+   --  Filtre le bloc de 64 bits avec la clef de 48 bits.
+   --  @param Filtre
+   --  Le filtre.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
 
 end Des_P.Filtre_P;

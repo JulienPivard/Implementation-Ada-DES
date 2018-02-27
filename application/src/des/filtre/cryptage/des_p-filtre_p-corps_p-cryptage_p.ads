@@ -12,33 +12,33 @@ package Des_P.Filtre_P.Corps_P.Cryptage_P is
 
    package P_Cryptage_P renames Des_P.Filtre_P.Cryptage_Interface_P;
 
-   --  Le filtre de cryptage principal.
    type Corps_T is new Corps_Abstrait_T and
       P_Cryptage_P.Cryptage_Interface_T with private;
+   --  Le filtre de cryptage principal.
 
    overriding
-   --  Filtre le bloc de 64 bits avec la clef de 48 bits.
-   --  @param Filtre
-   --  Le filtre.
-   --  @param Bloc
-   --  Le bloc de 64 bits.
    procedure Filtrer
       (
          Filtre : Corps_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       );
-
-   overriding
-   --  Modifie la clef du filtre.
+   --  Filtre le bloc de 64 bits avec la clef de 48 bits.
    --  @param Filtre
    --  Le filtre.
-   --  @param Clef
-   --  la clef de 48 bits.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
+
+   overriding
    procedure Modifier_Clef
       (
          Filtre : in out Corps_T;
          Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       );
+   --  Modifie la clef du filtre.
+   --  @param Filtre
+   --  Le filtre.
+   --  @param Clef
+   --  la clef de 48 bits.
 
 private
 

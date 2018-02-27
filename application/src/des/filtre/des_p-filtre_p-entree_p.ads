@@ -8,9 +8,9 @@ package Des_P.Filtre_P.Entree_P is
 
    pragma Pure;
 
-   --  Un filtre d'entrée abstrait.
    type Entree_Abstrait_T is abstract new
       Filtre_Interface_T with private;
+   --  Un filtre d'entrée abstrait.
 
 private
 

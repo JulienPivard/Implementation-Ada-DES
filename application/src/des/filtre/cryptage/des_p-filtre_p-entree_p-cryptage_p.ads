@@ -12,22 +12,22 @@ package Des_P.Filtre_P.Entree_P.Cryptage_P is
 
    package P_Cryptage_P renames Des_P.Filtre_P.Cryptage_Interface_P;
 
-   --  Le filtre de cryptage qui va effectuer la première
-   --  permutation pour décrypter.
    type Entree_T is new Entree_Abstrait_T and
       P_Cryptage_P.Cryptage_Interface_T with private;
+   --  Le filtre de cryptage qui va effectuer la première
+   --  permutation pour décrypter.
 
    overriding
-   --  Filtre le bloc de 64 bits.
-   --  @param Filtre
-   --  Le filtre.
-   --  @param Bloc
-   --  Le bloc de 64 bits.
    procedure Filtrer
       (
          Filtre : Entree_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       );
+   --  Filtre le bloc de 64 bits.
+   --  @param Filtre
+   --  Le filtre.
+   --  @param Bloc
+   --  Le bloc de 64 bits.
 
 private
 
