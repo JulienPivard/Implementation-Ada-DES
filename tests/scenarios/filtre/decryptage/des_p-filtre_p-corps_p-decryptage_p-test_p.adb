@@ -1,12 +1,10 @@
 with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P;
+with Des_P.Clef_P.Clef_56_I_P;
 with Des_P.Filtre_P.Clef_Tests_P;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Simplifie_P;
 
 package body Des_P.Filtre_P.Corps_P.Decryptage_P.Test_P is
 
@@ -32,12 +30,7 @@ package body Des_P.Filtre_P.Corps_P.Decryptage_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       Filtre : Corps_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      Clef : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
-      Constructeur_48 : Constructeur_Clef_48_T;
-      Constructeur_56 : Constructeur_Clef_56_T;
+      Clef : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_Bloc_64_T'Range loop
@@ -47,12 +40,7 @@ package body Des_P.Filtre_P.Corps_P.Decryptage_P.Test_P is
       T.Filtre := Filtre;
       T.Bloc := Bloc;
 
-      Clef.Init
-         (
-            Des_P.Filtre_P.Clef_Tests_P.contenu_clef,
-            Constructeur_56,
-            Constructeur_48
-         );
+      Clef.Init (Des_P.Filtre_P.Clef_Tests_P.Contenu_Clef);
       T.Clef := Clef;
 
    end Set_Up;
@@ -88,13 +76,13 @@ package body Des_P.Filtre_P.Corps_P.Decryptage_P.Test_P is
             False, False, False, False, True, True, True, True
          );
 
-      use type Des_P.Clef_P.Clef_56_Abs_P.Decalage_T;
+      use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
 
       --  Valeur attendu
       --  11111000 X0011000 0X110X10 X011 1101 00X10X11 00X10010 11000X11
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T := T.Bloc;
       Champs_48 : constant
-      Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
+      Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
          (
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True,
@@ -103,7 +91,7 @@ package body Des_P.Filtre_P.Corps_P.Decryptage_P.Test_P is
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True
          );
-      Clef_48 : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P.Clef_48_T;
+      Clef_48 : Des_P.Clef_P.Clef_48_Simplifie_P.Clef_S_T;
    begin
 
       Clef_48.Init (Champs_48);

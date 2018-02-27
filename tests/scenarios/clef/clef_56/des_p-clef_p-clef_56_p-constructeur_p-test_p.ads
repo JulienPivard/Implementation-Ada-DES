@@ -1,17 +1,14 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
-with Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P;
+with Des_P.Clef_P.Clef_64_Simplifie_P;
 
-package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
-
-   use Des_P.Clef_P.Clef_56_Abs_P.Clef_Simplifie_P;
+package Des_P.Clef_P.Clef_56_P.Constructeur_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : Des_P.Clef_P.Constructeur_48_Abs_P.Holder_P.Holder;
-         clef_56 : Clef_Simplifie_T;
+         constructeur : Constructeur_Clef_T;
+         clef_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
       end record;
 
    overriding
@@ -26,4 +23,4 @@ package Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P is
 
    procedure Test_Recuperation (T : in out Test_Fixt_T);
 
-end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P.Test_P;
+end Des_P.Clef_P.Clef_56_P.Constructeur_P.Test_P;

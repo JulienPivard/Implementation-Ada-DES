@@ -1,18 +1,10 @@
-package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P is
-
-   ---------------------------------------------------------------------------
-   overriding
-   function Possede_Constructeur_48 (Clef : Clef_56_T) return Boolean is
-      pragma Unreferenced (Clef);
-   begin
-      return False;
-   end Possede_Constructeur_48;
+package body Des_P.Clef_P.Clef_56_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Decaler_Bits_A_Gauche
       (
-         Clef : in out Clef_56_T;
+         Clef : in out Clef_S_T;
          Nb_Decalage : Decalage_T := 1
       )
    is
@@ -25,7 +17,10 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P is
    ---------------------------------------------------------------------------
    overriding
    function Lire_Bit
-      (Clef : Clef_56_T; Position : Intervalle_Clef_56_T)
+      (
+         Clef : Clef_S_T;
+         Position : Intervalle_Clef_56_T
+      )
       return Bit_T
    is
       pragma Unreferenced (Clef);
@@ -36,19 +31,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
-   function Lire_Clef_48
-      (Clef : Clef_56_T)
-      return Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T
-   is
-      pragma Unreferenced (Clef);
-      C : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Clef_48_T;
-   begin
-      return C;
-   end Lire_Clef_48;
-
-   ---------------------------------------------------------------------------
-   overriding
-   procedure Initialize (Clef : in out Clef_56_T) is
+   procedure Initialize (Clef : in out Clef_S_T) is
       pragma Unreferenced (Clef);
    begin
       null;
@@ -56,7 +39,7 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Finalize (Clef : in out Clef_56_T) is
+   procedure Finalize (Clef : in out Clef_S_T) is
       pragma Unreferenced (Clef);
    begin
       null;
@@ -64,10 +47,10 @@ package body Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Adjust (Clef : in out Clef_56_T) is
+   procedure Adjust (Clef : in out Clef_S_T) is
       pragma Unreferenced (Clef);
    begin
       null;
    end Adjust;
 
-end Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
+end Des_P.Clef_P.Clef_56_Simple_P;

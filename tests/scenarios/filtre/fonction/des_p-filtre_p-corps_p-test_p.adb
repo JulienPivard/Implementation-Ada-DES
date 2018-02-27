@@ -1,6 +1,6 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+with Des_P.Clef_P.Clef_48_Simplifie_P;
 
 package body Des_P.Filtre_P.Corps_P.Test_P is
 
@@ -53,8 +53,7 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
             True, True, False, True, True, True, False, False,
             True, False, True, True, True, False, True, False
          );
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
-      C : constant Champ_De_Bits_T :=
+      C : constant Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
          (
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True,
@@ -63,11 +62,11 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True
          );
-      Clef : Clef_48_T;
+      Clef : Des_P.Clef_P.Clef_48_Simplifie_P.Clef_S_T;
       Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
 
-      Init (Clef, C);
+      Clef.Init (C);
 
       Bloc := Fonction_F (T.Bloc, Clef);
 

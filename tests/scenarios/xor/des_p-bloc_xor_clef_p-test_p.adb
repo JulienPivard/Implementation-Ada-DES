@@ -1,6 +1,6 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
+with Des_P.Clef_P.Clef_48_Simple_P;
 
 package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
@@ -30,19 +30,15 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
-
    ---------------------------------------------------------------------------
    procedure Test_Xor_G_D (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
-      use Des_P.Bloc_P.Bloc_48_P;
-
       bit_resulta, bit_attendu : Bit_IO_T;
-      bloc_resultat : Bloc_48_T;
-      Clef : Clef_48_Simplifie_T;
+      bloc_resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
       bloc_resultat := T.bloc xor Clef;
 
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_Bloc_48_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 
@@ -57,16 +53,15 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Xor_D_G (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
       use Des_P.Bloc_P.Bloc_48_P;
 
       bit_resulta, bit_attendu : Bit_IO_T;
       bloc_resultat : Bloc_48_T;
-      Clef : Clef_48_Simplifie_T;
+      Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
       bloc_resultat := T.bloc xor Clef;
 
-      for I in Intervalle_Bloc_48_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_Bloc_48_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 

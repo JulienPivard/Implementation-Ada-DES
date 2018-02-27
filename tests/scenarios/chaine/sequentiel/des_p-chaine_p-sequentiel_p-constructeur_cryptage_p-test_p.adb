@@ -1,14 +1,11 @@
 with AUnit.Assertions;
 
 with Des_P.Etage_P.Filtrage_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
 with Des_P.Etage_P.Filtrage_P.Explorer_P;
+with Des_P.Clef_P.Clef_64_Simplifie_P;
 with Des_P.Filtre_P.Entree_P.Cryptage_P;
 with Des_P.Filtre_P.Corps_P.Cryptage_P;
 with Des_P.Filtre_P.Sortie_P.Cryptage_P;
-
-with Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P;
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
 
@@ -31,7 +28,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
-
    ---------------------------------------------------------------------------
    procedure Test_Initialisation (T : in out Test_Fixt_T) is
       E : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -45,30 +41,26 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Construction (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
-      Const_56 : Constructeur_Clef_56_T;
-      Const_48 : Constructeur_Clef_48_T;
+      C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
-      C_64.Init ((others => False), Const_56, Const_48);
+      C_64.Init ((others => False));
       T.C.Construire (C_64);
       declare
-         use Des_P.Filtre_P.Corps_P.Cryptage_P;
-         use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Lire_Etage_Suivant (T.C.Chaine.Tete);
          C : Integer := 1;
       begin
          AUnit.Assertions.Assert
-            (T.C.Chaine.Tete.Possede_Filtre,
-            "L'étage : " & C'Img & " ne possede pas de filtre"
+            (
+               T.C.Chaine.Tete.Possede_Filtre,
+               "L'étage : " & C'Img & " ne possede pas de filtre"
             );
          AUnit.Assertions.Assert
-            (Lire_Filtre (T.C.Chaine.Tete) in
-            Des_P.Filtre_P.Entree_P.Cryptage_P.Entree_T,
-            "L'estage : " & C'Img & " n'est pas une entree"
+            (
+               Lire_Filtre (T.C.Chaine.Tete) in
+               Des_P.Filtre_P.Entree_P.Cryptage_P.Entree_T,
+               "L'estage : " & C'Img & " n'est pas une entree"
             );
          Verif_Successeur :
          loop
@@ -104,14 +96,10 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
-      use Des_P.Clef_P.Clef_56_Abs_P.Clef_56_P.Constructeur_56_P;
-      use Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Constructeur_48_P;
-      C_64 : Des_P.Clef_P.Clef_64_Abs_P.Clef_Simple_P.Clef_Simple_T;
-      Const_56 : Constructeur_Clef_56_T;
-      Const_48 : Constructeur_Clef_48_T;
+      C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
       Chaine : Chaine_T;
    begin
-      C_64.Init ((others => False), Const_56, Const_48);
+      C_64.Init ((others => False));
       T.C.Construire (C_64);
       Chaine := T.C.Recuperer_Chaine;
       declare

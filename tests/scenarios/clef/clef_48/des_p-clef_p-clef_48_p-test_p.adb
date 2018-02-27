@@ -1,13 +1,14 @@
 with AUnit.Assertions;
 
 with Ada.Numerics.Discrete_Random;
+with Des_P.Clef_P.Clef_48_I_P;
 
-package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
+package body Des_P.Clef_P.Clef_48_P.Test_P is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C : Clef_48_T;
+      C : Clef_T;
    begin
       C.Bits := (others => False);
       T.clef_48 := C;
@@ -32,7 +33,7 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
       T.clef_48.Bits :=
          (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
          33 .. 36 | 41 .. 44 => False, others => True);
-      for I in Intervalle_Clef_48_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          AUnit.Assertions.Assert
             (T.clef_48.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
@@ -50,12 +51,12 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
       bits_attendu : Tableau_Bits_T;
    begin
       Bit_Aleatoire.Reset (generateur);
-      for I in Intervalle_Clef_48_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          bits_attendu (I) := b;
          T.clef_48.Bits (I) := b;
       end loop;
-      for I in Intervalle_Clef_48_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          AUnit.Assertions.Assert
             (T.clef_48.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
@@ -65,4 +66,4 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P is
       end loop;
    end Test_Bits_Aleatoire;
 
-end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_P.Test_P;
+end Des_P.Clef_P.Clef_48_P.Test_P;

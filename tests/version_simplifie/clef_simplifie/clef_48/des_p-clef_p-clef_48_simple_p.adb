@@ -1,11 +1,11 @@
-package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P is
+package body Des_P.Clef_P.Clef_48_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
    function Lire_Bit
       (
-         Clef : Clef_48_Simplifie_T;
-         Position : Intervalle_Clef_48_T
+         Clef : Clef_S_T;
+         Position : Des_P.Clef_P.Clef_48_I_P.Intervalle_T
       )
       return Bit_T
    is
@@ -17,23 +17,23 @@ package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Initialize (Clef : in out Clef_48_Simplifie_T) is
+   procedure Initialize (Clef : in out Clef_S_T) is
    begin
       null;
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Finalize (Clef : in out Clef_48_Simplifie_T) is
+   procedure Finalize (Clef : in out Clef_S_T) is
    begin
       null;
    end Finalize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Adjust (Clef : in out Clef_48_Simplifie_T) is
+   procedure Adjust (Clef : in out Clef_S_T) is
    begin
       null;
    end Adjust;
 
-end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
+end Des_P.Clef_P.Clef_48_Simple_P;

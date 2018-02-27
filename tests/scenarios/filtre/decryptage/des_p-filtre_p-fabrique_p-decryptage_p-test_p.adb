@@ -4,7 +4,7 @@ with Des_P.Filtre_P.Entree_P.Decryptage_P;
 with Des_P.Filtre_P.Corps_P.Decryptage_P;
 with Des_P.Filtre_P.Sortie_P.Decryptage_P;
 
-with Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P;
+with Des_P.Clef_P.Clef_48_Simple_P;
 
 package body Des_P.Filtre_P.Fabrique_P.Decryptage_P.Test_P is
 
@@ -44,7 +44,7 @@ package body Des_P.Filtre_P.Fabrique_P.Decryptage_P.Test_P is
    is
       use Des_P.Filtre_P.Corps_P.Decryptage_P;
       Corps : Corps_T;
-      Clef : Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simple_P.Clef_48_Simplifie_T;
+      Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
       Corps.Modifier_Clef (Clef);
       AUnit.Assertions.Assert

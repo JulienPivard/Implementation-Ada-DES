@@ -1,48 +1,48 @@
-package body Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P is
+package body Des_P.Clef_P.Clef_64_Simplifie_P is
 
    ---------------------------------------------------------------------------
    procedure Init
       (
-         Clef : out Clef_48_T;
-         Champ : Champ_De_Bits_T
+         Clef : out Clef_S_T;
+         Champ : Tableau_Bits_T
       )
    is
    begin
-      Clef.Bits := Champ;
+      Clef.Champ := Champ;
    end Init;
 
    ---------------------------------------------------------------------------
    overriding
    function Lire_Bit
       (
-         Clef : Clef_48_T;
-         Position : Intervalle_Clef_48_T
+         Clef : Clef_S_T;
+         Position : Des_P.Clef_P.Clef_64_I_P.Intervalle_T
       )
       return Bit_T
    is
    begin
-      return Clef.Bits (Position);
+      return Clef.Champ (Position);
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Initialize (Clef : in out Clef_48_T) is
+   procedure Initialize (Clef : in out Clef_S_T) is
    begin
-      null;
+      Clef.Champ := (others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Finalize (Clef : in out Clef_48_T) is
+   procedure Finalize (Clef : in out Clef_S_T) is
    begin
-      null;
+      Clef.Champ := (others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Adjust (Clef : in out Clef_48_T) is
+   procedure Adjust (Clef : in out Clef_S_T) is
    begin
       null;
    end Adjust;
 
-end Des_P.Clef_P.Clef_48_Abs_P.Clef_48_Simplifie_P;
+end Des_P.Clef_P.Clef_64_Simplifie_P;
