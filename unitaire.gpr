@@ -1,4 +1,4 @@
---  Dernière modification : Jeudi 26 octobre[10] 2017
+--  Dernière modification : Mardi 27 février[02] 2018
 --  auteur : PIVARD Julien
 with "aunit";
 with "application/build.gpr";
@@ -22,6 +22,7 @@ project Unitaire is
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnatef est la pour afficher le chemin complet des fichiers dans les
    --  messages erreurs et avertissements.
+   --  gnatf Affiche toutes les erreurs.
    --  gnatU : Permet de marquer les messages erreurs avec le tag error:
    --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
    --  gnatw.e active les avertissements pour les variables non utilisé.
@@ -59,6 +60,7 @@ project Unitaire is
       (
          "-gnata",
          "-gnatef",
+         "-gnatf",
          "-gnatU",
          "-gnat2012",
          "-gnatyy",
