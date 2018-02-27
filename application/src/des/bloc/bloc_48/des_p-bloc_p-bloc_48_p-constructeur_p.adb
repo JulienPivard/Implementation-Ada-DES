@@ -16,7 +16,6 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P is
          Brut : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
       )
    is
-      use Des_P.Bloc_P.Bloc_32_P;
       type Table_Selection_E_T is array
          (Intervalle_T)
          of Des_P.Bloc_P.Bloc_32_P.Intervalle_T;

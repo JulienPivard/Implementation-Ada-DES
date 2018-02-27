@@ -3,8 +3,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Initialize (Bloc : in out Bloc_64_T) is
-      use Des_P.Bloc_P.Bloc_32_P;
-      G, D : Bloc_32_T;
+      G, D : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       Bloc.Decalage := 0;
       Bloc.Blocs_32 (Gauche + Bloc.Decalage) := G;
@@ -61,7 +60,6 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
       return Bit_T
    is
-      use Des_P.Bloc_P.Bloc_32_P;
       G_Ou_D : Position_Bloc_T := Gauche;
       P : Intervalle_T := Position;
       P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;

@@ -18,11 +18,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
          Brut : Bloc_64_Brut_T
       )
    is
-      use Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+      package Faiseur_32 renames Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
       type Bloc_Intermediaire is
          record
-            Bloc_1 : Bloc_32_Brut_T;
-            Bloc_2 : Bloc_32_Brut_T;
+            Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
+            Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
          end record
       with Size => 64;
 
@@ -34,7 +34,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
 
       Resultat : Bloc_Intermediaire with Address => Brut'Address;
 
-      C_32 : Constructeur_Bloc_32_T;
+      C_32 : Faiseur_32.Constructeur_Bloc_32_T;
    begin
       C_32.Preparer_Nouveau_Bloc;
       C_32.Construire_Bloc (Resultat.Bloc_1);
@@ -63,11 +63,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
       return Bloc_64_Brut_T
    is
       pragma Unreferenced (Constructeur);
-      use Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+      package Faiseur_32 renames Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
       type Bloc_Intermediaire is
          record
-            Bloc_1 : Bloc_32_Brut_T;
-            Bloc_2 : Bloc_32_Brut_T;
+            Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
+            Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
          end record
       with Size => 64;
 
@@ -77,7 +77,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
             Bloc_2 at 4 range 0 .. 31;
          end record;
 
-      C_32 : Constructeur_Bloc_32_T;
+      C_32 : Faiseur_32.Constructeur_Bloc_32_T;
       Resultat : Bloc_Intermediaire :=
          (
             C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Gauche)),
