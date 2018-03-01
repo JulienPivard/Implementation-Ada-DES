@@ -89,7 +89,8 @@ package Des_P.Etage_P.Filtrage_P is
       (
          Etage : Etage_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
-      );
+      )
+      with Pre => Etage.Possede_Filtre;
    --  Déclenche les filtre en cascade jusqu'à ce qu'il n'y ai
    --  plus de successeur.
    --  @param Etage
@@ -103,7 +104,8 @@ private
       (
          Etage : Etage_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
-      );
+      )
+      with Pre => Etage.Possede_Filtre;
    --  Filtre le bloc de 64 bits avec une clef.
    --  @param Etage
    --  L'étage.

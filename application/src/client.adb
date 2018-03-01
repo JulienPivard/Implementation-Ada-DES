@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 27 février[02] 2018
+--           Dernière modification : Jeudi 01 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -19,12 +19,17 @@ with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
 with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
+with Des_P.Clef_P.Clef_56_P.Constructeur_P;
+with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_64_P;
 
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Arguments_Max : constant Natural := 3;
+
+   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
+   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide;
@@ -171,6 +176,8 @@ begin
       Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
       Const_Crypt : Constructeur_Cryptage_T;
       Const_Decrypt : Constructeur_Decryptage_T;
+      F_56 : Faiseur_56_P.Constructeur_Clef_T;
+      F_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Put_Line (Standard_Error, "██████ Erreur !");
@@ -207,11 +214,11 @@ begin
 
       case Action is
          when Crypter =>
-            Const_Crypt.Initialiser;
+            Const_Crypt.Initialiser (F_56, F_48);
             Const_Crypt.Construire (Clef);
             Chaine := Const_Crypt.Recuperer_Chaine;
          when Decrypter =>
-            Const_Decrypt.Initialiser;
+            Const_Decrypt.Initialiser (F_56, F_48);
             Const_Decrypt.Construire (Clef);
             Chaine := Const_Decrypt.Recuperer_Chaine;
       end case;

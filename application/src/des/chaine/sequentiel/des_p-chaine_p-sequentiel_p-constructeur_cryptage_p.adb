@@ -1,16 +1,24 @@
-with Des_P.Clef_P.Clef_48_P;
-with Des_P.Clef_P.Clef_56_P.Constructeur_P;
-with Des_P.Clef_P.Clef_48_P.Constructeur_P;
+with Des_P.Clef_P.Clef_56_I_P;
 with Des_P.Filtre_P.Corps_P;
 with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
 
    ---------------------------------------------------------------------------
-   procedure Initialiser (Constructeur : in out Constructeur_Cryptage_T) is
+   procedure Initialiser
+      (
+         Constructeur : in out Constructeur_Cryptage_T;
+         Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class;
+         Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class
+      )
+   is
       C : Chaine_T;
    begin
       Constructeur.Chaine := C;
+      Constructeur.Faiseur_56 :=
+         Faiseur_56_I_P.Holder_P.To_Holder (Faiseur_56);
+      Constructeur.Faiseur_48 :=
+         Faiseur_48_I_P.Holder_P.To_Holder (Faiseur_48);
    end Initialiser;
 
    ---------------------------------------------------------------------------
@@ -22,30 +30,32 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
    is
       Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
       Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
-      C_56 : Des_P.Clef_P.Clef_56_P.Constructeur_P.Constructeur_Clef_T;
-      C_48 : Des_P.Clef_P.Clef_48_P.Constructeur_P.Constructeur_Clef_T;
-      Clef_56 : Des_P.Clef_P.Clef_56_P.Clef_T;
+      Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
+         Constructeur.Faiseur_56.Element;
+      Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class :=
+         Constructeur.Faiseur_48.Element;
    begin
-      C_56.Preparer_Nouvelle_Clef;
-      C_56.Construire_Clef (Clef);
-      Clef_56 := C_56.Recuperer_Clef;
-
-      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
-      for I in Numero_Filtre_T'Range loop
-         Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
-         C_48.Preparer_Nouvelle_Clef;
-         C_48.Construire_Clef (Clef_56);
-         declare
-            Clef_48 : constant Des_P.Clef_P.Clef_48_P.Clef_T :=
-               C_48.Recuperer_Clef;
-            E : Des_P.Etage_P.Filtrage_P.Etage_T;
-            F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Fabrique.Fabriquer_Corps (Clef_48);
-         begin
-            E.Modifier_Filtre (F);
-            Tete.Ajouter_Successeur (E);
-         end;
-      end loop;
+      Faiseur_56.Preparer_Nouvelle_Clef;
+      Faiseur_56.Construire_Clef (Clef);
+      declare
+         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+            Faiseur_56.Recuperer_Clef;
+      begin
+         Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+         for I in Numero_Filtre_T'Range loop
+            Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
+            Faiseur_48.Preparer_Nouvelle_Clef;
+            Faiseur_48.Construire_Clef (Clef_56);
+            declare
+               E : Des_P.Etage_P.Filtrage_P.Etage_T;
+               F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+                  Fabrique.Fabriquer_Corps (Faiseur_48.Recuperer_Clef);
+            begin
+               E.Modifier_Filtre (F);
+               Tete.Ajouter_Successeur (E);
+            end;
+         end loop;
+      end;
 
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;

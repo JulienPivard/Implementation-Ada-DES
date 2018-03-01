@@ -16,6 +16,11 @@ with Ada.Sequential_IO;
 
 package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
+   package Faiseur_Cryptage_P renames
+      Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
+   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
+
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
@@ -40,8 +45,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Filtre (T : in out Test_Fixt_T) is
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
-      Const_Crypt :
-   Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Constructeur_Cryptage_T;
+      Const_Crypt : Faiseur_Cryptage_P.Constructeur_Cryptage_T;
+      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
+      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
          package Lecteur_64_IO is new Ada.Sequential_IO
@@ -53,7 +59,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Lecteur_64_IO.Close (Fichier);
          pragma Unreferenced (Fichier);
       end;
-      Const_Crypt.Initialiser;
+      Const_Crypt.Initialiser (Const_56, Const_48);
       Const_Crypt.Construire (T.Clef);
       T.Chaine := Const_Crypt.Recuperer_Chaine;
 
