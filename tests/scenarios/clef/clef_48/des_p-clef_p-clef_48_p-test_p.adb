@@ -11,7 +11,7 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
       C : Clef_T;
    begin
       C.Bits := (others => False);
-      T.clef_48 := C;
+      T.clef := C;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -30,14 +30,14 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
          (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
          33 .. 36 | 41 .. 44 => False, others => True);
    begin
-      T.clef_48.Bits :=
+      T.clef.Bits :=
          (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
          33 .. 36 | 41 .. 44 => False, others => True);
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          AUnit.Assertions.Assert
-            (T.clef_48.Lire_Bit (I) = bits_attendu (I),
+            (T.clef.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_48.Lire_Bit (I)'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
             " au lieu de " & bits_attendu (I)'Img
             );
       end loop;
@@ -54,13 +54,13 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          bits_attendu (I) := b;
-         T.clef_48.Bits (I) := b;
+         T.clef.Bits (I) := b;
       end loop;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          AUnit.Assertions.Assert
-            (T.clef_48.Lire_Bit (I) = bits_attendu (I),
+            (T.clef.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_48.Lire_Bit (I)'Img &
+            " vaut : " & T.clef.Lire_Bit (I)'Img &
             " au lieu de " & bits_attendu (I)'Img
             );
       end loop;

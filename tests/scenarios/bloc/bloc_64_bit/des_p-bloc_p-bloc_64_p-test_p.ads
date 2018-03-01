@@ -19,6 +19,9 @@ package Des_P.Bloc_P.Bloc_64_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T);
 
+   procedure Test_Modification_Un_Bit_Par_Un_Bit
+      (T : in out Test_Fixt_T);
+
    procedure Test_Bits_Aleatoire
       (T : in out Test_Fixt_T);
 

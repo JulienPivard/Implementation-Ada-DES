@@ -47,6 +47,46 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
    end Test_Initialisation;
 
    ---------------------------------------------------------------------------
+   procedure Test_Modification_Un_Bit_Par_Un_Bit
+      (T : in out Test_Fixt_T)
+   is
+      Nb_Bit_A_Un : Natural;
+   begin
+      for I in Intervalle_T loop
+         T.bloc.Ecrire_Bit (I, True);
+         Nb_Bit_A_Un := Natural'First;
+         for J in Intervalle_T loop
+            declare
+               b : constant Bit_T := J = I;
+               valeur_attendu : constant Bit_IO_T := (if b then 1 else 0);
+               --  valeur trouvée interne
+               v_t_l : constant Bit_T := T.bloc.Lire_Bit (J);
+
+               v_t_l_io : constant Bit_IO_T := (if v_t_l then 1 else 0);
+            begin
+               if v_t_l then
+                  Nb_Bit_A_Un := Nb_Bit_A_Un + 1;
+               end if;
+               AUnit.Assertions.Assert
+                  (
+                     v_t_l = b,
+                     "Le bit lu " & J'Img &
+                     " vaut : " & v_t_l_io'Img &
+                     " au lieu de " & valeur_attendu'Img
+                  );
+            end;
+         end loop;
+         AUnit.Assertions.Assert
+            (
+               Nb_Bit_A_Un = 1,
+               "Le nombre de bit a 1 devrait etre 1 et pas " &
+               Nb_Bit_A_Un'Img
+            );
+         T.bloc.Ecrire_Bit (I, False);
+      end loop;
+   end Test_Modification_Un_Bit_Par_Un_Bit;
+
+   ---------------------------------------------------------------------------
    procedure Test_Bits_Aleatoire
       (T : in out Test_Fixt_T)
    is
