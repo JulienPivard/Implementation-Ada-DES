@@ -61,7 +61,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       end;
       Const_Crypt.Initialiser (Const_56, Const_48);
       Const_Crypt.Construire (T.Clef);
-      T.Chaine := Const_Crypt.Recuperer_Chaine;
+      T.Chaine := Chaine_T (Const_Crypt.Recuperer_Chaine);
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 

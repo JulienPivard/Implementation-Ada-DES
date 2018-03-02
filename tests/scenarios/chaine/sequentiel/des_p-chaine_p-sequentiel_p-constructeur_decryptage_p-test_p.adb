@@ -118,7 +118,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P.Test_P is
    begin
       C_64.Init ((others => False));
       T.C.Construire (C_64);
-      Chaine := T.C.Recuperer_Chaine;
+      Chaine := Chaine_T (T.C.Recuperer_Chaine);
       declare
          use Des_P.Filtre_P.Corps_P.Decryptage_P;
          use Des_P.Filtre_P.Corps_P;

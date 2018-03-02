@@ -5,6 +5,7 @@ with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Initialiser
       (
          Constructeur : in out Constructeur_Cryptage_T;
@@ -22,6 +23,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
    end Initialiser;
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Construire
       (
          Constructeur : in out Constructeur_Cryptage_T;
@@ -68,9 +70,10 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
    end Construire;
 
    ---------------------------------------------------------------------------
+   overriding
    function Recuperer_Chaine
       (Constructeur : Constructeur_Cryptage_T)
-      return Chaine_T
+      return Chaine_Interface_T'Class
    is
    begin
       return Constructeur.Chaine;

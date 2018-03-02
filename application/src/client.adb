@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 01 mars[03] 2018
+--           Dernière modification : Vendredi 02 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -14,6 +14,7 @@ with Ada.Directories;
 with Ada.Calendar;
 
 with Des_P.Chaine_P.Sequentiel_P;
+with Des_P.Chaine_P.Constructeur_I_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
@@ -55,6 +56,30 @@ procedure Client is
 
    type Action_T is (Crypter, Decrypter);
    Action : Action_T := Crypter;
+
+   package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
+   function Init_Faiseur_Chaine
+      (Action : Action_T)
+      return Faiseur_P.Constructeur_Interface_T'Class;
+
+   function Init_Faiseur_Chaine
+      (Action : Action_T)
+      return Faiseur_P.Constructeur_Interface_T'Class
+   is
+      package Faiseur_C_P renames
+         Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+      package Faiseur_D_P renames
+         Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+      Const_Crypt : Faiseur_C_P.Constructeur_Cryptage_T;
+      Const_Decry : Faiseur_D_P.Constructeur_Decryptage_T;
+   begin
+      return
+         (
+            case Action is
+               when Crypter => Const_Crypt,
+               when Decrypter => Const_Decry
+         );
+   end Init_Faiseur_Chaine;
 
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
@@ -128,7 +153,7 @@ begin
       end;
    end if;
 
-   Lire_Clef :
+   Initialiser_Clef :
    declare
       Position_Clef : constant Positive :=
          (if Nb_Arguments = 3 then 3 else 2);
@@ -160,7 +185,7 @@ begin
          C_C_64.Construire_Clef (Brut_Clef);
          Clef := C_C_64.Recuperer_Clef;
       end;
-   end Lire_Clef;
+   end Initialiser_Clef;
 
    Ouverture_Fichier :
    declare
@@ -171,13 +196,11 @@ begin
       Octets_En_Trop : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
 
-      use Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-      use Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-      Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
-      Const_Crypt : Constructeur_Cryptage_T;
-      Const_Decrypt : Constructeur_Decryptage_T;
       F_56 : Faiseur_56_P.Constructeur_Clef_T;
       F_48 : Faiseur_48_P.Constructeur_Clef_T;
+
+      Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
+         Init_Faiseur_Chaine (Action);
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Put_Line (Standard_Error, "██████ Erreur !");
@@ -212,19 +235,20 @@ begin
          return;
       end if;
 
-      case Action is
-         when Crypter =>
-            Const_Crypt.Initialiser (F_56, F_48);
-            Const_Crypt.Construire (Clef);
-            Chaine := Const_Crypt.Recuperer_Chaine;
-         when Decrypter =>
-            Const_Decrypt.Initialiser (F_56, F_48);
-            Const_Decrypt.Construire (Clef);
-            Chaine := Const_Decrypt.Recuperer_Chaine;
-      end case;
-
+      Faiseur.Initialiser (F_56, F_48);
+      Faiseur.Construire (Clef);
       Mesure_Temps :
       declare
+         Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
+            Faiseur.Recuperer_Chaine;
+
+         Extension : constant String :=
+               (
+                  case Action is
+                     when Crypter => "crypt",
+                     when Decrypter => "decrypt"
+               );
+
          Debut, Fin : Ada.Calendar.Time;
          Duree : Duration;
          package Duree_IO is new
@@ -235,11 +259,7 @@ begin
          Chaine.Filtrer
             (
                Nom_Fichier,
-               (
-                  case Action is
-                     when Crypter => "crypt",
-                     when Decrypter => "decrypt"
-               )
+               Extension
             );
          Fin := Ada.Calendar.Clock;
          Duree := Fin - Debut;
