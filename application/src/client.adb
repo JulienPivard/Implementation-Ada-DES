@@ -112,6 +112,30 @@ procedure Client is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Init_Chaine
+      (
+         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
+      )
+      return Des_P.Chaine_P.Chaine_Interface_T'Class;
+
+   function Init_Chaine
+      (
+         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
+      )
+      return Des_P.Chaine_P.Chaine_Interface_T'Class
+   is
+      F_56 : Faiseur_56_P.Constructeur_Clef_T;
+      F_48 : Faiseur_48_P.Constructeur_Clef_T;
+   begin
+      Faiseur.Initialiser (F_56, F_48);
+      Faiseur.Construire (Clef);
+      return Faiseur.Recuperer_Chaine;
+   end Init_Chaine;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    function Init_Extension
       (
          Action : Action_T;
