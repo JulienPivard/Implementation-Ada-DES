@@ -13,10 +13,15 @@ with Ada.Directories;
 
 with Ada.Calendar;
 
-with Des_P.Chaine_P.Sequentiel_P;
 with Des_P.Chaine_P.Constructeur_I_P;
+
+with Des_P.Chaine_P.Sequentiel_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+
+with Des_P.Chaine_P.Taches_P;
+with Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
+with Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
 
 with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
@@ -71,8 +76,16 @@ procedure Client is
          Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
       package Faiseur_S_D_P renames
          Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+      package Faiseur_T_C_P renames
+         Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
+      package Faiseur_T_D_P renames
+         Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
       Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
       Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
+      Const_Crypt_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
+      Const_Decry_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
+      pragma Unreferenced (Const_Crypt_T);
+      pragma Unreferenced (Const_Decry_T);
    begin
       return
          (
