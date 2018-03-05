@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 02 mars[03] 2018
+--           Dernière modification : Lundi 05 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -58,6 +58,7 @@ procedure Client is
    Action : Action_T := Crypter;
 
    package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
+   ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
       (Action : Action_T)
       return Faiseur_P.Constructeur_Interface_T'Class;
@@ -66,20 +67,91 @@ procedure Client is
       (Action : Action_T)
       return Faiseur_P.Constructeur_Interface_T'Class
    is
-      package Faiseur_C_P renames
+      package Faiseur_S_C_P renames
          Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-      package Faiseur_D_P renames
+      package Faiseur_S_D_P renames
          Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-      Const_Crypt : Faiseur_C_P.Constructeur_Cryptage_T;
-      Const_Decry : Faiseur_D_P.Constructeur_Decryptage_T;
+      Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
+      Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
    begin
       return
          (
             case Action is
-               when Crypter => Const_Crypt,
-               when Decrypter => Const_Decry
+               when Crypter => Const_Crypt_S,
+               when Decrypter => Const_Decry_S
          );
    end Init_Faiseur_Chaine;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Executer_Crypt_Decrypt
+      (
+         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
+         Nom_Fichier : String;
+         Action : Action_T
+      );
+
+   procedure Executer_Crypt_Decrypt
+      (
+         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
+         Nom_Fichier : String;
+         Action : Action_T
+      )
+   is
+      F_56 : Faiseur_56_P.Constructeur_Clef_T;
+      F_48 : Faiseur_48_P.Constructeur_Clef_T;
+   begin
+      Faiseur.Initialiser (F_56, F_48);
+      Faiseur.Construire (Clef);
+      Mesure_Temps :
+      declare
+         Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
+            Faiseur.Recuperer_Chaine;
+
+         Extension : constant String :=
+               (
+                  case Action is
+                     when Crypter => "crypt",
+                     when Decrypter => "decrypt"
+               );
+
+         Debut, Fin : Ada.Calendar.Time;
+         Duree : Duration;
+         package Duree_IO is new
+         Ada.Text_IO.Fixed_IO (Duration);
+         use type Ada.Calendar.Time;
+      begin
+         Debut := Ada.Calendar.Clock;
+         Chaine.Filtrer
+            (
+               Nom_Fichier,
+               Extension
+            );
+         Fin := Ada.Calendar.Clock;
+         Duree := Fin - Debut;
+
+         --------------------------------------
+         Ada.Text_IO.New_Line (1);
+         Ada.Text_IO.Put ("Temps séquentielle : ");
+         Ada.Text_IO.New_Line (1);
+         Duree_IO.Put (Duree);
+         Ada.Text_IO.Put_Line (" s");
+         if Duree > 60.0 then
+            Duree_IO.Put (Duree / 60.0);
+            Ada.Text_IO.Put_Line (" min");
+         end if;
+         if Duree > 3600.0 then
+            Duree_IO.Put (Duree / 3600.0);
+            Ada.Text_IO.Put_Line (" h");
+         end if;
+         Ada.Text_IO.New_Line (1);
+         --------------------------------------
+      end Mesure_Temps;
+   end Executer_Crypt_Decrypt;
+
+   ---------------------------------------------------------------------------
 
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
@@ -196,9 +268,6 @@ begin
       Octets_En_Trop : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
 
-      F_56 : Faiseur_56_P.Constructeur_Clef_T;
-      F_48 : Faiseur_48_P.Constructeur_Clef_T;
-
       Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
          Init_Faiseur_Chaine (Action);
    begin
@@ -235,52 +304,7 @@ begin
          return;
       end if;
 
-      Faiseur.Initialiser (F_56, F_48);
-      Faiseur.Construire (Clef);
-      Mesure_Temps :
-      declare
-         Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
-            Faiseur.Recuperer_Chaine;
-
-         Extension : constant String :=
-               (
-                  case Action is
-                     when Crypter => "crypt",
-                     when Decrypter => "decrypt"
-               );
-
-         Debut, Fin : Ada.Calendar.Time;
-         Duree : Duration;
-         package Duree_IO is new
-         Ada.Text_IO.Fixed_IO (Duration);
-         use type Ada.Calendar.Time;
-      begin
-         Debut := Ada.Calendar.Clock;
-         Chaine.Filtrer
-            (
-               Nom_Fichier,
-               Extension
-            );
-         Fin := Ada.Calendar.Clock;
-         Duree := Fin - Debut;
-
-         --------------------------------------
-         Ada.Text_IO.New_Line (1);
-         Ada.Text_IO.Put ("Temps séquentielle : ");
-         Ada.Text_IO.New_Line (1);
-         Duree_IO.Put (Duree);
-         Ada.Text_IO.Put_Line (" s");
-         if Duree > 60.0 then
-            Duree_IO.Put (Duree / 60.0);
-            Ada.Text_IO.Put_Line (" min");
-         end if;
-         if Duree > 3600.0 then
-            Duree_IO.Put (Duree / 3600.0);
-            Ada.Text_IO.Put_Line (" h");
-         end if;
-         Ada.Text_IO.New_Line (1);
-         --------------------------------------
-      end Mesure_Temps;
+      Executer_Crypt_Decrypt (Faiseur, Clef, Nom_Fichier, Action);
 
    end Ouverture_Fichier;
 

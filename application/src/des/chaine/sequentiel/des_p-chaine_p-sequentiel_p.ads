@@ -2,7 +2,7 @@ private with Des_P.Etage_P.Filtrage_P;
 private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
 --  @summary
---  Chaine de filtre séquentiel.
+--  Chaine de filtres séquentiel.
 --  @description
 --  Permet de gérer la chaine de filtre par laquelle vont passer
 --  tout les blocs de données du fichier pour être manipulé.
