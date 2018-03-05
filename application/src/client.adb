@@ -112,6 +112,37 @@ procedure Client is
    ---------------------------------------------------------------------------
 
    ---------------------------------------------------------------------------
+   function Init_Extension
+      (
+         Action : Action_T;
+         C_Type : Chaine_Seq_Task_T
+      )
+      return String;
+
+   function Init_Extension
+      (
+         Action : Action_T;
+         C_Type : Chaine_Seq_Task_T
+      )
+      return String
+   is
+   begin
+      return
+         (
+            case C_Type is
+               when Sequentiel => "sequ",
+               when Tache => "task"
+         )
+         & "." &
+         (
+            case Action is
+               when Crypter => "crypt",
+               when Decrypter => "decrypt"
+         );
+   end Init_Extension;
+   ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
    procedure Executer_Crypt_Decrypt
       (
          Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
