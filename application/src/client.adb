@@ -60,16 +60,23 @@ procedure Client is
    ---------------------------------------------------------------------------
 
    type Action_T is (Crypter, Decrypter);
+   type Chaine_Seq_Task_T is (Tache, Sequentiel);
    Action : Action_T := Crypter;
 
    package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
    ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
-      (Action : Action_T)
+      (
+         Action : Action_T;
+         C_Type : Chaine_Seq_Task_T
+      )
       return Faiseur_P.Constructeur_Interface_T'Class;
 
    function Init_Faiseur_Chaine
-      (Action : Action_T)
+      (
+         Action : Action_T;
+         C_Type : Chaine_Seq_Task_T
+      )
       return Faiseur_P.Constructeur_Interface_T'Class
    is
       package Faiseur_S_C_P renames
@@ -84,14 +91,22 @@ procedure Client is
       Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
       Const_Crypt_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
       Const_Decry_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
-      pragma Unreferenced (Const_Crypt_T);
-      pragma Unreferenced (Const_Decry_T);
    begin
       return
          (
             case Action is
-               when Crypter => Const_Crypt_S,
-               when Decrypter => Const_Decry_S
+               when Crypter =>
+                  (
+                     case C_Type is
+                        when Tache => Const_Crypt_T,
+                        when Sequentiel => Const_Crypt_S
+                  ),
+               when Decrypter =>
+                  (
+                     case C_Type is
+                        when Tache => Const_Decry_T,
+                        when Sequentiel => Const_Decry_S
+                  )
          );
    end Init_Faiseur_Chaine;
    ---------------------------------------------------------------------------
@@ -282,7 +297,7 @@ begin
       use type Ada.Directories.File_Size;
 
       Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
-         Init_Faiseur_Chaine (Action);
+         Init_Faiseur_Chaine (Action, Sequentiel);
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Put_Line (Standard_Error, "██████ Erreur !");
