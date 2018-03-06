@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
-use  Des_P.Filtre_P.Corps_P.Corps_Cryptage_P.Test_P;
+with Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P;
+use  Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P;
 
 package body Corps_Cryptage_Suite_P is
 
@@ -21,6 +21,13 @@ package body Corps_Cryptage_Suite_P is
          (Caller.Create
             (nom_test & "1er niveau de filtre",
             Test_Cryptage_Niveau_1'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Modification de la clef de 48",
+            Test_Modifier_Clef_48'Access
             )
          );
 

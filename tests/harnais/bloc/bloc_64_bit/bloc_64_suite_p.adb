@@ -24,6 +24,13 @@ package body Bloc_64_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
+            (nom_test & "Modification 1 bit par 1 bit",
+            Test_Modification_Un_Bit_Par_Un_Bit'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
             (nom_test & "Bits change aleatoirement",
             Test_Bits_Aleatoire'Access
             )

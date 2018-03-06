@@ -29,7 +29,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       )
    is
       type Table_Permutations_T is array
-         (Intervalle_Bloc_32_T) of Intervalle_Bloc_32_T;
+         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T)
+         of Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
       Table_P : constant Table_Permutations_T :=
          (
             16,  7, 20, 21,
@@ -42,7 +43,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
             22, 11,  4, 25
          );
    begin
-      for I in Intervalle_Bloc_32_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
          Constructeur.Bloc.Bits (I) := Brut.Bits (Table_P (I));
       end loop;
    end Construire_Bloc;
@@ -56,7 +57,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
    is
       --  Extraction de la table de 48 bits pour pouvoir la manipuler.
       type Table_48_Bits_T is array
-         (Des_P.Bloc_P.Bloc_48_P.Intervalle_Bloc_48_T)
+         (Des_P.Bloc_P.Bloc_48_P.Intervalle_T)
          of Bit_T
          with Size => 48, Pack;
       Table_48_Bits : constant Table_48_Bits_T :=

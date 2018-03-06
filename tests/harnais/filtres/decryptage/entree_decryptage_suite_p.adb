@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Entree_P.Entree_Decryptage_P.Test_P;
-use  Des_P.Filtre_P.Entree_P.Entree_Decryptage_P.Test_P;
+with Des_P.Filtre_P.Entree_P.Decryptage_P.Test_P;
+use  Des_P.Filtre_P.Entree_P.Decryptage_P.Test_P;
 
 package body Entree_Decryptage_Suite_P is
 

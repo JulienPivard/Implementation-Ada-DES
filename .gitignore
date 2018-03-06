@@ -5,3 +5,4 @@ doc/
 *.crypt
 *.decrypt
 *.pdf
+*.test

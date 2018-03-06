@@ -15,7 +15,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
          );
       B : constant Bloc_64_T := Bloc;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
       end loop;
    end Permutation_Entrante;
@@ -35,7 +35,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
          );
       B : constant Bloc_64_T := Bloc;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
       end loop;
    end Permutation_Sortante;

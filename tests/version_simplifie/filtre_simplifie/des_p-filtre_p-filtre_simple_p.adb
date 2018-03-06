@@ -5,15 +5,12 @@ package body Des_P.Filtre_P.Filtre_Simple_P is
    procedure Filtrer
       (
          Filtre : Filtre_Simple_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-         Clef : in out Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Abs_T'Class
+         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
-      use Des_P.Bloc_P.Bloc_64_P;
-      pragma Unreferenced (Clef);
       pragma Unreferenced (Filtre);
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, Bloc.Lire_Bit (I) xor True);
       end loop;
    end Filtrer;

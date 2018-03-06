@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Test_P;
-use  Des_P.Filtre_P.Fabrique_P.Fabrique_Decryptage_P.Test_P;
+with Des_P.Filtre_P.Fabrique_P.Decryptage_P.Test_P;
+use  Des_P.Filtre_P.Fabrique_P.Decryptage_P.Test_P;
 
 package body Fabrique_Decryptage_Suite_P is
 

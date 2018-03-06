@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Test_P;
-use  Des_P.Filtre_P.Sortie_P.Sortie_Cryptage_P.Test_P;
+with Des_P.Filtre_P.Sortie_P.Cryptage_P.Test_P;
+use  Des_P.Filtre_P.Sortie_P.Cryptage_P.Test_P;
 
 package body Sortie_Cryptage_Suite_P is
 

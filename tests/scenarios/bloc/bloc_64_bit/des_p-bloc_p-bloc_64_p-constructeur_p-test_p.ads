@@ -9,7 +9,7 @@ package Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Test_P is
    2#11110000_11110000_11110000_11110000_11110000_11110000_11110000_11110000#;
    --  valeur du brut
    --  64     56       48       40       32       24       16       8
-   resultat_attendu : array (Intervalle_Bloc_64_T) of Bit_T :=
+   resultat_attendu : array (Intervalle_T) of Bit_T :=
       (1 .. 4  | 9 .. 12  | 17 .. 20 | 25 .. 28 | 33 .. 36 |
       41 .. 44 | 49 .. 52 | 57 .. 60 => False, others => True);
 

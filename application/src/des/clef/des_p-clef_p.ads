@@ -9,34 +9,40 @@ package Des_P.Clef_P is
 
    pragma Pure;
 
-   --  Un bit de la clef.
    subtype Bit_T is Boolean;
+   --  Un bit de la clef.
 
-   --  Une clef permettant de crypter/décrypter.
-   type Clef_Abstraite_T is abstract
+   type Clef_Abstrait_T is abstract
       new Ada.Finalization.Controlled with private;
+   --  Une clef permettant de crypter/décrypter.
 
    overriding
+   procedure Initialize
+      (Clef : in out Clef_Abstrait_T)
+   is abstract;
    --  Création d'une clef vide par défaut.
    --  @param Clef
    --  La clef.
-   procedure Initialize (Clef : in out Clef_Abstraite_T) is abstract;
 
    overriding
+   procedure Finalize
+      (Clef : in out Clef_Abstrait_T)
+   is abstract;
    --  Supprime la clef.
    --  @param Clef
    --  La clef.
-   procedure Finalize (Clef : in out Clef_Abstraite_T) is abstract;
 
    overriding
+   procedure Adjust
+      (Clef : in out Clef_Abstrait_T)
+   is abstract;
    --  Ajuste le contenu après l'affectation.
    --  @param Clef
    --  La clef.
-   procedure Adjust (Clef : in out Clef_Abstraite_T) is abstract;
 
 private
 
-   type Clef_Abstraite_T is abstract
+   type Clef_Abstrait_T is abstract
       new Ada.Finalization.Controlled with null record;
 
 end Des_P.Clef_P;

@@ -10,30 +10,36 @@ package Des_P.Bloc_P is
 
    pragma Pure;
 
-   --  Représente un bit du bloc.
    subtype Bit_T is Boolean;
+   --  Représente un bit du bloc.
 
-   --  Représente un bloc de bits.
    type Bloc_Abstrait_T is abstract
       new Ada.Finalization.Controlled with private;
+   --  Représente un bloc de bits.
 
    overriding
+   procedure Initialize
+      (B : in out Bloc_Abstrait_T)
+   is abstract;
    --  Création d'un bloc de bits avec la valeur 0.
    --  @param B
    --  Le bloc de bits.
-   procedure Initialize (B : in out Bloc_Abstrait_T) is abstract;
 
    overriding
+   procedure Finalize
+      (B : in out Bloc_Abstrait_T)
+   is abstract;
    --  Supprime le bloc.
    --  @param B
    --  Le bloc de bits.
-   procedure Finalize (B : in out Bloc_Abstrait_T) is abstract;
 
    overriding
+   procedure Adjust
+      (B : in out Bloc_Abstrait_T)
+   is abstract;
    --  Ajuste le contenu après l'affectation.
    --  @param B
    --  Le bloc de bits.
-   procedure Adjust (B : in out Bloc_Abstrait_T) is abstract;
 
 private
 

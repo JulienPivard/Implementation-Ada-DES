@@ -2,8 +2,6 @@ with AUnit.Assertions;
 
 with Des_P.Filtre_P.Filtre_Simple_P;
 use  Des_P.Filtre_P.Filtre_Simple_P;
-with Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
-use  Des_P.Clef_P.Clef_56_Abs_P.Clef_56_Simple_P;
 
 package body Des_P.Etage_P.Filtrage_P.Test_P is
 
@@ -35,11 +33,11 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (Etage.Successeur.Is_Empty,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur = False,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Sans_Successeur;
 
@@ -52,11 +50,11 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    begin
       AUnit.Assertions.Assert
          (Etage.Successeur.Is_Empty = False,
-         "L'etage devrait posseder un successeur."
+         "L'estage devrait posseder un successeur."
          );
       AUnit.Assertions.Assert
          (Etage.Possede_Successeur,
-         "L'etage ne devrait pas posseder de successeur."
+         "L'estage ne devrait pas posseder de successeur."
          );
    end Test_Initialisation_Avec_Successeur;
 
@@ -71,23 +69,23 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       AUnit.Assertions.Assert
          (
             Etage.Filtre.Is_Empty,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       AUnit.Assertions.Assert
          (
             not Etage.Possede_Filtre,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       Etage.Modifier_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
             not Etage.Filtre.Is_Empty,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
       AUnit.Assertions.Assert
          (
             Etage.Possede_Filtre,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Sans_Successeur;
 
@@ -101,13 +99,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       AUnit.Assertions.Assert
          (
             Etage.Filtre.Is_Empty,
-            "L'etage ne devrait pas comporter de filtre."
+            "L'estage ne devrait pas comporter de filtre."
          );
       Etage.Modifier_Filtre (Filtre);
       AUnit.Assertions.Assert
          (
             not Etage.Filtre.Is_Empty,
-            "L'etage devrait comporter un filtre."
+            "L'estage devrait comporter un filtre."
          );
    end Test_Ajout_Filtre_Avec_Successeur;
 
@@ -115,15 +113,14 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Filtrer_Sans_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Clef_56_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -131,8 +128,8 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
          end if;
       end loop;
       Etage.Modifier_Filtre (Filtre);
-      Etage.Filtrer (Bloc, Clef);
-      for I in Intervalle_Bloc_64_T'Range loop
+      Etage.Filtrer (Bloc);
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -152,14 +149,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Filtrer_Avec_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Clef_56_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -167,8 +163,8 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
          end if;
       end loop;
       Etage.Modifier_Filtre (Filtre);
-      Etage.Filtrer (Bloc, Clef);
-      for I in Intervalle_Bloc_64_T'Range loop
+      Etage.Filtrer (Bloc);
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -188,15 +184,14 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Iterer_Sans_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Clef_56_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -204,8 +199,8 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
          end if;
       end loop;
       Etage.Modifier_Filtre (Filtre);
-      Etage.Iterer (Bloc, Clef);
-      for I in Intervalle_Bloc_64_T'Range loop
+      Etage.Iterer (Bloc);
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := False;
@@ -225,14 +220,13 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    procedure Test_Iterer_Avec_Successeur
       (T : in out Test_Fixt_T)
    is
-      use Des_P.Bloc_P.Bloc_64_P;
       Etage : Etage_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Clef : Clef_56_T;
       Filtre : Filtre_Simple_T;
       attendu, resultat : Boolean;
+      use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
-      for I in Intervalle_Bloc_64_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          if (I mod 2) = 0 then
             Bloc.Ecrire_Bit (I, True);
          else
@@ -242,8 +236,8 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       T.Etage.Modifier_Filtre (Filtre);
       Etage.Modifier_Filtre (Filtre);
       Etage.Modifier_Successeur (T.Etage);
-      Etage.Iterer (Bloc, Clef);
-      for I in Intervalle_Bloc_64_T'Range loop
+      Etage.Iterer (Bloc);
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
          resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
             attendu := True;
