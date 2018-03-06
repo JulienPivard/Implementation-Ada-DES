@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 05 mars[03] 2018
+--           Dernière modification : mardi 06 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -206,7 +206,16 @@ procedure Client is
 
       --------------------------------------
       Ada.Text_IO.New_Line (1);
-      Ada.Text_IO.Put ("Temps séquentielle : ");
+      Ada.Text_IO.Put
+         (
+            "Temps " &
+            (
+               case C_Type is
+                  when Sequentiel => "séquentiel",
+                  when Tache => "parallèle"
+            ) &
+            " : "
+         );
       Ada.Text_IO.New_Line (1);
       Duree_IO.Put (Duree);
       Ada.Text_IO.Put_Line (" s");
