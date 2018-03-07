@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : mardi 06 mars[03] 2018
+--           Dernière modification : Mercredi 07 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -11,31 +11,16 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
-with Ada.Calendar;
-
-with Des_P.Chaine_P.Constructeur_I_P;
-
-with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-
-with Des_P.Chaine_P.Taches_P;
-with Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
-
 with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
-with Des_P.Clef_P.Clef_56_P.Constructeur_P;
-with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_64_P;
+
+with Procedure_Run_P;
 
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Arguments_Max : constant Natural := 3;
-
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide;
@@ -59,179 +44,7 @@ procedure Client is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   type Action_T is (Crypter, Decrypter);
-   type Chaine_Seq_Task_T is (Tache, Sequentiel);
-   Action : Action_T := Crypter;
-
-   package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
-   ---------------------------------------------------------------------------
-   function Init_Faiseur_Chaine
-      (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      )
-      return Faiseur_P.Constructeur_Interface_T'Class;
-
-   function Init_Faiseur_Chaine
-      (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      )
-      return Faiseur_P.Constructeur_Interface_T'Class
-   is
-      package Faiseur_S_C_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-      package Faiseur_S_D_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-      package Faiseur_T_C_P renames
-         Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
-      package Faiseur_T_D_P renames
-         Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
-      Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
-      Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
-      Const_Crypt_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
-      Const_Decry_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
-   begin
-      return
-         (
-            case Action is
-               when Crypter =>
-                  (
-                     case C_Type is
-                        when Tache => Const_Crypt_T,
-                        when Sequentiel => Const_Crypt_S
-                  ),
-               when Decrypter =>
-                  (
-                     case C_Type is
-                        when Tache => Const_Decry_T,
-                        when Sequentiel => Const_Decry_S
-                  )
-         );
-   end Init_Faiseur_Chaine;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Init_Chaine
-      (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
-      )
-      return Des_P.Chaine_P.Chaine_Interface_T'Class;
-
-   function Init_Chaine
-      (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
-      )
-      return Des_P.Chaine_P.Chaine_Interface_T'Class
-   is
-      F_56 : Faiseur_56_P.Constructeur_Clef_T;
-      F_48 : Faiseur_48_P.Constructeur_Clef_T;
-   begin
-      Faiseur.Initialiser (F_56, F_48);
-      Faiseur.Construire (Clef);
-      return Faiseur.Recuperer_Chaine;
-   end Init_Chaine;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   function Init_Extension
-      (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      )
-      return String;
-
-   function Init_Extension
-      (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      )
-      return String
-   is
-   begin
-      return
-         (
-            case C_Type is
-               when Sequentiel => "sequ",
-               when Tache => "task"
-         )
-         & "." &
-         (
-            case Action is
-               when Crypter => "crypt",
-               when Decrypter => "decrypt"
-         );
-   end Init_Extension;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Executer_Crypt_Decrypt
-      (
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
-         Nom_Fichier : String;
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      );
-
-   procedure Executer_Crypt_Decrypt
-      (
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
-         Nom_Fichier : String;
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
-      )
-   is
-      Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
-         Init_Faiseur_Chaine (Action, C_Type);
-      Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
-         Init_Chaine (Faiseur, Clef);
-      Extension : constant String := Init_Extension (Action, C_Type);
-
-      Debut, Fin : Ada.Calendar.Time;
-      Duree : Duration;
-      package Duree_IO is new
-      Ada.Text_IO.Fixed_IO (Duration);
-      use type Ada.Calendar.Time;
-   begin
-      Debut := Ada.Calendar.Clock;
-      Chaine.Filtrer
-         (
-            Nom_Fichier,
-            Extension
-         );
-      Fin := Ada.Calendar.Clock;
-      Duree := Fin - Debut;
-
-      --------------------------------------
-      Ada.Text_IO.New_Line (1);
-      Ada.Text_IO.Put
-         (
-            "Temps " &
-            (
-               case C_Type is
-                  when Sequentiel => "séquentiel",
-                  when Tache => "parallèle"
-            ) &
-            " : "
-         );
-      Ada.Text_IO.New_Line (1);
-      Duree_IO.Put (Duree);
-      Ada.Text_IO.Put_Line (" s");
-      if Duree > 60.0 then
-         Duree_IO.Put (Duree / 60.0);
-         Ada.Text_IO.Put_Line (" min");
-      end if;
-      if Duree > 3600.0 then
-         Duree_IO.Put (Duree / 3600.0);
-         Ada.Text_IO.Put_Line (" h");
-      end if;
-      Ada.Text_IO.New_Line (1);
-      --------------------------------------
-   end Executer_Crypt_Decrypt;
-
-   ---------------------------------------------------------------------------
+   Action : Procedure_Run_P.Action_T := Procedure_Run_P.Crypter;
 
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
@@ -282,13 +95,13 @@ begin
             or else
             Crypt_Decrypt = "--crypter"
          then
-            Action := Crypter;
+            Action := Procedure_Run_P.Crypter;
          elsif
             Crypt_Decrypt = "-d"
             or else
             Crypt_Decrypt = "--decrypter"
          then
-            Action := Decrypter;
+            Action := Procedure_Run_P.Decrypter;
          else
             Put (Standard_Error, "L'argument [");
             Ada.Text_IO.Put
@@ -381,8 +194,10 @@ begin
          return;
       end if;
 
-      Executer_Crypt_Decrypt (Clef, Nom_Fichier, Action, Sequentiel);
-      Executer_Crypt_Decrypt (Clef, Nom_Fichier, Action, Tache);
+      Procedure_Run_P.Executer_Crypt_Decrypt
+         (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
+      Procedure_Run_P.Executer_Crypt_Decrypt
+         (Clef, Nom_Fichier, Action, Procedure_Run_P.Tache);
 
    end Ouverture_Fichier;
 
