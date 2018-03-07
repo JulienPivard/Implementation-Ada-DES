@@ -6,8 +6,7 @@ with Des_P.Chaine_P.Taches_P;
 with Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
 with Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
 
-with Ada.Calendar;
-
+with Ada.Real_Time;
 with Ada.Text_IO;
 
 package body Procedure_Run_P is
@@ -27,20 +26,18 @@ package body Procedure_Run_P is
          Init_Chaine (Faiseur, Clef);
       Extension : constant String := Init_Extension (Action, C_Type);
 
-      Debut, Fin : Ada.Calendar.Time;
-      Duree : Duration;
+      Debut, Fin : Ada.Real_Time.Time;
       package Duree_IO is new
       Ada.Text_IO.Fixed_IO (Duration);
-      use type Ada.Calendar.Time;
+      use type Ada.Real_Time.Time;
    begin
-      Debut := Ada.Calendar.Clock;
+      Debut := Ada.Real_Time.Clock;
       Chaine.Filtrer
          (
             Nom_Fichier,
             Extension
          );
-      Fin := Ada.Calendar.Clock;
-      Duree := Fin - Debut;
+      Fin := Ada.Real_Time.Clock;
 
       --------------------------------------
       Ada.Text_IO.New_Line (1);
@@ -55,16 +52,22 @@ package body Procedure_Run_P is
             " : "
          );
       Ada.Text_IO.New_Line (1);
-      Duree_IO.Put (Duree);
-      Ada.Text_IO.Put_Line (" s");
-      if Duree > 60.0 then
-         Duree_IO.Put (Duree / 60.0);
-         Ada.Text_IO.Put_Line (" min");
-      end if;
-      if Duree > 3600.0 then
-         Duree_IO.Put (Duree / 3600.0);
-         Ada.Text_IO.Put_Line (" h");
-      end if;
+      Affichage_Temps :
+      declare
+         Duree : constant Duration :=
+            Ada.Real_Time.To_Duration (Fin - Debut);
+      begin
+         Duree_IO.Put (Duree);
+         Ada.Text_IO.Put_Line (" s");
+         if Duree > 60.0 then
+            Duree_IO.Put (Duree / 60.0);
+            Ada.Text_IO.Put_Line (" min");
+         end if;
+         if Duree > 3600.0 then
+            Duree_IO.Put (Duree / 3600.0);
+            Ada.Text_IO.Put_Line (" h");
+         end if;
+      end Affichage_Temps;
       Ada.Text_IO.New_Line (1);
       --------------------------------------
    end Executer_Crypt_Decrypt;
