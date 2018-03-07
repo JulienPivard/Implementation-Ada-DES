@@ -44,8 +44,7 @@ procedure Client is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   Action : Procedure_Run_P.Action_T := Procedure_Run_P.Crypter;
-
+   Action : Procedure_Run_P.Action_T;
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
 begin
@@ -140,11 +139,9 @@ begin
       end if;
 
       declare
-         Brut_Clef :
-         Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T
-            with Address => Clef_Brut'Address;
-         C_C_64 :
-         Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+         Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
+         C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
       begin
          C_C_64.Preparer_Nouvelle_Clef;
          C_C_64.Construire_Clef (Brut_Clef);
