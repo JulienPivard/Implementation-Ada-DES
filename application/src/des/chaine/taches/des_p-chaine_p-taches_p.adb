@@ -107,9 +107,7 @@ package body Des_P.Chaine_P.Taches_P is
       end Lanceur_Taches;
       --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
-      Brut : C_Bloc_64_P.Bloc_64_Brut_T;
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
-
    begin
       if Ada.Directories.Exists (Nom_Alternatif) then
          Lecteur_64_IO.Open
