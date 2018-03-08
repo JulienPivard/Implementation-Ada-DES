@@ -14,7 +14,7 @@ package body Constructeur_Tache_Decryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests constructeur chaine decryptage) ";
+      nom_test : constant String := "(Tests constructeur tache decryptage) ";
    begin
 
       ptr_test_suite.all.Add_Test
