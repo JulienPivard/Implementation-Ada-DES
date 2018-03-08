@@ -41,25 +41,19 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
---    E : Des_P.Etage_P.Filtrage_P.Etage_T;
---    use type Des_P.Etage_P.Filtrage_P.Etage_T;
+      --  E : Des_P.Etage_P.Filtrage_P.Etage_T;
    begin
 --    AUnit.Assertions.Assert
 --       (T.C.Chaine.Tete = E,
 --       "La tète devrait être un étage vide"
 --       );
---    AUnit.Assertions.Assert
---       (not T.C.Faiseur_56.Is_Empty,
---       "Le constructeur de 56 est vide"
---       );
---    AUnit.Assertions.Assert
---       (not T.C.Faiseur_48.Is_Empty,
---       "Le constructeur de 48 est vide"
---       );
       AUnit.Assertions.Assert
-         (False,
-         "Pas encore implemente."
+         (not T.C.Faiseur_56.Is_Empty,
+         "Le constructeur de 56 est vide"
+         );
+      AUnit.Assertions.Assert
+         (not T.C.Faiseur_48.Is_Empty,
+         "Le constructeur de 48 est vide"
          );
    end Test_Initialisation;
 
