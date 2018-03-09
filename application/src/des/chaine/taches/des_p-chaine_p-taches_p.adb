@@ -69,6 +69,10 @@ package body Des_P.Chaine_P.Taches_P is
 
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Sortie is
+            entry Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder
+               );
             entry Filtrer
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
@@ -77,7 +81,15 @@ package body Des_P.Chaine_P.Taches_P is
 
          task body Etage_Sortie is
             B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            F_Tmp : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
          begin
+            accept Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder
+               )
+            do
+               F_Tmp := Filtre;
+            end Modifier_Filtre;
             loop
                select
                   accept Filtrer
@@ -90,7 +102,7 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
-               Chaine.Filtre_Sortie.Element.Filtrer (B_Tmp);
+               F_Tmp.Element.Filtrer (B_Tmp);
                Etage_Ecriture.Ecrire (B_Tmp);
             end loop;
          end Etage_Sortie;
@@ -98,6 +110,10 @@ package body Des_P.Chaine_P.Taches_P is
 
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task type Etage_Corps is
+            entry Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
+               );
             entry Filtrer
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
@@ -110,7 +126,15 @@ package body Des_P.Chaine_P.Taches_P is
          task body Etage_Corps is
             B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
             N_Tmp : Numero_Filtre_T;
+            F_Tmp : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
          begin
+            accept Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
+               )
+            do
+               F_Tmp := Filtre;
+            end Modifier_Filtre;
             loop
                select
                   accept Filtrer
@@ -125,7 +149,7 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
-               Chaine.Filtres_Corps (N_Tmp).Element.Filtrer (B_Tmp);
+               F_Tmp.Element.Filtrer (B_Tmp);
                if N_Tmp = Numero_Filtre_T'Last then
                   Etage_Sortie.Filtrer (B_Tmp);
                else
@@ -138,6 +162,10 @@ package body Des_P.Chaine_P.Taches_P is
 
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Entree is
+            entry Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder
+               );
             entry Filtrer
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
@@ -146,7 +174,15 @@ package body Des_P.Chaine_P.Taches_P is
 
          task body Etage_Entree is
             B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            F_Tmp : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          begin
+            accept Modifier_Filtre
+               (
+                  Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder
+               )
+            do
+               F_Tmp := Filtre;
+            end Modifier_Filtre;
             loop
                select
                   accept Filtrer
@@ -159,7 +195,7 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
-               Chaine.Filtre_Entree.Element.Filtrer (B_Tmp);
+               F_Tmp.Element.Filtrer (B_Tmp);
                Chaine_Corps (Numero_Filtre_T'First).Filtrer
                   (B_Tmp, Numero_Filtre_T'First);
             end loop;
@@ -170,6 +206,11 @@ package body Des_P.Chaine_P.Taches_P is
          Brut : C_Bloc_64_P.Bloc_64_Brut_T;
 
       begin
+         Etage_Entree.Modifier_Filtre (Chaine.Filtre_Entree);
+         for I in Numero_Filtre_T loop
+            Chaine_Corps (I).Modifier_Filtre (Chaine.Filtres_Corps (I));
+         end loop;
+         Etage_Sortie.Modifier_Filtre (Chaine.Filtre_Sortie);
          Lecture_Fichier :
          loop
             exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
