@@ -1,14 +1,10 @@
 with AUnit.Assertions;
 
 with Des_P.Etage_P.Filtrage_P;
---  with Des_P.Etage_P.Filtrage_P.Explorer_P;
---  with Des_P.Filtre_P.Entree_P.Cryptage_P;
---  with Des_P.Filtre_P.Corps_P.Cryptage_P;
---  with Des_P.Filtre_P.Sortie_P.Cryptage_P;
 with Des_P.Clef_P.Clef_56_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 
---  with Des_P.Clef_P.Clef_64_Simplifie_P;
+with Des_P.Clef_P.Clef_64_Simplifie_P;
 
 package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P is
 
@@ -41,12 +37,12 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T)
    is
-      --  E : Des_P.Etage_P.Filtrage_P.Etage_T;
+      C : Chaine_T;
    begin
---    AUnit.Assertions.Assert
---       (T.C.Chaine.Tete = E,
---       "La tète devrait être un étage vide"
---       );
+      AUnit.Assertions.Assert
+         (T.C.Chaine = C,
+         "La tète devrait être un étage vide"
+         );
       AUnit.Assertions.Assert
          (not T.C.Faiseur_56.Is_Empty,
          "Le constructeur de 56 est vide"
@@ -61,11 +57,27 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P is
    procedure Test_Construction
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
+      C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
+      C_64.Init ((others => False));
+      T.C.Construire (C_64);
       AUnit.Assertions.Assert
-         (False,
-         "Pas encore implemente."
+         (
+            not T.C.Chaine.Filtre_Entree.Is_Empty,
+            "L'entree est vide"
+         );
+      Verif_Successeur :
+      for I in Numero_Filtre_T loop
+         AUnit.Assertions.Assert
+            (
+               not T.C.Chaine.Filtres_Corps (I).Is_Empty,
+               "Le filtre de corps" & I'Img & " est vide."
+            );
+      end loop Verif_Successeur;
+      AUnit.Assertions.Assert
+         (
+            not T.C.Chaine.Filtre_Sortie.Is_Empty,
+            "L'entree est vide"
          );
    end Test_Construction;
 
@@ -73,11 +85,29 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P is
    procedure Test_Recuperation
       (T : in out Test_Fixt_T)
    is
-      pragma Unreferenced (T);
+      C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
+      Chaine : Chaine_T;
    begin
+      C_64.Init ((others => False));
+      T.C.Construire (C_64);
+      Chaine := Chaine_T (T.C.Recuperer_Chaine);
       AUnit.Assertions.Assert
-         (False,
-         "Pas encore implemente."
+         (
+            not Chaine.Filtre_Entree.Is_Empty,
+            "L'entree est vide"
+         );
+      Verif_Successeur :
+      for I in Numero_Filtre_T loop
+         AUnit.Assertions.Assert
+            (
+               not Chaine.Filtres_Corps (I).Is_Empty,
+               "Le filtre de corps" & I'Img & " est vide."
+            );
+      end loop Verif_Successeur;
+      AUnit.Assertions.Assert
+         (
+            not Chaine.Filtre_Sortie.Is_Empty,
+            "L'entree est vide"
          );
    end Test_Recuperation;
 

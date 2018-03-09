@@ -1,3 +1,11 @@
+with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
+
+with Des_P.Filtre_P.Corps_P.Holder_P;
+with Des_P.Filtre_P.Entree_P.Holder_P;
+with Des_P.Filtre_P.Sortie_P.Holder_P;
+
+with Des_P.Faiseur_P;
+
 package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P is
 
    ---------------------------------------------------------------------------
@@ -26,10 +34,31 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
-      pragma Unreferenced (Constructeur);
-      pragma Unreferenced (Clef);
+      Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+      Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
+         Constructeur.Faiseur_56.Element;
+      Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class :=
+         Constructeur.Faiseur_48.Element;
+      Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+         Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
    begin
-      null;
+      Constructeur.Chaine.Filtre_Entree :=
+         Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
+            (Fabrique.Fabriquer_Entree);
+
+      for I in Numero_Filtre_T'Range loop
+         Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
+         Constructeur.Chaine.Filtres_Corps (I) :=
+            Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
+               (
+                  Fabrique.Fabriquer_Corps
+                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
+               );
+      end loop;
+
+      Constructeur.Chaine.Filtre_Sortie :=
+         Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
+            (Fabrique.Fabriquer_Sortie);
    end Construire;
 
    ---------------------------------------------------------------------------
