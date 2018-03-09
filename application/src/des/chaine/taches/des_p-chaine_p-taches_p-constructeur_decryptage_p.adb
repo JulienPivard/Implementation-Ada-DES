@@ -43,19 +43,23 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
+      J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Entree);
 
-      for I in Numero_Filtre_T'Range loop
-         Constructeur.Chaine.Filtres_Corps (I) :=
+      for I in reverse Numero_Filtre_T'Range loop
+         Constructeur.Chaine.Filtres_Corps (J) :=
             Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
                (
                   Fabrique.Fabriquer_Corps
                   (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
                );
          Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+         if J /= Numero_Filtre_T'Last then
+            J := Numero_Filtre_T'Succ (J);
+         end if;
       end loop;
 
       Constructeur.Chaine.Filtre_Sortie :=
