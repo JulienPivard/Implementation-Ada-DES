@@ -2,6 +2,8 @@ with Des_P.Clef_P.Clef_56_I_P;
 with Des_P.Filtre_P.Corps_P;
 with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
 
+with Des_P.Faiseur_P;
+
 package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
 
    ---------------------------------------------------------------------------
@@ -36,29 +38,24 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
          Constructeur.Faiseur_56.Element;
       Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_48.Element;
+      Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+         Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      Faiseur_56.Preparer_Nouvelle_Clef;
-      Faiseur_56.Construire_Clef (Clef);
-      declare
-         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
-            Faiseur_56.Recuperer_Clef;
-      begin
-         Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
-         for I in reverse Numero_Filtre_T'Range loop
-            Faiseur_48.Preparer_Nouvelle_Clef;
-            Faiseur_48.Construire_Clef (Clef_56);
-            declare
-               E : Des_P.Etage_P.Filtrage_P.Etage_T;
-               F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-                  Fabrique.Fabriquer_Corps (Faiseur_48.Recuperer_Clef);
-            begin
-               E.Modifier_Filtre (F);
-               Tete.Ajouter_Successeur (E);
-            end;
-            Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
-         end loop;
-      end;
+      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+
+      for I in reverse Numero_Filtre_T'Range loop
+         declare
+            E : Des_P.Etage_P.Filtrage_P.Etage_T;
+            F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+               Fabrique.Fabriquer_Corps
+                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56));
+         begin
+            E.Modifier_Filtre (F);
+            Tete.Ajouter_Successeur (E);
+         end;
+         Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+      end loop;
 
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;

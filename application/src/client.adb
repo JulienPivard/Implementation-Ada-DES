@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 07 mars[03] 2018
+--           Dernière modification : Jeudi 08 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -16,6 +16,8 @@ with Des_P.Clef_P.Clef_64_P.Constructeur_P;
 with Des_P.Clef_P.Clef_64_P;
 
 with Procedure_Run_P;
+
+with Des_P.Faiseur_P;
 
 procedure Client is
 
@@ -142,10 +144,10 @@ begin
          package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
          Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
          C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         C_I : constant Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class :=
+            Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
       begin
-         C_C_64.Preparer_Nouvelle_Clef;
-         C_C_64.Construire_Clef (Brut_Clef);
-         Clef := C_C_64.Recuperer_Clef;
+         Clef := Des_P.Clef_P.Clef_64_P.Clef_T (C_I);
       end;
    end Initialiser_Clef;
 
