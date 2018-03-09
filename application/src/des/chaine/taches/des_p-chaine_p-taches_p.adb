@@ -27,15 +27,16 @@ package body Des_P.Chaine_P.Taches_P is
       procedure Lanceur_Taches;
 
       procedure Lanceur_Taches is
+
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
-         task Etage_Sortie is
+         task Etage_Ecriture is
             entry Ecrire
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
                );
-         end Etage_Sortie;
+         end Etage_Ecriture;
 
-         task body Etage_Sortie is
+         task body Etage_Ecriture is
             B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
             C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
             Occupe : Boolean := False;
@@ -63,33 +64,111 @@ package body Des_P.Chaine_P.Taches_P is
                end;
                Occupe := False;
             end loop;
-         end Etage_Sortie;
+         end Etage_Ecriture;
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
-         task Etage_Utile is
+         task Etage_Sortie is
             entry Filtrer
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
                );
-         end Etage_Utile;
+         end Etage_Sortie;
 
-         task body Etage_Utile is
+         task body Etage_Sortie is
             B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
          begin
-            accept Filtrer
+            loop
+               select
+                  accept Filtrer
+                     (
+                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                     )
+                  do
+                     B_Tmp := Bloc;
+                  end Filtrer;
+               or
+                  terminate;
+               end select;
+               Chaine.Filtre_Sortie.Element.Filtrer (B_Tmp);
+               Etage_Ecriture.Ecrire (B_Tmp);
+            end loop;
+         end Etage_Sortie;
+         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+
+         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         task type Etage_Corps is
+            entry Filtrer
+               (
+                  Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+                  Numero : Numero_Filtre_T
+               );
+         end Etage_Corps;
+
+         Chaine_Corps : array (Numero_Filtre_T) of Etage_Corps;
+
+         task body Etage_Corps is
+            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            N_Tmp : Numero_Filtre_T;
+         begin
+            loop
+               select
+                  accept Filtrer
+                     (
+                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+                        Numero : Numero_Filtre_T
+                     )
+                  do
+                     B_Tmp := Bloc;
+                     N_Tmp := Numero;
+                  end Filtrer;
+               or
+                  terminate;
+               end select;
+               Chaine.Filtres_Corps (N_Tmp).Element.Filtrer (B_Tmp);
+               if N_Tmp = Numero_Filtre_T'Last then
+                  Etage_Sortie.Filtrer (B_Tmp);
+               else
+                  N_Tmp := Numero_Filtre_T'Succ (N_Tmp);
+                  Chaine_Corps (N_Tmp).Filtrer (B_Tmp, N_Tmp);
+               end if;
+            end loop;
+         end Etage_Corps;
+         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+
+         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         task Etage_Entree is
+            entry Filtrer
                (
                   Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
-               )
-            do
-               B_Tmp := Bloc;
-            end Filtrer;
-            --  Ajouter filtre ici.
-         end Etage_Utile;
+               );
+         end Etage_Entree;
+
+         task body Etage_Entree is
+            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         begin
+            loop
+               select
+                  accept Filtrer
+                     (
+                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                     )
+                  do
+                     B_Tmp := Bloc;
+                  end Filtrer;
+               or
+                  terminate;
+               end select;
+               Chaine.Filtre_Entree.Element.Filtrer (B_Tmp);
+               Chaine_Corps (Numero_Filtre_T'First).Filtrer
+                  (B_Tmp, Numero_Filtre_T'First);
+            end loop;
+         end Etage_Entree;
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
          C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
          Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+
       begin
          Lecture_Fichier :
          loop
@@ -101,7 +180,7 @@ package body Des_P.Chaine_P.Taches_P is
                Bloc : constant Des_P.Bloc_P.Bloc_64_P.Bloc_64_T :=
                   C_64.Recuperer_Bloc;
             begin
-               Etage_Utile.Filtrer (Bloc);
+               Etage_Entree.Filtrer (Bloc);
             end;
          end loop Lecture_Fichier;
       end Lanceur_Taches;

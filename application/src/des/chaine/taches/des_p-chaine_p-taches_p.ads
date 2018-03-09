@@ -1,3 +1,7 @@
+private with Des_P.Filtre_P.Corps_P.Holder_P;
+private with Des_P.Filtre_P.Entree_P.Holder_P;
+private with Des_P.Filtre_P.Sortie_P.Holder_P;
+
 --  @summary
 --  Chaine de filtres parallèle.
 --  @description
@@ -28,6 +32,14 @@ package Des_P.Chaine_P.Taches_P is
 
 private
 
-   type Chaine_T is new Chaine_Interface_T with null record;
+   type Table_Filtre_T is array (Numero_Filtre_T) of
+      Des_P.Filtre_P.Corps_P.Holder_P.Holder;
+
+   type Chaine_T is new Chaine_Interface_T with
+      record
+         Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
+         Filtres_Corps : Table_Filtre_T;
+         Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
+      end record;
 
 end Des_P.Chaine_P.Taches_P;
