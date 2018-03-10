@@ -29,6 +29,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T) is
+      pragma Unreferenced (T);
    begin
       null;
    end Tear_Down;

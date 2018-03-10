@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Lundi 05 mars[03] 2018
+--           Dernière modification : Jeudi 08 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -11,26 +11,18 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
-with Ada.Calendar;
-
-with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Chaine_P.Constructeur_I_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-
 with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
-with Des_P.Clef_P.Clef_56_P.Constructeur_P;
-with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_64_P;
+
+with Procedure_Run_P;
+
+with Des_P.Faiseur_P;
 
 procedure Client is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Arguments_Max : constant Natural := 3;
-
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
 
    ---------------------------------------------------------------------------
    procedure Afficher_Aide;
@@ -54,105 +46,7 @@ procedure Client is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   type Action_T is (Crypter, Decrypter);
-   Action : Action_T := Crypter;
-
-   package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
-   ---------------------------------------------------------------------------
-   function Init_Faiseur_Chaine
-      (Action : Action_T)
-      return Faiseur_P.Constructeur_Interface_T'Class;
-
-   function Init_Faiseur_Chaine
-      (Action : Action_T)
-      return Faiseur_P.Constructeur_Interface_T'Class
-   is
-      package Faiseur_S_C_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-      package Faiseur_S_D_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-      Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
-      Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
-   begin
-      return
-         (
-            case Action is
-               when Crypter => Const_Crypt_S,
-               when Decrypter => Const_Decry_S
-         );
-   end Init_Faiseur_Chaine;
-   ---------------------------------------------------------------------------
-
-   ---------------------------------------------------------------------------
-   procedure Executer_Crypt_Decrypt
-      (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
-         Nom_Fichier : String;
-         Action : Action_T
-      );
-
-   procedure Executer_Crypt_Decrypt
-      (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
-         Nom_Fichier : String;
-         Action : Action_T
-      )
-   is
-      F_56 : Faiseur_56_P.Constructeur_Clef_T;
-      F_48 : Faiseur_48_P.Constructeur_Clef_T;
-   begin
-      Faiseur.Initialiser (F_56, F_48);
-      Faiseur.Construire (Clef);
-      Mesure_Temps :
-      declare
-         Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
-            Faiseur.Recuperer_Chaine;
-
-         Extension : constant String :=
-               (
-                  case Action is
-                     when Crypter => "crypt",
-                     when Decrypter => "decrypt"
-               );
-
-         Debut, Fin : Ada.Calendar.Time;
-         Duree : Duration;
-         package Duree_IO is new
-         Ada.Text_IO.Fixed_IO (Duration);
-         use type Ada.Calendar.Time;
-      begin
-         Debut := Ada.Calendar.Clock;
-         Chaine.Filtrer
-            (
-               Nom_Fichier,
-               Extension
-            );
-         Fin := Ada.Calendar.Clock;
-         Duree := Fin - Debut;
-
-         --------------------------------------
-         Ada.Text_IO.New_Line (1);
-         Ada.Text_IO.Put ("Temps séquentielle : ");
-         Ada.Text_IO.New_Line (1);
-         Duree_IO.Put (Duree);
-         Ada.Text_IO.Put_Line (" s");
-         if Duree > 60.0 then
-            Duree_IO.Put (Duree / 60.0);
-            Ada.Text_IO.Put_Line (" min");
-         end if;
-         if Duree > 3600.0 then
-            Duree_IO.Put (Duree / 3600.0);
-            Ada.Text_IO.Put_Line (" h");
-         end if;
-         Ada.Text_IO.New_Line (1);
-         --------------------------------------
-      end Mesure_Temps;
-   end Executer_Crypt_Decrypt;
-
-   ---------------------------------------------------------------------------
-
+   Action : Procedure_Run_P.Action_T;
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
 begin
@@ -202,13 +96,13 @@ begin
             or else
             Crypt_Decrypt = "--crypter"
          then
-            Action := Crypter;
+            Action := Procedure_Run_P.Crypter;
          elsif
             Crypt_Decrypt = "-d"
             or else
             Crypt_Decrypt = "--decrypter"
          then
-            Action := Decrypter;
+            Action := Procedure_Run_P.Decrypter;
          else
             Put (Standard_Error, "L'argument [");
             Ada.Text_IO.Put
@@ -247,15 +141,13 @@ begin
       end if;
 
       declare
-         Brut_Clef :
-         Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T
-            with Address => Clef_Brut'Address;
-         C_C_64 :
-         Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+         Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
+         C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         C_I : constant Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class :=
+            Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
       begin
-         C_C_64.Preparer_Nouvelle_Clef;
-         C_C_64.Construire_Clef (Brut_Clef);
-         Clef := C_C_64.Recuperer_Clef;
+         Clef := Des_P.Clef_P.Clef_64_P.Clef_T (C_I);
       end;
    end Initialiser_Clef;
 
@@ -267,9 +159,6 @@ begin
          (Position_Nom_Fic);
       Octets_En_Trop : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
-
-      Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
-         Init_Faiseur_Chaine (Action);
    begin
       if not Ada.Directories.Exists (Nom_Fichier) then
          Put_Line (Standard_Error, "██████ Erreur !");
@@ -304,7 +193,10 @@ begin
          return;
       end if;
 
-      Executer_Crypt_Decrypt (Faiseur, Clef, Nom_Fichier, Action);
+      Procedure_Run_P.Executer_Crypt_Decrypt
+         (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
+      Procedure_Run_P.Executer_Crypt_Decrypt
+         (Clef, Nom_Fichier, Action, Procedure_Run_P.Tache);
 
    end Ouverture_Fichier;
 

@@ -44,10 +44,10 @@ package body Des_P.Chaine_P.Sequentiel_P is
          Lecteur_64_IO.Write (Resultat, Brut);
       end loop Lecture_Fichier;
 
-      Lecteur_64_IO.Close (Resultat);
-      pragma Unreferenced (Resultat);
       Lecteur_64_IO.Close (Fichier);
       pragma Unreferenced (Fichier);
+      Lecteur_64_IO.Close (Resultat);
+      pragma Unreferenced (Resultat);
 
    end Filtrer;
 

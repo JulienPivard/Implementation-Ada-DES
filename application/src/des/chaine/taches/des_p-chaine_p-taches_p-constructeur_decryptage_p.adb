@@ -1,10 +1,13 @@
-with Des_P.Clef_P.Clef_56_I_P;
-with Des_P.Filtre_P.Corps_P;
 with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
+with Des_P.Clef_P.Clef_56_I_P;
+
+with Des_P.Filtre_P.Corps_P.Holder_P;
+with Des_P.Filtre_P.Entree_P.Holder_P;
+with Des_P.Filtre_P.Sortie_P.Holder_P;
 
 with Des_P.Faiseur_P;
 
-package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
+package body Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
 
    ---------------------------------------------------------------------------
    overriding
@@ -32,7 +35,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
-      Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
       Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_56.Element;
@@ -41,30 +43,28 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
+      J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
-      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+      Constructeur.Chaine.Filtre_Entree :=
+         Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
+            (Fabrique.Fabriquer_Entree);
 
       for I in reverse Numero_Filtre_T'Range loop
-         declare
-            E : Des_P.Etage_P.Filtrage_P.Etage_T;
-            F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Fabrique.Fabriquer_Corps
-                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56));
-         begin
-            E.Modifier_Filtre (F);
-            Tete.Ajouter_Successeur (E);
-         end;
+         Constructeur.Chaine.Filtres_Corps (J) :=
+            Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
+               (
+                  Fabrique.Fabriquer_Corps
+                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
+               );
          Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+         if J /= Numero_Filtre_T'Last then
+            J := Numero_Filtre_T'Succ (J);
+         end if;
       end loop;
 
-      declare
-         Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
-      begin
-         Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
-         Tete.Ajouter_Successeur (Etage);
-      end;
-
-      Constructeur.Chaine.Tete := Tete;
+      Constructeur.Chaine.Filtre_Sortie :=
+         Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
+            (Fabrique.Fabriquer_Sortie);
    end Construire;
 
    ---------------------------------------------------------------------------
@@ -77,4 +77,4 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       return Constructeur.Chaine;
    end Recuperer_Chaine;
 
-end Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+end Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;

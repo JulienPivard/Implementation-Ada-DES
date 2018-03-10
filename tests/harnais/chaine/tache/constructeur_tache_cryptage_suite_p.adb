@@ -1,9 +1,9 @@
 with AUnit.Test_Caller;
 
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P;
-use  Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P;
+with Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P;
+use  Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P.Test_P;
 
-package body Constructeur_Chaine_Cryptage_Suite_P is
+package body Constructeur_Tache_Cryptage_Suite_P is
 
    package Caller is new AUnit.Test_Caller
       (Test_Fixt_T);
@@ -14,7 +14,7 @@ package body Constructeur_Chaine_Cryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests constructeur chaine cryptage) ";
+      nom_test : constant String := "(Tests constructeur tache cryptage) ";
    begin
 
       ptr_test_suite.all.Add_Test
@@ -42,4 +42,4 @@ package body Constructeur_Chaine_Cryptage_Suite_P is
 
    end Fonc_Suite;
 
-end Constructeur_Chaine_Cryptage_Suite_P;
+end Constructeur_Tache_Cryptage_Suite_P;
