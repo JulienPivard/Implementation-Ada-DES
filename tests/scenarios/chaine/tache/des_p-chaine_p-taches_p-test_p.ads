@@ -35,10 +35,4 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    procedure Test_Filtre
       (T : in out Test_Fixt_T);
 
-   procedure Test_Execution_2_Filtres
-      (T : in out Test_Fixt_T);
-
-   procedure Test_Execution_18_Filtres
-      (T : in out Test_Fixt_T);
-
 end Des_P.Chaine_P.Taches_P.Test_P;

@@ -24,20 +24,6 @@ package body Chaine_Tache_Suite_P is
             )
          );
 
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Execution avec 2 filtres",
-            Test_Execution_2_Filtres'Access
-            )
-         );
-
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Execution avec tous les filtres",
-            Test_Execution_18_Filtres'Access
-            )
-         );
-
       return ptr_test_suite;
 
    end Fonc_Suite;
