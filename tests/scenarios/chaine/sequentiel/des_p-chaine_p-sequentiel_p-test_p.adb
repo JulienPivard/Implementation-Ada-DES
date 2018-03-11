@@ -10,6 +10,7 @@ with Des_P.Clef_P.Clef_48_P;
 
 with Des_P.Filtre_P.Corps_P;
 with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 
 with Ada.Directories;
 with Ada.Sequential_IO;
@@ -18,8 +19,12 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    package Faiseur_Cryptage_P renames
       Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+   package Faiseur_Decryptage_P renames
+      Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
    package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
    package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
+   package Lecteur_64_IO is new Ada.Sequential_IO
+      (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------
    overriding
@@ -36,26 +41,28 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    procedure Tear_Down (T : in out Test_Fixt_T) is
       pragma Unreferenced (T);
    begin
-      null;
+      if Ada.Directories.Exists (Nom_Fichier) then
+         Ada.Directories.Delete_File (Nom_Fichier);
+      end if;
+      if Ada.Directories.Exists (Nom_Alternatif) then
+         Ada.Directories.Delete_File (Nom_Alternatif);
+      end if;
    end Tear_Down;
 
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
-   procedure Test_Filtre (T : in out Test_Fixt_T) is
-      Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
+   procedure Test_Filtre_Crypt (T : in out Test_Fixt_T) is
       Const_Crypt : Faiseur_Cryptage_P.Constructeur_Cryptage_T;
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
-         package Lecteur_64_IO is new Ada.Sequential_IO
-         (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
          Fichier : Lecteur_64_IO.File_Type;
       begin
          Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut);
+         Lecteur_64_IO.Write (Fichier, Brut_Initial);
          Lecteur_64_IO.Close (Fichier);
          pragma Unreferenced (Fichier);
       end;
@@ -66,16 +73,11 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         package Lecteur_64_IO is new Ada.Sequential_IO
-         (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
          Fichier : Lecteur_64_IO.File_Type;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
          Brut_Utilise :
             Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-               Brut;
-         Brut_Attendu : constant
-            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-               15799177843826553255;
+               Brut_Initial;
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
          Lecteur_64_IO.Read (Fichier, Brut_Utilise);
@@ -87,9 +89,46 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             " au lieu de " & Brut_Attendu'Img
             );
       end;
-      Ada.Directories.Delete_File (Nom_Fichier);
-      Ada.Directories.Delete_File (Nom_Alternatif);
-   end Test_Filtre;
+   end Test_Filtre_Crypt;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Decrypt (T : in out Test_Fixt_T) is
+      Const_Decrypt : Faiseur_Decryptage_P.Constructeur_Decryptage_T;
+      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
+      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+   begin
+      declare
+         Fichier : Lecteur_64_IO.File_Type;
+      begin
+         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
+         Lecteur_64_IO.Write (Fichier, Brut_Attendu);
+         Lecteur_64_IO.Close (Fichier);
+         pragma Unreferenced (Fichier);
+      end;
+      Const_Decrypt.Initialiser (Const_56, Const_48);
+      Const_Decrypt.Construire (T.Clef);
+      T.Chaine := Chaine_T (Const_Decrypt.Recuperer_Chaine);
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         Fichier : Lecteur_64_IO.File_Type;
+         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         Brut_Utilise :
+            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
+               Brut_Attendu;
+      begin
+         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
+         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
+         Lecteur_64_IO.Close (Fichier);
+         pragma Unreferenced (Fichier);
+         AUnit.Assertions.Assert
+            (Brut_Utilise = Brut_Initial,
+            "Brut : " & Brut_Utilise'Img &
+            " au lieu de " & Brut_Initial'Img
+            );
+      end;
+   end Test_Filtre_Decrypt;
 
    ---------------------------------------------------------------------------
    procedure Test_Execution_2_Filtres
@@ -98,10 +137,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       Brut_Utilise :
          Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-            Brut;
-      Brut_Attendu : constant
-         Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-            17361641481138401520;
+            Brut_Initial;
    begin
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
@@ -117,9 +153,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          T.Chaine.Tete := Tete;
          T.Chaine.Execution (Brut_Utilise);
          AUnit.Assertions.Assert
-            (Brut_Utilise = Brut_Attendu,
+            (Brut_Utilise = Brut_Initial,
             "Brut : " & Brut_Utilise'Img &
-            " au lieu de " & Brut_Attendu'Img
+            " au lieu de " & Brut_Initial'Img
             );
       end;
 
@@ -150,10 +186,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    is
       use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       Brut_Utilise :
-         Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T := Brut;
-      Brut_Attendu : constant
-         Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-            15799177843826553255;
+         Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T := Brut_Initial;
       Const_56 : Des_P.Clef_P.Clef_56_P.Constructeur_P.Constructeur_Clef_T;
    begin
       Const_56.Preparer_Nouvelle_Clef;
