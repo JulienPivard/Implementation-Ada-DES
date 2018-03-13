@@ -7,6 +7,7 @@ project Build is
    type Mode_Compilation_T    is ("debug", "release");
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
+   type Personnalisee_T       is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
@@ -16,6 +17,7 @@ project Build is
    Mode_Compilation  : Mode_Compilation_T    := External ("mode", "debug");
    Verbeux           : Verbeux_T             := External ("verb", "non");
    Strict            : Strict_T              := External ("stri", "non");
+   Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
    Procedure_Principal        := "client";
    Nom_Executable             := "executable";
@@ -115,7 +117,12 @@ project Build is
          when "oui" =>
             null;
          when "non" =>
-            for Doc_Pattern use "^<";
+            case Personnalisee is
+               when "oui" =>
+                  for Doc_Pattern use "^<";
+               when "non" =>
+                  null;
+            end case;
       end case;
 
    end Documentation;
