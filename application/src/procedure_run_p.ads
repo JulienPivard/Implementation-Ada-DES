@@ -14,7 +14,13 @@ private with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 package Procedure_Run_P is
 
    type Action_T is (Crypter, Decrypter);
+   --  L'action à effectuer sur le fichier.
+   --  @value Crypter L'action de crypter.
+   --  @value Decrypter L'action de décrypter.
    type Chaine_Seq_Task_T is (Tache, Sequentiel);
+   --  Sélectionne entre un cryptage/décryptage séquentiel ou parallèle.
+   --  @value Tache cryptage/décryptage parallèle.
+   --  @value Sequentiel cryptage/décryptage séquentiel.
 
    procedure Executer_Crypt_Decrypt
       (
