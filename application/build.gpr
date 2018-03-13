@@ -1,35 +1,35 @@
---  Dernière modification : Mardi 27 février[02] 2018
+--  Dernière modification : Mardi 13 mars[03] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
 
    --  Les énumérations sont des types accepté.
-   type T_Mode_Compilation     is ("debug", "release");
-   type T_Verbeux              is ("non", "oui");
-   type T_Strict               is ("non", "oui");
+   type Mode_Compilation_T    is ("debug", "release");
+   type Verbeux_T             is ("non", "oui");
+   type Strict_T              is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation    : T_Mode_Compilation    := External ("mode", "debug");
-   Verbeux             : T_Verbeux             := External ("verb", "non");
-   Strict              : T_Strict              := External ("stri", "non");
+   Mode_Compilation  : Mode_Compilation_T    := External ("mode", "debug");
+   Verbeux           : Verbeux_T             := External ("verb", "non");
+   Strict            : Strict_T              := External ("stri", "non");
 
-   Procedure_Principal         := "client";
-   Nom_Executable              := "executable";
+   Procedure_Principal        := "client";
+   Nom_Executable             := "executable";
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main        use (Procedure_Principal);
+   for Main                      use (Procedure_Principal);
 
    --  Pour ignorer des fichiers sources de la compilation
-   for Ignore_Source_Sub_Dirs use (".git");
+   for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
-   for Source_Dirs use ("src/**");
+   for Source_Dirs               use ("src/**");
 
-   for Object_Dir  use "obj/" & Mode_Compilation;
-   for Exec_Dir    use "bin/" & Mode_Compilation;
+   for Object_Dir                use "obj/" & Mode_Compilation;
+   for Exec_Dir                  use "bin/" & Mode_Compilation;
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnatef est la pour afficher le chemin complet des fichiers dans les
@@ -98,13 +98,20 @@ project Build is
          Options := Options & ("-gnatw.e", "-gnatw.Y", "-gnatyBdOSux");
    end case;
 
+   --  En cas de
+   --    dyld: Library not loaded … Reason: Image not loaded sur macos
+   --  faire
+   --    otool -L <exefile>
+   --  puis
+   --    install_name_tool -change <@executable_path/lib.dylib>
+   --       </opt/local/lib/lib.dylib> <exefile>
    --  Les commentaires qui commencent par "--<" sont de la documentation
-   --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.html
+   --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    package Documentation is
 
       for Documentation_Dir use "doc";
 
-      case strict is
+      case Strict is
          when "oui" =>
             null;
          when "non" =>
