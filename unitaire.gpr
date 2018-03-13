@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 27 février[02] 2018
+--  Dernière modification : Mardi 13 mars[03] 2018
 --  auteur : PIVARD Julien
 with "aunit";
 with "application/build.gpr";
@@ -9,15 +9,15 @@ project Unitaire is
    Nom_Executable                := "test_unitaire_executable";
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main          use (Procedure_Principal);
+   for Main                      use (Procedure_Principal);
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
-   for Source_Dirs   use ("tests/**");
+   for Source_Dirs               use ("tests/**");
 
-   for Object_Dir    use "obj/";
-   for Exec_Dir      use "bin/";
+   for Object_Dir                use "obj/";
+   for Exec_Dir                  use "bin/";
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnatef est la pour afficher le chemin complet des fichiers dans les
