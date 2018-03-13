@@ -83,7 +83,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Constructeur_P is
             C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Gauche)),
             C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Droite))
          );
-         Brut : Bloc_64_Brut_T with Address => Resultat'Address;
+      Brut : Bloc_64_Brut_T with Address => Resultat'Address;
    begin
       return Brut;
    end Transformer_En_Brut;

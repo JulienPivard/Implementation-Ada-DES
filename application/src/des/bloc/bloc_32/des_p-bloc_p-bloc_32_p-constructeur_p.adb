@@ -28,9 +28,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          Brut : Bloc_32_T
       )
    is
-      type Table_Permutations_T is array
-         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T)
-         of Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+      type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
       Table_P : constant Table_Permutations_T :=
          (
             16,  7, 20, 21,
@@ -43,7 +41,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
             22, 11,  4, 25
          );
    begin
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Intervalle_T'Range loop
          Constructeur.Bloc.Bits (I) := Brut.Bits (Table_P (I));
       end loop;
    end Construire_Bloc;
@@ -188,8 +186,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
 
       type Valeur_T is mod 2**4
          with Size => 4;
-      type Table_De_Selection_T is array
-         (Ligne_T, Colonne_T) of Valeur_T;
+      type Table_De_Selection_T is array (Ligne_T, Colonne_T) of Valeur_T;
       S1 : constant Table_De_Selection_T :=
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15

@@ -18,7 +18,7 @@ package body Des_P.Chaine_P.Taches_P is
    is
       package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
       package Lecteur_64_IO is new Ada.Sequential_IO
-      (C_Bloc_64_P.Bloc_64_Brut_T);
+         (C_Bloc_64_P.Bloc_64_Brut_T);
 
       Fichier : Lecteur_64_IO.File_Type;
       Resultat : Lecteur_64_IO.File_Type;
@@ -217,12 +217,7 @@ package body Des_P.Chaine_P.Taches_P is
             Lecteur_64_IO.Read (Fichier, Brut);
             C_64.Preparer_Nouveau_Bloc;
             C_64.Construire_Bloc (Brut);
-            declare
-               Bloc : constant Des_P.Bloc_P.Bloc_64_P.Bloc_64_T :=
-                  C_64.Recuperer_Bloc;
-            begin
-               Etage_Entree.Filtrer (Bloc);
-            end;
+            Etage_Entree.Filtrer (C_64.Recuperer_Bloc);
          end loop Lecture_Fichier;
       end Lanceur_Taches;
       --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --

@@ -11,13 +11,16 @@ package body Des_P.Bloc_Xor_Clef_P is
       return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
    is
       B : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-      Bit : Des_P.Bloc_P.Bit_T;
-      I_Bis : Des_P.Clef_P.Clef_48_I_P.Intervalle_T;
    begin
       for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_T loop
-         I_Bis := Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
-         Bit := Gauche.Lire_Bit (I) xor Droite.Lire_Bit (I_Bis);
-         B.Ecrire_Bit (I, Bit);
+         declare
+            I_Bis : constant Des_P.Clef_P.Clef_48_I_P.Intervalle_T :=
+               Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
+            Bit : constant Des_P.Bloc_P.Bit_T :=
+               Gauche.Lire_Bit (I) xor Droite.Lire_Bit (I_Bis);
+         begin
+            B.Ecrire_Bit (I, Bit);
+         end;
       end loop;
       return B;
    end "xor";

@@ -138,10 +138,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
    function "+" (Left : Decalage_T; Right : Position_Bloc_T)
       return Position_Bloc_T
    is
-      Cote_Tmp : constant Decalage_T := Position_Bloc_T'Pos (Right);
-      Cote_Apres_Decalage : constant Decalage_T := Cote_Tmp + Left;
    begin
-      return Position_Bloc_T'Val (Cote_Apres_Decalage);
+      return Right + Left;
    end "+";
 
 end Des_P.Bloc_P.Bloc_64_P;
