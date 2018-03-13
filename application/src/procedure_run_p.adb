@@ -31,16 +31,20 @@ package body Procedure_Run_P is
       Ada.Text_IO.Fixed_IO (Duration);
       use type Ada.Real_Time.Time;
    begin
+      --  Note le début du temps.
       Debut := Ada.Real_Time.Clock;
+      --  Filtre le fichier.
       Chaine.Filtrer
          (
             Nom_Fichier,
             Extension
          );
+      --  Note la fin du temps.
       Fin := Ada.Real_Time.Clock;
 
       --------------------------------------
       Ada.Text_IO.New_Line (1);
+      --  Affiche le temps de filtrage du fichier.
       Ada.Text_IO.Put
          (
             "Temps " &
@@ -52,6 +56,7 @@ package body Procedure_Run_P is
             " : "
          );
       Ada.Text_IO.New_Line (1);
+      --  Conversion du temps pour faciliter l'affichage.
       Affichage_Temps :
       declare
          Duree : constant Duration :=
@@ -59,10 +64,12 @@ package body Procedure_Run_P is
       begin
          Duree_IO.Put (Duree);
          Ada.Text_IO.Put_Line (" s");
+         --  Affichage en minuttes.
          if Duree > 60.0 then
             Duree_IO.Put (Duree / 60.0);
             Ada.Text_IO.Put_Line (" min");
          end if;
+         --  Affichage en heures.
          if Duree > 3600.0 then
             Duree_IO.Put (Duree / 3600.0);
             Ada.Text_IO.Put_Line (" h");
@@ -88,11 +95,14 @@ package body Procedure_Run_P is
          Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P;
       package Faiseur_T_D_P renames
          Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
+      --  Instancie tous les faiseur de chaine possible
       Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
       Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
       Const_Crypt_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
       Const_Decry_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
    begin
+      --  Le faiseur sélectionné par le type action et le type
+      --  séquentiel ou tache.
       return
          (
             case Action is
@@ -120,6 +130,7 @@ package body Procedure_Run_P is
       return String
    is
    begin
+      --  Initialise l'extension du fichier alternatif.
       return
          (
             case C_Type is
@@ -145,6 +156,7 @@ package body Procedure_Run_P is
       F_56 : Faiseur_56_P.Constructeur_Clef_T;
       F_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
+      --  Les 3 instructions pour construire une nouvelle chaine
       Faiseur.Initialiser (F_56, F_48);
       Faiseur.Construire (Clef);
       return Faiseur.Recuperer_Chaine;

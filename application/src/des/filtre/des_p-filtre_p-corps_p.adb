@@ -27,7 +27,7 @@ package body Des_P.Filtre_P.Corps_P is
       --  Bloc de 48 xor Clef de 48.
       B_48 := B_48 xor Clef;
 
-      --  Réduction de clef de 48 à clef de 32.
+      --  Réduction du bloc de 48 à un bloc de 32.
       C_32.Preparer_Nouveau_Bloc;
       C_32.Construire_Bloc (B_48);
       B := C_32.Recuperer_Bloc;

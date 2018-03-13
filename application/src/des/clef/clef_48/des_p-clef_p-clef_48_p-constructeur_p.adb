@@ -18,7 +18,7 @@ package body Des_P.Clef_P.Clef_48_P.Constructeur_P is
          Clef : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
       )
    is
-      --  Tiré au tableau de correspondance PC-2 de DES.
+      --  Tiré du tableau de correspondance PC-2 de DES.
       T : constant array (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
          of Des_P.Clef_P.Clef_56_I_P.Intervalle_T :=
             (
@@ -32,6 +32,8 @@ package body Des_P.Clef_P.Clef_48_P.Constructeur_P is
                46, 42, 50, 36, 29, 32
             );
    begin
+      --  Applique la table de correspondance à la clef de 56
+      --  pour en tirer une clef de 48
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
          Constructeur.Clef.Bits (I) := Clef.Lire_Bit (T (I));
       end loop;

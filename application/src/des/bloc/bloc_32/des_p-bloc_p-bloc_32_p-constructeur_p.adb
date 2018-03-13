@@ -29,6 +29,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       )
    is
       type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
+      --  La table de permutations P.
       Table_P : constant Table_Permutations_T :=
          (
             16,  7, 20, 21,
@@ -53,11 +54,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          Brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
       )
    is
-      --  Extraction de la table de 48 bits pour pouvoir la manipuler.
       type Table_48_Bits_T is array
          (Des_P.Bloc_P.Bloc_48_P.Intervalle_T)
          of Bit_T
          with Size => 48, Pack;
+
+      --  Extraction de la table de 48 bits pour pouvoir la manipuler.
       Table_48_Bits : constant Table_48_Bits_T :=
       (
          Brut.Lire_Bit (1), Brut.Lire_Bit (2), Brut.Lire_Bit (3),
@@ -78,12 +80,14 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          Brut.Lire_Bit (46), Brut.Lire_Bit (47), Brut.Lire_Bit (48)
       );
 
-      --  Passage par un bloc intermédiaire pour pouvoir manipuler plus
-      --  facilement les bits.
+      --  Le numéro de la colonne.
       type Colonne_T is mod 2**4
          with Size => 4;
+      --  Le bit de début et de fin qui vont composer le numéro de la ligne.
       type Debut_Fin_T is mod 2
          with Size => 1;
+      --  Passage par un bloc intermédiaire pour pouvoir manipuler plus
+      --  facilement les bits.
       type Bloc_Intermediaire_T is
          record
             Debut_1     : Debut_Fin_T;
@@ -114,6 +118,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          end record
       with Size => 48;
 
+      --  Découpage de la table pour faciliter les manipulations.
       for Bloc_Intermediaire_T use
          record
             Debut_1     at 0 range 0 .. 0;
@@ -143,18 +148,25 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
             Fin_8       at 3 range 23 .. 23;
          end record;
 
+      --  Transformation du tableau en bloc de bits.
       Bloc_Intermediaire : Bloc_Intermediaire_T
          with Address => Table_48_Bits'Address;
 
+      --  Représentation intermédiaire de la ligne.
       type Ligne_Intermediaire_T is array
          (Natural range 0 .. 7)
          of Debut_Fin_T
          with Size => 8, Pack;
+      --  Représentation final de la ligne.
       type Ligne_T is mod 2**2
          with Size => 8;
+
+      --  Rassemble le bit de début et de fin
+      --  pour former le numéro de la ligne.
       Ligne_Intermediaire_1 : constant Ligne_Intermediaire_T :=
          (Bloc_Intermediaire.Debut_1, Bloc_Intermediaire.Fin_1, others => 0);
       Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
+      --  Transforme le tableau de bits en un octet.
 
       Ligne_Intermediaire_2 : constant Ligne_Intermediaire_T :=
          (Bloc_Intermediaire.Debut_2, Bloc_Intermediaire.Fin_2, others => 0);
@@ -184,9 +196,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          (Bloc_Intermediaire.Debut_8, Bloc_Intermediaire.Fin_8, others => 0);
       Ligne_8 : Ligne_T with Address => Ligne_Intermediaire_8'Address;
 
+      --  La valeur contenu dans le tableau au
+      --  croisement de la ligne et de la colonne.
       type Valeur_T is mod 2**4
          with Size => 4;
       type Table_De_Selection_T is array (Ligne_T, Colonne_T) of Valeur_T;
+
+      --  Les tables de sélection recommandé dans le standard de S1 à S8
       S1 : constant Table_De_Selection_T :=
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
@@ -267,10 +283,14 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
 
+      --  Tableau de 8 blocs de 8 bits.
       type Bloc_32_Intermediaire_T is array
          (Natural range 0 .. 7)
          of Valeur_T
          with Size => 32, Pack;
+
+      --  Table de 8 valeurs qui va contenir les résultats
+      --  des tables de sélection.
       Bloc_Tmp : constant Bloc_32_Intermediaire_T :=
          (
             S1 (Ligne_1, Bloc_Intermediaire.Colonne_1),
@@ -283,6 +303,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
             S8 (Ligne_8, Bloc_Intermediaire.Colonne_8)
          );
 
+      --  Le tableau de 8 bloc de 8 bits est transformé en un bloc
+      --  de 32 bits brut.
       Bloc_Brut : Bloc_32_Brut_T with Address => Bloc_Tmp'Address;
    begin
       Construire_Bloc (Constructeur, Bloc_Brut);
@@ -306,6 +328,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       return Bloc_32_Brut_T
    is
       pragma Unreferenced (Constructeur);
+      --  Le tableau de 32 bits est transformé en un bloc de 32 bits.
       Brut : Bloc_32_Brut_T with Address => Bloc.Bits'Address;
    begin
       return Brut;

@@ -43,6 +43,8 @@ package body Des_P.Etage_P.Filtrage_P is
       )
    is
    begin
+      --  Si l'étage possède un successeur on ajoute le successeur
+      --  au successeur de cet étage.
       if Etage.Possede_Successeur then
          Etage.Successeur.Reference.Ajouter_Successeur (Successeur);
       else
@@ -83,6 +85,8 @@ package body Des_P.Etage_P.Filtrage_P is
       )
    is
    begin
+      --  Si l'étage possède un successeur on transmet le bloc au
+      --  successeur pour le filtrer.
       Etage.Filtrer (Bloc);
       if Etage.Possede_Successeur then
          Etage.Successeur.Element.Iterer (Bloc);

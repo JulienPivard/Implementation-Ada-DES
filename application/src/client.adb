@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 08 mars[03] 2018
+--           Dernière modification : Mardi 13 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -51,6 +51,7 @@ procedure Client is
 
 begin
 
+   --  Aucun arguments en entrée
    if Nb_Arguments = 0 then
 
       Afficher_Aide;
@@ -58,6 +59,7 @@ begin
          (Ada.Command_Line.Success);
       return;
 
+      --  Trop d'arguments
    elsif Nb_Arguments > Nb_Arguments_Max then
 
       Afficher_Aide;
@@ -72,6 +74,7 @@ begin
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
+      --  Moins de deux arguments
    elsif Nb_Arguments < 2 then
 
       Afficher_Aide;
@@ -86,6 +89,7 @@ begin
 
    end if;
 
+   --  L'argument optionnel -c ou -d à été donné
    if Nb_Arguments = 3 then
       declare
          Crypt_Decrypt : constant String :=
@@ -160,6 +164,7 @@ begin
       Octets_En_Trop : Ada.Directories.File_Size;
       use type Ada.Directories.File_Size;
    begin
+      --  Vérification de l'existence du fichier
       if not Ada.Directories.Exists (Nom_Fichier) then
          Put_Line (Standard_Error, "██████ Erreur !");
          Put (Standard_Error, "   Le fichier [");
@@ -172,6 +177,8 @@ begin
          return;
       end if;
 
+      --  Vérification de la taille du fichier.
+      --  Si il n'est pas multiple de 64 bits : termine sur une erreur.
       Octets_En_Trop :=
          Ada.Directories.Size (Nom_Fichier) mod 8;
 
@@ -193,11 +200,11 @@ begin
          return;
       end if;
 
+      --  Lancement du cryptage ou décryptage
       Procedure_Run_P.Executer_Crypt_Decrypt
          (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
       Procedure_Run_P.Executer_Crypt_Decrypt
          (Clef, Nom_Fichier, Action, Procedure_Run_P.Tache);
-
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);

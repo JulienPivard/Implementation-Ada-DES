@@ -20,6 +20,7 @@ package body Des_P.Chaine_P.Taches_P is
       package Lecteur_64_IO is new Ada.Sequential_IO
          (C_Bloc_64_P.Bloc_64_Brut_T);
 
+      --  Les fichiers à lire et à écrire.
       Fichier : Lecteur_64_IO.File_Type;
       Resultat : Lecteur_64_IO.File_Type;
 
@@ -56,6 +57,7 @@ package body Des_P.Chaine_P.Taches_P is
                   terminate;
                end select;
 
+               --  Écrit le brut dans le fichier.
                declare
                   Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                      := C_64.Transformer_En_Brut (B_Tmp);
@@ -102,7 +104,9 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
+               --  Filtre le bloc avec le filtre de sortie.
                F_Tmp.Element.Filtrer (B_Tmp);
+               --  Renvoie du bloc vers l'étage d'écriture.
                Etage_Ecriture.Ecrire (B_Tmp);
             end loop;
          end Etage_Sortie;
@@ -121,6 +125,7 @@ package body Des_P.Chaine_P.Taches_P is
                );
          end Etage_Corps;
 
+         --  La chaine de corps de filtre.
          Chaine_Corps : array (Numero_Filtre_T) of Etage_Corps;
 
          task body Etage_Corps is
@@ -149,7 +154,11 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
+
+               --  Filtrage du bloc
                F_Tmp.Element.Filtrer (B_Tmp);
+               --  Si l'étage est le dernier on envoie vers la
+               --  tache de sortie et vers une tache de corps sinon.
                if N_Tmp = Numero_Filtre_T'Last then
                   Etage_Sortie.Filtrer (B_Tmp);
                else
@@ -195,7 +204,10 @@ package body Des_P.Chaine_P.Taches_P is
                or
                   terminate;
                end select;
+
+               --  Filtre le bloc avec le filtre d'entrée.
                F_Tmp.Element.Filtrer (B_Tmp);
+               --  Envoie le bloc vers la première tache de corps.
                Chaine_Corps (Numero_Filtre_T'First).Filtrer
                   (B_Tmp, Numero_Filtre_T'First);
             end loop;
@@ -206,17 +218,23 @@ package body Des_P.Chaine_P.Taches_P is
          Brut : C_Bloc_64_P.Bloc_64_Brut_T;
 
       begin
+         --  Initialisation des taches avec le filtre
          Etage_Entree.Modifier_Filtre (Chaine.Filtre_Entree);
          for I in Numero_Filtre_T loop
             Chaine_Corps (I).Modifier_Filtre (Chaine.Filtres_Corps (I));
          end loop;
          Etage_Sortie.Modifier_Filtre (Chaine.Filtre_Sortie);
+
+         --  Lancement de la lecture du fichier, filtrage et écriture dans
+         --  le fichier alternatif.
          Lecture_Fichier :
          loop
             exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
             Lecteur_64_IO.Read (Fichier, Brut);
+            --  Initialisation du bloc de 64
             C_64.Preparer_Nouveau_Bloc;
             C_64.Construire_Bloc (Brut);
+            --  Lancement du filtrage.
             Etage_Entree.Filtrer (C_64.Recuperer_Bloc);
          end loop Lecture_Fichier;
       end Lanceur_Taches;
@@ -224,6 +242,8 @@ package body Des_P.Chaine_P.Taches_P is
 
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
+      --  Ouvre le fichier pour écrire si il existe et écrase le contenu
+      --  sinon il est créé.
       if Ada.Directories.Exists (Nom_Alternatif) then
          Lecteur_64_IO.Open
             (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
@@ -231,6 +251,7 @@ package body Des_P.Chaine_P.Taches_P is
          Lecteur_64_IO.Create
             (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
       end if;
+      --  Ouverture du fichier à lire.
       Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Fichier);
 
       Lanceur_Taches;

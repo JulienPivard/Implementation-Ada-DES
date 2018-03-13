@@ -19,6 +19,7 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P is
    is
       C : Chaine_T;
    begin
+      --  Initialise une chaine vide.
       Constructeur.Chaine := C;
       Constructeur.Faiseur_56 :=
          Faiseur_56_I_P.Holder_P.To_Holder (Faiseur_56);
@@ -34,20 +35,27 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
+      --  La fabrique de filtre de cryptage.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+      --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_56.Element;
       Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_48.Element;
+      --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
    begin
+      --  Ajoute le filtre d'entrée à la chaine.
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Entree);
 
+      --  Ajoute le filtre de corps à la chaine.
       for I in Numero_Filtre_T'Range loop
+         --  Décalage à gauche pour le cryptage.
          Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
+         --  Initialise le filtre avec la clef de 48.
          Constructeur.Chaine.Filtres_Corps (I) :=
             Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
                (
@@ -56,6 +64,7 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Cryptage_P is
                );
       end loop;
 
+      --  Ajoute le filtre de sortie.
       Constructeur.Chaine.Filtre_Sortie :=
          Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Sortie);

@@ -3,8 +3,10 @@ package body Des_P.Bloc_P.Bloc_64_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Initialize (Bloc : in out Bloc_64_T) is
+      --  Deux bloc de 32 bits vide.
       G, D : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
+      --  Remise à zéro du décalage.
       Bloc.Decalage := 0;
       Bloc.Blocs_32 (Gauche + Bloc.Decalage) := G;
       Bloc.Blocs_32 (Droite + Bloc.Decalage) := D;
@@ -27,6 +29,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
    ---------------------------------------------------------------------------
    procedure Intervertir_Blocs (Bloc : in out Bloc_64_T) is
    begin
+      --  Décale les blocs.
       Bloc.Decalage := Decalage_T'Succ (Bloc.Decalage);
    end Intervertir_Blocs;
 
@@ -38,17 +41,29 @@ package body Des_P.Bloc_P.Bloc_64_P is
          Bit : Bit_T
       )
    is
+      --  Le bit demandé est à gauche par défaut.
       G_Ou_D : Position_Bloc_T := Gauche;
       P : Intervalle_T := Position;
+      --  La position dans l'intervalle de 32 bits.
       P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+      --  La valeur maximal de l'intervalle de 32 bits.
       Limite : constant Intervalle_T :=
          Intervalle_T (Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last);
    begin
+      --  Si la position demandé est supérieur à la position
+      --  maximal d'un bloc de 32 on manipule la valeur pour
+      --  la ramener dans l'intervalle et on retient que le
+      --  bit demandé est dans le bloc de droite.
       if Position > Limite then
          G_Ou_D := Droite;
          P := P - Limite;
       end if;
+      --  Conversion de la position de l'intervalle 64 bits
+      --  vers l'intervalle des blocs de 32 bits.
       P_Dans_Intervalle_32 := Des_P.Bloc_P.Bloc_32_P.Intervalle_T (P);
+      --  On écrit le bits dans le bloc déterminé.
+      --  La prise en compte du décalage se fait
+      --  directement dans la méthode appelé.
       Ecrire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32, Bit);
    end Ecrire_Bit;
 
@@ -60,17 +75,29 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
       return Bit_T
    is
+      --  Le bit demandé est à gauche par défaut.
       G_Ou_D : Position_Bloc_T := Gauche;
       P : Intervalle_T := Position;
+      --  La position dans l'intervalle de 32 bits.
       P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+      --  La valeur maximal de l'intervalle de 32 bits.
       Limite : constant Intervalle_T :=
          Intervalle_T (Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last);
    begin
+      --  Si la position demandé est supérieur à la position
+      --  maximal des blocs de 32 on manipule la valeur pour
+      --  la ramener dans l'intervalle et on retient que le
+      --  bit demandé est dans le bloc de droite.
       if Position > Limite then
          G_Ou_D := Droite;
          P := P - Limite;
       end if;
+      --  Conversion de la position de l'intervalle 64 bits
+      --  vers l'intervalle des blocs de 32 bits.
       P_Dans_Intervalle_32 := Des_P.Bloc_P.Bloc_32_P.Intervalle_T (P);
+      --  On lit le bits dans le bloc déterminé.
+      --  La prise en compte du décalage se fait
+      --  directement dans la méthode appelé.
       return Lire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32);
    end Lire_Bit;
 
@@ -84,6 +111,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
    is
    begin
+      --  Écrit directement le bit dans le bloc
+      --  en tenant compte du décalage.
       Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Ecrire_Bit (Position, Bit);
    end Ecrire_Bit;
 
@@ -97,6 +126,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
       return Bit_T
    is
    begin
+      --  Lit directement le bit dans le bloc
+      --  en tenant compte du décalage.
       return Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Lire_Bit (Position);
    end Lire_Bit;
 
@@ -109,6 +140,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
    is
    begin
+      --  Remplace le bloc gauche ou droit par le bloc donné.
       Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage) := Bloc_32;
    end Ecrire_Bloc;
 
@@ -121,6 +153,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
    is
    begin
+      --  Lit le bloc demandé.
       return Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage);
    end Lire_Bloc;
 
@@ -128,9 +161,12 @@ package body Des_P.Bloc_P.Bloc_64_P is
    function "+" (Left : Position_Bloc_T; Right : Decalage_T)
       return Position_Bloc_T
    is
+      --  Convertit la position (G ou D) en une valeur numérique.
       Cote_Tmp : constant Decalage_T := Position_Bloc_T'Pos (Left);
+      --  Addition de la valeur de la position avec le décalage.
       Cote_Apres_Decalage : constant Decalage_T := Cote_Tmp + Right;
    begin
+      --  Conversion de la valeur obtenue en position G ou D.
       return Position_Bloc_T'Val (Cote_Apres_Decalage);
    end "+";
 

@@ -10,6 +10,7 @@ package body Des_P.Clef_P.Clef_56_P is
    is
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
+      --  Décale la clef de la valeur demandé.
       Clef.Decalage := Clef.Decalage + Nb_Decalage;
    end Decaler_Bits_A_Gauche;
 
@@ -26,6 +27,8 @@ package body Des_P.Clef_P.Clef_56_P is
       use type Des_P.Clef_P.Clef_56_I_P.Intervalle_T;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
+      --  La clef de 56 est coupé en 2. La position va de 1 à 56.
+      --  Les indices des tableaux vont de 0 à 28.
       if Position <= 28 then
          Pos := Intervalle_Demi_Clef_T (Position - 1);
          return Clef.C1 (Pos + Clef.Decalage);

@@ -18,6 +18,8 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P is
    is
       type Table_Selection_E_T is array (Intervalle_T)
          of Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+
+      --  La table de sélection E pour étendre le bloc de 32 bits
       Table_E : constant Table_Selection_E_T :=
          (
             32,  1,  2,  3,  4,  5,
@@ -30,6 +32,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Constructeur_P is
             28, 29, 30, 31, 32,  1
          );
    begin
+      --  Remplissage du bloc de 48 avec le bloc de 32.
       for I in Intervalle_T loop
          Constructeur.Bloc.Bits (I) := Brut.Lire_Bit (Table_E (I));
       end loop;

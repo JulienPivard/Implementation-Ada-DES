@@ -36,6 +36,8 @@ package body Des_P.Clef_P.Clef_56_P.Constructeur_P is
             21, 13,  5, 28, 20, 12,  4
          );
    begin
+      --  Rempli la clef de 56 à partir de la clef de 64 en
+      --  suivant les tableaux de correspondance.
       for I in Intervalle_Demi_Clef_T'Range loop
          Constructeur.Clef.C1 (I) := Clef.Lire_Bit (T1 (I));
          Constructeur.Clef.C2 (I) := Clef.Lire_Bit (T2 (I));

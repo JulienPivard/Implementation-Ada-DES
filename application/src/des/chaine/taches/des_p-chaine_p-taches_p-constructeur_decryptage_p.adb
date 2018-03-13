@@ -35,33 +35,42 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
+      --  La fabrique de filtre de cryptage.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+      --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_56.Element;
       Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class :=
          Constructeur.Faiseur_48.Element;
+      --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
+      --  Le décalage est inversé donc il faut deux compteurs.
       J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
+      --  Ajoute le filtre d'entrée à la chaine.
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Entree);
 
       for I in reverse Numero_Filtre_T'Range loop
+         --  Initialise le filtre J avec la clef de 48 I.
          Constructeur.Chaine.Filtres_Corps (J) :=
             Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
                (
                   Fabrique.Fabriquer_Corps
                   (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
                );
+         --  Décalage à gauche pour le décryptage.
          Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+         --  Incrémentation de la position dans le tableau de filtre de corps.
          if J /= Numero_Filtre_T'Last then
             J := Numero_Filtre_T'Succ (J);
          end if;
       end loop;
 
+      --  Ajoute le filtre de sortie.
       Constructeur.Chaine.Filtre_Sortie :=
          Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Sortie);

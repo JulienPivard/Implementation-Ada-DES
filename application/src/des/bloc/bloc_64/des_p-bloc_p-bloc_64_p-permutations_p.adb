@@ -2,6 +2,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
 
    ---------------------------------------------------------------------------
    procedure Permutation_Entrante (Bloc : in out Bloc_64_T) is
+      --  La table de permutation IP
       Table : constant Table_Permutations_T :=
          (
             58, 50, 42, 34, 26, 18, 10, 2,
@@ -13,8 +14,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
             61, 53, 45, 37, 29, 21, 13, 5,
             63, 55, 47, 39, 31, 23, 15, 7
          );
+      --  On copie le bloc dans un nouveau bloc pour
+      --  conserver la configuration initial du bloc.
       B : constant Bloc_64_T := Bloc;
    begin
+      --  Écrit les permutations dans le nouveau bloc.
       for I in Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
       end loop;
@@ -22,6 +26,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
 
    ---------------------------------------------------------------------------
    procedure Permutation_Sortante (Bloc : in out Bloc_64_T) is
+      --  La table de permutation IP-1
       Table : constant Table_Permutations_T :=
          (
             40, 8, 48, 16, 56, 24, 64, 32,
@@ -33,8 +38,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
             34, 2, 42, 10, 50, 18, 58, 26,
             33, 1, 41,  9, 49, 17, 57, 25
          );
+      --  On copie le bloc dans un nouveau bloc pour
+      --  conserver la configuration initial du bloc.
       B : constant Bloc_64_T := Bloc;
    begin
+      --  Écrit les permutations dans le nouveau bloc.
       for I in Intervalle_T'Range loop
          Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
       end loop;
