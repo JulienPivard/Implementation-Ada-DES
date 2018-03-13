@@ -19,8 +19,8 @@ project Build is
    Strict            : Strict_T              := External ("stri", "non");
    Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
-   Procedure_Principal        := "client";
-   Nom_Executable             := "executable";
+   Procedure_Principal           := "client";
+   Nom_Executable                := "executable";
 
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use (Procedure_Principal);
@@ -42,32 +42,9 @@ project Build is
    --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
    --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
    --  gnateE : Génère des informations supplémentaires dans les exceptions
-   --  gnatyy équivaut à 3aAbcefhiklmnprst
-   Options :=
-      (
-         "-gnata",
-         "-gnatef",
-         "-gnatf",
-         "-gnatU",
-         "-gnat2012",
-         "-gnatW8",
-         "-gnateE",
-         "-gnatyy",
-         "-gnatif"
-      );
-
-   --  gnatu : Liste toutes les unitées utilisé pour cette compilation
-   --  gnatv : Active le mode verbose
-   case Verbeux is
-      when "oui" =>
-         Options := Options & ("-gnatu", "-gnatv");
-      when "non" =>
-         null;
-   end case;
-
-   --  gnatg applique -gnatwae et -gnatyg pour coller au style du code GNAT
    --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
    --  gnatw.e active les avertissements pour les variables non utilisé.
+   --  gnatyy équivaut à 3aAbcefhiklmnprst
    --  gnaty : les options
    --  3 : taille indentation
    --  a : vérifie la casse
@@ -93,11 +70,37 @@ project Build is
    --  p : vérifie la casse des pragma
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
+   Options :=
+      (
+         "-gnata",
+         "-gnatef",
+         "-gnatf",
+         "-gnatU",
+         "-gnat2012",
+         "-gnatyy",
+         "-gnatyBdOSux",
+         "-gnatw.e",
+         "-gnatw.Y",
+         "-gnatW8",
+         "-gnateE",
+         "-gnatif"
+      );
+
+   --  gnatu : Liste toutes les unitées utilisé pour cette compilation
+   --  gnatv : Active le mode verbose
+   case Verbeux is
+      when "oui" =>
+         Options := Options & ("-gnatu", "-gnatv");
+      when "non" =>
+         null;
+   end case;
+
+   --  gnatg applique -gnatwae et -gnatyg pour coller au style du code GNAT
    case Strict is
       when "oui" =>
          Options := Options & ("-gnatg");
       when "non" =>
-         Options := Options & ("-gnatw.e", "-gnatw.Y", "-gnatyBdOSux");
+         null;
    end case;
 
    --  En cas de
