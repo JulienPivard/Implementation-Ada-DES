@@ -32,6 +32,13 @@ package Des_P.Chaine_P.Ravenscar_P is
 
 private
 
+   protected Demarreur_Protegee is
+      entry Attendre;
+      procedure Demarrer;
+   private
+      Signal : Boolean := False;
+   end Demarreur_Protegee;
+
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
 
