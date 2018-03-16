@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 13 mars[03] 2018
+--  Dernière modification : Vendredi 16 mars[03] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -19,11 +19,8 @@ project Build is
    Strict            : Strict_T              := External ("stri", "non");
    Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
-   Procedure_Principal           := "client";
-   Nom_Executable                := "executable";
-
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use (Procedure_Principal);
+   for Main                      use ("client_sequentiel", "client_taches");
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
@@ -160,7 +157,8 @@ project Build is
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
          when "debug" | "release" =>
-            for Executable ("client") use Nom_Executable;
+            for Executable ("client_sequentiel.adb") use "executable_sequentiel";
+            for Executable ("client_taches.adb") use "executable_taches";
       end case;
 
    end Builder;

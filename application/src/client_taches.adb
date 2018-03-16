@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 13 mars[03] 2018
+--           Dernière modification : Vendredi 16 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -19,7 +19,8 @@ with Procedure_Run_P;
 
 with Des_P.Faiseur_P;
 
-procedure Client is
+---------------------------------------------------------------------------
+procedure Client_Taches is
 
    Nb_Arguments : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Arguments_Max : constant Natural := 3;
@@ -202,12 +203,10 @@ begin
 
       --  Lancement du cryptage ou décryptage
       Procedure_Run_P.Executer_Crypt_Decrypt
-         (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
-      Procedure_Run_P.Executer_Crypt_Decrypt
          (Clef, Nom_Fichier, Action, Procedure_Run_P.Tache);
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
 
-end Client;
+end Client_Taches;

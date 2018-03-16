@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 22 février[02] 2018
+# Dernière modification : Vendredi 16 mars[03] 2018
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -25,14 +25,16 @@ $(CIBLECOMPILE): build
 crypt: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Cryptage"
-	$(EXECUTABLE) $(ARGSCRYPT)
+	$(EXECUTABLE_SEQ) $(ARGSCRYPT)
+	$(EXECUTABLE_TAC) $(ARGSCRYPT)
 
 ###################
 .PHONY: decrypt
 decrypt: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Décryptage"
-	$(EXECUTABLE) $(ARGSDECRYPT)
+	$(EXECUTABLE_SEQ) $(ARGSDECRYPTS)
+	$(EXECUTABLE_TAC) $(ARGSDECRYPTT)
 
 ###################
 .PHONY: fichier_comparer
