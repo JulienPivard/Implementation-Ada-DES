@@ -17,6 +17,7 @@ package Procedure_Run_P is
    --  L'action à effectuer sur le fichier.
    --  @value Crypter L'action de crypter.
    --  @value Decrypter L'action de décrypter.
+
    type Chaine_Seq_Task_T is (Tache, Sequentiel);
    --  Sélectionne entre un cryptage/décryptage séquentiel ou parallèle.
    --  @value Tache cryptage/décryptage parallèle.
