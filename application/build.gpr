@@ -20,7 +20,11 @@ project Build is
    Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use ("client_sequentiel", "client_taches");
+   Proc_Principales := ("client_sequentiel");
+   Proc_Principales := Proc_Principales & ("client_taches");
+   --  Proc_Principales := Proc_Principales & ("client_ravenscar");
+
+   for Main                      use Proc_Principales;
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
@@ -159,6 +163,7 @@ project Build is
          when "debug" | "release" =>
             for Executable ("client_sequentiel.adb") use "executable_sequentiel";
             for Executable ("client_taches.adb") use "executable_taches";
+            for Executable ("client_ravenscar.adb") use "executable_ravenscar";
       end case;
 
    end Builder;

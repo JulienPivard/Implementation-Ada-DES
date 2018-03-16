@@ -27,6 +27,7 @@ crypt: $(DEPEND)
 	@echo "Cryptage"
 	$(EXECUTABLE_SEQ) $(ARGSCRYPT)
 	$(EXECUTABLE_TAC) $(ARGSCRYPT)
+#	$(EXECUTABLE_RAV) $(ARGSCRYPT)
 
 ###################
 .PHONY: decrypt
@@ -35,6 +36,7 @@ decrypt: $(DEPEND)
 	@echo "Décryptage"
 	$(EXECUTABLE_SEQ) $(ARGSDECRYPTS)
 	$(EXECUTABLE_TAC) $(ARGSDECRYPTT)
+#	$(EXECUTABLE_RAV) $(ARGSDECRYPTR)
 
 ###################
 .PHONY: fichier_comparer
