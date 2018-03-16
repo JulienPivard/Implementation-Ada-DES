@@ -22,7 +22,7 @@ project Build is
    --  Le nom du fichier qui contient la procédure principale.
    Proc_Principales := ("client_sequentiel");
    Proc_Principales := Proc_Principales & ("client_taches");
-   --  Proc_Principales := Proc_Principales & ("client_ravenscar");
+   Proc_Principales := Proc_Principales & ("client_ravenscar");
 
    for Main                      use Proc_Principales;
 

@@ -24,11 +24,18 @@ else
     DEPEND	=
 endif
 
+ifeq ($(wildcard $(EXECUTABLE_RAV)), )
+    DEPEND	= $(CIBLECOMPILE)
+else
+    DEPEND	=
+endif
+
 ###################
 .PHONY: run
 run: $(DEPEND)
 	$(EXECUTABLE_SEQ) $(ARGUMENTSAPPLI)
 	$(EXECUTABLE_TAC) $(ARGUMENTSAPPLI)
+	$(EXECUTABLE_RAV) $(ARGUMENTSAPPLI)
 
 ###################
 .PHONY: version_makefile

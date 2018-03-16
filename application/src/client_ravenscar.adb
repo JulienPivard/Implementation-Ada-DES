@@ -16,7 +16,7 @@ with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
 with Des_P.Clef_P.Clef_64_P;
 
-with Procedure_Run_P;
+with Procedure_Run_Ravenscar_P;
 
 with Des_P.Faiseur_P;
 
@@ -48,7 +48,7 @@ procedure Client_Ravenscar is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   Action : Procedure_Run_P.Action_T;
+   Action : Procedure_Run_Ravenscar_P.Action_T;
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
 begin
@@ -102,13 +102,13 @@ begin
             or else
             Crypt_Decrypt = "--crypter"
          then
-            Action := Procedure_Run_P.Crypter;
+            Action := Procedure_Run_Ravenscar_P.Crypter;
          elsif
             Crypt_Decrypt = "-d"
             or else
             Crypt_Decrypt = "--decrypter"
          then
-            Action := Procedure_Run_P.Decrypter;
+            Action := Procedure_Run_Ravenscar_P.Decrypter;
          else
             Put (Standard_Error, "L'argument [");
             Ada.Text_IO.Put
@@ -203,8 +203,8 @@ begin
       end if;
 
       --  Lancement du cryptage ou décryptage
-      Procedure_Run_P.Executer_Crypt_Decrypt
-         (Clef, Nom_Fichier, Action, Procedure_Run_P.Tache);
+      Procedure_Run_Ravenscar_P.Executer_Crypt_Decrypt
+         (Clef, Nom_Fichier, Action);
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);

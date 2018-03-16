@@ -27,7 +27,7 @@ crypt: $(DEPEND)
 	@echo "Cryptage"
 	$(EXECUTABLE_SEQ) $(ARGSCRYPT)
 	$(EXECUTABLE_TAC) $(ARGSCRYPT)
-#	$(EXECUTABLE_RAV) $(ARGSCRYPT)
+	$(EXECUTABLE_RAV) $(ARGSCRYPT)
 
 ###################
 .PHONY: decrypt
@@ -36,7 +36,7 @@ decrypt: $(DEPEND)
 	@echo "Décryptage"
 	$(EXECUTABLE_SEQ) $(ARGSDECRYPTS)
 	$(EXECUTABLE_TAC) $(ARGSDECRYPTT)
-#	$(EXECUTABLE_RAV) $(ARGSDECRYPTR)
+	$(EXECUTABLE_RAV) $(ARGSDECRYPTR)
 
 ###################
 .PHONY: fichier_comparer
@@ -44,7 +44,7 @@ fichier_comparer:
 	@echo "Comparaison : "
 	diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
 	diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
-#	diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
+	diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
 
 ###################
 .PHONY: doc
