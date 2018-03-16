@@ -42,7 +42,9 @@ decrypt: $(DEPEND)
 .PHONY: fichier_comparer
 fichier_comparer:
 	@echo "Comparaison : "
-	diff $(VARNOMFICHIER) $(VARNOMFICHIER).crypt.decrypt
+	diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
+	diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
+#	diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
 
 ###################
 .PHONY: doc
