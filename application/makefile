@@ -64,6 +64,15 @@ fichier_comparer:
 	diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
 	diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
 
+.PHONY: fichier_supprimer
+fichier_supprimer:
+	-$(RM) $(OPTRM) ./$(VARNOMFICHIER).rave.crypt \
+	                ./$(VARNOMFICHIER).rave.crypt.rave.decrypt \
+	                ./$(VARNOMFICHIER).sequ.crypt \
+	                ./$(VARNOMFICHIER).sequ.crypt.sequ.decrypt \
+	                ./$(VARNOMFICHIER).task.crypt \
+	                ./$(VARNOMFICHIER).task.crypt.task.decrypt
+
 ###################
 .PHONY: doc
 doc:
