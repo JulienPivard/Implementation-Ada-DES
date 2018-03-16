@@ -13,6 +13,24 @@ include ./makefile.conf
 include ./makefile.checks
 include ./makefile.template
 
+ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
+    DEPEND	= $(CIBLECOMPILE)
+else
+    DEPEND	=
+endif
+
+ifeq ($(wildcard $(EXECUTABLE_TAC)), )
+    DEPEND	= $(CIBLECOMPILE)
+else
+    DEPEND	=
+endif
+
+ifeq ($(wildcard $(EXECUTABLE_RAV)), )
+    DEPEND	= $(CIBLECOMPILE)
+else
+    DEPEND	=
+endif
+
 ###################
 .PHONY: $(CIBLECOMPILE)
 $(CIBLECOMPILE): build

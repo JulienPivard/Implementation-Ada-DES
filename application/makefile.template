@@ -12,19 +12,7 @@ MAKEFILE_V	= 1.5.0
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
-ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
-    DEPEND	= $(CIBLECOMPILE)
-else
-    DEPEND	=
-endif
-
-ifeq ($(wildcard $(EXECUTABLE_TAC)), )
-    DEPEND	= $(CIBLECOMPILE)
-else
-    DEPEND	=
-endif
-
-ifeq ($(wildcard $(EXECUTABLE_RAV)), )
+ifeq ($(wildcard $(EXECUTABLE)), )
     DEPEND	= $(CIBLECOMPILE)
 else
     DEPEND	=
@@ -33,9 +21,7 @@ endif
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(EXECUTABLE_SEQ) $(ARGUMENTSAPPLI)
-	$(EXECUTABLE_TAC) $(ARGUMENTSAPPLI)
-	$(EXECUTABLE_RAV) $(ARGUMENTSAPPLI)
+	$(EXECUTABLE) $(ARGUMENTSAPPLI)
 
 ###################
 .PHONY: version_makefile
