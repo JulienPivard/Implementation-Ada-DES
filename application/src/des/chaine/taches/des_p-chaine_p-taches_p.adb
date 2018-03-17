@@ -1,6 +1,7 @@
 with Ada.Directories;
-
 with Ada.Sequential_IO;
+
+with Ada.Containers.Indefinite_Holders;
 
 with Des_P.Bloc_P.Bloc_64_P;
 with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
@@ -29,16 +30,25 @@ package body Des_P.Chaine_P.Taches_P is
 
       procedure Lanceur_Taches is
 
+         --  Tableaux de bloc de 64 pour regrouper les données
+         --  et augmenter la charge de travail par taches et améliorer
+         --  les temps d'exécution
+         type Indice_T is range 1 .. 512;
+         type Table_Bloc_T is array (Indice_T range <>)
+            of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+         package Table_Holder_P is new
+            Ada.Containers.Indefinite_Holders (Table_Bloc_T);
+
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Ecriture is
             entry Ecrire
                (
-                  Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                  Table : Table_Bloc_T
                );
          end Etage_Ecriture;
 
          task body Etage_Ecriture is
-            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            T_Tmp : Table_Holder_P.Holder;
             C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
             Occupe : Boolean := False;
          begin
@@ -47,23 +57,26 @@ package body Des_P.Chaine_P.Taches_P is
                   when not Occupe =>
                   accept Ecrire
                      (
-                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                        Table : Table_Bloc_T
                      )
                   do
                      Occupe := True;
-                     B_Tmp := Bloc;
+                     T_Tmp := Table_Holder_P.To_Holder (Table);
                   end Ecrire;
                or
                   terminate;
                end select;
 
-               --  Écrit le brut dans le fichier.
-               declare
-                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
-                     := C_64.Transformer_En_Brut (B_Tmp);
-               begin
-                  Lecteur_64_IO.Write (Resultat, Brut);
-               end;
+               --  Parcours du tableau de blocs
+               for E of T_Tmp.Element loop
+                  --  Écrit le brut dans le fichier.
+                  declare
+                     Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
+                        := C_64.Transformer_En_Brut (E);
+                  begin
+                     Lecteur_64_IO.Write (Resultat, Brut);
+                  end;
+               end loop;
                Occupe := False;
             end loop;
          end Etage_Ecriture;
@@ -77,12 +90,12 @@ package body Des_P.Chaine_P.Taches_P is
                );
             entry Filtrer
                (
-                  Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                  Table : Table_Bloc_T
                );
          end Etage_Sortie;
 
          task body Etage_Sortie is
-            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            T_Tmp : Table_Holder_P.Holder;
             F_Tmp : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
          begin
             accept Modifier_Filtre
@@ -96,18 +109,28 @@ package body Des_P.Chaine_P.Taches_P is
                select
                   accept Filtrer
                      (
-                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                        Table : Table_Bloc_T
                      )
                   do
-                     B_Tmp := Bloc;
+                     T_Tmp := Table_Holder_P.To_Holder (Table);
                   end Filtrer;
                or
                   terminate;
                end select;
-               --  Filtre le bloc avec le filtre de sortie.
-               F_Tmp.Element.Filtrer (B_Tmp);
-               --  Renvoie du bloc vers l'étage d'écriture.
-               Etage_Ecriture.Ecrire (B_Tmp);
+
+               declare
+                  --  Le tableau doit pouvoir être modifié
+                  --  donc copie dans une version modifiable.
+                  T : Table_Bloc_T := T_Tmp.Element;
+               begin
+                  --  Parcours des blocs du tableau.
+                  for E of T loop
+                     --  Filtre le bloc avec le filtre de sortie.
+                     F_Tmp.Element.Filtrer (E);
+                  end loop;
+                  --  Renvoie du bloc vers l'étage d'écriture.
+                  Etage_Ecriture.Ecrire (T);
+               end;
             end loop;
          end Etage_Sortie;
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
@@ -120,7 +143,7 @@ package body Des_P.Chaine_P.Taches_P is
                );
             entry Filtrer
                (
-                  Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+                  Table : Table_Bloc_T;
                   Numero : Numero_Filtre_T
                );
          end Etage_Corps;
@@ -129,7 +152,7 @@ package body Des_P.Chaine_P.Taches_P is
          Chaine_Corps : array (Numero_Filtre_T) of Etage_Corps;
 
          task body Etage_Corps is
-            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            T_Tmp : Table_Holder_P.Holder;
             N_Tmp : Numero_Filtre_T;
             F_Tmp : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
          begin
@@ -144,27 +167,36 @@ package body Des_P.Chaine_P.Taches_P is
                select
                   accept Filtrer
                      (
-                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+                        Table : Table_Bloc_T;
                         Numero : Numero_Filtre_T
                      )
                   do
-                     B_Tmp := Bloc;
+                     T_Tmp := Table_Holder_P.To_Holder (Table);
                      N_Tmp := Numero;
                   end Filtrer;
                or
                   terminate;
                end select;
 
-               --  Filtrage du bloc
-               F_Tmp.Element.Filtrer (B_Tmp);
-               --  Si l'étage est le dernier on envoie vers la
-               --  tache de sortie et vers une tache de corps sinon.
-               if N_Tmp = Numero_Filtre_T'Last then
-                  Etage_Sortie.Filtrer (B_Tmp);
-               else
-                  N_Tmp := Numero_Filtre_T'Succ (N_Tmp);
-                  Chaine_Corps (N_Tmp).Filtrer (B_Tmp, N_Tmp);
-               end if;
+               declare
+                  --  Le tableau doit pouvoir être modifié
+                  --  donc copie dans une version modifiable.
+                  T : Table_Bloc_T := T_Tmp.Element;
+               begin
+                  --  Parcours des blocs du tableau.
+                  for E of T loop
+                     --  Filtrage du bloc
+                     F_Tmp.Element.Filtrer (E);
+                  end loop;
+                  --  Si l'étage est le dernier on envoie vers la
+                  --  tache de sortie et vers une tache de corps sinon.
+                  if N_Tmp = Numero_Filtre_T'Last then
+                     Etage_Sortie.Filtrer (T);
+                  else
+                     N_Tmp := Numero_Filtre_T'Succ (N_Tmp);
+                     Chaine_Corps (N_Tmp).Filtrer (T, N_Tmp);
+                  end if;
+               end;
             end loop;
          end Etage_Corps;
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
@@ -177,12 +209,12 @@ package body Des_P.Chaine_P.Taches_P is
                );
             entry Filtrer
                (
-                  Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                  Table : Table_Bloc_T
                );
          end Etage_Entree;
 
          task body Etage_Entree is
-            B_Tmp : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+            T_Tmp : Table_Holder_P.Holder;
             F_Tmp : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          begin
             accept Modifier_Filtre
@@ -196,26 +228,38 @@ package body Des_P.Chaine_P.Taches_P is
                select
                   accept Filtrer
                      (
-                        Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+                        Table : Table_Bloc_T
                      )
                   do
-                     B_Tmp := Bloc;
+                     T_Tmp := Table_Holder_P.To_Holder (Table);
                   end Filtrer;
                or
                   terminate;
                end select;
 
-               --  Filtre le bloc avec le filtre d'entrée.
-               F_Tmp.Element.Filtrer (B_Tmp);
-               --  Envoie le bloc vers la première tache de corps.
-               Chaine_Corps (Numero_Filtre_T'First).Filtrer
-                  (B_Tmp, Numero_Filtre_T'First);
+               declare
+                  --  Le tableau doit pouvoir être modifié
+                  --  donc copie dans une version modifiable.
+                  T : Table_Bloc_T := T_Tmp.Element;
+               begin
+                  --  Parcours des blocs du tableau.
+                  for E of T loop
+                     --  Filtre le bloc avec le filtre d'entrée.
+                     F_Tmp.Element.Filtrer (E);
+                  end loop;
+                  --  Envoie le bloc vers la première tache de corps.
+                  Chaine_Corps (Numero_Filtre_T'First).Filtrer
+                     (T, Numero_Filtre_T'First);
+               end;
             end loop;
          end Etage_Entree;
          --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
          C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
          Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+
+         Table : Table_Bloc_T (Indice_T);
+         J : Indice_T := Indice_T'First;
 
       begin
          --  Initialisation des taches avec le filtre
@@ -229,13 +273,27 @@ package body Des_P.Chaine_P.Taches_P is
          --  le fichier alternatif.
          Lecture_Fichier :
          loop
-            exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
-            Lecteur_64_IO.Read (Fichier, Brut);
-            --  Initialisation du bloc de 64
-            C_64.Preparer_Nouveau_Bloc;
-            C_64.Construire_Bloc (Brut);
+
+            --  Remplissage du tableau de données avec contenu fichier
+            Remplissage :
+            for I in Indice_T loop
+               exit Remplissage when Lecteur_64_IO.End_Of_File (Fichier);
+               Lecteur_64_IO.Read (Fichier, Brut);
+               --  Initialisation du bloc de 64
+               C_64.Preparer_Nouveau_Bloc;
+               C_64.Construire_Bloc (Brut);
+               Table (I) := C_64.Recuperer_Bloc;
+               J := I;
+            end loop Remplissage;
+
             --  Lancement du filtrage.
-            Etage_Entree.Filtrer (C_64.Recuperer_Bloc);
+            --  Si le tableau de blocs n'est pas plein on n'utilise pas
+            --  entièrement le tableau mais seulement la sous partie utile.
+            Etage_Entree.Filtrer (Table (Indice_T'First .. J));
+
+            --  La fin du fichier à été atteinte.
+            exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
+
          end loop Lecture_Fichier;
       end Lanceur_Taches;
       --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
