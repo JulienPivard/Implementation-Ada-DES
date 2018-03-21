@@ -6,3 +6,4 @@ doc/
 *.decrypt
 *.pdf
 *.test
+*.chiffre
