@@ -15,6 +15,8 @@ with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
 with Ada.Directories;
 with Ada.Sequential_IO;
 
+with Ada.IO_Exceptions;
+
 package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    package Faiseur_Cryptage_P renames
@@ -75,18 +77,21 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       declare
          Fichier : Lecteur_64_IO.File_Type;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-         Brut_Utilise :
-            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
          Lecteur_64_IO.Read (Fichier, Brut_Utilise);
          Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
          AUnit.Assertions.Assert
             (Brut_Utilise = Brut_Attendu,
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Attendu'Img
             );
+      exception
+         when Ada.IO_Exceptions.End_Error =>
+            Lecteur_64_IO.Close (Fichier);
+            AUnit.Assertions.Assert
+               (False, "Erreur Fin fichier atteinte");
       end;
    end Test_Filtre_Crypt;
 
@@ -113,18 +118,21 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       declare
          Fichier : Lecteur_64_IO.File_Type;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-         Brut_Utilise :
-            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
          Lecteur_64_IO.Read (Fichier, Brut_Utilise);
          Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
          AUnit.Assertions.Assert
             (Brut_Utilise = Brut_Initial,
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Initial'Img
             );
+      exception
+         when Ada.IO_Exceptions.End_Error =>
+            Lecteur_64_IO.Close (Fichier);
+            AUnit.Assertions.Assert
+               (False, "Erreur Fin fichier atteinte");
       end;
    end Test_Filtre_Decrypt;
 
