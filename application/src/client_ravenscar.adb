@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Vendredi 16 mars[03] 2018
+--           Dernière modification : Mercredi 21 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Profile (Ravenscar);
@@ -57,8 +57,8 @@ begin
    if Nb_Arguments = 0 then
 
       Afficher_Aide;
-      Ada.Command_Line.Set_Exit_Status
-         (Ada.Command_Line.Success);
+      Procedure_Run_Ravenscar_P.Avorter;
+      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
       return;
 
       --  Trop d'arguments
@@ -73,6 +73,7 @@ begin
          Ada.Text_IO.Put_Line
             (Ada.Text_IO.Standard_Error, Ada.Command_Line.Argument (i));
       end loop;
+      Procedure_Run_Ravenscar_P.Avorter;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
@@ -85,8 +86,8 @@ begin
             Standard_Error,
             "Vous devez donner au moins le <nom_fichier> et la <clef>."
          );
-      Ada.Command_Line.Set_Exit_Status
-         (Ada.Command_Line.Failure);
+      Procedure_Run_Ravenscar_P.Avorter;
+      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
    end if;
@@ -118,8 +119,8 @@ begin
                   Standard_Error,
                   "] n'est pas valable"
                );
-            Ada.Command_Line.Set_Exit_Status
-               (Ada.Command_Line.Failure);
+            Procedure_Run_Ravenscar_P.Avorter;
+            Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
             return;
          end if;
       end;
@@ -142,6 +143,7 @@ begin
          Ada.Text_IO.Put (Taille_Clef'Img);
          Ada.Text_IO.Put_Line (" octets.");
 
+         Procedure_Run_Ravenscar_P.Avorter;
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
@@ -174,8 +176,8 @@ begin
             (Ada.Text_IO.Standard_Error, Nom_Fichier);
          Put_Line (Standard_Error, "] n'existe pas");
 
-         Ada.Command_Line.Set_Exit_Status
-            (Ada.Command_Line.Failure);
+         Procedure_Run_Ravenscar_P.Avorter;
+         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
 
@@ -197,8 +199,8 @@ begin
          Ada.Text_IO.Put (Octets_En_Trop'Img);
          Ada.Text_IO.Put_Line (" Octets de trop.");
 
-         Ada.Command_Line.Set_Exit_Status
-            (Ada.Command_Line.Failure);
+         Procedure_Run_Ravenscar_P.Avorter;
+         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
 
@@ -207,6 +209,7 @@ begin
          (Clef, Nom_Fichier, Action);
    end Ouverture_Fichier;
 
+   Procedure_Run_Ravenscar_P.Avorter;
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
 

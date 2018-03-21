@@ -18,6 +18,9 @@ package Procedure_Run_Ravenscar_P is
    --  @value Crypter L'action de crypter.
    --  @value Decrypter L'action de décrypter.
 
+   procedure Avorter;
+   --  Met fin à toutes les taches qui avaient été démarrée.
+
    procedure Executer_Crypt_Decrypt
       (
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
@@ -31,8 +34,6 @@ package Procedure_Run_Ravenscar_P is
    --  Le nom du fichier à lire.
    --  @param Action
    --  L'action à effectuer : crypter ou décrypter.
-   --  @param C_Type
-   --  Choix entre séquentiel et taches.
 
 private
 

@@ -9,6 +9,8 @@ with Suite_De_Tests_Etage_P;
 with Suite_De_Tests_Filtre_P;
 with Suite_De_Tests_Chaine_P;
 
+with Des_P.Chaine_P.Ravenscar_P.Test_P;
+
 procedure Main_Test_Harnais is
 
    procedure runner_suite_tests_bloc is new AUnit.Run.Test_Runner
@@ -42,4 +44,7 @@ begin
    runner_suite_tests_etage (reporter, options);
    runner_suite_tests_filtre (reporter, options);
    runner_suite_tests_chaine (reporter, options);
+
+   Des_P.Chaine_P.Ravenscar_P.Test_P.Test_Fin;
+
 end Main_Test_Harnais;

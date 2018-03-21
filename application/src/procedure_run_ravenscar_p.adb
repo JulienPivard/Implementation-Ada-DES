@@ -8,6 +8,12 @@ with Ada.Text_IO;
 package body Procedure_Run_Ravenscar_P is
 
    ---------------------------------------------------------------------------
+   procedure Avorter is
+   begin
+      Des_P.Chaine_P.Ravenscar_P.Faire_Avorter;
+   end Avorter;
+
+   ---------------------------------------------------------------------------
    procedure Executer_Crypt_Decrypt
       (
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
