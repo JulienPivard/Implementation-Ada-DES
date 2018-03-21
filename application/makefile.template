@@ -56,12 +56,12 @@ distclean: clean
 	-$(RM) $(OPTRM) bin
 	@echo "─────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
-	-$(RM) $(VARNOMFICHIER).rave.crypt
-	-$(RM) $(VARNOMFICHIER).rave.crypt.rave.decrypt
-	-$(RM) $(VARNOMFICHIER).sequ.crypt
-	-$(RM) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
-	-$(RM) $(VARNOMFICHIER).task.crypt
-	-$(RM) $(VARNOMFICHIER).task.crypt.task.decrypt
+	-$(RM) $(OPTRM) ./$(VARNOMFICHIER).rave.crypt \
+	                ./$(VARNOMFICHIER).rave.crypt.rave.decrypt \
+	                ./$(VARNOMFICHIER).sequ.crypt \
+	                ./$(VARNOMFICHIER).sequ.crypt.sequ.decrypt \
+	                ./$(VARNOMFICHIER).task.crypt \
+	                ./$(VARNOMFICHIER).task.crypt.task.decrypt
 endif
 
 ###################
