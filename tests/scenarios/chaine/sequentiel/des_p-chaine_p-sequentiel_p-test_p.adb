@@ -76,8 +76,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Fichier : Lecteur_64_IO.File_Type;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
          Brut_Utilise :
-            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-               Brut_Initial;
+            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
          Lecteur_64_IO.Read (Fichier, Brut_Utilise);
@@ -115,8 +114,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Fichier : Lecteur_64_IO.File_Type;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
          Brut_Utilise :
-            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
-               Brut_Attendu;
+            Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
          Lecteur_64_IO.Read (Fichier, Brut_Utilise);

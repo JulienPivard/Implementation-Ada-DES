@@ -25,7 +25,7 @@ package body Des_P.Chaine_P.Taches_P is
       Fichier : Lecteur_64_IO.File_Type;
       Resultat : Lecteur_64_IO.File_Type;
 
-      --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+      --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
       procedure Lanceur_Taches;
 
       procedure Lanceur_Taches is
@@ -39,7 +39,7 @@ package body Des_P.Chaine_P.Taches_P is
          package Table_Holder_P is new
             Ada.Containers.Indefinite_Holders (Table_Bloc_T);
 
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Ecriture is
             entry Ecrire
                (
@@ -80,9 +80,9 @@ package body Des_P.Chaine_P.Taches_P is
                Occupe := False;
             end loop;
          end Etage_Ecriture;
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Sortie is
             entry Modifier_Filtre
                (
@@ -133,9 +133,9 @@ package body Des_P.Chaine_P.Taches_P is
                end;
             end loop;
          end Etage_Sortie;
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task type Etage_Corps is
             entry Modifier_Filtre
                (
@@ -199,9 +199,9 @@ package body Des_P.Chaine_P.Taches_P is
                end;
             end loop;
          end Etage_Corps;
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
          task Etage_Entree is
             entry Modifier_Filtre
                (
@@ -253,13 +253,12 @@ package body Des_P.Chaine_P.Taches_P is
                end;
             end loop;
          end Etage_Entree;
-         --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+         --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
          C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
-         Brut : C_Bloc_64_P.Bloc_64_Brut_T;
 
          Table : Table_Bloc_T (Indice_T);
-         J : Indice_T := Indice_T'First;
+         J : Indice_T;
 
       begin
          --  Initialisation des taches avec le filtre
@@ -274,14 +273,19 @@ package body Des_P.Chaine_P.Taches_P is
          Lecture_Fichier :
          loop
 
+            J := Indice_T'First;
             --  Remplissage du tableau de données avec contenu fichier
             Remplissage :
             for I in Indice_T loop
                exit Remplissage when Lecteur_64_IO.End_Of_File (Fichier);
-               Lecteur_64_IO.Read (Fichier, Brut);
-               --  Initialisation du bloc de 64
-               C_64.Preparer_Nouveau_Bloc;
-               C_64.Construire_Bloc (Brut);
+               declare
+                  Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+               begin
+                  Lecteur_64_IO.Read (Fichier, Brut);
+                  --  Initialisation du bloc de 64
+                  C_64.Preparer_Nouveau_Bloc;
+                  C_64.Construire_Bloc (Brut);
+               end;
                Table (I) := C_64.Recuperer_Bloc;
                J := I;
             end loop Remplissage;
@@ -296,7 +300,7 @@ package body Des_P.Chaine_P.Taches_P is
 
          end loop Lecture_Fichier;
       end Lanceur_Taches;
-      --  (=v.v=)(=^.^=)(=o.o=)(=O.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
+      --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin

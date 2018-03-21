@@ -130,7 +130,7 @@ L'application possède 3 programmes principaux, un pour chaque objectif :
 Chaque client accepte un certain nombre d'options :
 
 ```man
-executable -c|-d|--crypter|--decrypter <nom_fichier> <clef>
+executable [-c|-d|--crypter|--decrypter] <nom_fichier> <clef>
 
 -c --crypter    Crypte le fichier avec la clef
 -d --decrypter    Décrypte le fichier avec la clef
