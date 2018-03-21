@@ -214,7 +214,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       AUnit.Assertions.Assert
          (Brut_Task = Brut_Sequ,
          "Brut taches : " & Brut_Task'Img &
-         " au lieu de séquentiel " & Brut_Sequ'Img
+         " au lieu de sequentiel " & Brut_Sequ'Img
          );
    end Test_Comparaison_Sequentiel_Crypt;
 
@@ -296,7 +296,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       AUnit.Assertions.Assert
          (Brut_Task = Brut_Sequ,
          "Brut taches : " & Brut_Task'Img &
-         " au lieu de séquentiel " & Brut_Sequ'Img
+         " au lieu de sequentiel " & Brut_Sequ'Img
          );
    end Test_Comparaison_Sequentiel_Decrypt;
 

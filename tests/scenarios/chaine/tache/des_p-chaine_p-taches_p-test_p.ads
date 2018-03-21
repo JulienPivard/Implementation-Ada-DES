@@ -19,8 +19,8 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
       15799177843826553255;
 
-   Nom_Fichier : constant String := "fichier_tests_unitaire.txt";
-   Extension : constant String := "crypt";
+   Nom_Fichier : constant String := "fichier_taches.txt";
+   Extension : constant String := "chiffre";
    Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
