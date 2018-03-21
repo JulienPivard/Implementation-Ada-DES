@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 16 mars[03] 2018
+# Dernière modification : Mercredi 21 mars[03] 2018
 
 ###################
 # Point d'entrée #
@@ -55,6 +55,14 @@ distclean: clean
 	@echo "└───────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) bin
 	@echo "─────────────────────────────────────────────────────────────────"
+ifneq ($(VARNOMFICHIER), )
+	-$(RM) $(VARNOMFICHIER).rave.crypt
+	-$(RM) $(VARNOMFICHIER).rave.crypt.rave.decrypt
+	-$(RM) $(VARNOMFICHIER).sequ.crypt
+	-$(RM) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
+	-$(RM) $(VARNOMFICHIER).task.crypt
+	-$(RM) $(VARNOMFICHIER).task.crypt.task.decrypt
+endif
 
 ###################
 .PHONY: compter
