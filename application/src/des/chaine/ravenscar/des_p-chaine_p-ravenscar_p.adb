@@ -67,7 +67,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    end Avorter_Protegee;
 
    ---------------------------------------------------------------------------
-   protected body Autorisation_Rearmement is
+   protected body Autorisation_Rearmement_Protegee is
       ---------------------------------------------------------
       entry Attendre_Entree when Signal is
       begin
@@ -87,7 +87,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Signal := True;
       end Autoriser;
       ---------------------------------------------------------
-   end Autorisation_Rearmement;
+   end Autorisation_Rearmement_Protegee;
 
    ---------------------------------------------------------------------------
    protected body Demarreur_Protegee is
@@ -101,7 +101,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          if Nb_Tache_Lancee = 20 then
             Signal := False;
             Nb_Tache_Lancee := 0;
-            Autorisation_Rearmement.Autoriser;
+            Autorisation_Rearmement_Protegee.Autoriser;
          end if;
       end Attendre_Entree;
 
@@ -390,7 +390,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             exit Lecture_Fichier when Lecteur_Fichier_Protegee.Est_Fini;
          end loop Lecture_Fichier;
 
-         Autorisation_Rearmement.Attendre_Entree;
+         Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
    end Etage_Lecteur_Tache;
@@ -441,7 +441,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             end loop Filtrage;
          end;
 
-         Autorisation_Rearmement.Attendre_Entree;
+         Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
    end Etage_Entree_Tache;
@@ -492,7 +492,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             end loop Filtrage;
          end;
 
-         Autorisation_Rearmement.Attendre_Entree;
+         Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
    end Etage_Corps_Tache;
@@ -543,7 +543,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             end loop Filtrage;
          end;
 
-         Autorisation_Rearmement.Attendre_Entree;
+         Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
    end Etage_Sortie_Tache;
@@ -580,7 +580,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             exit Ecriture_Fichier when Donnee_Fin.Est_Terminee;
          end loop Ecriture_Fichier;
 
-         Autorisation_Rearmement.Attendre_Entree;
+         Autorisation_Rearmement_Protegee.Attendre_Entree;
 
          --  On signal que le traitement est fini
          Fin_Protegee.Fini;

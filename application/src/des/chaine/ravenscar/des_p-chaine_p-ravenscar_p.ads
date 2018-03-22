@@ -61,13 +61,13 @@ private
    end Avorter_Protegee;
 
    ---------------------------------------
-   protected Autorisation_Rearmement is
+   protected Autorisation_Rearmement_Protegee is
       entry Attendre_Entree;
       procedure Autoriser;
    private
       Nb_Tache_Lancee : Natural := 0;
       Signal : Boolean := False;
-   end Autorisation_Rearmement;
+   end Autorisation_Rearmement_Protegee;
 
    ---------------------------------------
    protected Demarreur_Protegee is
