@@ -77,45 +77,45 @@ rapide que la version séquentielle.
 
 Cette version est implémentée en utilisant le profil **Ravenscar**.
 
-Aucune communication direct n'est autorisé entre deux tâches; un objet
+Aucune communication directe n'est autorisée entre deux tâches; un objet
 protégé ne doit pas avoir plus d'une entrée maximum; deux tâches ne
-peuvent communiquer qu'au travers d'un ou plusieurs objets protégé.
+peuvent communiquer qu'au travers d'un ou plusieurs objets protégés.
 
 Il a donc fallu construire un grand nombre d'objets protégé pour permettre
 aux tâches de communiquer entre elles. Pour que deux tâches puissent se
-communiquer les blocs de bits, il faut deux objets protégé : un premier va
-interdire que la donnée soit écrite tant qu'elle n'a pas été récupéré par
-la tâche suivante; Un second objet protégé va, lui, interdire à la tâche
-suivante de lire la donnée tant qu'elle n'a par été écrite par la tâche
-précédente.
+communiquer les blocs de bits, il faut deux objets protégés : un premier
+va interdire que la donnée soit écrite tant qu'elle n'a pas été récupérée
+par la tâche suivante; un second objet protégé va, lui, interdire à la
+tâche suivante de lire la donnée tant qu'elle n'a pas été écrit par la
+tâche précédente.
 
 Il a également fallu mettre au point un signal pour savoir si le bloc
-transmit est le dernier ou non. C'est l'objet protégé par lequel transit
+transmis est le dernier ou non. C'est l'objet protégé par lequel transit
 le bloc qui s'en charge à l'aide d'un booléen.
 
-Les filtres utilisé par les tâches doivent pouvoir être modifié, ils sont
-donc transmis à la tâche utilisatrice par un objet protégé. Cet objet est
-lu juste après avoir reçus le signal de démarrage.
+Les filtres utilisés par les tâches doivent pouvoir être modifiés, ils
+sont donc transmis à celle-ci par un objet protégé. Cet objet est lu juste
+après avoir reçu le signal de démarrage.
 
 Pour lire et écrire dans les fichiers la tâche de lecture et la tâche
 d'écriture passent aussi chacune par un objet protégé. Le nom du fichier
-à manipuler est donnée à l'objet avant le démarrage du chiffrement, c'est
+à manipuler est donné à l'objet avant le démarrage du chiffrement, c'est
 lui qui s'occupe de toute la gestion du fichier.
 
 Pour signaler aux tâches de commencer le chiffrement ou pour que la
 dernière tâche puisse signaler que le chiffrement est fini, on utilise
-deux autres objets protégé, un pour le démarreur et l'autre pour le signal
-de fin.
+deux autres objets protégés, un pour le démarreur et l'autre pour le
+signal de fin.
 
-Enfin deux derniers objets sont dévolues à mettre totalement fin à toutes
+Enfin deux derniers objets sont dévolus à mettre totalement fin à toutes
 les tâches en cours et à faire attendre les tâches une fois leur travail
 fini avant d éventuellement relancer le chiffrement d'un autre jeu de
-données. Les tâches ne vérifie l'objet d'avortement que juste après avoir
-reçus le signal de démarrage, ce qui implique que les tâches ne peuvent
-pas être stoppé en plein milieux du traitement d'un jeu de données.
-L'objet destiné à faire attendre les tâches, le temps qu'elles aient
-toutes fini, est là pour empêcher une tâche précoce de repasser la
-barrière du démarreur avant qu'elle ne se referme.
+données. Les tâches vérifient l'objet d'avortement seulement après avoir
+reçu le signal de démarrage, ce qui implique que les tâches ne peuvent pas
+être stoppées en pleins milieux du traitement d'un jeu de données. L'objet
+destiné à faire attendre les tâches, le temps qu'elles aient toutes fini,
+est là pour empêcher une tâche précoce de repasser la barrière du
+démarreur avant sa fermeture.
 
 # Compilation et exécutions
 
@@ -125,7 +125,7 @@ makefiles.
 
 Une description de la structure du projet.
 
-```
+```sh
 .
 ├── README.md
 ├── application/
