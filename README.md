@@ -6,7 +6,7 @@ taille, son utilisation n'est plus recommandée aujourd'hui.
 
 Cette application est un **projet universitaire** ayant pour but de
 permettre l'apprentissage du langage Ada; de développer une version
-parallèle de l'algorithme DES; et pour finir de porter cette
+parallèle de l'algorithme DES; et pour finir (optionnel) de porter cette
 implémentation dans un environnement temps-réel. Le choix de l'algorithme
 DES n'est qu'un prétexte pour réaliser ces objectifs lors d'un projet
 concret.
@@ -77,9 +77,73 @@ rapide que la version séquentielle.
 
 Cette version est implémentée en utilisant le profil **Ravenscar**.
 
-En cours
+Aucune communication direct n'est autorisé entre deux tâches; un objet
+protégé ne doit pas avoir plus d'une entrée maximum; deux tâches ne
+peuvent communiquer qu'au travers d'un ou plusieurs objets protégé.
+
+Il a donc fallu construire un grand nombre d'objets protégé pour permettre
+aux tâches de communiquer entre elles. Pour que deux tâches puissent se
+communiquer les blocs de bits, il faut deux objets protégé : un premier va
+interdire que la donnée soit écrite tant qu'elle n'a pas été récupéré par
+la tâche suivante; Un second objet protégé va, lui, interdire à la tâche
+suivante de lire la donnée tant qu'elle n'a par été écrite par la tâche
+précédente.
+
+Il a également fallu mettre au point un signal pour savoir si le bloc
+transmit est le dernier ou non. C'est l'objet protégé par lequel transit
+le bloc qui s'en charge à l'aide d'un booléen.
+
+Les filtres utilisé par les tâches doivent pouvoir être modifié, ils sont
+donc transmis à la tâche utilisatrice par un objet protégé. Cet objet est
+lu juste après avoir reçus le signal de démarrage.
+
+Pour lire et écrire dans les fichiers la tâche de lecture et la tâche
+d'écriture passent aussi chacune par un objet protégé. Le nom du fichier
+à manipuler est donnée à l'objet avant le démarrage du chiffrement, c'est
+lui qui s'occupe de toute la gestion du fichier.
+
+Pour signaler aux tâches de commencer le chiffrement ou pour que la
+dernière tâche puisse signaler que le chiffrement est fini, on utilise
+deux autres objets protégé, un pour le démarreur et l'autre pour le signal
+de fin.
+
+Enfin deux derniers objets sont dévolues à mettre totalement fin à toutes
+les tâches en cours et à faire attendre les tâches une fois leur travail
+fini avant d éventuellement relancer le chiffrement d'un autre jeu de
+données. Les tâches ne vérifie l'objet d'avortement que juste après avoir
+reçus le signal de démarrage, ce qui implique que les tâches ne peuvent
+pas être stoppé en plein milieux du traitement d'un jeu de données.
+L'objet destiné à faire attendre les tâches, le temps qu'elles aient
+toutes fini, est là pour empêcher une tâche précoce de repasser la
+barrière du démarreur avant qu'elle ne se referme.
 
 # Compilation et exécutions
+
+Les commandes de manipulation basique pour compiler les tests unitaires ou
+le projet en lui-même. La plupart des manipulations sont faites via des
+makefiles.
+
+Une description de la structure du projet.
+
+```
+.
+├── README.md
+├── application/
+│   ├── build.gpr                   # La configuration du projet
+│   ├── genererChaineAleatoire.sh   # Générateur de fichier dont la taille
+│   │                               # est un multiple de 64 bits.
+│   ├── makefile
+│   ├── makefile.checks     # Vérifications des variables de la configuration
+│   ├── makefile.conf       # Configuration spécifique au projet.
+│   ├── makefile.template   # Des cibles commune utilisés par tous les
+│   │                       # makefile
+│   ├── src/        # Les sources de l'application
+│   └── test.txt    # Un fichier de tests
+├── makefile
+├── makefile.conf   # Configuration des variables pour les tests unitaires
+├── tests/          # Les sources des tests unitaires
+└── unitaire.gpr    # La configuration des tests unitaires du projet
+```
 
 ## Tests unitaires
 
@@ -145,16 +209,12 @@ fichier et pas à la place du fichier original.
 # Cryptage
 
 ./bin/[debug|release]/executable_sequentiel --crypter <nom_fichier> <clef>
-
 ./bin/[debug|release]/executable_taches --crypter <nom_fichier> <clef>
-
 ./bin/[debug|release]/executable_ravenscar --crypter <nom_fichier> <clef>
 
 # Décryptage
 
 ./bin/[debug|release]/executable_sequentiel --decrypter <nom_fichier> <clef>
-
 ./bin/[debug|release]/executable_taches --decrypter <nom_fichier> <clef>
-
 ./bin/[debug|release]/executable_ravenscar --decrypter <nom_fichier> <clef>
 ```
