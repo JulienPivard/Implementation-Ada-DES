@@ -16,6 +16,20 @@ package body Des_P.Clef_P.Clef_56_P is
 
    ---------------------------------------------------------------------------
    overriding
+   procedure Decaler_Bits_A_Droite
+      (
+         Clef : in out Clef_T;
+         Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
+      )
+   is
+      use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
+   begin
+      --  Décale la clef de la valeur demandé.
+      Clef.Decalage := Clef.Decalage - Nb_Decalage;
+   end Decaler_Bits_A_Droite;
+
+   ---------------------------------------------------------------------------
+   overriding
    function Lire_Bit
       (
          Clef : Clef_T;

@@ -26,6 +26,18 @@ package Des_P.Clef_P.Clef_56_P is
    --  Le nombre de décalages vers la gauche. Par défaut 1.
 
    overriding
+   procedure Decaler_Bits_A_Droite
+      (
+         Clef : in out Clef_T;
+         Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
+      );
+   --  Décale les bits de la clef vers la droite
+   --  @param Clef
+   --  La clef dont on veut décaler les bits.
+   --  @param Nb_Decalage
+   --  Le nombre de décalages vers la droite. Par défaut 1.
+
+   overriding
    function Lire_Bit
       (
          Clef : Clef_T;

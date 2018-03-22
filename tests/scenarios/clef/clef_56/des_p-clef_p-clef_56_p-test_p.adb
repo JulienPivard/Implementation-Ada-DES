@@ -297,7 +297,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 27;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
@@ -336,14 +336,14 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 27;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
          "Le decalage est de " & T.clef_56.Decalage'Img &
          " au lieu de " & decalage_attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 26;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
@@ -389,21 +389,21 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 27;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
          "Le decalage est de " & T.clef_56.Decalage'Img &
          " au lieu de " & decalage_attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 26;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,
          "Le decalage est de " & T.clef_56.Decalage'Img &
          " au lieu de " & decalage_attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche (-1);
+      T.clef_56.Decaler_Bits_A_Droite (1);
       decalage_attendu := 25;
       AUnit.Assertions.Assert
          (T.clef_56.Decalage = decalage_attendu,

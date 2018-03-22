@@ -27,6 +27,20 @@ package body Des_P.Clef_P.Clef_56_Simplifie_P is
 
    ---------------------------------------------------------------------------
    overriding
+   procedure Decaler_Bits_A_Droite
+      (
+         Clef : in out Clef_S_T;
+         Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
+      )
+   is
+      pragma Unreferenced (Clef);
+      pragma Unreferenced (Nb_Decalage);
+   begin
+      null;
+   end Decaler_Bits_A_Droite;
+
+   ---------------------------------------------------------------------------
+   overriding
    function Lire_Bit
       (
          Clef : Clef_S_T;
