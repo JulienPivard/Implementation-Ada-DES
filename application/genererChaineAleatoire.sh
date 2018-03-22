@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Jeudi 22 février[02] 2018
+# Dernière modification : Jeudi 22 mars[03] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -31,25 +31,27 @@ exit "${ERREUR}"' ERR
 ###############################################################################
 
 #(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)#
-#                                 nomscript.sh                                #
+#                          genererChaineAleatoire.sh                          #
 #                          écrit par : PIVARD Julien                          #
 #                       contact : pivardjulien@gmail.com                      #
-#                                date création                                #
+#                                  01/03/2018                                 #
 #                                                                             #
-#                               résumé vite fait                              #
+#              Générateur de fichier de taille multiple de 64 bits            #
 #(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)#
 
 # Documentation                     #{{{
 #┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓#
 #┃                                                                           ┃#
-#┃           Explication sur le fonctionnement du script et son but          ┃#
+#┃       Génère un fichier en injectant autant de  lorem ipsum que de        ┃#
+#┃             répétitions demandé à l'appel du script.                      ┃#
+#┃                                                                           ┃#
 #┃                    liste de paramètres de l'application                   ┃#
 #┃       Option minimal                                                      ┃#
 #┃  -    --------------------------------------------------                  ┃#
 #┃       Options                                                             ┃#
-#┃       -r Le nombre de répétitions                                         ┃#
+#┃       -r Le nombre de répétitions du lorem ipsum                          ┃#
 #┃       --repetitions                                                       ┃#
-#┃       -f Règle le fichier                                                 ┃#
+#┃       -f Précise le nom du fichier                                        ┃#
 #┃       --fichier                                                           ┃#
 #┃       -h affiche l'aide                                                   ┃#
 #┃       --help                                                              ┃#
@@ -341,7 +343,7 @@ function afficher_aide()
 {
     local -r NOM_SCRIPT=`basename "${0}"`
     printf >&2 "${NOM_SCRIPT} [-h|f]\n"
-    printf >&2 "    -r --repetition\n        Le nombre de lorem ipsum à mettre\n"
+    printf >&2 "    -r --repetition\n        Le nombre de lorem ipsum à injecter\n"
     printf >&2 "    -f --fichier\n        Le nom du fichier à créer\n"
     printf >&2 "    -h --help\n        Affiche l'aide et quitte\n"
 }
