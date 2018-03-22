@@ -43,12 +43,14 @@ private
    package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
    package Lecteur_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
 
-   --  Tableaux de bloc de 64 pour regrouper les données
-   --  et augmenter la charge de travail par taches et améliorer
-   --  les temps d'exécution
    type Indice_T is range 1 .. 512;
+   --  Les indices des table de blocs.
    type Table_Bloc_T is array (Indice_T range <>)
       of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+   --  Tableaux de blocs de 64 pour regrouper les données
+   --  et augmenter la charge de travail par tâches et ainsi
+   --  améliorer les temps d'exécution
+
    package Table_Holder_P is new
       Ada.Containers.Indefinite_Holders (Table_Bloc_T);
 
@@ -59,6 +61,10 @@ private
    private
       Signal : Boolean := False;
    end Avorter_Protegee;
+   --  Signal pour mettre fin à toutes les tâches en cours.
+   --  L'instruction abort étant interdite en ravenscar les tâches
+   --  ne peuvent être stoppé qu'a un seul moment de l'exécution, lors
+   --  de l'envoie du signal du demarreur_protegee.
 
    ---------------------------------------
    protected Autorisation_Rearmement_Protegee is
@@ -68,6 +74,11 @@ private
       Nb_Tache_Lancee : Natural := 0;
       Signal : Boolean := False;
    end Autorisation_Rearmement_Protegee;
+   --  Bloque les tâches une fois qu'elles ont fini de chiffrer tous les
+   --  blocs. Une fois l'autorisation donnée les tâches peuvent se positionner
+   --  à nouveau devant la barrière du demarreur_protegee. Le but est ici
+   --  de bloquer les tâches pour ne pas se relancer elle même si leur tâche
+   --  est finie avant que la barrière du demarreur_protegee ne se referme.
 
    ---------------------------------------
    protected Demarreur_Protegee is
@@ -77,6 +88,9 @@ private
       Nb_Tache_Lancee : Natural := 0;
       Signal : Boolean := False;
    end Demarreur_Protegee;
+   --  Bloque le démarrage des taches. Tant que le signal de démarrage n'est
+   --  pas donné les tâches attendent. Une fois que toutes les tâches on passé
+   --  la barrière elle est refermé en attendant le prochain départ.
 
    ---------------------------------------
    protected Fin_Protegee is
@@ -85,6 +99,8 @@ private
    private
       Signal : Boolean := False;
    end Fin_Protegee;
+   --  Permet de signaler à la procédure appelante que toutes les tâches
+   --  ont fini de chiffrer le fichier.
 
    ---------------------------------------
    protected Ecriveur_Fichier_Protegee is
@@ -96,6 +112,7 @@ private
       Resultat : Lecteur_64_IO.File_Type;
       Est_Ferme : Boolean;
    end Ecriveur_Fichier_Protegee;
+   --  Écrit dans le fichier le bloc donné.
 
    ---------------------------------------
    protected Lecteur_Fichier_Protegee is
@@ -108,6 +125,7 @@ private
       Fichier : Lecteur_64_IO.File_Type;
       Est_Ferme : Boolean;
    end Lecteur_Fichier_Protegee;
+   --  Lit un bloc de données dans le fichier.
 
    ---------------------------------------
    protected Filtre_Entree_Protegee is
@@ -120,6 +138,8 @@ private
       Signal : Boolean := False;
       Filtre_H : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
    end Filtre_Entree_Protegee;
+   --  Permet de changer le filtre utilisé par le premier
+   --  étage de chiffrement.
 
    ---------------------------------------
    protected Filtre_Sortie_Protegee is
@@ -132,6 +152,8 @@ private
       Signal : Boolean := False;
       Filtre_H : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
    end Filtre_Sortie_Protegee;
+   --  Permet de changer le filtre utilisé par le dernier
+   --  étage de chiffrement.
 
    ---------------------------------------
    protected type Filtre_Corps_Protegee is
@@ -144,6 +166,8 @@ private
       Signal : Boolean := False;
       Filtre_H : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
    end Filtre_Corps_Protegee;
+   --  Permet de changer le filtre utilisé par les étages de
+   --  chiffrement principaux.
 
    ---------------------------------------
    protected type Autorisation_Protegee is
@@ -152,6 +176,8 @@ private
    private
       Signal : Boolean := False;
    end Autorisation_Protegee;
+   --  Barrière pour indiquer à la tâche suivante qu'un nouveau bloc
+   --  de donné est disponible et attend d'être récupéré.
 
    ---------------------------------------
    protected type Donnee_Protegee is
@@ -165,10 +191,15 @@ private
       Signal : Boolean := True;
       Donnee : Table_Holder_P.Holder;
    end Donnee_Protegee;
+   --  Barrière destiné à transmettre le bloc à la tâche suivante
+   --  et permet également d'indiquer si le bloc à bien été récupéré
+   --  par la tâche suivante.
 
    ---------------------------------------
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
+   --  Contient tous les filtres principaux qui vont être utilisé
+   --  par les tâches de chiffrement, dans l'ordre d'utilisation.
 
    type Chaine_T is new Chaine_Interface_T with
       record
@@ -179,16 +210,28 @@ private
    ---------------------------------------
 
    Donnee_Debut : Donnee_Protegee;
+   --  La donnée transmise par la tâche lectrice, du fichier à chiffrer,
+   --  à la tâche de filtre d'entré.
    Donnee_Fin   : Donnee_Protegee;
+   --  La donnée transmise par la tâche de dernier filtre
+   --  à la tâche écrivaine, du fichier chiffré.
 
    Autorisateur_Debut : Autorisation_Protegee;
+   --  Signal d'autorisation de lecture de la donnée de la tâche
+   --  lectrice à la tâche de filtre d'entrée.
    Autorisateur_Fin   : Autorisation_Protegee;
+   --  Signal d'autorisation de lecture de la donnée de la tâche
+   --  de filtre de sortie à la tâche écrivaine.
 
    task Etage_Lecteur_Tache;
+   --  La tâche lectrice.
    task Etage_Ecriture_Tache;
+   --  La tâche écrivaine.
 
    task Etage_Entree_Tache;
+   --  La tâche de premier filtre.
    task Etage_Sortie_Tache;
+   --  La tâche de dernier filtre.
 
    task type Etage_Corps_Tache
       (
@@ -200,6 +243,7 @@ private
       )
    is
    end Etage_Corps_Tache;
+   --  La tâche de filtre principaux.
 
    Filtreur_Corps_01 : aliased Filtre_Corps_Protegee;
    Filtreur_Corps_02 : aliased Filtre_Corps_Protegee;
@@ -217,6 +261,7 @@ private
    Filtreur_Corps_14 : aliased Filtre_Corps_Protegee;
    Filtreur_Corps_15 : aliased Filtre_Corps_Protegee;
    Filtreur_Corps_16 : aliased Filtre_Corps_Protegee;
+   --  Les modificateurs de filtre.
 
    Table_Filtreur : array (Numero_Filtre_T) of access Filtre_Corps_Protegee :=
       (
@@ -237,6 +282,7 @@ private
          Filtreur_Corps_15'Access,
          Filtreur_Corps_16'Access
       );
+   --  Table contenant les modificateurs de filtre.
 
    Donnee_01 : aliased Donnee_Protegee;
    Donnee_02 : aliased Donnee_Protegee;
@@ -255,6 +301,7 @@ private
    Donnee_15 : aliased Donnee_Protegee;
    Donnee_16 : aliased Donnee_Protegee;
    Donnee_17 : aliased Donnee_Protegee;
+   --  Les transmetteurs de données entre les tâches principales
 
    Autorisateur_01 : aliased Autorisation_Protegee;
    Autorisateur_02 : aliased Autorisation_Protegee;
@@ -273,6 +320,7 @@ private
    Autorisateur_15 : aliased Autorisation_Protegee;
    Autorisateur_16 : aliased Autorisation_Protegee;
    Autorisateur_17 : aliased Autorisation_Protegee;
+   --  Les autorisation de lecture de données entre les tâches principales.
 
    Etage_Corps_01 : Etage_Corps_Tache
       (

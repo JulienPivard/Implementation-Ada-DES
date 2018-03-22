@@ -50,34 +50,29 @@ package body Des_P.Chaine_P.Taches_P is
          task body Etage_Ecriture is
             T_Tmp : Table_Holder_P.Holder;
             C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
-            Occupe : Boolean := False;
          begin
             loop
                select
-                  when not Occupe =>
                   accept Ecrire
                      (
                         Table : Table_Bloc_T
                      )
                   do
-                     Occupe := True;
                      T_Tmp := Table_Holder_P.To_Holder (Table);
                   end Ecrire;
+                  --  Parcours du tableau de blocs
+                  for E of T_Tmp.Element loop
+                     --  Écrit le brut dans le fichier.
+                     declare
+                        Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
+                           := C_64.Transformer_En_Brut (E);
+                     begin
+                        Lecteur_64_IO.Write (Resultat, Brut);
+                     end;
+                  end loop;
                or
                   terminate;
                end select;
-
-               --  Parcours du tableau de blocs
-               for E of T_Tmp.Element loop
-                  --  Écrit le brut dans le fichier.
-                  declare
-                     Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
-                        := C_64.Transformer_En_Brut (E);
-                  begin
-                     Lecteur_64_IO.Write (Resultat, Brut);
-                  end;
-               end loop;
-               Occupe := False;
             end loop;
          end Etage_Ecriture;
          --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
