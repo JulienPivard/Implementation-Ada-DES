@@ -129,7 +129,6 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
-         use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
       begin
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
@@ -142,7 +141,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
                   Fabrique.Fabriquer_Corps
                   (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
                );
-            Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+            Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
             if J /= Numero_Filtre_T'Last then
                J := Numero_Filtre_T'Succ (J);
             end if;
@@ -304,7 +303,6 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
-         use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
       begin
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
@@ -317,7 +315,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
                   Fabrique.Fabriquer_Corps
                   (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
                );
-            Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+            Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
             if J /= Numero_Filtre_T'Last then
                J := Numero_Filtre_T'Succ (J);
             end if;
