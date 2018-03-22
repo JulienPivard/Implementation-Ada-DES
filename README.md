@@ -75,7 +75,8 @@ rapide que la version séquentielle.
 
 ## Version temps-réel
 
-Cette version est implémentée en utilisant le profil **Ravenscar**.
+Cette version est implémentée en utilisant le profil **Ravenscar**. (tag:
+v1\_version\_ravenscar)
 
 Aucune communication directe n'est autorisée entre deux tâches; un objet
 protégé ne doit pas avoir plus d'une entrée maximum; deux tâches ne
@@ -202,6 +203,48 @@ executable [-c|-d|--crypter|--decrypter] <nom_fichier> <clef>
 
 Lors de l'exécution du chiffrement, le résultat est écrit dans un autre
 fichier et pas à la place du fichier original.
+
+Vous pouvez facilement comparer les temps d'exécutions des 3 versions,
+pour une même opération sur un même fichier avec la même clef. Dans
+`application/makefile.conf` modifiez la variable `VARNOMFICHIER` et
+indiquez le fichier que vous voulez chiffrer. Ensuite exécutez :
+
+```sh
+make crypt
+# ou
+make decrypt
+# ou encore les deux à la suite
+make crypt decrypt
+```
+
+Attention `make decrypt` se base sur la version crypté de votre fichier
+vous devrez lancer `make crypt` avant.
+
+Vous pourrez voir apparaitre 6 fichiers supplémentaires qui contiendront
+soit :
+* la version crypté de votre fichier original;
+* la version décrypté de la version crypté de votre version original.
+
+Pour chacun de ces deux cas, il y a 3 fichiers :
+* 1 pour la version séquentiel;
+* 1 pour la version tâches;
+* 1 pour la version Ravenscar.
+
+Pour les comparer rapidement tapez :
+
+```sh
+make fichier_comparer
+```
+
+Cette commande va lancer la comparaison de votre fichier original avec le
+résultat du décryptage effectué par :
+* la version séquentiel;
+* la version tâches;
+* la version Ravenscar.
+
+Les versions crypté seront également comparé entre elles pour montrer que
+chacun des algorithme, pour un même fichier avec une même clef, donnent
+bien le même résultat crypté.
 
 #### Exemples d'utilisations
 
