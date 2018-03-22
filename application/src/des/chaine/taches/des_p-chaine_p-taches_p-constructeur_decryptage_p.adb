@@ -45,7 +45,6 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
       --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
-      use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
       --  Le décalage est inversé donc il faut deux compteurs.
       J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
@@ -63,7 +62,7 @@ package body Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
                   (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
                );
          --  Décalage à gauche pour le décryptage.
-         Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+         Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
          --  Incrémentation de la position dans le tableau de filtre de corps.
          if J /= Numero_Filtre_T'Last then
             J := Numero_Filtre_T'Succ (J);

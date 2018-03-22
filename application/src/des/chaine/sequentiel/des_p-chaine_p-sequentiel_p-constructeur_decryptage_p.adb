@@ -45,7 +45,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
       --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
-      use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
       --  Ajoute à la tète le filtre d'entrée.
       Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
@@ -65,7 +64,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
             Tete.Ajouter_Successeur (E);
          end;
          --  Décalage à gauche pour le décryptage.
-         Clef_56.Decaler_Bits_A_Gauche (-1 * Table_Decalage (I));
+         Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
       end loop;
 
       --  Ajoute le filtre de sortie au dernier étage.
