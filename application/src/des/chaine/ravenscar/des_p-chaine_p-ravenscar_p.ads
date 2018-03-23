@@ -110,7 +110,7 @@ private
       entry Attendre_Fermeture_Entree;
    private
       Resultat : Lecteur_64_IO.File_Type;
-      Est_Ferme : Boolean;
+      Est_Ferme : Boolean := True;
    end Ecriveur_Fichier_Protegee;
    --  Écrit dans le fichier le bloc donné.
 
@@ -123,7 +123,7 @@ private
       entry Attendre_Fermeture_Entree;
    private
       Fichier : Lecteur_64_IO.File_Type;
-      Est_Ferme : Boolean;
+      Est_Ferme : Boolean := True;
    end Lecteur_Fichier_Protegee;
    --  Lit un bloc de données dans le fichier.
 

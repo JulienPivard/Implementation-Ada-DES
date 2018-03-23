@@ -143,6 +143,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Lecteur_64_IO.Create
                (Resultat, Lecteur_64_IO.Out_File, Nom);
          end if;
+         Est_Ferme := not Lecteur_64_IO.Is_Open (Resultat);
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
@@ -174,6 +175,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Ouvrir_Fichier (Nom : String) is
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom);
+         Est_Ferme := not Lecteur_64_IO.Is_Open (Fichier);
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
