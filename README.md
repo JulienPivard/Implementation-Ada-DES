@@ -118,6 +118,14 @@ destiné à faire attendre les tâches, le temps qu'elles aient toutes fini,
 est là pour empêcher une tâche précoce de repasser la barrière du
 démarreur avant sa fermeture.
 
+Une grosse correction (tag: v2\_version\_ravenscar) d'un possible blocage
+à cause de contrôle mal placé. La terminaison était mal placé et pouvait
+considérer que l'avant dernière grappe de bloc était la dernière. La
+valeur de la terminaison est maintenant stockée dans une variable au
+moment où la donnée est lue pour éviter de lire la valeur de terminaison
+de la grappe suivante. Une nouvelle version qui utiliserais un objet plus
+fiable est en cours.
+
 # Compilation et exécutions
 
 Les commandes de manipulation basique pour compiler les tests unitaires ou
