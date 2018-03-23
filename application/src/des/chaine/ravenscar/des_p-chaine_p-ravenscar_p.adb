@@ -72,12 +72,12 @@ package body Des_P.Chaine_P.Ravenscar_P is
       entry Attendre_Entree when Signal is
       begin
          --  Compte combien de tache ont été lancée.
-         Nb_Tache_Lancee := Natural'Succ (Nb_Tache_Lancee);
+         Nb_Tache_Lancee := Compteur_Tache_T'Succ (Nb_Tache_Lancee);
          --  Si toutes les taches ont été lancées on réarme
          --  démarreur pour une éventuel prochaine fois.
-         if Nb_Tache_Lancee = 20 then
+         if Nb_Tache_Lancee = Compteur_Tache_T'Last then
             Signal := False;
-            Nb_Tache_Lancee := 0;
+            Nb_Tache_Lancee := Compteur_Tache_T'First;
             --  On signal que le traitement est fini
             Fin_Protegee.Fini;
          end if;
@@ -97,12 +97,12 @@ package body Des_P.Chaine_P.Ravenscar_P is
       entry Attendre_Entree when Signal is
       begin
          --  Compte combien de tache ont été lancée.
-         Nb_Tache_Lancee := Natural'Succ (Nb_Tache_Lancee);
+         Nb_Tache_Lancee := Compteur_Tache_T'Succ (Nb_Tache_Lancee);
          --  Si toutes les taches ont été lancées on réarme
          --  démarreur pour une éventuel prochaine fois.
-         if Nb_Tache_Lancee = 20 then
+         if Nb_Tache_Lancee = Compteur_Tache_T'Last then
             Signal := False;
-            Nb_Tache_Lancee := 0;
+            Nb_Tache_Lancee := Compteur_Tache_T'First;
             Autorisation_Rearmement_Protegee.Autoriser;
          end if;
       end Attendre_Entree;

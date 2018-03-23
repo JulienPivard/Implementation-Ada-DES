@@ -66,12 +66,15 @@ private
    --  ne peuvent être stoppé qu'a un seul moment de l'exécution, lors
    --  de l'envoie du signal du demarreur_protegee.
 
+   type Compteur_Tache_T is range 0 .. 20;
+   --  Destiné à compter le nombre de taches
+
    ---------------------------------------
    protected Autorisation_Rearmement_Protegee is
       entry Attendre_Entree;
       procedure Autoriser;
    private
-      Nb_Tache_Lancee : Natural := 0;
+      Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
       Signal : Boolean := False;
    end Autorisation_Rearmement_Protegee;
    --  Bloque les tâches une fois qu'elles ont fini de chiffrer tous les
@@ -85,7 +88,7 @@ private
       entry Attendre_Entree;
       procedure Demarrer;
    private
-      Nb_Tache_Lancee : Natural := 0;
+      Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
       Signal : Boolean := False;
    end Demarreur_Protegee;
    --  Bloque le démarrage des taches. Tant que le signal de démarrage n'est
