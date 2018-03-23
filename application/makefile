@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 21 mars[03] 2018
+# Dernière modification : Vendredi 23 mars[03] 2018
 
 SHELL		= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -60,12 +60,12 @@ decrypt: $(DEPEND)
 .PHONY: fichier_comparer
 fichier_comparer:
 	@echo "Comparaison : "
-	diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
-	diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
-	diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
-	diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).task.crypt
-	diff $(VARNOMFICHIER).task.crypt $(VARNOMFICHIER).rave.crypt
-	diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).rave.crypt
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
+	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).task.crypt
+	-diff $(VARNOMFICHIER).task.crypt $(VARNOMFICHIER).rave.crypt
+	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).rave.crypt
 
 ###################
 .PHONY: doc
