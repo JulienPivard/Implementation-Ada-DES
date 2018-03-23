@@ -78,6 +78,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
          if Nb_Tache_Lancee = 20 then
             Signal := False;
             Nb_Tache_Lancee := 0;
+            --  On signal que le traitement est fini
+            Fin_Protegee.Fini;
          end if;
       end Attendre_Entree;
 
@@ -583,9 +585,6 @@ package body Des_P.Chaine_P.Ravenscar_P is
          end loop Ecriture_Fichier;
 
          Autorisation_Rearmement_Protegee.Attendre_Entree;
-
-         --  On signal que le traitement est fini
-         Fin_Protegee.Fini;
 
       end loop Repetition_Ou_Non;
    end Etage_Ecriture_Tache;
