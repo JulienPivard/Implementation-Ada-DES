@@ -423,6 +423,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
                declare
                   --  Lecture des données.
                   Table : Table_Bloc_T := Donnee_Debut.Lire;
+                  --  On lit le signal de terminaison avant de signaler
+                  --  qu'on a lu les données pour éviter de lire un
+                  --  signal incorrect.
+                  Terminer : constant Boolean := Donnee_Debut.Est_Terminee;
                begin
                   --  Signal que les données ont été lue.
                   Donnee_Debut.Lu;
@@ -434,14 +438,15 @@ package body Des_P.Chaine_P.Ravenscar_P is
                   Donnee_01.Ecrire_Donnee_Entree (Table);
                   --  Si toutes les données ont été filtrée on signal
                   --  que le chiffrement est fini à la tache suivante.
-                  if Donnee_Debut.Est_Terminee then
+                  if Terminer then
                      Donnee_01.Terminer;
                   end if;
                   --  Autorise la tache suivante à lire.
                   Autorisateur_01.Autoriser;
+
+                  exit Filtrage when Terminer;
                end;
 
-               exit Filtrage when Donnee_Debut.Est_Terminee;
             end loop Filtrage;
          end;
 
@@ -474,6 +479,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
                declare
                   --  Lecture des données.
                   Table : Table_Bloc_T := Donnee_Recue.all.Lire;
+                  --  On lit le signal de terminaison avant de signaler
+                  --  qu'on a lu les données pour éviter de lire un
+                  --  signal incorrect.
+                  Terminer : constant Boolean := Donnee_Recue.all.Est_Terminee;
                begin
                   --  Signal que les données ont été lue.
                   Donnee_Recue.all.Lu;
@@ -485,14 +494,15 @@ package body Des_P.Chaine_P.Ravenscar_P is
                   Donnee_A_Envoyer.all.Ecrire_Donnee_Entree (Table);
                   --  Si toutes les données ont été filtrée on signal
                   --  que le chiffrement est fini à la tache suivante.
-                  if Donnee_Recue.all.Est_Terminee then
+                  if Terminer then
                      Donnee_A_Envoyer.all.Terminer;
                   end if;
                   --  Autorise la tache suivante à lire.
                   Autorisateur_Envoyee.all.Autoriser;
+
+                  exit Filtrage when Terminer;
                end;
 
-               exit Filtrage when Donnee_Recue.all.Est_Terminee;
             end loop Filtrage;
          end;
 
@@ -525,6 +535,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
                declare
                   --  Lecture des données.
                   Table : Table_Bloc_T := Donnee_17.Lire;
+                  --  On lit le signal de terminaison avant de signaler
+                  --  qu'on a lu les données pour éviter de lire un
+                  --  signal incorrect.
+                  Terminer : constant Boolean := Donnee_17.Est_Terminee;
                begin
                   --  Signal que les données ont été lue.
                   Donnee_17.Lu;
@@ -536,14 +550,15 @@ package body Des_P.Chaine_P.Ravenscar_P is
                   Donnee_Fin.Ecrire_Donnee_Entree (Table);
                   --  Si toutes les données ont été filtrée on signal
                   --  que le chiffrement est fini à la tache suivante.
-                  if Donnee_17.Est_Terminee then
+                  if Terminer then
                      Donnee_Fin.Terminer;
                   end if;
                   --  Autorise la tache suivante à lire.
                   Autorisateur_Fin.Autoriser;
+
+                  exit Filtrage when Terminer;
                end;
 
-               exit Filtrage when Donnee_17.Est_Terminee;
             end loop Filtrage;
          end;
 
@@ -569,19 +584,25 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
             declare
                Table : constant Table_Bloc_T := Donnee_Fin.Lire;
+               --  On lit le signal de terminaison avant de signaler
+               --  qu'on a lu les données pour éviter de lire un
+               --  signal incorrect.
+               Terminer : constant Boolean := Donnee_Fin.Est_Terminee;
             begin
                Donnee_Fin.Lu;
                for E of Table loop
                   declare
+                     --  Transformation du bloc en un brut
                      Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                         := C_64.Transformer_En_Brut (E);
                   begin
                      Ecriveur_Fichier_Protegee.Ecrire (Brut);
                   end;
                end loop;
+
+               exit Ecriture_Fichier when Terminer;
             end;
 
-            exit Ecriture_Fichier when Donnee_Fin.Est_Terminee;
          end loop Ecriture_Fichier;
 
          Autorisation_Rearmement_Protegee.Attendre_Entree;
