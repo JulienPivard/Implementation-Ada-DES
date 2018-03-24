@@ -1,3 +1,5 @@
+private with System.Multiprocessors;
+
 private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
 private with Des_P.Filtre_P.Sortie_P.Holder_P;
@@ -37,11 +39,20 @@ private
    --  Contient tous les filtres principaux qui vont être utilisé
    --  par les tâches de chiffrement, dans l'ordre d'utilisation.
 
+   subtype Nombre_Grappes_T is System.Multiprocessors.CPU_Range;
+   --  Le nombre de grappes possible dans le pipeline
+
+   subtype Max_Grappes_T is System.Multiprocessors.CPU;
+   --  Le nombre maximum de grappes en même temps
+   --  dans le pipeline
+
    type Chaine_T is new Chaine_Interface_T with
       record
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
+         Max_Grappes : Max_Grappes_T := Max_Grappes_T'First;
+         Modifier_Max_Grappes : Boolean := False;
       end record;
 
 end Des_P.Chaine_P.Taches_P;
