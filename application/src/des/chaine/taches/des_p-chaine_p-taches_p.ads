@@ -34,6 +34,8 @@ private
 
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
+   --  Contient tous les filtres principaux qui vont être utilisé
+   --  par les tâches de chiffrement, dans l'ordre d'utilisation.
 
    type Chaine_T is new Chaine_Interface_T with
       record
