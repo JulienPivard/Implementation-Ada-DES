@@ -31,21 +31,21 @@ développement.
 Chaque partie de l'application est modélisée de manière à être la plus
 indépendante possible des autres.
 
-Les manipulations bas niveau sont réalisées grâce à des clauses de
-représentations permettant de modifier et consulter facilement chaque bit
-des blocs manipulé et a permis de ne pas avoir à employer de masque
-binaire. Le passage d'un bloc de bits à une version facilement manipulable
-(et inversement) se fait aussi grâce à des clauses de représentations.
+Les manipulations bas niveau, ainsi que Le passage d'un bloc de bits à une
+version facilement manipulable (et inversement), sont réalisées grâce
+à des clauses de représentations permettant de modifier et consulter
+facilement chaque bit des blocs manipulé tout en permettant de ne pas
+avoir à employer de masque binaire.
 
 ## Version parallèle
 
 Le second objectif est de réaliser une version parallèle utilisant le
 design pattern **Pipeline** pour modéliser les étages (ou cycles). Le
-langage est doté en standard de la notion de tâches permettant le
-traitement en parallèle des étages. Chaque tâche peut communiquer avec une
-autre par le biais d'un rendez-vous.
+langage est doté en standard de la notion de tâches permettant les
+traitements en parallèle. Chaque tâche peut communiquer avec une autre par
+le biais d'un rendez-vous.
 
-Pour réaliser cette version de l'application les étages de la version
+Pour réaliser cette version de l'application, les étages de la version
 séquentielle ont été remplacés par des tâches, chacune étant dédié à un
 cycle particulier de l'application et ne peut contacter que le cycle
 suivant. Ainsi pendant qu'un bloc est transformé par une tâche à un cycle
@@ -60,18 +60,19 @@ bloc à la fois la rendant plus lente que la version séquentielle
 précédemment développée. La cause en revenait à une charge de travail par
 tâche insuffisante, ce qui avait pour conséquence que le temps de
 communication entre deux tâches était plus long que le temps de
-transformation du bloc par l'étage. Les tâches passaient donc plus de
-temps à attendre qu'à travailler. La solution choisie pour améliorer les
-performances a été de ne plus traiter les blocs un par un, mais en grappe.
+transformation du bloc par la dite tache. Celles-ci passaient donc plus de
+temps à attendre ou communiquer entre elles qu'à travailler. La solution
+choisie pour améliorer les performances a été de ne plus traiter les blocs
+un par un, mais en grappe.
 
 Dans la deuxième version (tag: v2\_version\_taches) les blocs sont passés
 en grappe. Ainsi chaque tâche reste liée à un cycle, mais lors de la
 communication avec une autre tâche elle ne reçoit pas qu'un bloc, mais un
 ensemble de blocs. Le temps de communication entre les tâches devient
-ainsi moins long que le temps de traitement de la grappe. Celle-ci est
-entièrement traitée avant d'être envoyée à la tâche suivante. Cette
-version utilise des grappes de 512 blocs et est environ deux fois plus
-rapide que la version séquentielle.
+ainsi moins long que le temps de traitement et l'application gagne en
+performance. La grappe est entièrement traitée avant d'être envoyée à la
+tâche suivante. Cette version utilise des grappes de 512 blocs et est
+environ deux fois plus rapide que la version séquentielle.
 
 ## Version temps-réel
 
