@@ -46,6 +46,11 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P is
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
    begin
+      --  Initialise le lecteur de fichier.
+      Lecteur := Lecteur_Fichier'Access;
+      --  Initialise l'écriveur de fichier.
+      Ecriveur := Ecriveur_Fichier'Access;
+
       --  Ajoute le filtre d'entrée à la chaine.
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder

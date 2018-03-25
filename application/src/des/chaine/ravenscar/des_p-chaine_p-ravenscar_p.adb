@@ -19,9 +19,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Limiteur_Protegee.Modifier_Nb_Max_Blocs (Chaine.Max_Grappes);
       end if;
       --  Ouverture du fichier à lire.
-      Lecteur_Fichier_Protegee.Ouvrir_Fichier (Nom_Fichier);
+      Lecteur.all.Ouvrir_Fichier (Nom_Fichier);
       --  Ouverture du fichier à écrire.
-      Ecriveur_Fichier_Protegee.Ouvrir_Fichier (Nom_Alternatif);
+      Ecriveur.all.Ouvrir_Fichier (Nom_Alternatif);
 
       --  Initialisation des filtres dans les étages.
       Filtre_Entree_Protegee.Changer_Filtre (Chaine.Filtre_Entree.Element);
@@ -37,12 +37,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
       Fin_Protegee.Attendre_Entree;
 
       --  Fermeture du fichier à lire.
-      Lecteur_Fichier_Protegee.Fermer_Fichier;
+      Lecteur.all.Fermer_Fichier;
       --  Fermeture du fichier à écrire.
-      Ecriveur_Fichier_Protegee.Fermer_Fichier;
-      --  Vérification de la fermeture des fichiers.
-      Lecteur_Fichier_Protegee.Attendre_Fermeture_Entree;
-      Ecriveur_Fichier_Protegee.Attendre_Fermeture_Entree;
+      Ecriveur.all.Fermer_Fichier;
    end Filtrer;
 
    ---------------------------------------------------------------------------
@@ -176,7 +173,6 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Lecteur_64_IO.Create
                (Resultat, Lecteur_64_IO.Out_File, Nom);
          end if;
-         Est_Ferme := not Lecteur_64_IO.Is_Open (Resultat);
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
@@ -191,14 +187,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Fermer_Fichier is
       begin
          Lecteur_64_IO.Close (Resultat);
-         Est_Ferme := not Lecteur_64_IO.Is_Open (Resultat);
       end Fermer_Fichier;
-
-      ---------------------------------------------------------
-      entry Attendre_Fermeture_Entree when Est_Ferme is
-      begin
-         null;
-      end Attendre_Fermeture_Entree;
       ---------------------------------------------------------
    end Ecriveur_Fichier_Protegee;
 
@@ -208,17 +197,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Ouvrir_Fichier (Nom : String) is
       begin
          Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom);
-         Est_Ferme := not Lecteur_64_IO.Is_Open (Fichier);
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
-      function Lire
-         return C_Bloc_64_P.Bloc_64_Brut_T
+      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
       is
-         Brut : C_Bloc_64_P.Bloc_64_Brut_T;
       begin
          Lecteur_64_IO.Read (Fichier, Brut);
-         return Brut;
       end Lire;
 
       ---------------------------------------------------------
@@ -233,14 +218,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Fermer_Fichier is
       begin
          Lecteur_64_IO.Close (Fichier);
-         Est_Ferme := not Lecteur_64_IO.Is_Open (Fichier);
       end Fermer_Fichier;
-
-      ---------------------------------------------------------
-      entry Attendre_Fermeture_Entree when Est_Ferme is
-      begin
-         null;
-      end Attendre_Fermeture_Entree;
       ---------------------------------------------------------
    end Lecteur_Fichier_Protegee;
 
@@ -370,6 +348,15 @@ package body Des_P.Chaine_P.Ravenscar_P is
       Table : Table_Bloc_T (Indice_T);
       C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
       J : Indice_T;
+      ---------------------------------------------------------
+      function Lire return C_Bloc_64_P.Bloc_64_Brut_T;
+      function Lire return C_Bloc_64_P.Bloc_64_Brut_T is
+         Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+      begin
+         Lecteur.all.Lire (Brut);
+         return Brut;
+      end Lire;
+      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -385,12 +372,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Remplissage :
             for I in Indice_T loop
                --  On sort si le fichier est vide
-               exit Remplissage when Lecteur_Fichier_Protegee.Est_Fini;
+               exit Remplissage when Lecteur.all.Est_Fini;
                --  Transformation du brut lu en un bloc.
                C_64.Preparer_Nouveau_Bloc;
                declare
-                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T :=
-                     Lecteur_Fichier_Protegee.Lire;
+                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T := Lire;
                begin
                   C_64.Construire_Bloc (Brut);
                end;
@@ -401,7 +387,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             declare
                --  Si on a atteint la fin du fichier on envoie le
                --  signal de terminaison
-               D : Donnee_T (Lecteur_Fichier_Protegee.Est_Fini);
+               D : Donnee_T (Lecteur.all.Est_Fini);
             begin
                --  Si le tableau de blocs n'est pas plein on n'utilise pas
                --  entièrement le tableau mais seulement la sous partie utile.
@@ -420,7 +406,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Autorisateur_Debut.Autoriser;
 
             --  La fin du fichier à été atteinte.
-            exit Lecture_Fichier when Lecteur_Fichier_Protegee.Est_Fini;
+            exit Lecture_Fichier when Lecteur.all.Est_Fini;
          end loop Lecture_Fichier;
 
          --  Quand tout le travail est fini la tâche attend ici qu'elles
@@ -619,7 +605,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                      Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                         := C_64.Transformer_En_Brut (E);
                   begin
-                     Ecriveur_Fichier_Protegee.Ecrire (Brut);
+                     Ecriveur.all.Ecrire (Brut);
                   end;
                end loop;
                Limiteur_Protegee.Consommer_Bloc;

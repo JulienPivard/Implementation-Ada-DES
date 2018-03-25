@@ -31,6 +31,10 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       C_C_64.Preparer_Nouvelle_Clef;
       C_C_64.Construire_Clef (Brut_Clef);
       T.Clef := C_C_64.Recuperer_Clef;
+      Lecteur_Generateur.Remettre_A_Zero;
+      Ecriveur_Generateur.Remettre_A_Zero;
+      Lecteur := Lecteur_Generateur'Access;
+      Ecriveur := Ecriveur_Generateur'Access;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -55,18 +59,11 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
       begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
          T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
 
@@ -91,23 +88,19 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
+         R : constant Reception_Blocs_T := Ecriveur_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         AUnit.Assertions.Assert
-            (Brut_Utilise = Brut_Attendu,
-            "Brut : " & Brut_Utilise'Img &
-            " au lieu de " & Brut_Attendu'Img
-            );
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
+         for E of R loop
             AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+               (E = Brut_Attendu,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
       end;
    end Test_Filtre_Crypt;
 
@@ -117,19 +110,12 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Attendu);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
@@ -156,23 +142,19 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
+         R : constant Reception_Blocs_T := Ecriveur_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         AUnit.Assertions.Assert
-            (Brut_Utilise = Brut,
-            "Brut : " & Brut_Utilise'Img &
-            " au lieu de " & Brut'Img
-            );
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
+         for E of R loop
             AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+               (E = Brut_Original,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Original'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
       end;
    end Test_Filtre_Decrypt;
 
@@ -188,18 +170,12 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
    begin
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
       begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
+         Lecteur_Generateur.Changer_Max_Genere (1);
          T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
 
@@ -224,25 +200,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         Brut_Tmp : constant Reception_Blocs_T :=
+            Ecriveur_Generateur.Lire_Resultat;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         Brut_Task := Brut_Utilise;
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
-            AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+         Brut_Task := Brut_Tmp (Natural'First);
       end;
 
       declare
          Fichier : Lecteur_64_IO.File_Type;
       begin
          Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut);
+         Lecteur_64_IO.Write (Fichier, Brut_Original);
          Lecteur_64_IO.Close (Fichier);
          pragma Unreferenced (Fichier);
       end;
@@ -291,19 +259,13 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
    begin
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Attendu);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
+         Lecteur_Generateur.Changer_Max_Genere (1);
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
@@ -330,18 +292,10 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         Brut_Tmp : constant Reception_Blocs_T :=
+            Ecriveur_Generateur.Lire_Resultat;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         Brut_Task := Brut_Utilise;
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
-            AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+         Brut_Task := Brut_Tmp (Natural'First);
       end;
 
       declare
@@ -390,5 +344,93 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
    begin
       Faire_Avorter;
    end Test_Fin;
+
+   ---------------------------------------------------------------------------
+   protected body Ecriveur_Generateur_Protegee is
+      ---------------------------------------------------------
+      procedure Ouvrir_Fichier (Nom : String) is
+      begin
+         null;
+      end Ouvrir_Fichier;
+
+      ---------------------------------------------------------
+      procedure Ecrire
+         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+      is
+      begin
+         Resultats (Nb_Blocs_Ecrit) := Brut;
+         Nb_Blocs_Ecrit := Natural'Succ (Nb_Blocs_Ecrit);
+      end Ecrire;
+
+      ---------------------------------------------------------
+      procedure Fermer_Fichier is
+      begin
+         null;
+      end Fermer_Fichier;
+
+      ---------------------------------------------------------
+      procedure Remettre_A_Zero is
+      begin
+         Nb_Blocs_Ecrit := Natural'First;
+      end Remettre_A_Zero;
+
+      ---------------------------------------------------------
+      function Lire_Resultat return Reception_Blocs_T is
+      begin
+         return Resultats;
+      end Lire_Resultat;
+      ---------------------------------------------------------
+   end Ecriveur_Generateur_Protegee;
+
+   ---------------------------------------------------------------------------
+   protected body Lecteur_Generateur_Protegee is
+      ---------------------------------------------------------
+      procedure Ouvrir_Fichier (Nom : String) is
+      begin
+         null;
+      end Ouvrir_Fichier;
+
+      ---------------------------------------------------------
+      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+      is
+      begin
+         Nb_Blocs_Lu := Natural'Succ (Nb_Blocs_Lu);
+         Brut := Brut_Genere;
+      end Lire;
+
+      ---------------------------------------------------------
+      function Est_Fini return Boolean
+      is
+      begin
+         return Nb_Blocs_Lu > Max_Blocs;
+      end Est_Fini;
+
+      ---------------------------------------------------------
+      procedure Fermer_Fichier is
+      begin
+         null;
+      end Fermer_Fichier;
+
+      ---------------------------------------------------------
+      procedure Remettre_A_Zero is
+      begin
+         Nb_Blocs_Lu := Natural'First;
+      end Remettre_A_Zero;
+
+      ---------------------------------------------------------
+      procedure Changer_Brut_Genere
+         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+      is
+      begin
+         Brut_Genere := Brut;
+      end Changer_Brut_Genere;
+
+      ---------------------------------------------------------
+      procedure Changer_Max_Genere (Max : Natural) is
+      begin
+         Max_Blocs := Max;
+      end Changer_Max_Genere;
+      ---------------------------------------------------------
+   end Lecteur_Generateur_Protegee;
 
 end Des_P.Chaine_P.Ravenscar_P.Test_P;

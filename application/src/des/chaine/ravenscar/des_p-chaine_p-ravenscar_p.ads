@@ -137,30 +137,130 @@ private
    --  Permet de signaler à la procédure appelante que toutes les tâches
    --  ont fini de chiffrer le fichier.
 
+   ---------------------------------------------------------------------------
+   type Ecriveur_Protegee_T is protected interface;
+   --  Un écriveur de donnée protégée. Nécessaire à cause
+   --  de son utilisation dans des taches.
+
+   procedure Ouvrir_Fichier
+      (
+         Ecriveur : in out Ecriveur_Protegee_T;
+         Nom : String
+      )
+   is abstract;
+   --  Ouvre le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
+   --  @param Nom
+   --  Le nom du fichier à ouvrir.
+
+   procedure Ecrire
+      (
+         Ecriveur : in out Ecriveur_Protegee_T;
+         Brut : C_Bloc_64_P.Bloc_64_Brut_T
+      )
+   is abstract;
+   --  Écrit la donnée dans le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
+   --  @param Brut
+   --  La donnée à écrire dans le fichier.
+
+   procedure Fermer_Fichier (Ecriveur : in out Ecriveur_Protegee_T)
+   is abstract;
+   --  Ferme le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
+
+   Ecriveur : access Ecriveur_Protegee_T'Class;
+   --  L'écriveur de donnée effectif peut être changé
+   --  par le biais de cette variable.
+
+   ---------------------------------------------------------------------------
+   type Lecteur_Protegee_T is protected interface;
+   --  Un lecteur de donnée protégée. Nécessaire à cause
+   --  de son utilisation dans des taches.
+
+   procedure Ouvrir_Fichier
+      (
+         Lecteur : in out Lecteur_Protegee_T;
+         Nom : String
+      )
+   is abstract;
+   --  Ouvre le fichier.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @param Nom
+   --  Le nom du fichier à ouvrir.
+
+   procedure Lire
+      (
+         Lecteur : in out Lecteur_Protegee_T;
+         Brut : out C_Bloc_64_P.Bloc_64_Brut_T
+      )
+   is abstract;
+   --  Lit la donnée dans le fichier.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @return
+   --  La donnée lu dans le fichier.
+
+   function Est_Fini
+      (Lecteur : Lecteur_Protegee_T)
+      return Boolean
+   is abstract;
+   --  Permet de savoir si le fichier est fini de lire.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @return
+   --  Le fichier est fini de lire.
+
+   procedure Fermer_Fichier
+      (Lecteur : in out Lecteur_Protegee_T)
+   is abstract;
+   --  Ferme le fichier.
+   --  @param Lecteur
+   --  Le lecteur de données.
+
+   Lecteur : access Lecteur_Protegee_T'Class;
+   --  Le lecteur de donnée effectif peut être changé
+   --  par le biais de cette variable.
+
    ---------------------------------------
-   protected Ecriveur_Fichier_Protegee is
+   protected type Ecriveur_Fichier_Protegee
+   is new Ecriveur_Protegee_T with
+      overriding
       procedure Ouvrir_Fichier (Nom : String);
+      overriding
       procedure Ecrire (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
+      overriding
       procedure Fermer_Fichier;
-      entry Attendre_Fermeture_Entree;
    private
       Resultat : Lecteur_64_IO.File_Type;
-      Est_Ferme : Boolean := True;
    end Ecriveur_Fichier_Protegee;
    --  Écrit dans le fichier le bloc donné.
 
+   Ecriveur_Fichier : aliased Ecriveur_Fichier_Protegee;
+   --  Un écriveur de fichier classique.
+
    ---------------------------------------
-   protected Lecteur_Fichier_Protegee is
+   protected type Lecteur_Fichier_Protegee
+   is new Lecteur_Protegee_T with
+      overriding
       procedure Ouvrir_Fichier (Nom : String);
-      function Lire return C_Bloc_64_P.Bloc_64_Brut_T;
+      overriding
+      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
+      overriding
       function Est_Fini return Boolean;
+      overriding
       procedure Fermer_Fichier;
-      entry Attendre_Fermeture_Entree;
    private
       Fichier : Lecteur_64_IO.File_Type;
-      Est_Ferme : Boolean := True;
    end Lecteur_Fichier_Protegee;
    --  Lit un bloc de données dans le fichier.
+
+   Lecteur_Fichier : aliased Lecteur_Fichier_Protegee;
+   --  Un lecteur de fichier classique.
 
    ---------------------------------------
    protected Filtre_Entree_Protegee is

@@ -48,6 +48,11 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P is
       --  Le décalage est inversé donc il faut deux compteurs.
       J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
+      --  Initialise le lecteur de fichier.
+      Lecteur := Lecteur_Fichier'Access;
+      --  Initialise l'écriveur de fichier.
+      Ecriveur := Ecriveur_Fichier'Access;
+
       --  Ajoute le filtre d'entrée à la chaine.
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
