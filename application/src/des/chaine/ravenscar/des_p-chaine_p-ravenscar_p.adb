@@ -13,6 +13,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
    is
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
+      --  Modifie le nombre de grappe max dans le pipeline
+      --  si la modification est demandée.
+      if Chaine.Modifier_Max_Grappes then
+         Limiteur_Protegee.Modifier_Nb_Max_Blocs (Chaine.Max_Grappes);
+      end if;
       --  Ouverture du fichier à lire.
       Lecteur_Fichier_Protegee.Ouvrir_Fichier (Nom_Fichier);
       --  Ouverture du fichier à écrire.
@@ -90,6 +95,32 @@ package body Des_P.Chaine_P.Ravenscar_P is
       end Autoriser;
       ---------------------------------------------------------
    end Autorisation_Rearmement_Protegee;
+
+   ---------------------------------------------------------------------------
+   protected body Limiteur_Protegee is
+      ---------------------------------------------------------
+      entry Generer_Bloc_Entree when Autorisee is
+         use type System.Multiprocessors.CPU_Range;
+      begin
+         Nb_Blocs_Genere := Nombre_Grappes_T'Succ (Nb_Blocs_Genere);
+         Autorisee := Nb_Blocs_Genere <= Nb_Max_Blocs;
+      end Generer_Bloc_Entree;
+
+      ---------------------------------------------------------
+      procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T) is
+      begin
+         Nb_Max_Blocs := Nb;
+      end Modifier_Nb_Max_Blocs;
+
+      ---------------------------------------------------------
+      procedure Consommer_Bloc is
+         use type System.Multiprocessors.CPU_Range;
+      begin
+         Nb_Blocs_Genere := Nombre_Grappes_T'Pred (Nb_Blocs_Genere);
+         Autorisee := Nb_Blocs_Genere <= Nb_Max_Blocs;
+      end Consommer_Bloc;
+      ---------------------------------------------------------
+   end Limiteur_Protegee;
 
    ---------------------------------------------------------------------------
    protected body Demarreur_Protegee is
@@ -387,6 +418,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
             if Lecteur_Fichier_Protegee.Est_Fini then
                Donnee_Debut.Terminer;
             end if;
+
+            Limiteur_Protegee.Generer_Bloc_Entree;
+
             --  Signal que la donnée à été bien écrite et peut être lue.
             Autorisateur_Debut.Autoriser;
 
@@ -599,6 +633,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                      Ecriveur_Fichier_Protegee.Ecrire (Brut);
                   end;
                end loop;
+               Limiteur_Protegee.Consommer_Bloc;
 
                exit Ecriture_Fichier when Terminer;
             end;

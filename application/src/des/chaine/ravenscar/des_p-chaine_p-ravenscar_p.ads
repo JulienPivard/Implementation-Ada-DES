@@ -1,7 +1,9 @@
-with Ada.Sequential_IO;
-with Ada.Containers.Indefinite_Holders;
+private with Ada.Sequential_IO;
 
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+private with System.Multiprocessors;
+private with Ada.Containers.Indefinite_Holders;
+
+private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
 private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
@@ -82,6 +84,26 @@ private
    --  à nouveau devant la barrière du demarreur_protegee. Le but est ici
    --  de bloquer les tâches pour ne pas se relancer elle même si leur tâche
    --  est finie avant que la barrière du demarreur_protegee ne se referme.
+
+   subtype Nombre_Grappes_T is System.Multiprocessors.CPU_Range;
+   --  Le nombre de grappes possible dans le pipeline
+
+   subtype Max_Grappes_T is System.Multiprocessors.CPU;
+   --  Le nombre maximum de grappes en même temps
+   --  dans le pipeline
+
+   ---------------------------------------
+   protected Limiteur_Protegee is
+      entry Generer_Bloc_Entree;
+      procedure Consommer_Bloc;
+      procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);
+   private
+      Nb_Blocs_Genere : Nombre_Grappes_T := Nombre_Grappes_T'First;
+      Nb_Max_Blocs : Max_Grappes_T := (System.Multiprocessors.Number_Of_CPUs);
+      Autorisee : Boolean := True;
+   end Limiteur_Protegee;
+   --  Limite le nombre maximum de grappes de blocs
+   --  à un même moment dans le pipeline.
 
    ---------------------------------------
    protected Demarreur_Protegee is
@@ -209,6 +231,8 @@ private
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
+         Max_Grappes : Max_Grappes_T := Max_Grappes_T'First;
+         Modifier_Max_Grappes : Boolean := False;
       end record;
    ---------------------------------------
 
