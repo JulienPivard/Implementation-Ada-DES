@@ -344,35 +344,24 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Donnee_Protegee is
       ---------------------------------------------------------
-      entry Ecrire_Donnee_Entree (Table : Table_Bloc_T) when Signal is
+      entry Ecrire_Donnee_Entree (Table : Donnee_T) when Signal is
       begin
-         Donnee := Table_Holder_P.To_Holder (Table);
+         Donnee := Donnee_Holder_P.To_Holder (Table);
          Signal := False;
       end Ecrire_Donnee_Entree;
 
       ---------------------------------------------------------
-      function Lire return Table_Bloc_T is
-      begin
-         return Donnee.Element;
-      end Lire;
-
-      ---------------------------------------------------------
-      procedure Lu is
-      begin
-         Signal := True;
-      end Lu;
-
-      ---------------------------------------------------------
       function Est_Terminee return Boolean is
       begin
-         return Fin;
+         return Donnee.Element.Est_Derniere_Grappe;
       end Est_Terminee;
 
       ---------------------------------------------------------
-      procedure Terminer is
+      procedure Lire_Donnee (Table : out Donnee_T) is
       begin
-         Fin := True;
-      end Terminer;
+         Table := Donnee.Element;
+         Signal := True;
+      end Lire_Donnee;
       ---------------------------------------------------------
    end Donnee_Protegee;
 
@@ -409,16 +398,22 @@ package body Des_P.Chaine_P.Ravenscar_P is
                J := I;
             end loop Remplissage;
 
-            --  Lancement du filtrage de la grappe de blocs.
-            --  Si le tableau de blocs n'est pas plein on n'utilise pas
-            --  entièrement le tableau mais seulement la sous partie utile.
-            Donnee_Debut.Ecrire_Donnee_Entree (Table (Indice_T'First .. J));
-            --  Si on a atteint la fin du fichier on envoie le
-            --  signal de terminaison
-            if Lecteur_Fichier_Protegee.Est_Fini then
-               Donnee_Debut.Terminer;
-            end if;
+            declare
+               --  Si on a atteint la fin du fichier on envoie le
+               --  signal de terminaison
+               D : Donnee_T (Lecteur_Fichier_Protegee.Est_Fini);
+            begin
+               --  Si le tableau de blocs n'est pas plein on n'utilise pas
+               --  entièrement le tableau mais seulement la sous partie utile.
+               D.Table := Table_Holder_P.To_Holder
+                  (Table (Indice_T'First .. J));
+               --  Lancement du filtrage de la grappe de blocs.
+               Donnee_Debut.Ecrire_Donnee_Entree (D);
+            end;
 
+            --  On signal la création d'un nouveau bloc,
+            --  si il y en a trop en circulation la
+            --  tâche est mise en pause.
             Limiteur_Protegee.Generer_Bloc_Entree;
 
             --  Signal que la donnée à été bien écrite et peut être lue.
@@ -428,6 +423,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
             exit Lecture_Fichier when Lecteur_Fichier_Protegee.Est_Fini;
          end loop Lecture_Fichier;
 
+         --  Quand tout le travail est fini la tâche attend ici qu'elles
+         --  aient toutes fini avant de considérer qu'elle est prête à
+         --  chiffrer un autre fichier.
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
@@ -435,6 +433,18 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Entree_Tache is
+      ---------------------------------------------------------
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+         Filtre : constant
+         Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class :=
+            Filtre_Entree_Protegee.Lire_Filtre;
+      begin
+         for E of T loop
+            Filtre.Filtrer (E);
+         end loop;
+      end Filtrer_Grappe;
+      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -444,46 +454,32 @@ package body Des_P.Chaine_P.Ravenscar_P is
          exit Repetition_Ou_Non when Avorter_Protegee.Avorter;
 
          Filtre_Entree_Protegee.Attendre_Entree;
-         declare
-            Filtre : constant
-            Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class :=
-               Filtre_Entree_Protegee.Lire_Filtre;
-         begin
-            Filtrage :
-            loop
-               --  En attente de l'autorisation de lire.
-               Autorisateur_Debut.Attendre_Entree;
+         Filtrage :
+         loop
+            --  En attente de l'autorisation de lire.
+            Autorisateur_Debut.Attendre_Entree;
 
-               declare
-                  --  Lecture des données.
-                  Table : Table_Bloc_T := Donnee_Debut.Lire;
-                  --  On lit le signal de terminaison avant de signaler
-                  --  qu'on a lu les données pour éviter de lire un
-                  --  signal incorrect.
-                  Terminer : constant Boolean := Donnee_Debut.Est_Terminee;
-               begin
-                  --  Signal que les données ont été lue.
-                  Donnee_Debut.Lu;
-                  --  Filtrage des données
-                  for E of Table loop
-                     Filtre.Filtrer (E);
-                  end loop;
-                  --  Envoie des données a la tache suivante.
-                  Donnee_01.Ecrire_Donnee_Entree (Table);
-                  --  Si toutes les données ont été filtrée on signal
-                  --  que le chiffrement est fini à la tache suivante.
-                  if Terminer then
-                     Donnee_01.Terminer;
-                  end if;
-                  --  Autorise la tache suivante à lire.
-                  Autorisateur_01.Autoriser;
+            declare
+               --  Lecture des données.
+               D : Donnee_T (Donnee_Debut.Est_Terminee);
+            begin
+               --  Signal que les données ont été lue.
+               Donnee_Debut.Lire_Donnee (D);
+               --  Filtrage des données
+               Filtrer_Grappe (D.Table.Reference);
+               --  Envoie des données a la tache suivante.
+               Donnee_01.Ecrire_Donnee_Entree (D);
+               --  Autorise la tache suivante à lire.
+               Autorisateur_01.Autoriser;
 
-                  exit Filtrage when Terminer;
-               end;
+               exit Filtrage when D.Est_Derniere_Grappe;
+            end;
 
-            end loop Filtrage;
-         end;
+         end loop Filtrage;
 
+         --  Quand tout le travail est fini la tâche attend ici qu'elles
+         --  aient toutes fini avant de considérer qu'elle est prête à
+         --  chiffrer un autre fichier.
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
@@ -491,6 +487,18 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Corps_Tache is
+      ---------------------------------------------------------
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+         Filtre : constant
+         Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
+            Filtreur.all.Lire_Filtre;
+      begin
+         for E of T loop
+            Filtre.Filtrer (E);
+         end loop;
+      end Filtrer_Grappe;
+      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -500,46 +508,34 @@ package body Des_P.Chaine_P.Ravenscar_P is
          exit Repetition_Ou_Non when Avorter_Protegee.Avorter;
 
          Filtreur.all.Attendre_Entree;
-         declare
-            Filtre : constant
-            Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
-               Filtreur.all.Lire_Filtre;
-         begin
-            Filtrage :
-            loop
-               --  En attente de l'autorisation de lire.
-               Autorisateur_Reception.all.Attendre_Entree;
+         Filtrage :
+         loop
+            --  En attente de l'autorisation de lire.
+            Autorisateur_Reception.all.Attendre_Entree;
 
-               declare
-                  --  Lecture des données.
-                  Table : Table_Bloc_T := Donnee_Recue.all.Lire;
-                  --  On lit le signal de terminaison avant de signaler
-                  --  qu'on a lu les données pour éviter de lire un
-                  --  signal incorrect.
-                  Terminer : constant Boolean := Donnee_Recue.all.Est_Terminee;
-               begin
-                  --  Signal que les données ont été lue.
-                  Donnee_Recue.all.Lu;
-                  --  Filtrage des données
-                  for E of Table loop
-                     Filtre.Filtrer (E);
-                  end loop;
-                  --  Envoie des données a la tache suivante.
-                  Donnee_A_Envoyer.all.Ecrire_Donnee_Entree (Table);
-                  --  Si toutes les données ont été filtrée on signal
-                  --  que le chiffrement est fini à la tache suivante.
-                  if Terminer then
-                     Donnee_A_Envoyer.all.Terminer;
-                  end if;
-                  --  Autorise la tache suivante à lire.
-                  Autorisateur_Envoyee.all.Autoriser;
+            declare
+               --  Lecture des données.
+               D : Donnee_T (Donnee_Recue.all.Est_Terminee);
+            begin
+               --  Signal que les données ont été lue.
+               Donnee_Recue.all.Lire_Donnee (D);
+               --  Filtrage des données
+               Filtrer_Grappe (D.Table.Reference);
+               --  Envoie des données a la tache suivante.
+               Donnee_A_Envoyer.all.Ecrire_Donnee_Entree (D);
 
-                  exit Filtrage when Terminer;
-               end;
+               --  Autorise la tache suivante à lire.
+               Autorisateur_Envoyee.all.Autoriser;
 
-            end loop Filtrage;
-         end;
+               exit Filtrage when D.Est_Derniere_Grappe;
 
+            end;
+
+         end loop Filtrage;
+
+         --  Quand tout le travail est fini la tâche attend ici qu'elles
+         --  aient toutes fini avant de considérer qu'elle est prête à
+         --  chiffrer un autre fichier.
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
@@ -547,6 +543,18 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Sortie_Tache is
+      ---------------------------------------------------------
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+         Filtre : constant
+         Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class :=
+            Filtre_Sortie_Protegee.Lire_Filtre;
+      begin
+         for E of T loop
+            Filtre.Filtrer (E);
+         end loop;
+      end Filtrer_Grappe;
+      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -556,46 +564,31 @@ package body Des_P.Chaine_P.Ravenscar_P is
          exit Repetition_Ou_Non when Avorter_Protegee.Avorter;
 
          Filtre_Sortie_Protegee.Attendre_Entree;
-         declare
-            Filtre : constant
-            Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class :=
-               Filtre_Sortie_Protegee.Lire_Filtre;
-         begin
-            Filtrage :
-            loop
-               --  En attente de l'autorisation de lire.
-               Autorisateur_17.Attendre_Entree;
+         Filtrage :
+         loop
+            --  En attente de l'autorisation de lire.
+            Autorisateur_17.Attendre_Entree;
 
-               declare
-                  --  Lecture des données.
-                  Table : Table_Bloc_T := Donnee_17.Lire;
-                  --  On lit le signal de terminaison avant de signaler
-                  --  qu'on a lu les données pour éviter de lire un
-                  --  signal incorrect.
-                  Terminer : constant Boolean := Donnee_17.Est_Terminee;
-               begin
-                  --  Signal que les données ont été lue.
-                  Donnee_17.Lu;
-                  --  Filtrage des données
-                  for E of Table loop
-                     Filtre.Filtrer (E);
-                  end loop;
-                  --  Envoie des données a la tache suivante.
-                  Donnee_Fin.Ecrire_Donnee_Entree (Table);
-                  --  Si toutes les données ont été filtrée on signal
-                  --  que le chiffrement est fini à la tache suivante.
-                  if Terminer then
-                     Donnee_Fin.Terminer;
-                  end if;
-                  --  Autorise la tache suivante à lire.
-                  Autorisateur_Fin.Autoriser;
+            declare
+               D : Donnee_T (Donnee_17.Est_Terminee);
+            begin
+               --  Signal que les données ont été lue.
+               Donnee_17.Lire_Donnee (D);
+               --  Filtrage des données
+               Filtrer_Grappe (D.Table.Reference);
+               --  Envoie des données a la tache suivante.
+               Donnee_Fin.Ecrire_Donnee_Entree (D);
+               --  Autorise la tache suivante à lire.
+               Autorisateur_Fin.Autoriser;
 
-                  exit Filtrage when Terminer;
-               end;
+               exit Filtrage when D.Est_Derniere_Grappe;
+            end;
 
-            end loop Filtrage;
-         end;
+         end loop Filtrage;
 
+         --  Quand tout le travail est fini la tâche attend ici qu'elles
+         --  aient toutes fini avant de considérer qu'elle est prête à
+         --  chiffrer un autre fichier.
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
@@ -617,14 +610,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Autorisateur_Fin.Attendre_Entree;
 
             declare
-               Table : constant Table_Bloc_T := Donnee_Fin.Lire;
-               --  On lit le signal de terminaison avant de signaler
-               --  qu'on a lu les données pour éviter de lire un
-               --  signal incorrect.
-               Terminer : constant Boolean := Donnee_Fin.Est_Terminee;
+               D : Donnee_T (Donnee_Fin.Est_Terminee);
             begin
-               Donnee_Fin.Lu;
-               for E of Table loop
+               Donnee_Fin.Lire_Donnee (D);
+               for E of D.Table.Element loop
                   declare
                      --  Transformation du bloc en un brut
                      Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
@@ -635,11 +624,14 @@ package body Des_P.Chaine_P.Ravenscar_P is
                end loop;
                Limiteur_Protegee.Consommer_Bloc;
 
-               exit Ecriture_Fichier when Terminer;
+               exit Ecriture_Fichier when D.Est_Derniere_Grappe;
             end;
 
          end loop Ecriture_Fichier;
 
+         --  Quand tout le travail est fini la tâche attend ici qu'elles
+         --  aient toutes fini avant de considérer qu'elle est prête à
+         --  chiffrer un autre fichier.
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
