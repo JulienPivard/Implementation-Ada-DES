@@ -36,23 +36,23 @@ package Des_P.Chaine_P.Ravenscar_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Crypt
+   procedure Test_Filtre_Crypt_1
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Decrypt
+   procedure Test_Filtre_Decrypt_1
       (T : in out Test_Fixt_T);
 
-   procedure Test_Comparaison_Sequentiel_Crypt
+   procedure Test_Filtre_Crypt_2048
       (T : in out Test_Fixt_T);
 
-   procedure Test_Comparaison_Sequentiel_Decrypt
+   procedure Test_Filtre_Decrypt_2048
       (T : in out Test_Fixt_T);
 
    procedure Test_Fin;
 
 private
 
-   Fin_Constante_Bloc : constant Natural := 2048;
+   Fin_Constante_Bloc : constant Natural := 2047;
    type Reception_Blocs_T is array
       (0 .. Fin_Constante_Bloc)
       of C_Bloc_64_P.Bloc_64_Brut_T;
@@ -68,6 +68,7 @@ private
       procedure Fermer_Fichier;
       procedure Remettre_A_Zero;
       function Lire_Resultat return Reception_Blocs_T;
+      function Lire_Nb_Bloc_Ecrit return Natural;
    private
       Resultats : Reception_Blocs_T;
       Nb_Blocs_Ecrit : Natural := 0;
@@ -91,6 +92,7 @@ private
       procedure Remettre_A_Zero;
       procedure Changer_Brut_Genere (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
       procedure Changer_Max_Genere (Max : Natural);
+      function Lire_Nb_Bloc_Lu return Natural;
    private
       Nb_Blocs_Lu : Natural := 0;
       Brut_Genere : C_Bloc_64_P.Bloc_64_Brut_T;

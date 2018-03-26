@@ -5,17 +5,9 @@ with Des_P.Clef_P.Clef_56_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P;
 
-with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-
 with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
 with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
 with Des_P.Faiseur_P;
-
-with Ada.Directories;
-
-with Ada.IO_Exceptions;
 
 package body Des_P.Chaine_P.Ravenscar_P.Test_P is
 
@@ -42,19 +34,14 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
    procedure Tear_Down (T : in out Test_Fixt_T) is
       pragma Unreferenced (T);
    begin
-      if Ada.Directories.Exists (Nom_Fichier) then
-         Ada.Directories.Delete_File (Nom_Fichier);
-      end if;
-      if Ada.Directories.Exists (Nom_Alternatif) then
-         Ada.Directories.Delete_File (Nom_Alternatif);
-      end if;
+      null;
    end Tear_Down;
 
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Crypt (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Crypt_1 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
@@ -64,6 +51,125 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
          Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
+         Lecteur_Generateur.Changer_Max_Genere (1);
+
+         T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
+               (Fabrique.Fabriquer_Entree);
+
+         --  Ajoute le filtre de corps à la chaine.
+         for I in Numero_Filtre_T'Range loop
+            --  Décalage à gauche pour le cryptage.
+            Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
+            --  Initialise le filtre avec la clef de 48.
+            T.Chaine.Filtres_Corps (I) :=
+               Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
+               (
+                  Fabrique.Fabriquer_Corps
+                  (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
+               );
+         end loop;
+
+         --  Ajoute le filtre de sortie.
+         T.Chaine.Filtre_Sortie := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
+               (Fabrique.Fabriquer_Sortie);
+      end;
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Reception_Blocs_T := Ecriveur_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+      begin
+         AUnit.Assertions.Assert
+            (R (Natural'First) = Brut_Attendu,
+            "Brut : " & R (Natural'First)'Img &
+            " au lieu de " & Brut_Attendu'Img &
+            " en position : 0"
+            );
+         for I in Natural'First + 1 .. Fin_Constante_Bloc loop
+            AUnit.Assertions.Assert
+               (R (I) = 0,
+               "Brut : " & R (I)'Img &
+               " au lieu de 0" &
+               " en position : " & I'Img
+               );
+         end loop;
+      end;
+   end Test_Filtre_Crypt_1;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Decrypt_1 (T : in out Test_Fixt_T) is
+      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
+      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+   begin
+      declare
+         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+            Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         J : Numero_Filtre_T := Numero_Filtre_T'First;
+      begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
+         Lecteur_Generateur.Changer_Max_Genere (1);
+
+         T.Chaine.Filtre_Entree :=
+            Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
+               (Fabrique.Fabriquer_Entree);
+
+         for I in reverse Numero_Filtre_T'Range loop
+            T.Chaine.Filtres_Corps (J) :=
+               Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
+               (
+                  Fabrique.Fabriquer_Corps
+                  (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
+               );
+            Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
+            if J /= Numero_Filtre_T'Last then
+               J := Numero_Filtre_T'Succ (J);
+            end if;
+         end loop;
+
+         --  Ajoute le filtre de sortie.
+         T.Chaine.Filtre_Sortie :=
+            Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
+               (Fabrique.Fabriquer_Sortie);
+      end;
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Reception_Blocs_T := Ecriveur_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+      begin
+         AUnit.Assertions.Assert
+            (R (Natural'First) = Brut_Original,
+            "Brut : " & R (Natural'First)'Img &
+            " au lieu de " & Brut_Original'Img &
+            " en position : 0"
+            );
+         for I in Natural'First + 1 .. Fin_Constante_Bloc loop
+            AUnit.Assertions.Assert
+               (R (I) = 0,
+               "Brut : " & R (I)'Img &
+               " au lieu de 0" &
+               " en position : " & I'Img
+               );
+         end loop;
+      end;
+   end Test_Filtre_Decrypt_1;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Crypt_2048 (T : in out Test_Fixt_T) is
+      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
+      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+   begin
+      declare
+         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+            Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+      begin
+         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
+         Lecteur_Generateur.Changer_Max_Genere (2048);
+
          T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
 
@@ -102,10 +208,10 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             I := Natural'Succ (I);
          end loop;
       end;
-   end Test_Filtre_Crypt;
+   end Test_Filtre_Crypt_2048;
 
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Decrypt (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Decrypt_2048 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
@@ -116,6 +222,8 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
+         Lecteur_Generateur.Changer_Max_Genere (2048);
+
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
@@ -156,188 +264,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             I := Natural'Succ (I);
          end loop;
       end;
-   end Test_Filtre_Decrypt;
-
-   ---------------------------------------------------------------------------
-   procedure Test_Comparaison_Sequentiel_Crypt (T : in out Test_Fixt_T) is
-      package Faiseur_Cryptage_Seq_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-      Const_Crypt_S : Faiseur_Cryptage_Seq_P.Constructeur_Cryptage_T;
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
-      Brut_Sequ : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      Brut_Task : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-   begin
-      declare
-         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
-            Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
-      begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
-         Lecteur_Generateur.Changer_Max_Genere (1);
-         T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
-               (Fabrique.Fabriquer_Entree);
-
-         --  Ajoute le filtre de corps à la chaine.
-         for I in Numero_Filtre_T'Range loop
-            --  Décalage à gauche pour le cryptage.
-            Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
-            --  Initialise le filtre avec la clef de 48.
-            T.Chaine.Filtres_Corps (I) :=
-               Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
-               (
-                  Fabrique.Fabriquer_Corps
-                  (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
-               );
-         end loop;
-
-         --  Ajoute le filtre de sortie.
-         T.Chaine.Filtre_Sortie := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
-               (Fabrique.Fabriquer_Sortie);
-      end;
-
-      T.Chaine.Filtrer (Nom_Fichier, Extension);
-
-      declare
-         Brut_Tmp : constant Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
-      begin
-         Brut_Task := Brut_Tmp (Natural'First);
-      end;
-
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Original);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      Const_Crypt_S.Initialiser (Const_56, Const_48);
-      Const_Crypt_S.Construire (T.Clef);
-      declare
-         Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
-      begin
-         Chaine := Des_P.Chaine_P.Sequentiel_P.Chaine_T
-            (Const_Crypt_S.Recuperer_Chaine);
-
-         Chaine.Filtrer (Nom_Fichier, Extension);
-      end;
-
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         Brut_Sequ := Brut_Utilise;
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
-            AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
-      end;
-
-      AUnit.Assertions.Assert
-         (Brut_Task = Brut_Sequ,
-         "Brut taches : " & Brut_Task'Img &
-         " au lieu de sequentiel " & Brut_Sequ'Img
-         );
-   end Test_Comparaison_Sequentiel_Crypt;
-
-   ---------------------------------------------------------------------------
-   procedure Test_Comparaison_Sequentiel_Decrypt (T : in out Test_Fixt_T) is
-      package Faiseur_Decryptage_Seq_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
-      Const_Decrypt_S : Faiseur_Decryptage_Seq_P.Constructeur_Decryptage_T;
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
-      Brut_Sequ : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      Brut_Task : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-   begin
-      declare
-         Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
-            Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
-         J : Numero_Filtre_T := Numero_Filtre_T'First;
-      begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
-         Lecteur_Generateur.Changer_Max_Genere (1);
-         T.Chaine.Filtre_Entree :=
-            Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
-               (Fabrique.Fabriquer_Entree);
-
-         for I in reverse Numero_Filtre_T'Range loop
-            T.Chaine.Filtres_Corps (J) :=
-               Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
-               (
-                  Fabrique.Fabriquer_Corps
-                  (Des_P.Faiseur_P.Faire_Clef (Const_48, Clef_56))
-               );
-            Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
-            if J /= Numero_Filtre_T'Last then
-               J := Numero_Filtre_T'Succ (J);
-            end if;
-         end loop;
-
-         --  Ajoute le filtre de sortie.
-         T.Chaine.Filtre_Sortie :=
-            Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
-               (Fabrique.Fabriquer_Sortie);
-      end;
-
-      T.Chaine.Filtrer (Nom_Fichier, Extension);
-
-      declare
-         Brut_Tmp : constant Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
-      begin
-         Brut_Task := Brut_Tmp (Natural'First);
-      end;
-
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Attendu);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
-      Const_Decrypt_S.Initialiser (Const_56, Const_48);
-      Const_Decrypt_S.Construire (T.Clef);
-      declare
-         Chaine : Des_P.Chaine_P.Sequentiel_P.Chaine_T;
-      begin
-         Chaine := Des_P.Chaine_P.Sequentiel_P.Chaine_T
-            (Const_Decrypt_S.Recuperer_Chaine);
-
-         Chaine.Filtrer (Nom_Fichier, Extension);
-      end;
-
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
-      begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         Brut_Sequ := Brut_Utilise;
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
-            AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
-      end;
-
-      AUnit.Assertions.Assert
-         (Brut_Task = Brut_Sequ,
-         "Brut taches : " & Brut_Task'Img &
-         " au lieu de sequentiel " & Brut_Sequ'Img
-         );
-   end Test_Comparaison_Sequentiel_Decrypt;
+   end Test_Filtre_Decrypt_2048;
 
    ---------------------------------------------------------------------------
    procedure Test_Fin is
@@ -379,6 +306,12 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       begin
          return Resultats;
       end Lire_Resultat;
+
+      ---------------------------------------------------------
+      function Lire_Nb_Bloc_Ecrit return Natural is
+      begin
+         return Nb_Blocs_Ecrit;
+      end Lire_Nb_Bloc_Ecrit;
       ---------------------------------------------------------
    end Ecriveur_Generateur_Protegee;
 
@@ -402,7 +335,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       function Est_Fini return Boolean
       is
       begin
-         return Nb_Blocs_Lu > Max_Blocs;
+         return Nb_Blocs_Lu >= Max_Blocs;
       end Est_Fini;
 
       ---------------------------------------------------------
@@ -430,6 +363,12 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       begin
          Max_Blocs := Max;
       end Changer_Max_Genere;
+
+      ---------------------------------------------------------
+      function Lire_Nb_Bloc_Lu return Natural is
+      begin
+         return Nb_Blocs_Lu;
+      end Lire_Nb_Bloc_Lu;
       ---------------------------------------------------------
    end Lecteur_Generateur_Protegee;
 

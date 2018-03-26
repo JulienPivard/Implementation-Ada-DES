@@ -19,29 +19,29 @@ package body Chaine_Ravenscar_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Cryptage à partir des blocs d'un générateur",
-            Test_Filtre_Crypt'Access
+            (nom_test & "Cryptage a partir de 1 bloc d'un generateur",
+            Test_Filtre_Crypt_1'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Decryptage a partir des blocs d'un générateur",
-            Test_Filtre_Decrypt'Access
+            (nom_test & "Decryptage a partir de 1 bloc d'un generateur",
+            Test_Filtre_Decrypt_1'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Comparaison cryptage avec la methode sequentiel",
-            Test_Comparaison_Sequentiel_Crypt'Access
+            (nom_test & "Cryptage a partir de 2048 blocs d'un generateur",
+            Test_Filtre_Crypt_2048'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Comparaison decryptage avec la methode sequentiel",
-            Test_Comparaison_Sequentiel_Decrypt'Access
+            (nom_test & "Decryptage a partir de 2048 blocs d'un generateur",
+            Test_Filtre_Decrypt_2048'Access
             )
          );
 
