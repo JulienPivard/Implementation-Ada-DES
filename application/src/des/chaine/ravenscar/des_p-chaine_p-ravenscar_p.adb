@@ -324,20 +324,14 @@ package body Des_P.Chaine_P.Ravenscar_P is
       ---------------------------------------------------------
       entry Ecrire_Donnee_Entree (Table : Donnee_T) when Signal is
       begin
-         Donnee := Donnee_Holder_P.To_Holder (Table);
+         Donnee := Table;
          Signal := False;
       end Ecrire_Donnee_Entree;
 
       ---------------------------------------------------------
-      function Est_Terminee return Boolean is
-      begin
-         return Donnee.Element.Est_Derniere_Grappe;
-      end Est_Terminee;
-
-      ---------------------------------------------------------
       procedure Lire_Donnee (Table : out Donnee_T) is
       begin
-         Table := Donnee.Element;
+         Table := Donnee;
          Signal := True;
       end Lire_Donnee;
       ---------------------------------------------------------
@@ -387,12 +381,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
             declare
                --  Si on a atteint la fin du fichier on envoie le
                --  signal de terminaison
-               D : Donnee_T (Lecteur.all.Est_Fini);
+               D : Donnee_T;
             begin
                --  Si le tableau de blocs n'est pas plein on n'utilise pas
                --  entièrement le tableau mais seulement la sous partie utile.
                D.Table := Table_Holder_P.To_Holder
                   (Table (Indice_T'First .. J));
+               D.Est_Derniere_Grappe := Lecteur.all.Est_Fini;
                --  Lancement du filtrage de la grappe de blocs.
                Donnee_Debut.Ecrire_Donnee_Entree (D);
             end;
@@ -447,7 +442,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
             declare
                --  Lecture des données.
-               D : Donnee_T (Donnee_Debut.Est_Terminee);
+               D : Donnee_T;
             begin
                --  Signal que les données ont été lue.
                Donnee_Debut.Lire_Donnee (D);
@@ -501,7 +496,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
             declare
                --  Lecture des données.
-               D : Donnee_T (Donnee_Recue.all.Est_Terminee);
+               D : Donnee_T;
             begin
                --  Signal que les données ont été lue.
                Donnee_Recue.all.Lire_Donnee (D);
@@ -556,7 +551,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Autorisateur_17.Attendre_Entree;
 
             declare
-               D : Donnee_T (Donnee_17.Est_Terminee);
+               D : Donnee_T;
             begin
                --  Signal que les données ont été lue.
                Donnee_17.Lire_Donnee (D);
@@ -596,7 +591,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Autorisateur_Fin.Attendre_Entree;
 
             declare
-               D : Donnee_T (Donnee_Fin.Est_Terminee);
+               D : Donnee_T;
             begin
                Donnee_Fin.Lire_Donnee (D);
                for E of D.Table.Element loop

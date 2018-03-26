@@ -56,9 +56,10 @@ private
    package Table_Holder_P is new
       Ada.Containers.Indefinite_Holders (Table_Bloc_T);
 
-   type Donnee_T (Est_Derniere_Grappe : Boolean) is
+   type Donnee_T is
       record
          Table : Table_Holder_P.Holder;
+         Est_Derniere_Grappe : Boolean := False;
       end record;
    --  Une grappe de blocs avec un drapeau pour savoir si
    --  c'est la dernière.
@@ -317,11 +318,10 @@ private
    ---------------------------------------
    protected type Donnee_Protegee is
       entry Ecrire_Donnee_Entree (Table : Donnee_T);
-      function Est_Terminee return Boolean;
       procedure Lire_Donnee (Table : out Donnee_T);
    private
       Signal : Boolean := True;
-      Donnee : Donnee_Holder_P.Holder;
+      Donnee : Donnee_T;
    end Donnee_Protegee;
    --  Barrière destiné à transmettre le bloc à la tâche suivante
    --  et permet également d'indiquer si le bloc à bien été récupéré
