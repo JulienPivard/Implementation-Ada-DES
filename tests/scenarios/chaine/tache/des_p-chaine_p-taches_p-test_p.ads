@@ -41,10 +41,4 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    procedure Test_Filtre_Decrypt
       (T : in out Test_Fixt_T);
 
-   procedure Test_Comparaison_Sequentiel_Crypt
-      (T : in out Test_Fixt_T);
-
-   procedure Test_Comparaison_Sequentiel_Decrypt
-      (T : in out Test_Fixt_T);
-
 end Des_P.Chaine_P.Taches_P.Test_P;

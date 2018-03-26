@@ -19,14 +19,14 @@ package body Chaine_Ravenscar_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Cryptage a partir de fichiers",
+            (nom_test & "Cryptage à partir des blocs d'un générateur",
             Test_Filtre_Crypt'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Decryptage a partir de fichiers",
+            (nom_test & "Decryptage a partir des blocs d'un générateur",
             Test_Filtre_Decrypt'Access
             )
          );

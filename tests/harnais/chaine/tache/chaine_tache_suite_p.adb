@@ -31,20 +31,6 @@ package body Chaine_Tache_Suite_P is
             )
          );
 
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Comparaison cryptage avec la methode sequentiel",
-            Test_Comparaison_Sequentiel_Crypt'Access
-            )
-         );
-
-      ptr_test_suite.all.Add_Test
-         (Caller.Create
-            (nom_test & "Comparaison decryptage avec la methode sequentiel",
-            Test_Comparaison_Sequentiel_Decrypt'Access
-            )
-         );
-
       return ptr_test_suite;
 
    end Fonc_Suite;
