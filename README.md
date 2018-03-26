@@ -21,18 +21,18 @@ est également rédigée pour chacun et peut être générée avec l'outil
 ## Apprentissage du langage Ada
 
 Le premier objectif du projet est de se familiariser avec le langage.
-L'algorithme DES nécessite de manipuler directement les bits des blocs et
-donc de comprendre comment modéliser des manipulations de bas niveau en
-Ada. L'application nécessite également un travail de conception à haut
-niveau en utilisant la méthode objet. Des tests unitaires de chaque partie
-de l'application ont été systématiquement réalisés tout au long du
-développement.
+L'algorithme DES étant une méthode de chiffrement par bloc, il nécessite
+de manipuler directement les bits des dit blocs et donc de comprendre
+comment modéliser des manipulations de bas niveau en Ada. L'application
+nécessite également un travail de conception à haut niveau en utilisant la
+méthode objet. Des tests unitaires de chaque partie de l'application ont
+été systématiquement réalisés tout au long du développement.
 
 Chaque partie de l'application est modélisée de manière à être la plus
 indépendante possible des autres.
 
-Les manipulations bas niveau, ainsi que Le passage d'un bloc de bits à une
-version facilement manipulable (et inversement), sont réalisées grâce
+Les manipulations bas niveau, ainsi que Le passage d'un bloc de bits vers
+une version facilement manipulable (et inversement), sont réalisées grâce
 à des clauses de représentations permettant de modifier et consulter
 facilement chaque bit des blocs manipulé tout en permettant de ne pas
 avoir à employer de masque binaire.
@@ -40,30 +40,27 @@ avoir à employer de masque binaire.
 ## Version parallèle
 
 Le second objectif est de réaliser une version parallèle utilisant le
-design pattern **Pipeline** pour modéliser les étages (ou cycles). Le
-langage est doté en standard de la notion de tâches permettant les
-traitements en parallèle. Chaque tâche peut communiquer avec une autre par
-le biais d'un rendez-vous.
-
-Pour réaliser cette version de l'application, les étages de la version
-séquentielle ont été remplacés par des tâches, chacune étant dédié à un
-cycle particulier de l'application et ne peut contacter que le cycle
-suivant. Ainsi pendant qu'un bloc est transformé par une tâche à un cycle
-particulier, un autre bloc peut en même temps être transformé par une
-autre tâche dans un autre cycle. Cette organisation permet en théorie
-d'utiliser au maximum les ressources matériel de la machine en travaillant
-simultanément sur plusieurs blocs.
+design pattern **Pipeline** par le biais de tâches (présente en standard
+dans le langage). Afin de modéliser la chaine d'étages (ou cycles) on
+utilisera une tâche par étage. La communication et la transmission de
+données entre les tâches sera assuré à l'aide de rendez-vous chacune ne
+pouvant contacter que le cycle suivant. Ainsi pendant qu'un bloc est
+transformé par une tâche à un cycle particulier, un autre bloc peut en
+même temps être transformé par une autre tâche à un autre cycle. Cette
+organisation permet en théorie de maximiser l'utilisation des ressources
+matériel de la machine en faisant travailler simultanément plusieurs cœurs
+sur des données différentes.
 
 Dans la première version parallèle (tag: v1\_version\_taches) les blocs
-étaient passés un par un aux tâches, chacune ne traitait donc qu'un seul
-bloc à la fois la rendant plus lente que la version séquentielle
-précédemment développée. La cause en revenait à une charge de travail par
-tâche insuffisante, ce qui avait pour conséquence que le temps de
-communication entre deux tâches était plus long que le temps de
-transformation du bloc par la dite tache. Celles-ci passaient donc plus de
-temps à attendre ou communiquer entre elles qu'à travailler. La solution
-choisie pour améliorer les performances a été de ne plus traiter les blocs
-un par un, mais en grappe.
+étaient passés un par un aux tâches, chacune ne traitait qu'un seul bloc
+à la fois la rendant plus lente que la version séquentielle précédemment
+développée. La cause en revenait à une charge de travail par tâche
+insuffisante, ce qui avait pour conséquence que le temps de communication
+entre deux tâches était plus long que le temps de transformation du bloc
+par la dite tâche. Celles-ci passaient donc plus de temps à attendre ou
+communiquer entre elles qu'à travailler. La solution choisie pour
+améliorer les performances a été de ne plus traiter les blocs un par un,
+mais en grappe.
 
 Dans la deuxième version (tag: v2\_version\_taches) les blocs sont passés
 en grappe. Ainsi chaque tâche reste liée à un cycle, mais lors de la
@@ -74,6 +71,13 @@ performance. La grappe est entièrement traitée avant d'être envoyée à la
 tâche suivante. Cette version utilise des grappes de 512 blocs et est
 environ deux fois plus rapide que la version séquentielle.
 
+Une troisième version (tag: v3\_version\_taches) s'est vue ajouter un
+limiteur afin de contrôler le nombre de grappes de blocs présentes en même
+temps dans le pipeline. Le but est d'éviter l'engorgement des cœurs du
+processeur en les faisant trop souvent changer de contexte. L'amélioration
+des temps d'exécution est bien moins impressionnante que pour la
+précédente amélioration, mais il est sensible.
+
 ## Version temps-réel
 
 Cette version est implémentée en utilisant le profil **Ravenscar**. (tag:
@@ -82,18 +86,24 @@ v1\_version\_ravenscar)
 Aucune communication directe n'est autorisée entre deux tâches; un objet
 protégé ne doit pas avoir plus d'une entrée maximum; deux tâches ne
 peuvent communiquer qu'au travers d'un ou plusieurs objets protégés.
+Afin de transmettre les données et de contrôler les tâches, il a fallu en
+construire un certain nombre.
 
-Il a donc fallu construire un grand nombre d'objets protégé pour permettre
-aux tâches de communiquer entre elles. Pour que deux tâches puissent se
-communiquer les blocs de bits, il faut deux objets protégés : un premier
-va interdire que la donnée soit écrite tant qu'elle n'a pas été récupérée
-par la tâche suivante; un second objet protégé va, lui, interdire à la
-tâche suivante de lire la donnée tant qu'elle n'a pas été écrit par la
-tâche précédente.
+Pour que deux tâches puissent se communiquer les blocs de bits, il faut
+deux objets protégés :
+* un premier va interdire que la donnée soit écrite tant qu'elle n'a pas
+  été récupérée par la tâche suivante et ce afin d'éviter que la grappe de
+  blocs ne soit modifiée alors que la précédente n'a même pas été
+  récupérée par la tâche suivante;
+* un second objet protégé va, lui, interdire à la tâche suivante de lire
+  la donnée tant qu'elle n'a pas été écrite par la tâche précédente. On
+  cherche ici a éviter que la tâche suivante ne récupère deux fois la même
+  grappe de blocs.
 
 Il a également fallu mettre au point un signal pour savoir si le bloc
 transmis est le dernier ou non. C'est l'objet protégé par lequel transit
-le bloc qui s'en charge à l'aide d'un booléen.
+le bloc qui s'en charge à l'aide d'un booléen (directement inclut dans la
+donnée pour la version corrigée).
 
 Les filtres utilisés par les tâches doivent pouvoir être modifiés, ils
 sont donc transmis à celle-ci par un objet protégé. Cet objet est lu juste
@@ -102,7 +112,10 @@ après avoir reçu le signal de démarrage.
 Pour lire et écrire dans les fichiers la tâche de lecture et la tâche
 d'écriture passent aussi chacune par un objet protégé. Le nom du fichier
 à manipuler est donné à l'objet avant le démarrage du chiffrement, c'est
-lui qui s'occupe de toute la gestion du fichier.
+lui qui s'occupe de toute la gestion du fichier. Afin de permettre de
+réaliser les tests unitaires plus facilement ces deux objets peuvent être
+remplacé par un générateur et un receveur afin de ne pas avoir à manipuler
+de fichiers.
 
 Pour signaler aux tâches de commencer le chiffrement ou pour que la
 dernière tâche puisse signaler que le chiffrement est fini, on utilise
@@ -111,10 +124,10 @@ signal de fin.
 
 Enfin deux derniers objets sont dévolus à mettre totalement fin à toutes
 les tâches en cours et à faire attendre les tâches une fois leur travail
-fini avant d éventuellement relancer le chiffrement d'un autre jeu de
+fini avant d'éventuellement relancer le chiffrement d'un autre jeu de
 données. Les tâches vérifient l'objet d'avortement seulement après avoir
 reçu le signal de démarrage, ce qui implique que les tâches ne peuvent pas
-être stoppées en pleins milieux du traitement d'un jeu de données. L'objet
+être stoppées en pleins milieu du traitement d'un jeu de données. L'objet
 destiné à faire attendre les tâches, le temps qu'elles aient toutes fini,
 est là pour empêcher une tâche précoce de repasser la barrière du
 démarreur avant sa fermeture.
@@ -126,6 +139,12 @@ valeur de la terminaison est maintenant stockée dans une variable au
 moment où la donnée est lue pour éviter de lire la valeur de terminaison
 de la grappe suivante. Une nouvelle version qui utiliserais un objet plus
 fiable est en cours.
+
+(tag: v3\_version\_ravenscar) La grappe de blocs est désormais incluse
+dans un objet qui contient également un booléen indiquant si cette grappe
+est la dernière à traiter. Le signal de terminaison étant désormais
+transmis avec la donnée il ne devrait plus y avoir de problèmes de
+confusion.
 
 # Compilation et exécutions
 
@@ -200,6 +219,8 @@ L'application possède 3 programmes principaux, un pour chaque objectif :
 * Une version séquentielle : `executable_sequentiel`;
 * Une version parallèle : `executable_taches`;
 * Une version Ravenscar : `executable_ravenscar`.
+
+Par défaut `make run` exécute la version séquentiel.
 
 Chaque client accepte un certain nombre d'options :
 
