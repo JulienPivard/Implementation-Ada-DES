@@ -137,8 +137,7 @@ Une grosse correction (tag: v2\_version\_ravenscar) d'un possible blocage
 considérer que l'avant dernière grappe de bloc était la dernière. La
 valeur de la terminaison est maintenant stockée dans une variable au
 moment où la donnée est lue pour éviter de lire la valeur de terminaison
-de la grappe suivante. Une nouvelle version qui utiliserais un objet plus
-fiable est en cours.
+de la grappe suivante.
 
 (tag: v3\_version\_ravenscar) La grappe de blocs est désormais incluse
 dans un objet qui contient également un booléen indiquant si cette grappe
@@ -210,8 +209,10 @@ make
 ```
 
 Par défaut la compilation se fait en mode _debug_, pour compiler en
-_release_ il faut modifier la variable ACTIVER\_DEBUG à _false_ dans le
-fichier `./application/makefile.conf`
+_release_ il faut modifier la variable `ACTIVER_DEBUG` à _false_ dans le
+fichier `./application/makefile.conf`. Désactiver le _debug_ va activer
+l'optimisation à la compilation avec l'option `-O3`. La version optimisé
+est environ 2 fois plus rapide que la version _debug_.
 
 ### Exécution
 
