@@ -1,8 +1,8 @@
-private with Ada.Sequential_IO;
-
 private with System.Multiprocessors;
 private with Ada.Containers.Indefinite_Holders;
 
+private with Des_P.Chaine_P.Accee_Fichier_P;
+private with Des_P.Bloc_P.Bloc_64_P;
 private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
 private with Des_P.Filtre_P.Corps_P.Holder_P;
@@ -43,7 +43,6 @@ package Des_P.Chaine_P.Ravenscar_P is
 private
 
    package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
-   package Lecteur_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
 
    type Indice_T is range 1 .. 512;
    --  Les indices des table de blocs.
@@ -138,129 +137,20 @@ private
    --  Permet de signaler à la procédure appelante que toutes les tâches
    --  ont fini de chiffrer le fichier.
 
-   ---------------------------------------------------------------------------
-   type Ecriveur_Protegee_T is protected interface;
-   --  Un écriveur de donnée protégée. Nécessaire à cause
-   --  de son utilisation dans des taches.
+   package Accee_P renames Des_P.Chaine_P.Accee_Fichier_P;
 
-   procedure Ouvrir_Fichier
-      (
-         Ecriveur : in out Ecriveur_Protegee_T;
-         Nom : String
-      )
-   is abstract;
-   --  Ouvre le fichier.
-   --  @param Ecriveur
-   --  L'écriveur de données.
-   --  @param Nom
-   --  Le nom du fichier à ouvrir.
-
-   procedure Ecrire
-      (
-         Ecriveur : in out Ecriveur_Protegee_T;
-         Brut : C_Bloc_64_P.Bloc_64_Brut_T
-      )
-   is abstract;
-   --  Écrit la donnée dans le fichier.
-   --  @param Ecriveur
-   --  L'écriveur de données.
-   --  @param Brut
-   --  La donnée à écrire dans le fichier.
-
-   procedure Fermer_Fichier (Ecriveur : in out Ecriveur_Protegee_T)
-   is abstract;
-   --  Ferme le fichier.
-   --  @param Ecriveur
-   --  L'écriveur de données.
-
-   Ecriveur : access Ecriveur_Protegee_T'Class;
+   Ecriveur : access Accee_P.Ecriveur_Protegee_T'Class;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
-   ---------------------------------------------------------------------------
-   type Lecteur_Protegee_T is protected interface;
-   --  Un lecteur de donnée protégée. Nécessaire à cause
-   --  de son utilisation dans des taches.
-
-   procedure Ouvrir_Fichier
-      (
-         Lecteur : in out Lecteur_Protegee_T;
-         Nom : String
-      )
-   is abstract;
-   --  Ouvre le fichier.
-   --  @param Lecteur
-   --  Le lecteur de données.
-   --  @param Nom
-   --  Le nom du fichier à ouvrir.
-
-   procedure Lire
-      (
-         Lecteur : in out Lecteur_Protegee_T;
-         Brut : out C_Bloc_64_P.Bloc_64_Brut_T
-      )
-   is abstract;
-   --  Lit la donnée dans le fichier.
-   --  @param Lecteur
-   --  Le lecteur de données.
-   --  @return
-   --  La donnée lu dans le fichier.
-
-   function Est_Fini
-      (Lecteur : Lecteur_Protegee_T)
-      return Boolean
-   is abstract;
-   --  Permet de savoir si le fichier est fini de lire.
-   --  @param Lecteur
-   --  Le lecteur de données.
-   --  @return
-   --  Le fichier est fini de lire.
-
-   procedure Fermer_Fichier
-      (Lecteur : in out Lecteur_Protegee_T)
-   is abstract;
-   --  Ferme le fichier.
-   --  @param Lecteur
-   --  Le lecteur de données.
-
-   Lecteur : access Lecteur_Protegee_T'Class;
+   Lecteur : access Accee_P.Lecteur_Protegee_T'Class;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
-   ---------------------------------------
-   protected type Ecriveur_Fichier_Protegee
-   is new Ecriveur_Protegee_T with
-      overriding
-      procedure Ouvrir_Fichier (Nom : String);
-      overriding
-      procedure Ecrire (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
-      overriding
-      procedure Fermer_Fichier;
-   private
-      Resultat : Lecteur_64_IO.File_Type;
-   end Ecriveur_Fichier_Protegee;
-   --  Écrit dans le fichier le bloc donné.
-
-   Ecriveur_Fichier : aliased Ecriveur_Fichier_Protegee;
+   Ecriveur_Fichier : aliased Accee_P.Ecriveur_Fichier_Protegee;
    --  Un écriveur de fichier classique.
 
-   ---------------------------------------
-   protected type Lecteur_Fichier_Protegee
-   is new Lecteur_Protegee_T with
-      overriding
-      procedure Ouvrir_Fichier (Nom : String);
-      overriding
-      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
-      overriding
-      function Est_Fini return Boolean;
-      overriding
-      procedure Fermer_Fichier;
-   private
-      Fichier : Lecteur_64_IO.File_Type;
-   end Lecteur_Fichier_Protegee;
-   --  Lit un bloc de données dans le fichier.
-
-   Lecteur_Fichier : aliased Lecteur_Fichier_Protegee;
+   Lecteur_Fichier : aliased Accee_P.Lecteur_Fichier_Protegee;
    --  Un lecteur de fichier classique.
 
    ---------------------------------------
