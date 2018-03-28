@@ -228,8 +228,8 @@ Chaque client accepte un certain nombre d'options :
 ```man
 executable [-c|-d|--crypter|--decrypter] <nom_fichier> <clef>
 
--c --crypter    Crypte le fichier avec la clef
--d --decrypter    Décrypte le fichier avec la clef
+-c --crypter    Chiffre le fichier avec la clef
+-d --decrypter    Déchiffre le fichier avec la clef
 ```
 
 Lors de l'exécution du chiffrement, le résultat est écrit dans un autre
@@ -248,13 +248,13 @@ make decrypt
 make crypt decrypt
 ```
 
-Attention `make decrypt` se base sur la version crypté de votre fichier
+Attention `make decrypt` se base sur la version chiffré de votre fichier
 vous devrez lancer `make crypt` avant.
 
 Vous pourrez voir apparaitre 6 fichiers supplémentaires qui contiendront
 soit :
-* la version crypté de votre fichier original;
-* la version décrypté de la version crypté de votre version original.
+* la version chiffré de votre fichier original;
+* la version déchiffré de la version chiffré de votre version original.
 
 Pour chacun de ces deux cas, il y a 3 fichiers :
 * 1 pour la version séquentiel;
@@ -268,25 +268,25 @@ make fichier_comparer
 ```
 
 Cette commande va lancer la comparaison de votre fichier original avec le
-résultat du décryptage effectué par :
+résultat du déchiffrement effectué par :
 * la version séquentiel;
 * la version tâches;
 * la version Ravenscar.
 
-Les versions crypté seront également comparé entre elles pour montrer que
-chacun des algorithme, pour un même fichier avec une même clef, donnent
-bien le même résultat crypté.
+Les versions chiffrés seront également comparé entre elles pour montrer que
+chacun des algorithmes, pour un même fichier avec une même clef, donnent
+bien le même résultat chiffré.
 
 #### Exemples d'utilisations
 
 ``` sh
-# Cryptage
+# Chiffrement
 
 ./bin/[debug|release]/executable_sequentiel --crypter <nom_fichier> <clef>
 ./bin/[debug|release]/executable_taches --crypter <nom_fichier> <clef>
 ./bin/[debug|release]/executable_ravenscar --crypter <nom_fichier> <clef>
 
-# Décryptage
+# Déchiffrement
 
 ./bin/[debug|release]/executable_sequentiel --decrypter <nom_fichier> <clef>
 ./bin/[debug|release]/executable_taches --decrypter <nom_fichier> <clef>
