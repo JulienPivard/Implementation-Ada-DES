@@ -6,9 +6,12 @@ with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
 
 with Des_P.Clef_P.Clef_64_P;
 
+private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+
 package Des_P.Chaine_P.Taches_P.Test_P is
 
-   Brut : constant Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
+   Brut_Original : constant
+   Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
    2#11110000_11110000_11110000_11110000_11110000_11110000_11110000_11110000#;
 
    Brut_Clef : constant
@@ -35,10 +38,26 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Crypt
+   procedure Test_Filtre_Crypt_1
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Decrypt
+   procedure Test_Filtre_Decrypt_1
       (T : in out Test_Fixt_T);
+
+   procedure Test_Filtre_Crypt_2048
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Filtre_Decrypt_2048
+      (T : in out Test_Fixt_T);
+
+private
+
+   package Accee_G_P renames Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+
+   Lecteur_Generateur : aliased Accee_G_P.Lecteur_Generateur_Protegee;
+   --  Un lecteur de fichier classique.
+
+   Ecriveur_Generateur : aliased Accee_G_P.Ecriveur_Generateur_Protegee;
+   --  Un écriveur de fichier classique.
 
 end Des_P.Chaine_P.Taches_P.Test_P;

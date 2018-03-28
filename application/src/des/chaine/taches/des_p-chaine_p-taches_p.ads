@@ -1,5 +1,8 @@
 private with System.Multiprocessors;
 
+private with Des_P.Chaine_P.Accee_Fichier_P;
+private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+
 private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
 private with Des_P.Filtre_P.Sortie_P.Holder_P;
@@ -34,6 +37,8 @@ package Des_P.Chaine_P.Taches_P is
 
 private
 
+   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
    --  Contient tous les filtres principaux qui vont être utilisé
@@ -45,6 +50,22 @@ private
    subtype Max_Grappes_T is System.Multiprocessors.CPU;
    --  Le nombre maximum de grappes en même temps
    --  dans le pipeline
+
+   package Accee_P renames Des_P.Chaine_P.Accee_Fichier_P;
+
+   Ecriveur : access Accee_P.Ecriveur_Protegee_T'Class;
+   --  L'écriveur de donnée effectif peut être changé
+   --  par le biais de cette variable.
+
+   Lecteur : access Accee_P.Lecteur_Protegee_T'Class;
+   --  Le lecteur de donnée effectif peut être changé
+   --  par le biais de cette variable.
+
+   Ecriveur_Fichier : aliased Accee_P.Ecriveur_Fichier_Protegee;
+   --  Un écriveur de fichier classique.
+
+   Lecteur_Fichier : aliased Accee_P.Lecteur_Fichier_Protegee;
+   --  Un lecteur de fichier classique.
 
    type Chaine_T is new Chaine_Interface_T with
       record

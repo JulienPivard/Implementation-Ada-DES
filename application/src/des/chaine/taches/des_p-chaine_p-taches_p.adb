@@ -1,10 +1,6 @@
-with Ada.Directories;
-with Ada.Sequential_IO;
-
 with Ada.Containers.Indefinite_Holders;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
 
 package body Des_P.Chaine_P.Taches_P is
 
@@ -17,14 +13,6 @@ package body Des_P.Chaine_P.Taches_P is
          Extension : String
       )
    is
-      package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
-      package Lecteur_64_IO is new Ada.Sequential_IO
-         (C_Bloc_64_P.Bloc_64_Brut_T);
-
-      --  Les fichiers à lire et à écrire.
-      Fichier : Lecteur_64_IO.File_Type;
-      Resultat : Lecteur_64_IO.File_Type;
-
       --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
       procedure Lanceur_Taches;
 
@@ -109,7 +97,7 @@ package body Des_P.Chaine_P.Taches_P is
                         Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                            := C_64.Transformer_En_Brut (E);
                      begin
-                        Lecteur_64_IO.Write (Resultat, Brut);
+                        Ecriveur.all.Ecrire (Brut);
                      end;
                   end loop;
                   Limiteur_Protegee.Consommer_Bloc;
@@ -319,11 +307,11 @@ package body Des_P.Chaine_P.Taches_P is
             --  Remplissage du tableau de données avec contenu fichier
             Remplissage :
             for I in Indice_T loop
-               exit Remplissage when Lecteur_64_IO.End_Of_File (Fichier);
+               exit Remplissage when Lecteur.all.Est_Fini;
                declare
                   Brut : C_Bloc_64_P.Bloc_64_Brut_T;
                begin
-                  Lecteur_64_IO.Read (Fichier, Brut);
+                  Lecteur.all.Lire (Brut);
                   --  Initialisation du bloc de 64
                   C_64.Preparer_Nouveau_Bloc;
                   C_64.Construire_Bloc (Brut);
@@ -340,7 +328,7 @@ package body Des_P.Chaine_P.Taches_P is
             Etage_Entree.Filtrer (Table (Indice_T'First .. J));
 
             --  La fin du fichier à été atteinte.
-            exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
+            exit Lecture_Fichier when Lecteur.all.Est_Fini;
 
          end loop Lecture_Fichier;
       end Lanceur_Taches;
@@ -350,22 +338,14 @@ package body Des_P.Chaine_P.Taches_P is
    begin
       --  Ouvre le fichier pour écrire si il existe et écrase le contenu
       --  sinon il est créé.
-      if Ada.Directories.Exists (Nom_Alternatif) then
-         Lecteur_64_IO.Open
-            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
-      else
-         Lecteur_64_IO.Create
-            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
-      end if;
+      Ecriveur.all.Ouvrir_Fichier (Nom_Alternatif);
       --  Ouverture du fichier à lire.
-      Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Fichier);
+      Lecteur.all.Ouvrir_Fichier (Nom_Fichier);
 
       Lanceur_Taches;
 
-      Lecteur_64_IO.Close (Fichier);
-      pragma Unreferenced (Fichier);
-      Lecteur_64_IO.Close (Resultat);
-      pragma Unreferenced (Resultat);
+      Lecteur.all.Fermer_Fichier;
+      Ecriveur.all.Fermer_Fichier;
    end Filtrer;
 
 end Des_P.Chaine_P.Taches_P;
