@@ -18,46 +18,6 @@ package body Des_P.Chaine_P.Taches_P is
 
       procedure Lanceur_Taches is
 
-         ---------------------------------------
-         protected Limiteur_Protegee is
-            entry Generer_Bloc_Entree;
-            procedure Consommer_Bloc;
-            procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);
-         private
-            Nb_Blocs_Genere : Nombre_Grappes_T := Nombre_Grappes_T'First;
-            Nb_Max_Blocs : Max_Grappes_T :=
-               (System.Multiprocessors.Number_Of_CPUs);
-            Autorisee : Boolean := True;
-         end Limiteur_Protegee;
-         --  Limite le nombre maximum de grappes de blocs
-         --  à un même moment dans le pipeline.
-
-         --------------------------------------------------------------------
-         protected body Limiteur_Protegee is
-            ---------------------------------------------------------
-            entry Generer_Bloc_Entree when Autorisee is
-               use type System.Multiprocessors.CPU_Range;
-            begin
-               Nb_Blocs_Genere := Nombre_Grappes_T'Succ (Nb_Blocs_Genere);
-               Autorisee := Nb_Blocs_Genere <= Nb_Max_Blocs;
-            end Generer_Bloc_Entree;
-
-            ---------------------------------------------------------
-            procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T) is
-            begin
-               Nb_Max_Blocs := Nb;
-            end Modifier_Nb_Max_Blocs;
-
-            ---------------------------------------------------------
-            procedure Consommer_Bloc is
-               use type System.Multiprocessors.CPU_Range;
-            begin
-               Nb_Blocs_Genere := Nombre_Grappes_T'Pred (Nb_Blocs_Genere);
-               Autorisee := Nb_Blocs_Genere <= Nb_Max_Blocs;
-            end Consommer_Bloc;
-            ---------------------------------------------------------
-         end Limiteur_Protegee;
-
          type Indice_T is range 1 .. 512;
          --  Les indices des table de blocs.
          type Table_Bloc_T is array (Indice_T range <>)
@@ -100,7 +60,7 @@ package body Des_P.Chaine_P.Taches_P is
                         Ecriveur.all.Ecrire (Brut);
                      end;
                   end loop;
-                  Limiteur_Protegee.Consommer_Bloc;
+                  Limiteur_p.Limiteur_Protegee.Consommer_Bloc;
                or
                   terminate;
                end select;
@@ -289,7 +249,8 @@ package body Des_P.Chaine_P.Taches_P is
       begin
          --  Si le nombre maximum de grappe à été modifié.
          if Chaine.Modifier_Max_Grappes then
-            Limiteur_Protegee.Modifier_Nb_Max_Blocs (Chaine.Max_Grappes);
+            Limiteur_p.Limiteur_Protegee.Modifier_Nb_Max_Blocs
+               (Chaine.Max_Grappes);
          end if;
          --  Initialisation des taches avec le filtre
          Etage_Entree.Modifier_Filtre (Chaine.Filtre_Entree);
@@ -320,7 +281,7 @@ package body Des_P.Chaine_P.Taches_P is
                J := I;
             end loop Remplissage;
 
-            Limiteur_Protegee.Generer_Bloc_Entree;
+            Limiteur_p.Limiteur_Protegee.Generer_Bloc_Entree;
 
             --  Lancement du filtrage.
             --  Si le tableau de blocs n'est pas plein on n'utilise pas

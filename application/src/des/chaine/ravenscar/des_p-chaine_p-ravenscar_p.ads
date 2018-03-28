@@ -1,6 +1,6 @@
-private with System.Multiprocessors;
 private with Ada.Containers.Indefinite_Holders;
 
+private with Des_P.Chaine_P.Limiteur_Jetons_P;
 private with Des_P.Chaine_P.Accee_Fichier_P;
 private with Des_P.Bloc_P.Bloc_64_P;
 private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
@@ -43,6 +43,7 @@ package Des_P.Chaine_P.Ravenscar_P is
 private
 
    package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+   package Limiteur_p renames Des_P.Chaine_P.Limiteur_Jetons_P;
 
    type Indice_T is range 1 .. 512;
    --  Les indices des table de blocs.
@@ -94,26 +95,6 @@ private
    --  à nouveau devant la barrière du demarreur_protegee. Le but est ici
    --  de bloquer les tâches pour ne pas se relancer elle même si leur tâche
    --  est finie avant que la barrière du demarreur_protegee ne se referme.
-
-   subtype Nombre_Grappes_T is System.Multiprocessors.CPU_Range;
-   --  Le nombre de grappes possible dans le pipeline
-
-   subtype Max_Grappes_T is System.Multiprocessors.CPU;
-   --  Le nombre maximum de grappes en même temps
-   --  dans le pipeline
-
-   ---------------------------------------
-   protected Limiteur_Protegee is
-      entry Generer_Bloc_Entree;
-      procedure Consommer_Bloc;
-      procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);
-   private
-      Nb_Blocs_Genere : Nombre_Grappes_T := Nombre_Grappes_T'First;
-      Nb_Max_Blocs : Max_Grappes_T := (System.Multiprocessors.Number_Of_CPUs);
-      Autorisee : Boolean := True;
-   end Limiteur_Protegee;
-   --  Limite le nombre maximum de grappes de blocs
-   --  à un même moment dans le pipeline.
 
    ---------------------------------------
    protected Demarreur_Protegee is
@@ -228,7 +209,8 @@ private
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
-         Max_Grappes : Max_Grappes_T := Max_Grappes_T'First;
+         Max_Grappes : Limiteur_p.Max_Grappes_T :=
+            Limiteur_p.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;
    ---------------------------------------
