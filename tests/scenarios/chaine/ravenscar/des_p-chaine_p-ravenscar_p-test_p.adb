@@ -58,7 +58,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
 
          --  Ajoute le filtre de corps à la chaine.
          for I in Numero_Filtre_T'Range loop
-            --  Décalage à gauche pour le cryptage.
+            --  Décalage à gauche pour le chiffrement.
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             --  Initialise le filtre avec la clef de 48.
             T.Chaine.Filtres_Corps (I) :=
@@ -177,7 +177,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
 
          --  Ajoute le filtre de corps à la chaine.
          for I in Numero_Filtre_T'Range loop
-            --  Décalage à gauche pour le cryptage.
+            --  Décalage à gauche pour le chiffrement.
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             --  Initialise le filtre avec la clef de 48.
             T.Chaine.Filtres_Corps (I) :=

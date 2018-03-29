@@ -14,7 +14,7 @@ package body Corps_Decryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre decryptage principal) ";
+      nom_test : constant String := "(Tests filtre dechiffrement principal) ";
    begin
 
       ptr_test_suite.all.Add_Test

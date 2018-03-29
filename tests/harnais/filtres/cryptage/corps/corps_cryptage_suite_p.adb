@@ -14,7 +14,7 @@ package body Corps_Cryptage_Suite_P is
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre cryptage principal) ";
+      nom_test : constant String := "(Tests filtre chiffrement principal) ";
    begin
 
       ptr_test_suite.all.Add_Test
