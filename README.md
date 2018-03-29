@@ -391,8 +391,8 @@ Temps ravenscar :
 
 #### Version optimisé
 
-Résultat de la version optimisé (option -O3 voir [lien] pour l'activer
-à la compilation) avec un fichier de 1,8 Mo
+Résultat de la version optimisé (option -O3 lors de la compilation) avec
+un fichier de 1,8 Mo
 
 ```sh
 # Version intel pentium
