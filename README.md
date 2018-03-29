@@ -244,15 +244,15 @@ pour une même opération sur un même fichier avec la même clef. Dans
 indiquez le fichier que vous voulez chiffrer. Ensuite exécutez :
 
 ```sh
-make crypt
+make chiffrer
 # ou
-make decrypt
+make dechiffrer
 # ou encore les deux à la suite
-make crypt decrypt
+make chiffrer dechiffrer
 ```
 
-Attention `make decrypt` se base sur la version chiffré de votre fichier
-vous devrez lancer `make crypt` avant.
+Attention `make dechiffrer` se base sur la version chiffré de votre
+fichier vous devrez lancer `make chiffrer` avant.
 
 Vous pourrez voir apparaitre 6 fichiers supplémentaires qui contiendront
 soit :

@@ -39,22 +39,22 @@ $(CIBLECOMPILE): build
 	@echo
 
 ###################
-.PHONY: crypt
-crypt: $(DEPEND)
+.PHONY: chiffrer
+chiffrer: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Chiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSCRYPT)
-	$(EXECUTABLE_TAC) $(ARGSCRYPT)
-	$(EXECUTABLE_RAV) $(ARGSCRYPT)
+	$(EXECUTABLE_SEQ) $(ARGSCHIFFRE)
+	$(EXECUTABLE_TAC) $(ARGSCHIFFRE)
+	$(EXECUTABLE_RAV) $(ARGSCHIFFRE)
 
 ###################
-.PHONY: decrypt
-decrypt: $(DEPEND)
+.PHONY: dechiffrer
+dechiffrer: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Déchiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSDECRYPTS)
-	$(EXECUTABLE_TAC) $(ARGSDECRYPTT)
-	$(EXECUTABLE_RAV) $(ARGSDECRYPTR)
+	$(EXECUTABLE_SEQ) $(ARGSDECHIFFRES)
+	$(EXECUTABLE_TAC) $(ARGSDECHIFFRET)
+	$(EXECUTABLE_RAV) $(ARGSDECHIFFRER)
 
 ###################
 .PHONY: fichier_comparer
