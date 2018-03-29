@@ -317,7 +317,7 @@ la commande
 Résultat de la version _debug_ avec un fichier de 1,8 Mo
 
 ```sh
-# Version intel pentium
+# CPU intel pentium
 ───────────────────────────────
 Chiffrement
 ./bin/debug/executable_sequentiel --crypter autre.test lovecrft
@@ -353,7 +353,7 @@ Temps ravenscar :
          11.784276361 s
 
 
-# Version intel core i5
+# CPU intel core i5
 ───────────────────────────────
 Chiffrement
 ./bin/debug/executable_sequentiel --crypter autre.test lovecrft
@@ -395,7 +395,7 @@ Résultat de la version optimisé (option -O3 lors de la compilation) avec
 un fichier de 1,8 Mo
 
 ```sh
-# Version intel pentium
+# CPU intel pentium
 ───────────────────────────────
 Chiffrement
 ./bin/release/executable_sequentiel --crypter autre.test lovecrft
@@ -430,7 +430,7 @@ Temps parallèle :
 Temps ravenscar :
           4.958255953 s
 
-# Version intel core i5
+# CPU intel core i5
 ───────────────────────────────
 Chiffrement
 ./bin/release/executable_sequentiel --crypter autre.test lovecrft
