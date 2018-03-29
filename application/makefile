@@ -60,12 +60,12 @@ dechiffrer: $(DEPEND)
 .PHONY: fichier_comparer
 fichier_comparer:
 	@echo "Comparaison : "
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
-	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).task.crypt
-	-diff $(VARNOMFICHIER).task.crypt $(VARNOMFICHIER).rave.crypt
-	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).rave.crypt
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S)
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T)
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R)
 
 ###################
 .PHONY: doc
