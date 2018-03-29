@@ -1,9 +1,9 @@
 with Ada.Finalization;
 
 --  @summary
---  La clef permettant de crypter les données.
+--  La clef permettant de chiffrer les données.
 --  @description
---  Version généraliste des clefs de cryptage/décryptage.
+--  Version généraliste des clefs de chiffrement/déchiffrement.
 --  @group Clef
 package Des_P.Clef_P is
 
@@ -14,7 +14,7 @@ package Des_P.Clef_P is
 
    type Clef_Abstrait_T is abstract
       new Ada.Finalization.Controlled with private;
-   --  Une clef permettant de crypter/décrypter.
+   --  Une clef permettant de chiffrement/déchiffrement.
 
    overriding
    procedure Initialize

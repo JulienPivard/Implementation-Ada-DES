@@ -1,7 +1,7 @@
 with Des_P.Clef_P.Clef_56_I_P;
 
 --  @summary
---  La clef de 56 bits permettant de crypter les données.
+--  La clef de 56 bits permettant de chiffrer les données.
 --  @description
 --  La représentation d'une clef de 56 bits, dans le standard DES.
 --  @group Clef

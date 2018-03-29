@@ -13,17 +13,18 @@ private with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 --  @group Principal
 package Procedure_Run_P is
 
-   type Action_T is (Crypter, Decrypter);
+   type Action_T is (Chiffrer, Dechiffrer);
    --  L'action à effectuer sur le fichier.
-   --  @value Crypter L'action de crypter.
-   --  @value Decrypter L'action de décrypter.
+   --  @value Chiffrer L'action de chiffrer.
+   --  @value Dechiffrer L'action de déchiffrer.
 
    type Chaine_Seq_Task_T is (Tache, Sequentiel);
-   --  Sélectionne entre un cryptage/décryptage séquentiel ou parallèle.
-   --  @value Tache cryptage/décryptage parallèle.
-   --  @value Sequentiel cryptage/décryptage séquentiel.
+   --  Sélectionne entre un chiffrement/déchiffrement en séquentiel
+   --  ou parallèle.
+   --  @value Tache parallèle.
+   --  @value Sequentiel séquentiel.
 
-   procedure Executer_Crypt_Decrypt
+   procedure Executer_Chiffrement
       (
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
          Nom_Fichier : String;
@@ -36,7 +37,7 @@ package Procedure_Run_P is
    --  @param Nom_Fichier
    --  Le nom du fichier à lire.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
    --  @param C_Type
    --  Choix entre séquentiel et taches.
 
@@ -55,7 +56,7 @@ private
       return Faiseur_P.Constructeur_Interface_T'Class;
    --  Initialise un constructeur de chaines.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
    --  @param C_Type
    --  Choix entre séquentiel et taches.
    --  @return Le constructeur de chaine.
@@ -68,7 +69,7 @@ private
       return String;
    --  Initialise l'extension pour le fichier alternatif.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
    --  @param C_Type
    --  Choix entre séquentiel et taches.
    --  @return L'extension du fichier alternatif.
@@ -79,11 +80,11 @@ private
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;
-   --  Initialise une chaine de cryptage décryptage.
+   --  Initialise une chaine de chiffrement ou de déchiffrement.
    --  @param Faiseur
    --  Le constructeur de chaine.
    --  @param Clef
-   --  La clef de cryptage décryptage.
+   --  La clef de chiffrement.
    --  @return La chaine construite.
 
 end Procedure_Run_P;

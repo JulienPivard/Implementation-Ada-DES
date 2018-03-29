@@ -77,7 +77,7 @@ package body Des_P.Chaine_P.Sequentiel_P is
       C_64.Construire_Bloc (Brut);
       Bloc := C_64.Recuperer_Bloc;
 
-      --  Lancement du cryptage décryptage.
+      --  Lancement du chiffrement déchiffrement.
       Chaine.Tete.Iterer (Bloc);
 
       --  Récupération du brut après l'avoir modifié.

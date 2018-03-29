@@ -14,7 +14,7 @@ package body Procedure_Run_Ravenscar_P is
    end Avorter;
 
    ---------------------------------------------------------------------------
-   procedure Executer_Crypt_Decrypt
+   procedure Executer_Chiffrement
       (
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
          Nom_Fichier : String;
@@ -69,7 +69,7 @@ package body Procedure_Run_Ravenscar_P is
       end Affichage_Temps;
       Ada.Text_IO.New_Line (1);
       --------------------------------------
-   end Executer_Crypt_Decrypt;
+   end Executer_Chiffrement;
 
    ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
@@ -83,16 +83,16 @@ package body Procedure_Run_Ravenscar_P is
       package Faiseur_R_D_P renames
          Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P;
       --  Instancie tous les faiseur de chaine possible
-      Const_Crypt_R : Faiseur_R_C_P.Constructeur_Cryptage_T;
-      Const_Decry_R : Faiseur_R_D_P.Constructeur_Decryptage_T;
+      Const_Chiffre_R : Faiseur_R_C_P.Constructeur_Cryptage_T;
+      Const_Dechiff_R : Faiseur_R_D_P.Constructeur_Decryptage_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.
       return
          (
             case Action is
-               when Crypter => Const_Crypt_R,
-               when Decrypter => Const_Decry_R
+               when Chiffrer => Const_Chiffre_R,
+               when Dechiffrer => Const_Dechiff_R
          );
    end Init_Faiseur_Chaine;
 
@@ -108,8 +108,8 @@ package body Procedure_Run_Ravenscar_P is
       return "rave." &
          (
             case Action is
-               when Crypter => "crypt",
-               when Decrypter => "decrypt"
+               when Chiffrer => "chiffre",
+               when Dechiffrer => "dechiffre"
          );
    end Init_Extension;
 

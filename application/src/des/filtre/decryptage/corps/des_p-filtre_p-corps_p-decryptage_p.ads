@@ -3,18 +3,18 @@ with Des_P.Filtre_P.Decryptage_Interface_P;
 private with Des_P.Clef_P.Clef_48_I_P.Holder_P;
 
 --  @summary
---  Représentation du filtre de permutation principal de cryptage DES.
+--  Représentation du filtre de permutation principal de chiffrement DES.
 --  @description
---  Filtre de cryptage permutation principal qui va servir à paramétrer le
---  reste des étages.
---  @group Filtre Décryptage
+--  Filtre de déchiffrement permutation principal qui va servir à
+--  paramétrer le reste des étages.
+--  @group Filtre Déchiffrement
 package Des_P.Filtre_P.Corps_P.Decryptage_P is
 
    package P_Decryptage_P renames Des_P.Filtre_P.Decryptage_Interface_P;
 
    type Corps_T is new Corps_Abstrait_T and
       P_Decryptage_P.Decryptage_Interface_T with private;
-   --  Le filtre de cryptage principal.
+   --  Le filtre de déchiffrement principal.
 
    overriding
    procedure Filtrer

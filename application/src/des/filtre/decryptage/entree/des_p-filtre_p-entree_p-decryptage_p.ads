@@ -1,11 +1,11 @@
 with Des_P.Filtre_P.Decryptage_Interface_P;
 
 --  @summary
---  Représentation du filtre de permutation initial de cryptage DES.
+--  Représentation du filtre de permutation initial de chiffrement DES.
 --  @description
---  Filtre de décryptage permutation final qui va servir à
+--  Filtre de déchiffrement permutation final qui va servir à
 --  paramétrer le premier étage des filtres.
---  @group Filtre Décryptage
+--  @group Filtre Déchiffrement
 package Des_P.Filtre_P.Entree_P.Decryptage_P is
 
    pragma Pure;
@@ -14,7 +14,7 @@ package Des_P.Filtre_P.Entree_P.Decryptage_P is
 
    type Entree_T is new Entree_Abstrait_T and
       P_Decryptage_P.Decryptage_Interface_T with private;
-   --  Le filtre de décryptage qui va effectuer la première permutation.
+   --  Le filtre de déchiffrement qui va effectuer la première permutation.
 
    overriding
    procedure Filtrer

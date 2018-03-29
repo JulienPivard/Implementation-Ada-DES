@@ -39,9 +39,9 @@ procedure Client_Sequentiel is
          );
       Put (Standard_Error, " [option] <nom_fichier> <clef>");
       Put_Line (Standard_Error, "");
-      Put_Line (Standard_Error, "-c --crypter");
+      Put_Line (Standard_Error, "-c --chiffrer");
       Put_Line (Standard_Error, "  Chiffre le fichier avec la clef.");
-      Put_Line (Standard_Error, "-d --decrypter");
+      Put_Line (Standard_Error, "-d --dechiffrer");
       Put_Line (Standard_Error, "  Déchiffre le ficher avec la clef.");
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
@@ -93,25 +93,25 @@ begin
    --  L'argument optionnel -c ou -d à été donné
    if Nb_Arguments = 3 then
       declare
-         Crypt_Decrypt : constant String :=
+         Chiffre_Dechiffre : constant String :=
             Ada.Command_Line.Argument (1);
       begin
          if
-            Crypt_Decrypt = "-c"
+            Chiffre_Dechiffre = "-c"
             or else
-            Crypt_Decrypt = "--crypter"
+            Chiffre_Dechiffre = "--chiffrer"
          then
-            Action := Procedure_Run_P.Crypter;
+            Action := Procedure_Run_P.Chiffrer;
          elsif
-            Crypt_Decrypt = "-d"
+            Chiffre_Dechiffre = "-d"
             or else
-            Crypt_Decrypt = "--decrypter"
+            Chiffre_Dechiffre = "--dechiffrer"
          then
-            Action := Procedure_Run_P.Decrypter;
+            Action := Procedure_Run_P.Dechiffrer;
          else
             Put (Standard_Error, "L'argument [");
             Ada.Text_IO.Put
-               (Ada.Text_IO.Standard_Error, Crypt_Decrypt);
+               (Ada.Text_IO.Standard_Error, Chiffre_Dechiffre);
             Put_Line
                (
                   Standard_Error,
@@ -201,8 +201,8 @@ begin
          return;
       end if;
 
-      --  Lancement du cryptage ou décryptage
-      Procedure_Run_P.Executer_Crypt_Decrypt
+      --  Lancement du chiffrement
+      Procedure_Run_P.Executer_Chiffrement
          (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
    end Ouverture_Fichier;
 

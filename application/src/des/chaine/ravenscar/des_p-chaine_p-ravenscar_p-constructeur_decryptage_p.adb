@@ -35,7 +35,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
-      --  La fabrique de filtre de cryptage.
+      --  La fabrique de filtre de chiffrement.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
       --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
@@ -66,7 +66,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P is
                   Fabrique.Fabriquer_Corps
                   (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
                );
-         --  Décalage à gauche pour le décryptage.
+         --  Décalage à gauche pour le déchiffrement.
          Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
          --  Incrémentation de la position dans le tableau de filtre de corps.
          if J /= Numero_Filtre_T'Last then

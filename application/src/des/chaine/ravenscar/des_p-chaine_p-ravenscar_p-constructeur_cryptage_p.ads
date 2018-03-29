@@ -9,13 +9,13 @@ private with Des_P.Clef_P.Clef_48_I_P.Constructeur_I_P.Holder_P;
 --  @summary
 --  Constructeur de chaine de filtres.
 --  @description
---  Constructeur de chaine de filtres de cryptage.
+--  Constructeur de chaine de filtres de chiffrement.
 --  @group Chaine Constructeur
 package Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P is
 
    type Constructeur_Cryptage_T is new
       Des_P.Chaine_P.Constructeur_I_P.Constructeur_Interface_T with private;
-   --  Le constructeur de filtre de cryptage.
+   --  Le constructeur de filtre de chiffrement.
 
    package Faiseur_56_I_P renames Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P;
    package Faiseur_48_I_P renames Des_P.Clef_P.Clef_48_I_P.Constructeur_I_P;

@@ -1,12 +1,12 @@
 --  @summary
---  Une fabrique abstraite de filtre de décryptage.
+--  Une fabrique abstraite de filtre de déchiffrement.
 --  @description
---  Fabrique de filtres qui permet de fabriquer des filtres de décryptage.
---  @group Filtre Fabrique Décryptage
+--  Fabrique de filtres qui permet de fabriquer des filtres de déchiffrement.
+--  @group Filtre Fabrique Déchiffrement
 package Des_P.Filtre_P.Fabrique_P.Decryptage_P is
 
    type Fabrique_T is new Fabrique_Interface_T with private;
-   --  Une fabrique de filtre de décryptage.
+   --  Une fabrique de filtre de déchiffrement.
 
    overriding
    function Fabriquer_Entree (Fabrique : Fabrique_T)

@@ -12,7 +12,7 @@ with Ada.Text_IO;
 package body Procedure_Run_P is
 
    ---------------------------------------------------------------------------
-   procedure Executer_Crypt_Decrypt
+   procedure Executer_Chiffrement
       (
          Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
          Nom_Fichier : String;
@@ -77,7 +77,7 @@ package body Procedure_Run_P is
       end Affichage_Temps;
       Ada.Text_IO.New_Line (1);
       --------------------------------------
-   end Executer_Crypt_Decrypt;
+   end Executer_Chiffrement;
 
    ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
@@ -96,27 +96,27 @@ package body Procedure_Run_P is
       package Faiseur_T_D_P renames
          Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
       --  Instancie tous les faiseur de chaine possible
-      Const_Crypt_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
-      Const_Decry_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
-      Const_Crypt_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
-      Const_Decry_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
+      Const_Chiffre_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
+      Const_Dechiff_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
+      Const_Chiffre_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
+      Const_Dechiff_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.
       return
          (
             case Action is
-               when Crypter =>
+               when Chiffrer =>
                   (
                      case C_Type is
-                        when Tache => Const_Crypt_T,
-                        when Sequentiel => Const_Crypt_S
+                        when Tache => Const_Chiffre_T,
+                        when Sequentiel => Const_Chiffre_S
                   ),
-               when Decrypter =>
+               when Dechiffrer =>
                   (
                      case C_Type is
-                        when Tache => Const_Decry_T,
-                        when Sequentiel => Const_Decry_S
+                        when Tache => Const_Dechiff_T,
+                        when Sequentiel => Const_Dechiff_S
                   )
          );
    end Init_Faiseur_Chaine;
@@ -140,8 +140,8 @@ package body Procedure_Run_P is
          & "." &
          (
             case Action is
-               when Crypter => "crypt",
-               when Decrypter => "decrypt"
+               when Chiffrer => "chiffre",
+               when Dechiffrer => "dechiffre"
          );
    end Init_Extension;
 

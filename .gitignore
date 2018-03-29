@@ -2,8 +2,7 @@ tags
 obj/
 bin/
 doc/
-*.crypt
-*.decrypt
+*.chiffre
+*.dechiffre
 *.pdf
 *.test
-*.chiffre

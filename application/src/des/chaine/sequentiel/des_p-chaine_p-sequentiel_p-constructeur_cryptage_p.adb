@@ -35,7 +35,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
    is
       --  La tète de la chaine de filtres.
       Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-      --  La fabrique de filtre de cryptage.
+      --  La fabrique de filtre de chiffrement.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
       --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
@@ -51,7 +51,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P is
 
       --  Ajoute le filtre de corps à chaque filtre.
       for I in Numero_Filtre_T'Range loop
-         --  Décalage à gauche pour le cryptage.
+         --  Décalage à gauche pour le chiffrement.
          Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;

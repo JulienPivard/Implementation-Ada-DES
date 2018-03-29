@@ -1,12 +1,12 @@
 --  @summary
---  Une fabrique abstraite de filtre de cryptage.
+--  Une fabrique abstraite de filtre de chiffrement.
 --  @description
---  Fabrique de filtres qui permet de fabriquer des filtres de cryptage.
---  @group Filtre Fabrique Cryptage
+--  Fabrique de filtres qui permet de fabriquer des filtres de chiffrement.
+--  @group Filtre Fabrique Chiffrement
 package Des_P.Filtre_P.Fabrique_P.Cryptage_P is
 
    type Fabrique_T is new Fabrique_Interface_T with private;
-   --  Une fabrique de filtre de cryptage.
+   --  Une fabrique de filtre de chiffrement.
 
    overriding
    function Fabriquer_Entree (Fabrique : Fabrique_T)

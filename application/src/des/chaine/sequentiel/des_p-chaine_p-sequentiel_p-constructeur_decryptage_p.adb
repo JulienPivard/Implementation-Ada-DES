@@ -35,7 +35,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
    is
       --  La tète de la chaine de filtres.
       Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-      --  La fabrique de filtre de décryptage.
+      --  La fabrique de filtre de déchiffrement.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
       --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class :=
@@ -63,7 +63,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
             --  Ajoute l'étage à la fin de la chaine.
             Tete.Ajouter_Successeur (E);
          end;
-         --  Décalage à gauche pour le décryptage.
+         --  Décalage à gauche pour le déchiffrement.
          Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
       end loop;
 
