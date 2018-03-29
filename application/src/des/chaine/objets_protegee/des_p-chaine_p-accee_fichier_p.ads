@@ -7,6 +7,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------
+
    type Ecriveur_Protegee_T is protected interface;
    --  Un écriveur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
@@ -42,6 +43,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  L'écriveur de données.
 
    ---------------------------------------------------------------------------
+
    type Lecteur_Protegee_T is protected interface;
    --  Un lecteur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
@@ -67,7 +69,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Lit la donnée dans le fichier.
    --  @param Lecteur
    --  Le lecteur de données.
-   --  @return
+   --  @param Brut
    --  La donnée lu dans le fichier.
 
    function Est_Fini
@@ -88,30 +90,54 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Le lecteur de données.
 
    ---------------------------------------
+
    protected type Ecriveur_Fichier_Protegee
    is new Ecriveur_Protegee_T with
       overriding
       procedure Ouvrir_Fichier (Nom : String);
+      --  Ouvre le fichier.
+      --  @param Nom
+      --  Le nom du fichier à ouvrir.
+
       overriding
       procedure Ecrire (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
+      --  Écrit la donnée dans le fichier.
+      --  @param Brut
+      --  La donnée à écrire dans le fichier.
+
       overriding
       procedure Fermer_Fichier;
+      --  Ferme le fichier.
    private
       Resultat : Fichier_64_IO.File_Type;
    end Ecriveur_Fichier_Protegee;
    --  Écrit dans le fichier le bloc donné.
 
    ---------------------------------------
+
    protected type Lecteur_Fichier_Protegee
    is new Lecteur_Protegee_T with
       overriding
       procedure Ouvrir_Fichier (Nom : String);
+      --  Ouvre le fichier.
+      --  @param Nom
+      --  Le nom du fichier à ouvrir.
+
       overriding
       procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
+      --  Lit la donnée dans le fichier.
+      --  @param Brut
+      --  La donnée lu dans le fichier.
+
       overriding
       function Est_Fini return Boolean;
+      --  Permet de savoir si le fichier est fini de lire.
+      --  @return
+      --  Le fichier est fini de lire.
+
       overriding
       procedure Fermer_Fichier;
+      --  Ferme le fichier.
    private
       Fichier : Fichier_64_IO.File_Type;
    end Lecteur_Fichier_Protegee;

@@ -38,16 +38,16 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Crypt_1
+   procedure Test_Filtre_Chiffre_1
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Decrypt_1
+   procedure Test_Filtre_Dechiff_1
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Crypt_2048
+   procedure Test_Filtre_Chiffre_2048
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Decrypt_2048
+   procedure Test_Filtre_Dechiff_2048
       (T : in out Test_Fixt_T);
 
 private

@@ -19,15 +19,15 @@ package body Chaine_Sequentiel_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Cryptage a partir de fichiers",
-            Test_Filtre_Crypt'Access
+            (nom_test & "Chiffrement a partir de fichiers",
+            Test_Filtre_Chiffre'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Decryptage a partir de fichiers",
-            Test_Filtre_Decrypt'Access
+            (nom_test & "Dechiffrement a partir de fichiers",
+            Test_Filtre_Dechiffre'Access
             )
          );
 

@@ -1,4 +1,4 @@
-with Des_P.Clef_P.Clef_64_P;
+with Des_P.Clef_P.Clef_64_I_P;
 
 private with Des_P.Chaine_P.Constructeur_I_P;
 private with Des_P.Clef_P.Clef_56_P.Constructeur_P;
@@ -13,17 +13,17 @@ private with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 --  @group Principal
 package Procedure_Run_Ravenscar_P is
 
-   type Action_T is (Crypter, Decrypter);
+   type Action_T is (Chiffrer, Dechiffrer);
    --  L'action à effectuer sur le fichier.
-   --  @value Crypter L'action de crypter.
-   --  @value Decrypter L'action de décrypter.
+   --  @value Chiffrer L'action de chiffrer.
+   --  @value Dechiffrer L'action de déchiffrer.
 
    procedure Avorter;
    --  Met fin à toutes les taches qui avaient été démarrée.
 
-   procedure Executer_Crypt_Decrypt
+   procedure Executer_Chiffrement
       (
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
          Nom_Fichier : String;
          Action : Action_T
       );
@@ -33,7 +33,7 @@ package Procedure_Run_Ravenscar_P is
    --  @param Nom_Fichier
    --  Le nom du fichier à lire.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
 
 private
 
@@ -49,7 +49,7 @@ private
       return Faiseur_P.Constructeur_Interface_T'Class;
    --  Initialise un constructeur de chaines.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
    --  @param C_Type
    --  Choix entre séquentiel et taches.
    --  @return Le constructeur de chaine.
@@ -61,7 +61,7 @@ private
       return String;
    --  Initialise l'extension pour le fichier alternatif.
    --  @param Action
-   --  L'action à effectuer : crypter ou décrypter.
+   --  L'action à effectuer : chiffrer ou déchiffrer.
    --  @param C_Type
    --  Choix entre séquentiel et taches.
    --  @return L'extension du fichier alternatif.
@@ -69,14 +69,14 @@ private
    function Init_Chaine
       (
          Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;
-   --  Initialise une chaine de cryptage décryptage.
+   --  Initialise une chaine de chiffrement ou déchiffrement.
    --  @param Faiseur
    --  Le constructeur de chaine.
    --  @param Clef
-   --  La clef de cryptage décryptage.
+   --  La clef de chiffrement déchiffrement.
    --  @return La chaine construite.
 
 end Procedure_Run_Ravenscar_P;

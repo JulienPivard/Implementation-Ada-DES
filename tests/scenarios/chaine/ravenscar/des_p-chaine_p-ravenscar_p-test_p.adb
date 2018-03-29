@@ -5,8 +5,8 @@ with Des_P.Clef_P.Clef_56_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P;
 
-with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Chiffre_P;
+with Des_P.Filtre_P.Fabrique_P.Dechiffre_P;
 with Des_P.Faiseur_P;
 
 package body Des_P.Chaine_P.Ravenscar_P.Test_P is
@@ -41,14 +41,14 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
    --                              scénarios                                --
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Crypt_1 (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Chiffre_1 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
          Lecteur_Generateur.Changer_Max_Genere (1);
@@ -58,7 +58,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
 
          --  Ajoute le filtre de corps à la chaine.
          for I in Numero_Filtre_T'Range loop
-            --  Décalage à gauche pour le cryptage.
+            --  Décalage à gauche pour le chiffrement.
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             --  Initialise le filtre avec la clef de 48.
             T.Chaine.Filtres_Corps (I) :=
@@ -96,17 +96,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
                );
          end loop;
       end;
-   end Test_Filtre_Crypt_1;
+   end Test_Filtre_Chiffre_1;
 
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Decrypt_1 (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Dechiff_1 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
@@ -157,17 +157,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
                );
          end loop;
       end;
-   end Test_Filtre_Decrypt_1;
+   end Test_Filtre_Dechiff_1;
 
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Crypt_2048 (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Chiffre_2048 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
          Lecteur_Generateur.Changer_Max_Genere (2048);
@@ -177,7 +177,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
 
          --  Ajoute le filtre de corps à la chaine.
          for I in Numero_Filtre_T'Range loop
-            --  Décalage à gauche pour le cryptage.
+            --  Décalage à gauche pour le chiffrement.
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             --  Initialise le filtre avec la clef de 48.
             T.Chaine.Filtres_Corps (I) :=
@@ -211,17 +211,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             I := Natural'Succ (I);
          end loop;
       end;
-   end Test_Filtre_Crypt_2048;
+   end Test_Filtre_Chiffre_2048;
 
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Decrypt_2048 (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Dechiff_2048 (T : in out Test_Fixt_T) is
       Const_56 : Faiseur_56_P.Constructeur_Clef_T;
       Const_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
@@ -268,7 +268,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             I := Natural'Succ (I);
          end loop;
       end;
-   end Test_Filtre_Decrypt_2048;
+   end Test_Filtre_Dechiff_2048;
 
    ---------------------------------------------------------------------------
    procedure Test_Fin is

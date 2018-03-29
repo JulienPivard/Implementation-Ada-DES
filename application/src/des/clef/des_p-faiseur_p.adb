@@ -1,3 +1,7 @@
+with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Holder_P;
+with Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P.Holder_P;
+with Des_P.Clef_P.Clef_56_I_P.Holder_P;
+
 package body Des_P.Faiseur_P is
 
    ---------------------------------------------------------------------------
@@ -8,10 +12,12 @@ package body Des_P.Faiseur_P is
       )
       return Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
    is
+      package Faiseur_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+      H : Faiseur_P.Holder_P.Holder := Faiseur_P.Holder_P.To_Holder (Faiseur);
    begin
-      Faiseur.Preparer_Nouvelle_Clef;
-      Faiseur.Construire_Clef (Clef);
-      return Faiseur.Recuperer_Clef;
+      H.Reference.Preparer_Nouvelle_Clef;
+      H.Reference.Construire_Clef (Clef);
+      return H.Element.Recuperer_Clef;
    end Faire_Clef;
 
    ---------------------------------------------------------------------------
@@ -22,10 +28,12 @@ package body Des_P.Faiseur_P is
       )
       return Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
    is
+      package Faiseur_P renames Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P;
+      H : Faiseur_P.Holder_P.Holder := Faiseur_P.Holder_P.To_Holder (Faiseur);
    begin
-      Faiseur.Preparer_Nouvelle_Clef;
-      Faiseur.Construire_Clef (Clef);
-      return Faiseur.Recuperer_Clef;
+      H.Reference.Preparer_Nouvelle_Clef;
+      H.Reference.Construire_Clef (Clef);
+      return H.Element.Recuperer_Clef;
    end Faire_Clef;
 
    ---------------------------------------------------------------------------
@@ -36,9 +44,11 @@ package body Des_P.Faiseur_P is
       )
       return Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
    is
+      H : constant Des_P.Clef_P.Clef_56_I_P.Holder_P.Holder :=
+         Des_P.Clef_P.Clef_56_I_P.Holder_P.To_Holder (Clef);
    begin
       Faiseur.Preparer_Nouvelle_Clef;
-      Faiseur.Construire_Clef (Clef);
+      Faiseur.Construire_Clef (H.Element);
       return Faiseur.Recuperer_Clef;
    end Faire_Clef;
 

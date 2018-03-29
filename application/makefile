@@ -39,33 +39,33 @@ $(CIBLECOMPILE): build
 	@echo
 
 ###################
-.PHONY: crypt
-crypt: $(DEPEND)
+.PHONY: chiffrer
+chiffrer: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Chiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSCRYPT)
-	$(EXECUTABLE_TAC) $(ARGSCRYPT)
-	$(EXECUTABLE_RAV) $(ARGSCRYPT)
+	$(EXECUTABLE_SEQ) $(ARGSCHIFFRE)
+	$(EXECUTABLE_TAC) $(ARGSCHIFFRE)
+	$(EXECUTABLE_RAV) $(ARGSCHIFFRE)
 
 ###################
-.PHONY: decrypt
-decrypt: $(DEPEND)
+.PHONY: dechiffrer
+dechiffrer: $(DEPEND)
 	@echo "───────────────────────────────"
 	@echo "Déchiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSDECRYPTS)
-	$(EXECUTABLE_TAC) $(ARGSDECRYPTT)
-	$(EXECUTABLE_RAV) $(ARGSDECRYPTR)
+	$(EXECUTABLE_SEQ) $(ARGSDECHIFFRES)
+	$(EXECUTABLE_TAC) $(ARGSDECHIFFRET)
+	$(EXECUTABLE_RAV) $(ARGSDECHIFFRER)
 
 ###################
 .PHONY: fichier_comparer
 fichier_comparer:
 	@echo "Comparaison : "
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).sequ.crypt.sequ.decrypt
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).task.crypt.task.decrypt
-	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).rave.crypt.rave.decrypt
-	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).task.crypt
-	-diff $(VARNOMFICHIER).task.crypt $(VARNOMFICHIER).rave.crypt
-	-diff $(VARNOMFICHIER).sequ.crypt $(VARNOMFICHIER).rave.crypt
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S)
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T)
+	-diff $(VARNOMFICHIER) $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R)
+	-diff $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) $(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R)
 
 ###################
 .PHONY: doc

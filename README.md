@@ -229,10 +229,10 @@ Par défaut `make run` exécute la version séquentiel.
 Chaque client accepte un certain nombre d'options :
 
 ```man
-executable [-c|-d|--crypter|--decrypter] <nom_fichier> <clef>
+executable [-c|-d|--chiffrer|--dechiffrer] <nom_fichier> <clef>
 
--c --crypter    Chiffre le fichier avec la clef
--d --decrypter    Déchiffre le fichier avec la clef
+-c --chiffrer    Chiffre le fichier avec la clef
+-d --dechiffrer    Déchiffre le fichier avec la clef
 ```
 
 Lors de l'exécution du chiffrement, le résultat est écrit dans un autre
@@ -244,15 +244,15 @@ pour une même opération sur un même fichier avec la même clef. Dans
 indiquez le fichier que vous voulez chiffrer. Ensuite exécutez :
 
 ```sh
-make crypt
+make chiffrer
 # ou
-make decrypt
+make dechiffrer
 # ou encore les deux à la suite
-make crypt decrypt
+make chiffrer dechiffrer
 ```
 
-Attention `make decrypt` se base sur la version chiffré de votre fichier
-vous devrez lancer `make crypt` avant.
+Attention `make dechiffrer` se base sur la version chiffré de votre
+fichier vous devrez lancer `make chiffrer` avant.
 
 Vous pourrez voir apparaitre 6 fichiers supplémentaires qui contiendront
 soit :
@@ -285,15 +285,15 @@ bien le même résultat chiffré.
 ``` sh
 # Chiffrement
 
-./bin/[debug|release]/executable_sequentiel --crypter <nom_fichier> <clef>
-./bin/[debug|release]/executable_taches --crypter <nom_fichier> <clef>
-./bin/[debug|release]/executable_ravenscar --crypter <nom_fichier> <clef>
+./bin/[debug|release]/executable_sequentiel --chiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_taches --chiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_ravenscar --chiffrer <nom_fichier> <clef>
 
 # Déchiffrement
 
-./bin/[debug|release]/executable_sequentiel --decrypter <nom_fichier> <clef>
-./bin/[debug|release]/executable_taches --decrypter <nom_fichier> <clef>
-./bin/[debug|release]/executable_ravenscar --decrypter <nom_fichier> <clef>
+./bin/[debug|release]/executable_sequentiel --dechiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_taches --dechiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_ravenscar --dechiffrer <nom_fichier> <clef>
 ```
 
 # Temps d'exécution
@@ -320,34 +320,34 @@ Résultat de la version _debug_ avec un fichier de 1,8 Mo
 # CPU intel pentium
 ───────────────────────────────
 Chiffrement
-./bin/debug/executable_sequentiel --crypter autre.test lovecrft
+./bin/debug/executable_sequentiel --chiffrer autre.test lovecrft
 
 Temps séquentiel :
          24.679975561 s
 
-./bin/debug/executable_taches --crypter autre.test lovecrft
+./bin/debug/executable_taches --chiffrer autre.test lovecrft
 
 Temps parallèle :
          15.107683892 s
 
-./bin/debug/executable_ravenscar --crypter autre.test lovecrft
+./bin/debug/executable_ravenscar --chiffrer autre.test lovecrft
 
 Temps ravenscar :
          11.760052344 s
 
 
 Déchiffrement
-./bin/debug/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+./bin/debug/executable_sequentiel --dechiffrer autre.test.sequ.chiffre lovecrft
 
 Temps séquentiel :
          24.803278867 s
 
-./bin/debug/executable_taches --decrypter autre.test.task.crypt lovecrft
+./bin/debug/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
          15.131196912 s
 
-./bin/debug/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+./bin/debug/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
          11.784276361 s
@@ -356,34 +356,34 @@ Temps ravenscar :
 # CPU intel core i5
 ───────────────────────────────
 Chiffrement
-./bin/debug/executable_sequentiel --crypter autre.test lovecrft
+./bin/debug/executable_sequentiel --chiffrer autre.test lovecrft
 
 Temps séquentiel :
          13.273618000 s
 
-./bin/debug/executable_taches --crypter autre.test lovecrft
+./bin/debug/executable_taches --chiffrer autre.test lovecrft
 
 Temps parallèle :
           5.981384000 s
 
-./bin/debug/executable_ravenscar --crypter autre.test lovecrft
+./bin/debug/executable_ravenscar --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           5.647463000 s
 
 
 Déchiffrement
-./bin/debug/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+./bin/debug/executable_sequentiel --dechiffrer autre.test.sequ.chiffre lovecrft
 
 Temps séquentiel :
          13.187634000 s
 
-./bin/debug/executable_taches --decrypter autre.test.task.crypt lovecrft
+./bin/debug/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           6.254259000 s
 
-./bin/debug/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+./bin/debug/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           5.751005000 s
@@ -398,34 +398,34 @@ un fichier de 1,8 Mo
 # CPU intel pentium
 ───────────────────────────────
 Chiffrement
-./bin/release/executable_sequentiel --crypter autre.test lovecrft
+./bin/release/executable_sequentiel --chiffrer autre.test lovecrft
 
 Temps séquentiel :
          10.815002487 s
 
-./bin/release/executable_taches --crypter autre.test lovecrft
+./bin/release/executable_taches --chiffrer autre.test lovecrft
 
 Temps parallèle :
           6.368551113 s
 
-./bin/release/executable_ravenscar --crypter autre.test lovecrft
+./bin/release/executable_ravenscar --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           5.131816230 s
 
 
 Déchiffrement
-./bin/release/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+./bin/release/executable_sequentiel --dechiffrer autre.test.sequ.chiffre lovecrft
 
 Temps séquentiel :
          10.584909492 s
 
-./bin/release/executable_taches --decrypter autre.test.task.crypt lovecrft
+./bin/release/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           6.502066890 s
 
-./bin/release/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+./bin/release/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           4.958255953 s
@@ -433,34 +433,34 @@ Temps ravenscar :
 # CPU intel core i5
 ───────────────────────────────
 Chiffrement
-./bin/release/executable_sequentiel --crypter autre.test lovecrft
+./bin/release/executable_sequentiel --chiffrer autre.test lovecrft
 
 Temps séquentiel :
           7.852298000 s
 
-./bin/release/executable_taches --crypter autre.test lovecrft
+./bin/release/executable_taches --chiffrer autre.test lovecrft
 
 Temps parallèle :
           3.472909000 s
 
-./bin/release/executable_ravenscar --crypter autre.test lovecrft
+./bin/release/executable_ravenscar --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           3.131888000 s
 
 
 Déchiffrement
-./bin/release/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+./bin/release/executable_sequentiel --dechiffrer autre.test.sequ.chiffre lovecrft
 
 Temps séquentiel :
           7.623947000 s
 
-./bin/release/executable_taches --decrypter autre.test.task.crypt lovecrft
+./bin/release/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           3.493629000 s
 
-./bin/release/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+./bin/release/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           3.244890000 s

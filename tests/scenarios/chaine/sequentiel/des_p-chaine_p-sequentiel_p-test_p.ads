@@ -36,10 +36,10 @@ package Des_P.Chaine_P.Sequentiel_P.Test_P is
    overriding
    procedure Tear_Down (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Crypt
+   procedure Test_Filtre_Chiffre
       (T : in out Test_Fixt_T);
 
-   procedure Test_Filtre_Decrypt
+   procedure Test_Filtre_Dechiffre
       (T : in out Test_Fixt_T);
 
    procedure Test_Execution_2_Filtres

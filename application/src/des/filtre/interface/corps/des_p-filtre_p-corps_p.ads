@@ -34,7 +34,7 @@ private
          Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-   --  Fonction de cryptage/décryptage F.
+   --  Fonction de chiffrement/déchiffrement F.
    --  @param Bloc
    --  Le bloc de 32 bits
    --  @param Clef
