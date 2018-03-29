@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mercredi 21 mars[03] 2018
+--           Dernière modification : Jeudi 29 mars[03] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Profile (Ravenscar);
@@ -41,9 +41,9 @@ procedure Client_Ravenscar is
       Put (Standard_Error, " [option] <nom_fichier> <clef>");
       Put_Line (Standard_Error, "");
       Put_Line (Standard_Error, "-c --crypter");
-      Put_Line (Standard_Error, "  Crypte le fichier avec la clef.");
+      Put_Line (Standard_Error, "  Chiffre le fichier avec la clef.");
       Put_Line (Standard_Error, "-d --decrypter");
-      Put_Line (Standard_Error, "  Décrypte le ficher avec la clef.");
+      Put_Line (Standard_Error, "  Déchiffre le ficher avec la clef.");
       Put_Line (Standard_Error, "");
    end Afficher_Aide;
    ---------------------------------------------------------------------------
