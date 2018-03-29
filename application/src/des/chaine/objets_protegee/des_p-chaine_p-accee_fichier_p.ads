@@ -7,6 +7,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------
+
    type Ecriveur_Protegee_T is protected interface;
    --  Un écriveur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
@@ -42,6 +43,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  L'écriveur de données.
 
    ---------------------------------------------------------------------------
+
    type Lecteur_Protegee_T is protected interface;
    --  Un lecteur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
@@ -88,6 +90,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Le lecteur de données.
 
    ---------------------------------------
+
    protected type Ecriveur_Fichier_Protegee
    is new Ecriveur_Protegee_T with
       overriding
@@ -111,6 +114,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Écrit dans le fichier le bloc donné.
 
    ---------------------------------------
+
    protected type Lecteur_Fichier_Protegee
    is new Lecteur_Protegee_T with
       overriding

@@ -68,6 +68,7 @@ private
       Ada.Containers.Indefinite_Holders (Donnee_T);
 
    ---------------------------------------
+
    protected Avorter_Protegee is
       procedure Avorter;
       function Avorter return Boolean;
@@ -83,6 +84,7 @@ private
    --  Destiné à compter le nombre de taches
 
    ---------------------------------------
+
    protected Autorisation_Rearmement_Protegee is
       entry Attendre_Entree;
       procedure Autoriser;
@@ -97,6 +99,7 @@ private
    --  est finie avant que la barrière du demarreur_protegee ne se referme.
 
    ---------------------------------------
+
    protected Demarreur_Protegee is
       entry Attendre_Entree;
       procedure Demarrer;
@@ -109,6 +112,7 @@ private
    --  la barrière elle est refermé en attendant le prochain départ.
 
    ---------------------------------------
+
    protected Fin_Protegee is
       entry Attendre_Entree;
       procedure Fini;
@@ -135,6 +139,7 @@ private
    --  Un lecteur de fichier classique.
 
    ---------------------------------------
+
    protected Filtre_Entree_Protegee is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class);
@@ -149,6 +154,7 @@ private
    --  étage de chiffrement.
 
    ---------------------------------------
+
    protected Filtre_Sortie_Protegee is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class);
@@ -163,6 +169,7 @@ private
    --  étage de chiffrement.
 
    ---------------------------------------
+
    protected type Filtre_Corps_Protegee is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class);
@@ -177,6 +184,7 @@ private
    --  chiffrement principaux.
 
    ---------------------------------------
+
    protected type Autorisation_Protegee is
       entry Attendre_Entree;
       procedure Autoriser;
@@ -187,6 +195,7 @@ private
    --  de donné est disponible et attend d'être récupéré.
 
    ---------------------------------------
+
    protected type Donnee_Protegee is
       entry Ecrire_Donnee_Entree (Table : Donnee_T);
       procedure Lire_Donnee (Table : out Donnee_T);
@@ -199,6 +208,7 @@ private
    --  par la tâche suivante.
 
    ---------------------------------------
+
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
    --  Contient tous les filtres principaux qui vont être utilisé
@@ -213,6 +223,7 @@ private
             Limiteur_p.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;
+
    ---------------------------------------
 
    Donnee_Debut : Donnee_Protegee;

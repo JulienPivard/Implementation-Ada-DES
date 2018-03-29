@@ -10,6 +10,7 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
    --  dans le pipeline
 
    ---------------------------------------
+
    protected Limiteur_Protegee is
       entry Generer_Bloc_Entree;
       --  Signal qu'une grappe à été générée.
