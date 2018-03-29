@@ -1,4 +1,4 @@
-with Des_P.Clef_P.Clef_64_P;
+with Des_P.Clef_P.Clef_64_I_P;
 
 private with Des_P.Chaine_P.Constructeur_I_P;
 private with Des_P.Clef_P.Clef_56_P.Constructeur_P;
@@ -23,7 +23,7 @@ package Procedure_Run_Ravenscar_P is
 
    procedure Executer_Chiffrement
       (
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
          Nom_Fichier : String;
          Action : Action_T
       );
@@ -69,7 +69,7 @@ private
    function Init_Chaine
       (
          Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;
    --  Initialise une chaine de chiffrement ou déchiffrement.

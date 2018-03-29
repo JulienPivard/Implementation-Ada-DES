@@ -2,6 +2,8 @@ with Des_P.Chaine_P.Ravenscar_P;
 with Des_P.Chaine_P.Ravenscar_P.Constructeur_Chiffre_P;
 with Des_P.Chaine_P.Ravenscar_P.Constructeur_Dechiffre_P;
 
+with Des_P.Clef_P.Clef_64_I_P.Holder_P;
+
 with Ada.Real_Time;
 with Ada.Text_IO;
 
@@ -16,7 +18,7 @@ package body Procedure_Run_Ravenscar_P is
    ---------------------------------------------------------------------------
    procedure Executer_Chiffrement
       (
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
          Nom_Fichier : String;
          Action : Action_T
       )
@@ -117,16 +119,18 @@ package body Procedure_Run_Ravenscar_P is
    function Init_Chaine
       (
          Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_P.Clef_T
+         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class
    is
+      C_64 : constant Des_P.Clef_P.Clef_64_I_P.Holder_P.Holder :=
+         Des_P.Clef_P.Clef_64_I_P.Holder_P.To_Holder (Clef);
       F_56 : Faiseur_56_P.Constructeur_Clef_T;
       F_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
       --  Les 3 instructions pour construire une nouvelle chaine
       Faiseur.Initialiser (F_56, F_48);
-      Faiseur.Construire (Clef);
+      Faiseur.Construire (C_64.Element);
       return Faiseur.Recuperer_Chaine;
    end Init_Chaine;
 
