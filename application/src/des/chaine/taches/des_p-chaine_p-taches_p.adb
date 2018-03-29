@@ -60,7 +60,7 @@ package body Des_P.Chaine_P.Taches_P is
                         Ecriveur.all.Ecrire (Brut);
                      end;
                   end loop;
-                  Limiteur_p.Limiteur_Protegee.Consommer_Bloc;
+                  Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
                or
                   terminate;
                end select;
@@ -249,7 +249,7 @@ package body Des_P.Chaine_P.Taches_P is
       begin
          --  Si le nombre maximum de grappe à été modifié.
          if Chaine.Modifier_Max_Grappes then
-            Limiteur_p.Limiteur_Protegee.Modifier_Nb_Max_Blocs
+            Limiteur_P.Limiteur_Protegee.Modifier_Nb_Max_Blocs
                (Chaine.Max_Grappes);
          end if;
          --  Initialisation des taches avec le filtre
@@ -281,7 +281,7 @@ package body Des_P.Chaine_P.Taches_P is
                J := I;
             end loop Remplissage;
 
-            Limiteur_p.Limiteur_Protegee.Generer_Bloc_Entree;
+            Limiteur_P.Limiteur_Protegee.Generer_Bloc_Entree;
 
             --  Lancement du filtrage.
             --  Si le tableau de blocs n'est pas plein on n'utilise pas

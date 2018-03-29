@@ -14,7 +14,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       --  Modifie le nombre de grappe max dans le pipeline
       --  si la modification est demandée.
       if Chaine.Modifier_Max_Grappes then
-         Limiteur_p.Limiteur_Protegee.Modifier_Nb_Max_Blocs
+         Limiteur_P.Limiteur_Protegee.Modifier_Nb_Max_Blocs
             (Chaine.Max_Grappes);
       end if;
       --  Ouverture du fichier à lire.
@@ -305,7 +305,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  On signal la création d'un nouveau bloc,
             --  si il y en a trop en circulation la
             --  tâche est mise en pause.
-            Limiteur_p.Limiteur_Protegee.Generer_Bloc_Entree;
+            Limiteur_P.Limiteur_Protegee.Generer_Bloc_Entree;
 
             --  Signal que la donnée à été bien écrite et peut être lue.
             Autorisateur_Debut.Autoriser;
@@ -513,7 +513,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                      Ecriveur.all.Ecrire (Brut);
                   end;
                end loop;
-               Limiteur_p.Limiteur_Protegee.Consommer_Bloc;
+               Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
 
                exit Ecriture_Fichier when D.Est_Derniere_Grappe;
             end;

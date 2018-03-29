@@ -221,8 +221,8 @@ est environ 2 fois plus rapide que la version _debug_.
 
 L'application possède 3 programmes principaux, un pour chaque objectif :
 * Une version séquentielle : `executable_sequentiel`;
-* Une version parallèle : `executable_taches`;
-* Une version Ravenscar : `executable_ravenscar`.
+* Une version parallèle    : `executable_taches`;
+* Une version Ravenscar    : `executable_ravenscar`.
 
 Par défaut `make run` exécute la version séquentiel.
 
@@ -231,7 +231,7 @@ Chaque client accepte un certain nombre d'options :
 ```man
 executable [-c|-d|--chiffrer|--dechiffrer] <nom_fichier> <clef>
 
--c --chiffrer    Chiffre le fichier avec la clef
+-c --chiffrer      Chiffre   le fichier avec la clef
 -d --dechiffrer    Déchiffre le fichier avec la clef
 ```
 
@@ -286,14 +286,14 @@ bien le même résultat chiffré.
 # Chiffrement
 
 ./bin/[debug|release]/executable_sequentiel --chiffrer <nom_fichier> <clef>
-./bin/[debug|release]/executable_taches --chiffrer <nom_fichier> <clef>
-./bin/[debug|release]/executable_ravenscar --chiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_taches     --chiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_ravenscar  --chiffrer <nom_fichier> <clef>
 
 # Déchiffrement
 
 ./bin/[debug|release]/executable_sequentiel --dechiffrer <nom_fichier> <clef>
-./bin/[debug|release]/executable_taches --dechiffrer <nom_fichier> <clef>
-./bin/[debug|release]/executable_ravenscar --dechiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_taches     --dechiffrer <nom_fichier> <clef>
+./bin/[debug|release]/executable_ravenscar  --dechiffrer <nom_fichier> <clef>
 ```
 
 # Temps d'exécution
@@ -325,12 +325,12 @@ Chiffrement
 Temps séquentiel :
          24.679975561 s
 
-./bin/debug/executable_taches --chiffrer autre.test lovecrft
+./bin/debug/executable_taches     --chiffrer autre.test lovecrft
 
 Temps parallèle :
          15.107683892 s
 
-./bin/debug/executable_ravenscar --chiffrer autre.test lovecrft
+./bin/debug/executable_ravenscar  --chiffrer autre.test lovecrft
 
 Temps ravenscar :
          11.760052344 s
@@ -342,12 +342,12 @@ Déchiffrement
 Temps séquentiel :
          24.803278867 s
 
-./bin/debug/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
+./bin/debug/executable_taches     --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
          15.131196912 s
 
-./bin/debug/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
+./bin/debug/executable_ravenscar  --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
          11.784276361 s
@@ -361,12 +361,12 @@ Chiffrement
 Temps séquentiel :
          13.273618000 s
 
-./bin/debug/executable_taches --chiffrer autre.test lovecrft
+./bin/debug/executable_taches     --chiffrer autre.test lovecrft
 
 Temps parallèle :
           5.981384000 s
 
-./bin/debug/executable_ravenscar --chiffrer autre.test lovecrft
+./bin/debug/executable_ravenscar  --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           5.647463000 s
@@ -378,12 +378,12 @@ Déchiffrement
 Temps séquentiel :
          13.187634000 s
 
-./bin/debug/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
+./bin/debug/executable_taches     --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           6.254259000 s
 
-./bin/debug/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
+./bin/debug/executable_ravenscar  --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           5.751005000 s
@@ -403,12 +403,12 @@ Chiffrement
 Temps séquentiel :
          10.815002487 s
 
-./bin/release/executable_taches --chiffrer autre.test lovecrft
+./bin/release/executable_taches     --chiffrer autre.test lovecrft
 
 Temps parallèle :
           6.368551113 s
 
-./bin/release/executable_ravenscar --chiffrer autre.test lovecrft
+./bin/release/executable_ravenscar  --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           5.131816230 s
@@ -420,12 +420,12 @@ Déchiffrement
 Temps séquentiel :
          10.584909492 s
 
-./bin/release/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
+./bin/release/executable_taches     --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           6.502066890 s
 
-./bin/release/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
+./bin/release/executable_ravenscar  --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           4.958255953 s
@@ -438,12 +438,12 @@ Chiffrement
 Temps séquentiel :
           7.852298000 s
 
-./bin/release/executable_taches --chiffrer autre.test lovecrft
+./bin/release/executable_taches     --chiffrer autre.test lovecrft
 
 Temps parallèle :
           3.472909000 s
 
-./bin/release/executable_ravenscar --chiffrer autre.test lovecrft
+./bin/release/executable_ravenscar  --chiffrer autre.test lovecrft
 
 Temps ravenscar :
           3.131888000 s
@@ -455,12 +455,12 @@ Déchiffrement
 Temps séquentiel :
           7.623947000 s
 
-./bin/release/executable_taches --dechiffrer autre.test.task.chiffre lovecrft
+./bin/release/executable_taches     --dechiffrer autre.test.task.chiffre lovecrft
 
 Temps parallèle :
           3.493629000 s
 
-./bin/release/executable_ravenscar --dechiffrer autre.test.rave.chiffre lovecrft
+./bin/release/executable_ravenscar  --dechiffrer autre.test.rave.chiffre lovecrft
 
 Temps ravenscar :
           3.244890000 s

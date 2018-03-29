@@ -43,7 +43,7 @@ package Des_P.Chaine_P.Ravenscar_P is
 private
 
    package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
-   package Limiteur_p renames Des_P.Chaine_P.Limiteur_Jetons_P;
+   package Limiteur_P renames Des_P.Chaine_P.Limiteur_Jetons_P;
 
    type Indice_T is range 1 .. 512;
    --  Les indices des table de blocs.
@@ -219,8 +219,8 @@ private
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
-         Max_Grappes : Limiteur_p.Max_Grappes_T :=
-            Limiteur_p.Max_Grappes_T'First;
+         Max_Grappes : Limiteur_P.Max_Grappes_T :=
+            Limiteur_P.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;
 
