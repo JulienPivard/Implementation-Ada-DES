@@ -12,8 +12,17 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
    ---------------------------------------
    protected Limiteur_Protegee is
       entry Generer_Bloc_Entree;
+      --  Signal qu'une grappe à été générée.
+
       procedure Consommer_Bloc;
+      --  Signal qu'une grappe à été consommée.
+
       procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);
+      --  Fixe le nombre de grappe en meme temps dans le pipeline.
+      --  Par défaut il y en a autant que de processeurs
+      --  disponible.
+      --  @param Nb
+      --  Le nombre maximal de grappe en même temps dans le pipeline
    private
       Nb_Blocs_Genere : Nombre_Grappes_T := Nombre_Grappes_T'First;
       Nb_Max_Blocs : Max_Grappes_T :=
