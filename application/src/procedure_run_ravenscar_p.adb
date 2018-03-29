@@ -1,6 +1,6 @@
 with Des_P.Chaine_P.Ravenscar_P;
-with Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P;
+with Des_P.Chaine_P.Ravenscar_P.Constructeur_Chiffre_P;
+with Des_P.Chaine_P.Ravenscar_P.Constructeur_Dechiffre_P;
 
 with Ada.Real_Time;
 with Ada.Text_IO;
@@ -79,9 +79,9 @@ package body Procedure_Run_Ravenscar_P is
       return Faiseur_P.Constructeur_Interface_T'Class
    is
       package Faiseur_R_C_P renames
-         Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P;
+         Des_P.Chaine_P.Ravenscar_P.Constructeur_Chiffre_P;
       package Faiseur_R_D_P renames
-         Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P;
+         Des_P.Chaine_P.Ravenscar_P.Constructeur_Dechiffre_P;
       --  Instancie tous les faiseur de chaine possible
       Const_Chiffre_R : Faiseur_R_C_P.Constructeur_Chiffrement_T;
       Const_Dechiff_R : Faiseur_R_D_P.Constructeur_Dechiffrement_T;

@@ -5,8 +5,8 @@ with Des_P.Clef_P.Clef_56_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P;
 
-with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Chiffre_P;
+with Des_P.Filtre_P.Fabrique_P.Dechiffre_P;
 with Des_P.Faiseur_P;
 
 package body Des_P.Chaine_P.Taches_P.Test_P is
@@ -47,7 +47,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
          Lecteur_Generateur.Changer_Max_Genere (1);
@@ -108,7 +108,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
          T.Chaine.Filtre_Entree :=
@@ -166,7 +166,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
          Lecteur_Generateur.Changer_Max_Genere (2048);
@@ -223,7 +223,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
-         Fabrique : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
          T.Chaine.Filtre_Entree :=

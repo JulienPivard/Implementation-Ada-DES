@@ -1,7 +1,7 @@
 with AUnit.Assertions;
 
-with Des_P.Filtre_P.Fabrique_P.Cryptage_P;
-with Des_P.Filtre_P.Fabrique_P.Decryptage_P;
+with Des_P.Filtre_P.Fabrique_P.Chiffre_P;
+with Des_P.Filtre_P.Fabrique_P.Dechiffre_P;
 
 with Des_P.Clef_P.Clef_64_P.Constructeur_P;
 with Des_P.Clef_P.Clef_56_P.Constructeur_P;
@@ -9,8 +9,8 @@ with Des_P.Clef_P.Clef_48_P.Constructeur_P;
 with Des_P.Clef_P.Clef_48_P;
 
 with Des_P.Filtre_P.Corps_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+with Des_P.Chaine_P.Sequentiel_P.Constructeur_Chiffre_P;
+with Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P;
 
 with Ada.Directories;
 with Ada.Sequential_IO;
@@ -20,9 +20,9 @@ with Ada.IO_Exceptions;
 package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    package Faiseur_Chiffrement_P renames
-      Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P;
+      Des_P.Chaine_P.Sequentiel_P.Constructeur_Chiffre_P;
    package Faiseur_Dechiffrement_P renames
-      Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P;
+      Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P;
    package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
    package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
    package Lecteur_64_IO is new Ada.Sequential_IO
@@ -147,7 +147,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    begin
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_C : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         F_C : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
          declare
@@ -167,7 +167,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_D : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         F_D : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
          declare
@@ -199,7 +199,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       Const_56.Construire_Clef (T.Clef);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_C : Des_P.Filtre_P.Fabrique_P.Cryptage_P.Fabrique_T;
+         F_C : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
          Clef_56 : Des_P.Clef_P.Clef_56_P.Clef_T := Const_56.Recuperer_Clef;
          Const_48 : Des_P.Clef_P.Clef_48_P.Constructeur_P.Constructeur_Clef_T;
       begin
@@ -238,7 +238,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       Const_56.Construire_Clef (T.Clef);
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
-         F_D : Des_P.Filtre_P.Fabrique_P.Decryptage_P.Fabrique_T;
+         F_D : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          Clef_56 : Des_P.Clef_P.Clef_56_P.Clef_T := Const_56.Recuperer_Clef;
          Const_48 : Des_P.Clef_P.Clef_48_P.Constructeur_P.Constructeur_Clef_T;
       begin
