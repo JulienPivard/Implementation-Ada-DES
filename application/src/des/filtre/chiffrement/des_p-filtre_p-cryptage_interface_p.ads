@@ -8,7 +8,7 @@ package Des_P.Filtre_P.Cryptage_Interface_P is
 
    pragma Pure;
 
-   type Cryptage_Interface_T is interface and Filtre_Interface_T;
+   type Chiffrement_Interface_T is interface and Filtre_Interface_T;
    --  Un filtre de chiffrement abstrait.
 
 end Des_P.Filtre_P.Cryptage_Interface_P;

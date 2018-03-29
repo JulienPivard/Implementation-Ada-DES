@@ -83,8 +83,8 @@ package body Procedure_Run_Ravenscar_P is
       package Faiseur_R_D_P renames
          Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P;
       --  Instancie tous les faiseur de chaine possible
-      Const_Chiffre_R : Faiseur_R_C_P.Constructeur_Cryptage_T;
-      Const_Dechiff_R : Faiseur_R_D_P.Constructeur_Decryptage_T;
+      Const_Chiffre_R : Faiseur_R_C_P.Constructeur_Chiffrement_T;
+      Const_Dechiff_R : Faiseur_R_D_P.Constructeur_Dechiffrement_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.

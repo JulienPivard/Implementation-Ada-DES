@@ -96,10 +96,10 @@ package body Procedure_Run_P is
       package Faiseur_T_D_P renames
          Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P;
       --  Instancie tous les faiseur de chaine possible
-      Const_Chiffre_S : Faiseur_S_C_P.Constructeur_Cryptage_T;
-      Const_Dechiff_S : Faiseur_S_D_P.Constructeur_Decryptage_T;
-      Const_Chiffre_T : Faiseur_T_C_P.Constructeur_Cryptage_T;
-      Const_Dechiff_T : Faiseur_T_D_P.Constructeur_Decryptage_T;
+      Const_Chiffre_S : Faiseur_S_C_P.Constructeur_Chiffrement_T;
+      Const_Dechiff_S : Faiseur_S_D_P.Constructeur_Dechiffrement_T;
+      Const_Chiffre_T : Faiseur_T_C_P.Constructeur_Chiffrement_T;
+      Const_Dechiff_T : Faiseur_T_D_P.Constructeur_Dechiffrement_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.

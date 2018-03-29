@@ -18,7 +18,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Cryptage_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C : Constructeur_Cryptage_T;
+      C : Constructeur_Chiffrement_T;
       F_56 : Faiseur_56_P.Constructeur_Clef_T;
       F_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin

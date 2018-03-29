@@ -20,28 +20,28 @@ package body Chaine_Ravenscar_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Chiffrement a partir de 1 bloc d'un generateur",
-            Test_Filtre_Crypt_1'Access
+            Test_Filtre_Chiffre_1'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Dechiffrement a partir de 1 bloc d'un generateur",
-            Test_Filtre_Decrypt_1'Access
+            Test_Filtre_Dechiff_1'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Chiffrement a partir de 2048 blocs d'un generateur",
-            Test_Filtre_Crypt_2048'Access
+            Test_Filtre_Chiffre_2048'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Dechiffrement a partir de 2048 blocs d'un generateur",
-            Test_Filtre_Decrypt_2048'Access
+            Test_Filtre_Dechiff_2048'Access
             )
          );
 

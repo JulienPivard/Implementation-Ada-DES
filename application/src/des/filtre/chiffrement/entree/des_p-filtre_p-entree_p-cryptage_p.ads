@@ -10,10 +10,10 @@ package Des_P.Filtre_P.Entree_P.Cryptage_P is
 
    pragma Pure;
 
-   package P_Cryptage_P renames Des_P.Filtre_P.Cryptage_Interface_P;
+   package P_Chiffrement_P renames Des_P.Filtre_P.Cryptage_Interface_P;
 
    type Entree_T is new Entree_Abstrait_T and
-      P_Cryptage_P.Cryptage_Interface_T with private;
+      P_Chiffrement_P.Chiffrement_Interface_T with private;
    --  Le filtre de chiffrement qui va effectuer la première
    --  permutation pour chiffrer.
 
@@ -32,6 +32,6 @@ package Des_P.Filtre_P.Entree_P.Cryptage_P is
 private
 
    type Entree_T is new Entree_Abstrait_T and
-      P_Cryptage_P.Cryptage_Interface_T with null record;
+      P_Chiffrement_P.Chiffrement_Interface_T with null record;
 
 end Des_P.Filtre_P.Entree_P.Cryptage_P;

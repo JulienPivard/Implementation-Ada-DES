@@ -1,7 +1,7 @@
 --  @summary
 --  Data Encryption Standart
 --  @description
---  Implémentation du Standard d'encryption symétrique de données.
+--  Implémentation du Standard de chiffrement symétrique de données.
 --  @group DES
 package Des_P is
 

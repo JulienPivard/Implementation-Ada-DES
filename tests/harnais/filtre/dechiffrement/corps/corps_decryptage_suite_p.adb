@@ -20,7 +20,7 @@ package body Corps_Decryptage_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "1er niveau de filtre",
-            Test_Decryptage_Niveau_1'Access
+            Test_Dechiffrement_Niveau_1'Access
             )
          );
 

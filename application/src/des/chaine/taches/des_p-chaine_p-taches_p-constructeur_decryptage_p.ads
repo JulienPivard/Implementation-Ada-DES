@@ -13,7 +13,7 @@ private with Des_P.Clef_P.Clef_48_I_P.Constructeur_I_P.Holder_P;
 --  @group Chaine Constructeur
 package Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
 
-   type Constructeur_Decryptage_T is new
+   type Constructeur_Dechiffrement_T is new
       Des_P.Chaine_P.Constructeur_I_P.Constructeur_Interface_T with private;
    --  Le constructeur de filtre de déchiffrement.
 
@@ -23,7 +23,7 @@ package Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Constructeur_Decryptage_T;
+         Constructeur : in out Constructeur_Dechiffrement_T;
          Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class;
          Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class
       );
@@ -38,7 +38,7 @@ package Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Constructeur_Decryptage_T;
+         Constructeur : in out Constructeur_Dechiffrement_T;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       );
    --  Construit la chaine de filtre avec la clef.
@@ -49,7 +49,7 @@ package Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
 
    overriding
    function Recuperer_Chaine
-      (Constructeur : Constructeur_Decryptage_T)
+      (Constructeur : Constructeur_Dechiffrement_T)
       return Chaine_Interface_T'Class;
    --  Récupère la chaine construite.
    --  @param Constructeur
@@ -58,7 +58,7 @@ package Des_P.Chaine_P.Taches_P.Constructeur_Decryptage_P is
 
 private
 
-   type Constructeur_Decryptage_T is new
+   type Constructeur_Dechiffrement_T is new
       Des_P.Chaine_P.Constructeur_I_P.Constructeur_Interface_T with
       record
          Chaine : Chaine_T;

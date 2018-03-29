@@ -57,7 +57,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
    --                              scénarios                                --
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
-   procedure Test_Cryptage_Niveau_1
+   procedure Test_Chiffrement_Niveau_1
       (T : in out Test_Fixt_T)
    is
       --  Valeur attendu
@@ -114,7 +114,7 @@ package body Des_P.Filtre_P.Corps_P.Cryptage_P.Test_P is
          end;
       end loop;
 
-   end Test_Cryptage_Niveau_1;
+   end Test_Chiffrement_Niveau_1;
 
    ---------------------------------------------------------------------------
    procedure Test_Modifier_Clef_48

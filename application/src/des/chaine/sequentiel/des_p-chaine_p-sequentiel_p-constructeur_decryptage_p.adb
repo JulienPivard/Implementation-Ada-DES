@@ -10,7 +10,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Constructeur_Decryptage_T;
+         Constructeur : in out Constructeur_Dechiffrement_T;
          Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class;
          Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class
       )
@@ -29,7 +29,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Constructeur_Decryptage_T;
+         Constructeur : in out Constructeur_Dechiffrement_T;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
@@ -82,7 +82,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Constructeur_Decryptage_P is
    ---------------------------------------------------------------------------
    overriding
    function Recuperer_Chaine
-      (Constructeur : Constructeur_Decryptage_T)
+      (Constructeur : Constructeur_Dechiffrement_T)
       return Chaine_Interface_T'Class
    is
    begin

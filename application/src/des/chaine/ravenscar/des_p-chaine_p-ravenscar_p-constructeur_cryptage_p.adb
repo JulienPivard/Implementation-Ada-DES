@@ -12,7 +12,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Constructeur_Cryptage_T;
+         Constructeur : in out Constructeur_Chiffrement_T;
          Faiseur_56 : Faiseur_56_I_P.Constructeur_Interface_T'Class;
          Faiseur_48 : Faiseur_48_I_P.Constructeur_Interface_T'Class
       )
@@ -31,7 +31,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Constructeur_Cryptage_T;
+         Constructeur : in out Constructeur_Chiffrement_T;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
@@ -78,7 +78,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Cryptage_P is
    ---------------------------------------------------------------------------
    overriding
    function Recuperer_Chaine
-      (Constructeur : Constructeur_Cryptage_T)
+      (Constructeur : Constructeur_Chiffrement_T)
       return Chaine_Interface_T'Class
    is
    begin

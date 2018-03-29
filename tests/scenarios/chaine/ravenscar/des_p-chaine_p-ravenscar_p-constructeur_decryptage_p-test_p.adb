@@ -14,7 +14,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Constructeur_Decryptage_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C : Constructeur_Decryptage_T;
+      C : Constructeur_Dechiffrement_T;
       F_56 : Faiseur_56_P.Constructeur_Clef_T;
       F_48 : Faiseur_48_P.Constructeur_Clef_T;
    begin
