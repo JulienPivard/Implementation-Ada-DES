@@ -37,6 +37,9 @@ une version facilement manipulable (et inversement), sont réalisées grâce
 facilement chaque bit des blocs manipulé tout en permettant de ne pas
 avoir à employer de masque binaire.
 
+La premiere version séquentiel est indiqué par (tag:
+fin\_version\_sequentiel)
+
 ## Version parallèle
 
 Le second objectif est de réaliser une version parallèle utilisant le
@@ -145,7 +148,7 @@ est la dernière à traiter. Le signal de terminaison étant désormais
 transmis avec la donnée il ne devrait plus y avoir de problèmes de
 confusion.
 
-# Compilation et exécutions
+# Compilation et exécution
 
 Les commandes de manipulation basique pour compiler les tests unitaires ou
 le projet en lui-même. La plupart des manipulations sont faites via des
@@ -291,4 +294,174 @@ bien le même résultat chiffré.
 ./bin/[debug|release]/executable_sequentiel --decrypter <nom_fichier> <clef>
 ./bin/[debug|release]/executable_taches --decrypter <nom_fichier> <clef>
 ./bin/[debug|release]/executable_ravenscar --decrypter <nom_fichier> <clef>
+```
+
+# Temps d'exécution
+
+Des résultats concret de temps d'exécutions de l'application exécuté sur
+différents processeurs, pour donner une idée des performances de
+l'application.
+* OS : GNU/linux avec CPU : Intel Pentium P6000; 1.87GHz; 2 core;
+  1 thread/core
+* OS : MacOS avec CPU : Intel Core i5; 2,7GHz; 2 core; 2 thread/core
+
+Pour générer le fichier de 1,8 Mo qui a été utilisé pour les tests, tapez
+la commande
+
+```
+./application/genererChaineAleatoire.sh -f autre.test -r 20
+```
+
+#### Version Débogue
+
+Résultat de la version _debug_ avec un fichier de 1,8 Mo
+
+```sh
+# Version intel pentium
+───────────────────────────────
+Chiffrement
+./bin/debug/executable_sequentiel --crypter autre.test lovecrft
+
+Temps séquentiel :
+         24.679975561 s
+
+./bin/debug/executable_taches --crypter autre.test lovecrft
+
+Temps parallèle :
+         15.107683892 s
+
+./bin/debug/executable_ravenscar --crypter autre.test lovecrft
+
+Temps ravenscar :
+         11.760052344 s
+
+
+Déchiffrement
+./bin/debug/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+
+Temps séquentiel :
+         24.803278867 s
+
+./bin/debug/executable_taches --decrypter autre.test.task.crypt lovecrft
+
+Temps parallèle :
+         15.131196912 s
+
+./bin/debug/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+
+Temps ravenscar :
+         11.784276361 s
+
+
+# Version intel core i5
+───────────────────────────────
+Chiffrement
+./bin/debug/executable_sequentiel --crypter autre.test lovecrft
+
+Temps séquentiel :
+         13.273618000 s
+
+./bin/debug/executable_taches --crypter autre.test lovecrft
+
+Temps parallèle :
+          5.981384000 s
+
+./bin/debug/executable_ravenscar --crypter autre.test lovecrft
+
+Temps ravenscar :
+          5.647463000 s
+
+
+Déchiffrement
+./bin/debug/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+
+Temps séquentiel :
+         13.187634000 s
+
+./bin/debug/executable_taches --decrypter autre.test.task.crypt lovecrft
+
+Temps parallèle :
+          6.254259000 s
+
+./bin/debug/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+
+Temps ravenscar :
+          5.751005000 s
+```
+
+#### Version optimisé
+
+Résultat de la version optimisé (option -O3 voir [lien] pour l'activer
+à la compilation) avec un fichier de 1,8 Mo
+
+```sh
+# Version intel pentium
+───────────────────────────────
+Chiffrement
+./bin/release/executable_sequentiel --crypter autre.test lovecrft
+
+Temps séquentiel :
+         10.815002487 s
+
+./bin/release/executable_taches --crypter autre.test lovecrft
+
+Temps parallèle :
+          6.368551113 s
+
+./bin/release/executable_ravenscar --crypter autre.test lovecrft
+
+Temps ravenscar :
+          5.131816230 s
+
+
+Déchiffrement
+./bin/release/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+
+Temps séquentiel :
+         10.584909492 s
+
+./bin/release/executable_taches --decrypter autre.test.task.crypt lovecrft
+
+Temps parallèle :
+          6.502066890 s
+
+./bin/release/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+
+Temps ravenscar :
+          4.958255953 s
+
+# Version intel core i5
+───────────────────────────────
+Chiffrement
+./bin/release/executable_sequentiel --crypter autre.test lovecrft
+
+Temps séquentiel :
+          7.852298000 s
+
+./bin/release/executable_taches --crypter autre.test lovecrft
+
+Temps parallèle :
+          3.472909000 s
+
+./bin/release/executable_ravenscar --crypter autre.test lovecrft
+
+Temps ravenscar :
+          3.131888000 s
+
+
+Déchiffrement
+./bin/release/executable_sequentiel --decrypter autre.test.sequ.crypt lovecrft
+
+Temps séquentiel :
+          7.623947000 s
+
+./bin/release/executable_taches --decrypter autre.test.task.crypt lovecrft
+
+Temps parallèle :
+          3.493629000 s
+
+./bin/release/executable_ravenscar --decrypter autre.test.rave.crypt lovecrft
+
+Temps ravenscar :
+          3.244890000 s
 ```
