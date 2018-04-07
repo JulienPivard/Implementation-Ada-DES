@@ -1,18 +1,19 @@
 with AUnit.Test_Caller;
 
 with Des_P.Etage_P.Filtrage_P.Test_P;
+use  Des_P.Etage_P.Filtrage_P.Test_P;
 
 package body Etage_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Des_P.Etage_P.Filtrage_P.Test_P.Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Suite return AUnit.Test_Suites.Access_Test_Suite is
+   function Fonc_Suite
+      return AUnit.Test_Suites.Access_Test_Suite
+   is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
       nom_test : constant String := "(Test estage sequentiel) ";
-      use Des_P.Etage_P.Filtrage_P.Test_P;
    begin
 
       ptr_test_suite.all.Add_Test

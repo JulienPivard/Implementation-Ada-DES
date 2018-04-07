@@ -5,8 +5,7 @@ use  Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Test_P;
 
 package body Fabrique_Dechiffre_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite

@@ -13,17 +13,17 @@ package body Suite_De_Tests_Clef_P is
          AUnit.Test_Suites.New_Suite;
    begin
       ptr_test_suite.all.Add_Test
-         (Clef_48_Suite_P.Fonc_Clef_48_Suite);
+         (Clef_48_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test
-         (Constructeur_Clef_48_Suite_P.Fonc_Constructeur_Clef_48_Suite);
+         (Constructeur_Clef_48_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test
-         (Clef_56_Suite_P.Fonc_Clef_56_Suite);
+         (Clef_56_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test
-         (Constructeur_Clef_56_Suite_P.Fonc_Constructeur_Clef_56_Suite);
+         (Constructeur_Clef_56_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test
-         (Clef_64_Suite_P.Fonc_Clef_64_Suite);
+         (Clef_64_Suite_P.Fonc_Suite);
       ptr_test_suite.all.Add_Test
-         (Constructeur_Clef_64_Suite_P.Fonc_Constructeur_Clef_64_Suite);
+         (Constructeur_Clef_64_Suite_P.Fonc_Suite);
 
       return ptr_test_suite;
    end Fonc_Suite;

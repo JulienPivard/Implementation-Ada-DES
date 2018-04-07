@@ -8,7 +8,7 @@ package body Constructeur_Clef_56_Suite_P is
    package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Constructeur_Clef_56_Suite
+   function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
@@ -39,6 +39,6 @@ package body Constructeur_Clef_56_Suite_P is
 
       return ptr_test_suite;
 
-   end Fonc_Constructeur_Clef_56_Suite;
+   end Fonc_Suite;
 
 end Constructeur_Clef_56_Suite_P;

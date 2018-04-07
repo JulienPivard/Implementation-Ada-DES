@@ -5,8 +5,7 @@ use  Des_P.Filtre_P.Corps_P.Test_P;
 
 package body Fonction_F_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite

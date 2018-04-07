@@ -5,11 +5,10 @@ use  Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P;
 
 package body Permutations_64_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Permutations_64_Suite
+   function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
@@ -33,6 +32,6 @@ package body Permutations_64_Suite_P is
 
       return ptr_test_suite;
 
-   end Fonc_Permutations_64_Suite;
+   end Fonc_Suite;
 
 end Permutations_64_Suite_P;

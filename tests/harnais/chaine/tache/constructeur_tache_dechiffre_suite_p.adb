@@ -5,8 +5,7 @@ use  Des_P.Chaine_P.Taches_P.Constructeur_Dechiffre_P.Test_P;
 
 package body Constructeur_Tache_Dechiffre_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite

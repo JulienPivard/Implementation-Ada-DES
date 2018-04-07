@@ -5,11 +5,12 @@ use  Des_P.Bloc_P.Bloc_48_P.Test_P;
 
 package body Bloc_48_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Bloc_48_Suite return AUnit.Test_Suites.Access_Test_Suite is
+   function Fonc_Suite
+      return AUnit.Test_Suites.Access_Test_Suite
+   is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
       nom_test : constant String := "(Test bloc de 48 bits) ";
@@ -38,6 +39,6 @@ package body Bloc_48_Suite_P is
 
       return ptr_test_suite;
 
-   end Fonc_Bloc_48_Suite;
+   end Fonc_Suite;
 
 end Bloc_48_Suite_P;

@@ -2,7 +2,9 @@ with Etage_Suite_P;
 
 package body Suite_De_Tests_Etage_P is
 
-   function Fonc_Suite return AUnit.Test_Suites.Access_Test_Suite is
+   function Fonc_Suite
+      return AUnit.Test_Suites.Access_Test_Suite
+   is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
    begin

@@ -1,17 +1,16 @@
 with AUnit.Test_Caller;
 
 with Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
+use Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
 
 package body Constructeur_Bloc_32_Suite_P is
 
-   package Caller is new AUnit.Test_Caller
-      (Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P.Test_Fixt_T);
+   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
 
    ---------------------------------------------------------------------------
-   function Fonc_Constructeur_Bloc_32_Suite
+   function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      use Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
       nom_test : constant String := "(Test Constructeur Bloc 32 bits) ";
@@ -61,6 +60,6 @@ package body Constructeur_Bloc_32_Suite_P is
 
       return ptr_test_suite;
 
-   end Fonc_Constructeur_Bloc_32_Suite;
+   end Fonc_Suite;
 
 end Constructeur_Bloc_32_Suite_P;
