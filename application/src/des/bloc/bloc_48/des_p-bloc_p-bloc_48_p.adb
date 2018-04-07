@@ -22,10 +22,11 @@ package body Des_P.Bloc_P.Bloc_48_P is
    end Adjust;
 
    ---------------------------------------------------------------------------
+   overriding
    procedure Ecrire_Bit
       (
          B : in out Bloc_48_T;
-         Position : Intervalle_T;
+         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
          Bit : Bit_T
       )
    is
@@ -34,10 +35,11 @@ package body Des_P.Bloc_P.Bloc_48_P is
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
+   overriding
    function Lire_Bit
       (
          B : Bloc_48_T;
-         Position : Intervalle_T
+         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T
       )
       return Bit_T
    is

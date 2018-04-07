@@ -1,3 +1,5 @@
+with Des_P.Bloc_P.Bloc_48_I_P;
+
 package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
 
    ---------------------------------------------------------------------------
@@ -55,7 +57,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Constructeur_P is
       )
    is
       type Table_48_Bits_T is array
-         (Des_P.Bloc_P.Bloc_48_P.Intervalle_T)
+         (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T)
          of Bit_T
          with Size => 48, Pack;
 

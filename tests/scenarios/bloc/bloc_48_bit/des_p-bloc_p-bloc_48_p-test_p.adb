@@ -1,4 +1,5 @@
 with AUnit.Assertions;
+with Des_P.Bloc_P.Bloc_48_I_P;
 
 with Ada.Numerics.Discrete_Random;
 
@@ -26,7 +27,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
-      for I in Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
          valeur_bit := (if T.bloc.Bits (I) then 1 else 0);
          AUnit.Assertions.Assert
             (T.bloc.Bits (I) = b,
@@ -41,7 +42,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    procedure Test_Modification_Un_Bit_Par_Un_Bit (T : in out Test_Fixt_T) is
       Nb_Bit_A_Un : Natural;
    begin
-      for I in Intervalle_T loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (
                (for all I of T.bloc.Bits => I = False),
@@ -49,8 +50,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
             );
          T.bloc.Ecrire_Bit (I, True);
          Nb_Bit_A_Un := Natural'First;
-         for J in Intervalle_T loop
+         for J in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
             declare
+               use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
                b : constant Bit_T := J = I;
                valeur_attendu : constant Bit_IO_T := (if b then 1 else 0);
                --  valeur trouvée interne
@@ -106,13 +108,13 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      for I in Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
          b := Bit_Aleatoire.Random (generateur);
          T.bloc.Ecrire_Bit (I, b);
          attendu (I) := b;
       end loop;
 
-      for I in Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
          valeur_bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
          valeur_bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert

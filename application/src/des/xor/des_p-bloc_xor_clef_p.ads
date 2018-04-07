@@ -1,5 +1,5 @@
-with Des_P.Bloc_P.Bloc_48_P;
 with Des_P.Clef_P.Clef_48_I_P;
+with Des_P.Bloc_P.Bloc_48_I_P;
 
 --  @summary
 --  L'opération xor entre un bloc de bits et une clef.
@@ -13,10 +13,10 @@ package Des_P.Bloc_Xor_Clef_P is
 
    function "xor"
       (
-         Gauche : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+         Gauche : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class;
          Droite : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
-      return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      return Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class;
    --  Le xor entre le bloc et la clef de 48 bits.
    --  @param Gauche
    --  Le bloc de 48 bits.
@@ -27,9 +27,9 @@ package Des_P.Bloc_Xor_Clef_P is
    function "xor"
       (
          Gauche : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class;
-         Droite : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
+         Droite : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       )
-      return Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      return Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class;
    --  Le xor entre le bloc et la clef de 48 bits.
    --  @param Gauche
    --  La clef de 48 bits.

@@ -1,3 +1,5 @@
+with Des_P.Bloc_P.Bloc_48_I_P;
+
 --  @summary
 --  Un bloc de 48 bits de données.
 --  @description
@@ -8,10 +10,8 @@ package Des_P.Bloc_P.Bloc_48_P is
 
    pragma Pure;
 
-   type Intervalle_T is range 1 .. 48;
-   --  L'intervalle pour accéder à notre bloc de 48 bits.
-
-   type Bloc_48_T is new Bloc_Abstrait_T with private;
+   type Bloc_48_T is new Bloc_Abstrait_T and
+      Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with private;
    --  Représente un bloc de 32 bits.
 
    overriding
@@ -32,10 +32,11 @@ package Des_P.Bloc_P.Bloc_48_P is
    --  @param B
    --  Le bloc de 48 bits.
 
+   overriding
    procedure Ecrire_Bit
       (
          B : in out Bloc_48_T;
-         Position : Intervalle_T;
+         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
          Bit : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 48.
@@ -46,10 +47,11 @@ package Des_P.Bloc_P.Bloc_48_P is
    --  @param Bit
    --  Le bit qu'on veut écrire.
 
+   overriding
    function Lire_Bit
       (
          B : Bloc_48_T;
-         Position : Intervalle_T
+         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T
       )
       return Bit_T;
    --  Lit le bit demandé dans le bloc de 48.
@@ -61,8 +63,9 @@ package Des_P.Bloc_P.Bloc_48_P is
 
 private
 
-   type Tableau_Bits_T is array (Intervalle_T) of Bit_T
-      with Size => 48, Pack;
+   type Tableau_Bits_T is array
+      (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T)
+      of Bit_T with Size => 48, Pack;
    --  Le tableau de bits. Une case par bit.
    --  La taille du tableau est fixée à 48 bits dans un soucis
    --  de faciliter la manipulation par l'implémentation.
@@ -71,7 +74,8 @@ private
    --  l'utilisation de méthode de création plus fiable,
    --  notamment pour ne pas fausser l'ordre des bits lu.
 
-   type Bloc_48_T is new Bloc_Abstrait_T with
+   type Bloc_48_T is new Bloc_Abstrait_T and
+      Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with
       record
          Bits : Tableau_Bits_T;
       end record;

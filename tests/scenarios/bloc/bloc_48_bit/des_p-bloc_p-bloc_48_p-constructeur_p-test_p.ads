@@ -16,7 +16,7 @@ package Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P is
    --  1 1111 0
    --  1 0110 1
    resultat_attendu : constant array
-      (Intervalle_T) of Bit_T :=
+      (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T) of Bit_T :=
          (
             False, True, True, True, False, False,
             False, False, True, True, True, True,

@@ -1,23 +1,24 @@
 with AUnit.Assertions;
 
 with Des_P.Clef_P.Clef_48_Simple_P;
+with Des_P.Bloc_P.Bloc_48_I_P;
 
 package body Des_P.Bloc_Xor_Clef_P.Test_P is
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      I : Des_P.Bloc_P.Bloc_48_P.Intervalle_T :=
-         Des_P.Bloc_P.Bloc_48_P.Intervalle_T'First;
-      use type Des_P.Bloc_P.Bloc_48_P.Intervalle_T;
+      I : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T :=
+         Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'First;
+      use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
    begin
       loop
          T.bloc.Ecrire_Bit (I, True);
-         exit when I = Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Last;
-         I := Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Succ (I);
+         exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
+         I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
          T.bloc.Ecrire_Bit (I, False);
-         exit when I = Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Last;
-         I := Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Succ (I);
+         exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
+         I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
       end loop;
    end Set_Up;
 
@@ -37,9 +38,9 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
       bloc_resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
-      bloc_resultat := T.bloc xor Clef;
+      bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
 
-      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 
@@ -58,9 +59,9 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
       bloc_resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
-      bloc_resultat := T.bloc xor Clef;
+      bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
 
-      for I in Des_P.Bloc_P.Bloc_48_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 
