@@ -14,7 +14,7 @@ package body Constructeur_Sequentiel_Dechiffre_Suite_P is
       ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
       nom_test : constant String :=
-         "(Tests constructeur chaine dechiffrement) ";
+         "(Tests constructeur sequentiel dechiffrement) ";
    begin
 
       ptr_test_suite.all.Add_Test
