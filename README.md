@@ -309,7 +309,7 @@ Pour générer le fichier de 1,8 Mo qui a été utilisé pour les tests, tapez
 la commande
 
 ```
-./application/genererChaineAleatoire.sh -f autre.test -r 20
+./application/genererChaineAleatoire.sh -f autre.test -t $((1842160/8))
 ```
 
 #### Version Débogue
