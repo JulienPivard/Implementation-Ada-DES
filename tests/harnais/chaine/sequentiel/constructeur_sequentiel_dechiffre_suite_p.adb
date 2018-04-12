@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P.Test_P;
-use  Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P.Test_P;
+with Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P;
+use  Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P;
 
 package body Constructeur_Sequentiel_Dechiffre_Suite_P is
 

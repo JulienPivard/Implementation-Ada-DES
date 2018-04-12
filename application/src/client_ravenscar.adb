@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 29 mars[03] 2018
+--           Dernière modification : Jeudi 12 avril[04] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Profile (Ravenscar);
@@ -12,8 +12,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Command_Line;
 with Ada.Directories;
 
-with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
-with Des_P.Clef_P.Clef_64_P.Constructeur_P;
+with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
+with Des_P.Clef_P.Clef_64_P.Faiseur_P;
 with Des_P.Clef_P.Clef_64_P;
 
 with Procedure_Run_Ravenscar_P;
@@ -149,9 +149,9 @@ begin
       end if;
 
       declare
-         package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+         package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
          Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
-         C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+         C_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
          C_I : constant Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
       begin

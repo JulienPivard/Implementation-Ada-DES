@@ -1,10 +1,10 @@
 with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Chiffre_P;
-with Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P;
+with Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
+with Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
 
 with Des_P.Chaine_P.Taches_P;
-with Des_P.Chaine_P.Taches_P.Constructeur_Chiffre_P;
-with Des_P.Chaine_P.Taches_P.Constructeur_Dechiffre_P;
+with Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P;
+with Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;
 
 with Des_P.Clef_P.Clef_64_I_P.Holder_P;
 
@@ -22,7 +22,7 @@ package body Procedure_Run_P is
          C_Type : Chaine_Seq_Task_T
       )
    is
-      Faiseur : Faiseur_P.Constructeur_Interface_T'Class :=
+      Faiseur : Faiseur_P.Faiseur_Interface_T'Class :=
          Init_Faiseur_Chaine (Action, C_Type);
       Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
          Init_Chaine (Faiseur, Clef);
@@ -87,21 +87,21 @@ package body Procedure_Run_P is
          Action : Action_T;
          C_Type : Chaine_Seq_Task_T
       )
-      return Faiseur_P.Constructeur_Interface_T'Class
+      return Faiseur_P.Faiseur_Interface_T'Class
    is
       package Faiseur_S_C_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Chiffre_P;
+         Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
       package Faiseur_S_D_P renames
-         Des_P.Chaine_P.Sequentiel_P.Constructeur_Dechiffre_P;
+         Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
       package Faiseur_T_C_P renames
-         Des_P.Chaine_P.Taches_P.Constructeur_Chiffre_P;
+         Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P;
       package Faiseur_T_D_P renames
-         Des_P.Chaine_P.Taches_P.Constructeur_Dechiffre_P;
+         Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;
       --  Instancie tous les faiseur de chaine possible
-      Const_Chiffre_S : Faiseur_S_C_P.Constructeur_Chiffrement_T;
-      Const_Dechiff_S : Faiseur_S_D_P.Constructeur_Dechiffrement_T;
-      Const_Chiffre_T : Faiseur_T_C_P.Constructeur_Chiffrement_T;
-      Const_Dechiff_T : Faiseur_T_D_P.Constructeur_Dechiffrement_T;
+      Const_Chiffre_S : Faiseur_S_C_P.Faiseur_Chiffrement_T;
+      Const_Dechiff_S : Faiseur_S_D_P.Faiseur_Dechiffrement_T;
+      Const_Chiffre_T : Faiseur_T_C_P.Faiseur_Chiffrement_T;
+      Const_Dechiff_T : Faiseur_T_D_P.Faiseur_Dechiffrement_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.
@@ -150,15 +150,15 @@ package body Procedure_Run_P is
    ---------------------------------------------------------------------------
    function Init_Chaine
       (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Faiseur : in out Faiseur_P.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class
    is
       C_64 : constant Des_P.Clef_P.Clef_64_I_P.Holder_P.Holder :=
          Des_P.Clef_P.Clef_64_I_P.Holder_P.To_Holder (Clef);
-      F_56 : Faiseur_56_P.Constructeur_Clef_T;
-      F_48 : Faiseur_48_P.Constructeur_Clef_T;
+      F_56 : Faiseur_56_P.Faiseur_Clef_T;
+      F_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
       --  Les 3 instructions pour construire une nouvelle chaine
       Faiseur.Initialiser (F_56, F_48);

@@ -1,8 +1,8 @@
 with Des_P.Clef_P.Clef_64_I_P;
 
-private with Des_P.Chaine_P.Constructeur_I_P;
-private with Des_P.Clef_P.Clef_56_P.Constructeur_P;
-private with Des_P.Clef_P.Clef_48_P.Constructeur_P;
+private with Des_P.Chaine_P.Faiseur_I_P;
+private with Des_P.Clef_P.Clef_56_P.Faiseur_P;
+private with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
 --  @summary
 --  Une suite d'opérations utilisé par le client.
@@ -43,17 +43,17 @@ package Procedure_Run_P is
 
 private
 
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
+   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
+   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
-   package Faiseur_P renames Des_P.Chaine_P.Constructeur_I_P;
+   package Faiseur_P renames Des_P.Chaine_P.Faiseur_I_P;
 
    function Init_Faiseur_Chaine
       (
          Action : Action_T;
          C_Type : Chaine_Seq_Task_T
       )
-      return Faiseur_P.Constructeur_Interface_T'Class;
+      return Faiseur_P.Faiseur_Interface_T'Class;
    --  Initialise un constructeur de chaines.
    --  @param Action
    --  L'action à effectuer : chiffrer ou déchiffrer.
@@ -76,7 +76,7 @@ private
 
    function Init_Chaine
       (
-         Faiseur : in out Faiseur_P.Constructeur_Interface_T'Class;
+         Faiseur : in out Faiseur_P.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;

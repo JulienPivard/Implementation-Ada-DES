@@ -1,9 +1,9 @@
 with Ada.Sequential_IO;
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
 package Des_P.Chaine_P.Accee_Fichier_P is
 
-   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------

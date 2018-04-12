@@ -1,8 +1,8 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
-with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
+with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 
 with Des_P.Clef_P.Clef_64_P;
 
@@ -11,15 +11,15 @@ private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
 package Des_P.Chaine_P.Taches_P.Test_P is
 
    Brut_Original : constant
-   Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
+   Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T :=
    2#11110000_11110000_11110000_11110000_11110000_11110000_11110000_11110000#;
 
    Brut_Clef : constant
-   Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Clef_64_Brut_T :=
+   Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P.Clef_64_Brut_T :=
    2#11110000_11110000_11110000_11110000_11110000_11110000_11110000_11110000#;
 
    Brut_Attendu : constant
-   Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T :=
+   Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T :=
       15799177843826553255;
 
    Nom_Fichier : constant String := "fichier_taches.test";

@@ -1,5 +1,5 @@
-with Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P.Holder_P;
-with Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P.Holder_P;
+with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P.Holder_P;
+with Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P.Holder_P;
 with Des_P.Clef_P.Clef_56_I_P.Holder_P;
 
 package body Des_P.Faiseur_P is
@@ -7,12 +7,12 @@ package body Des_P.Faiseur_P is
    ---------------------------------------------------------------------------
    function Faire_Clef
       (
-         Faiseur : in out Faiseur_64_I_P.Constructeur_Interface_T'Class;
+         Faiseur : in out Faiseur_64_I_P.Faiseur_Interface_T'Class;
          Clef : Faiseur_64_I_P.Clef_64_Brut_T
       )
       return Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
    is
-      package Faiseur_C_P renames Des_P.Clef_P.Clef_64_I_P.Constructeur_I_P;
+      package Faiseur_C_P renames Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
       H : Faiseur_C_P.Holder_P.Holder :=
          Faiseur_C_P.Holder_P.To_Holder (Faiseur);
    begin
@@ -24,12 +24,12 @@ package body Des_P.Faiseur_P is
    ---------------------------------------------------------------------------
    function Faire_Clef
       (
-         Faiseur : in out Faiseur_56_I_P.Constructeur_Interface_T'Class;
+         Faiseur : in out Faiseur_56_I_P.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
    is
-      package Faiseur_C_P renames Des_P.Clef_P.Clef_56_I_P.Constructeur_I_P;
+      package Faiseur_C_P renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
       H : Faiseur_C_P.Holder_P.Holder :=
          Faiseur_C_P.Holder_P.To_Holder (Faiseur);
    begin
@@ -41,7 +41,7 @@ package body Des_P.Faiseur_P is
    ---------------------------------------------------------------------------
    function Faire_Clef
       (
-         Faiseur : in out Faiseur_48_I_P.Constructeur_Interface_T'Class;
+         Faiseur : in out Faiseur_48_I_P.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
       )
       return Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class

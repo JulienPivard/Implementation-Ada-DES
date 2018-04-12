@@ -1,14 +1,14 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-with Des_P.Clef_P.Clef_48_P.Constructeur_P;
+with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
 package Des_P.Clef_P.Clef_56_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
          clef_56 : Clef_T;
-         Faiseur : Des_P.Clef_P.Clef_48_P.Constructeur_P.Constructeur_Clef_T;
+         Faiseur : Des_P.Clef_P.Clef_48_P.Faiseur_P.Faiseur_Clef_T;
       end record;
 
    overriding

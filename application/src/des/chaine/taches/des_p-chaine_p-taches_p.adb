@@ -39,7 +39,7 @@ package body Des_P.Chaine_P.Taches_P is
 
          task body Etage_Ecriture is
             T_Tmp : Table_Holder_P.Holder;
-            C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
+            C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
          begin
             loop
                select
@@ -241,7 +241,7 @@ package body Des_P.Chaine_P.Taches_P is
          end Etage_Entree;
          --  (=v.v=)(=^.^=)(=O.o=)(=o.o=)(=o.O=)(=O.O=)(=$.$=)(=*.*=)  --
 
-         C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
+         C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
 
          Table : Table_Bloc_T (Indice_T);
          J : Indice_T;

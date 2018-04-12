@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
-use Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Test_P;
+with Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P;
+use  Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P;
 
 package body Constructeur_Bloc_32_Suite_P is
 

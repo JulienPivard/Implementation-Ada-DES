@@ -1,5 +1,5 @@
 private with Des_P.Etage_P.Filtrage_P;
-private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+private with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
 --  @summary
 --  Chaine de filtres séquentiel.
@@ -34,7 +34,7 @@ private
    procedure Execution
       (
          Chaine : Chaine_T;
-         Brut : in out Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T
+         Brut : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
       );
    --  Execute le filtrage du fichier.
    --  @param Chaine

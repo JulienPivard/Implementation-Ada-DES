@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Chaine_P.Ravenscar_P.Constructeur_Chiffre_P.Test_P;
-use  Des_P.Chaine_P.Ravenscar_P.Constructeur_Chiffre_P.Test_P;
+with Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P.Test_P;
+use  Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P.Test_P;
 
 package body Constructeur_Ravenscar_Chiffre_Suite_P is
 

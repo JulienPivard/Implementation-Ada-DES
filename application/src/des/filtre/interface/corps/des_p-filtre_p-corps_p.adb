@@ -1,7 +1,7 @@
 with Des_P.Bloc_Xor_Clef_P;
 with Des_P.Bloc_P.Bloc_48_P;
-with Des_P.Bloc_P.Bloc_48_P.Constructeur_P;
-with Des_P.Bloc_P.Bloc_32_P.Constructeur_P;
+with Des_P.Bloc_P.Bloc_48_P.Faiseur_P;
+with Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
 
 package body Des_P.Filtre_P.Corps_P is
 
@@ -15,8 +15,8 @@ package body Des_P.Filtre_P.Corps_P is
    is
       B : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       B_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-      C_48 : Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Constructeur_Bloc_48_T;
-      C_32 : Des_P.Bloc_P.Bloc_32_P.Constructeur_P.Constructeur_Bloc_32_T;
+      C_48 : Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Faiseur_Bloc_T;
+      C_32 : Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Faiseur_Bloc_T;
       use Des_P.Bloc_Xor_Clef_P;
    begin
       --  Extension du bloc de 32 en bloc de 48.

@@ -3,7 +3,7 @@ private with Ada.Containers.Indefinite_Holders;
 private with Des_P.Chaine_P.Limiteur_Jetons_P;
 private with Des_P.Chaine_P.Accee_Fichier_P;
 private with Des_P.Bloc_P.Bloc_64_P;
-private with Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+private with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
 private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
@@ -42,7 +42,7 @@ package Des_P.Chaine_P.Ravenscar_P is
 
 private
 
-   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Constructeur_P;
+   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
    package Limiteur_P renames Des_P.Chaine_P.Limiteur_Jetons_P;
 
    type Indice_T is range 1 .. 512;

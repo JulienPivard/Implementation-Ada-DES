@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Clef_P.Clef_56_P.Constructeur_P.Test_P;
-use  Des_P.Clef_P.Clef_56_P.Constructeur_P.Test_P;
+with Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P;
+use  Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P;
 
 package body Constructeur_Clef_56_Suite_P is
 

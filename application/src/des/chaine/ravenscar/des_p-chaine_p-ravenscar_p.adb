@@ -250,7 +250,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Lecteur_Tache is
       Table : Table_Bloc_T (Indice_T);
-      C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
+      C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
       J : Indice_T;
       ---------------------------------------------------------
       function Lire return C_Bloc_64_P.Bloc_64_Brut_T;
@@ -487,7 +487,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Ecriture_Tache is
-      C_64 : C_Bloc_64_P.Constructeur_Bloc_64_T;
+      C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
    begin
       Repetition_Ou_Non :
       loop

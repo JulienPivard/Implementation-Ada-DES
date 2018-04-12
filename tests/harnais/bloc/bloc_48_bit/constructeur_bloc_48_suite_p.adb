@@ -1,7 +1,7 @@
 with AUnit.Test_Caller;
 
-with Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P;
-use  Des_P.Bloc_P.Bloc_48_P.Constructeur_P.Test_P;
+with Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P;
+use  Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P;
 
 package body Constructeur_Bloc_48_Suite_P is
 

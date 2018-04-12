@@ -1,8 +1,8 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_64_P.Constructeur_P;
-with Des_P.Clef_P.Clef_56_P.Constructeur_P;
-with Des_P.Clef_P.Clef_48_P.Constructeur_P;
+with Des_P.Clef_P.Clef_64_P.Faiseur_P;
+with Des_P.Clef_P.Clef_56_P.Faiseur_P;
+with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 with Des_P.Clef_P.Clef_48_P;
 
 with Des_P.Filtre_P.Fabrique_P.Chiffre_P;
@@ -11,13 +11,13 @@ with Des_P.Faiseur_P;
 
 package body Des_P.Chaine_P.Taches_P.Test_P is
 
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Constructeur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Constructeur_P;
+   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
+   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C_C_64 : Des_P.Clef_P.Clef_64_P.Constructeur_P.Constructeur_Clef_T;
+      C_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
    begin
       C_C_64.Preparer_Nouvelle_Clef;
       C_C_64.Construire_Clef (Brut_Clef);
@@ -41,8 +41,8 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Chiffre_1 (T : in out Test_Fixt_T) is
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
@@ -78,7 +78,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          R : constant Accee_G_P.Reception_Blocs_T :=
             Ecriveur_Generateur.Lire_Resultat;
-         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
       begin
          AUnit.Assertions.Assert
             (R (Natural'First) = Brut_Attendu,
@@ -99,8 +99,8 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Dechiff_1 (T : in out Test_Fixt_T) is
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
       Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
       Lecteur_Generateur.Changer_Max_Genere (1);
@@ -139,7 +139,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          R : constant Accee_G_P.Reception_Blocs_T :=
             Ecriveur_Generateur.Lire_Resultat;
-         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
       begin
          AUnit.Assertions.Assert
             (R (Natural'First) = Brut_Original,
@@ -160,8 +160,8 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Chiffre_2048 (T : in out Test_Fixt_T) is
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
@@ -197,7 +197,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          R : constant Accee_G_P.Reception_Blocs_T :=
             Ecriveur_Generateur.Lire_Resultat;
-         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
          for E of R loop
@@ -214,8 +214,8 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Dechiff_2048 (T : in out Test_Fixt_T) is
-      Const_56 : Faiseur_56_P.Constructeur_Clef_T;
-      Const_48 : Faiseur_48_P.Constructeur_Clef_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
       Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
       Lecteur_Generateur.Changer_Max_Genere (2048);
@@ -254,7 +254,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       declare
          R : constant Accee_G_P.Reception_Blocs_T :=
             Ecriveur_Generateur.Lire_Resultat;
-         use type Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
          for E of R loop

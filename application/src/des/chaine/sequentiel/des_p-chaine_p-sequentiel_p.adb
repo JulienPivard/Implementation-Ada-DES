@@ -16,14 +16,14 @@ package body Des_P.Chaine_P.Sequentiel_P is
       )
    is
       package Lecteur_64_IO is new Ada.Sequential_IO
-      (Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T);
+      (Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T);
 
       --  Les fichiers à lire et à écrire.
       Fichier : Lecteur_64_IO.File_Type;
       Resultat : Lecteur_64_IO.File_Type;
 
       --  Le brut bits.
-      Brut : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T;
+      Brut : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
 
@@ -66,10 +66,10 @@ package body Des_P.Chaine_P.Sequentiel_P is
    procedure Execution
       (
          Chaine : Chaine_T;
-         Brut : in out Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Bloc_64_Brut_T
+         Brut : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
       )
    is
-      C_64 : Des_P.Bloc_P.Bloc_64_P.Constructeur_P.Constructeur_Bloc_64_T;
+      C_64 : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Faiseur_Bloc_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
    begin
       --  Construction du bloc de 64 bits.
