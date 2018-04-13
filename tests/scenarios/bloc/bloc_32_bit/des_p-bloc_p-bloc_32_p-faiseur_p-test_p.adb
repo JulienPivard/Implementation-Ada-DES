@@ -1,4 +1,5 @@
 with AUnit.Assertions;
+with Des_P.Bloc_P.Bloc_48_P;
 
 package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
 
