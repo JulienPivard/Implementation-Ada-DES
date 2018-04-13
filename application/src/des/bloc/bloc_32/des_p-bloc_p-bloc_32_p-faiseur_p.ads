@@ -1,4 +1,4 @@
-with Des_P.Bloc_P.Bloc_48_P;
+with Des_P.Bloc_P.Bloc_48_I_P;
 
 --  @summary
 --  Constructeur de bloc de 32 bits.
@@ -49,7 +49,7 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
+         Brut : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       );
    --  Construit un bloc de 32 bits réduction d'un bloc de 48 bits.
    --  @param Constructeur

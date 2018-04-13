@@ -1,5 +1,3 @@
-with Des_P.Bloc_P.Bloc_48_I_P;
-
 package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
    ---------------------------------------------------------------------------
@@ -53,7 +51,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
+         Brut : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       )
    is
       type Table_48_Bits_T is array
