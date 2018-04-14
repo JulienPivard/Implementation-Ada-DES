@@ -376,14 +376,13 @@ function remplir_fichier()
     touch "${FIC}"
     declare -i i=0
     declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
-    echo "Nombre de répétitions : ${NB_REPETITIONS}"
     while [[ "${i}" -lt "${NB_REPETITIONS}" ]]
     do
-        cat "${FICHIER_LOREM}" >> "${FIC}"
+        cat -- "${FICHIER_LOREM}" >> "${FIC}"
         (( i++ ))
     done
     declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
-    cat "${FICHIER_LOREM}" | head -c "${RESTE}" >> "${FIC}"
+    head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
 }
 
 # }}}
@@ -478,6 +477,13 @@ fi
 #                   Exécution                     #
 ###################################################
 
-remplir_fichier "${FICHIER}" "${TAILLE}"
+declare -ri NB_BLOCS_EN_TROP=$(( ${TAILLE} % 8 ))
+if [[ "${NB_BLOCS_EN_TROP}" -eq 0 ]]
+then
+    remplir_fichier "${FICHIER}" "${TAILLE}"
+else
+    echo "Le fichier n'est pas composé de blocs de 8 octets."
+    echo "Il y a [ ${NB_BLOCS_EN_TROP} ] octet(s) en trop."
+fi
 
 exit "${EXIT_SUCCES}";
