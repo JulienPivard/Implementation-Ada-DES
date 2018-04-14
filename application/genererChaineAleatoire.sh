@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Dimanche 08 avril[04] 2018
+# Dernière modification : Samedi 14 avril[04] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -370,9 +370,20 @@ function traitement_option_f()
 function remplir_fichier()
 {
     local -r FIC="${1}"
-    local -r TAILLE_FIC="${2}"
+    local -r FICHIER_LOREM="lorem.txt"
+    local -ri TAILLE_FIC="${2}"
+    local -ri TAILLE_LOREM=`ls -l "${FICHIER_LOREM}" | cut -d " " -f 8`
     touch "${FIC}"
-    dd if=/dev/urandom of="${FIC}" bs=8 count="${TAILLE_FIC}"
+    declare -i i=0
+    declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
+    echo "Nombre de répétitions : ${NB_REPETITIONS}"
+    while [[ "${i}" -lt "${NB_REPETITIONS}" ]]
+    do
+        cat "${FICHIER_LOREM}" >> "${FIC}"
+        (( i++ ))
+    done
+    declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
+    cat "${FICHIER_LOREM}" | head -c "${RESTE}" >> "${FIC}"
 }
 
 # }}}
