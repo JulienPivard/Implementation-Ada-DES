@@ -382,7 +382,10 @@ function remplir_fichier()
         (( i++ ))
     done
     declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
-    head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
+    if [[ "${RESTE}" -ne 0 ]]
+    then
+        head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
+    fi
 }
 
 # }}}
