@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Samedi 14 avril[04] 2018
+# Dernière modification : Dimanche 15 avril[04] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -482,8 +482,8 @@ if [[ "${NB_BLOCS_EN_TROP}" -eq 0 ]]
 then
     remplir_fichier "${FICHIER}" "${TAILLE}"
 else
-    echo "Le fichier n'est pas composé de blocs de 8 octets."
-    echo "Il y a [ ${NB_BLOCS_EN_TROP} ] octet(s) en trop."
+    message_erreur "Le fichier n'est pas composé de blocs de 8 octets."
+    afficher_erreur "Il y a" "${NB_BLOCS_EN_TROP}" "octet(s) en trop."
 fi
 
 exit "${EXIT_SUCCES}";
