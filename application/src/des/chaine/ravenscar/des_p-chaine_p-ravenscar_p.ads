@@ -64,6 +64,37 @@ private
    --  Une grappe de blocs avec un drapeau pour savoir si
    --  c'est la dernière.
 
+   procedure Filtrer
+      (
+         D : in out Donnee_T;
+         Procedure_Filtre : not null access
+            procedure (Table : in out Table_Bloc_T)
+      );
+
+   procedure Appliquer
+      (
+         D : Donnee_T;
+         Procedure_Appliquee : not null access
+            procedure (Table : Table_Bloc_T)
+      );
+
+   procedure Ecrire_Table
+      (
+         D : in out Donnee_T;
+         T : Table_Bloc_T
+      );
+
+   procedure Ecrire_Est_Derniere
+      (
+         D : in out Donnee_T;
+         Fini : Boolean
+      );
+
+   function Est_Derniere
+      (D : Donnee_T)
+      return Boolean
+   is (D.Est_Derniere_Grappe);
+
    package Donnee_Holder_P is new
       Ada.Containers.Indefinite_Holders (Donnee_T);
 

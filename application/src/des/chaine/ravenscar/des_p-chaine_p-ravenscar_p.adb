@@ -51,6 +51,53 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    --                               Partie privée                           --
    ---------------------------------------------------------------------------
+
+   ---------------------------------------------------------------------------
+   procedure Filtrer
+      (
+         D : in out Donnee_T;
+         Procedure_Filtre : not null access
+         procedure (Table : in out Table_Bloc_T)
+      )
+   is
+   begin
+      Procedure_Filtre (D.Table.Reference);
+   end Filtrer;
+
+   ---------------------------------------------------------------------------
+   procedure Appliquer
+      (
+         D : Donnee_T;
+         Procedure_Appliquee : not null access
+            procedure (Table : Table_Bloc_T)
+      )
+   is
+   begin
+      Procedure_Appliquee (D.Table.Element);
+   end Appliquer;
+
+   ---------------------------------------------------------------------------
+   procedure Ecrire_Table
+      (
+         D : in out Donnee_T;
+         T : Table_Bloc_T
+      )
+   is
+   begin
+      D.Table := Table_Holder_P.To_Holder (T);
+   end Ecrire_Table;
+
+   ---------------------------------------------------------------------------
+   procedure Ecrire_Est_Derniere
+      (
+         D : in out Donnee_T;
+         Fini : Boolean
+      )
+   is
+   begin
+      D.Est_Derniere_Grappe := Fini;
+   end Ecrire_Est_Derniere;
+
    ---------------------------------------------------------------------------
    protected body Avorter_Protegee is
       ---------------------------------------------------------
@@ -295,9 +342,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
             begin
                --  Si le tableau de blocs n'est pas plein on n'utilise pas
                --  entièrement le tableau mais seulement la sous partie utile.
-               D.Table := Table_Holder_P.To_Holder
-                  (Table (Indice_T'First .. J));
-               D.Est_Derniere_Grappe := Lecteur.all.Est_Fini;
+               Ecrire_Table (D, Table (Indice_T'First .. J));
+               Ecrire_Est_Derniere (D, Lecteur.all.Est_Fini);
                --  Lancement du filtrage de la grappe de blocs.
                Donnee_Debut.Ecrire_Donnee_Entree (D);
             end;
@@ -357,13 +403,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
                --  Signal que les données ont été lue.
                Donnee_Debut.Lire_Donnee (D);
                --  Filtrage des données
-               Filtrer_Grappe (D.Table.Reference);
+               Filtrer (D, Filtrer_Grappe'Access);
                --  Envoie des données a la tache suivante.
                Donnee_01.Ecrire_Donnee_Entree (D);
                --  Autorise la tache suivante à lire.
                Autorisateur_01.Autoriser;
 
-               exit Filtrage when D.Est_Derniere_Grappe;
+               exit Filtrage when Est_Derniere (D);
             end;
 
          end loop Filtrage;
@@ -411,14 +457,14 @@ package body Des_P.Chaine_P.Ravenscar_P is
                --  Signal que les données ont été lue.
                Donnee_Recue.all.Lire_Donnee (D);
                --  Filtrage des données
-               Filtrer_Grappe (D.Table.Reference);
+               Filtrer (D, Filtrer_Grappe'Access);
                --  Envoie des données a la tache suivante.
                Donnee_A_Envoyer.all.Ecrire_Donnee_Entree (D);
 
                --  Autorise la tache suivante à lire.
                Autorisateur_Envoyee.all.Autoriser;
 
-               exit Filtrage when D.Est_Derniere_Grappe;
+               exit Filtrage when Est_Derniere (D);
 
             end;
 
@@ -466,13 +512,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
                --  Signal que les données ont été lue.
                Donnee_17.Lire_Donnee (D);
                --  Filtrage des données
-               Filtrer_Grappe (D.Table.Reference);
+               Filtrer (D, Filtrer_Grappe'Access);
                --  Envoie des données a la tache suivante.
                Donnee_Fin.Ecrire_Donnee_Entree (D);
                --  Autorise la tache suivante à lire.
                Autorisateur_Fin.Autoriser;
 
-               exit Filtrage when D.Est_Derniere_Grappe;
+               exit Filtrage when Est_Derniere (D);
             end;
 
          end loop Filtrage;
@@ -488,6 +534,21 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Ecriture_Tache is
       C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
+      ---------------------------------------------------------
+      procedure Ecrire_Grappe (T : Table_Bloc_T);
+      procedure Ecrire_Grappe (T : Table_Bloc_T) is
+      begin
+         for E of T loop
+            declare
+               --  Transformation du bloc en un brut
+               Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
+                  := C_64.Transformer_En_Brut (E);
+            begin
+               Ecriveur.all.Ecrire (Brut);
+            end;
+         end loop;
+      end Ecrire_Grappe;
+      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -505,19 +566,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
             begin
                Donnee_Fin.Lire_Donnee (D);
                --  On écrit les données dans le fichier
-               for E of D.Table.Element loop
-                  declare
-                     --  Transformation du bloc en un brut
-                     Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
-                        := C_64.Transformer_En_Brut (E);
-                  begin
-                     Ecriveur.all.Ecrire (Brut);
-                  end;
-               end loop;
+               Appliquer (D, Ecrire_Grappe'Access);
                --  On signal que le bloc n'est plus dans le pipeline
                Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
 
-               exit Ecriture_Fichier when D.Est_Derniere_Grappe;
+               exit Ecriture_Fichier when Est_Derniere (D);
             end;
 
          end loop Ecriture_Fichier;
