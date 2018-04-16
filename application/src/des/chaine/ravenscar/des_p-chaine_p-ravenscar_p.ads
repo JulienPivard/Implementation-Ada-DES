@@ -70,6 +70,11 @@ private
          Procedure_Filtre : not null access
             procedure (Table : in out Table_Bloc_T)
       );
+   --  Applique le filtre à la données.
+   --  @param D
+   --  La donnée à laquelle appliquer le filtre.
+   --  @param Procedure_Filtre
+   --  Le filtre à appliquer.
 
    procedure Appliquer
       (
@@ -77,23 +82,42 @@ private
          Procedure_Appliquee : not null access
             procedure (Table : Table_Bloc_T)
       );
+   --  Applique le filtre à la données.
+   --  @param D
+   --  La donnée à laquelle appliquer le filtre.
+   --  @param Procedure_Filtre
+   --  Le filtre à appliquer.
 
    procedure Ecrire_Table
       (
          D : in out Donnee_T;
          T : Table_Bloc_T
       );
+   --  Modifie la table stockée dans la donnée
+   --  @param D
+   --  La donnée.
+   --  @param T
+   --  La table de données.
 
    procedure Ecrire_Est_Derniere
       (
          D : in out Donnee_T;
          Fini : Boolean
       );
+   --  Signal que la grappe de donnée est la dernière.
+   --  @param D
+   --  La donnée.
+   --  @param Fini
+   --  La grappe de donnée est la dernière.
 
    function Est_Derniere
       (D : Donnee_T)
       return Boolean
    is (D.Est_Derniere_Grappe);
+   --  Indique si la donnée est la dernière
+   --  @param D
+   --  La donnée.
+   --  @return La donnée est la dernière grappe.
 
    package Donnee_Holder_P is new
       Ada.Containers.Indefinite_Holders (Donnee_T);
