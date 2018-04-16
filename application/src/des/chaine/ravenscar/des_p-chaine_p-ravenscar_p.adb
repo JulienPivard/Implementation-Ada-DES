@@ -24,11 +24,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
       --  Initialisation des filtres dans les étages.
       Filtre_Entree_Protegee.Changer_Filtre (Chaine.Filtre_Entree.Element);
-      Filtre_Sortie_Protegee.Changer_Filtre (Chaine.Filtre_Sortie.Element);
       for I in Numero_Filtre_T loop
          Table_Filtreur (I).all.Changer_Filtre
             (Chaine.Filtres_Corps (I).Element);
       end loop;
+      Filtre_Sortie_Protegee.Changer_Filtre (Chaine.Filtre_Sortie.Element);
 
       --  Lancement du chiffrement.
       Demarreur_Protegee.Demarrer;
@@ -252,15 +252,6 @@ package body Des_P.Chaine_P.Ravenscar_P is
       Table : Table_Bloc_T (Indice_T);
       C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
       J : Indice_T;
-      ---------------------------------------------------------
-      function Lire return C_Bloc_64_P.Bloc_64_Brut_T;
-      function Lire return C_Bloc_64_P.Bloc_64_Brut_T is
-         Brut : C_Bloc_64_P.Bloc_64_Brut_T;
-      begin
-         Lecteur.all.Lire (Brut);
-         return Brut;
-      end Lire;
-      ---------------------------------------------------------
    begin
       Repetition_Ou_Non :
       loop
@@ -280,7 +271,16 @@ package body Des_P.Chaine_P.Ravenscar_P is
                --  Transformation du brut lu en un bloc.
                C_64.Preparer_Nouveau_Bloc;
                declare
-                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T := Lire;
+                  ---------------------------------------------------------
+                  function Lire_Grappe return C_Bloc_64_P.Bloc_64_Brut_T;
+                  function Lire_Grappe return C_Bloc_64_P.Bloc_64_Brut_T is
+                     Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+                  begin
+                     Lecteur.all.Lire (Brut);
+                     return Brut;
+                  end Lire_Grappe;
+                  ---------------------------------------------------------
+                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T := Lire_Grappe;
                begin
                   C_64.Construire_Bloc (Brut);
                end;
@@ -504,6 +504,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                D : Donnee_T;
             begin
                Donnee_Fin.Lire_Donnee (D);
+               --  On écrit les données dans le fichier
                for E of D.Table.Element loop
                   declare
                      --  Transformation du bloc en un brut
@@ -513,6 +514,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                      Ecriveur.all.Ecrire (Brut);
                   end;
                end loop;
+               --  On signal que le bloc n'est plus dans le pipeline
                Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
 
                exit Ecriture_Fichier when D.Est_Derniere_Grappe;
