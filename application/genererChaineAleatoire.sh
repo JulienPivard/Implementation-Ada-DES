@@ -359,10 +359,10 @@ function traitement_option_t()
     if [[ "${ARGUMENT}" =~ ^([0-9]+)$ ]]
     then
         TAILLE="${ARGUMENT}"
-    elif [[ "${ARGUMENT}" =~ ^([0-9]+[BKMG])$ ]]
+    elif [[ "${ARGUMENT}" =~ ^([0-9]+([.][0-9]+)?[BKMG])$ ]]
     then
         # Récupération de la partie entière
-        TAILLE="${ARGUMENT:0:${#ARGUMENT}-1}"
+        local Taille_Tmp="${ARGUMENT:0:${#ARGUMENT}-1}"
         # Récupération de l'unité
         local UNITEE="${ARGUMENT:${#ARGUMENT}-1}"
         # Si c'est des K une multiplication
@@ -370,16 +370,19 @@ function traitement_option_t()
         # Si c'est des G trois multiplications
         if [[ "${UNITEE}" =~ ^[KMG]$ ]]
         then
-            TAILLE=$(( ${TAILLE} * 1024 ))
+            Taille_Tmp=`bc <<< "${Taille_Tmp} * 1024 / 1"`
         fi
         if [[ "${UNITEE}" =~ ^[MG]$ ]]
         then
-            TAILLE=$(( ${TAILLE} * 1024 ))
+            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
         fi
         if [[ "${UNITEE}" =~ ^[G]$ ]]
         then
-            TAILLE=$(( ${TAILLE} * 1024 ))
+            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
         fi
+        declare -ri RESTE_TMP=$(( ${Taille_Tmp} % 8 ))
+        # Si fichier pas multiple de 8 octets alors on rajoute pour combler
+        TAILLE=$(( ${Taille_Tmp} - ${RESTE_TMP} ))
     else
         afficher_erreur "La taille doit être une valeur entière"
         exit "${E_TAILLE_PAS_VALEUR}"
