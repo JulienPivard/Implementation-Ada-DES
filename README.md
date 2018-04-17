@@ -161,7 +161,7 @@ Une description de la structure du projet.
 ├── README.md
 ├── application/
 │   ├── build.gpr                   # La configuration du projet
-│   ├── genererChaineAleatoire.sh   # Générateur de fichier dont la taille
+│   ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
 │   │                               # est un multiple de 64 bits.
 │   ├── makefile
 │   ├── makefile.checks     # Vérifications des variables de la configuration
@@ -309,7 +309,7 @@ Pour générer le fichier de 1,8 Mo qui a été utilisé pour les tests, tapez
 la commande
 
 ```
-./application/genererChaineAleatoire.sh -f autre.test -t $((1842160))
+./application/genererFichierAleatoire.sh -f autre.test -t 1.8M
 ```
 
 #### Version Débogue
