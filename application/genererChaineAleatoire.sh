@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Dimanche 15 avril[04] 2018
+# Dernière modification : mardi 17 avril[04] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -166,6 +166,7 @@ function which_cmd()
     which "${1}" 2>/dev/null || command -v "${1}" 2>/dev/null
 }
 
+# Vérifie que la commande existe
 function test_cmd_exist()
 {
     which_cmd "${1}" >/dev/null 2>&1 && return 0
@@ -372,14 +373,19 @@ function remplir_fichier()
     local -r FIC="${1}"
     local -r FICHIER_LOREM="lorem.txt"
     local -ri TAILLE_FIC="${2}"
-    local -ri TAILLE_LOREM=`ls -l "${FICHIER_LOREM}" | cut -d " " -f 8`
+    if du -b -- ${FICHIER_LOREM} >/dev/null 2>&1
+    then
+        local -ri TAILLE_LOREM=`du -b -- "${FICHIER_LOREM}" | cut -f 1`
+    else
+        local -ri TAILLE_LOREM=`ls -l -- "${FICHIER_LOREM}" | cut -d " " -f 8`
+    fi
     touch "${FIC}"
     declare -i i=0
     declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
     while [[ "${i}" -lt "${NB_REPETITIONS}" ]]
     do
         cat -- "${FICHIER_LOREM}" >> "${FIC}"
-        (( i++ ))
+        (( i++ )) || true
     done
     declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
     if [[ "${RESTE}" -ne 0 ]]
