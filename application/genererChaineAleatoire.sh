@@ -91,7 +91,9 @@ declare -ri E_OPT_NECESSITE_ARG=84
 declare -ri E_OPT_INCONNUE=85
 declare -ri E_OPT_NON_TRAITEE=86
 
-declare -ri FICHIER_EXISTE_DEJA=87
+declare -ri E_FICHIER_EXISTE_DEJA=87
+declare -ri E_TAILLE_PAS_VALEUR=88
+declare -ri E_FICHIER_TROP_GROS=89
 
 #}}}
 
@@ -345,14 +347,50 @@ function afficher_aide()
     local -r NOM_SCRIPT=`basename "${0}"`
     printf >&2 "${NOM_SCRIPT} [-h|f]\n"
     printf >&2 "    -t --taille \n        La taille du fichier en octets\n"
+    printf >&2 "        Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)\n"
     printf >&2 "    -f --fichier\n        Le nom du fichier à créer\n"
     printf >&2 "    -h --help   \n        Affiche l'aide et quitte\n"
 }
 
 function traitement_option_t()
 {
+
     local -r ARGUMENT="${1}"
-    TAILLE="${ARGUMENT}"
+    if [[ "${ARGUMENT}" =~ ^([0-9]+)$ ]]
+    then
+        TAILLE="${ARGUMENT}"
+    elif [[ "${ARGUMENT}" =~ ^([0-9]+[BKMG])$ ]]
+    then
+        # Récupération de la partie entière
+        TAILLE="${ARGUMENT:0:${#ARGUMENT}-1}"
+        # Récupération de l'unité
+        local UNITEE="${ARGUMENT:${#ARGUMENT}-1}"
+        # Si c'est des K une multiplication
+        # Si c'est des M deux multiplications
+        # Si c'est des G trois multiplications
+        if [[ "${UNITEE}" =~ ^[KMG]$ ]]
+        then
+            TAILLE=$(( ${TAILLE} * 1024 ))
+        fi
+        if [[ "${UNITEE}" =~ ^[MG]$ ]]
+        then
+            TAILLE=$(( ${TAILLE} * 1024 ))
+        fi
+        if [[ "${UNITEE}" =~ ^[G]$ ]]
+        then
+            TAILLE=$(( ${TAILLE} * 1024 ))
+        fi
+    else
+        afficher_erreur "La taille doit être une valeur entière"
+        exit "${E_TAILLE_PAS_VALEUR}"
+    fi
+    # Si la taille est supérieur à 5G
+    # 5_368_709_120
+    if [[ "${TAILLE}" -ge 5368709120 ]]
+    then
+        afficher_erreur "Le fichier à créer est de trop grande taille. Limite : 5_368_709_120 (5G)"
+        exit "${E_FICHIER_TROP_GROS}"
+    fi
 }
 
 function traitement_option_f()
@@ -361,7 +399,7 @@ function traitement_option_f()
     if [[ -e "${ARGUMENT}" ]]
     then
         afficher_erreur "Le fichier" "${ARGUMENT}" "existe déjà"
-        exit "${FICHIER_EXISTE_DEJA}"
+        exit "${E_FICHIER_EXISTE_DEJA}"
     fi
     FICHIER="${ARGUMENT}"
 }
