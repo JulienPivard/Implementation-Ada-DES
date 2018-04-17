@@ -406,6 +406,64 @@ function traitement_option_f()
 
 # }}}
 
+function afficher_barre_progression()
+{
+
+    # Vérifie qu'on a bien une longueur
+    declare -r LONGUEUR="${1}"
+    if [[ "${LONGUEUR}" -le 0 ]]
+    then
+        afficher_erreur "La taille" "${LONGUEUR}" "ne peut pas être négative"
+    fi
+    # Vérifie que l'on est bien face à un pourcentage
+    declare -r POURCENT="${2}"
+    if [[ "${POURCENT}" -gt 100 || "${POURCENT}" -lt 0 ]]
+    then
+        afficher_erreur "Le pourcentage max" "${POURCENT}" "de la barre à été dépassé."
+        exit "${E_100_POURCENT_MAX}"
+    fi
+
+    declare -r BAR_CAR_DEBUT='['
+    declare -r BAR_CAR_FIN=']'
+    declare -r BAR_CAR_VIDE='░'
+    declare -r BAR_CAR_FLECHE='▓'
+    declare -r BAR_CAR_PLEINE='█'
+    declare -r NB_CROCHETS=2
+
+    # Calcul le nombre de caractères plein
+    declare -r nb_car_plein=$(( ( ( ${LONGUEUR} - ${NB_CROCHETS} ) * ${POURCENT} ) / 100 ))
+    declare -r nb_car_vides=$(( ${LONGUEUR} - ${NB_CROCHETS} - ${nb_car_plein} ))
+
+    # On fabrique la partie pleine de la barre
+    ligne="${BAR_CAR_DEBUT}"
+    for (( j = 0; j < nb_car_plein; j++ ))
+    do
+        ligne="${ligne}${BAR_CAR_PLEINE}"
+    done
+
+    # On place la flèche si la barre n'est pas finie
+    if [[ "${nb_car_vides}" -eq 0 ]]
+    then
+        ligne="${ligne}${BAR_CAR_PLEINE}"
+    elif [[ "${nb_car_plein}" -ne 0 ]]
+    then
+        ligne="${ligne}${BAR_CAR_FLECHE}"
+    fi
+
+    # On fabrique la partie vide de la barre
+    for (( j = 0; j < nb_car_vides; j++ ))
+    do
+        ligne="${ligne}${BAR_CAR_VIDE}"
+    done
+
+    ligne="${ligne}${BAR_CAR_FIN}"
+
+    printf "%3d%% %s" "${POURCENT}" "${ligne}"
+    tput el
+    printf "\r"
+
+}
+
 function remplir_fichier()
 {
     local -r FIC="${1}"
@@ -420,16 +478,31 @@ function remplir_fichier()
     touch "${FIC}"
     declare -i i=0
     declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
+    printf "Remplissage du fichier ...\n"
+    if [[ "${NB_REPETITIONS}" -ge 100 ]]
+    then
+        afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "0"
+    fi
     while [[ "${i}" -lt "${NB_REPETITIONS}" ]]
     do
+        if [[ "${NB_REPETITIONS}" -ge 100 ]]
+        then
+            afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "$(( 100 * ${i} / ${NB_REPETITIONS} ))"
+        fi
         cat -- "${FICHIER_LOREM}" >> "${FIC}"
         (( i++ )) || true
     done
+    if [[ "${NB_REPETITIONS}" -ge 100 ]]
+    then
+        afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "100"
+        echo ""
+    fi
     declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
     if [[ "${RESTE}" -ne 0 ]]
     then
         head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
     fi
+    message_ok
 }
 
 # }}}
