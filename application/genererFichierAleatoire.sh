@@ -468,6 +468,11 @@ function afficher_barre_progression()
 
 }
 
+function vide()
+{
+    return
+}
+
 function remplir_fichier()
 {
     local -r FIC="${1}"
@@ -490,21 +495,22 @@ function remplir_fichier()
 
     if [[ "${NB_REPETITIONS}" -ge 100 ]]
     then
-        afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "0"
+        local -r PROGRESSION="afficher_barre_progression"
+    else
+        local -r PROGRESSION="vide"
     fi
+
+    "$PROGRESSION" "$(( ${NB_COLONNES} /2 ))" "0"
     while [[ "${i}" -lt "${NB_REPETITIONS}" ]]
     do
-        if [[ "${NB_REPETITIONS}" -ge 100 ]]
-        then
-            afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "$(( 100 * ${i} / ${NB_REPETITIONS} ))"
-        fi
+        "${PROGRESSION}" "$(( ${NB_COLONNES} /2 ))" "$(( 100 * ${i} / ${NB_REPETITIONS} ))"
         cat -- "${FICHIER_LOREM}" >> "${FIC}"
         (( i++ )) || true
     done
+    "${PROGRESSION}" "$(( ${NB_COLONNES} /2 ))" "100"
 
     if [[ "${NB_REPETITIONS}" -ge 100 ]]
     then
-        afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "100"
         echo ""
     fi
     local -ri RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
