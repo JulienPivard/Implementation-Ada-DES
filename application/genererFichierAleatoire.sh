@@ -463,7 +463,7 @@ function afficher_barre_progression()
     ligne="${ligne}${BAR_CAR_FIN}"
 
     printf "%3d%% %s" "${POURCENT}" "${ligne}"
-    tput el
+    tput el     # Efface jusqu'à la fin de la ligne
     printf "\r"
 
 }
@@ -473,17 +473,21 @@ function remplir_fichier()
     local -r FIC="${1}"
     local -r FICHIER_LOREM="lorem.txt"
     local -ri TAILLE_FIC="${2}"
+
     if du -b -- ${FICHIER_LOREM} >/dev/null 2>&1
     then
         local -ri TAILLE_LOREM=`du -b -- "${FICHIER_LOREM}" | cut -f 1`
     else
         local -ri TAILLE_LOREM=`ls -l -- "${FICHIER_LOREM}" | cut -d " " -f 8`
     fi
+
     touch "${FIC}"
-    declare -i i=0
-    declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
+    local -i i=0
+    local -ri NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
+
     tput civis      # Curseur invisible
     printf "Remplissage du fichier ...\n"
+
     if [[ "${NB_REPETITIONS}" -ge 100 ]]
     then
         afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "0"
@@ -497,12 +501,13 @@ function remplir_fichier()
         cat -- "${FICHIER_LOREM}" >> "${FIC}"
         (( i++ )) || true
     done
+
     if [[ "${NB_REPETITIONS}" -ge 100 ]]
     then
         afficher_barre_progression "$(( ${NB_COLONNES} /2 ))" "100"
         echo ""
     fi
-    declare -i RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
+    local -ri RESTE=$(( ${TAILLE_FIC} - (${TAILLE_LOREM} * ${NB_REPETITIONS}) ))
     if [[ "${RESTE}" -ne 0 ]]
     then
         head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
