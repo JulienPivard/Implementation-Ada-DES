@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : mardi 17 avril[04] 2018
+# Dernière modification : Lundi 23 avril[04] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -122,6 +122,7 @@ function gestion_erreurs()
 # On ferme le script. Cette fonction sera exécutée en dernière
 function nettoyage_fin_script()
 {
+    tput cnorm      # Curseur visible
     exit
 }
 
@@ -481,6 +482,7 @@ function remplir_fichier()
     touch "${FIC}"
     declare -i i=0
     declare -i NB_REPETITIONS=$(( ${TAILLE_FIC} / ${TAILLE_LOREM} ))
+    tput civis      # Curseur invisible
     printf "Remplissage du fichier ...\n"
     if [[ "${NB_REPETITIONS}" -ge 100 ]]
     then
@@ -506,6 +508,7 @@ function remplir_fichier()
         head -c "${RESTE}" -- "${FICHIER_LOREM}" >> "${FIC}"
     fi
     message_ok
+    tput cnorm      # Curseur visible
 }
 
 # }}}
