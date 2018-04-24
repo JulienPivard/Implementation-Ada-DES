@@ -92,6 +92,7 @@ begin
 
    --  L'argument optionnel -c ou -d à été donné
    if Nb_Arguments = 3 then
+      Lire_Option_Chiffrement :
       declare
          Chiffre_Dechiffre : constant String :=
             Ada.Command_Line.Argument (1);
@@ -123,7 +124,7 @@ begin
                (Ada.Command_Line.Failure);
             return;
          end if;
-      end;
+      end Lire_Option_Chiffrement;
    end if;
 
    Initialiser_Clef :
@@ -148,6 +149,7 @@ begin
          return;
       end if;
 
+      Transformer_En_Clef :
       declare
          package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
          Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
@@ -156,7 +158,7 @@ begin
             Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
       begin
          Clef := Des_P.Clef_P.Clef_64_P.Clef_T (C_I);
-      end;
+      end Transformer_En_Clef;
    end Initialiser_Clef;
 
    Ouverture_Fichier :
