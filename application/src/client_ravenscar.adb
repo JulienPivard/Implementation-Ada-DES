@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Mardi 24 avril[04] 2018
+--           Dernière modification : Mercredi 25 avril[04] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Profile (Ravenscar);
@@ -133,12 +133,12 @@ begin
    declare
       Position_Clef : constant Positive :=
          (if Nb_Arguments = 3 then 3 else 2);
-      Clef_Brut : String := Ada.Command_Line.Argument (Position_Clef);
-      Taille_Clef : Natural;
+      Clef_Brut : constant String :=
+         Ada.Command_Line.Argument (Position_Clef);
+      Taille_Clef : constant Natural := Clef_Brut'Size;
    begin
-      Taille_Clef := Clef_Brut'Size / 8;
       --  La clef est un bloc de 64 bits
-      if Taille_Clef /= 8 then
+      if Taille_Clef /= 64 then
          Put_Line (Standard_Error, "██████ Erreur !");
          Put_Line (Standard_Error,
                "   La taille de la clef doit être de 8 octets exactement.");
@@ -161,6 +161,7 @@ begin
          C_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
          C_I : constant Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
+         pragma Unreferenced (C_C_64);
       begin
          Clef := Des_P.Clef_P.Clef_64_P.Clef_T (C_I);
       end Transformer_En_Clef;
