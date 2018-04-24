@@ -173,8 +173,6 @@ begin
          (if Nb_Arguments = 3 then 2 else 1);
       Nom_Fichier : constant String := Ada.Command_Line.Argument
          (Position_Nom_Fic);
-      Octets_En_Trop : Ada.Directories.File_Size;
-      use type Ada.Directories.File_Size;
    begin
       --  Vérification de l'existence du fichier
       if not Ada.Directories.Exists (Nom_Fichier) then
@@ -189,28 +187,32 @@ begin
          return;
       end if;
 
-      --  Vérification de la taille du fichier.
-      --  Si il n'est pas multiple de 64 bits : termine sur une erreur.
-      Octets_En_Trop :=
-         Ada.Directories.Size (Nom_Fichier) mod 8;
+      Verifier_Taille_Fichier :
+      declare
+         --  Vérification de la taille du fichier.
+         --  Si il n'est pas multiple de 64 bits : termine sur une erreur.
+         use type Ada.Directories.File_Size;
+         Octets_En_Trop : constant Ada.Directories.File_Size :=
+            Ada.Directories.Size (Nom_Fichier) mod 8;
+      begin
+         --  La taille est en octet, 64 bits fait 8 octets,
+         --  d'où l'utilisation de mod 8.
+         if not (Octets_En_Trop = 0) then
+            Put_Line (Standard_Error, "██████ Erreur !");
+            Ada.Text_IO.Put_Line
+               (
+                  Ada.Text_IO.Standard_Error,
+                  "   La taille du fichier n'est pas un multiple de 64 bits."
+               );
+            Ada.Text_IO.Put ("   ");
+            Ada.Text_IO.Put (Octets_En_Trop'Img);
+            Ada.Text_IO.Put_Line (" Octets de trop.");
 
-      --  La taille est en octet, 64 bits fait 8 octets,
-      --  d'où l'utilisation de mod 8.
-      if not (Octets_En_Trop = 0) then
-         Put_Line (Standard_Error, "██████ Erreur !");
-         Ada.Text_IO.Put_Line
-            (
-               Ada.Text_IO.Standard_Error,
-               "   La taille du fichier n'est pas un multiple de 64 bits."
-            );
-         Ada.Text_IO.Put ("   ");
-         Ada.Text_IO.Put (Octets_En_Trop'Img);
-         Ada.Text_IO.Put_Line (" Octets de trop.");
-
-         Procedure_Run_Ravenscar_P.Avorter;
-         Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
-         return;
-      end if;
+            Procedure_Run_Ravenscar_P.Avorter;
+            Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
+            return;
+         end if;
+      end Verifier_Taille_Fichier;
 
       --  Lancement du chiffrement ou déchiffrement
       Procedure_Run_Ravenscar_P.Executer_Chiffrement
