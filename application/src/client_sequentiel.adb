@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 12 avril[04] 2018
+--           Dernière modification : Mardi 24 avril[04] 2018
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -102,12 +102,14 @@ begin
             Chiffre_Dechiffre = "--chiffrer"
          then
             Action := Procedure_Run_P.Chiffrer;
+
          elsif
             Chiffre_Dechiffre = "-d"
             or else
             Chiffre_Dechiffre = "--dechiffrer"
          then
             Action := Procedure_Run_P.Dechiffrer;
+
          else
             Put (Standard_Error, "L'argument [");
             Ada.Text_IO.Put
@@ -132,6 +134,7 @@ begin
       Taille_Clef : Natural;
    begin
       Taille_Clef := Clef_Brut'Size / 8;
+      --  La clef est un bloc de 64 bits
       if Taille_Clef /= 8 then
          Put_Line (Standard_Error, "██████ Erreur !");
          Put_Line (Standard_Error,
