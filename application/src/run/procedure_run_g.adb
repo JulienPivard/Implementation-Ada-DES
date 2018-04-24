@@ -1,32 +1,23 @@
-with Des_P.Chaine_P.Sequentiel_P;
-with Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
-with Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
-
-with Des_P.Chaine_P.Taches_P;
-with Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P;
-with Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;
-
 with Des_P.Clef_P.Clef_64_I_P.Holder_P;
 
 with Ada.Real_Time;
 with Ada.Text_IO;
 
-package body Procedure_Run_P is
+package body Procedure_Run_G is
 
    ---------------------------------------------------------------------------
    procedure Executer_Chiffrement
       (
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
          Nom_Fichier : String;
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
+         Action : Action_T
       )
    is
-      Faiseur : Faiseur_P.Faiseur_Interface_T'Class :=
-         Init_Faiseur_Chaine (Action, C_Type);
-      Chaine : Des_P.Chaine_P.Chaine_Interface_T'Class :=
+      Faiseur : Faiseur_I_P.Faiseur_Interface_T'Class :=
+         Init_Faiseur_Chaine (Action);
+      Chaine : constant Des_P.Chaine_P.Chaine_Interface_T'Class :=
          Init_Chaine (Faiseur, Clef);
-      Extension : constant String := Init_Extension (Action, C_Type);
+      Extension : constant String := Init_Extension (Action);
 
       Debut, Fin : Ada.Real_Time.Time;
       package Duree_IO is new
@@ -47,16 +38,7 @@ package body Procedure_Run_P is
       --------------------------------------
       Ada.Text_IO.New_Line (1);
       --  Affiche le temps de filtrage du fichier.
-      Ada.Text_IO.Put
-         (
-            "Temps " &
-            (
-               case C_Type is
-                  when Sequentiel => "séquentiel",
-                  when Tache => "parallèle"
-            ) &
-            " : "
-         );
+      Ada.Text_IO.Put ("Temps ravenscar : ");
       Ada.Text_IO.New_Line (1);
       --  Conversion du temps pour faciliter l'affichage.
       Affichage_Temps :
@@ -84,62 +66,33 @@ package body Procedure_Run_P is
    ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
       (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
+         Action : Action_T
       )
-      return Faiseur_P.Faiseur_Interface_T'Class
+      return Faiseur_I_P.Faiseur_Interface_T'Class
    is
-      package Faiseur_S_C_P renames
-         Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
-      package Faiseur_S_D_P renames
-         Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
-      package Faiseur_T_C_P renames
-         Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P;
-      package Faiseur_T_D_P renames
-         Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;
-      --  Instancie tous les faiseur de chaine possible
-      Const_Chiffre_S : Faiseur_S_C_P.Faiseur_Chiffrement_T;
-      Const_Dechiff_S : Faiseur_S_D_P.Faiseur_Dechiffrement_T;
-      Const_Chiffre_T : Faiseur_T_C_P.Faiseur_Chiffrement_T;
-      Const_Dechiff_T : Faiseur_T_D_P.Faiseur_Dechiffrement_T;
+      Const_Chiffre : Faiseur_Chiffrement_G_T;
+      Const_Dechiff : Faiseur_Dechiffrement_G_T;
    begin
       --  Le faiseur sélectionné par le type action et le type
       --  séquentiel ou tache.
       return
          (
             case Action is
-               when Chiffrer =>
-                  (
-                     case C_Type is
-                        when Tache => Const_Chiffre_T,
-                        when Sequentiel => Const_Chiffre_S
-                  ),
-               when Dechiffrer =>
-                  (
-                     case C_Type is
-                        when Tache => Const_Dechiff_T,
-                        when Sequentiel => Const_Dechiff_S
-                  )
+               when Chiffrer => Const_Chiffre,
+               when Dechiffrer => Const_Dechiff
          );
    end Init_Faiseur_Chaine;
 
    ---------------------------------------------------------------------------
    function Init_Extension
       (
-         Action : Action_T;
-         C_Type : Chaine_Seq_Task_T
+         Action : Action_T
       )
       return String
    is
    begin
       --  Initialise l'extension du fichier alternatif.
-      return
-         (
-            case C_Type is
-               when Sequentiel => "sequ",
-               when Tache => "task"
-         )
-         & "." &
+      return Extension & "." &
          (
             case Action is
                when Chiffrer => "chiffre",
@@ -150,7 +103,7 @@ package body Procedure_Run_P is
    ---------------------------------------------------------------------------
    function Init_Chaine
       (
-         Faiseur : in out Faiseur_P.Faiseur_Interface_T'Class;
+         Faiseur : in out Faiseur_I_P.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class
@@ -166,4 +119,4 @@ package body Procedure_Run_P is
       return Faiseur.Recuperer_Chaine;
    end Init_Chaine;
 
-end Procedure_Run_P;
+end Procedure_Run_G;

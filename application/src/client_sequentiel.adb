@@ -15,7 +15,7 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 with Des_P.Clef_P.Clef_64_P.Faiseur_P;
 with Des_P.Clef_P.Clef_64_P;
 
-with Procedure_Run_P;
+with Procedure_Run_Sequentiel_P;
 
 with Des_P.Faiseur_P;
 
@@ -47,7 +47,7 @@ procedure Client_Sequentiel is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
-   Action : Procedure_Run_P.Action_T;
+   Action : Procedure_Run_Sequentiel_P.Action_T;
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
 begin
@@ -102,14 +102,14 @@ begin
             or else
             Chiffre_Dechiffre = "--chiffrer"
          then
-            Action := Procedure_Run_P.Chiffrer;
+            Action := Procedure_Run_Sequentiel_P.Chiffrer;
 
          elsif
             Chiffre_Dechiffre = "-d"
             or else
             Chiffre_Dechiffre = "--dechiffrer"
          then
-            Action := Procedure_Run_P.Dechiffrer;
+            Action := Procedure_Run_Sequentiel_P.Dechiffrer;
 
          else
             Put (Standard_Error, "L'argument [");
@@ -210,8 +210,8 @@ begin
       end Verifier_Taille_Fichier;
 
       --  Lancement du chiffrement
-      Procedure_Run_P.Executer_Chiffrement
-         (Clef, Nom_Fichier, Action, Procedure_Run_P.Sequentiel);
+      Procedure_Run_Sequentiel_P.Executer_Chiffrement
+         (Clef, Nom_Fichier, Action);
    end Ouverture_Fichier;
 
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);

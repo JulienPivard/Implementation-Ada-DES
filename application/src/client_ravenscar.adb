@@ -16,6 +16,7 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 with Des_P.Clef_P.Clef_64_P.Faiseur_P;
 with Des_P.Clef_P.Clef_64_P;
 
+with Des_P.Chaine_P.Ravenscar_P;
 with Procedure_Run_Ravenscar_P;
 
 with Des_P.Faiseur_P;
@@ -48,6 +49,15 @@ procedure Client_Ravenscar is
    end Afficher_Aide;
    ---------------------------------------------------------------------------
 
+   ---------------------------------------------------------------------------
+   procedure Avorter_Taches;
+
+   procedure Avorter_Taches is
+   begin
+      Des_P.Chaine_P.Ravenscar_P.Faire_Avorter;
+   end Avorter_Taches;
+   ---------------------------------------------------------------------------
+
    Action : Procedure_Run_Ravenscar_P.Action_T;
    Clef : Des_P.Clef_P.Clef_64_P.Clef_T;
 
@@ -57,7 +67,7 @@ begin
    if Nb_Arguments = 0 then
 
       Afficher_Aide;
-      Procedure_Run_Ravenscar_P.Avorter;
+      Avorter_Taches;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
       return;
 
@@ -73,7 +83,7 @@ begin
          Ada.Text_IO.Put_Line
             (Ada.Text_IO.Standard_Error, Ada.Command_Line.Argument (i));
       end loop;
-      Procedure_Run_Ravenscar_P.Avorter;
+      Avorter_Taches;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
@@ -86,7 +96,7 @@ begin
             Standard_Error,
             "Vous devez donner au moins le <nom_fichier> et la <clef>."
          );
-      Procedure_Run_Ravenscar_P.Avorter;
+      Avorter_Taches;
       Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
       return;
 
@@ -122,7 +132,7 @@ begin
                   Standard_Error,
                   "] n'est pas valable"
                );
-            Procedure_Run_Ravenscar_P.Avorter;
+            Avorter_Taches;
             Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
             return;
          end if;
@@ -149,7 +159,7 @@ begin
 
          --  Si la clef n'est pas de la bonne taille il faut demander
          --  aux taches de se finir.
-         Procedure_Run_Ravenscar_P.Avorter;
+         Avorter_Taches;
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
@@ -182,7 +192,7 @@ begin
             (Ada.Text_IO.Standard_Error, Nom_Fichier);
          Put_Line (Standard_Error, "] n'existe pas");
 
-         Procedure_Run_Ravenscar_P.Avorter;
+         Avorter_Taches;
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          return;
       end if;
@@ -208,7 +218,7 @@ begin
             Ada.Text_IO.Put (Octets_En_Trop'Img);
             Ada.Text_IO.Put_Line (" Octets de trop.");
 
-            Procedure_Run_Ravenscar_P.Avorter;
+            Avorter_Taches;
             Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
             return;
          end if;
@@ -219,7 +229,7 @@ begin
          (Clef, Nom_Fichier, Action);
    end Ouverture_Fichier;
 
-   Procedure_Run_Ravenscar_P.Avorter;
+   Avorter_Taches;
    Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
    return;
 
