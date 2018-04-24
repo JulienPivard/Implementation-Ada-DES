@@ -151,14 +151,17 @@ begin
 
       Transformer_En_Clef :
       declare
-         package C_I_P renames Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
-         Brut_Clef : C_I_P.Clef_64_Brut_T with Address => Clef_Brut'Address;
-         C_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
-         C_I : constant Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class :=
-            Des_P.Faiseur_P.Faire_Clef (C_C_64, Brut_Clef);
-         pragma Unreferenced (C_C_64);
+         package Clef_I_P renames Des_P.Clef_P.Clef_64_I_P;
+
+         F_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
+         Brut_Clef : Clef_I_P.Faiseur_I_P.Clef_64_Brut_T
+            with Address => Clef_Brut'Address;
+         Clef_I : constant Clef_I_P.Clef_Interface_T'Class :=
+            Des_P.Faiseur_P.Faire_Clef (F_C_64, Brut_Clef);
+         pragma Unreferenced (F_C_64);
+         pragma Unreferenced (Brut_Clef);
       begin
-         Clef := Des_P.Clef_P.Clef_64_P.Clef_T (C_I);
+         Clef := Des_P.Clef_P.Clef_64_P.Clef_T (Clef_I);
       end Transformer_En_Clef;
    end Initialiser_Clef;
 
