@@ -1,6 +1,12 @@
 with Ada.Sequential_IO;
 with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
+--  @summary
+--  Accès aux fichiers.
+--  @description
+--  Gestion de la lecture et de l'écriture dans les fichiers. Se charge
+--  d'éviter les écritures multiple dans le fichier de sortie.
+--  @group Objets Protégé
 package Des_P.Chaine_P.Accee_Fichier_P is
 
    package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
@@ -36,7 +42,8 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  @param Brut
    --  La donnée à écrire dans le fichier.
 
-   procedure Fermer_Fichier (Ecriveur : in out Ecriveur_Protegee_T)
+   procedure Fermer_Fichier
+      (Ecriveur : in out Ecriveur_Protegee_T)
    is abstract;
    --  Ferme le fichier.
    --  @param Ecriveur
@@ -94,13 +101,15 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    protected type Ecriveur_Fichier_Protegee
    is new Ecriveur_Protegee_T with
       overriding
-      procedure Ouvrir_Fichier (Nom : String);
+      procedure Ouvrir_Fichier
+         (Nom : String);
       --  Ouvre le fichier.
       --  @param Nom
       --  Le nom du fichier à ouvrir.
 
       overriding
-      procedure Ecrire (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
+      procedure Ecrire
+         (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
       --  Écrit la donnée dans le fichier.
       --  @param Brut
       --  La donnée à écrire dans le fichier.
@@ -118,13 +127,15 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    protected type Lecteur_Fichier_Protegee
    is new Lecteur_Protegee_T with
       overriding
-      procedure Ouvrir_Fichier (Nom : String);
+      procedure Ouvrir_Fichier
+         (Nom : String);
       --  Ouvre le fichier.
       --  @param Nom
       --  Le nom du fichier à ouvrir.
 
       overriding
-      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
+      procedure Lire
+         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
       --  Lit la donnée dans le fichier.
       --  @param Brut
       --  La donnée lu dans le fichier.
