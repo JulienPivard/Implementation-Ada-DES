@@ -41,21 +41,37 @@ package body Procedure_Run_G is
       --  Conversion du temps pour faciliter l'affichage.
       Affichage_Temps :
       declare
-         Duree : constant Duration :=
+         type Temps_T is new Natural;
+         Duree_Exact : constant Duration :=
             Ada.Real_Time.To_Duration (Fin - Debut);
+         Duree : constant Temps_T := Temps_T (Duree_Exact);
+         Minuttes : constant Temps_T := 60;
+         Indentation : constant String := "         ";
          package Duree_IO is new Ada.Text_IO.Fixed_IO (Duration);
+         package Temps_IO is new Ada.Text_IO.Integer_IO (Temps_T);
       begin
-         Duree_IO.Put (Duree);
+         Ada.Text_IO.Put (Indentation);
+         Duree_IO.Put (Duree_Exact, 0);
          Ada.Text_IO.Put_Line (" s");
          --  Affichage en minuttes.
-         if Duree > 60.0 then
-            Duree_IO.Put (Duree / 60.0);
-            Ada.Text_IO.Put_Line (" min");
+         if Duree_Exact > 60.0 then
+            Ada.Text_IO.Put (Indentation);
+            Temps_IO.Put (Duree / Minuttes, 0);
+            Ada.Text_IO.Put (" min et ");
+            Temps_IO.Put (Duree mod Minuttes, 0);
+            Ada.Text_IO.Put_Line (" s");
          end if;
          --  Affichage en heures.
-         if Duree > 3600.0 then
-            Duree_IO.Put (Duree / 3600.0);
-            Ada.Text_IO.Put_Line (" h");
+         if Duree_Exact > 3600.0 then
+            declare
+               Heures : constant Temps_T := 3600;
+            begin
+               Ada.Text_IO.Put (Indentation);
+               Temps_IO.Put (Duree / Heures, 0);
+               Ada.Text_IO.Put (" h et ");
+               Temps_IO.Put ((Duree mod Heures) / Minuttes, 0);
+               Ada.Text_IO.Put_Line (" m");
+            end;
          end if;
       end Affichage_Temps;
       Ada.Text_IO.New_Line (1);
