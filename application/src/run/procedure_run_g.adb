@@ -20,8 +20,6 @@ package body Procedure_Run_G is
       Extension : constant String := Init_Extension (Action);
 
       Debut, Fin : Ada.Real_Time.Time;
-      package Duree_IO is new
-      Ada.Text_IO.Fixed_IO (Duration);
       use type Ada.Real_Time.Time;
    begin
       --  Note le début du temps.
@@ -45,6 +43,7 @@ package body Procedure_Run_G is
       declare
          Duree : constant Duration :=
             Ada.Real_Time.To_Duration (Fin - Debut);
+         package Duree_IO is new Ada.Text_IO.Fixed_IO (Duration);
       begin
          Duree_IO.Put (Duree);
          Ada.Text_IO.Put_Line (" s");
