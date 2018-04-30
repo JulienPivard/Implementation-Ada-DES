@@ -14,6 +14,7 @@ private with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 generic
 
    Extension : String;
+   Nom_Version : String;
    --  Constructeur de chaine de chiffrement.
    type Faiseur_Chiffrement_G_T is new
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with private;

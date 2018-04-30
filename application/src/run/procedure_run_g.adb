@@ -38,7 +38,7 @@ package body Procedure_Run_G is
       --------------------------------------
       Ada.Text_IO.New_Line (1);
       --  Affiche le temps de filtrage du fichier.
-      Ada.Text_IO.Put ("Temps ravenscar : ");
+      Ada.Text_IO.Put ("Temps " & Nom_Version & " : ");
       Ada.Text_IO.New_Line (1);
       --  Conversion du temps pour faciliter l'affichage.
       Affichage_Temps :
