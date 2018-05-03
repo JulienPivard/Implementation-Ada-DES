@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 16 mars[03] 2018
+--  Dernière modification : Jeudi 03 mai[05] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -192,6 +192,16 @@ project Build is
          );
 
    end Cross_Reference;
+
+   --  Les options pour gnatprove
+   --  report mode
+   --  fail          - Report failures to prove checks (default)
+   --  all           - Report all results of proving checks
+   --  provers       - Same as all, plus prover usage information
+   --  statistics    - Same as provers, plus timing and steps information
+   package Prove is
+      for Switches use ("--report=fail");
+   end Prove;
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions

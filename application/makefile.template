@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 07 avril[04] 2018
+# Dernière modification : Jeudi 03 mai[05] 2018
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	= 1.5.0
+MAKEFILE_V	= 1.6.0
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
