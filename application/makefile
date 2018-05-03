@@ -1,13 +1,13 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 29 mars[03] 2018
+# Dernière modification : Jeudi 03 mai[05] 2018
 
-SHELL		= /bin/sh
+SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
 # Les suffixes des fichiers dont on va tenir compte
 .SUFFIXES:
 
-srcdir		= .
+srcdir		:= .
 
 include ./makefile.conf
 include ./makefile.checks
