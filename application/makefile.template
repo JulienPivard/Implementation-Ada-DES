@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 03 mai[05] 2018
+# Dernière modification : samedi 05 mai[05] 2018
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,26 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	= 1.6.0
+MAKEFILE_V	:= 1.6.0
+
+# Ajout du chemin du compilateur gnat dans le path
+GNAT_GPR_PROJECT_PATH_LINUX	:= /usr/gnat/lib/gnat
+GNAT_LD_LIB_LINUX		:= /usr/gnat/lib/gps
+GNAT_BIN_LINUX			:= /usr/gnat/bin
+
+GNAT_GPR_PROJECT_PATH_MACOS	:= /usr/local/gnat/lib/gnat
+GNAT_LD_LIB_MACOS		:= /usr/local/gnat/lib
+GNAT_BIN_MACOS			:= /usr/local/gnat/bin
+
+ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
+    PATH		:= $(GNAT_BIN_MACOS):$(PATH)
+    LD_LIBRARY_PATH	:= $(GNAT_LD_LIB_MACOS):$(LD_LIBRARY_PATH)
+    GPR_PROJECT_PATH	:= $(GNAT_GPR_PROJECT_PATH_MACOS)
+else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
+    PATH		:= $(GNAT_BIN_LINUX):$(PATH)
+    LD_LIBRARY_PATH	:= $(GNAT_LD_LIB_LINUX):$(LD_LIBRARY_PATH)
+    GPR_PROJECT_PATH	:= $(GNAT_GPR_PROJECT_PATH_LINUX)
+endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -56,14 +75,14 @@ distclean: clean
 	-$(RM) $(OPTRM) bin
 	@echo "─────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
-ifneq ($(wildcard $(VARNOMFICHIER).*), )
+    ifneq ($(wildcard $(VARNOMFICHIER).*), )
 	-$(RM) $(OPTRM) ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) \
 	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S) \
 	                ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T) \
 	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T) \
 	                ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R) \
 	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)
-endif
+   endif
 endif
 
 ###################

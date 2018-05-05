@@ -1,27 +1,9 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 03 mai[05] 2018
+# Dernière modification : samedi 05 mai[05] 2018
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
-# Ajout du chemin du compilateur gnat dans le path
-GNAT_GPR_PROJECT_PATH_LINUX	:= /usr/gnat/lib/gnat
-GNAT_LD_LIB_LINUX		:= /usr/gnat/lib
-GNAT_BIN_LINUX			:= /usr/gnat/bin
-
-GNAT_GPR_PROJECT_PATH_MACOS	:= /usr/local/gnat/lib/gnat
-GNAT_LD_LIB_MACOS		:= /usr/local/gnat/lib
-GNAT_BIN_MACOS			:= /usr/local/gnat/bin
-
-ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
-    PATH		:= $(GNAT_BIN_MACOS):$(PATH)
-    LD_LIBRARY_PATH	:= $(GNAT_LD_LIB_MACOS):$(LD_LIBRARY_PATH)
-    GPR_PROJECT_PATH	:= $(GNAT_GPR_PROJECT_PATH_MACOS)
-else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
-    PATH		:= $(GNAT_BIN_LINUX):$(PATH)
-    LD_LIBRARY_PATH	:= $(GNAT_LD_LIB_LINUX):$(LD_LIBRARY_PATH)
-    GPR_PROJECT_PATH	:= $(GNAT_GPR_PROJECT_PATH_LINUX)
-endif
 # Les suffixes des fichiers dont on va tenir compte
 .SUFFIXES:
 
