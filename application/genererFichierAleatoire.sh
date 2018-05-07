@@ -31,7 +31,7 @@ exit "${ERREUR}"' ERR
 ###############################################################################
 
 #(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)#
-#                          genererChaineAleatoire.sh                          #
+#                         genererFichierAleatoire.sh                          #
 #                          écrit par : PIVARD Julien                          #
 #                       contact : pivardjulien@gmail.com                      #
 #                                  01/03/2018                                 #
