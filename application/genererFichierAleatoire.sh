@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Lundi 23 avril[04] 2018
+# Dernière modification : lundi 07 mai[05] 2018
 
 # Arrête le script si une variable non initialisé est utilisée
 set -u
@@ -95,6 +95,7 @@ declare -ri E_FICHIER_EXISTE_DEJA=87
 declare -ri E_TAILLE_PAS_VALEUR=88
 declare -ri E_FICHIER_TROP_GROS=89
 declare -ri E_TAILLE_NON_MOD_64=90
+declare -ri E_BC_PAS_INSTALLE=91
 
 #}}}
 
@@ -614,6 +615,12 @@ fi
 ###################################################
 #                   Exécution                     #
 ###################################################
+
+if ! test_cmd_exist bc
+then
+    message_erreur "Le logiciel" "bc" "n'est pas installé"
+    exit "${E_BC_PAS_INSTALLE}"
+fi
 
 declare -ri NB_BLOCS_EN_TROP=$(( ${TAILLE} % 8 ))
 if [[ "${NB_BLOCS_EN_TROP}" -eq 0 ]]
