@@ -94,6 +94,7 @@ declare -ri E_OPT_NON_TRAITEE=86
 declare -ri E_FICHIER_EXISTE_DEJA=87
 declare -ri E_TAILLE_PAS_VALEUR=88
 declare -ri E_FICHIER_TROP_GROS=89
+declare -ri E_TAILLE_NON_MOD_64=90
 
 #}}}
 
@@ -621,6 +622,7 @@ then
 else
     message_erreur "Le fichier n'est pas composé de blocs de 8 octets."
     afficher_erreur "Il y a" "${NB_BLOCS_EN_TROP}" "octet(s) en trop."
+    exit "${E_TAILLE_NON_MOD_64}"
 fi
 
 exit "${EXIT_SUCCES}";
