@@ -163,10 +163,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       --  Rassemble le bit de début et de fin
       --  pour former le numéro de la ligne.
+      --  Transforme le tableau de bits en un octet.
       Ligne_Intermediaire_1 : constant Ligne_Intermediaire_T :=
          (Bloc_Intermediaire.Debut_1, Bloc_Intermediaire.Fin_1, others => 0);
       Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
-      --  Transforme le tableau de bits en un octet.
 
       Ligne_Intermediaire_2 : constant Ligne_Intermediaire_T :=
          (Bloc_Intermediaire.Debut_2, Bloc_Intermediaire.Fin_2, others => 0);
