@@ -152,14 +152,17 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       Bloc_Intermediaire : Bloc_Intermediaire_T
          with Address => Table_48_Bits'Address;
 
-      --  Représentation intermédiaire de la ligne.
-      type Ligne_Intermediaire_T is array
-         (Natural range 0 .. 7)
-         of Debut_Fin_T
-         with Size => 8, Pack;
       --  Représentation final de la ligne.
       type Ligne_T is mod 2**2
          with Size => 8;
+      --  Représentation intermédiaire de la ligne.
+      --  La taille de la table utilisée est déterminée par la taille réel
+      --  du type vers lequel la conversion est faite pour éviter
+      --  des bits parasites au delà des deux que l'ont veut convertir.
+      type Ligne_Intermediaire_T is array
+         (Natural range 1 .. Ligne_T'Base'Size)
+         of Debut_Fin_T
+         with Size => Ligne_T'Base'Size, Pack;
 
       --  Rassemble le bit de début et de fin
       --  pour former le numéro de la ligne.
