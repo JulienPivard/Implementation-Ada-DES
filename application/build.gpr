@@ -24,6 +24,7 @@ project Build is
    Fichiers_Principaux := Fichiers_Principaux & ("client_taches.adb");
    Fichiers_Principaux := Fichiers_Principaux & ("client_ravenscar.adb");
 
+   --  Le nom du fichier qui contient la procédure principale.
    for Main                      use Fichiers_Principaux;
 
    --  Pour ignorer des fichiers sources de la compilation
