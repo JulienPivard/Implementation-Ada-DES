@@ -1,15 +1,15 @@
---  Dernière modification : Mardi 13 mars[03] 2018
+--  Dernière modification : Lundi 14 mai[05] 2018
 --  auteur : PIVARD Julien
 with "aunit";
 with "application/build.gpr";
 
 project Unitaire is
 
-   Procedure_Principal           := "main_test_harnais";
+   Fichier_Principal             := "main_test_harnais.adb";
    Nom_Executable                := "test_unitaire_executable";
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use (Procedure_Principal);
+   for Main                      use (Fichier_Principal);
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
@@ -87,7 +87,7 @@ project Unitaire is
 
       --  Pour changer le nom du binaire de main_test_harnais à
       --  test_unitaire_executable après le use.
-      for Executable ("main_test_harnais") use Nom_Executable;
+      for Executable ("main_test_harnais.adb") use Nom_Executable;
 
    end Builder;
 

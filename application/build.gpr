@@ -1,4 +1,4 @@
---  Dernière modification : Jeudi 03 mai[05] 2018
+--  Dernière modification : Lundi 14 mai[05] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -20,11 +20,11 @@ project Build is
    Personnalisee     : Personnalisee_T       := External ("peso", "non");
 
    --  Le nom du fichier qui contient la procédure principale.
-   Proc_Principales := ("client_sequentiel");
-   Proc_Principales := Proc_Principales & ("client_taches");
-   Proc_Principales := Proc_Principales & ("client_ravenscar");
+   Fichiers_Principaux := ("client_sequentiel.adb");
+   Fichiers_Principaux := Fichiers_Principaux & ("client_taches.adb");
+   Fichiers_Principaux := Fichiers_Principaux & ("client_ravenscar.adb");
 
-   for Main                      use Proc_Principales;
+   for Main                      use Fichiers_Principaux;
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
