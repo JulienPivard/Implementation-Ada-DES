@@ -266,9 +266,149 @@ else
     declare -r C_SUR___IBLEU="" C_SUR_IVIOLET="" C_SUR___ICYAN="" C_SUR__IBLANC=""
 fi
 
-#}}}
+        #}}}
 
-# Affichage simplifié des erreurs           #{{{
+    #}}}
+
+#{{{ Fonctions généralistes utilisant des couleurs #
+####################################################
+
+# ligne_vide                        {{{
+function ligne_vide ()
+{
+    printf >&2 '\n'
+}
+
+        #}}}
+
+# separateur_section                {{{
+function separateur_section ()
+{
+    printf >&2 '%s\n' " --- ${NEUTRE}${M__DIM}${M_GRAS}${*}${NEUTRE} --- "
+}
+
+        #}}}
+
+# message_ok                        {{{
+function message_ok ()
+{
+    printf >&2 "${NEUTRE}${C_SUR___VERT}${C__BLANC}${M_GRAS} OK ${NEUTRE} "
+    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || ligne_vide
+    ligne_vide
+}
+
+        #}}}
+
+# message_erreur                    {{{
+function message_erreur ()
+{
+    printf >&2 "${NEUTRE}${C_SUR__ROUGE}${C__BLANC}${M_GRAS} ERREUR ${NEUTRE} "
+    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || ligne_vide
+    ligne_vide
+}
+
+        #}}}
+
+# message_attention                 {{{
+function message_attention ()
+{
+    printf >&2 "${NEUTRE}${C_SUR__JAUNE}${C__BLANC}${M_GRAS} ATTENTION ! ${NEUTRE} "
+    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || ligne_vide
+    ligne_vide
+}
+
+        #}}}
+
+# message_avertissement             {{{
+function message_avertissement ()
+{
+    printf >&2 "${NEUTRE}${C_SUR___CYAN}${C__BLANC}${M_GRAS} AVERTISSEMENT ! ${NEUTRE} "
+    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || ligne_vide
+    ligne_vide
+}
+
+        #}}}
+
+# demander_utilisateur              {{{
+function demander_utilisateur ()
+{
+    printf >&2 '%s\n%s' "${*}" '(o/n) : '
+    printf >>"${FICHIER_LOG_EXECUTION}" '%s\n%s' "${*}" '(o/n) : '
+    while IFS= read -r -n 1 -s reponse
+    do
+        [[ "${reponse}" = [OoYyNn] ]] && printf >&2 '%s\n' "${reponse}"
+        [[ "${reponse}" = [OoYyNn] ]] && printf >>"${FICHIER_LOG_EXECUTION}" '%s\n' "${reponse}"
+        [[ "${reponse}" = [OoYy] ]] && return 0
+        [[ "${reponse}" = [Nn] ]] && return 1
+    done
+}
+
+        #}}}
+
+# affichage_echappee                {{{
+printf '%q ' test >/dev/null 2>&1
+[[ "${?}" -eq 0 ]] && declare -r AFFICHAGE_ECHAPPE='printfq'
+function affichage_echappee ()
+{
+    if [[ "${AFFICHAGE_ECHAPPE}" == 'printfq' ]]
+    then
+        printf '%q ' "${@}"
+    else
+        printf '%s' "${*}"
+    fi
+    return 0
+}
+
+        #}}}
+
+# executer_commande                 {{{
+function executer_commande ()
+{
+    local -r user="${USER--}" dir="${PWD}"
+    local info info_console
+
+    if [[ "${UID}" -eq 0 ]]
+    then
+        info="[root ${dir}]# "
+        info_console="[${M__DIM}${dir}${NEUTRE}]# "
+    else
+        info="[${user} ${dir}]$ "
+        info_console="[${M__DIM}${dir}${NEUTRE}]$ "
+    fi
+
+    # Consigne l'exécution de la commande dans les logs.
+    printf >>"${FICHIER_LOG_EXECUTION}" "${info}"
+    affichage_echappee >>"${FICHIER_LOG_EXECUTION}" "${@}"
+    printf >>"${FICHIER_LOG_EXECUTION}" " ... "
+
+    # Affiche l'exécution de la commande sur la sortie d'erreur standard.
+    printf >&2 "${info_console}${M_GRAS}${C__JAUNE}"
+    affichage_echappee >&2 "${@}"
+    printf >&2 "${NEUTRE}\n"
+
+    # Exécute la commande
+    if "${@}"
+    then
+        local -r Code_Erreur=0
+    else
+        local -r Code_Erreur="${?}"
+    fi
+
+    if [[ "${Code_Erreur}" -ne 0 ]]
+    then
+        message_erreur
+        printf >>"${FICHIER_LOG_EXECUTION}" "Erreur avec le code : ${Code_Erreur}\n"
+    else
+        message_ok
+        printf >>"${FICHIER_LOG_EXECUTION}" "OK\n"
+    fi
+
+    return "${Code_Erreur}"
+}
+
+        #}}}
+
+# Affichage simplifié des erreurs   {{{
 # L'argument 1 affiche le texte en rouge
 # L'argument 2 est fait pour afficher le contenu d'une variable
 # L'argument 3 affiche le texte en rouge à la suite de l'argument 2
@@ -318,49 +458,6 @@ exit "${ERREUR}"' ERR
 ####################################################
 
 # fonctions de l'application elle même      {{{
-
-
-# fonction générales de fonctionnement      {{{
-function separateur_section()
-{
-    echo >&2 "--- ${M__DIM}${M_GRAS}${*}${NEUTRE} ---"
-}
-
-function message_ok()
-{
-    printf >&2 "${C_SUR___VERT}${C__BLANC}${M_GRAS} OK ${NEUTRE}\n"
-}
-
-function message_erreur()
-{
-    printf >&2 "${C_SUR__ROUGE}${C__BLANC}${M_GRAS} ERREUR ${NEUTRE} "
-    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || printf >&2 "\n"
-}
-
-function message_attention()
-{
-    printf >&2 "${C_SUR__JAUNE}${C__BLANC}${M_GRAS} Attention ! ${NEUTRE} "
-    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || printf >&2 "\n"
-}
-
-function message_avertissement()
-{
-    printf >&2 "${C_SUR___CYAN}${C__BLANC}${M_GRAS} Avertissement ! ${NEUTRE} "
-    [[ "${#}" -gt 0 ]] && echo >&2 "${*}" || printf >&2 "\n"
-}
-
-function demander_utilisateur()
-{
-    printf >&2 "${*} (o/n)\n"
-    while read -r -n 1 -s reponse
-    do
-        [[ "${reponse}" = [OoYy] ]] && return 0
-        [[ "${reponse}" = [Nn] ]] && return 1
-    done
-}
-
-# }}}
-
 
 function afficher_barre_progression()
 {
@@ -543,6 +640,11 @@ function traitement_option_f()
 }
 
 # }}}
+
+# }}}
+
+declare -r FICHIER_LOG_EXECUTION="./log_${NOM_SCRIPT%.*}.log"
+printf >>"${FICHIER_LOG_EXECUTION}" '%s\n%s\n' '---------------------' "`date '+%F %T'`"
 
 ####################################################
 # {{{            Gestion des options               #
