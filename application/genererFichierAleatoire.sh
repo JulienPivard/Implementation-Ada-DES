@@ -686,7 +686,7 @@ do
             ;;
         h)
             afficher_aide
-            exit "${EXIT_SUCCES}"
+            exit "${EXIT_SUCCES}";
             ;;
         -)
             LONG_OPTARG="${OPTARG#*=}"
@@ -699,34 +699,34 @@ do
                     ;;
                 help )
                     afficher_aide
-                    exit "${EXIT_SUCCES}"
+                    exit "${EXIT_SUCCES}";
                     ;;
                 help* )
                     afficher_erreur "L'option longue" "--${OPTARG}" "ne prend pas d'arguments."
                     afficher_aide
-                    exit "${E_ARG_SUPERFLUS_OPT_LONGUE}"
+                    exit "${E_ARG_SUPERFLUS_OPT_LONGUE}";
                     ;;
                 taille* | fichier* )
                     afficher_erreur "L'option longue" "--${OPTARG}" "nécessite un argument."
                     afficher_aide
-                    exit "${E_OPT_LONGUE_NECESSITE_ARG}"
+                    exit "${E_OPT_LONGUE_NECESSITE_ARG}";
                     ;;
                 *)
                     afficher_erreur "L'option longue" "--${OPTARG}" "n'existe pas !"
                     afficher_aide
-                    exit "${E_OPT_LONGUE_INCONNUE}"
+                    exit "${E_OPT_LONGUE_INCONNUE}";
                     ;;
             esac
             ;;
         :)
             afficher_erreur "L'option" "${OPTARG}" "nécessite un argument."
             afficher_aide
-            exit "${E_OPT_NECESSITE_ARG}"
+            exit "${E_OPT_NECESSITE_ARG}";
             ;;
         ?)
             afficher_erreur "L'option" "${OPTARG}" "n'existe pas."
             afficher_aide
-            exit "${E_OPT_INCONNUE}"
+            exit "${E_OPT_INCONNUE}";
             ;;
     esac
 done
@@ -739,10 +739,10 @@ if [[ "${#}" -ne 0 ]]
 then
     afficher_erreur "Le ou Les arguments suivant ne sont pas valide :" "${*}"
     afficher_aide
-    exit "${E_OPT_NON_TRAITEE}"
+    exit "${E_OPT_NON_TRAITEE}";
 fi
 
-# }}}
+#}}}
 
 ####################################################
 #{{{                 Exécution                     #
