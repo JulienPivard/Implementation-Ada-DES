@@ -105,7 +105,7 @@ declare -ri E_FICHIER_TROP_GROS=89
 declare -ri E_TAILLE_NON_MOD_64=90
 declare -ri E_BC_PAS_INSTALLE=91
 
-#}}}
+    #}}}
 
 #{{{       Fonctions de gestions généraliste       #
 ####################################################
@@ -466,7 +466,7 @@ exit "${ERREUR}";' ERR
 # Retirer l'extension %.* un % par extension à retirer.
 # Ne garder que l'extension avec #*. Voila.
 ####################################################
-# {{{                   Code                       #
+#{{{                    Code                       #
 ####################################################
 
 # fonctions de l'application elle même      {{{
@@ -585,17 +585,40 @@ function remplir_fichier()
 
     #}}}
 
-# fonction des options                      {{{
-function afficher_aide()
+# fonctions des options                     {{{
+
+# afficher_aide                     {{{
+declare -r NOM_SCRIPT=`basename "${0}"`
+declare -r USAGE="\
+Usage : ${NOM_SCRIPT} [-h]
+   ou : ${NOM_SCRIPT} -f <nom_fichier_sortie> -t <taille>[BKMG]
+
+Générateur de fichier au contenu 'aléatoire' dont la taille
+est multiple de 64 bits.
+
+Options :
+    -h --help
+        Affiche l'aide et quitte.
+     -t --taille
+        La taille du fichier en octets
+        Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)
+     -f --fichier
+        Le nom du fichier à créer
+     -h --help
+        Affiche l'aide et quitte
+
+Exemple :
+    ${NOM_SCRIPT} -f autre.test -t 1.8M
+"
+
+function afficher_aide ()
 {
-    local -r NOM_SCRIPT=`basename "${0}"`
-    printf >&2 "${NOM_SCRIPT} [-h|f]\n"
-    printf >&2 "    -t --taille \n        La taille du fichier en octets\n"
-    printf >&2 "        Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)\n"
-    printf >&2 "    -f --fichier\n        Le nom du fichier à créer\n"
-    printf >&2 "    -h --help   \n        Affiche l'aide et quitte\n"
+    printf >&2 '%s' "${USAGE}"
 }
 
+        #}}}
+
+# traitement_option_t               {{{
 function traitement_option_t()
 {
 
@@ -651,21 +674,22 @@ function traitement_option_f()
     FICHIER="${ARGUMENT}"
 }
 
-# }}}
+        #}}}
 
-# }}}
+    #}}}
+
+#}}}
 
 declare -r FICHIER_LOG_EXECUTION="./log_${NOM_SCRIPT%.*}.log"
 printf >>"${FICHIER_LOG_EXECUTION}" '%s\n%s\n' '---------------------' "`date '+%F %T'`"
 
 ####################################################
-# {{{            Gestion des options               #
+#{{{             Gestion des options               #
 ####################################################
 
 #  Affiche l'aide si aucun arguments n'est donné
 if [[ "${#}" -eq 0 ]]
 then
-    printf >&2 "${C_SUR__JAUNE} ${C___NOIR}Afficher l'aide ${NEUTRE}\n"
     afficher_aide
     exit "${EXIT_SUCCES}";
 fi
