@@ -634,9 +634,8 @@ function afficher_aide ()
         #}}}
 
 # traitement_option_t               {{{
-function traitement_option_t()
+function traitement_option_t ()
 {
-
     local -r ARGUMENT="${1}"
     if [[ "${ARGUMENT}" =~ ^([0-9]+)$ ]]
     then
@@ -678,7 +677,10 @@ function traitement_option_t()
     fi
 }
 
-function traitement_option_f()
+        #}}}
+
+# traitement_option_f               {{{
+function traitement_option_f ()
 {
     local -r ARGUMENT="${1}"
     if [[ -e "${ARGUMENT}" ]]
