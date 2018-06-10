@@ -695,7 +695,7 @@ function traitement_option_f()
 
 #}}}
 
-declare -r FICHIER_LOG_EXECUTION="./log_${NOM_SCRIPT%.*}.log"
+declare -r FICHIER_LOG_EXECUTION="./.log_${NOM_SCRIPT%.*}.log"
 printf >>"${FICHIER_LOG_EXECUTION}" '%s\n%s\n' '---------------------' "`date '+%F %T'`"
 
 ####################################################
