@@ -430,22 +430,27 @@ function executer_commande ()
 # L'argument 3 affiche le texte en rouge à la suite de l'argument 2
 function afficher_erreur ()
 {
-    [[ -n "${1}" ]] && local AFFICHAGE="${1}" || exit "${E_ARG_AFF_ERR_M}"
+    [[ -n "${1}" ]] || exit "${E_ARG_AFF_ERR_M}";
+    local AFFICHAGE="${1}" LOG="${1}"
     if [[ "${#}" -ge 2 ]]
     then
         AFFICHAGE="${AFFICHAGE} [ ${C_VIOLET}${M_GRAS}"
         AFFICHAGE="${AFFICHAGE}${2}"
         AFFICHAGE="${AFFICHAGE}${NEUTRE}${C__ROUGE} ] "
+        LOG="${LOG} [ ${2} ] "
     fi
-    [[ "${#}" -ge 3 ]] && AFFICHAGE="${AFFICHAGE}${3}"
+    [[ "${#}" -ge 3 ]] && AFFICHAGE="${AFFICHAGE}${3}" LOG="${LOG}${3}"
     if [[ "${#}" -ge 4 ]]
     then
         AFFICHAGE="${AFFICHAGE} [ ${C_VIOLET}${M_GRAS}"
         AFFICHAGE="${AFFICHAGE}${4}"
         AFFICHAGE="${AFFICHAGE}${NEUTRE}${C__ROUGE} ] "
+        LOG="${LOG} [ ${4} ] "
     fi
     [[ "${#}" -ge 5 ]] && AFFICHAGE="${AFFICHAGE}${5}"
-    printf >&2 "${NEUTRE}${C__ROUGE}${AFFICHAGE}${NEUTRE}\n"
+    [[ "${#}" -ge 5 ]] && LOG="${LOG}${5}"
+    printf >>"${FICHIER_LOG_EXECUTION}" '%s\n' "${LOG}"
+    printf >&2 '%s\n' "${NEUTRE}${C__ROUGE}${AFFICHAGE}${NEUTRE}"
 }
 
         #}}}
