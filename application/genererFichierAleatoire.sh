@@ -53,6 +53,10 @@
 #┃     - 86  des options qui sont invalides ont été donnée                   ┃#
 #┃          Erreurs lors de l'exécution du code                              ┃#
 #┃     - 87  le fichier existe déjà                                          ┃#
+#┃     - 88  la taille donnée n'est pas une valeur                           ┃#
+#┃     - 89  le fichier à généré est trop gros                               ┃#
+#┃     - 90  la taille du fichier n'est pas modulo 64                        ┃#
+#┃     - 91  le logiciel bc n'est pas installé                               ┃#
 #┃                                                                           ┃#
 #┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛#
 
@@ -471,7 +475,8 @@ exit "${ERREUR}";' ERR
 
 # fonctions de l'application elle même      {{{
 
-function afficher_barre_progression()
+# afficher_barre_progression        {{{
+function afficher_barre_progression ()
 {
 
     # Vérifie qu'on a bien une longueur
@@ -529,17 +534,25 @@ function afficher_barre_progression()
 
 }
 
-function vide()
+        #}}}
+
+# vide                              {{{
+function vide ()
 {
     return
 }
 
-function remplir_fichier()
+        #}}}
+
+# remplir_fichier                   {{{
+function remplir_fichier ()
 {
     local -r FIC="${1}"
     local -r FICHIER_LOREM="lorem.txt"
     local -ri TAILLE_FIC="${2}"
 
+    # Traitement de la différence de gestion de l'affichage de
+    # la taille des fichiers entre GNU/Linux et MacOS
     if du -b -- ${FICHIER_LOREM} >/dev/null 2>&1
     then
         local -ri TAILLE_LOREM=`du -b -- "${FICHIER_LOREM}" | cut -f 1`
@@ -582,6 +595,8 @@ function remplir_fichier()
     message_ok
     tput cnorm      # Curseur visible
 }
+
+        #}}}
 
     #}}}
 
