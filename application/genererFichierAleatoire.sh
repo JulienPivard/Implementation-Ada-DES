@@ -2,24 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : lundi 07 mai[05] 2018
-
-# Arrête le script si une variable non initialisé est utilisée
-set -u
-# Équivalent à set -o errtrace pour s'assurer que les trap sont bien
-# hérité dans les sous shell
-set -E
-# Permet de traiter les erreurs dans les pipeline avec la trap ERR
-set -o pipefail
-set -o posix
-# Activation du mode verbose affiche la commande qui va être exécuté
-#set -v
-# Activation du mode xtrace affiche le résultat de chaque commande
-#set -x
-# Gestion des erreurs
-trap 'ERREUR="${?}";
-printf >&2 "\nErreur dans les définitions préliminaire ligne : ${LINENO}\n";
-exit "${ERREUR}"' ERR
+# Dernière modification : Dimanche 10 juin[06] 2018
 
 ###############################################################################
 #                   ___                             __                        #
@@ -75,11 +58,36 @@ exit "${ERREUR}"' ERR
 
 #}}}
 
-# Vérifie la syntaxe : bash -n
+# Options comportementales                      #{{{
+# Arrête le script si une variable non initialisé est utilisée
+set -u
+# Équivalent à set -o errtrace pour s'assurer que les trap sont bien
+# hérité dans les sous shell
+set -E
+# Permet de traiter les erreurs dans les pipeline avec la trap ERR
+set -o pipefail
+set -o posix
+# Activation du mode verbose affiche la commande qui va être exécuté
+#set -v
+# Activation du mode xtrace affiche le résultat de chaque commande
+#set -x
+# Gestion des erreurs
+trap 'ERREUR="${?}";
+printf >&2 "\nErreur dans les définitions préliminaire ligne : ${LINENO}\n";
+exit "${ERREUR}";' ERR
 
-#########################################
-#{{{ Constante de sortie et d'erreur    #
-#########################################
+# On s'assure que l'UID existe bien
+[[ -z "${UID}" ]] && UID="$(id -u)"
+
+#}}}
+
+####################################################
+#{{{    Fonctions généralistes et configuration    #
+####################################################
+
+#{{{        Constante de sortie et d'erreur        #
+####################################################
+
 declare -ri EXIT_SUCCES=0
 
 declare -ri E_ARG_AFF_ERR_M=80
@@ -296,6 +304,8 @@ gestion_err_couleur "${LINENO}";
 exit "${ERREUR}"' ERR
 
 # }}}
+
+#}}}
 
 # Retirer l'extension %.* un % par extension à retirer.
 # Ne garder que l'extension avec #*. Voila.
@@ -612,9 +622,9 @@ fi
 
 # }}}
 
-###################################################
-#                   Exécution                     #
-###################################################
+####################################################
+#{{{                 Exécution                     #
+####################################################
 
 if ! test_cmd_exist bc
 then
@@ -631,5 +641,7 @@ else
     afficher_erreur "Il y a" "${NB_BLOCS_EN_TROP}" "octet(s) en trop."
     exit "${E_TAILLE_NON_MOD_64}"
 fi
+
+#}}}
 
 exit "${EXIT_SUCCES}";
