@@ -112,16 +112,21 @@ declare -ri E_BC_PAS_INSTALLE=91
 
 declare -i NB_COULEURS=0 NB_COLONNES=0 NB_LIGNES=0
 
+# which_cmd                         {{{
 function which_cmd ()
 {
     which "${1}" 2>/dev/null || command -v "${1}" 2>/dev/null
 }
 
-# Vérifie que la commande existe
+        #}}}
+
+# test_cmd_exist                    {{{
 function test_cmd_exist ()
 {
     which_cmd "${1}" >/dev/null 2>&1 && return 0 || return 1
 }
+
+        #}}}
 
     #}}}
 
@@ -129,38 +134,51 @@ function test_cmd_exist ()
 #  Fonction de gestion des signaux  # {{{
 #####################################
 
-# Réception d'un signal pour quitter l'app normalement
-function fin()
+# fin                               {{{
+function fin ()
 {
-    exit
+    exit;
 }
 
-# Le script à été interrompu par l'utilisateur
-function interruption()
+        #}}}
+
+# interruption                      {{{
+function interruption ()
 {
-    exit
+    exit;
 }
 
-# Une erreur c'est produit durant l'exécution
-function gestion_erreurs()
+        #}}}
+
+# gestion_erreurs                   {{{
+function gestion_erreurs ()
 {
     printf >&2 "\nLe script à subis une erreur ligne [ ${1} ]\n"
 }
 
-# On ferme le script. Cette fonction sera exécutée en dernière
-function nettoyage_fin_script()
+        #}}}
+
+# nettoyage_fin_script              {{{
+declare FICHIER_LOG_EXECUTION='/dev/null'
+function nettoyage_fin_script ()
 {
-    tput cnorm      # Curseur visible
-    exit
+    printf >>"${FICHIER_LOG_EXECUTION}" '%s\n\n' "Exit ${?}"
+    # On rend le curseur à nouveau visible
+    test_cmd_exist tput && tput cnorm
+    exit;
 }
 
-# Le terminal qui a lancé le processus à été fermé
-function fermeture_terminal()
+        #}}}
+
+# fermeture_terminal                {{{
+function fermeture_terminal ()
 {
-    exit
+    exit;
 }
 
-# }}}
+        #}}}
+
+    #}}}
 
 ###########################
 # {{{ Attrape erreurs     #
@@ -184,7 +202,7 @@ trap 'fin' QUIT TERM
 # Sera toujours exécuté quand une instruction exit est rencontré
 trap 'nettoyage_fin_script' EXIT
 
-# }}}
+    #}}}
 
 #{{{  Gestion du redimensionnement  de la fenêtre  #
 ####################################################
@@ -410,7 +428,7 @@ function executer_commande ()
 # L'argument 1 affiche le texte en rouge
 # L'argument 2 est fait pour afficher le contenu d'une variable
 # L'argument 3 affiche le texte en rouge à la suite de l'argument 2
-function afficher_erreur()
+function afficher_erreur ()
 {
     [[ -n "${1}" ]] && local AFFICHAGE="${1}" || exit "${E_ARG_AFF_ERR_M}"
     if [[ "${#}" -ge 2 ]]
