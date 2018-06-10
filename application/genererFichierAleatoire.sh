@@ -107,6 +107,24 @@ declare -ri E_BC_PAS_INSTALLE=91
 
 #}}}
 
+#{{{       Fonctions de gestions généraliste       #
+####################################################
+
+declare -i NB_COULEURS=0 NB_COLONNES=0 NB_LIGNES=0
+
+function which_cmd ()
+{
+    which "${1}" 2>/dev/null || command -v "${1}" 2>/dev/null
+}
+
+# Vérifie que la commande existe
+function test_cmd_exist ()
+{
+    which_cmd "${1}" >/dev/null 2>&1 && return 0 || return 1
+}
+
+    #}}}
+
 #####################################
 #  Fonction de gestion des signaux  # {{{
 #####################################
@@ -167,26 +185,6 @@ trap 'fin' QUIT TERM
 trap 'nettoyage_fin_script' EXIT
 
 # }}}
-
-#############################################
-# {{{ Fonctions de gestions généraliste     #
-#############################################
-
-declare -i NB_COULEURS=0 NB_COLONNES=0 NB_LIGNES=0
-
-function which_cmd()
-{
-    which "${1}" 2>/dev/null || command -v "${1}" 2>/dev/null
-}
-
-# Vérifie que la commande existe
-function test_cmd_exist()
-{
-    which_cmd "${1}" >/dev/null 2>&1 && return 0
-    return 1
-}
-
-    #}}}
 
 #{{{  Gestion du redimensionnement  de la fenêtre  #
 ####################################################
