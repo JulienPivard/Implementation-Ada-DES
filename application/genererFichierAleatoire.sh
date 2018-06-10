@@ -22,7 +22,7 @@
 #              Générateur de fichier de taille multiple de 64 bits            #
 #(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)#
 
-# Documentation                     #{{{
+# Documentation                                 #{{{
 #┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓#
 #┃                                                                           ┃#
 #┃       Génère un fichier en injectant autant de caractères aléatoires      ┃#
@@ -186,12 +186,13 @@ function test_cmd_exist()
     return 1
 }
 
-#}}}
+    #}}}
 
-######################################################
-# {{{ Gestion du redimensionnement de la fenêtre     #
-######################################################
-function maj_taille()
+#{{{  Gestion du redimensionnement  de la fenêtre  #
+####################################################
+
+# maj_taille                        {{{
+function maj_taille ()
 {
     if test_cmd_exist tput
     then
@@ -201,19 +202,20 @@ function maj_taille()
     fi
 }
 
+        #}}}
+
 maj_taille
 
 trap 'maj_taille' WINCH
 
-#}}}
+    #}}}
 
-####################################
-# {{{  Définition des couleurs     #
-####################################
+#{{{            Définition des couleurs            #
+####################################################
 
 NEUTRE="" M_GRAS="" D_SOUL="" F_SOUL="" INVERS="" M__DIM=""
 
-# Vérification de l'existence de la commande tput           #{{{
+# Vérification de l'existence de la commande tput   {{{
 if test_cmd_exist tput
 then
     [[ `tput colors 2>/dev/null` -ge 8 ]] &&
@@ -225,9 +227,9 @@ else
     declare -ri NB_COULEURS=0
 fi
 
-#}}}
+        #}}}
 
-# Définition des couleurs                   #{{{
+# Définition des couleurs                           {{{
 if [[ "${NB_COULEURS}" -gt 0 ]]
 then
     declare -r C___NOIR="`tput setaf 0`" C__ROUGE="`tput setaf 1`"
@@ -290,7 +292,7 @@ function afficher_erreur()
     printf >&2 "${NEUTRE}${C__ROUGE}${AFFICHAGE}${NEUTRE}\n"
 }
 
-#}}}
+        #}}}
 
 # Une erreur c'est produit durant l'exécution
 function gestion_err_couleur()
@@ -298,12 +300,14 @@ function gestion_err_couleur()
     afficher_erreur '\nLe script à subis une erreur ligne' "${1}"
 }
 
+        #}}}
+
 trap '' ERR
 trap 'ERREUR="${?}";
 gestion_err_couleur "${LINENO}";
 exit "${ERREUR}"' ERR
 
-# }}}
+    #}}}
 
 #}}}
 
@@ -312,6 +316,9 @@ exit "${ERREUR}"' ERR
 ####################################################
 # {{{                   Code                       #
 ####################################################
+
+# fonctions de l'application elle même      {{{
+
 
 # fonction générales de fonctionnement      {{{
 function separateur_section()
@@ -354,73 +361,6 @@ function demander_utilisateur()
 
 # }}}
 
-# fonction des options                      {{{
-function afficher_aide()
-{
-    local -r NOM_SCRIPT=`basename "${0}"`
-    printf >&2 "${NOM_SCRIPT} [-h|f]\n"
-    printf >&2 "    -t --taille \n        La taille du fichier en octets\n"
-    printf >&2 "        Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)\n"
-    printf >&2 "    -f --fichier\n        Le nom du fichier à créer\n"
-    printf >&2 "    -h --help   \n        Affiche l'aide et quitte\n"
-}
-
-function traitement_option_t()
-{
-
-    local -r ARGUMENT="${1}"
-    if [[ "${ARGUMENT}" =~ ^([0-9]+)$ ]]
-    then
-        TAILLE="${ARGUMENT}"
-    elif [[ "${ARGUMENT}" =~ ^([0-9]+([.][0-9]+)?[BKMG])$ ]]
-    then
-        # Récupération de la partie entière
-        local Taille_Tmp="${ARGUMENT:0:${#ARGUMENT}-1}"
-        # Récupération de l'unité
-        local UNITEE="${ARGUMENT:${#ARGUMENT}-1}"
-        # Si c'est des K une multiplication
-        # Si c'est des M deux multiplications
-        # Si c'est des G trois multiplications
-        if [[ "${UNITEE}" =~ ^[KMG]$ ]]
-        then
-            Taille_Tmp=`bc <<< "${Taille_Tmp} * 1024 / 1"`
-        fi
-        if [[ "${UNITEE}" =~ ^[MG]$ ]]
-        then
-            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
-        fi
-        if [[ "${UNITEE}" =~ ^[G]$ ]]
-        then
-            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
-        fi
-        declare -ri RESTE_TMP=$(( ${Taille_Tmp} % 8 ))
-        # Si fichier pas multiple de 8 octets alors on rajoute pour combler
-        TAILLE=$(( ${Taille_Tmp} - ${RESTE_TMP} ))
-    else
-        afficher_erreur "La taille doit être une valeur entière"
-        exit "${E_TAILLE_PAS_VALEUR}"
-    fi
-    # Si la taille est supérieur à 5G
-    # 5_368_709_120
-    if [[ "${TAILLE}" -ge 5368709120 ]]
-    then
-        afficher_erreur "Le fichier à créer est de trop grande taille. Limite : 5_368_709_120 (5G)"
-        exit "${E_FICHIER_TROP_GROS}"
-    fi
-}
-
-function traitement_option_f()
-{
-    local -r ARGUMENT="${1}"
-    if [[ -e "${ARGUMENT}" ]]
-    then
-        afficher_erreur "Le fichier" "${ARGUMENT}" "existe déjà"
-        exit "${E_FICHIER_EXISTE_DEJA}"
-    fi
-    FICHIER="${ARGUMENT}"
-}
-
-# }}}
 
 function afficher_barre_progression()
 {
@@ -532,6 +472,74 @@ function remplir_fichier()
     fi
     message_ok
     tput cnorm      # Curseur visible
+}
+
+    #}}}
+
+# fonction des options                      {{{
+function afficher_aide()
+{
+    local -r NOM_SCRIPT=`basename "${0}"`
+    printf >&2 "${NOM_SCRIPT} [-h|f]\n"
+    printf >&2 "    -t --taille \n        La taille du fichier en octets\n"
+    printf >&2 "        Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)\n"
+    printf >&2 "    -f --fichier\n        Le nom du fichier à créer\n"
+    printf >&2 "    -h --help   \n        Affiche l'aide et quitte\n"
+}
+
+function traitement_option_t()
+{
+
+    local -r ARGUMENT="${1}"
+    if [[ "${ARGUMENT}" =~ ^([0-9]+)$ ]]
+    then
+        TAILLE="${ARGUMENT}"
+    elif [[ "${ARGUMENT}" =~ ^([0-9]+([.][0-9]+)?[BKMG])$ ]]
+    then
+        # Récupération de la partie entière
+        local Taille_Tmp="${ARGUMENT:0:${#ARGUMENT}-1}"
+        # Récupération de l'unité
+        local UNITEE="${ARGUMENT:${#ARGUMENT}-1}"
+        # Si c'est des K une multiplication
+        # Si c'est des M deux multiplications
+        # Si c'est des G trois multiplications
+        if [[ "${UNITEE}" =~ ^[KMG]$ ]]
+        then
+            Taille_Tmp=`bc <<< "${Taille_Tmp} * 1024 / 1"`
+        fi
+        if [[ "${UNITEE}" =~ ^[MG]$ ]]
+        then
+            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
+        fi
+        if [[ "${UNITEE}" =~ ^[G]$ ]]
+        then
+            Taille_Tmp=$(( ${Taille_Tmp} * 1024 ))
+        fi
+        declare -ri RESTE_TMP=$(( ${Taille_Tmp} % 8 ))
+        # Si fichier pas multiple de 8 octets alors on rajoute pour combler
+        TAILLE=$(( ${Taille_Tmp} - ${RESTE_TMP} ))
+    else
+        afficher_erreur "La taille doit être une valeur entière"
+        exit "${E_TAILLE_PAS_VALEUR}"
+    fi
+    # Si la taille est supérieur à 5G
+    # 5_368_709_120
+    if [[ "${TAILLE}" -ge 5368709120 ]]
+    then
+        afficher_erreur "Le fichier à créer est de trop grande taille. Limite : 5_368_709_120 (5G)"
+        exit "${E_FICHIER_TROP_GROS}"
+    fi
+}
+
+function traitement_option_f()
+{
+    local -r ARGUMENT="${1}"
+    if [[ -e "${ARGUMENT}" ]]
+    then
+        afficher_erreur "Le fichier" "${ARGUMENT}" "existe déjà"
+        exit "${E_FICHIER_EXISTE_DEJA}"
+    fi
+    FICHIER="${ARGUMENT}"
 }
 
 # }}}
