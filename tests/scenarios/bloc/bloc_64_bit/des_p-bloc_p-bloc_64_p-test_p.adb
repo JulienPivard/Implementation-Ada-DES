@@ -53,6 +53,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Nb_Bit_A_Un : Natural;
    begin
       for I in Intervalle_T loop
+         AUnit.Assertions.Assert
+            (
+               (for all E in Intervalle_T => T.bloc.Lire_Bit (E) = False),
+               "Tous les bits devraient etre faux"
+            );
          T.bloc.Ecrire_Bit (I, True);
          Nb_Bit_A_Un := Natural'First;
          for J in Intervalle_T loop
@@ -83,6 +88,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
                Nb_Bit_A_Un'Img
             );
          T.bloc.Ecrire_Bit (I, False);
+         AUnit.Assertions.Assert
+            (
+               (for all E in Intervalle_T => T.bloc.Lire_Bit (E) = False),
+               "Tous les bits devraient etre faux"
+            );
       end loop;
    end Test_Modification_Un_Bit_Par_Un_Bit;
 
