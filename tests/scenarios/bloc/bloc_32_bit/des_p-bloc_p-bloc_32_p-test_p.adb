@@ -46,11 +46,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
       for I in Intervalle_T loop
          AUnit.Assertions.Assert
             (
-               (for all I of T.bloc.Bits => I = False),
+               (for all E of T.bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
          T.bloc.Ecrire_Bit (I, True);
-         Nb_Bit_A_Un := Natural'First;
+         Nb_Bit_A_Un := 0;
          for J in Intervalle_T loop
             declare
                b : constant Bit_T := J = I;
@@ -91,7 +91,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
          T.bloc.Ecrire_Bit (I, False);
          AUnit.Assertions.Assert
             (
-               (for all I of T.bloc.Bits => I = False),
+               (for all E of T.bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
       end loop;
@@ -149,6 +149,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
    begin
       I := Intervalle_T'First;
       Valeur := False;
+      --  Initialise le premier bloc de 32 bits
+      --  F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V,
+      --  F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V, F,F,F,F,V,V,V,V,
       Autour :
       loop
          J := Intervalle_T'First;
@@ -160,7 +163,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
             J := Intervalle_T'Succ (J);
             exit Interne when J > 4;
          end loop Interne;
-         if Valeur = Bit_T'Last then
+         --  On inverse la valeur du bit à écrire tout les 4 bits
+         if Valeur then
             Valeur := False;
          else
             Valeur := True;
@@ -169,6 +173,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
 
       I := Intervalle_T'First;
       Valeur := False;
+      --  Initialise le second bloc de 32 bits
+      --  F,F,F,F,F,F,F,F, V,V,V,V,V,V,V,V, F,F,F,F,F,F,F,F, V,V,V,V,V,V,V,V,
+      --  F,F,F,F,F,F,F,F, V,V,V,V,V,V,V,V, F,F,F,F,F,F,F,F, V,V,V,V,V,V,V,V,
       Autour_Bis :
       loop
          J := Intervalle_T'First;
@@ -180,6 +187,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
             J := Intervalle_T'Succ (J);
             exit Interne_Bis when J > 8;
          end loop Interne_Bis;
+         --  On inverse la valeur du bit à écrire tout les 8 bits
          if Valeur then
             Valeur := False;
          else

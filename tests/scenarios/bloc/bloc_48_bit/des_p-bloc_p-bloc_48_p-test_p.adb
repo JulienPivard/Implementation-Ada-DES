@@ -49,11 +49,11 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (
-               (for all I of T.bloc.Bits => I = False),
+               (for all E of T.bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
          T.bloc.Ecrire_Bit (I, True);
-         Nb_Bit_A_Un := Natural'First;
+         Nb_Bit_A_Un := 0;
          for J in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
             declare
                use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
@@ -95,7 +95,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
          T.bloc.Ecrire_Bit (I, False);
          AUnit.Assertions.Assert
             (
-               (for all I of T.bloc.Bits => I = False),
+               (for all E of T.bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
       end loop;
