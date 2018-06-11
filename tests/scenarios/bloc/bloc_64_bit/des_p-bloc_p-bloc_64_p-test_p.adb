@@ -109,23 +109,28 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      --  Remplissage avec des bits aléatoire
-      for I in Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (I, b);
-         attendu (I) := b;
-      end loop;
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
-            );
+         --  Remplissage avec des bits aléatoire
+         for I in Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (I, b);
+            attendu (I) := b;
+         end loop;
+
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
+
       end loop;
 
    end Test_Bits_Aleatoire;
@@ -144,34 +149,39 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Gauche, I, b);
-         attendu_gauche (I) := b;
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Droite, I, b);
-         attendu_droite (I) := b;
-      end loop;
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
-            );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
-            );
+         --  Remplissage avec des bits aléatoire
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Gauche, I, b);
+            attendu_gauche (I) := b;
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Droite, I, b);
+            attendu_droite (I) := b;
+         end loop;
+
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
+
       end loop;
 
    end Test_Bits_Aleatoire_Par_Bloc;
@@ -190,55 +200,63 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 0 decalages."
-         );
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Remplissage avec des bits aléatoire
-      for I in Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (I, b);
-         attendu (I) := b;
-         if I > 32 then
-            attendu_apres_echange (I - 32) := b;
-         else
-            attendu_apres_echange (I + 32) := b;
-         end if;
-      end loop;
-
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 0 decalages."
             );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Remplissage avec des bits aléatoire
+         for I in Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (I, b);
+            attendu (I) := b;
+            if I > 32 then
+               attendu_apres_echange (I - 32) := b;
+            else
+               attendu_apres_echange (I + 32) := b;
+            end if;
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 1,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 1 apres 1 decalages."
-         );
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
 
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
+         T.bloc.Intervertir_Blocs;
+
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
+            (T.bloc.Decalage = 1,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 1 apres 1 decalages."
             );
+
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+         end loop;
+
+         --  Remise à zéro des décalages
+         T.bloc.Decalage := 0;
+
       end loop;
 
    end Test_Bits_Aleatoire_1_Echange;
@@ -257,70 +275,78 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 0 decalages."
-         );
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Gauche, I, b);
-         attendu_gauche (I) := b;
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Droite, I, b);
-         attendu_droite (I) := b;
-      end loop;
-
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 0 decalages."
             );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
-            );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Remplissage avec des bits aléatoire
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Gauche, I, b);
+            attendu_gauche (I) := b;
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Droite, I, b);
+            attendu_droite (I) := b;
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 1,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 1 apres 1 decalages."
-         );
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
 
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
+         T.bloc.Intervertir_Blocs;
+
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
+            (T.bloc.Decalage = 1,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 1 apres 1 decalages."
             );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
-            );
+
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+         end loop;
+
+         --  Remise à zéro des décalages
+         T.bloc.Decalage := 0;
+
       end loop;
 
    end Test_Bits_Aleatoire_Par_Bloc_1_Echange;
@@ -339,76 +365,84 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 0 decalages."
-         );
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Remplissage avec des bits aléatoire
-      for I in Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (I, b);
-         attendu (I) := b;
-         if I > 32 then
-            attendu_apres_echange (I - 32) := b;
-         else
-            attendu_apres_echange (I + 32) := b;
-         end if;
-      end loop;
-
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 0 decalages."
             );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Remplissage avec des bits aléatoire
+         for I in Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (I, b);
+            attendu (I) := b;
+            if I > 32 then
+               attendu_apres_echange (I - 32) := b;
+            else
+               attendu_apres_echange (I + 32) := b;
+            end if;
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 1,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 1 apres 1 decalages."
-         );
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
 
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
+         T.bloc.Intervertir_Blocs;
+
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
+            (T.bloc.Decalage = 1,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 1 apres 1 decalages."
             );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu_apres_echange (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 2 decalages."
-         );
+         T.bloc.Intervertir_Blocs;
 
-      --  Vérification du contenu.
-      for I in Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 2 echange."
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 2 decalages."
             );
+
+         --  Vérification du contenu.
+         for I in Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            bit_attendu := (if attendu (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 2 echange."
+               );
+         end loop;
+
+         --  Remise à zéro des décalages
+         T.bloc.Decalage := 0;
+
       end loop;
 
    end Test_Bits_Aleatoire_2_Echanges;
@@ -427,100 +461,108 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 0 decalages."
-         );
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Gauche, I, b);
-         attendu_gauche (I) := b;
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (Droite, I, b);
-         attendu_droite (I) := b;
-      end loop;
-
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 0 decalages."
             );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
+
+         --  Remplissage avec des bits aléatoire
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Gauche, I, b);
+            attendu_gauche (I) := b;
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (Droite, I, b);
+            attendu_droite (I) := b;
+         end loop;
+
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img
+               );
+         end loop;
+
+         T.bloc.Intervertir_Blocs;
+
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            (T.bloc.Decalage = 1,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 1 apres 1 decalages."
             );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 1 echange."
+               );
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 1,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 1 apres 1 decalages."
-         );
+         T.bloc.Intervertir_Blocs;
 
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
+            (T.bloc.Decalage = 0,
+            "Le decalage vaut " & T.bloc.Decalage'Img &
+            " au lieu de 0 apres 2 decalages."
             );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 1 echange."
-            );
-      end loop;
 
-      T.bloc.Intervertir_Blocs;
+         --  Vérification du contenu.
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+            bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
+            bit_attendu := (if attendu_gauche (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc GAUCHE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 2 echange."
+               );
+            bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
+            bit_attendu := (if attendu_droite (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (bit_resulta = bit_attendu,
+               "Le bit bloc DROITE " & I'Img &
+               " vaut : " & bit_resulta'Img &
+               " au lieu de " & bit_attendu'Img &
+               " APRES 2 echange."
+               );
+         end loop;
 
-      AUnit.Assertions.Assert
-         (T.bloc.Decalage = 0,
-         "Le decalage vaut " & T.bloc.Decalage'Img &
-         " au lieu de 0 apres 2 decalages."
-         );
+         --  Remise à zéro des décalages
+         T.bloc.Decalage := 0;
 
-      --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
-         bit_resulta := (if T.bloc.Lire_Bit (Gauche, I) then 1 else 0);
-         bit_attendu := (if attendu_gauche (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc GAUCHE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 2 echange."
-            );
-         bit_resulta := (if T.bloc.Lire_Bit (Droite, I) then 1 else 0);
-         bit_attendu := (if attendu_droite (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
-            "Le bit bloc DROITE " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img &
-            " APRES 2 echange."
-            );
       end loop;
 
    end Test_Bits_Aleatoire_Par_Bloc_2_Echanges;
