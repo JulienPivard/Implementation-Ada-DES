@@ -1,9 +1,11 @@
-package Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
+generic
 
-   Fin_Constante_Bloc : constant Natural := 2047;
+   Nombre_De_Blocs : Positive;
+
+package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
    type Reception_Blocs_T is array
-      (0 .. Fin_Constante_Bloc)
+      (0 .. Nombre_De_Blocs - 1)
       of C_Bloc_64_P.Bloc_64_Brut_T;
 
    ---------------------------------------
@@ -37,13 +39,11 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
       procedure Fermer_Fichier;
       procedure Remettre_A_Zero;
       procedure Changer_Brut_Genere (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
-      procedure Changer_Max_Genere (Max : Natural);
       function Lire_Nb_Bloc_Lu return Natural;
    private
       Nb_Blocs_Lu : Natural := 0;
       Brut_Genere : C_Bloc_64_P.Bloc_64_Brut_T;
-      Max_Blocs : Natural := Fin_Constante_Bloc;
    end Lecteur_Generateur_Protegee;
    --  Lit un bloc de données dans le fichier.
 
-end Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+end Des_P.Chaine_P.Accee_Fichier_P.Generateur_G;

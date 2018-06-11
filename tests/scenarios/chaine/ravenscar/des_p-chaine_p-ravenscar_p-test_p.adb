@@ -22,10 +22,10 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       C_C_64.Preparer_Nouvelle_Clef;
       C_C_64.Construire_Clef (Brut_Clef);
       T.Clef := C_C_64.Recuperer_Clef;
-      Lecteur_Generateur.Remettre_A_Zero;
-      Ecriveur_Generateur.Remettre_A_Zero;
-      Lecteur := Lecteur_Generateur'Access;
-      Ecriveur := Ecriveur_Generateur'Access;
+      Lecteur_1_Generateur.Remettre_A_Zero;
+      Ecriveur_1_Generateur.Remettre_A_Zero;
+      Lecteur_2048_Generateur.Remettre_A_Zero;
+      Ecriveur_2048_Generateur.Remettre_A_Zero;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -44,14 +44,15 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
+      Lecteur := Lecteur_1_Generateur'Access;
+      Ecriveur := Ecriveur_1_Generateur'Access;
+      Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Original);
+
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
-         Lecteur_Generateur.Changer_Max_Genere (1);
-
          T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
 
@@ -69,30 +70,27 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
          end loop;
 
          --  Ajoute le filtre de sortie.
-         T.Chaine.Filtre_Sortie := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
+         T.Chaine.Filtre_Sortie :=
+            Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
       end;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_G_P.Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
+         R : constant Accee_1_G_P.Reception_Blocs_T :=
+            Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         AUnit.Assertions.Assert
-            (R (Natural'First) = Brut_Attendu,
-            "Brut : " & R (Natural'First)'Img &
-            " au lieu de " & Brut_Attendu'Img &
-            " en position : 0"
-            );
-         for I in Natural'First + 1 .. Accee_G_P.Fin_Constante_Bloc loop
+         for E of R loop
             AUnit.Assertions.Assert
-               (R (I) = 0,
-               "Brut : " & R (I)'Img &
-               " au lieu de 0" &
+               (E = Brut_Attendu,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
                " en position : " & I'Img
                );
+            I := Natural'Succ (I);
          end loop;
       end;
    end Test_Filtre_Chiffre_1;
@@ -102,15 +100,16 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
+      Lecteur := Lecteur_1_Generateur'Access;
+      Ecriveur := Ecriveur_1_Generateur'Access;
+      Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Attendu);
+
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
-         Lecteur_Generateur.Changer_Max_Genere (1);
-
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
@@ -137,23 +136,19 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_G_P.Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
+         R : constant Accee_1_G_P.Reception_Blocs_T :=
+            Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         AUnit.Assertions.Assert
-            (R (Natural'First) = Brut_Original,
-            "Brut : " & R (Natural'First)'Img &
-            " au lieu de " & Brut_Original'Img &
-            " en position : 0"
-            );
-         for I in Natural'First + 1 .. Accee_G_P.Fin_Constante_Bloc loop
+         for E of R loop
             AUnit.Assertions.Assert
-               (R (I) = 0,
-               "Brut : " & R (I)'Img &
-               " au lieu de 0" &
+               (E = Brut_Original,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
                " en position : " & I'Img
                );
+            I := Natural'Succ (I);
          end loop;
       end;
    end Test_Filtre_Dechiff_1;
@@ -163,14 +158,15 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
+      Lecteur := Lecteur_2048_Generateur'Access;
+      Ecriveur := Ecriveur_2048_Generateur'Access;
+      Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Original);
+
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Original);
-         Lecteur_Generateur.Changer_Max_Genere (2048);
-
          T.Chaine.Filtre_Entree := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
 
@@ -195,8 +191,8 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_G_P.Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
+         R : constant Accee_2048_G_P.Reception_Blocs_T :=
+            Ecriveur_2048_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
@@ -217,15 +213,16 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
+      Lecteur := Lecteur_2048_Generateur'Access;
+      Ecriveur := Ecriveur_2048_Generateur'Access;
+      Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Attendu);
+
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
          Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
          J : Numero_Filtre_T := Numero_Filtre_T'First;
       begin
-         Lecteur_Generateur.Changer_Brut_Genere (Brut_Attendu);
-         Lecteur_Generateur.Changer_Max_Genere (2048);
-
          T.Chaine.Filtre_Entree :=
             Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Entree);
@@ -252,8 +249,8 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_G_P.Reception_Blocs_T :=
-            Ecriveur_Generateur.Lire_Resultat;
+         R : constant Accee_2048_G_P.Reception_Blocs_T :=
+            Ecriveur_2048_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin

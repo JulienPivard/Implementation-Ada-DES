@@ -1,4 +1,4 @@
-package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
+package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
    ---------------------------------------------------------------------------
    protected body Ecriveur_Generateur_Protegee is
@@ -52,7 +52,8 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
-      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+      procedure Lire
+         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
       is
       begin
          Nb_Blocs_Lu := Natural'Succ (Nb_Blocs_Lu);
@@ -60,10 +61,11 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
       end Lire;
 
       ---------------------------------------------------------
-      function Est_Fini return Boolean
+      function Est_Fini
+         return Boolean
       is
       begin
-         return Nb_Blocs_Lu >= Max_Blocs;
+         return Nb_Blocs_Lu >= Nombre_De_Blocs;
       end Est_Fini;
 
       ---------------------------------------------------------
@@ -87,12 +89,6 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
       end Changer_Brut_Genere;
 
       ---------------------------------------------------------
-      procedure Changer_Max_Genere (Max : Natural) is
-      begin
-         Max_Blocs := Max;
-      end Changer_Max_Genere;
-
-      ---------------------------------------------------------
       function Lire_Nb_Bloc_Lu return Natural is
       begin
          return Nb_Blocs_Lu;
@@ -100,4 +96,4 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_P is
       ---------------------------------------------------------
    end Lecteur_Generateur_Protegee;
 
-end Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+end Des_P.Chaine_P.Accee_Fichier_P.Generateur_G;

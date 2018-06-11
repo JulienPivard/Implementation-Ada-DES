@@ -6,7 +6,8 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 
 with Des_P.Clef_P.Clef_64_P;
 
-private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
+private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
 
 package Des_P.Chaine_P.Ravenscar_P.Test_P is
 
@@ -54,12 +55,19 @@ package Des_P.Chaine_P.Ravenscar_P.Test_P is
 
 private
 
-   package Accee_G_P renames Des_P.Chaine_P.Accee_Fichier_P.Generateur_P;
+   package Accee_1_G_P renames
+      Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
+   package Accee_2048_G_P renames
+      Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
 
-   Lecteur_Generateur : aliased Accee_G_P.Lecteur_Generateur_Protegee;
+   Lecteur_1_Generateur : aliased Accee_1_G_P.Lecteur_Generateur_Protegee;
+   Lecteur_2048_Generateur : aliased
+      Accee_2048_G_P.Lecteur_Generateur_Protegee;
    --  Un lecteur de fichier classique.
 
-   Ecriveur_Generateur : aliased Accee_G_P.Ecriveur_Generateur_Protegee;
+   Ecriveur_1_Generateur : aliased Accee_1_G_P.Ecriveur_Generateur_Protegee;
+   Ecriveur_2048_Generateur : aliased
+      Accee_2048_G_P.Ecriveur_Generateur_Protegee;
    --  Un écriveur de fichier classique.
 
 end Des_P.Chaine_P.Ravenscar_P.Test_P;
