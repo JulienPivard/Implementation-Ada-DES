@@ -23,7 +23,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
-   procedure Test_Initialisation (T : in out Test_Fixt_T) is
+   procedure Test_Initialisation
+      (T : in out Test_Fixt_T)
+   is
       b : constant Bit_T := False;
       valeur_bit : Bit_IO_T;
    begin
@@ -39,7 +41,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    end Test_Initialisation;
 
    ---------------------------------------------------------------------------
-   procedure Test_Modification_Un_Bit_Par_Un_Bit (T : in out Test_Fixt_T) is
+   procedure Test_Modification_Un_Bit_Par_Un_Bit
+      (T : in out Test_Fixt_T)
+   is
       Nb_Bit_A_Un : Natural;
    begin
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
@@ -98,7 +102,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    end Test_Modification_Un_Bit_Par_Un_Bit;
 
    ---------------------------------------------------------------------------
-   procedure Test_Change_Bits_Aleatoirement (T : in out Test_Fixt_T) is
+   procedure Test_Change_Bits_Aleatoirement
+      (T : in out Test_Fixt_T)
+   is
       b : Bit_T;
       attendu : Tableau_Bits_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
