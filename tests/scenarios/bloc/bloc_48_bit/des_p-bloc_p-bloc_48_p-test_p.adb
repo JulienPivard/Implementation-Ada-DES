@@ -114,21 +114,26 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
 
       Bit_Aleatoire.Reset (generateur);
 
-      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
-         b := Bit_Aleatoire.Random (generateur);
-         T.bloc.Ecrire_Bit (I, b);
-         attendu (I) := b;
-      end loop;
+      --  Génère un grand nombre de configuration aléatoire
+      for C in 0 .. 128 loop
 
-      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
-         valeur_bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
-         valeur_bit_attendu := (if attendu (I) then 1 else 0);
-         AUnit.Assertions.Assert
-            (T.bloc.Lire_Bit (I) = attendu (I),
-            "Le bit " & I'Img &
-            " vaut : " & valeur_bit_resulta'Img &
-            " au lieu de " & valeur_bit_attendu'Img
-            );
+         for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
+            b := Bit_Aleatoire.Random (generateur);
+            T.bloc.Ecrire_Bit (I, b);
+            attendu (I) := b;
+         end loop;
+
+         for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
+            valeur_bit_resulta := (if T.bloc.Lire_Bit (I) then 1 else 0);
+            valeur_bit_attendu := (if attendu (I) then 1 else 0);
+            AUnit.Assertions.Assert
+               (T.bloc.Lire_Bit (I) = attendu (I),
+               "Le bit " & I'Img &
+               " vaut : " & valeur_bit_resulta'Img &
+               " au lieu de " & valeur_bit_attendu'Img
+               );
+         end loop;
+
       end loop;
 
    end Test_Change_Bits_Aleatoirement;
