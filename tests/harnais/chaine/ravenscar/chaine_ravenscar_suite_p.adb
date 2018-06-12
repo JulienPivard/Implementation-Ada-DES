@@ -44,6 +44,20 @@ package body Chaine_Ravenscar_Suite_P is
             )
          );
 
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Chiffrement a partir de 8192 blocs d'un generateur",
+            Test_Filtre_Chiffre_8192'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Dechiffrement a partir de 8192 blocs d'un generateur",
+            Test_Filtre_Dechiff_8192'Access
+            )
+         );
+
       return ptr_test_suite;
 
    end Fonc_Suite;

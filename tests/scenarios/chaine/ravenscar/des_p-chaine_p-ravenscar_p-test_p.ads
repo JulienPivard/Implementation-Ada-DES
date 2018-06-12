@@ -8,6 +8,7 @@ with Des_P.Clef_P.Clef_64_P;
 
 private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
 private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
+private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_8192_P;
 
 package Des_P.Chaine_P.Ravenscar_P.Test_P is
 
@@ -51,6 +52,12 @@ package Des_P.Chaine_P.Ravenscar_P.Test_P is
    procedure Test_Filtre_Dechiff_2048
       (T : in out Test_Fixt_T);
 
+   procedure Test_Filtre_Chiffre_8192
+      (T : in out Test_Fixt_T);
+
+   procedure Test_Filtre_Dechiff_8192
+      (T : in out Test_Fixt_T);
+
    procedure Test_Fin;
 
 private
@@ -59,15 +66,21 @@ private
       Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
    package Accee_2048_G_P renames
       Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
+   package Accee_8192_G_P renames
+      Des_P.Chaine_P.Accee_Fichier_P.Generateur_8192_P;
 
    Lecteur_1_Generateur : aliased Accee_1_G_P.Lecteur_Generateur_Protegee;
    Lecteur_2048_Generateur : aliased
       Accee_2048_G_P.Lecteur_Generateur_Protegee;
+   Lecteur_8192_Generateur : aliased
+      Accee_8192_G_P.Lecteur_Generateur_Protegee;
    --  Un lecteur de fichier classique.
 
    Ecriveur_1_Generateur : aliased Accee_1_G_P.Ecriveur_Generateur_Protegee;
    Ecriveur_2048_Generateur : aliased
       Accee_2048_G_P.Ecriveur_Generateur_Protegee;
+   Ecriveur_8192_Generateur : aliased
+      Accee_8192_G_P.Ecriveur_Generateur_Protegee;
    --  Un écriveur de fichier classique.
 
 end Des_P.Chaine_P.Ravenscar_P.Test_P;
