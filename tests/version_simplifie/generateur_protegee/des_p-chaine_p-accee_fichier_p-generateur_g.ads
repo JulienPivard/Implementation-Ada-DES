@@ -17,7 +17,6 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       procedure Ecrire (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
       overriding
       procedure Fermer_Fichier;
-      procedure Remettre_A_Zero;
       function Lire_Resultat return Reception_Blocs_T;
       function Lire_Nb_Bloc_Ecrit return Natural;
    private
@@ -37,7 +36,6 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       function Est_Fini return Boolean;
       overriding
       procedure Fermer_Fichier;
-      procedure Remettre_A_Zero;
       procedure Changer_Brut_Genere (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
       function Lire_Nb_Bloc_Lu return Natural;
    private

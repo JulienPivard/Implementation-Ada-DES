@@ -5,7 +5,8 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       ---------------------------------------------------------
       procedure Ouvrir_Fichier (Nom : String) is
       begin
-         null;
+         pragma Unreferenced (Nom);
+         Nb_Blocs_Ecrit := Natural'First;
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
@@ -22,12 +23,6 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       begin
          null;
       end Fermer_Fichier;
-
-      ---------------------------------------------------------
-      procedure Remettre_A_Zero is
-      begin
-         Nb_Blocs_Ecrit := Natural'First;
-      end Remettre_A_Zero;
 
       ---------------------------------------------------------
       function Lire_Resultat return Reception_Blocs_T is
@@ -48,7 +43,8 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       ---------------------------------------------------------
       procedure Ouvrir_Fichier (Nom : String) is
       begin
-         null;
+         pragma Unreferenced (Nom);
+         Nb_Blocs_Lu := Natural'First;
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
@@ -73,12 +69,6 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
       begin
          null;
       end Fermer_Fichier;
-
-      ---------------------------------------------------------
-      procedure Remettre_A_Zero is
-      begin
-         Nb_Blocs_Lu := Natural'First;
-      end Remettre_A_Zero;
 
       ---------------------------------------------------------
       procedure Changer_Brut_Genere

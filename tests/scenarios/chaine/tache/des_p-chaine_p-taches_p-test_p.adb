@@ -22,10 +22,6 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       C_C_64.Preparer_Nouvelle_Clef;
       C_C_64.Construire_Clef (Brut_Clef);
       T.Clef := C_C_64.Recuperer_Clef;
-      Lecteur_1_Generateur.Remettre_A_Zero;
-      Ecriveur_1_Generateur.Remettre_A_Zero;
-      Lecteur_2048_Generateur.Remettre_A_Zero;
-      Ecriveur_2048_Generateur.Remettre_A_Zero;
    end Set_Up;
 
    ---------------------------------------------------------------------------
