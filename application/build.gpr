@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 14 mai[05] 2018
+--  Dernière modification : Samedi 30 juin[06] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -36,17 +36,6 @@ project Build is
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
-   --  gnatef est la pour afficher le chemin complet des fichiers dans les
-   --  messages erreurs et avertissements.
-   --  gnatf Affiche toutes les erreurs.
-   --  gnatU : Permet de marquer les messages erreurs avec le tag error:
-   --  gnatif pour pouvoir utiliser les accents dans les noms de variables.
-   --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
-   --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
-   --  gnateE : Génère des informations supplémentaires dans les exceptions
-   --  gnatw.Y désactive le message qui dit que la spec nécessite un corps.
-   --  gnatw.e active les avertissements pour les variables non utilisé.
-   --  gnatyy équivaut à 3aAbcefhiklmnprst
    --  gnaty : les options
    --  3 : taille indentation
    --  a : vérifie la casse
@@ -74,17 +63,32 @@ project Build is
    --  x : vérifie les parenthèses inutile
    Options :=
       (
-         "-gnata",
+         --  gnatef est la pour afficher le chemin complet des
+         --  fichiers dans les messages erreurs et avertissements.
          "-gnatef",
+         --  gnatf Affiche toutes les erreurs.
          "-gnatf",
+         --  gnatU : Permet de marquer les messages erreurs
+         --  avec le tag error:
          "-gnatU",
          "-gnat2012",
+         --  gnatyy équivaut à 3aAbcefhiklmnprst
          "-gnatyy",
          "-gnatyBdOSux",
+         --  gnatw.e active les avertissements pour les
+         --  variables non utilisé.
          "-gnatw.e",
+         --  gnatw.Y désactive le message qui dit que la
+         --  spec nécessite un corps.
          "-gnatw.Y",
+         --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
+         --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
          "-gnatW8",
+         --  gnateE : Génère des informations supplémentaires
+         --  dans les exceptions
          "-gnateE",
+         --  gnatif pour pouvoir utiliser les accents dans
+         --  les noms de variables.
          "-gnatif"
       );
 
@@ -174,7 +178,9 @@ project Build is
 
       case Mode_Compilation is
          when "debug" =>
-            for Default_Switches ("Ada") use Options & ("-g");
+            --  -gnata active les assertions. Pragma : assert, debug,
+            --  Check, Precondition, et Postcondition
+            for Default_Switches ("Ada") use Options & ("-g", "-gnata");
          when "release" =>
             for Default_Switches ("Ada") use Options & ("-O3");
       end case;
