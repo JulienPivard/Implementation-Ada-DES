@@ -6,9 +6,9 @@ with Des_P.Filtre_P.Chiffre_Interface_P;
 --  Filtre de chiffrement permutation final qui va servir à paramétrer le
 --  dernier étage des filtres.
 --  @group Filtre Chiffrement
-package Des_P.Filtre_P.Sortie_P.Chiffre_P is
-
-   pragma Pure;
+package Des_P.Filtre_P.Sortie_P.Chiffre_P
+   with Pure
+is
 
    package P_Chiffrement_P renames Des_P.Filtre_P.Chiffre_Interface_P;
 

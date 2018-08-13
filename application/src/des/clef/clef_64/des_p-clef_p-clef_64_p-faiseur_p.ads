@@ -6,9 +6,9 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 --  @description
 --  Construit une clef de 64 bits à partir d'un brut de 64 bits.
 --  @group Clef Constructeur
-package Des_P.Clef_P.Clef_64_P.Faiseur_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_64_P.Faiseur_P
+   with Pure
+is
 
    package Interface_P renames
       Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;

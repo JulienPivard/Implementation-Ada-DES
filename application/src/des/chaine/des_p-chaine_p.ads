@@ -6,9 +6,9 @@ private with Des_P.Clef_P.Clef_56_I_P;
 --  Permet de gérer la chaine de filtre par laquelle vont passer
 --  tout les blocs de données du fichier pour être manipulé.
 --  @group Chaine
-package Des_P.Chaine_P is
-
-   pragma Pure;
+package Des_P.Chaine_P
+   with Pure
+is
 
    type Chaine_Interface_T is interface;
    --  L'interface de la chaine de filtre.

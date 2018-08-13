@@ -7,9 +7,9 @@ with Des_P.Clef_P.Clef_48_I_P;
 --  Filtre principale abstrait qui va servir à paramétrer
 --  chaque étages de la chaine.
 --  @group Filtre
-package Des_P.Filtre_P.Corps_P is
-
-   pragma Pure;
+package Des_P.Filtre_P.Corps_P
+   with Pure
+is
 
    type Corps_Abstrait_T is abstract new Filtre_Interface_T with private;
    --  Un filtre de corps abstrait.

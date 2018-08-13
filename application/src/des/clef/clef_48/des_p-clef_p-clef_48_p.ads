@@ -5,9 +5,9 @@ with Des_P.Clef_P.Clef_48_I_P;
 --  @description
 --  La représentation d'une clef de 48 bits dans le standard DES.
 --  @group Clef
-package Des_P.Clef_P.Clef_48_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_48_P
+   with Pure
+is
 
    type Clef_T is new Clef_Abstrait_T and
       Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T with private;

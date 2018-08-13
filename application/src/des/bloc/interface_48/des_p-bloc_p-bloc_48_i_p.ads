@@ -3,9 +3,9 @@
 --  @description
 --  Une interface de manipulation des blocs de 48 bits.
 --  @group Bloc
-package Des_P.Bloc_P.Bloc_48_I_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_48_I_P
+   with Pure
+is
 
    type Intervalle_T is range 1 .. 48;
    --  L'intervalle pour accéder à notre bloc de 48 bits.

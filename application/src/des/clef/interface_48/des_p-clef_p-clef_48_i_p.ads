@@ -3,9 +3,9 @@
 --  @description
 --  La représentation d'une clef de 48 bits dans le standard DES.
 --  @group Clef
-package Des_P.Clef_P.Clef_48_I_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_48_I_P
+   with Pure
+is
 
    type Clef_Interface_T is interface;
    --  L'interface d'une clef de 48.

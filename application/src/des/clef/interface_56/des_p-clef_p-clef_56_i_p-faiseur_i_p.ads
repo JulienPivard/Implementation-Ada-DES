@@ -8,9 +8,9 @@ limited with Des_P.Clef_P.Clef_64_I_P;
 --  la clef de 64. Le constructeur va sélectionner ces bits
 --  selon le tableau PC-1 du standard DES.
 --  @group Clef Constructeur
-package Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P
+   with Pure
+is
 
    type Faiseur_Interface_T is interface;
    --  Constructeur abstrait de clef de 56 bits.

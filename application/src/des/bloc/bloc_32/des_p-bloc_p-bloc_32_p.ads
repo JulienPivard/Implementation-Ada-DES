@@ -4,9 +4,9 @@
 --  Cette représentation permet de manipuler facilement des
 --  blocs de 32 bits sans avoir à en connaitre le détail.
 --  @group Bloc
-package Des_P.Bloc_P.Bloc_32_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_32_P
+   with Pure
+is
 
    type Intervalle_T is range 1 .. 32;
    --  L'intervalle pour accéder à notre bloc de 32 bits.

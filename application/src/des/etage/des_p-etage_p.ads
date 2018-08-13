@@ -6,9 +6,9 @@ with Des_P.Filtre_P;
 --  @description
 --  Un étage abstrait de DES paramétré par un filtre.
 --  @group Étage
-package Des_P.Etage_P is
-
-   pragma Pure;
+package Des_P.Etage_P
+   with Pure
+is
 
    type Etage_Abstrait_T is interface;
    --  Un étage du standard DES.

@@ -10,9 +10,9 @@ with Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
 --  clef de 64. Le constructeur va sélectionner ces bits
 --  selon le tableau PC-1 du standard DES.
 --  @group Clef Constructeur
-package Des_P.Clef_P.Clef_56_P.Faiseur_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_56_P.Faiseur_P
+   with Pure
+is
 
    package Interface_P renames
       Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;

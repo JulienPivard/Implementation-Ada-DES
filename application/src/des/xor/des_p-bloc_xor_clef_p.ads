@@ -7,9 +7,9 @@ with Des_P.Bloc_P.Bloc_48_I_P;
 --  Permet de faire un xor entre un bloc de 48 bits et
 --  une clef de même taille.
 --  @group XOR
-package Des_P.Bloc_Xor_Clef_P is
-
-   pragma Pure;
+package Des_P.Bloc_Xor_Clef_P
+   with Pure
+is
 
    function "xor"
       (

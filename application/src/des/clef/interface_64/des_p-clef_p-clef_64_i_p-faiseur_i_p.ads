@@ -3,9 +3,9 @@
 --  @description
 --  Construit une clef de 64 bits à partir d'un brut de 64 bits.
 --  @group Clef Constructeur
-package Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P
+   with Pure
+is
 
    type Faiseur_Interface_T is interface;
    --  Constructeur de clef abstraite de 64 bits.

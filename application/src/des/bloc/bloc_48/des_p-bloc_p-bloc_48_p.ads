@@ -6,9 +6,9 @@ with Des_P.Bloc_P.Bloc_48_I_P;
 --  Cette représentation permet de manipuler facilement des
 --  blocs de 48 bits sans avoir à en connaitre le détail.
 --  @group Bloc
-package Des_P.Bloc_P.Bloc_48_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_48_P
+   with Pure
+is
 
    type Bloc_48_T is new Bloc_Abstrait_T and
       Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with private;

@@ -9,9 +9,9 @@ with Des_P.Clef_P.Clef_48_I_P;
 --  @description
 --  Fabrique de filtres qui permet de fabriquer une famille de filtre.
 --  @group Filtre Fabrique
-package Des_P.Filtre_P.Fabrique_P is
-
-   pragma Pure;
+package Des_P.Filtre_P.Fabrique_P
+   with Pure
+is
 
    type Fabrique_Interface_T is interface;
    --  L'interface de la fabrique de filtre.

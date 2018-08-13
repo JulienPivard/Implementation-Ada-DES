@@ -5,9 +5,9 @@ with Des_P.Bloc_P.Bloc_48_I_P;
 --  @description
 --  Construit le bloc de 32 bits à partir d'un bloc brut.
 --  @group Bloc Constructeur
-package Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_32_P.Faiseur_P
+   with Pure
+is
 
    type Faiseur_Bloc_T is tagged private;
    --  Constructeur de bloc de 32 bits

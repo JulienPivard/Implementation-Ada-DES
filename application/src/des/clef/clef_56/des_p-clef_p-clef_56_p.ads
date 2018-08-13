@@ -5,9 +5,9 @@ with Des_P.Clef_P.Clef_56_I_P;
 --  @description
 --  La représentation d'une clef de 56 bits, dans le standard DES.
 --  @group Clef
-package Des_P.Clef_P.Clef_56_P is
-
-   pragma Pure;
+package Des_P.Clef_P.Clef_56_P
+   with Pure
+is
 
    type Clef_T is new Clef_Abstrait_T and
       Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T with private;

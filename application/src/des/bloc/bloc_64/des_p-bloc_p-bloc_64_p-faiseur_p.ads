@@ -3,9 +3,9 @@
 --  @description
 --  Construit le bloc de 64 bits à partir d'un bloc brut de 64.
 --  @group Bloc Constructeur
-package Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_64_P.Faiseur_P
+   with Pure
+is
 
    type Faiseur_Bloc_T is tagged private;
    --  Constructeur de bloc de 64 bits.

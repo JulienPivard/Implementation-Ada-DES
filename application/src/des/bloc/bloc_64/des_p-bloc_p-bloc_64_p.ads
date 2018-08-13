@@ -6,9 +6,9 @@ with Des_P.Bloc_P.Bloc_32_P;
 --  Cette représentation permet de manipuler facilement des
 --  blocs de 64 bits sans avoir à en connaitre le détail.
 --  @group Bloc
-package Des_P.Bloc_P.Bloc_64_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_64_P
+   with Pure
+is
 
    type Intervalle_T is range 1 .. 64;
    --  L'intervalle pour accéder aux bits du bloc de 64 bits.

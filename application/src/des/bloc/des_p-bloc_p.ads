@@ -6,9 +6,9 @@ with Ada.Finalization;
 --  Cette représentation abstraite permet de manipuler facilement
 --  des blocs de bits sans avoir à en connaitre le détail.
 --  @group Bloc
-package Des_P.Bloc_P is
-
-   pragma Pure;
+package Des_P.Bloc_P
+   with Pure
+is
 
    subtype Bit_T is Boolean;
    --  Représente un bit du bloc.

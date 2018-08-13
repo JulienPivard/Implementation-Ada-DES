@@ -4,9 +4,9 @@
 --  Filtre d'entrée abstrait qui va servir à paramétrer
 --  chaque étages de la chaine.
 --  @group Filtre
-package Des_P.Filtre_P.Entree_P is
-
-   pragma Pure;
+package Des_P.Filtre_P.Entree_P
+   with Pure
+is
 
    type Entree_Abstrait_T is abstract new
       Filtre_Interface_T with private;

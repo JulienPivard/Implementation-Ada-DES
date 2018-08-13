@@ -4,9 +4,9 @@
 --  Contient les opérations initial et final de permutations
 --  sur des blocs de 64 bits.
 --  @group Bloc
-package Des_P.Bloc_P.Bloc_64_P.Permutations_P is
-
-   pragma Pure;
+package Des_P.Bloc_P.Bloc_64_P.Permutations_P
+   with Pure
+is
 
    procedure Permutation_Entrante
       (Bloc : in out Bloc_64_T);

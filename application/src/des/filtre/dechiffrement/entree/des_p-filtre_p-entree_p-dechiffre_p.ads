@@ -6,9 +6,9 @@ with Des_P.Filtre_P.Dechiffre_Interface_P;
 --  Filtre de déchiffrement permutation final qui va servir à
 --  paramétrer le premier étage des filtres.
 --  @group Filtre Déchiffrement
-package Des_P.Filtre_P.Entree_P.Dechiffre_P is
-
-   pragma Pure;
+package Des_P.Filtre_P.Entree_P.Dechiffre_P
+   with Pure
+is
 
    package P_Dechiffrement_P renames Des_P.Filtre_P.Dechiffre_Interface_P;
 

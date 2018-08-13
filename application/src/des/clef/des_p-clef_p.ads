@@ -5,9 +5,9 @@ with Ada.Finalization;
 --  @description
 --  Version généraliste des clefs de chiffrement/déchiffrement.
 --  @group Clef
-package Des_P.Clef_P is
-
-   pragma Pure;
+package Des_P.Clef_P
+   with Pure
+is
 
    subtype Bit_T is Boolean;
    --  Un bit de la clef.
