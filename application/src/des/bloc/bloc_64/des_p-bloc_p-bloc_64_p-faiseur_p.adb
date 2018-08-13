@@ -26,7 +26,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
             Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
             Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
          end record
-      with Size => 64;
+         with Size => 64;
 
       --  Délimite les deux blocs de 32 en définissant
       --  l'octet de départ et le nombre de bits.
@@ -78,7 +78,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
             Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
             Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
          end record
-      with Size => 64;
+         with Size => 64;
 
       --  Défini les placements des 32 bits de chaque bloc
       --  en donnant leur octet de départ.
