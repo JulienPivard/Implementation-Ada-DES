@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 30 juin[06] 2018
+--  Dernière modification : Lundi 13 août[08] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -182,7 +182,8 @@ project Build is
             --  Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use Options & ("-g", "-gnata");
          when "release" =>
-            for Default_Switches ("Ada") use Options & ("-O3");
+            --  -gnatn Active les pragma Inline (optimisation)
+            for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
 
    end Compiler;
