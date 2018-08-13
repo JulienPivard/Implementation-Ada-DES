@@ -37,7 +37,8 @@ is
          B : in out Bloc_32_T;
          Position : Intervalle_T;
          Bit : Bit_T
-      );
+      )
+      with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 32.
    --  @param B
    --  Le bloc de 32 bits.
@@ -51,7 +52,8 @@ is
          B : Bloc_32_T;
          Position : Intervalle_T
       )
-   return Bit_T;
+      return Bit_T
+      with Inline;
    --  Lit le bit demandé dans le bloc de 32.
    --  @param B
    --  Le bloc de 32 bits.
@@ -59,7 +61,8 @@ is
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
 
-   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T;
+   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T
+      with Inline;
    --  Effectue un xor bit à bit entre les deux blocs de 32.
    --  @param Bloc
    --  Le bloc de 32 bits.

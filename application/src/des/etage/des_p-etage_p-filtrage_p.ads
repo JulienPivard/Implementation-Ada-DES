@@ -31,7 +31,8 @@ package Des_P.Etage_P.Filtrage_P is
    overriding
    function Possede_Filtre
       (Etage : Etage_T)
-      return Boolean;
+      return Boolean
+      with Inline;
    --  Vérifie si l'étage possède un filtre.
    --  @param Etage
    --  L'étage.
@@ -40,7 +41,8 @@ package Des_P.Etage_P.Filtrage_P is
    overriding
    function Possede_Successeur
       (Etage : Etage_T)
-      return Boolean;
+      return Boolean
+      with Inline;
    --  Vérifie si l'étage possède un successeur.
    --  @param Etage
    --  L'étage.

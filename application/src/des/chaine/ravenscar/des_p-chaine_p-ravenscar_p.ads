@@ -69,7 +69,8 @@ private
          D : in out Donnee_T;
          Procedure_Filtre : not null access
             procedure (Table : in out Table_Bloc_T)
-      );
+      )
+      with Inline;
    --  Applique le filtre à la données.
    --  @param D
    --  La donnée à laquelle appliquer le filtre.
@@ -81,7 +82,8 @@ private
          D : Donnee_T;
          Procedure_Appliquee : not null access
             procedure (Table : Table_Bloc_T)
-      );
+      )
+      with Inline;
    --  Applique le filtre à la données.
    --  @param D
    --  La donnée à laquelle appliquer le filtre.
@@ -92,7 +94,8 @@ private
       (
          D : in out Donnee_T;
          T : Table_Bloc_T
-      );
+      )
+      with Inline;
    --  Modifie la table stockée dans la donnée
    --  @param D
    --  La donnée.
@@ -103,7 +106,8 @@ private
       (
          D : in out Donnee_T;
          Fini : Boolean
-      );
+      )
+      with Inline;
    --  Signal que la grappe de donnée est la dernière.
    --  @param D
    --  La donnée.
@@ -113,7 +117,8 @@ private
    function Est_Derniere
       (D : Donnee_T)
       return Boolean
-   is (D.Est_Derniere_Grappe);
+   is (D.Est_Derniere_Grappe)
+      with Inline;
    --  Indique si la donnée est la dernière
    --  @param D
    --  La donnée.
@@ -142,7 +147,8 @@ private
 
    protected Autorisation_Rearmement_Protegee is
       entry Attendre_Entree;
-      procedure Autoriser;
+      procedure Autoriser
+         with Inline;
    private
       Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
       Signal : Boolean := False;
@@ -157,7 +163,8 @@ private
 
    protected Demarreur_Protegee is
       entry Attendre_Entree;
-      procedure Demarrer;
+      procedure Demarrer
+         with Inline;
    private
       Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
       Signal : Boolean := False;
@@ -170,7 +177,8 @@ private
 
    protected Fin_Protegee is
       entry Attendre_Entree;
-      procedure Fini;
+      procedure Fini
+         with Inline;
    private
       Signal : Boolean := False;
    end Fin_Protegee;
@@ -242,7 +250,8 @@ private
 
    protected type Autorisation_Protegee is
       entry Attendre_Entree;
-      procedure Autoriser;
+      procedure Autoriser
+         with Inline;
    private
       Signal : Boolean := False;
    end Autorisation_Protegee;
@@ -253,7 +262,8 @@ private
 
    protected type Donnee_Protegee is
       entry Ecrire_Donnee_Entree (Table : Donnee_T);
-      procedure Lire_Donnee (Table : out Donnee_T);
+      procedure Lire_Donnee (Table : out Donnee_T)
+         with Inline;
    private
       Signal : Boolean := True;
       Donnee : Donnee_T;

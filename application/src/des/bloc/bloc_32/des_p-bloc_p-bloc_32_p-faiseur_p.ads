@@ -18,7 +18,8 @@ is
    --  un bloc de 32 bits plus facile à manipuler.
 
    procedure Preparer_Nouveau_Bloc
-      (Constructeur : in out Faiseur_Bloc_T);
+      (Constructeur : in out Faiseur_Bloc_T)
+      with Inline;
    --  Initialise un nouveau bloc vide de 32 bits.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
@@ -59,7 +60,8 @@ is
 
    function Recuperer_Bloc
       (Constructeur : Faiseur_Bloc_T)
-      return Bloc_32_T;
+      return Bloc_32_T
+      with Inline;
    --  Récupère le bloc de 32 bits terminé.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
@@ -70,7 +72,8 @@ is
          Constructeur : in out Faiseur_Bloc_T;
          Bloc : Bloc_32_T
       )
-      return Bloc_32_Brut_T;
+      return Bloc_32_Brut_T
+      with Inline;
    --  Transforme un bloc de 32 bits en son brut équivalent.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.

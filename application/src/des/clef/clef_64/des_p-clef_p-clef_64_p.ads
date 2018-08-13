@@ -19,7 +19,8 @@ is
          Clef : Clef_T;
          Position : Des_P.Clef_P.Clef_64_I_P.Intervalle_T
       )
-      return Bit_T;
+      return Bit_T
+      with Inline;
    --  Lit le bit à la position spécifié.
    --  @param Clef
    --  La clef dont on veut lire un bit.

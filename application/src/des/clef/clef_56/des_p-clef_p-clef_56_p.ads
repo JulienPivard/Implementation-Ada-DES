@@ -18,7 +18,8 @@ is
       (
          Clef : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
-      );
+      )
+      with Inline;
    --  Décale les bits de la clef vers la gauche
    --  @param Clef
    --  La clef dont on veut décaler les bits.
@@ -30,7 +31,8 @@ is
       (
          Clef : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
-      );
+      )
+      with Inline;
    --  Décale les bits de la clef vers la droite
    --  @param Clef
    --  La clef dont on veut décaler les bits.

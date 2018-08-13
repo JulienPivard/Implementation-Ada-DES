@@ -21,7 +21,8 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
       entry Generer_Bloc_Entree;
       --  Signal qu'une grappe à été générée.
 
-      procedure Consommer_Bloc;
+      procedure Consommer_Bloc
+         with Inline;
       --  Signal qu'une grappe à été consommée.
 
       procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);

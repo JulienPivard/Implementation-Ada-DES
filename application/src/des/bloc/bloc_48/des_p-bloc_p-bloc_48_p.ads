@@ -38,7 +38,8 @@ is
          B : in out Bloc_48_T;
          Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
          Bit : Bit_T
-      );
+      )
+      with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 48.
    --  @param B
    --  Le bloc de 48 bits.
@@ -53,7 +54,8 @@ is
          B : Bloc_48_T;
          Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T
       )
-      return Bit_T;
+      return Bit_T
+      with Inline;
    --  Lit le bit demandé dans le bloc de 48.
    --  @param B
    --  Le bloc de 48 bits.

@@ -13,7 +13,8 @@ is
    --  Constructeur de bloc de 48 bits
 
    procedure Preparer_Nouveau_Bloc
-      (Constructeur : in out Faiseur_Bloc_T);
+      (Constructeur : in out Faiseur_Bloc_T)
+      with Inline;
    --  Initialise un nouveau bloc vide de 48 bits.
    --  @param Constructeur
    --  Le constructeur de bloc de 48 bits.
@@ -31,7 +32,8 @@ is
 
    function Recuperer_Bloc
       (Constructeur : Faiseur_Bloc_T)
-      return Bloc_48_T;
+      return Bloc_48_T
+      with Inline;
    --  Récupère le bloc de 48 bits terminé.
    --  @param Constructeur
    --  Le constructeur de bloc de 48 bits.

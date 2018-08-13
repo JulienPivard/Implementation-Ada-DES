@@ -109,7 +109,8 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
       overriding
       procedure Ecrire
-         (Brut : C_Bloc_64_P.Bloc_64_Brut_T);
+         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+         with Inline;
       --  Écrit la donnée dans le fichier.
       --  @param Brut
       --  La donnée à écrire dans le fichier.
@@ -135,13 +136,15 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
       overriding
       procedure Lire
-         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T);
+         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+         with Inline;
       --  Lit la donnée dans le fichier.
       --  @param Brut
       --  La donnée lu dans le fichier.
 
       overriding
-      function Est_Fini return Boolean;
+      function Est_Fini return Boolean
+         with Inline;
       --  Permet de savoir si le fichier est fini de lire.
       --  @return
       --  Le fichier est fini de lire.

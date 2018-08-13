@@ -23,7 +23,8 @@ is
 
    overriding
    procedure Preparer_Nouvelle_Clef
-      (Constructeur : in out Faiseur_Clef_T);
+      (Constructeur : in out Faiseur_Clef_T)
+      with Inline;
    --  Prépare une nouvelle sous clef vide.
    --  @param Constructeur
    --  Le constructeur de la sous clef.
@@ -43,7 +44,8 @@ is
    overriding
    function Recuperer_Clef
       (Constructeur : Faiseur_Clef_T)
-      return Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class;
+      return Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+      with Inline;
    --  Permet de récupérer la sous clefs terminée.
    --  @param Constructeur
    --  Le constructeur de la sous clef.
@@ -51,7 +53,8 @@ is
 
    function Recuperer_Clef
       (Constructeur : Faiseur_Clef_T)
-      return Clef_T;
+      return Clef_T
+      with Inline;
    --  Permet de récupérer la sous clefs terminée.
    --  @param Constructeur
    --  Le constructeur de la sous clef.

@@ -45,7 +45,8 @@ is
    --  Le bloc de 64 bits.
 
    procedure Intervertir_Blocs
-      (Bloc : in out Bloc_64_T);
+      (Bloc : in out Bloc_64_T)
+      with Inline;
    --  Fait passer le bloc de 32 bits de gauche à droite et
    --  le bloc de 32 bits de droite à gauche. L'ordre des bits
    --  à l'intérieur des bloc de 32 n'est bien entendu pas modifié.
@@ -119,7 +120,8 @@ is
          Bloc : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
          Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
-      );
+      )
+      with Inline;
    --  Écrit le bloc de 32 bits à droite ou à gauche dans le
    --  bloc de 64 bits.
    --  @param Bloc
@@ -134,7 +136,8 @@ is
          Bloc : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T
       )
-      return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+      return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+      with Inline;
    --  Permet de lire le bloc de 32 bits de gauche ou de droite.
    --  @param Bloc
    --  Le bloc de 64 bits.
@@ -155,7 +158,8 @@ private
          Left : Position_Bloc_T;
          Right : Decalage_T
       )
-      return Position_Bloc_T;
+      return Position_Bloc_T
+      with Inline;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
    --  @param Left
@@ -169,7 +173,8 @@ private
          Left : Decalage_T;
          Right : Position_Bloc_T
       )
-      return Position_Bloc_T;
+      return Position_Bloc_T
+      with Inline;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
    --  @param Left

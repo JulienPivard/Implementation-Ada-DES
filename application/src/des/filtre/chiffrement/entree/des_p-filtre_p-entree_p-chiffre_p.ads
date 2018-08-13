@@ -22,7 +22,8 @@ is
       (
          Filtre : Entree_T;
          Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
-      );
+      )
+      with Inline;
    --  Filtre le bloc de 64 bits.
    --  @param Filtre
    --  Le filtre.

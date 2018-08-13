@@ -16,7 +16,8 @@ is
    --  un bloc de 64 bits plus facile à manipuler.
 
    procedure Preparer_Nouveau_Bloc
-      (Constructeur : in out Faiseur_Bloc_T);
+      (Constructeur : in out Faiseur_Bloc_T)
+      with Inline;
    --  Initialise un nouveau bloc vide de 64 bits.
    --  @param Constructeur
    --  Le constructeur de bloc de 64 bits.
@@ -34,7 +35,8 @@ is
 
    function Recuperer_Bloc
       (Constructeur : Faiseur_Bloc_T)
-      return Bloc_64_T;
+      return Bloc_64_T
+      with Inline;
    --  Récupère le bloc de 64 bits terminé.
    --  @param Constructeur
    --  Le constructeur de bloc de 64 bits.
