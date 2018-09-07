@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 01 septembre[09] 2018
+--  Dernière modification : Vendredi 07 septembre[09] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -8,6 +8,7 @@ project Build is
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
    type Personnalisee_T       is ("non", "oui");
+   type Sorte_Avertissement_T is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
@@ -18,6 +19,9 @@ project Build is
    Verbeux           : Verbeux_T             := External ("verb", "non");
    Strict            : Strict_T              := External ("stri", "non");
    Personnalisee     : Personnalisee_T       := External ("peso", "non");
+
+   Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
+      External ("warn_sont_err", "non");
 
    --  Le nom du fichier qui contient la procédure principale.
    Fichiers_Principaux := ("client_sequentiel.adb");
@@ -105,6 +109,13 @@ project Build is
    case Strict is
       when "oui" =>
          Options := Options & ("-gnatg");
+      when "non" =>
+         null;
+   end case;
+
+   case Warn_Deviennent_Erreurs is
+      when "oui" =>
+         Options := Options & ("-gnatwe");
       when "non" =>
          null;
    end case;
