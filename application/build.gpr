@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 13 août[08] 2018
+--  Dernière modification : Samedi 01 septembre[09] 2018
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -166,9 +166,9 @@ project Build is
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
          when "debug" | "release" =>
-            for Executable ("client_sequentiel.adb") use "executable_sequentiel";
-            for Executable ("client_taches.adb") use "executable_taches";
-            for Executable ("client_ravenscar.adb") use "executable_ravenscar";
+            for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
+            for Executable ("client_taches.adb")      use "executable_taches";
+            for Executable ("client_ravenscar.adb")   use "executable_ravenscar";
       end case;
 
    end Builder;
