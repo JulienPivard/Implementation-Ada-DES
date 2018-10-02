@@ -63,8 +63,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
       C_64.Init ((others => False));
       T.C.Construire (C_64);
       declare
-         use Des_P.Filtre_P.Corps_P.Dechiffre_P;
-         use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Lire_Etage_Suivant (T.C.Chaine.Tete);
@@ -120,8 +118,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
       T.C.Construire (C_64);
       Chaine := Chaine_T (T.C.Recuperer_Chaine);
       declare
-         use Des_P.Filtre_P.Corps_P.Dechiffre_P;
-         use Des_P.Filtre_P.Corps_P;
          use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Lire_Etage_Suivant (Chaine.Tete);

@@ -1,7 +1,6 @@
 with AUnit.Assertions;
 
 with Des_P.Bloc_P.Bloc_64_P;
-with Des_P.Clef_P.Clef_56_I_P;
 with Des_P.Filtre_P.Clef_Tests_P;
 
 with Des_P.Clef_P.Clef_48_Simplifie_P;
@@ -76,8 +75,6 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
             True, True, False, True, False, False, True, True,
             True, False, True, True, False, True, False, True
          );
-
-      use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
 
       --  Valeur attendu
       --  11111100 0X001100 00X110X1 0X01 1110 100X10X1 100X1001 011000X1
