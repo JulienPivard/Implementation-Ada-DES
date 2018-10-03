@@ -14,4 +14,34 @@ package body Des_P.Etage_P.Filtrage_P.Explorer_P is
       return Etage.Filtre.Element;
    end Lire_Filtre;
 
+   ---------------------------------------------------------------------------
+   function Connaitre_Type_Filtre
+      (F : Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class)
+      return Instance_Filtre_T
+   is
+      pragma Unreferenced (F);
+   begin
+      return Entree;
+   end Connaitre_Type_Filtre;
+
+   ---------------------------------------------------------------------------
+   function Connaitre_Type_Filtre
+      (F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class)
+      return Instance_Filtre_T
+   is
+      pragma Unreferenced (F);
+   begin
+      return Corps;
+   end Connaitre_Type_Filtre;
+
+   ---------------------------------------------------------------------------
+   function Connaitre_Type_Filtre
+      (F : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class)
+      return Instance_Filtre_T
+   is
+      pragma Unreferenced (F);
+   begin
+      return Sortie;
+   end Connaitre_Type_Filtre;
+
 end Des_P.Etage_P.Filtrage_P.Explorer_P;

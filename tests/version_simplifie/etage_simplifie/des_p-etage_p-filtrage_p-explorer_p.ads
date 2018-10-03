@@ -7,7 +7,9 @@ package Des_P.Etage_P.Filtrage_P.Explorer_P is
 
    type Instance_Filtre_T is (Entree, Corps, Sortie);
 
-   function Lire_Etage_Suivant (Etage : Etage_T) return Etage_T;
+   function Lire_Etage_Suivant
+      (Etage : Etage_T)
+      return Etage_T;
 
    function Lire_Filtre
       (Etage : Etage_T)
@@ -15,14 +17,14 @@ package Des_P.Etage_P.Filtrage_P.Explorer_P is
 
    function Connaitre_Type_Filtre
       (F : Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class)
-      return Instance_Filtre_T is (Entree);
+      return Instance_Filtre_T;
 
    function Connaitre_Type_Filtre
       (F : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class)
-      return Instance_Filtre_T is (Corps);
+      return Instance_Filtre_T;
 
    function Connaitre_Type_Filtre
       (F : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class)
-      return Instance_Filtre_T is (Sortie);
+      return Instance_Filtre_T;
 
 end Des_P.Etage_P.Filtrage_P.Explorer_P;
