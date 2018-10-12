@@ -1,5 +1,6 @@
 --  vim:nospell
 --  http://docs.adacore.com/asis-docs/html/gnatcheck_rm/gnatcheck_rm.html
+
 --------------------------
 --  Feature Usage Rule  --
 --------------------------
@@ -8,7 +9,8 @@
 --  Les blocs de code dans des blocs (declare)
 --  +RBlocks
 +RComplex_Inlined_Subprograms:2
-+RConditional_Expressions
+--  Signal toutes les expressions conditionnel
+--  +RConditional_Expressions
 +RControlled_Type_Declarations
 --  Les déclarations dans des sous blocs
 --  +RDeclarations_In_Blocks
@@ -25,8 +27,10 @@
 +RFunction_Style_Procedures
 +RGenerics_In_Subprograms
 --  Dans les paramètre le mot in doit être écrit explicitement
-+RImplicit_IN_Mode_Parameters
-+RImproperly_Located_Instantiations
+--  +RImplicit_IN_Mode_Parameters
+--  Signal toutes les instanciation au niveau des body ou des
+--  package de spec. Les Task et entry bodies ne sont pas concerné.
+--  +RImproperly_Located_Instantiations
 --  Marque tous les programmes au niveau des librairie y compris les générique
 --  +RLibrary_Level_Subprograms
 +RMembership_Tests
@@ -40,10 +44,13 @@
 +RPredicate_Testing
 +RQuantified_Expressions
 +RRaising_Predefined_Exceptions
-+RRepresentation_Specifications
-+RSubprogram_Access
+--  Signal toutes les spécifications de représentation
+--  +RRepresentation_Specifications
+--  Toutes les déclarations de pointeurs de sous programmes
+--  +RSubprogram_Access
 +RUnassigned_OUT_Parameters
-+RUnconstrained_Array_Returns
+--  Signal toutes les fonction qui retourne un tableau non contrains.
+--  +RUnconstrained_Array_Returns
 +RUnconditional_Exits
 
 -----------------------
@@ -74,13 +81,17 @@
 --  +RForbidden_Attributes:ALL
 --  Interdiction d'attributs tels que 'Img
 --  +RForbidden_Attributes:GNAT
-+RForbidden_Pragmas:ALL
-+RForbidden_Pragmas:GNAT
+--  Permet d'interdire certains pragama
+--  +RForbidden_Pragmas:ALL
++RForbidden_Pragmas:Unchecked_Conversion
+--  Demande de fixer la plus petite valeur dans les points fixe.
 +RImplicit_SMALL_For_Fixed_Point_Types
 +RNo_Scalar_Storage_Order_Specified
 --  Référence explicite à un type prédéfini
 --  +RPredefined_Numeric_Types
-+RSeparate_Numeric_Error_Handlers
+--  Demande a ce que Constraint_Error et Numeric_Error soit
+--  toutes les deux traitées. Numeric_Error est obselete
+--  +RSeparate_Numeric_Error_Handlers
 
 --  Program Structure  --
 +RDeeply_Nested_Generics:2
@@ -91,7 +102,8 @@
 --  Programming Practice  --
 +RAnonymous_Arrays
 +RBinary_Case_Statements
-+RDefault_Values_For_Record_Components
+--  Signal tous les record dont les composants ont une expression par défaut
+--  +RDefault_Values_For_Record_Components
 --  Dérive un nouveau type depuis un type prédéfini
 --  +RDeriving_From_Predefined_Type
 +REnumeration_Ranges_In_CASE_Statements
@@ -100,9 +112,12 @@
 +REXIT_Statements_With_No_Loop_Name
 +RGlobal_Variables
 +RGOTO_Statements
+--  Signal toutes les utilisations de return dans une procedure
+--  et toutes les utilisations de plus d'un return dans une fonction
 +RImproper_Returns
 +RMaximum_Parameters:5
-+RNested_Subprograms
+--  Signal tous les sous programme déclaré dans un autre.
+--  +RNested_Subprograms
 +RNon_Short_Circuit_Operators
 +RNull_Paths
 +RObjects_Of_Anonymous_Types
@@ -110,6 +125,8 @@
 +ROTHERS_In_CASE_Statements
 +ROTHERS_In_Exception_Handlers
 +ROverly_Nested_Control_Structures:4
+--  Lors de l'initialisation, signal tous les arguments passé par
+--  position dans un généric, si celui ci à une valeur par défaut.
 +RPositional_Actuals_For_Defaulted_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +RPositional_Actuals_For_Defaulted_Parameters
@@ -118,6 +135,7 @@
 +RPositional_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +RPositional_Parameters
+--  Signal tous les sous-programme recursif
 +RRecursive_Subprograms
 +RUnchecked_Address_Conversions
 +RUnchecked_Conversions_As_Actuals
@@ -132,11 +150,12 @@
 +RIdentifier_Casing:Constant=mixed
 +RIdentifier_Casing:Exception=mixed
 +RIdentifier_Casing:Others=mixed
++RIdentifier_Casing:Exclude=exception_case
 --  +RIdentifier_Suffixes:Default
 +RIdentifier_Suffixes:Type_Suffix=_T
 --  +RIdentifier_Suffixes:Access_Suffix=_A
 --  +RIdentifier_Suffixes:Constant_Suffix=_C
-+RIdentifier_Suffixes:Renaming_Suffix=_R
+--  +RIdentifier_Suffixes:Renaming_Suffix=_R
 --  +RIdentifier_Suffixes:Access_Obj_Suffix=_O
 +RIdentifier_Prefixes:Exclusive
 --  Pour les objets le premier paramètre est This
