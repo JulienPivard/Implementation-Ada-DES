@@ -42,7 +42,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             22, 11,  4, 25
          );
    begin
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          Constructeur.Bloc.Bits (I) := Brut.Bits (Table_P (I));
       end loop;
    end Construire_Bloc;

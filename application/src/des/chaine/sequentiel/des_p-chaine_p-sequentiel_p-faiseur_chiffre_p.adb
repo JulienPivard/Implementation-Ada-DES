@@ -50,9 +50,10 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P is
       Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
 
       --  Ajoute le filtre de corps à chaque filtre.
-      for I in Numero_Filtre_T'Range loop
+      for I in Numero_Filtre_T loop
          --  Décalage à gauche pour le chiffrement.
          Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
+         Initialisation_Filtre :
          declare
             E : Des_P.Etage_P.Filtrage_P.Etage_T;
             --  Initialise le filtre avec la clef de 48
@@ -64,16 +65,17 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P is
             E.Modifier_Filtre (F);
             --  Ajoute l'étage à la fin de la chaine.
             Tete.Ajouter_Successeur (E);
-         end;
+         end Initialisation_Filtre;
       end loop;
 
       --  Ajoute le filtre de sortie au dernier étage.
+      Lier_Filtre_Et_Etage_Sortie :
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
       begin
          Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
          Tete.Ajouter_Successeur (Etage);
-      end;
+      end Lier_Filtre_Et_Etage_Sortie;
 
       --  Change la tète de la chaine.
       Constructeur.Chaine.Tete := Tete;

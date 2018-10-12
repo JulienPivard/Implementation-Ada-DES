@@ -33,6 +33,7 @@ package body Des_P.Chaine_P.Taches_P is
          T_Tmp : Table_Holder_P.Holder;
          C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
       begin
+         Selection_Action_Estage :
          loop
             select
                accept Ecrire
@@ -45,18 +46,19 @@ package body Des_P.Chaine_P.Taches_P is
                --  Parcours du tableau de blocs
                for E of T_Tmp.Element loop
                   --  Écrit le brut dans le fichier.
+                  Ecrire_Donnee_Sortie :
                   declare
                      Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                         := C_64.Transformer_En_Brut (E);
                   begin
                      Ecriveur.all.Ecrire (Brut);
-                  end;
+                  end Ecrire_Donnee_Sortie;
                end loop;
                Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
             or
                terminate;
             end select;
-         end loop;
+         end loop Selection_Action_Estage;
       end Etage_Ecriture;
 
       ------------------------------------------------------------------
@@ -83,6 +85,7 @@ package body Des_P.Chaine_P.Taches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         Selection_Action_Estage :
          loop
             select
                accept Filtrer
@@ -96,6 +99,7 @@ package body Des_P.Chaine_P.Taches_P is
                terminate;
             end select;
 
+            Ecrire_Donnee_Sortie :
             declare
                --  Le tableau doit pouvoir être modifié
                --  donc copie dans une version modifiable.
@@ -108,8 +112,8 @@ package body Des_P.Chaine_P.Taches_P is
                end loop;
                --  Renvoie du bloc vers l'étage d'écriture.
                Etage_Ecriture.Ecrire (T);
-            end;
-         end loop;
+            end Ecrire_Donnee_Sortie;
+         end loop Selection_Action_Estage;
       end Etage_Sortie;
 
       ------------------------------------------------------------------
@@ -141,6 +145,7 @@ package body Des_P.Chaine_P.Taches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         Selection_Action_Estage :
          loop
             select
                accept Filtrer
@@ -156,6 +161,7 @@ package body Des_P.Chaine_P.Taches_P is
                terminate;
             end select;
 
+            Filtrage_Des_Donnees :
             declare
                --  Le tableau doit pouvoir être modifié
                --  donc copie dans une version modifiable.
@@ -174,8 +180,8 @@ package body Des_P.Chaine_P.Taches_P is
                   N_Tmp := Numero_Filtre_T'Succ (N_Tmp);
                   Chaine_Corps (N_Tmp).Filtrer (T, N_Tmp);
                end if;
-            end;
-         end loop;
+            end Filtrage_Des_Donnees;
+         end loop Selection_Action_Estage;
       end Etage_Corps;
 
       ------------------------------------------------------------------
@@ -202,6 +208,7 @@ package body Des_P.Chaine_P.Taches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         Selection_Action_Estage :
          loop
             select
                accept Filtrer
@@ -215,6 +222,7 @@ package body Des_P.Chaine_P.Taches_P is
                terminate;
             end select;
 
+            Lecture_Des_Donnees :
             declare
                --  Le tableau doit pouvoir être modifié
                --  donc copie dans une version modifiable.
@@ -228,8 +236,8 @@ package body Des_P.Chaine_P.Taches_P is
                --  Envoie le bloc vers la première tache de corps.
                Chaine_Corps (Numero_Filtre_T'First).Filtrer
                   (T, Numero_Filtre_T'First);
-            end;
-         end loop;
+            end Lecture_Des_Donnees;
+         end loop Selection_Action_Estage;
       end Etage_Entree;
 
       ------------------------------------------------------------------
@@ -259,6 +267,7 @@ package body Des_P.Chaine_P.Taches_P is
                Remplissage :
                for I in Indice_T loop
                   exit Remplissage when Lecteur.all.Est_Fini;
+                  Lecture_D_Une_Donnee :
                   declare
                      Brut : C_Bloc_64_P.Bloc_64_Brut_T;
                   begin
@@ -266,7 +275,7 @@ package body Des_P.Chaine_P.Taches_P is
                      --  Initialisation du bloc de 64
                      C_64.Preparer_Nouveau_Bloc;
                      C_64.Construire_Bloc (Brut);
-                  end;
+                  end Lecture_D_Une_Donnee;
                   Table (I) := C_64.Recuperer_Bloc;
                   J := I;
                end loop Remplissage;

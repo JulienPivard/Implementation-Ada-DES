@@ -58,7 +58,7 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
             (Fabrique.Fabriquer_Entree);
 
-      for I in reverse Numero_Filtre_T'Range loop
+      for I in reverse Numero_Filtre_T loop
          --  Initialise le filtre J avec la clef de 48 I.
          Constructeur.Chaine.Filtres_Corps (J) :=
             Des_P.Filtre_P.Corps_P.Holder_P.To_Holder

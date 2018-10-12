@@ -57,7 +57,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P is
             (Fabrique.Fabriquer_Entree);
 
       --  Ajoute le filtre de corps à la chaine.
-      for I in Numero_Filtre_T'Range loop
+      for I in Numero_Filtre_T loop
          --  Décalage à gauche pour le chiffrement.
          Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
          --  Initialise le filtre avec la clef de 48.

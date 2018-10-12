@@ -317,6 +317,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                exit Remplissage when Lecteur.all.Est_Fini;
                --  Transformation du brut lu en un bloc.
                C_64.Preparer_Nouveau_Bloc;
+               Construction_Bloc :
                declare
                   ---------------------------------------------------------
                   function Lire_Grappe return C_Bloc_64_P.Bloc_64_Brut_T;
@@ -330,11 +331,12 @@ package body Des_P.Chaine_P.Ravenscar_P is
                   Brut : constant C_Bloc_64_P.Bloc_64_Brut_T := Lire_Grappe;
                begin
                   C_64.Construire_Bloc (Brut);
-               end;
+               end Construction_Bloc;
                Table (I) := C_64.Recuperer_Bloc;
                J := I;
             end loop Remplissage;
 
+            Transmission_Donnee_Bloc_Suivant :
             declare
                --  Si on a atteint la fin du fichier on envoie le
                --  signal de terminaison
@@ -346,7 +348,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Ecrire_Est_Derniere (D, Lecteur.all.Est_Fini);
                --  Lancement du filtrage de la grappe de blocs.
                Donnee_Debut.Ecrire_Donnee_Entree (D);
-            end;
+            end Transmission_Donnee_Bloc_Suivant;
 
             --  On signal la création d'un nouveau bloc,
             --  si il y en a trop en circulation la
@@ -396,6 +398,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  En attente de l'autorisation de lire.
             Autorisateur_Debut.Attendre_Entree;
 
+            Transmission_Donnee_Bloc_Suivant :
             declare
                --  Lecture des données.
                D : Donnee_T;
@@ -410,7 +413,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Autorisateur_01.Autoriser;
 
                exit Filtrage when Est_Derniere (D);
-            end;
+            end Transmission_Donnee_Bloc_Suivant;
 
          end loop Filtrage;
 
@@ -450,6 +453,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  En attente de l'autorisation de lire.
             Autorisateur_Reception.all.Attendre_Entree;
 
+            Transmission_Donnee_Bloc_Suivant :
             declare
                --  Lecture des données.
                D : Donnee_T;
@@ -465,8 +469,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Autorisateur_Envoyee.all.Autoriser;
 
                exit Filtrage when Est_Derniere (D);
-
-            end;
+            end Transmission_Donnee_Bloc_Suivant;
 
          end loop Filtrage;
 
@@ -506,6 +509,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  En attente de l'autorisation de lire.
             Autorisateur_17.Attendre_Entree;
 
+            Transmission_Donnee_Bloc_Suivant :
             declare
                D : Donnee_T;
             begin
@@ -519,7 +523,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Autorisateur_Fin.Autoriser;
 
                exit Filtrage when Est_Derniere (D);
-            end;
+            end Transmission_Donnee_Bloc_Suivant;
 
          end loop Filtrage;
 
@@ -539,13 +543,14 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Ecrire_Grappe (T : Table_Bloc_T) is
       begin
          for E of T loop
+            Ecrit_Donnees_Dans_Fichier :
             declare
                --  Transformation du bloc en un brut
                Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
                   := C_64.Transformer_En_Brut (E);
             begin
                Ecriveur.all.Ecrire (Brut);
-            end;
+            end Ecrit_Donnees_Dans_Fichier;
          end loop;
       end Ecrire_Grappe;
       ---------------------------------------------------------
@@ -561,6 +566,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          loop
             Autorisateur_Fin.Attendre_Entree;
 
+            Transmission_Donnee_Bloc_Suivant :
             declare
                D : Donnee_T;
             begin
@@ -571,7 +577,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
 
                exit Ecriture_Fichier when Est_Derniere (D);
-            end;
+            end Transmission_Donnee_Bloc_Suivant;
 
          end loop Ecriture_Fichier;
 
