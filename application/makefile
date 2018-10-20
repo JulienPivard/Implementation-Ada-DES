@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Jeudi 04 octobre[10] 2018
+# Dernière modification : Samedi 20 octobre[10] 2018
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -34,9 +34,9 @@ endif
 ###################
 .PHONY: $(CIBLECOMPILE)
 $(CIBLECOMPILE): build
-	@echo "───────────────────────────────"
-	@echo "[OK] Compilation du programme : [ $(NOMAPP) ] terminé"
-	@echo
+	@echo " ───────────────────────────────"
+	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo "  "
 
 ###################
 .PHONY: chiffrer

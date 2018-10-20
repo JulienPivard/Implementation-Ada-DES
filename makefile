@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : samedi 05 mai[05] 2018
+# Dernière modification : Samedi 13 octobre[10] 2018
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -20,29 +20,29 @@ runapp:
 ###################
 .PHONY: $(CIBLECOMPILE)
 $(CIBLECOMPILE): build
-	@echo "────────────────────────────────────────────"
-	@echo "[OK] Compilation des tests unitaires terminé"
-	@echo
+	@echo " ────────────────────────────────────────────"
+	@echo " [OK] Compilation des tests unitaires terminé"
+	@echo "  "
 
 ###################
 .PHONY: cleanall
 cleanall: clean
-	@echo
-	@echo
-	@echo "━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo "  "
+	@echo "  "
+	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	$(MAKE) -C application clean
-	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
 .PHONY: distcleanall
 distcleanall: distclean
-	@echo
-	@echo
-	@echo "━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo "━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
+	@echo "  "
+	@echo "  "
+	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
 	$(MAKE) -C application distclean
-	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
 .PHONY: help
