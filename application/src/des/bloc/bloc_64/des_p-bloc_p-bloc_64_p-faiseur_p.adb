@@ -1,3 +1,5 @@
+with System;
+
 with Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
 
 package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
@@ -35,6 +37,9 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
             Bloc_1 at 0 range 0 .. 31;
             Bloc_2 at 4 range 0 .. 31;
          end record;
+
+      for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
+      for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
       --  Transformation du bloc de 64 bits.
       Resultat : Bloc_Intermediaire with Address => Brut'Address;
@@ -87,6 +92,9 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
             Bloc_1 at 0 range 0 .. 31;
             Bloc_2 at 4 range 0 .. 31;
          end record;
+
+      for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
+      for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
       C_32 : Faiseur_32_R.Faiseur_Bloc_T;
       --  Rassemblement des deux blocs de 32 bits brut.

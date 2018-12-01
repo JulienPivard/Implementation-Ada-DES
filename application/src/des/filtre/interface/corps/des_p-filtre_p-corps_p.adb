@@ -17,7 +17,6 @@ package body Des_P.Filtre_P.Corps_P is
       B_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       C_48 : Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Faiseur_Bloc_T;
       C_32 : Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Faiseur_Bloc_T;
-      use Des_P.Bloc_Xor_Clef_P;
    begin
       --  Extension du bloc de 32 en bloc de 48.
       C_48.Preparer_Nouveau_Bloc;
@@ -25,7 +24,8 @@ package body Des_P.Filtre_P.Corps_P is
       B_48 := C_48.Recuperer_Bloc;
 
       --  Bloc de 48 xor Clef de 48.
-      B_48 := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (B_48 xor Clef);
+      B_48 := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T
+         (Des_P.Bloc_Xor_Clef_P."xor" (B_48, Clef));
 
       --  Réduction du bloc de 48 à un bloc de 32.
       C_32.Preparer_Nouveau_Bloc;

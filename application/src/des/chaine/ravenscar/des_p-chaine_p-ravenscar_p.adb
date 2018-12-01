@@ -236,6 +236,12 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Filtre_Sortie_Protegee is
       ---------------------------------------------------------
+      entry Attendre_Entree when Signal is
+      begin
+         null;
+      end Attendre_Entree;
+
+      ---------------------------------------------------------
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class)
       is
@@ -243,12 +249,6 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Filtre_H := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder (Filtre);
          Signal := not Filtre_H.Is_Empty;
       end Changer_Filtre;
-
-      ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
-      begin
-         null;
-      end Attendre_Entree;
 
       ---------------------------------------------------------
       function Lire_Filtre

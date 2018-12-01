@@ -1,3 +1,5 @@
+with System;
+
 package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
    ---------------------------------------------------------------------------
@@ -149,6 +151,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Colonne_8   at 3 range 19 .. 22;
             Fin_8       at 3 range 23 .. 23;
          end record;
+
+      for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
+      for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
       --  Transformation du tableau en bloc de bits.
       Bloc_Intermediaire : Bloc_Intermediaire_T

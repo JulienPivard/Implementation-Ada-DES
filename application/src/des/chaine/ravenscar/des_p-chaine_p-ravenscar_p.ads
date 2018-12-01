@@ -204,9 +204,9 @@ private
    ---------------------------------------
 
    protected Filtre_Entree_Protegee is
+      entry Attendre_Entree;
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class);
-      entry Attendre_Entree;
       function Lire_Filtre
          return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class;
    private
@@ -219,9 +219,9 @@ private
    ---------------------------------------
 
    protected Filtre_Sortie_Protegee is
+      entry Attendre_Entree;
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class);
-      entry Attendre_Entree;
       function Lire_Filtre
          return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
    private
@@ -234,9 +234,9 @@ private
    ---------------------------------------
 
    protected type Filtre_Corps_Protegee is
+      entry Attendre_Entree;
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class);
-      entry Attendre_Entree;
       function Lire_Filtre
          return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class;
    private
