@@ -41,16 +41,18 @@ package body Des_P.Clef_P.Clef_56_P is
       use type Des_P.Clef_P.Clef_56_I_P.Intervalle_T;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      --  La clef de 56 est coupé en 2. La position va de 1 à 56.
-      --  Les indices des tableaux vont de 0 à 28.
-      if Position <= 28 then
-         Pos := Intervalle_Demi_Clef_T (Position - 1);
-         return Clef.C1 (Pos + Clef.Decalage);
-      else
-         --  Position 28 case en arrière -1 pour compenser l'intervalle
-         Pos := Intervalle_Demi_Clef_T (Position - 29);
-         return Clef.C2 (Pos + Clef.Decalage);
-      end if;
+      return Bit : Bit_T do
+         --  La clef de 56 est coupé en 2. La position va de 1 à 56.
+         --  Les indices des tableaux vont de 0 à 28.
+         if Position <= 28 then
+            Pos := Intervalle_Demi_Clef_T (Position - 1);
+            Bit := Clef.C1 (Pos + Clef.Decalage);
+         else
+            --  Position 28 case en arrière -1 pour compenser l'intervalle
+            Pos := Intervalle_Demi_Clef_T (Position - 29);
+            Bit := Clef.C2 (Pos + Clef.Decalage);
+         end if;
+      end return;
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
