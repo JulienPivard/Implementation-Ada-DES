@@ -20,7 +20,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
 
       ---------------------------------------------------------
       procedure Ecrire
-         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : C_Bloc_64_R.Bloc_64_Brut_T)
       is
       begin
          Fichier_64_IO.Write (Resultat, Brut);
@@ -43,7 +43,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
       end Ouvrir_Fichier;
 
       ---------------------------------------------------------
-      procedure Lire (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+      procedure Lire (Brut : out C_Bloc_64_R.Bloc_64_Brut_T)
       is
       begin
          Fichier_64_IO.Read (Fichier, Brut);

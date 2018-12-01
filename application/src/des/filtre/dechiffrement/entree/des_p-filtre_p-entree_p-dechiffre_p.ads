@@ -10,10 +10,10 @@ package Des_P.Filtre_P.Entree_P.Dechiffre_P
    with Pure
 is
 
-   package P_Dechiffrement_P renames Des_P.Filtre_P.Dechiffre_Interface_P;
+   package P_Dechiffrement_R renames Des_P.Filtre_P.Dechiffre_Interface_P;
 
    type Entree_T is new Entree_Abstrait_T and
-      P_Dechiffrement_P.Dechiffrement_Interface_T with private;
+      P_Dechiffrement_R.Dechiffrement_Interface_T with private;
    --  Le filtre de déchiffrement qui va effectuer la première permutation.
 
    overriding
@@ -32,6 +32,6 @@ is
 private
 
    type Entree_T is new Entree_Abstrait_T and
-      P_Dechiffrement_P.Dechiffrement_Interface_T with null record;
+      P_Dechiffrement_R.Dechiffrement_Interface_T with null record;
 
 end Des_P.Filtre_P.Entree_P.Dechiffre_P;

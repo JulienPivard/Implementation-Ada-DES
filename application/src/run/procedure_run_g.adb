@@ -13,7 +13,7 @@ package body Procedure_Run_G is
          Action : Action_T
       )
    is
-      Faiseur : Faiseur_I_P.Faiseur_Interface_T'Class :=
+      Faiseur : Faiseur_I_R.Faiseur_Interface_T'Class :=
          Init_Faiseur_Chaine (Action);
       Chaine : constant Des_P.Chaine_P.Chaine_Interface_T'Class :=
          Init_Chaine (Faiseur, Clef);
@@ -39,20 +39,24 @@ package body Procedure_Run_G is
       Ada.Text_IO.Put ("Temps " & Nom_Version & " : ");
       Ada.Text_IO.New_Line (1);
       --  Conversion du temps pour faciliter l'affichage.
+
       Affichage_Temps :
       declare
          type Temps_T is new Natural;
+
          Duree_Exact : constant Duration :=
             Ada.Real_Time.To_Duration (Fin - Debut);
          Duree : constant Temps_T := Temps_T (Duree_Exact);
          Minuttes : constant Temps_T := 60;
          Indentation : constant String := "         ";
+
          package Duree_IO is new Ada.Text_IO.Fixed_IO (Duration);
          package Temps_IO is new Ada.Text_IO.Integer_IO (Temps_T);
       begin
          Ada.Text_IO.Put (Indentation);
          Duree_IO.Put (Duree_Exact, 0, 4);
          Ada.Text_IO.Put_Line (" s");
+
          --  Affichage en minuttes.
          if Duree_Exact > 60.0 then
             Ada.Text_IO.Put (Indentation);
@@ -61,6 +65,7 @@ package body Procedure_Run_G is
             Temps_IO.Put (Duree mod Minuttes, 0);
             Ada.Text_IO.Put_Line (" s");
          end if;
+
          --  Affichage en heures.
          if Duree_Exact > 3600.0 then
             declare
@@ -83,7 +88,7 @@ package body Procedure_Run_G is
       (
          Action : Action_T
       )
-      return Faiseur_I_P.Faiseur_Interface_T'Class
+      return Faiseur_I_R.Faiseur_Interface_T'Class
    is
       Const_Chiffre : Faiseur_Chiffrement_G_T;
       Const_Dechiff : Faiseur_Dechiffrement_G_T;
@@ -118,15 +123,15 @@ package body Procedure_Run_G is
    ---------------------------------------------------------------------------
    function Init_Chaine
       (
-         Faiseur : in out Faiseur_I_P.Faiseur_Interface_T'Class;
+         Faiseur : in out Faiseur_I_R.Faiseur_Interface_T'Class;
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class
    is
       C_64 : constant Des_P.Clef_P.Clef_64_I_P.Holder_P.Holder :=
          Des_P.Clef_P.Clef_64_I_P.Holder_P.To_Holder (Clef);
-      F_56 : Faiseur_56_P.Faiseur_Clef_T;
-      F_48 : Faiseur_48_P.Faiseur_Clef_T;
+      F_56 : Faiseur_56_R.Faiseur_Clef_T;
+      F_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       --  Les 3 instructions pour construire une nouvelle chaine
       Faiseur.Initialiser (F_56, F_48);

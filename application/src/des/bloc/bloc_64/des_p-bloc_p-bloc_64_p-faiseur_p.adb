@@ -18,13 +18,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
          Brut : Bloc_64_Brut_T
       )
    is
-      package Faiseur_32 renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
+      package Faiseur_32_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
 
       --  Découpage du bloc de 64 en 2 blocs brut de 32 bits.
       type Bloc_Intermediaire is
          record
-            Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
-            Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
+            Bloc_1 : Faiseur_32_R.Bloc_32_Brut_T;
+            Bloc_2 : Faiseur_32_R.Bloc_32_Brut_T;
          end record
          with Size => 64;
 
@@ -39,7 +39,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       --  Transformation du bloc de 64 bits.
       Resultat : Bloc_Intermediaire with Address => Brut'Address;
 
-      C_32 : Faiseur_32.Faiseur_Bloc_T;
+      C_32 : Faiseur_32_R.Faiseur_Bloc_T;
    begin
       --  Construction du premier bloc de 32
       C_32.Preparer_Nouveau_Bloc;
@@ -70,13 +70,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       return Bloc_64_Brut_T
    is
       pragma Unreferenced (Constructeur);
-      package Faiseur_32 renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
+      package Faiseur_32_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
 
       --  Rassemblement des deux blocs brut de 32 bits en un de 64.
       type Bloc_Intermediaire_T is
          record
-            Bloc_1 : Faiseur_32.Bloc_32_Brut_T;
-            Bloc_2 : Faiseur_32.Bloc_32_Brut_T;
+            Bloc_1 : Faiseur_32_R.Bloc_32_Brut_T;
+            Bloc_2 : Faiseur_32_R.Bloc_32_Brut_T;
          end record
          with Size => 64;
 
@@ -88,7 +88,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
             Bloc_2 at 4 range 0 .. 31;
          end record;
 
-      C_32 : Faiseur_32.Faiseur_Bloc_T;
+      C_32 : Faiseur_32_R.Faiseur_Bloc_T;
       --  Rassemblement des deux blocs de 32 bits brut.
       Resultat : Bloc_Intermediaire_T :=
          (

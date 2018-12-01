@@ -17,15 +17,15 @@ package Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P is
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with private;
    --  Le constructeur de filtre de chiffrement.
 
-   package Faiseur_56_I_P renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
-   package Faiseur_48_I_P renames Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
+   package Faiseur_56_I_R renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
+   package Faiseur_48_I_R renames Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
 
    overriding
    procedure Initialiser
       (
          Constructeur : in out Faiseur_Chiffrement_T;
-         Faiseur_56 : Faiseur_56_I_P.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_P.Faiseur_Interface_T'Class
+         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
       );
    --  Initialise une nouvelle chaine vide.
    --  @param Constructeur
@@ -62,8 +62,8 @@ private
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with
       record
          Chaine : Chaine_T;
-         Faiseur_56 : Faiseur_56_I_P.Holder_P.Holder;
-         Faiseur_48 : Faiseur_48_I_P.Holder_P.Holder;
+         Faiseur_56 : Faiseur_56_I_R.Holder_P.Holder;
+         Faiseur_48 : Faiseur_48_I_R.Holder_P.Holder;
       end record;
 
 end Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P;

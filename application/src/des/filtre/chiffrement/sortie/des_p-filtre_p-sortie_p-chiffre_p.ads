@@ -10,10 +10,10 @@ package Des_P.Filtre_P.Sortie_P.Chiffre_P
    with Pure
 is
 
-   package P_Chiffrement_P renames Des_P.Filtre_P.Chiffre_Interface_P;
+   package P_Chiffrement_R renames Des_P.Filtre_P.Chiffre_Interface_P;
 
    type Sortie_T is new Sortie_Abstrait_T and
-      P_Chiffrement_P.Chiffrement_Interface_T with private;
+      P_Chiffrement_R.Chiffrement_Interface_T with private;
    --  Le filtre de chiffrement qui va effectuer la permutation final
 
    overriding
@@ -32,6 +32,6 @@ is
 private
 
    type Sortie_T is new Sortie_Abstrait_T and
-      P_Chiffrement_P.Chiffrement_Interface_T with null record;
+      P_Chiffrement_R.Chiffrement_Interface_T with null record;
 
 end Des_P.Filtre_P.Sortie_P.Chiffre_P;

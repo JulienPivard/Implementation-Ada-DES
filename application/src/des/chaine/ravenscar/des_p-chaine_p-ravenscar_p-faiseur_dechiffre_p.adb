@@ -14,17 +14,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P is
    procedure Initialiser
       (
          Constructeur : in out Faiseur_Dechiffrement_T;
-         Faiseur_56 : Faiseur_56_I_P.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_P.Faiseur_Interface_T'Class
+         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
       )
    is
       C : Chaine_T;
    begin
       Constructeur.Chaine := C;
       Constructeur.Faiseur_56 :=
-         Faiseur_56_I_P.Holder_P.To_Holder (Faiseur_56);
+         Faiseur_56_I_R.Holder_P.To_Holder (Faiseur_56);
       Constructeur.Faiseur_48 :=
-         Faiseur_48_I_P.Holder_P.To_Holder (Faiseur_48);
+         Faiseur_48_I_R.Holder_P.To_Holder (Faiseur_48);
    end Initialiser;
 
    ---------------------------------------------------------------------------
@@ -38,9 +38,9 @@ package body Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P is
       --  La fabrique de filtre de chiffrement.
       Fabrique : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
       --  Les constructeurs de clef.
-      Faiseur_56 : Faiseur_56_I_P.Faiseur_Interface_T'Class :=
+      Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class :=
          Constructeur.Faiseur_56.Element;
-      Faiseur_48 : Faiseur_48_I_P.Faiseur_Interface_T'Class :=
+      Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class :=
          Constructeur.Faiseur_48.Element;
       --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=

@@ -11,7 +11,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
       ---------------------------------------------------------
       procedure Ecrire
-         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : C_Bloc_64_R.Bloc_64_Brut_T)
       is
       begin
          Resultats (Nb_Blocs_Ecrit) := Brut;
@@ -49,7 +49,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
       ---------------------------------------------------------
       procedure Lire
-         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : out C_Bloc_64_R.Bloc_64_Brut_T)
       is
       begin
          Nb_Blocs_Lu := Natural'Succ (Nb_Blocs_Lu);
@@ -72,7 +72,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
       ---------------------------------------------------------
       procedure Changer_Brut_Genere
-         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : C_Bloc_64_R.Bloc_64_Brut_T)
       is
       begin
          Brut_Genere := Brut;

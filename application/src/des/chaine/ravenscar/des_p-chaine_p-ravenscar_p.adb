@@ -14,7 +14,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       --  Modifie le nombre de grappe max dans le pipeline
       --  si la modification est demandée.
       if Chaine.Modifier_Max_Grappes then
-         Limiteur_P.Limiteur_Protegee.Modifier_Nb_Max_Blocs
+         Limiteur_R.Limiteur_Protegee.Modifier_Nb_Max_Blocs
             (Chaine.Max_Grappes);
       end if;
       --  Ouverture du fichier à lire.
@@ -297,7 +297,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Lecteur_Tache is
       Table : Table_Bloc_T (Indice_T);
-      C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
+      C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       J : Indice_T;
    begin
       Repetition_Ou_Non :
@@ -320,15 +320,15 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Construction_Bloc :
                declare
                   ---------------------------------------------------------
-                  function Lire_Grappe return C_Bloc_64_P.Bloc_64_Brut_T;
-                  function Lire_Grappe return C_Bloc_64_P.Bloc_64_Brut_T is
-                     Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+                  function Lire_Grappe return C_Bloc_64_R.Bloc_64_Brut_T;
+                  function Lire_Grappe return C_Bloc_64_R.Bloc_64_Brut_T is
+                     Brut : C_Bloc_64_R.Bloc_64_Brut_T;
                   begin
                      Lecteur.all.Lire (Brut);
                      return Brut;
                   end Lire_Grappe;
                   ---------------------------------------------------------
-                  Brut : constant C_Bloc_64_P.Bloc_64_Brut_T := Lire_Grappe;
+                  Brut : constant C_Bloc_64_R.Bloc_64_Brut_T := Lire_Grappe;
                begin
                   C_64.Construire_Bloc (Brut);
                end Construction_Bloc;
@@ -353,7 +353,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  On signal la création d'un nouveau bloc,
             --  si il y en a trop en circulation la
             --  tâche est mise en pause.
-            Limiteur_P.Limiteur_Protegee.Generer_Bloc_Entree;
+            Limiteur_R.Limiteur_Protegee.Generer_Bloc_Entree;
 
             --  Signal que la donnée à été bien écrite et peut être lue.
             Autorisateur_Debut.Autoriser;
@@ -537,7 +537,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Ecriture_Tache is
-      C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
+      C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       ---------------------------------------------------------
       procedure Ecrire_Grappe (T : Table_Bloc_T);
       procedure Ecrire_Grappe (T : Table_Bloc_T) is
@@ -546,7 +546,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             Ecrit_Donnees_Dans_Fichier :
             declare
                --  Transformation du bloc en un brut
-               Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
+               Brut : constant C_Bloc_64_R.Bloc_64_Brut_T
                   := C_64.Transformer_En_Brut (E);
             begin
                Ecriveur.all.Ecrire (Brut);
@@ -574,7 +574,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
                --  On écrit les données dans le fichier
                Appliquer (D, Ecrire_Grappe'Access);
                --  On signal que le bloc n'est plus dans le pipeline
-               Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
+               Limiteur_R.Limiteur_Protegee.Consommer_Bloc;
 
                exit Ecriture_Fichier when Est_Derniere (D);
             end Transmission_Donnee_Bloc_Suivant;

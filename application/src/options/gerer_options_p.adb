@@ -11,25 +11,26 @@ package body Gerer_Options_P is
    ---------------------------------------------------------------------------
    procedure Afficher_Aide is
    begin
-      W_W_IO.Put_Line (W_W_IO.Standard_Error, "Utilisation du programme :");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "Utilisation du programme :");
       Ada.Text_IO.Put
          (
             Ada.Text_IO.Standard_Error,
             "   " &
             Ada.Directories.Base_Name (Ada.Command_Line.Command_Name)
          );
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, " [option] <nom_fichier> <clef>");
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, "-c --chiffrer");
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, "  Chiffre le fichier avec la clef.");
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, "-d --dechiffrer");
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, "  Déchiffre le ficher avec la clef.");
-      W_W_IO.Put_Line
-         (W_W_IO.Standard_Error, "");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, " [option] <nom_fichier> <clef>");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "-c --chiffrer");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "  Chiffre le fichier avec la clef.");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "-d --dechiffrer");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "  Déchiffre le ficher avec la clef.");
+      W_W_IO_R.Put_Line
+         (W_W_IO_R.Standard_Error, "");
    end Afficher_Aide;
 
    ---------------------------------------------------------------------------
@@ -48,10 +49,10 @@ package body Gerer_Options_P is
       elsif Nb_Args > Nb_Args_Max then
 
          Afficher_Aide;
-         W_W_IO.Put (W_W_IO.Standard_Error, "Trop d'arguments. ");
-         W_W_IO.Put_Line
+         W_W_IO_R.Put (W_W_IO_R.Standard_Error, "Trop d'arguments. ");
+         W_W_IO_R.Put_Line
             (
-               W_W_IO.Standard_Error,
+               W_W_IO_R.Standard_Error,
                "Les arguments suivants sont invalide : "
             );
 
@@ -70,9 +71,9 @@ package body Gerer_Options_P is
       elsif Nb_Args < 2 then
 
          Afficher_Aide;
-         W_W_IO.Put_Line
+         W_W_IO_R.Put_Line
             (
-               W_W_IO.Standard_Error,
+               W_W_IO_R.Standard_Error,
                "Vous devez donner au moins le <nom_fichier> et la <clef>."
             );
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
@@ -107,12 +108,12 @@ package body Gerer_Options_P is
             Action := Dechiffrer;
 
          else
-            W_W_IO.Put (W_W_IO.Standard_Error, "L'argument [");
+            W_W_IO_R.Put (W_W_IO_R.Standard_Error, "L'argument [");
             Ada.Text_IO.Put
                (Ada.Text_IO.Standard_Error, Chiffre_Dechiffre);
-            W_W_IO.Put_Line
+            W_W_IO_R.Put_Line
                (
-                  W_W_IO.Standard_Error,
+                  W_W_IO_R.Standard_Error,
                   "] n'est pas valable"
                );
             Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
@@ -137,10 +138,10 @@ package body Gerer_Options_P is
    begin
       --  La clef est un bloc de 64 bits
       if Taille_Clef /= 64 then
-         W_W_IO.Put_Line (W_W_IO.Standard_Error, "██████ Erreur !");
-         W_W_IO.Put_Line
+         W_W_IO_R.Put_Line (W_W_IO_R.Standard_Error, "██████ Erreur !");
+         W_W_IO_R.Put_Line
             (
-               W_W_IO.Standard_Error,
+               W_W_IO_R.Standard_Error,
                "   La taille de la clef doit être de 8 octets exactement."
             );
          Ada.Text_IO.Put
@@ -157,12 +158,12 @@ package body Gerer_Options_P is
 
       Transformer_En_Clef :
       declare
-         package Clef_I_P renames Des_P.Clef_P.Clef_64_I_P;
+         package Clef_I_R renames Des_P.Clef_P.Clef_64_I_P;
 
          F_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
-         Brut_Clef : Clef_I_P.Faiseur_I_P.Clef_64_Brut_T
+         Brut_Clef : Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
             with Address => Clef_Brut'Address;
-         Clef_I : constant Clef_I_P.Clef_Interface_T'Class :=
+         Clef_I : constant Clef_I_R.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (F_C_64, Brut_Clef);
 
          pragma Unreferenced (F_C_64);
@@ -183,11 +184,11 @@ package body Gerer_Options_P is
    begin
       --  Vérification de l'existence du fichier
       if not Ada.Directories.Exists (Nom_Fichier) then
-         W_W_IO.Put_Line (W_W_IO.Standard_Error, "██████ Erreur !");
-         W_W_IO.Put (W_W_IO.Standard_Error, "   Le fichier [");
+         W_W_IO_R.Put_Line (W_W_IO_R.Standard_Error, "██████ Erreur !");
+         W_W_IO_R.Put (W_W_IO_R.Standard_Error, "   Le fichier [");
          Ada.Text_IO.Put
             (Ada.Text_IO.Standard_Error, Nom_Fichier);
-         W_W_IO.Put_Line (W_W_IO.Standard_Error, "] n'existe pas");
+         W_W_IO_R.Put_Line (W_W_IO_R.Standard_Error, "] n'existe pas");
 
          Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
          raise Options_Incorrect_E;
@@ -204,7 +205,7 @@ package body Gerer_Options_P is
          --  La taille est en octet, 64 bits fait 8 octets,
          --  d'où l'utilisation de mod 8.
          if not (Octets_En_Trop = 0) then
-            W_W_IO.Put_Line (W_W_IO.Standard_Error, "██████ Erreur !");
+            W_W_IO_R.Put_Line (W_W_IO_R.Standard_Error, "██████ Erreur !");
             Ada.Text_IO.Put_Line
                (
                   Ada.Text_IO.Standard_Error,

@@ -15,7 +15,7 @@ package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
    procedure Construire_Clef
       (
          Constructeur : in out Faiseur_Clef_T;
-         Brut : Interface_P.Clef_64_Brut_T
+         Brut : Interface_R.Clef_64_Brut_T
       )
    is
       Resultat : Tableau_Bits_T with Address => Brut'Address;

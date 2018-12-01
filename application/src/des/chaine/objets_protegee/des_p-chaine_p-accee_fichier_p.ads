@@ -9,8 +9,8 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  @group Objets Protégé
 package Des_P.Chaine_P.Accee_Fichier_P is
 
-   package C_Bloc_64_P renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
-   package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_P.Bloc_64_Brut_T);
+   package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
+   package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    procedure Ecrire
       (
          Ecriveur : in out Ecriveur_Protegee_T;
-         Brut : C_Bloc_64_P.Bloc_64_Brut_T
+         Brut : C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
    --  Écrit la donnée dans le fichier.
@@ -70,7 +70,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    procedure Lire
       (
          Lecteur : in out Lecteur_Protegee_T;
-         Brut : out C_Bloc_64_P.Bloc_64_Brut_T
+         Brut : out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
    --  Lit la donnée dans le fichier.
@@ -109,7 +109,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
       overriding
       procedure Ecrire
-         (Brut : C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : C_Bloc_64_R.Bloc_64_Brut_T)
          with Inline;
       --  Écrit la donnée dans le fichier.
       --  @param Brut
@@ -136,7 +136,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
       overriding
       procedure Lire
-         (Brut : out C_Bloc_64_P.Bloc_64_Brut_T)
+         (Brut : out C_Bloc_64_R.Bloc_64_Brut_T)
          with Inline;
       --  Lit la donnée dans le fichier.
       --  @param Brut

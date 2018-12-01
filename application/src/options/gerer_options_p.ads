@@ -7,7 +7,7 @@ package Gerer_Options_P is
 
    Options_Incorrect_E : exception;
 
-   package W_W_IO renames Ada.Wide_Wide_Text_IO;
+   package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
 
    Nb_Args : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Args_Max : constant Natural := 3;

@@ -14,11 +14,11 @@ package Des_P.Clef_P.Clef_56_P.Faiseur_P
    with Pure
 is
 
-   package Interface_P renames
+   package Interface_R renames
       Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
 
    type Faiseur_Clef_T is new
-      Interface_P.Faiseur_Interface_T with private;
+      Interface_R.Faiseur_Interface_T with private;
    --  Constructeur concret de clef de 56 bits.
 
    overriding
@@ -60,7 +60,7 @@ is
 private
 
    type Faiseur_Clef_T is new
-      Interface_P.Faiseur_Interface_T with
+      Interface_R.Faiseur_Interface_T with
       record
          Clef : Clef_T;
       end record;

@@ -31,7 +31,7 @@ package body Des_P.Chaine_P.Taches_P is
 
       task body Etage_Ecriture is
          T_Tmp : Table_Holder_P.Holder;
-         C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
+         C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       begin
          Selection_Action_Estage :
          loop
@@ -48,13 +48,13 @@ package body Des_P.Chaine_P.Taches_P is
                   --  Écrit le brut dans le fichier.
                   Ecrire_Donnee_Sortie :
                   declare
-                     Brut : constant C_Bloc_64_P.Bloc_64_Brut_T
+                     Brut : constant C_Bloc_64_R.Bloc_64_Brut_T
                         := C_64.Transformer_En_Brut (E);
                   begin
                      Ecriveur.all.Ecrire (Brut);
                   end Ecrire_Donnee_Sortie;
                end loop;
-               Limiteur_P.Limiteur_Protegee.Consommer_Bloc;
+               Limiteur_R.Limiteur_Protegee.Consommer_Bloc;
             or
                terminate;
             end select;
@@ -247,7 +247,7 @@ package body Des_P.Chaine_P.Taches_P is
       end Etage_Lecture;
 
       task body Etage_Lecture is
-         C_64 : C_Bloc_64_P.Faiseur_Bloc_T;
+         C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
          J : Indice_T;
       begin
          accept Lire;
@@ -256,7 +256,7 @@ package body Des_P.Chaine_P.Taches_P is
          Lecture_Fichier :
          loop
 
-            Limiteur_P.Limiteur_Protegee.Generer_Bloc_Entree;
+            Limiteur_R.Limiteur_Protegee.Generer_Bloc_Entree;
 
             J := Indice_T'First;
             --  Remplissage du tableau de données avec contenu fichier
@@ -269,7 +269,7 @@ package body Des_P.Chaine_P.Taches_P is
                   exit Remplissage when Lecteur.all.Est_Fini;
                   Lecture_D_Une_Donnee :
                   declare
-                     Brut : C_Bloc_64_P.Bloc_64_Brut_T;
+                     Brut : C_Bloc_64_R.Bloc_64_Brut_T;
                   begin
                      Lecteur.all.Lire (Brut);
                      --  Initialisation du bloc de 64
@@ -299,7 +299,7 @@ package body Des_P.Chaine_P.Taches_P is
 
       --  Si le nombre maximum de grappe à été modifié.
       if Chaine.Modifier_Max_Grappes then
-         Limiteur_P.Limiteur_Protegee.Modifier_Nb_Max_Blocs
+         Limiteur_R.Limiteur_Protegee.Modifier_Nb_Max_Blocs
             (Chaine.Max_Grappes);
       end if;
       --  Initialisation des taches avec le filtre

@@ -10,11 +10,11 @@ package Des_P.Clef_P.Clef_64_P.Faiseur_P
    with Pure
 is
 
-   package Interface_P renames
+   package Interface_R renames
       Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 
    type Faiseur_Clef_T is new
-      Interface_P.Faiseur_Interface_T with private;
+      Interface_R.Faiseur_Interface_T with private;
    --  Constructeur concret de clef de 64 bits.
 
    overriding
@@ -29,7 +29,7 @@ is
    procedure Construire_Clef
       (
          Constructeur : in out Faiseur_Clef_T;
-         Brut : Interface_P.Clef_64_Brut_T
+         Brut : Interface_R.Clef_64_Brut_T
       );
    --  Construit la clefs de 64 bits avec le brut de 64 bits.
    --  @param Constructeur
@@ -59,7 +59,7 @@ is
 private
 
    type Faiseur_Clef_T is new
-      Interface_P.Faiseur_Interface_T with
+      Interface_R.Faiseur_Interface_T with
       record
          Clef : Clef_T;
       end record;

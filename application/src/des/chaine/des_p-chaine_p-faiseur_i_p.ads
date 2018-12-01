@@ -12,14 +12,14 @@ package Des_P.Chaine_P.Faiseur_I_P is
    --  L'interface de constructeur.
    type Faiseur_Interface_T is interface;
 
-   package Faiseur_56_I_P renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
-   package Faiseur_48_I_P renames Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
+   package Faiseur_56_I_R renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
+   package Faiseur_48_I_R renames Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
 
    procedure Initialiser
       (
          Constructeur : in out Faiseur_Interface_T;
-         Faiseur_56 : Faiseur_56_I_P.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_P.Faiseur_Interface_T'Class
+         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
       )
    is abstract;
    --  Initialise une nouvelle chaine vide.
