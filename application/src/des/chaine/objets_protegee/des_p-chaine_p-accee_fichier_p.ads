@@ -18,7 +18,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Un écriveur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
-   type Ecriveur_Protegee_A is access all Ecriveur_Protegee_T'Class;
+   type Ecriveur_Protegee_A is not null access all Ecriveur_Protegee_T'Class;
    --  Pointeur sur un écriveur protégé.
 
    procedure Ouvrir_Fichier
@@ -58,7 +58,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Un lecteur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
-   type Lecteur_Protegee_A is access all Lecteur_Protegee_T'Class;
+   type Lecteur_Protegee_A is not null access all Lecteur_Protegee_T'Class;
    --  Pointeur sur un lecteur protégé.
 
    procedure Ouvrir_Fichier
