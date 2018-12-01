@@ -54,7 +54,7 @@ private
    --  améliorer les temps d'exécution
 
    package Table_Holder_P is new
-      Ada.Containers.Indefinite_Holders (Table_Bloc_T);
+      Ada.Containers.Indefinite_Holders (Element_Type => Table_Bloc_T);
 
    type Donnee_T is
       record
@@ -125,7 +125,7 @@ private
    --  @return La donnée est la dernière grappe.
 
    package Donnee_Holder_P is new
-      Ada.Containers.Indefinite_Holders (Donnee_T);
+      Ada.Containers.Indefinite_Holders (Element_Type => Donnee_T);
 
    ---------------------------------------
 

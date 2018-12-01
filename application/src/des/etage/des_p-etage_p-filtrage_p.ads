@@ -116,8 +116,9 @@ private
    --  @param Clef
    --  la clef de 56 bits.
 
-   package Holder_P is new Ada.Containers.Indefinite_Holders
-      (Etage_Abstrait_T'Class);
+   package Holder_P is new
+      Ada.Containers.Indefinite_Holders
+         (Element_Type => Etage_Abstrait_T'Class);
 
    type Etage_T is new Etage_Abstrait_T with
       record
