@@ -296,7 +296,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
    task body Etage_Lecteur_Tache is
-      Table : Table_Bloc_T (Indice_T);
+      subtype Table_Tmp_T is Table_Bloc_T (Indice_T);
+      Table : Table_Tmp_T;
       C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       J : Indice_T;
    begin
@@ -338,13 +339,14 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
             Transmission_Donnee_Bloc_Suivant :
             declare
+               subtype Indice_Tmp_T is Indice_T range Indice_T'First .. J;
                --  Si on a atteint la fin du fichier on envoie le
                --  signal de terminaison
                D : Donnee_T;
             begin
                --  Si le tableau de blocs n'est pas plein on n'utilise pas
                --  entièrement le tableau mais seulement la sous partie utile.
-               Ecrire_Table (D, Table (Indice_T'First .. J));
+               Ecrire_Table (D, Table (Indice_Tmp_T));
                Ecrire_Est_Derniere (D, Lecteur.all.Est_Fini);
                --  Lancement du filtrage de la grappe de blocs.
                Donnee_Debut.Ecrire_Donnee_Entree (D);

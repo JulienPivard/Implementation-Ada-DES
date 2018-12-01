@@ -44,6 +44,7 @@ package body Des_P.Chaine_P.Taches_P is
                   T_Tmp := Table_Holder_P.To_Holder (Table);
                end Ecrire;
                --  Parcours du tableau de blocs
+               Parcours_Tableau :
                for E of T_Tmp.Element loop
                   --  Écrit le brut dans le fichier.
                   Ecrire_Donnee_Sortie :
@@ -53,7 +54,7 @@ package body Des_P.Chaine_P.Taches_P is
                   begin
                      Ecriveur.all.Ecrire (Brut);
                   end Ecrire_Donnee_Sortie;
-               end loop;
+               end loop Parcours_Tableau;
                Limiteur_R.Limiteur_Protegee.Consommer_Bloc;
             or
                terminate;
@@ -106,10 +107,11 @@ package body Des_P.Chaine_P.Taches_P is
                T : Table_Bloc_T := T_Tmp.Element;
             begin
                --  Parcours des blocs du tableau.
+               Parcours_Blocs :
                for E of T loop
                   --  Filtre le bloc avec le filtre de sortie.
                   F_Tmp.Element.Filtrer (E);
-               end loop;
+               end loop Parcours_Blocs;
                --  Renvoie du bloc vers l'étage d'écriture.
                Etage_Ecriture.Ecrire (T);
             end Ecrire_Donnee_Sortie;
@@ -169,10 +171,11 @@ package body Des_P.Chaine_P.Taches_P is
                T : Table_Bloc_T := T_Tmp.Element;
             begin
                --  Parcours des blocs du tableau.
+               Parcours_Blocs :
                for E of T loop
                   --  Filtrage du bloc
                   F_Tmp.Element.Filtrer (E);
-               end loop;
+               end loop Parcours_Blocs;
                --  Si l'étage est le dernier on envoie vers la
                --  tache de sortie et vers une tache de corps sinon.
                if N_Tmp = Numero_Filtre_T'Last then
@@ -230,10 +233,11 @@ package body Des_P.Chaine_P.Taches_P is
                T : Table_Bloc_T := T_Tmp.Element;
             begin
                --  Parcours des blocs du tableau.
+               Parcours_Blocs :
                for E of T loop
                   --  Filtre le bloc avec le filtre d'entrée.
                   F_Tmp.Element.Filtrer (E);
-               end loop;
+               end loop Parcours_Blocs;
                --  Envoie le bloc vers la première tache de corps.
                Chaine_Corps (Numero_Filtre_T'First).Filtrer
                   (T, Numero_Filtre_T'First);
@@ -263,7 +267,8 @@ package body Des_P.Chaine_P.Taches_P is
             --  Remplissage du tableau de données avec contenu fichier
             Creation_Grappe :
             declare
-               Table : Table_Bloc_T (Indice_T);
+               subtype Table_Tmp_T is Table_Bloc_T (Indice_T);
+               Table : Table_Tmp_T;
             begin
                Remplissage :
                for I in Indice_T loop
@@ -285,7 +290,12 @@ package body Des_P.Chaine_P.Taches_P is
                --  Si le tableau de blocs n'est pas plein on
                --  n'utilise pas entièrement le tableau mais seulement
                --  la sous partie utile.
-               Etage_Entree.Filtrer (Table (Indice_T'First .. J));
+               Filtrage :
+               declare
+                  subtype Indice_Tmp_T is Indice_T range Indice_T'First .. J;
+               begin
+                  Etage_Entree.Filtrer (Table (Indice_Tmp_T));
+               end Filtrage;
             end Creation_Grappe;
 
             --  La fin du fichier à été atteinte.

@@ -68,6 +68,7 @@ package body Procedure_Run_G is
 
          --  Affichage en heures.
          if Duree_Exact > 3600.0 then
+            Decoupage_En_Heures :
             declare
                Heures : constant Temps_T := 3600;
             begin
@@ -76,7 +77,7 @@ package body Procedure_Run_G is
                Ada.Text_IO.Put (" h et ");
                Temps_IO.Put ((Duree mod Heures) / Minuttes, 0);
                Ada.Text_IO.Put_Line (" m");
-            end;
+            end Decoupage_En_Heures;
          end if;
       end Affichage_Temps;
       Ada.Text_IO.New_Line (1);

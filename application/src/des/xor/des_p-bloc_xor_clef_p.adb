@@ -14,6 +14,7 @@ package body Des_P.Bloc_Xor_Clef_P is
    begin
       --  Applique un ou exclusif sur tous les bits du bloc et de la clef.
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
+         Ou_Exclusif :
          declare
             I_Bis : constant Des_P.Clef_P.Clef_48_I_P.Intervalle_T :=
                Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
@@ -24,7 +25,7 @@ package body Des_P.Bloc_Xor_Clef_P is
             --  On écrit ce bit dans le bloc résultat à la même
             --  position que dans le bloc et la clef d'origine.
             B.Ecrire_Bit (I, Bit);
-         end;
+         end Ou_Exclusif;
       end loop;
       return B;
    end "xor";

@@ -151,7 +151,10 @@ private
    --  Type modulaire permettant de connaitre le bloc de droite.
 
    for Position_Bloc_T use
-      (Gauche => Decalage_T'First, Droite => Decalage_T'Last);
+      (
+         Gauche => Decalage_T'First,
+         Droite => Decalage_T'Last
+      );
 
    function "+"
       (
