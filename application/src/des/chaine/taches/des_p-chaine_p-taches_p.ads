@@ -49,19 +49,19 @@ private
 
    package Accee_R renames Des_P.Chaine_P.Accee_Fichier_P;
 
-   Ecriveur : access Accee_R.Ecriveur_Protegee_T'Class;
+   Ecriveur_Fichier : aliased Accee_R.Ecriveur_Fichier_Protegee_T;
+   --  Un écriveur de fichier classique.
+
+   Lecteur_Fichier : aliased Accee_R.Lecteur_Fichier_Protegee_T;
+   --  Un lecteur de fichier classique.
+
+   Ecriveur : Accee_R.Ecriveur_Protegee_A;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
-   Lecteur : access Accee_R.Lecteur_Protegee_T'Class;
+   Lecteur : Accee_R.Lecteur_Protegee_A;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
-
-   Ecriveur_Fichier : aliased Accee_R.Ecriveur_Fichier_Protegee;
-   --  Un écriveur de fichier classique.
-
-   Lecteur_Fichier : aliased Accee_R.Lecteur_Fichier_Protegee;
-   --  Un lecteur de fichier classique.
 
    type Chaine_T is new Chaine_Interface_T with
       record
