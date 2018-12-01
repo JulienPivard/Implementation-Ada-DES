@@ -22,6 +22,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P is
 
       --  La table de sélection E pour étendre le bloc de 32 bits
       Table_E : constant Table_Selection_E_T :=
+         Table_Selection_E_T'
          (
             32,  1,  2,  3,  4,  5,
              4,  5,  6,  7,  8,  9,

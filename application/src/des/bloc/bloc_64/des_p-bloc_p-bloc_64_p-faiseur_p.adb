@@ -91,6 +91,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       C_32 : Faiseur_32_R.Faiseur_Bloc_T;
       --  Rassemblement des deux blocs de 32 bits brut.
       Resultat : Bloc_Intermediaire_T :=
+         Bloc_Intermediaire_T'
          (
             C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Gauche)),
             C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Droite))

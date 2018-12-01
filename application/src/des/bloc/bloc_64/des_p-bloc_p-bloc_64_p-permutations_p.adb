@@ -4,6 +4,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
    procedure Permutation_Entrante (Bloc : in out Bloc_64_T) is
       --  La table de permutation IP
       Table : constant Table_Permutations_T :=
+         Table_Permutations_T'
          (
             58, 50, 42, 34, 26, 18, 10, 2,
             60, 52, 44, 36, 28, 20, 12, 4,
@@ -28,6 +29,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
    procedure Permutation_Sortante (Bloc : in out Bloc_64_T) is
       --  La table de permutation IP-1
       Table : constant Table_Permutations_T :=
+         Table_Permutations_T'
          (
             40, 8, 48, 16, 56, 24, 64, 32,
             39, 7, 47, 15, 55, 23, 63, 31,

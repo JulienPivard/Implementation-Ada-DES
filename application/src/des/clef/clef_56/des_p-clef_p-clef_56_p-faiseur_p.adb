@@ -18,17 +18,20 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P is
          Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
+      type Table_Pc_1_T is
+         array (Intervalle_Demi_Clef_T)
+         of Des_P.Clef_P.Clef_64_I_P.Intervalle_T;
       --  Tiré du tableau de correspondance PC-1 de DES.
-      T1 : constant array (Intervalle_Demi_Clef_T)
-      of Des_P.Clef_P.Clef_64_I_P.Intervalle_T :=
+      T1 : constant Table_Pc_1_T :=
+         Table_Pc_1_T'
          (
             57, 49, 41, 33, 25, 17,  9,
              1, 58, 50, 42, 34, 26, 18,
             10,  2, 59, 51, 43, 35, 27,
             19, 11,  3, 60, 52, 44, 36
          );
-      T2 : constant array (Intervalle_Demi_Clef_T)
-      of Des_P.Clef_P.Clef_64_I_P.Intervalle_T :=
+      T2 : constant Table_Pc_1_T :=
+         Table_Pc_1_T'
          (
             63, 55, 47, 39, 31, 23, 15,
              7, 62, 54, 46, 38, 30, 22,
@@ -38,7 +41,7 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P is
    begin
       --  Rempli la clef de 56 à partir de la clef de 64 en
       --  suivant les tableaux de correspondance.
-      for I in Intervalle_Demi_Clef_T'Range loop
+      for I in Intervalle_Demi_Clef_T loop
          Constructeur.Clef.C1 (I) := Clef.Lire_Bit (T1 (I));
          Constructeur.Clef.C2 (I) := Clef.Lire_Bit (T2 (I));
       end loop;

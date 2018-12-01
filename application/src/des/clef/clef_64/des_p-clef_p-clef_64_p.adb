@@ -17,14 +17,14 @@ package body Des_P.Clef_P.Clef_64_P is
    overriding
    procedure Initialize (Clef : in out Clef_T) is
    begin
-      Clef.Bits := (others => False);
+      Clef.Bits := Tableau_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Finalize (Clef : in out Clef_T) is
    begin
-      Clef.Bits := (others => False);
+      Clef.Bits := Tableau_Bits_T'(others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------

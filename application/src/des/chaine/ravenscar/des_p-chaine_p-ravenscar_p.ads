@@ -345,7 +345,11 @@ private
    Filtreur_Corps_16 : aliased Filtre_Corps_Protegee;
    --  Les modificateurs de filtre.
 
-   Table_Filtreur : array (Numero_Filtre_T) of access Filtre_Corps_Protegee :=
+   type Table_Filtreur_T is array (Numero_Filtre_T)
+      of access Filtre_Corps_Protegee_T;
+
+   Table_Filtreur : Table_Filtreur_T :=
+      Table_Filtreur_T'
       (
          Filtreur_Corps_01'Access,
          Filtreur_Corps_02'Access,

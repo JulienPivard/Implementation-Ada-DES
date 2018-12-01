@@ -19,7 +19,7 @@ package body Des_P.Clef_P.Clef_48_P is
       (Clef : in out Clef_T)
    is
    begin
-      Clef.Bits := (others => False);
+      Clef.Bits := Tableau_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -28,7 +28,7 @@ package body Des_P.Clef_P.Clef_48_P is
       (Clef : in out Clef_T)
    is
    begin
-      Clef.Bits := (others => False);
+      Clef.Bits := Tableau_Bits_T'(others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------

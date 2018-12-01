@@ -58,16 +58,16 @@ package body Des_P.Clef_P.Clef_56_P is
    procedure Initialize (Clef : in out Clef_T) is
    begin
       Clef.Decalage := 0;
-      Clef.C1 := (others => False);
-      Clef.C2 := (others => False);
+      Clef.C1 := Champ_De_Bits_T'(others => False);
+      Clef.C2 := Champ_De_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Finalize (Clef : in out Clef_T) is
    begin
-      Clef.C1 := (others => False);
-      Clef.C2 := (others => False);
+      Clef.C1 := Champ_De_Bits_T'(others => False);
+      Clef.C2 := Champ_De_Bits_T'(others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------

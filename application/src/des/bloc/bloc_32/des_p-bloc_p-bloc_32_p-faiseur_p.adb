@@ -31,6 +31,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
       --  La table de permutations P.
       Table_P : constant Table_Permutations_T :=
+         Table_Permutations_T'
          (
             16,  7, 20, 21,
             29, 12, 28, 17,
@@ -61,6 +62,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       --  Extraction de la table de 48 bits pour pouvoir la manipuler.
       Table_48_Bits : constant Table_48_Bits_T :=
+      Table_48_Bits_T'
       (
          Brut.Lire_Bit (1), Brut.Lire_Bit (2), Brut.Lire_Bit (3),
          Brut.Lire_Bit (4), Brut.Lire_Bit (5), Brut.Lire_Bit (6),
@@ -159,8 +161,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  La taille de la table utilisée est déterminée par la taille réel
       --  du type vers lequel la conversion est faite pour éviter
       --  des bits parasites au delà des deux que l'ont veut convertir.
+      subtype Indice_Intermediaire_T is Natural range 1 .. Ligne_T'Base'Size;
       type Ligne_Intermediaire_T is array
-         (Natural range 1 .. Ligne_T'Base'Size)
+         (Indice_Intermediaire_T)
          of Debut_Fin_T
          with Size => Ligne_T'Base'Size, Pack;
 
@@ -168,34 +171,42 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  pour former le numéro de la ligne.
       --  Transforme le tableau de bits en un octet.
       Ligne_Intermediaire_1 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_1, Bloc_Intermediaire.Fin_1, others => 0);
       Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
 
       Ligne_Intermediaire_2 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_2, Bloc_Intermediaire.Fin_2, others => 0);
       Ligne_2 : Ligne_T with Address => Ligne_Intermediaire_2'Address;
 
       Ligne_Intermediaire_3 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_3, Bloc_Intermediaire.Fin_3, others => 0);
       Ligne_3 : Ligne_T with Address => Ligne_Intermediaire_3'Address;
 
       Ligne_Intermediaire_4 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_4, Bloc_Intermediaire.Fin_4, others => 0);
       Ligne_4 : Ligne_T with Address => Ligne_Intermediaire_4'Address;
 
       Ligne_Intermediaire_5 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_5, Bloc_Intermediaire.Fin_5, others => 0);
       Ligne_5 : Ligne_T with Address => Ligne_Intermediaire_5'Address;
 
       Ligne_Intermediaire_6 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_6, Bloc_Intermediaire.Fin_6, others => 0);
       Ligne_6 : Ligne_T with Address => Ligne_Intermediaire_6'Address;
 
       Ligne_Intermediaire_7 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_7, Bloc_Intermediaire.Fin_7, others => 0);
       Ligne_7 : Ligne_T with Address => Ligne_Intermediaire_7'Address;
 
       Ligne_Intermediaire_8 : constant Ligne_Intermediaire_T :=
+         Ligne_Intermediaire_T'
          (Bloc_Intermediaire.Debut_8, Bloc_Intermediaire.Fin_8, others => 0);
       Ligne_8 : Ligne_T with Address => Ligne_Intermediaire_8'Address;
 
@@ -207,6 +218,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       --  Les tables de sélection recommandé dans le standard de S1 à S8
       S1 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (14, 04, 13, 01, 02, 15, 11, 08, 03, 10, 06, 12, 05, 09, 00, 07),
@@ -217,6 +229,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S2 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (15, 01, 08, 14, 06, 11, 03, 04, 09, 07, 02, 13, 12, 00, 05, 10),
@@ -227,6 +240,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S3 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (10, 00, 09, 14, 06, 03, 15, 05, 01, 13, 12, 07, 11, 04, 02, 08),
@@ -237,6 +251,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S4 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (07, 13, 14, 03, 00, 06, 09, 10, 01, 02, 08, 05, 11, 12, 04, 15),
@@ -247,6 +262,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S5 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (02, 12, 04, 01, 07, 10, 11, 06, 08, 05, 03, 15, 13, 00, 14, 09),
@@ -257,6 +273,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S6 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (12, 01, 10, 15, 09, 02, 06, 08, 00, 13, 03, 04, 14, 07, 05, 11),
@@ -267,6 +284,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S7 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (04, 11, 02, 14, 15, 00, 08, 13, 03, 12, 09, 07, 05, 10, 06, 01),
@@ -277,6 +295,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       S8 : constant Table_De_Selection_T :=
+         Table_De_Selection_T'
          (
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
             (13, 02, 08, 04, 06, 15, 11, 01, 10, 09, 03, 14, 05, 00, 12, 07),
@@ -287,14 +306,14 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
 
       --  Tableau de 8 blocs de 8 bits.
-      type Bloc_32_Intermediaire_T is array
-         (Natural range 0 .. 7)
-         of Valeur_T
+      subtype Indice_32_Tmp_T is Natural range 0 .. 7;
+      type Bloc_32_Intermediaire_T is array (Indice_32_Tmp_T) of Valeur_T
          with Size => 32, Pack;
 
       --  Table de 8 valeurs qui va contenir les résultats
       --  des tables de sélection.
       Bloc_Tmp : constant Bloc_32_Intermediaire_T :=
+         Bloc_32_Intermediaire_T'
          (
             S1 (Ligne_1, Bloc_Intermediaire.Colonne_1),
             S2 (Ligne_2, Bloc_Intermediaire.Colonne_2),

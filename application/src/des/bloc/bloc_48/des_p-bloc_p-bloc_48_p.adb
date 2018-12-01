@@ -4,7 +4,7 @@ package body Des_P.Bloc_P.Bloc_48_P is
    overriding
    procedure Initialize (B : in out Bloc_48_T) is
    begin
-      B.Bits := (others => False);
+      B.Bits := Tableau_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------

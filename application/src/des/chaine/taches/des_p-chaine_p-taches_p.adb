@@ -131,7 +131,8 @@ package body Des_P.Chaine_P.Taches_P is
       end Etage_Corps;
 
       --  La chaine de corps de filtre.
-      Chaine_Corps : array (Numero_Filtre_T) of Etage_Corps;
+      type Chaine_Corps_T is array (Numero_Filtre_T) of Etage_Corps_T;
+      Chaine_Corps : Chaine_Corps_T;
 
       task body Etage_Corps is
          T_Tmp : Table_Holder_P.Holder;
