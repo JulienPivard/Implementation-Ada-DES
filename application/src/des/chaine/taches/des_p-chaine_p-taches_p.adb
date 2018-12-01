@@ -1,5 +1,3 @@
-with Ada.Containers.Indefinite_Holders;
-
 with Des_P.Bloc_P.Bloc_64_P;
 
 package body Des_P.Chaine_P.Taches_P is
@@ -8,17 +6,6 @@ package body Des_P.Chaine_P.Taches_P is
    procedure Lanceur_Taches (Chaine : Chaine_T);
 
    procedure Lanceur_Taches (Chaine : Chaine_T) is
-
-      type Indice_T is range 1 .. 512;
-      --  Les indices des table de blocs.
-      type Table_Bloc_T is array (Indice_T range <>)
-         of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      --  Tableaux de bloc de 64 pour regrouper les données
-      --  et augmenter la charge de travail par taches et ainsi
-      --  améliorer les temps d'exécution
-
-      package Table_Holder_P is new
-         Ada.Containers.Indefinite_Holders (Table_Bloc_T);
 
       ------------------------------------------------------------------
 

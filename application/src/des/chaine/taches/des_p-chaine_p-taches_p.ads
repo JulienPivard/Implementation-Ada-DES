@@ -1,3 +1,5 @@
+private with Ada.Containers.Indefinite_Holders;
+
 private with Des_P.Chaine_P.Accee_Fichier_P;
 private with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
@@ -70,5 +72,16 @@ private
             Limiteur_R.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;
+
+      type Indice_T is range 1 .. 512;
+      --  Les indices des table de blocs.
+      type Table_Bloc_T is array (Indice_T range <>)
+         of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+      --  Tableaux de bloc de 64 pour regrouper les données
+      --  et augmenter la charge de travail par taches et ainsi
+      --  améliorer les temps d'exécution
+
+      package Table_Holder_P is new
+         Ada.Containers.Indefinite_Holders (Element_Type => Table_Bloc_T);
 
 end Des_P.Chaine_P.Taches_P;
