@@ -4,25 +4,32 @@
 --------------------------
 --  Feature Usage Rule  --
 --------------------------
-+RAbstract_Type_Declarations
+--  Signal toutes les déclarations de classes abstraites.
+--  +RAbstract_Type_Declarations
 +RAnonymous_Subtypes
 --  Les blocs de code dans des blocs (declare)
 --  +RBlocks
 +RComplex_Inlined_Subprograms:2
 --  Signal toutes les expressions conditionnel
 --  +RConditional_Expressions
-+RControlled_Type_Declarations
+--  Signal toutes les occurrences de type controllé
+--  +RControlled_Type_Declarations
 --  Les déclarations dans des sous blocs
 --  +RDeclarations_In_Blocks
+--  Niveau maximum d'imbrication d'appel de sous-programme inline
 +RDeeply_Nested_Inlining:2
-+RDefault_Parameters
+--  Signal tous les paramètres avec des valeurs par défaut
+--  +RDefault_Parameters
 --  Les structures avec un discriminant
 --  +RDiscriminated_Records
-+REnumeration_Representation_Clauses
+--  Signal toutes les clauses de représentations pour les énumérations
+--  +REnumeration_Representation_Clauses
 +RExplicit_Full_Discrete_Ranges
 --  Ada 2012 les déclarations de fonctions implementation dans la spec
 --  +RExpression_Functions
-+RFixed_Equality_Checks
+--  Signal tous de tests d'égalités entre deux points fixe
+--  +RFixed_Equality_Checks
+--  Signal tous de tests d'égalités entre deux flottants
 +RFloat_Equality_Checks
 +RFunction_Style_Procedures
 +RGenerics_In_Subprograms
@@ -33,6 +40,7 @@
 --  +RImproperly_Located_Instantiations
 --  Marque tous les programmes au niveau des librairie y compris les générique
 --  +RLibrary_Level_Subprograms
+--  Signal tous les tests d'appartenance des types taggé avec in
 +RMembership_Tests
 --  Agrégats dont le type n'est pas précisé par qualification (Truc_T'(Valeur))
 +RNon_Qualified_Aggregates
@@ -42,7 +50,9 @@
 --  Ordre des paramètres des fonctions et procédures : in, access, in out, out
 --  +RParameters_Out_Of_Order
 +RPredicate_Testing
-+RQuantified_Expressions
+--  Signal toutes les occurrences d'expressions quantifié
+--  +RQuantified_Expressions
+--  Signal toutes levées d'exceptions de la lib std
 +RRaising_Predefined_Exceptions
 --  Signal toutes les spécifications de représentation
 --  +RRepresentation_Specifications
@@ -65,7 +75,8 @@
 +ROuter_Loop_Exits
 --  Opérateurs de bases surchargé
 --  +ROverloaded_Operators
-+RSlices
+--  Signal tous les intervalles de tableaux
+--  +RSlices
 +RUniversal_Ranges
 
 ---------------------------
@@ -110,18 +121,19 @@
 +RExceptions_As_Control_Flow
 +RExits_From_Conditional_Loops
 +REXIT_Statements_With_No_Loop_Name
-+RGlobal_Variables
+--  +RGlobal_Variables
 +RGOTO_Statements
 --  Signal toutes les utilisations de return dans une procedure
 --  et toutes les utilisations de plus d'un return dans une fonction
 +RImproper_Returns
-+RMaximum_Parameters:5
++RMaximum_Parameters:6
 --  Signal tous les sous programme déclaré dans un autre.
 --  +RNested_Subprograms
 +RNon_Short_Circuit_Operators
+--  Signal toutes les utilisation de null
 +RNull_Paths
 +RObjects_Of_Anonymous_Types
-+ROTHERS_In_Aggregates
+--  +ROTHERS_In_Aggregates
 +ROTHERS_In_CASE_Statements
 +ROTHERS_In_Exception_Handlers
 +ROverly_Nested_Control_Structures:4
@@ -130,13 +142,14 @@
 +RPositional_Actuals_For_Defaulted_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +RPositional_Actuals_For_Defaulted_Parameters
-+RPOS_On_Enumeration_Types
-+RPositional_Components
+--  Signal toutes les utilisation de pos pour les types enumération
+--  +RPOS_On_Enumeration_Types
+--  +RPositional_Components
 +RPositional_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +RPositional_Parameters
 --  Signal tous les sous-programme recursif
-+RRecursive_Subprograms
+--  +RRecursive_Subprograms
 +RUnchecked_Address_Conversions
 +RUnchecked_Conversions_As_Actuals
 +RUninitialized_Global_Variables
@@ -153,9 +166,9 @@
 +RIdentifier_Casing:Exclude=exception_case
 --  +RIdentifier_Suffixes:Default
 +RIdentifier_Suffixes:Type_Suffix=_T
---  +RIdentifier_Suffixes:Access_Suffix=_A
++RIdentifier_Suffixes:Access_Suffix=_A
 --  +RIdentifier_Suffixes:Constant_Suffix=_C
---  +RIdentifier_Suffixes:Renaming_Suffix=_R
++RIdentifier_Suffixes:Renaming_Suffix=_R
 --  +RIdentifier_Suffixes:Access_Obj_Suffix=_O
 +RIdentifier_Prefixes:Exclusive
 --  Pour les objets le premier paramètre est This
