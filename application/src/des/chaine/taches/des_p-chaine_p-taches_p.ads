@@ -55,11 +55,11 @@ private
    Lecteur_Fichier : aliased Accee_R.Lecteur_Fichier_Protegee_T;
    --  Un lecteur de fichier classique.
 
-   Ecriveur : Accee_R.Ecriveur_Protegee_A;
+   Ecriveur : Accee_R.Ecriveur_Protegee_A := Ecriveur_Fichier'Access;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
-   Lecteur : Accee_R.Lecteur_Protegee_A;
+   Lecteur : Accee_R.Lecteur_Protegee_A := Lecteur_Fichier'Access;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
