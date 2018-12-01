@@ -107,7 +107,7 @@ package body Des_P.Chaine_P.Taches_P is
 
       ------------------------------------------------------------------
 
-      task type Etage_Corps is
+      task type Etage_Corps_T is
          entry Modifier_Filtre
             (
                Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
@@ -117,13 +117,13 @@ package body Des_P.Chaine_P.Taches_P is
                Table : Table_Bloc_T;
                Numero : Numero_Filtre_T
             );
-      end Etage_Corps;
+      end Etage_Corps_T;
 
       --  La chaine de corps de filtre.
       type Chaine_Corps_T is array (Numero_Filtre_T) of Etage_Corps_T;
       Chaine_Corps : Chaine_Corps_T;
 
-      task body Etage_Corps is
+      task body Etage_Corps_T is
          T_Tmp : Table_Holder_P.Holder;
          N_Tmp : Numero_Filtre_T;
          F_Tmp : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
@@ -173,7 +173,7 @@ package body Des_P.Chaine_P.Taches_P is
                end if;
             end Filtrage_Des_Donnees;
          end loop Selection_Action_Estage;
-      end Etage_Corps;
+      end Etage_Corps_T;
 
       ------------------------------------------------------------------
 

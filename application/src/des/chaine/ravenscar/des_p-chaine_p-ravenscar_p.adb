@@ -207,7 +207,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    end Filtre_Entree_Protegee;
 
    ---------------------------------------------------------------------------
-   protected body Filtre_Corps_Protegee is
+   protected body Filtre_Corps_Protegee_T is
       ---------------------------------------------------------
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class)
@@ -231,7 +231,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          return Filtre_H.Element;
       end Lire_Filtre;
       ---------------------------------------------------------
-   end Filtre_Corps_Protegee;
+   end Filtre_Corps_Protegee_T;
 
    ---------------------------------------------------------------------------
    protected body Filtre_Sortie_Protegee is
@@ -261,7 +261,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    end Filtre_Sortie_Protegee;
 
    ---------------------------------------------------------------------------
-   protected body Autorisation_Protegee is
+   protected body Autorisation_Protegee_T is
       ---------------------------------------------------------
       entry Attendre_Entree when Signal is
       begin
@@ -274,10 +274,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Signal := True;
       end Autoriser;
       ---------------------------------------------------------
-   end Autorisation_Protegee;
+   end Autorisation_Protegee_T;
 
    ---------------------------------------------------------------------------
-   protected body Donnee_Protegee is
+   protected body Donnee_Protegee_T is
       ---------------------------------------------------------
       entry Ecrire_Donnee_Entree (Table : Donnee_T) when Signal is
       begin
@@ -292,7 +292,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Signal := True;
       end Lire_Donnee;
       ---------------------------------------------------------
-   end Donnee_Protegee;
+   end Donnee_Protegee_T;
 
    ---------------------------------------------------------------------------
    task body Etage_Lecteur_Tache is
@@ -428,7 +428,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    end Etage_Entree_Tache;
 
    ---------------------------------------------------------------------------
-   task body Etage_Corps_Tache is
+   task body Etage_Corps_Tache_T is
       ---------------------------------------------------------
       procedure Filtrer_Grappe (T : in out Table_Bloc_T);
       procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
@@ -481,7 +481,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
          Autorisation_Rearmement_Protegee.Attendre_Entree;
 
       end loop Repetition_Ou_Non;
-   end Etage_Corps_Tache;
+   end Etage_Corps_Tache_T;
 
    ---------------------------------------------------------------------------
    task body Etage_Sortie_Tache is

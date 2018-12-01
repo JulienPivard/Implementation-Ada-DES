@@ -233,7 +233,7 @@ private
 
    ---------------------------------------
 
-   protected type Filtre_Corps_Protegee is
+   protected type Filtre_Corps_Protegee_T is
       entry Attendre_Entree;
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class);
@@ -242,32 +242,32 @@ private
    private
       Signal : Boolean := False;
       Filtre_H : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
-   end Filtre_Corps_Protegee;
+   end Filtre_Corps_Protegee_T;
    --  Permet de changer le filtre utilisé par les étages de
    --  chiffrement principaux.
 
    ---------------------------------------
 
-   protected type Autorisation_Protegee is
+   protected type Autorisation_Protegee_T is
       entry Attendre_Entree;
       procedure Autoriser
          with Inline;
    private
       Signal : Boolean := False;
-   end Autorisation_Protegee;
+   end Autorisation_Protegee_T;
    --  Barrière pour indiquer à la tâche suivante qu'un nouveau bloc
    --  de donné est disponible et attend d'être récupéré.
 
    ---------------------------------------
 
-   protected type Donnee_Protegee is
+   protected type Donnee_Protegee_T is
       entry Ecrire_Donnee_Entree (Table : Donnee_T);
       procedure Lire_Donnee (Table : out Donnee_T)
          with Inline;
    private
       Signal : Boolean := True;
       Donnee : Donnee_T;
-   end Donnee_Protegee;
+   end Donnee_Protegee_T;
    --  Barrière destiné à transmettre le bloc à la tâche suivante
    --  et permet également d'indiquer si le bloc à bien été récupéré
    --  par la tâche suivante.
@@ -291,17 +291,17 @@ private
 
    ---------------------------------------
 
-   Donnee_Debut : Donnee_Protegee;
+   Donnee_Debut : Donnee_Protegee_T;
    --  La donnée transmise par la tâche lectrice, du fichier à chiffrer,
    --  à la tâche de filtre d'entré.
-   Donnee_Fin   : Donnee_Protegee;
+   Donnee_Fin   : Donnee_Protegee_T;
    --  La donnée transmise par la tâche de dernier filtre
    --  à la tâche écrivaine, du fichier chiffré.
 
-   Autorisateur_Debut : Autorisation_Protegee;
+   Autorisateur_Debut : Autorisation_Protegee_T;
    --  Signal d'autorisation de lecture de la donnée de la tâche
    --  lectrice à la tâche de filtre d'entrée.
-   Autorisateur_Fin   : Autorisation_Protegee;
+   Autorisateur_Fin   : Autorisation_Protegee_T;
    --  Signal d'autorisation de lecture de la donnée de la tâche
    --  de filtre de sortie à la tâche écrivaine.
 
@@ -315,34 +315,34 @@ private
    task Etage_Sortie_Tache;
    --  La tâche de dernier filtre.
 
-   task type Etage_Corps_Tache
+   task type Etage_Corps_Tache_T
       (
-         Filtreur               : access Filtre_Corps_Protegee;
-         Autorisateur_Reception : access Autorisation_Protegee;
-         Donnee_Recue           : access Donnee_Protegee;
-         Autorisateur_Envoyee   : access Autorisation_Protegee;
-         Donnee_A_Envoyer       : access Donnee_Protegee
+         Filtreur               : access Filtre_Corps_Protegee_T;
+         Autorisateur_Reception : access Autorisation_Protegee_T;
+         Donnee_Recue           : access Donnee_Protegee_T;
+         Autorisateur_Envoyee   : access Autorisation_Protegee_T;
+         Donnee_A_Envoyer       : access Donnee_Protegee_T
       )
    is
-   end Etage_Corps_Tache;
+   end Etage_Corps_Tache_T;
    --  La tâche de filtre principaux.
 
-   Filtreur_Corps_01 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_02 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_03 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_04 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_05 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_06 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_07 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_08 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_09 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_10 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_11 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_12 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_13 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_14 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_15 : aliased Filtre_Corps_Protegee;
-   Filtreur_Corps_16 : aliased Filtre_Corps_Protegee;
+   Filtreur_Corps_01 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_02 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_03 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_04 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_05 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_06 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_07 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_08 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_09 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_10 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_11 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_12 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_13 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_14 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_15 : aliased Filtre_Corps_Protegee_T;
+   Filtreur_Corps_16 : aliased Filtre_Corps_Protegee_T;
    --  Les modificateurs de filtre.
 
    type Table_Filtreur_T is array (Numero_Filtre_T)
@@ -370,45 +370,45 @@ private
       );
    --  Table contenant les modificateurs de filtre.
 
-   Donnee_01 : aliased Donnee_Protegee;
-   Donnee_02 : aliased Donnee_Protegee;
-   Donnee_03 : aliased Donnee_Protegee;
-   Donnee_04 : aliased Donnee_Protegee;
-   Donnee_05 : aliased Donnee_Protegee;
-   Donnee_06 : aliased Donnee_Protegee;
-   Donnee_07 : aliased Donnee_Protegee;
-   Donnee_08 : aliased Donnee_Protegee;
-   Donnee_09 : aliased Donnee_Protegee;
-   Donnee_10 : aliased Donnee_Protegee;
-   Donnee_11 : aliased Donnee_Protegee;
-   Donnee_12 : aliased Donnee_Protegee;
-   Donnee_13 : aliased Donnee_Protegee;
-   Donnee_14 : aliased Donnee_Protegee;
-   Donnee_15 : aliased Donnee_Protegee;
-   Donnee_16 : aliased Donnee_Protegee;
-   Donnee_17 : aliased Donnee_Protegee;
+   Donnee_01 : aliased Donnee_Protegee_T;
+   Donnee_02 : aliased Donnee_Protegee_T;
+   Donnee_03 : aliased Donnee_Protegee_T;
+   Donnee_04 : aliased Donnee_Protegee_T;
+   Donnee_05 : aliased Donnee_Protegee_T;
+   Donnee_06 : aliased Donnee_Protegee_T;
+   Donnee_07 : aliased Donnee_Protegee_T;
+   Donnee_08 : aliased Donnee_Protegee_T;
+   Donnee_09 : aliased Donnee_Protegee_T;
+   Donnee_10 : aliased Donnee_Protegee_T;
+   Donnee_11 : aliased Donnee_Protegee_T;
+   Donnee_12 : aliased Donnee_Protegee_T;
+   Donnee_13 : aliased Donnee_Protegee_T;
+   Donnee_14 : aliased Donnee_Protegee_T;
+   Donnee_15 : aliased Donnee_Protegee_T;
+   Donnee_16 : aliased Donnee_Protegee_T;
+   Donnee_17 : aliased Donnee_Protegee_T;
    --  Les transmetteurs de données entre les tâches principales
 
-   Autorisateur_01 : aliased Autorisation_Protegee;
-   Autorisateur_02 : aliased Autorisation_Protegee;
-   Autorisateur_03 : aliased Autorisation_Protegee;
-   Autorisateur_04 : aliased Autorisation_Protegee;
-   Autorisateur_05 : aliased Autorisation_Protegee;
-   Autorisateur_06 : aliased Autorisation_Protegee;
-   Autorisateur_07 : aliased Autorisation_Protegee;
-   Autorisateur_08 : aliased Autorisation_Protegee;
-   Autorisateur_09 : aliased Autorisation_Protegee;
-   Autorisateur_10 : aliased Autorisation_Protegee;
-   Autorisateur_11 : aliased Autorisation_Protegee;
-   Autorisateur_12 : aliased Autorisation_Protegee;
-   Autorisateur_13 : aliased Autorisation_Protegee;
-   Autorisateur_14 : aliased Autorisation_Protegee;
-   Autorisateur_15 : aliased Autorisation_Protegee;
-   Autorisateur_16 : aliased Autorisation_Protegee;
-   Autorisateur_17 : aliased Autorisation_Protegee;
+   Autorisateur_01 : aliased Autorisation_Protegee_T;
+   Autorisateur_02 : aliased Autorisation_Protegee_T;
+   Autorisateur_03 : aliased Autorisation_Protegee_T;
+   Autorisateur_04 : aliased Autorisation_Protegee_T;
+   Autorisateur_05 : aliased Autorisation_Protegee_T;
+   Autorisateur_06 : aliased Autorisation_Protegee_T;
+   Autorisateur_07 : aliased Autorisation_Protegee_T;
+   Autorisateur_08 : aliased Autorisation_Protegee_T;
+   Autorisateur_09 : aliased Autorisation_Protegee_T;
+   Autorisateur_10 : aliased Autorisation_Protegee_T;
+   Autorisateur_11 : aliased Autorisation_Protegee_T;
+   Autorisateur_12 : aliased Autorisation_Protegee_T;
+   Autorisateur_13 : aliased Autorisation_Protegee_T;
+   Autorisateur_14 : aliased Autorisation_Protegee_T;
+   Autorisateur_15 : aliased Autorisation_Protegee_T;
+   Autorisateur_16 : aliased Autorisation_Protegee_T;
+   Autorisateur_17 : aliased Autorisation_Protegee_T;
    --  Les autorisation de lecture de données entre les tâches principales.
 
-   Etage_Corps_01 : Etage_Corps_Tache
+   subtype Etage_01_02_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_01'Access,
          Autorisateur_01'Access,
@@ -416,8 +416,9 @@ private
          Autorisateur_02'Access,
          Donnee_02'Access
       );
+   Etage_Corps_01 : Etage_01_02_T;
 
-   Etage_Corps_02 : Etage_Corps_Tache
+   subtype Etage_02_03_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_02'Access,
          Autorisateur_02'Access,
@@ -425,8 +426,9 @@ private
          Autorisateur_03'Access,
          Donnee_03'Access
       );
+   Etage_Corps_02 : Etage_02_03_T;
 
-   Etage_Corps_03 : Etage_Corps_Tache
+   subtype Etage_03_04_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_03'Access,
          Autorisateur_03'Access,
@@ -434,8 +436,9 @@ private
          Autorisateur_04'Access,
          Donnee_04'Access
       );
+   Etage_Corps_03 : Etage_03_04_T;
 
-   Etage_Corps_04 : Etage_Corps_Tache
+   subtype Etage_04_05_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_04'Access,
          Autorisateur_04'Access,
@@ -443,8 +446,9 @@ private
          Autorisateur_05'Access,
          Donnee_05'Access
       );
+   Etage_Corps_04 : Etage_04_05_T;
 
-   Etage_Corps_05 : Etage_Corps_Tache
+   subtype Etage_05_06_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_05'Access,
          Autorisateur_05'Access,
@@ -452,8 +456,9 @@ private
          Autorisateur_06'Access,
          Donnee_06'Access
       );
+   Etage_Corps_05 : Etage_05_06_T;
 
-   Etage_Corps_06 : Etage_Corps_Tache
+   subtype Etage_06_07_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_06'Access,
          Autorisateur_06'Access,
@@ -461,8 +466,9 @@ private
          Autorisateur_07'Access,
          Donnee_07'Access
       );
+   Etage_Corps_06 : Etage_06_07_T;
 
-   Etage_Corps_07 : Etage_Corps_Tache
+   subtype Etage_07_08_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_07'Access,
          Autorisateur_07'Access,
@@ -470,8 +476,9 @@ private
          Autorisateur_08'Access,
          Donnee_08'Access
       );
+   Etage_Corps_07 : Etage_07_08_T;
 
-   Etage_Corps_08 : Etage_Corps_Tache
+   subtype Etage_08_09_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_08'Access,
          Autorisateur_08'Access,
@@ -479,8 +486,9 @@ private
          Autorisateur_09'Access,
          Donnee_09'Access
       );
+   Etage_Corps_08 : Etage_08_09_T;
 
-   Etage_Corps_09 : Etage_Corps_Tache
+   subtype Etage_09_10_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_09'Access,
          Autorisateur_09'Access,
@@ -488,8 +496,9 @@ private
          Autorisateur_10'Access,
          Donnee_10'Access
       );
+   Etage_Corps_09 : Etage_09_10_T;
 
-   Etage_Corps_10 : Etage_Corps_Tache
+   subtype Etage_10_11_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_10'Access,
          Autorisateur_10'Access,
@@ -497,8 +506,9 @@ private
          Autorisateur_11'Access,
          Donnee_11'Access
       );
+   Etage_Corps_10 : Etage_10_11_T;
 
-   Etage_Corps_11 : Etage_Corps_Tache
+   subtype Etage_11_12_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_11'Access,
          Autorisateur_11'Access,
@@ -506,8 +516,9 @@ private
          Autorisateur_12'Access,
          Donnee_12'Access
       );
+   Etage_Corps_11 : Etage_11_12_T;
 
-   Etage_Corps_12 : Etage_Corps_Tache
+   subtype Etage_12_13_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_12'Access,
          Autorisateur_12'Access,
@@ -515,8 +526,9 @@ private
          Autorisateur_13'Access,
          Donnee_13'Access
       );
+   Etage_Corps_12 : Etage_12_13_T;
 
-   Etage_Corps_13 : Etage_Corps_Tache
+   subtype Etage_13_14_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_13'Access,
          Autorisateur_13'Access,
@@ -524,8 +536,9 @@ private
          Autorisateur_14'Access,
          Donnee_14'Access
       );
+   Etage_Corps_13 : Etage_13_14_T;
 
-   Etage_Corps_14 : Etage_Corps_Tache
+   subtype Etage_14_15_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_14'Access,
          Autorisateur_14'Access,
@@ -533,8 +546,9 @@ private
          Autorisateur_15'Access,
          Donnee_15'Access
       );
+   Etage_Corps_14 : Etage_14_15_T;
 
-   Etage_Corps_15 : Etage_Corps_Tache
+   subtype Etage_15_16_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_15'Access,
          Autorisateur_15'Access,
@@ -542,8 +556,9 @@ private
          Autorisateur_16'Access,
          Donnee_16'Access
       );
+   Etage_Corps_15 : Etage_15_16_T;
 
-   Etage_Corps_16 : Etage_Corps_Tache
+   subtype Etage_16_17_T is Etage_Corps_Tache_T
       (
          Filtreur_Corps_16'Access,
          Autorisateur_16'Access,
@@ -551,5 +566,6 @@ private
          Autorisateur_17'Access,
          Donnee_17'Access
       );
+   Etage_Corps_16 : Etage_16_17_T;
 
 end Des_P.Chaine_P.Ravenscar_P;

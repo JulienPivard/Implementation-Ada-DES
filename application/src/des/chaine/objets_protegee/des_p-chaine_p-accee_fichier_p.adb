@@ -3,7 +3,7 @@ with Ada.Directories;
 package body Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------------------------------------------
-   protected body Ecriveur_Fichier_Protegee is
+   protected body Ecriveur_Fichier_Protegee_T is
       ---------------------------------------------------------
       procedure Ouvrir_Fichier (Nom : String) is
       begin
@@ -32,10 +32,10 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
          Fichier_64_IO.Close (Resultat);
       end Fermer_Fichier;
       ---------------------------------------------------------
-   end Ecriveur_Fichier_Protegee;
+   end Ecriveur_Fichier_Protegee_T;
 
    ---------------------------------------------------------------------------
-   protected body Lecteur_Fichier_Protegee is
+   protected body Lecteur_Fichier_Protegee_T is
       ---------------------------------------------------------
       procedure Ouvrir_Fichier (Nom : String) is
       begin
@@ -63,6 +63,6 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
          Fichier_64_IO.Close (Fichier);
       end Fermer_Fichier;
       ---------------------------------------------------------
-   end Lecteur_Fichier_Protegee;
+   end Lecteur_Fichier_Protegee_T;
 
 end Des_P.Chaine_P.Accee_Fichier_P;

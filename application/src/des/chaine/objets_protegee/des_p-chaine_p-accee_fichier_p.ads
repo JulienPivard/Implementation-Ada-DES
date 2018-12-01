@@ -98,7 +98,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------
 
-   protected type Ecriveur_Fichier_Protegee
+   protected type Ecriveur_Fichier_Protegee_T
    is new Ecriveur_Protegee_T with
       overriding
       procedure Ouvrir_Fichier
@@ -120,12 +120,12 @@ package Des_P.Chaine_P.Accee_Fichier_P is
       --  Ferme le fichier.
    private
       Resultat : Fichier_64_IO.File_Type;
-   end Ecriveur_Fichier_Protegee;
+   end Ecriveur_Fichier_Protegee_T;
    --  Écrit dans le fichier le bloc donné.
 
    ---------------------------------------
 
-   protected type Lecteur_Fichier_Protegee
+   protected type Lecteur_Fichier_Protegee_T
    is new Lecteur_Protegee_T with
       overriding
       procedure Ouvrir_Fichier
@@ -154,7 +154,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
       --  Ferme le fichier.
    private
       Fichier : Fichier_64_IO.File_Type;
-   end Lecteur_Fichier_Protegee;
+   end Lecteur_Fichier_Protegee_T;
    --  Lit un bloc de données dans le fichier.
 
 end Des_P.Chaine_P.Accee_Fichier_P;

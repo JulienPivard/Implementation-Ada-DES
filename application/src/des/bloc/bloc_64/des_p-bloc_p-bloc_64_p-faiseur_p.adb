@@ -23,7 +23,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       package Faiseur_32_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
 
       --  Découpage du bloc de 64 en 2 blocs brut de 32 bits.
-      type Bloc_Intermediaire is
+      type Bloc_Intermediaire_T is
          record
             Bloc_1 : Faiseur_32_R.Bloc_32_Brut_T;
             Bloc_2 : Faiseur_32_R.Bloc_32_Brut_T;
@@ -32,7 +32,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
 
       --  Délimite les deux blocs de 32 en définissant
       --  l'octet de départ et le nombre de bits.
-      for Bloc_Intermediaire use
+      for Bloc_Intermediaire_T use
          record
             Bloc_1 at 0 range 0 .. 31;
             Bloc_2 at 4 range 0 .. 31;
@@ -42,7 +42,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
       --  Transformation du bloc de 64 bits.
-      Resultat : Bloc_Intermediaire with Address => Brut'Address;
+      Resultat : Bloc_Intermediaire_T with Address => Brut'Address;
 
       C_32 : Faiseur_32_R.Faiseur_Bloc_T;
    begin
