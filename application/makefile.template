@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 20 octobre[10] 2018
+# Dernière modification : Lundi 07 janvier[01] 2019
 
 ###################
 # Point d'entrée #
@@ -79,12 +79,32 @@ ifneq ($(VARNOMFICHIER), )
    endif
 endif
 
+ifeq ($(shell which cloc), )
+    TECHNIQUE_COMPTAGE	= avec_find
+else
+    TECHNIQUE_COMPTAGE	= avec_cloc
+endif
+
 ###################
 .PHONY: compter
-compter:
+compter: $(TECHNIQUE_COMPTAGE)
+
+.PHONY: avec_find
+avec_find:
 	find $(DOSSIERSRC) -type f | xargs cat | wc $(OPTCOMPTAGE)
+
+.PHONY: avec_cloc
+avec_cloc:
+	cloc --exclude-dir=obj,bin --by-percent cmb .
 
 ###################
 .PHONY: compterdetail
-compterdetail:
+compterdetail: $(TECHNIQUE_COMPTAGE)_detail
+
+.PHONY: avec_find_detail
+avec_find_detail:
 	find $(DOSSIERSRC) -type f | xargs wc $(OPTCOMPTAGE)
+
+.PHONY: avec_cloc_detail
+avec_cloc_detail:
+	cloc --exclude-dir=obj,bin --by-file-by-lang .
