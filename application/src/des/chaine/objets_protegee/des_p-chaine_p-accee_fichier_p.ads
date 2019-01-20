@@ -14,7 +14,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------------------------------------------
 
-   type Ecriveur_Protegee_T is protected interface;
+   type Ecriveur_Protegee_T is limited interface;
    --  Un écriveur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
@@ -54,7 +54,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------------------------------------------
 
-   type Lecteur_Protegee_T is protected interface;
+   type Lecteur_Protegee_T is limited interface;
    --  Un lecteur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
@@ -104,63 +104,103 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------
 
-   protected type Ecriveur_Fichier_Protegee_T
-   is new Ecriveur_Protegee_T with
-      overriding
-      procedure Ouvrir_Fichier
-         (Nom : String);
-      --  Ouvre le fichier.
-      --  @param Nom
-      --  Le nom du fichier à ouvrir.
-
-      overriding
-      procedure Ecrire
-         (Brut : C_Bloc_64_R.Bloc_64_Brut_T)
-         with Inline;
-      --  Écrit la donnée dans le fichier.
-      --  @param Brut
-      --  La donnée à écrire dans le fichier.
-
-      overriding
-      procedure Fermer_Fichier;
-      --  Ferme le fichier.
-   private
-      Resultat : Fichier_64_IO.File_Type;
-   end Ecriveur_Fichier_Protegee_T;
+   type Ecriveur_Fichier_Protegee_T
+   is limited new Ecriveur_Protegee_T with private;
    --  Écrit dans le fichier le bloc donné.
+
+   overriding
+   procedure Ouvrir_Fichier
+      (
+         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Nom : String
+      );
+   --  Ouvre le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
+   --  @param Nom
+   --  Le nom du fichier à ouvrir.
+
+   overriding
+   procedure Ecrire
+      (
+         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Brut : C_Bloc_64_R.Bloc_64_Brut_T
+      )
+      with Inline;
+   --  Écrit la donnée dans le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
+   --  @param Brut
+   --  La donnée à écrire dans le fichier.
+
+   overriding
+   procedure Fermer_Fichier
+      (Ecriveur : in out Ecriveur_Fichier_Protegee_T);
+   --  Ferme le fichier.
+   --  @param Ecriveur
+   --  L'écriveur de données.
 
    ---------------------------------------
 
-   protected type Lecteur_Fichier_Protegee_T
-   is new Lecteur_Protegee_T with
-      overriding
-      procedure Ouvrir_Fichier
-         (Nom : String);
-      --  Ouvre le fichier.
-      --  @param Nom
-      --  Le nom du fichier à ouvrir.
-
-      overriding
-      procedure Lire
-         (Brut : out C_Bloc_64_R.Bloc_64_Brut_T)
-         with Inline;
-      --  Lit la donnée dans le fichier.
-      --  @param Brut
-      --  La donnée lu dans le fichier.
-
-      overriding
-      function Est_Fini return Boolean
-         with Inline;
-      --  Permet de savoir si le fichier est fini de lire.
-      --  @return
-      --  Le fichier est fini de lire.
-
-      overriding
-      procedure Fermer_Fichier;
-      --  Ferme le fichier.
-   private
-      Fichier : Fichier_64_IO.File_Type;
-   end Lecteur_Fichier_Protegee_T;
+   type Lecteur_Fichier_Protegee_T
+   is limited new Lecteur_Protegee_T with private;
    --  Lit un bloc de données dans le fichier.
+
+   overriding
+   procedure Ouvrir_Fichier
+      (
+         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Nom : String
+      );
+   --  Ouvre le fichier.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @param Nom
+   --  Le nom du fichier à ouvrir.
+
+   overriding
+   procedure Lire
+      (
+         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Brut : out C_Bloc_64_R.Bloc_64_Brut_T
+      )
+      with Inline;
+   --  Lit la donnée dans le fichier.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @param Brut
+   --  La donnée lu dans le fichier.
+
+   overriding
+   function Est_Fini
+      (Lecteur : Lecteur_Fichier_Protegee_T)
+      return Boolean
+      with Inline;
+   --  Permet de savoir si le fichier est fini de lire.
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  @return
+   --  Le fichier est fini de lire.
+
+   overriding
+   procedure Fermer_Fichier
+      (Lecteur : in out Lecteur_Fichier_Protegee_T);
+   --  @param Lecteur
+   --  Le lecteur de données.
+   --  Ferme le fichier.
+
+private
+
+   type Ecriveur_Fichier_Protegee_T
+   is limited new Ecriveur_Protegee_T with
+      record
+         Resultat : Fichier_64_IO.File_Type;
+      end record;
+
+   type Lecteur_Fichier_Protegee_T
+   is limited new Lecteur_Protegee_T with
+      record
+         Fichier : Fichier_64_IO.File_Type;
+      end record;
 
 end Des_P.Chaine_P.Accee_Fichier_P;
