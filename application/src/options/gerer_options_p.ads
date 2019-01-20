@@ -15,6 +15,8 @@ package Gerer_Options_P is
    subtype Args_En_Trop_T is Integer range Nb_Args_Max + 1 .. Nb_Args;
 
    type Action_T is (Chiffrer, Dechiffrer);
+   --  @value Chiffrer Indique que l'utilisateur à demander de chiffrer
+   --  @value Dechiffrer Indique que l'utilisateur à demander à déchiffrer
 
    procedure Afficher_Aide;
 
