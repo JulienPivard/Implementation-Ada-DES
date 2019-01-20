@@ -26,9 +26,8 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
       --  Signal qu'une grappe à été consommée.
 
       procedure Modifier_Nb_Max_Blocs (Nb : Max_Grappes_T);
-      --  Fixe le nombre de grappe en meme temps dans le pipeline.
-      --  Par défaut il y en a autant que de processeurs
-      --  disponible.
+      --  Fixe le nombre de grappe présente en même temps dans le pipeline.
+      --  Par défaut il y en a autant que de processeurs disponible.
       --  @param Nb
       --  Le nombre maximal de grappe en même temps dans le pipeline
    private

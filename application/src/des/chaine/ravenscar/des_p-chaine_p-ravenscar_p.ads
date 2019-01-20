@@ -29,7 +29,7 @@ package Des_P.Chaine_P.Ravenscar_P is
       );
    --  Lance le filtrage du fichier avec la clef. La version chiffré ou
    --  déchiffré est écrite dans un autre fichier avec l'extension chiffre ou
-   --  dechiffre selon le filtrage effectué.
+   --  déchiffre selon le filtrage effectué.
    --  @param Chaine
    --  La chaine de filtre.
    --  @param Nom_Fichier
