@@ -6,8 +6,13 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 
 with Des_P.Clef_P.Clef_64_P;
 
-private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
-private with Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
+private with Generateur_Lecteur_1_P;
+private with Generateur_Lecteur_2048_P;
+private with Generateur_Lecteur_8192_P;
+
+private with Generateur_Ecriveur_1_P;
+private with Generateur_Ecriveur_2048_P;
+private with Generateur_Ecriveur_8192_P;
 
 package Des_P.Chaine_P.Taches_P.Test_P is
 
@@ -53,19 +58,17 @@ package Des_P.Chaine_P.Taches_P.Test_P is
 
 private
 
-   package Accee_1_G_P renames
-      Des_P.Chaine_P.Accee_Fichier_P.Generateur_1_P;
-   package Accee_2048_G_P renames
-      Des_P.Chaine_P.Accee_Fichier_P.Generateur_2048_P;
 
-   Lecteur_1_Generateur : aliased Accee_1_G_P.Lecteur_Generateur_Protegee;
+   Lecteur_1_Generateur    : aliased
+      Generateur_Lecteur_1_P.Lecteur_Generateur_T;
    Lecteur_2048_Generateur : aliased
-      Accee_2048_G_P.Lecteur_Generateur_Protegee;
+      Generateur_Lecteur_2048_P.Lecteur_Generateur_T;
    --  Un lecteur de fichier classique.
 
-   Ecriveur_1_Generateur : aliased Accee_1_G_P.Ecriveur_Generateur_Protegee;
+   Ecriveur_1_Generateur    : aliased
+      Generateur_Ecriveur_1_P.Ecriveur_Generateur_T;
    Ecriveur_2048_Generateur : aliased
-      Accee_2048_G_P.Ecriveur_Generateur_Protegee;
+      Generateur_Ecriveur_2048_P.Ecriveur_Generateur_T;
    --  Un écriveur de fichier classique.
 
 end Des_P.Chaine_P.Taches_P.Test_P;

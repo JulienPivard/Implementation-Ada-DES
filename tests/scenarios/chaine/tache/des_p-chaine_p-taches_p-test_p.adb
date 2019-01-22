@@ -74,7 +74,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_1_G_P.Reception_Blocs_T :=
+         R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
@@ -132,7 +132,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_1_G_P.Reception_Blocs_T :=
+         R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
@@ -187,7 +187,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_2048_G_P.Reception_Blocs_T :=
+         R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
@@ -245,7 +245,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         R : constant Accee_2048_G_P.Reception_Blocs_T :=
+         R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
