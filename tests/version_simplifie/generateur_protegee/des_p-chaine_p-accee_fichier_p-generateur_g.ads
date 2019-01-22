@@ -10,7 +10,7 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
    ---------------------------------------
    type Ecriveur_Generateur_Protegee
-   is limited new Ecriveur_Protegee_T with private;
+   is limited new Ecriveur_T with private;
    --  Écrit dans le fichier le bloc donné.
 
    overriding
@@ -41,7 +41,7 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
    ---------------------------------------
    type Lecteur_Generateur_Protegee
-   is limited new Lecteur_Protegee_T with private;
+   is limited new Lecteur_T with private;
    --  Lit un bloc de données dans le fichier.
 
    overriding
@@ -79,15 +79,13 @@ package Des_P.Chaine_P.Accee_Fichier_P.Generateur_G is
 
 private
 
-   type Ecriveur_Generateur_Protegee
-   is limited new Ecriveur_Protegee_T with
+   type Ecriveur_Generateur_Protegee is limited new Ecriveur_T with
       record
          Resultats : Reception_Blocs_T;
          Nb_Blocs_Ecrit : Natural := 0;
       end record;
 
-   type Lecteur_Generateur_Protegee
-   is limited new Lecteur_Protegee_T with
+   type Lecteur_Generateur_Protegee is limited new Lecteur_T with
       record
          Nb_Blocs_Lu : Natural := 0;
          Brut_Genere : C_Bloc_64_R.Bloc_64_Brut_T;

@@ -14,16 +14,16 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------------------------------------------
 
-   type Ecriveur_Protegee_T is limited interface;
+   type Ecriveur_T is limited interface;
    --  Un écriveur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
-   type Ecriveur_Protegee_A is not null access all Ecriveur_Protegee_T'Class;
+   type Ecriveur_A is not null access all Ecriveur_T'Class;
    --  Pointeur sur un écriveur protégé.
 
    procedure Ouvrir_Fichier
       (
-         Ecriveur : in out Ecriveur_Protegee_T;
+         Ecriveur : in out Ecriveur_T;
          Nom : String
       )
    is abstract;
@@ -35,7 +35,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    procedure Ecrire
       (
-         Ecriveur : in out Ecriveur_Protegee_T;
+         Ecriveur : in out Ecriveur_T;
          Brut : C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
@@ -46,7 +46,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  La donnée à écrire dans le fichier.
 
    procedure Fermer_Fichier
-      (Ecriveur : in out Ecriveur_Protegee_T)
+      (Ecriveur : in out Ecriveur_T)
    is abstract;
    --  Ferme le fichier.
    --  @param Ecriveur
@@ -54,16 +54,16 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------------------------------------------
 
-   type Lecteur_Protegee_T is limited interface;
+   type Lecteur_T is limited interface;
    --  Un lecteur de donnée protégée. Nécessaire à cause
    --  de son utilisation dans des taches.
 
-   type Lecteur_Protegee_A is not null access all Lecteur_Protegee_T'Class;
+   type Lecteur_A is not null access all Lecteur_T'Class;
    --  Pointeur sur un lecteur protégé.
 
    procedure Ouvrir_Fichier
       (
-         Lecteur : in out Lecteur_Protegee_T;
+         Lecteur : in out Lecteur_T;
          Nom : String
       )
    is abstract;
@@ -75,7 +75,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    procedure Lire
       (
-         Lecteur : in out Lecteur_Protegee_T;
+         Lecteur : in out Lecteur_T;
          Brut : out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
@@ -86,7 +86,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  La donnée lu dans le fichier.
 
    function Est_Fini
-      (Lecteur : Lecteur_Protegee_T)
+      (Lecteur : Lecteur_T)
       return Boolean
    is abstract;
    --  Permet de savoir si le fichier est fini de lire.
@@ -96,7 +96,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    --  Le fichier est fini de lire.
 
    procedure Fermer_Fichier
-      (Lecteur : in out Lecteur_Protegee_T)
+      (Lecteur : in out Lecteur_T)
    is abstract;
    --  Ferme le fichier.
    --  @param Lecteur
@@ -104,14 +104,14 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    ---------------------------------------
 
-   type Ecriveur_Fichier_Protegee_T
-   is limited new Ecriveur_Protegee_T with private;
+   type Ecriveur_Fichier_T
+   is limited new Ecriveur_T with private;
    --  Écrit dans le fichier le bloc donné.
 
    overriding
    procedure Ouvrir_Fichier
       (
-         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Ecriveur : in out Ecriveur_Fichier_T;
          Nom : String
       );
    --  Ouvre le fichier.
@@ -123,7 +123,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Ecrire
       (
-         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Ecriveur : in out Ecriveur_Fichier_T;
          Brut : C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
@@ -135,21 +135,21 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    overriding
    procedure Fermer_Fichier
-      (Ecriveur : in out Ecriveur_Fichier_Protegee_T);
+      (Ecriveur : in out Ecriveur_Fichier_T);
    --  Ferme le fichier.
    --  @param Ecriveur
    --  L'écriveur de données.
 
    ---------------------------------------
 
-   type Lecteur_Fichier_Protegee_T
-   is limited new Lecteur_Protegee_T with private;
+   type Lecteur_Fichier_T
+   is limited new Lecteur_T with private;
    --  Lit un bloc de données dans le fichier.
 
    overriding
    procedure Ouvrir_Fichier
       (
-         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Lecteur : in out Lecteur_Fichier_T;
          Nom : String
       );
    --  Ouvre le fichier.
@@ -161,7 +161,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Lire
       (
-         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Lecteur : in out Lecteur_Fichier_T;
          Brut : out C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
@@ -173,7 +173,7 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    overriding
    function Est_Fini
-      (Lecteur : Lecteur_Fichier_Protegee_T)
+      (Lecteur : Lecteur_Fichier_T)
       return Boolean
       with Inline;
    --  Permet de savoir si le fichier est fini de lire.
@@ -184,21 +184,19 @@ package Des_P.Chaine_P.Accee_Fichier_P is
 
    overriding
    procedure Fermer_Fichier
-      (Lecteur : in out Lecteur_Fichier_Protegee_T);
+      (Lecteur : in out Lecteur_Fichier_T);
    --  @param Lecteur
    --  Le lecteur de données.
    --  Ferme le fichier.
 
 private
 
-   type Ecriveur_Fichier_Protegee_T
-   is limited new Ecriveur_Protegee_T with
+   type Ecriveur_Fichier_T is limited new Ecriveur_T with
       record
          Resultat : Fichier_64_IO.File_Type;
       end record;
 
-   type Lecteur_Fichier_Protegee_T
-   is limited new Lecteur_Protegee_T with
+   type Lecteur_Fichier_T is limited new Lecteur_T with
       record
          Fichier : Fichier_64_IO.File_Type;
       end record;

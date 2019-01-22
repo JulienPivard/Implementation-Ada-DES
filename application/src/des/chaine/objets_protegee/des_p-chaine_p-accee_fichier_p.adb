@@ -7,7 +7,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Ouvrir_Fichier
       (
-         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Ecriveur : in out Ecriveur_Fichier_T;
          Nom : String
       )
    is
@@ -27,7 +27,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Ecrire
       (
-         Ecriveur : in out Ecriveur_Fichier_Protegee_T;
+         Ecriveur : in out Ecriveur_Fichier_T;
          Brut : C_Bloc_64_R.Bloc_64_Brut_T
       )
    is
@@ -38,7 +38,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    ---------------------------------------------------------
    overriding
    procedure Fermer_Fichier
-      (Ecriveur : in out Ecriveur_Fichier_Protegee_T)
+      (Ecriveur : in out Ecriveur_Fichier_T)
    is
    begin
       Fichier_64_IO.Close (Ecriveur.Resultat);
@@ -50,7 +50,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Ouvrir_Fichier
       (
-         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Lecteur : in out Lecteur_Fichier_T;
          Nom : String
       )
    is
@@ -62,7 +62,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    overriding
    procedure Lire
       (
-         Lecteur : in out Lecteur_Fichier_Protegee_T;
+         Lecteur : in out Lecteur_Fichier_T;
          Brut : out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is
@@ -73,7 +73,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    ---------------------------------------------------------
    overriding
    function Est_Fini
-      (Lecteur : Lecteur_Fichier_Protegee_T)
+      (Lecteur : Lecteur_Fichier_T)
       return Boolean
    is
    begin
@@ -83,7 +83,7 @@ package body Des_P.Chaine_P.Accee_Fichier_P is
    ---------------------------------------------------------
    overriding
    procedure Fermer_Fichier
-      (Lecteur : in out Lecteur_Fichier_Protegee_T)
+      (Lecteur : in out Lecteur_Fichier_T)
    is
    begin
       Fichier_64_IO.Close (Lecteur.Fichier);
