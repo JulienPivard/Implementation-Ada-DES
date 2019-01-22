@@ -56,19 +56,28 @@ package Des_P.Chaine_P.Taches_P.Test_P is
    procedure Test_Filtre_Dechiff_2048
       (T : in out Test_Fixt_T);
 
-private
+   procedure Test_Filtre_Chiffre_8192
+      (T : in out Test_Fixt_T);
 
+   procedure Test_Filtre_Dechiff_8192
+      (T : in out Test_Fixt_T);
+
+private
 
    Lecteur_1_Generateur    : aliased
       Generateur_Lecteur_1_P.Lecteur_Generateur_T;
    Lecteur_2048_Generateur : aliased
       Generateur_Lecteur_2048_P.Lecteur_Generateur_T;
+   Lecteur_8192_Generateur : aliased
+      Generateur_Lecteur_8192_P.Lecteur_Generateur_T;
    --  Un lecteur de fichier classique.
 
    Ecriveur_1_Generateur    : aliased
       Generateur_Ecriveur_1_P.Ecriveur_Generateur_T;
    Ecriveur_2048_Generateur : aliased
       Generateur_Ecriveur_2048_P.Ecriveur_Generateur_T;
+   Ecriveur_8192_Generateur : aliased
+      Generateur_Ecriveur_8192_P.Ecriveur_Generateur_T;
    --  Un écriveur de fichier classique.
 
 end Des_P.Chaine_P.Taches_P.Test_P;
