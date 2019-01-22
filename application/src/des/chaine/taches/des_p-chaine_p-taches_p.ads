@@ -1,7 +1,11 @@
 private with Ada.Containers.Indefinite_Holders;
 
-private with Des_P.Chaine_P.Accee_Fichier_P;
 private with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
+
+private with Des_P.Chaine_P.Lecteur_P;
+private with Des_P.Chaine_P.Lecteur_P.Fichier_P;
+private with Des_P.Chaine_P.Ecriveur_P;
+private with Des_P.Chaine_P.Ecriveur_P.Fichier_P;
 
 private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
@@ -47,19 +51,20 @@ private
    --  Contient tous les filtres principaux qui vont être utilisé
    --  par les tâches de chiffrement, dans l'ordre d'utilisation.
 
-   package Accee_R renames Des_P.Chaine_P.Accee_Fichier_P;
+   package Lecteure_R renames Des_P.Chaine_P.Lecteur_P;
+   package Ecriveur_R renames Des_P.Chaine_P.Ecriveur_P;
 
-   Ecriveur_Fichier : aliased Accee_R.Ecriveur_Fichier_T;
+   Ecriveur_Fichier : aliased Ecriveur_P.Fichier_P.Ecriveur_Fichier_T;
    --  Un écriveur de fichier classique.
 
-   Lecteur_Fichier : aliased Accee_R.Lecteur_Fichier_T;
+   Lecteur_Fichier  : aliased Lecteure_R.Fichier_P.Lecteur_Fichier_T;
    --  Un lecteur de fichier classique.
 
-   Ecriveur : Accee_R.Ecriveur_A := Ecriveur_Fichier'Access;
+   Ecriveur : Ecriveur_P.Ecriveur_A := Ecriveur_Fichier'Access;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
-   Lecteur : Accee_R.Lecteur_A := Lecteur_Fichier'Access;
+   Lecteur  : Lecteure_R.Lecteur_A  := Lecteur_Fichier'Access;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
