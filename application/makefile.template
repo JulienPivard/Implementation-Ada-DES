@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 07 janvier[01] 2019
+# Dernière modification : mercredi 23 janvier[01] 2019
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	:= 1.8.4
+MAKEFILE_V	:= 1.9.1
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -54,20 +54,20 @@ build:
 ###################
 .PHONY: clean
 clean:
-	@echo " ┌───────────────────────────────────────────────────────────────┐"
-	@echo " │    Effacement des fichiers temporaire généré pour les tests   │"
-	@echo " └───────────────────────────────────────────────────────────────┘"
+	@echo " ┌──────────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
+	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) obj
-	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: distclean
 distclean: clean
-	@echo " ┌───────────────────────────────────────────────────────────────┐"
-	@echo " │    Effacement des fichiers executable généré pour les tests   │"
-	@echo " └───────────────────────────────────────────────────────────────┘"
+	@echo " ┌──────────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers executable généré par la compilation │"
+	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) bin
-	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " ────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
 	-$(RM) $(OPTRM) ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) \
