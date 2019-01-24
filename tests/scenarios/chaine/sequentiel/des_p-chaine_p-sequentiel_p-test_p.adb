@@ -12,11 +12,6 @@ with Des_P.Filtre_P.Corps_P;
 with Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
 with Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
 
-with Ada.Directories;
-with Ada.Sequential_IO;
-
-with Ada.IO_Exceptions;
-
 package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    package Faiseur_Chiffrement_P renames
@@ -25,8 +20,6 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
    package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
    package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
-   package Lecteur_64_IO is new Ada.Sequential_IO
-      (Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T);
 
    ---------------------------------------------------------------------------
    overriding
@@ -43,31 +36,22 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    procedure Tear_Down (T : in out Test_Fixt_T) is
       pragma Unreferenced (T);
    begin
-      if Ada.Directories.Exists (Nom_Fichier) then
-         Ada.Directories.Delete_File (Nom_Fichier);
-      end if;
-      if Ada.Directories.Exists (Nom_Alternatif) then
-         Ada.Directories.Delete_File (Nom_Alternatif);
-      end if;
+      null;
    end Tear_Down;
 
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Chiffre (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Chiffre_1 (T : in out Test_Fixt_T) is
       Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Initial);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
+      Lecteur  := Lecteur_1_Generateur'Access;
+      Ecriveur := Ecriveur_1_Generateur'Access;
+      Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Initial);
+
       Const_Chiffre.Initialiser (Const_56, Const_48);
       Const_Chiffre.Construire (T.Clef);
       T.Chaine := Chaine_T (Const_Chiffre.Recuperer_Chaine);
@@ -75,40 +59,33 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
+         R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
+            Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         AUnit.Assertions.Assert
-            (Brut_Utilise = Brut_Attendu,
-            "Brut : " & Brut_Utilise'Img &
-            " au lieu de " & Brut_Attendu'Img
-            );
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
+         for E of R loop
             AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+               (E = Brut_Attendu,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
       end;
-   end Test_Filtre_Chiffre;
+   end Test_Filtre_Chiffre_1;
 
    ---------------------------------------------------------------------------
-   procedure Test_Filtre_Dechiffre (T : in out Test_Fixt_T) is
+   procedure Test_Filtre_Dechiffre_1 (T : in out Test_Fixt_T) is
       Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      declare
-         Fichier : Lecteur_64_IO.File_Type;
-      begin
-         Lecteur_64_IO.Create (Fichier, Lecteur_64_IO.Out_File, Nom_Fichier);
-         Lecteur_64_IO.Write (Fichier, Brut_Attendu);
-         Lecteur_64_IO.Close (Fichier);
-         pragma Unreferenced (Fichier);
-      end;
+      Lecteur  := Lecteur_1_Generateur'Access;
+      Ecriveur := Ecriveur_1_Generateur'Access;
+      Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Attendu);
+
       Const_Dechiffre.Initialiser (Const_56, Const_48);
       Const_Dechiffre.Construire (T.Clef);
       T.Chaine := Chaine_T (Const_Dechiffre.Recuperer_Chaine);
@@ -116,25 +93,158 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
       declare
-         Fichier : Lecteur_64_IO.File_Type;
+         R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
+            Ecriveur_1_Generateur.Lire_Resultat;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
-         Brut_Utilise : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
       begin
-         Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Alternatif);
-         Lecteur_64_IO.Read (Fichier, Brut_Utilise);
-         Lecteur_64_IO.Close (Fichier);
-         AUnit.Assertions.Assert
-            (Brut_Utilise = Brut_Initial,
-            "Brut : " & Brut_Utilise'Img &
-            " au lieu de " & Brut_Initial'Img
-            );
-      exception
-         when Ada.IO_Exceptions.End_Error =>
-            Lecteur_64_IO.Close (Fichier);
+         for E of R loop
             AUnit.Assertions.Assert
-               (False, "Erreur Fin fichier atteinte");
+               (E = Brut_Initial,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Initial'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
       end;
-   end Test_Filtre_Dechiffre;
+   end Test_Filtre_Dechiffre_1;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Chiffre_2048 (T : in out Test_Fixt_T) is
+      Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+   begin
+      Lecteur  := Lecteur_2048_Generateur'Access;
+      Ecriveur := Ecriveur_2048_Generateur'Access;
+      Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Initial);
+
+      Const_Chiffre.Initialiser (Const_56, Const_48);
+      Const_Chiffre.Construire (T.Clef);
+      T.Chaine := Chaine_T (Const_Chiffre.Recuperer_Chaine);
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
+            Ecriveur_2048_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
+      begin
+         for E of R loop
+            AUnit.Assertions.Assert
+               (E = Brut_Attendu,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
+      end;
+   end Test_Filtre_Chiffre_2048;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Dechiffre_2048 (T : in out Test_Fixt_T) is
+      Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+   begin
+      Lecteur  := Lecteur_2048_Generateur'Access;
+      Ecriveur := Ecriveur_2048_Generateur'Access;
+      Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Attendu);
+
+      Const_Dechiffre.Initialiser (Const_56, Const_48);
+      Const_Dechiffre.Construire (T.Clef);
+      T.Chaine := Chaine_T (Const_Dechiffre.Recuperer_Chaine);
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
+            Ecriveur_2048_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
+      begin
+         for E of R loop
+            AUnit.Assertions.Assert
+               (E = Brut_Initial,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Initial'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
+      end;
+   end Test_Filtre_Dechiffre_2048;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Chiffre_8192 (T : in out Test_Fixt_T) is
+      Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+   begin
+      Lecteur  := Lecteur_8192_Generateur'Access;
+      Ecriveur := Ecriveur_8192_Generateur'Access;
+      Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Initial);
+
+      Const_Chiffre.Initialiser (Const_56, Const_48);
+      Const_Chiffre.Construire (T.Clef);
+      T.Chaine := Chaine_T (Const_Chiffre.Recuperer_Chaine);
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
+            Ecriveur_8192_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
+      begin
+         for E of R loop
+            AUnit.Assertions.Assert
+               (E = Brut_Attendu,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Attendu'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
+      end;
+   end Test_Filtre_Chiffre_8192;
+
+   ---------------------------------------------------------------------------
+   procedure Test_Filtre_Dechiffre_8192 (T : in out Test_Fixt_T) is
+      Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
+      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+   begin
+      Lecteur  := Lecteur_8192_Generateur'Access;
+      Ecriveur := Ecriveur_8192_Generateur'Access;
+      Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Attendu);
+
+      Const_Dechiffre.Initialiser (Const_56, Const_48);
+      Const_Dechiffre.Construire (T.Clef);
+      T.Chaine := Chaine_T (Const_Dechiffre.Recuperer_Chaine);
+
+      T.Chaine.Filtrer (Nom_Fichier, Extension);
+
+      declare
+         R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
+            Ecriveur_8192_Generateur.Lire_Resultat;
+         use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+         I : Natural := Natural'First;
+      begin
+         for E of R loop
+            AUnit.Assertions.Assert
+               (E = Brut_Initial,
+               "Brut : " & E'Img &
+               " au lieu de " & Brut_Initial'Img &
+               " en position : " & I'Img
+               );
+            I := Natural'Succ (I);
+         end loop;
+      end;
+   end Test_Filtre_Dechiffre_8192;
 
    ---------------------------------------------------------------------------
    procedure Test_Execution_2_Filtres

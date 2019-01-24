@@ -18,15 +18,43 @@ package body Chaine_Sequentiel_Suite_P is
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Chiffrement a partir de fichiers",
-            Test_Filtre_Chiffre'Access
+            (nom_test & "Chiffrement a partir de 1 bloc d'un generateur",
+            Test_Filtre_Chiffre_1'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Dechiffrement a partir de fichiers",
-            Test_Filtre_Dechiffre'Access
+            (nom_test & "Dechiffrement a partir de 1 bloc d'un generateur",
+            Test_Filtre_Dechiffre_1'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Chiffrement a partir de 2048 bloc d'un generateur",
+            Test_Filtre_Chiffre_2048'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Dechiffrement a partir de 2048 bloc d'un generateur",
+            Test_Filtre_Dechiffre_2048'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Chiffrement a partir de 8192 bloc d'un generateur",
+            Test_Filtre_Chiffre_8192'Access
+            )
+         );
+
+      ptr_test_suite.all.Add_Test
+         (Caller.Create
+            (nom_test & "Dechiffrement a partir de 8192 bloc d'un generateur",
+            Test_Filtre_Dechiffre_8192'Access
             )
          );
 
