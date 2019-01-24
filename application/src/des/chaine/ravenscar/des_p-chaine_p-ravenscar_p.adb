@@ -321,8 +321,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
                Construction_Bloc :
                declare
                   ---------------------------------------------------------
-                  function Lire_Grappe return C_Bloc_64_R.Bloc_64_Brut_T;
-                  function Lire_Grappe return C_Bloc_64_R.Bloc_64_Brut_T is
+                  function Lire_Grappe
+                     return C_Bloc_64_R.Bloc_64_Brut_T;
+                  function Lire_Grappe
+                     return C_Bloc_64_R.Bloc_64_Brut_T
+                  is
                      Brut : C_Bloc_64_R.Bloc_64_Brut_T;
                   begin
                      Lecteur.all.Lire (Brut);
@@ -375,8 +378,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Entree_Tache is
       ---------------------------------------------------------
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T)
+      is
          Filtre : constant
          Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class :=
             Filtre_Entree_Protegee.Lire_Filtre;
@@ -430,8 +436,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Corps_Tache_T is
       ---------------------------------------------------------
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T)
+      is
          Filtre : constant
          Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
             Filtreur.all.Lire_Filtre;
@@ -486,8 +495,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Sortie_Tache is
       ---------------------------------------------------------
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T);
-      procedure Filtrer_Grappe (T : in out Table_Bloc_T) is
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T);
+      procedure Filtrer_Grappe
+         (T : in out Table_Bloc_T)
+      is
          Filtre : constant
          Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class :=
             Filtre_Sortie_Protegee.Lire_Filtre;
@@ -541,8 +553,11 @@ package body Des_P.Chaine_P.Ravenscar_P is
    task body Etage_Ecriture_Tache is
       C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       ---------------------------------------------------------
-      procedure Ecrire_Grappe (T : Table_Bloc_T);
-      procedure Ecrire_Grappe (T : Table_Bloc_T) is
+      procedure Ecrire_Grappe
+         (T : Table_Bloc_T);
+      procedure Ecrire_Grappe
+         (T : Table_Bloc_T)
+      is
       begin
          for E of T loop
             Ecrit_Donnees_Dans_Fichier :
