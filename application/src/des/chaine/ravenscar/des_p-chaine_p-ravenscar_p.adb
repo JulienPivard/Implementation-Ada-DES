@@ -313,7 +313,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
             J := Indice_T'First;
 
             Remplissage :
-            for I in Indice_T loop
+            loop
                --  On sort si le fichier est vide
                exit Remplissage when Lecteur.all.Est_Fini;
                --  Transformation du brut lu en un bloc.
@@ -336,8 +336,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
                begin
                   C_64.Construire_Bloc (Brut);
                end Construction_Bloc;
-               Table (I) := C_64.Recuperer_Bloc;
-               J := I;
+               Table (J) := C_64.Recuperer_Bloc;
+               exit Remplissage when J = Indice_T'Last;
+               exit Remplissage when Lecteur.all.Est_Fini;
+               J := Indice_T'Succ (J);
             end loop Remplissage;
 
             Transmission_Donnee_Bloc_Suivant :

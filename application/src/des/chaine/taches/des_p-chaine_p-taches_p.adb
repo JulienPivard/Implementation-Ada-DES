@@ -258,7 +258,7 @@ package body Des_P.Chaine_P.Taches_P is
                Table : Table_Tmp_T;
             begin
                Remplissage :
-               for I in Indice_T loop
+               loop
                   exit Remplissage when Lecteur.all.Est_Fini;
                   Lecture_D_Une_Donnee :
                   declare
@@ -269,8 +269,10 @@ package body Des_P.Chaine_P.Taches_P is
                      C_64.Preparer_Nouveau_Bloc;
                      C_64.Construire_Bloc (Brut);
                   end Lecture_D_Une_Donnee;
-                  Table (I) := C_64.Recuperer_Bloc;
-                  J := I;
+                  Table (J) := C_64.Recuperer_Bloc;
+                  exit Remplissage when J = Indice_T'Last;
+                  exit Remplissage when Lecteur.all.Est_Fini;
+                  J := Indice_T'Succ (J);
                end loop Remplissage;
 
                --  Lancement du filtrage.
