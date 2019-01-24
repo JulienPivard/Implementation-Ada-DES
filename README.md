@@ -13,7 +13,7 @@ concret.
 
 Durant tout le projet, chaque composant est vérifié grâce à une batterie
 des tests unitaires avec l'outil **AUnit**. Une documentation programmeur
-est également rédigée pour chacun et peut être générée avec l'outil
+est également rédigée pour chacun et peut être générée à l'aide de
 **gnatdoc**.
 
 # Objectifs
@@ -37,7 +37,7 @@ une version facilement manipulable (et inversement), sont réalisées grâce
 facilement chaque bit des blocs manipulé tout en permettant de ne pas
 avoir à employer de masque binaire.
 
-La premiere version séquentiel est indiqué par (tag:
+La première version séquentiel est indiqué par (tag:
 fin\_version\_sequentiel)
 
 ## Version parallèle
@@ -161,6 +161,7 @@ Une description de la structure du projet.
 ├── README.md
 ├── application/
 │   ├── build.gpr                   # La configuration du projet
+│   ├── exception_case              # Les exceptions de nommage
 │   ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
 │   │                               # est un multiple de 64 bits.
 │   ├── makefile
@@ -168,6 +169,7 @@ Une description de la structure du projet.
 │   ├── makefile.conf       # Configuration spécifique au projet.
 │   ├── makefile.template   # Des cibles commune utilisés par tous les
 │   │                       # makefile
+│   ├── regle_de_codage     # Les règles de code pour gnatcheck
 │   ├── src/        # Les sources de l'application
 │   └── test.txt    # Un fichier de tests
 ├── makefile
