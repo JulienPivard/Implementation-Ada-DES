@@ -1,7 +1,3 @@
-with Ada.Directories;
-
-with Ada.Sequential_IO;
-
 with Des_P.Bloc_P.Bloc_64_P;
 
 package body Des_P.Chaine_P.Sequentiel_P is
@@ -15,13 +11,6 @@ package body Des_P.Chaine_P.Sequentiel_P is
          Extension : String
       )
    is
-      package Lecteur_64_IO is new Ada.Sequential_IO
-      (Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T);
-
-      --  Les fichiers à lire et à écrire.
-      Fichier : Lecteur_64_IO.File_Type;
-      Resultat : Lecteur_64_IO.File_Type;
-
       --  Le brut bits.
       Brut : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
@@ -29,33 +18,25 @@ package body Des_P.Chaine_P.Sequentiel_P is
 
       --  Si le fichier à écrire existe il est ouvert et écrasé
       --  sinon il est créé.
-      if Ada.Directories.Exists (Nom_Alternatif) then
-         Lecteur_64_IO.Open
-            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
-      else
-         Lecteur_64_IO.Create
-            (Resultat, Lecteur_64_IO.Out_File, Nom_Alternatif);
-      end if;
+      Ecriveur.all.Ouvrir_Fichier (Nom_Alternatif);
       --  Ouverture du fichier à lire.
-      Lecteur_64_IO.Open (Fichier, Lecteur_64_IO.In_File, Nom_Fichier);
+      Lecteur.all.Ouvrir_Fichier (Nom_Fichier);
 
       Lecture_Fichier :
       loop
-         exit Lecture_Fichier when Lecteur_64_IO.End_Of_File (Fichier);
+         exit Lecture_Fichier when Lecteur.all.Est_Fini;
          --  Récupération du brut.
-         Lecteur_64_IO.Read (Fichier, Brut);
+         Lecteur.all.Lire (Brut);
 
          Chaine.Execution (Brut);
 
          --  Écriture du brut dans le fichier.
-         Lecteur_64_IO.Write (Resultat, Brut);
+         Ecriveur.all.Ecrire (Brut);
       end loop Lecture_Fichier;
 
       --  Fermeture des fichiers.
-      Lecteur_64_IO.Close (Fichier);
-      pragma Unreferenced (Fichier);
-      Lecteur_64_IO.Close (Resultat);
-      pragma Unreferenced (Resultat);
+      Lecteur.all.Fermer_Fichier;
+      Ecriveur.all.Fermer_Fichier;
 
    end Filtrer;
 
