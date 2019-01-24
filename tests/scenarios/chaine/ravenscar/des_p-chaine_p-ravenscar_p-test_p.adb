@@ -40,7 +40,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_1_Generateur'Access;
+      Lecteur  := Lecteur_1_Generateur'Access;
       Ecriveur := Ecriveur_1_Generateur'Access;
       Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Original);
 
@@ -96,7 +96,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_1_Generateur'Access;
+      Lecteur  := Lecteur_1_Generateur'Access;
       Ecriveur := Ecriveur_1_Generateur'Access;
       Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
@@ -141,7 +141,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
             AUnit.Assertions.Assert
                (E = Brut_Original,
                "Brut : " & E'Img &
-               " au lieu de " & Brut_Attendu'Img &
+               " au lieu de " & Brut_Original'Img &
                " en position : " & I'Img
                );
             I := Natural'Succ (I);
@@ -154,7 +154,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_2048_Generateur'Access;
+      Lecteur  := Lecteur_2048_Generateur'Access;
       Ecriveur := Ecriveur_2048_Generateur'Access;
       Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Original);
 
@@ -209,7 +209,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_2048_Generateur'Access;
+      Lecteur  := Lecteur_2048_Generateur'Access;
       Ecriveur := Ecriveur_2048_Generateur'Access;
       Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
@@ -267,7 +267,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_8192_Generateur'Access;
+      Lecteur  := Lecteur_8192_Generateur'Access;
       Ecriveur := Ecriveur_8192_Generateur'Access;
       Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Original);
 
@@ -322,7 +322,7 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       Const_56 : Faiseur_56_P.Faiseur_Clef_T;
       Const_48 : Faiseur_48_P.Faiseur_Clef_T;
    begin
-      Lecteur := Lecteur_8192_Generateur'Access;
+      Lecteur  := Lecteur_8192_Generateur'Access;
       Ecriveur := Ecriveur_8192_Generateur'Access;
       Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
