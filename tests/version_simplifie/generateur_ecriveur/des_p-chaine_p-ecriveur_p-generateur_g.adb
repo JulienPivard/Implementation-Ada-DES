@@ -22,7 +22,9 @@ package body Des_P.Chaine_P.Ecriveur_P.Generateur_G is
       )
    is
    begin
-      Ecriveur.Resultats (Ecriveur.Nb_Blocs_Ecrit) := Brut;
+      if Ecriveur.Nb_Blocs_Ecrit < Nombre_De_Blocs then
+         Ecriveur.Resultats (Ecriveur.Nb_Blocs_Ecrit) := Brut;
+      end if;
       Ecriveur.Nb_Blocs_Ecrit := Natural'Succ (Ecriveur.Nb_Blocs_Ecrit);
    end Ecrire;
 
