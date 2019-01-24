@@ -76,9 +76,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_1_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 1;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Attendu,
@@ -134,9 +142,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_1_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 1;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Original,
@@ -189,9 +205,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_2048_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 2048;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Attendu,
@@ -247,9 +271,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_2048_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 2048;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Original,
@@ -302,9 +334,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_8192_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 8192;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Attendu,
@@ -360,9 +400,17 @@ package body Des_P.Chaine_P.Ravenscar_P.Test_P is
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
+         Nb_Blocs : constant Natural :=
+            Ecriveur_8192_Generateur.Lire_Nb_Bloc_Ecrit;
+         Nb_Blocs_Max : constant Natural := 8192;
          use type Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
          I : Natural := Natural'First;
       begin
+         AUnit.Assertions.Assert
+            (Nb_Blocs = Nb_Blocs_Max,
+            "Le nombre de blocs ecrit est : " & Nb_Blocs'Img &
+            " alors qu'il devrait etre de " & Nb_Blocs_Max'Img
+            );
          for E of R loop
             AUnit.Assertions.Assert
                (E = Brut_Original,
