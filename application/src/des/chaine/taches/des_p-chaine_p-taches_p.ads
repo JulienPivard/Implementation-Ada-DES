@@ -44,7 +44,18 @@ package Des_P.Chaine_P.Taches_P is
 private
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
-   package Limiteur_R renames Des_P.Chaine_P.Limiteur_Jetons_P;
+   package Limiteur_R  renames Des_P.Chaine_P.Limiteur_Jetons_P;
+
+   type Indice_T is range 1 .. 512;
+   --  Les indices des table de blocs.
+   type Table_Bloc_T is array (Indice_T range <>)
+      of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
+   --  Tableaux de bloc de 64 pour regrouper les données
+   --  et augmenter la charge de travail par taches et ainsi
+   --  améliorer les temps d'exécution
+
+   package Table_Holder_P is new
+      Ada.Containers.Indefinite_Holders (Element_Type => Table_Bloc_T);
 
    type Table_Filtre_T is array (Numero_Filtre_T) of
       Des_P.Filtre_P.Corps_P.Holder_P.Holder;
@@ -73,20 +84,9 @@ private
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
-         Max_Grappes : Limiteur_R.Max_Grappes_T :=
+         Max_Grappes   : Limiteur_R.Max_Grappes_T :=
             Limiteur_R.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;
-
-      type Indice_T is range 1 .. 512;
-      --  Les indices des table de blocs.
-      type Table_Bloc_T is array (Indice_T range <>)
-         of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      --  Tableaux de bloc de 64 pour regrouper les données
-      --  et augmenter la charge de travail par taches et ainsi
-      --  améliorer les temps d'exécution
-
-      package Table_Holder_P is new
-         Ada.Containers.Indefinite_Holders (Element_Type => Table_Bloc_T);
 
 end Des_P.Chaine_P.Taches_P;
