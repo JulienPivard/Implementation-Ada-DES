@@ -32,8 +32,8 @@ is
    overriding
    procedure Construire_Clef
       (
-         Constructeur : in out Faiseur_Clef_T;
-         Clef : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
+         Constructeur   : in out Faiseur_Clef_T;
+         Clef           : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
       );
    --  Construit la sous clefs de 48 bits avec la clef de 56.
    --  @param Constructeur

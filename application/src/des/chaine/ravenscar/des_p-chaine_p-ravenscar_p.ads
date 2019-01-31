@@ -27,9 +27,9 @@ package Des_P.Chaine_P.Ravenscar_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       );
    --  Lance le filtrage du fichier avec la clef. La version chiffré ou
    --  déchiffré est écrite dans un autre fichier avec l'extension chiffre ou
@@ -62,17 +62,17 @@ private
 
    type Donnee_T is
       record
-         Table : Table_Holder_P.Holder;
-         Est_Derniere_Grappe : Boolean := False;
+         Table                : Table_Holder_P.Holder;
+         Est_Derniere_Grappe  : Boolean := False;
       end record;
    --  Une grappe de blocs avec un drapeau pour savoir si
    --  c'est la dernière.
 
    procedure Filtrer
       (
-         D : in out Donnee_T;
-         Procedure_Filtre : not null access
-            procedure (Table : in out Table_Bloc_T)
+         D                 : in out Donnee_T;
+         Procedure_Filtre  : not null access procedure
+            (Table : in out Table_Bloc_T)
       )
       with Inline;
    --  Applique le filtre à la données.
@@ -83,9 +83,9 @@ private
 
    procedure Appliquer
       (
-         D : Donnee_T;
-         Procedure_Appliquee : not null access
-            procedure (Table : Table_Bloc_T)
+         D                    : Donnee_T;
+         Procedure_Appliquee  : not null access procedure
+            (Table : Table_Bloc_T)
       )
       with Inline;
    --  Applique le filtre à la données.
@@ -108,8 +108,8 @@ private
 
    procedure Ecrire_Est_Derniere
       (
-         D : in out Donnee_T;
-         Fini : Boolean
+         D     : in out Donnee_T;
+         Fini  : Boolean
       )
       with Inline;
    --  Signal que la grappe de donnée est la dernière.
@@ -154,8 +154,8 @@ private
       procedure Autoriser
          with Inline;
    private
-      Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
-      Signal : Boolean := False;
+      Nb_Tache_Lancee   : Compteur_Tache_T  := Compteur_Tache_T'First;
+      Signal            : Boolean           := False;
    end Autorisation_Rearmement_Protegee;
    --  Bloque les tâches une fois qu'elles ont fini de chiffrer tous les
    --  blocs. Une fois l'autorisation donnée les tâches peuvent se positionner
@@ -170,8 +170,8 @@ private
       procedure Demarrer
          with Inline;
    private
-      Nb_Tache_Lancee : Compteur_Tache_T := Compteur_Tache_T'First;
-      Signal : Boolean := False;
+      Nb_Tache_Lancee   : Compteur_Tache_T   := Compteur_Tache_T'First;
+      Signal            : Boolean            := False;
    end Demarreur_Protegee;
    --  Bloque le démarrage des taches. Tant que le signal de démarrage n'est
    --  pas donné les tâches attendent. Une fois que toutes les tâches on passé
@@ -215,7 +215,7 @@ private
       function Lire_Filtre
          return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class;
    private
-      Signal : Boolean := False;
+      Signal   : Boolean                        := False;
       Filtre_H : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
    end Filtre_Entree_Protegee;
    --  Permet de changer le filtre utilisé par le premier
@@ -230,7 +230,7 @@ private
       function Lire_Filtre
          return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
    private
-      Signal : Boolean := False;
+      Signal   : Boolean                        := False;
       Filtre_H : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
    end Filtre_Sortie_Protegee;
    --  Permet de changer le filtre utilisé par le dernier
@@ -245,7 +245,7 @@ private
       function Lire_Filtre
          return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class;
    private
-      Signal : Boolean := False;
+      Signal   : Boolean                       := False;
       Filtre_H : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
    end Filtre_Corps_Protegee_T;
    --  Permet de changer le filtre utilisé par les étages de
@@ -267,7 +267,7 @@ private
 
    protected type Donnee_Protegee_T is
       entry Ecrire_Donnee_Entree (Table : Donnee_T);
-      procedure Lire_Donnee (Table : out Donnee_T)
+      procedure Lire_Donnee      (Table : out Donnee_T)
          with Inline;
    private
       Signal : Boolean := True;
@@ -289,7 +289,7 @@ private
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
          Filtres_Corps : Table_Filtre_T;
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
-         Max_Grappes : Limiteur_R.Max_Grappes_T :=
+         Max_Grappes   : Limiteur_R.Max_Grappes_T :=
             Limiteur_R.Max_Grappes_T'First;
          Modifier_Max_Grappes : Boolean := False;
       end record;

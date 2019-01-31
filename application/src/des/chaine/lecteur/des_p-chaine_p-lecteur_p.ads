@@ -22,8 +22,8 @@ package Des_P.Chaine_P.Lecteur_P is
 
    procedure Ouvrir_Fichier
       (
-         Lecteur : in out Lecteur_T;
-         Nom : String
+         Lecteur  : in out Lecteur_T;
+         Nom      : String
       )
    is abstract;
    --  Ouvre le fichier.
@@ -34,8 +34,8 @@ package Des_P.Chaine_P.Lecteur_P is
 
    procedure Lire
       (
-         Lecteur : in out Lecteur_T;
-         Brut : out C_Bloc_64_R.Bloc_64_Brut_T
+         Lecteur  : in out Lecteur_T;
+         Brut     : out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
    --  Lit la donnée dans le fichier.

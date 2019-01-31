@@ -16,7 +16,7 @@ is
    overriding
    function Lire_Bit
       (
-         Clef : Clef_T;
+         Clef     : Clef_T;
          Position : Des_P.Clef_P.Clef_48_I_P.Intervalle_T
       )
       return Bit_T

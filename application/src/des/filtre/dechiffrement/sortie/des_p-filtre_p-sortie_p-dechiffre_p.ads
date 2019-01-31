@@ -19,8 +19,8 @@ is
    overriding
    procedure Filtrer
       (
-         Filtre : Sortie_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Filtre   : Sortie_T;
+         Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Inline;
    --  Filtre le bloc de 64 bits avec la clef de 48 bits.

@@ -6,13 +6,13 @@ package body Des_P.Chaine_P.Sequentiel_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       )
    is
       --  Le brut bits.
-      Brut : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
+      Brut           : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T;
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
    begin
 
@@ -46,8 +46,8 @@ package body Des_P.Chaine_P.Sequentiel_P is
    ---------------------------------------------------------------------------
    procedure Execution
       (
-         Chaine : Chaine_T;
-         Brut : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
+         Chaine   : Chaine_T;
+         Brut     : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
       )
    is
       C_64 : Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Faiseur_Bloc_T;

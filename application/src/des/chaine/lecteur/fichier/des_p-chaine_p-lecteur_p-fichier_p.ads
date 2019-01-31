@@ -13,8 +13,8 @@ package Des_P.Chaine_P.Lecteur_P.Fichier_P is
    overriding
    procedure Ouvrir_Fichier
       (
-         Lecteur : in out Lecteur_Fichier_T;
-         Nom : String
+         Lecteur  : in out Lecteur_Fichier_T;
+         Nom      : String
       );
    --  Ouvre le fichier.
    --  @param Lecteur
@@ -25,8 +25,8 @@ package Des_P.Chaine_P.Lecteur_P.Fichier_P is
    overriding
    procedure Lire
       (
-         Lecteur : in out Lecteur_Fichier_T;
-         Brut : out C_Bloc_64_R.Bloc_64_Brut_T
+         Lecteur  : in out Lecteur_Fichier_T;
+         Brut     : out C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
    --  Lit la donnée dans le fichier.

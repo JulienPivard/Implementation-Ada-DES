@@ -23,9 +23,9 @@ package Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Faiseur_Dechiffrement_T;
-         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
+         Constructeur   : in out Faiseur_Dechiffrement_T;
+         Faiseur_56     : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48     : Faiseur_48_I_R.Faiseur_Interface_T'Class
       );
    --  Initialise une nouvelle chaine vide.
    --  @param Constructeur
@@ -38,8 +38,8 @@ package Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Faiseur_Dechiffrement_T;
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Constructeur   : in out Faiseur_Dechiffrement_T;
+         Clef           : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       );
    --  Construit la chaine de filtre avec la clef.
    --  @param Constructeur
@@ -61,9 +61,9 @@ private
    type Faiseur_Dechiffrement_T is new
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with
       record
-         Chaine : Chaine_T;
-         Faiseur_56 : Faiseur_56_I_R.Holder_P.Holder;
-         Faiseur_48 : Faiseur_48_I_R.Holder_P.Holder;
+         Chaine      : Chaine_T;
+         Faiseur_56  : Faiseur_56_I_R.Holder_P.Holder;
+         Faiseur_48  : Faiseur_48_I_R.Holder_P.Holder;
       end record;
 
 end Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P;

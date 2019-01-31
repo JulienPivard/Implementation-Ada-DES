@@ -27,9 +27,9 @@ package Des_P.Chaine_P.Taches_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       );
    --  Lance le filtrage du fichier avec la clef. La version chiffré ou
    --  déchiffré est écrite dans un autre fichier avec l'extension chiffre ou

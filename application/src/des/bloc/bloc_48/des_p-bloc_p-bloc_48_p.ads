@@ -15,19 +15,22 @@ is
    --  Représente un bloc de 32 bits.
 
    overriding
-   procedure Initialize (B : in out Bloc_48_T);
+   procedure Initialize
+      (B : in out Bloc_48_T);
    --  Création d'un bloc de 48 bits avec la valeur 0.
    --  @param B
    --  Le bloc de 48 bits.
 
    overriding
-   procedure Finalize (B : in out Bloc_48_T);
+   procedure Finalize
+      (B : in out Bloc_48_T);
    --  Supprime le bloc.
    --  @param B
    --  Le bloc de 48 bits.
 
    overriding
-   procedure Adjust (B : in out Bloc_48_T);
+   procedure Adjust
+      (B : in out Bloc_48_T);
    --  Ajuste le contenu après l'affectation.
    --  @param B
    --  Le bloc de 48 bits.
@@ -35,9 +38,9 @@ is
    overriding
    procedure Ecrire_Bit
       (
-         B : in out Bloc_48_T;
+         B        : in out Bloc_48_T;
          Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
-         Bit : Bit_T
+         Bit      : Bit_T
       )
       with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 48.
@@ -51,7 +54,7 @@ is
    overriding
    function Lire_Bit
       (
-         B : Bloc_48_T;
+         B        : Bloc_48_T;
          Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T
       )
       return Bit_T

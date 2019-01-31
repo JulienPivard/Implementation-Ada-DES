@@ -14,8 +14,8 @@ is
 
    procedure Filtrer
       (
-         Filtre : Filtre_Interface_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Filtre   : Filtre_Interface_T;
+         Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is abstract;
    --  Filtre le bloc de 64 bits avec la clef de 48 bits.

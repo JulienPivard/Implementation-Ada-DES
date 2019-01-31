@@ -10,15 +10,15 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Faiseur_Dechiffrement_T;
-         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
+         Constructeur   : in out Faiseur_Dechiffrement_T;
+         Faiseur_56     : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48     : Faiseur_48_I_R.Faiseur_Interface_T'Class
       )
    is
       C : Chaine_T;
    begin
       --  Initialise une chaine vide.
-      Constructeur.Chaine := C;
+      Constructeur.Chaine     := C;
       Constructeur.Faiseur_56 :=
          Faiseur_56_I_R.Holder_P.To_Holder (Faiseur_56);
       Constructeur.Faiseur_48 :=
@@ -29,8 +29,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Faiseur_Dechiffrement_T;
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Constructeur   : in out Faiseur_Dechiffrement_T;
+         Clef           : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
       --  La tète de la chaine de filtres.

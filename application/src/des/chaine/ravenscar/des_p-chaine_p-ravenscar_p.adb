@@ -4,12 +4,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       )
    is
-      Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;
+      Nom_Alternatif : constant String :=
+         Nom_Fichier & "." & Extension;
    begin
       --  Modifie le nombre de grappe max dans le pipeline
       --  si la modification est demandée.
@@ -18,17 +19,19 @@ package body Des_P.Chaine_P.Ravenscar_P is
             (Chaine.Max_Grappes);
       end if;
       --  Ouverture du fichier à lire.
-      Lecteur.all.Ouvrir_Fichier (Nom_Fichier);
+      Lecteur.all.Ouvrir_Fichier  (Nom_Fichier);
       --  Ouverture du fichier à écrire.
       Ecriveur.all.Ouvrir_Fichier (Nom_Alternatif);
 
       --  Initialisation des filtres dans les étages.
-      Filtre_Entree_Protegee.Changer_Filtre (Chaine.Filtre_Entree.Element);
+      Filtre_Entree_Protegee.Changer_Filtre
+         (Chaine.Filtre_Entree.Element);
       for I in Numero_Filtre_T loop
          Table_Filtreur (I).all.Changer_Filtre
             (Chaine.Filtres_Corps (I).Element);
       end loop;
-      Filtre_Sortie_Protegee.Changer_Filtre (Chaine.Filtre_Sortie.Element);
+      Filtre_Sortie_Protegee.Changer_Filtre
+         (Chaine.Filtre_Sortie.Element);
 
       --  Lancement du chiffrement.
       Demarreur_Protegee.Demarrer;
@@ -55,9 +58,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    procedure Filtrer
       (
-         D : in out Donnee_T;
-         Procedure_Filtre : not null access
-         procedure (Table : in out Table_Bloc_T)
+         D                 : in out Donnee_T;
+         Procedure_Filtre  : not null access procedure
+            (Table : in out Table_Bloc_T)
       )
    is
    begin
@@ -67,9 +70,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    procedure Appliquer
       (
-         D : Donnee_T;
-         Procedure_Appliquee : not null access
-            procedure (Table : Table_Bloc_T)
+         D                    : Donnee_T;
+         Procedure_Appliquee  : not null access procedure
+            (Table : Table_Bloc_T)
       )
    is
    begin
@@ -90,8 +93,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    procedure Ecrire_Est_Derniere
       (
-         D : in out Donnee_T;
-         Fini : Boolean
+         D     : in out Donnee_T;
+         Fini  : Boolean
       )
    is
    begin
@@ -107,7 +110,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
       end Avorter;
 
       ---------------------------------------------------------
-      function Avorter return Boolean is
+      function Avorter
+         return Boolean
+      is
       begin
          return Signal;
       end Avorter;
@@ -117,14 +122,16 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Autorisation_Rearmement_Protegee is
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          --  Compte combien de tache ont été lancée.
          Nb_Tache_Lancee := Compteur_Tache_T'Succ (Nb_Tache_Lancee);
          --  Si toutes les taches ont été lancées on réarme
          --  démarreur pour une éventuel prochaine fois.
          if Nb_Tache_Lancee = Compteur_Tache_T'Last then
-            Signal := False;
+            Signal          := False;
             Nb_Tache_Lancee := Compteur_Tache_T'First;
             --  On signal que le traitement est fini
             Fin_Protegee.Fini;
@@ -142,14 +149,16 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Demarreur_Protegee is
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          --  Compte combien de tache ont été lancée.
          Nb_Tache_Lancee := Compteur_Tache_T'Succ (Nb_Tache_Lancee);
          --  Si toutes les taches ont été lancées on réarme
          --  démarreur pour une éventuel prochaine fois.
          if Nb_Tache_Lancee = Compteur_Tache_T'Last then
-            Signal := False;
+            Signal          := False;
             Nb_Tache_Lancee := Compteur_Tache_T'First;
             Autorisation_Rearmement_Protegee.Autoriser;
          end if;
@@ -166,7 +175,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Fin_Protegee is
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          Signal := False;
       end Attendre_Entree;
@@ -187,11 +198,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
       is
       begin
          Filtre_H := Des_P.Filtre_P.Entree_P.Holder_P.To_Holder (Filtre);
-         Signal := not Filtre_H.Is_Empty;
+         Signal   := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          null;
       end Attendre_Entree;
@@ -214,11 +227,13 @@ package body Des_P.Chaine_P.Ravenscar_P is
       is
       begin
          Filtre_H := Des_P.Filtre_P.Corps_P.Holder_P.To_Holder (Filtre);
-         Signal := not Filtre_H.Is_Empty;
+         Signal   := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          null;
       end Attendre_Entree;
@@ -236,7 +251,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Filtre_Sortie_Protegee is
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          null;
       end Attendre_Entree;
@@ -247,7 +264,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       is
       begin
          Filtre_H := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder (Filtre);
-         Signal := not Filtre_H.Is_Empty;
+         Signal   := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
       ---------------------------------------------------------
@@ -263,7 +280,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Autorisation_Protegee_T is
       ---------------------------------------------------------
-      entry Attendre_Entree when Signal is
+      entry Attendre_Entree
+         when Signal
+      is
       begin
          Signal := False;
       end Attendre_Entree;
@@ -279,17 +298,22 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    protected body Donnee_Protegee_T is
       ---------------------------------------------------------
-      entry Ecrire_Donnee_Entree (Table : Donnee_T) when Signal is
+      entry Ecrire_Donnee_Entree
+         (Table : Donnee_T)
+         when Signal
+      is
       begin
          Donnee := Table;
          Signal := False;
       end Ecrire_Donnee_Entree;
 
       ---------------------------------------------------------
-      procedure Lire_Donnee (Table : out Donnee_T) is
+      procedure Lire_Donnee
+         (Table : out Donnee_T)
+      is
       begin
-         Table := Donnee;
-         Signal := True;
+         Table    := Donnee;
+         Signal   := True;
       end Lire_Donnee;
       ---------------------------------------------------------
    end Donnee_Protegee_T;
@@ -297,9 +321,10 @@ package body Des_P.Chaine_P.Ravenscar_P is
    ---------------------------------------------------------------------------
    task body Etage_Lecteur_Tache is
       subtype Table_Tmp_T is Table_Bloc_T (Indice_T);
+
       Table : Table_Tmp_T;
-      C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
-      J : Indice_T;
+      C_64  : C_Bloc_64_R.Faiseur_Bloc_T;
+      J     : Indice_T;
    begin
       Repetition_Ou_Non :
       loop

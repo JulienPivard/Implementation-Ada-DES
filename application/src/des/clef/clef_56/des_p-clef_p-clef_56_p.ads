@@ -16,7 +16,7 @@ is
    overriding
    procedure Decaler_Bits_A_Gauche
       (
-         Clef : in out Clef_T;
+         Clef        : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
       with Inline;
@@ -29,7 +29,7 @@ is
    overriding
    procedure Decaler_Bits_A_Droite
       (
-         Clef : in out Clef_T;
+         Clef        : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
       with Inline;
@@ -42,7 +42,7 @@ is
    overriding
    function Lire_Bit
       (
-         Clef : Clef_T;
+         Clef     : Clef_T;
          Position : Des_P.Clef_P.Clef_56_I_P.Intervalle_T
       )
       return Bit_T;
@@ -89,8 +89,8 @@ private
       Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T with
       record
          Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T;
-         C1 : Champ_De_Bits_T;
-         C2 : Champ_De_Bits_T;
+         C1       : Champ_De_Bits_T;
+         C2       : Champ_De_Bits_T;
       end record;
 
 end Des_P.Clef_P.Clef_56_P;

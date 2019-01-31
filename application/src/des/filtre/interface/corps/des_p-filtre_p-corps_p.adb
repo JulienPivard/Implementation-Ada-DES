@@ -13,10 +13,10 @@ package body Des_P.Filtre_P.Corps_P is
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
    is
-      B : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
-      B_48 : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
-      C_48 : Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Faiseur_Bloc_T;
-      C_32 : Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Faiseur_Bloc_T;
+      B     : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+      B_48  : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      C_48  : Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Faiseur_Bloc_T;
+      C_32  : Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Faiseur_Bloc_T;
    begin
       --  Extension du bloc de 32 en bloc de 48.
       C_48.Preparer_Nouveau_Bloc;

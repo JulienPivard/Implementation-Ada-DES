@@ -4,7 +4,7 @@ package body Des_P.Clef_P.Clef_56_P is
    overriding
    procedure Decaler_Bits_A_Gauche
       (
-         Clef : in out Clef_T;
+         Clef        : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
    is
@@ -18,7 +18,7 @@ package body Des_P.Clef_P.Clef_56_P is
    overriding
    procedure Decaler_Bits_A_Droite
       (
-         Clef : in out Clef_T;
+         Clef        : in out Clef_T;
          Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
    is
@@ -32,7 +32,7 @@ package body Des_P.Clef_P.Clef_56_P is
    overriding
    function Lire_Bit
       (
-         Clef : Clef_T;
+         Clef     : Clef_T;
          Position : Des_P.Clef_P.Clef_56_I_P.Intervalle_T
       )
       return Bit_T
@@ -57,16 +57,20 @@ package body Des_P.Clef_P.Clef_56_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Initialize (Clef : in out Clef_T) is
+   procedure Initialize
+      (Clef : in out Clef_T)
+   is
    begin
-      Clef.Decalage := 0;
-      Clef.C1 := Champ_De_Bits_T'(others => False);
-      Clef.C2 := Champ_De_Bits_T'(others => False);
+      Clef.Decalage  := 0;
+      Clef.C1        := Champ_De_Bits_T'(others => False);
+      Clef.C2        := Champ_De_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Finalize (Clef : in out Clef_T) is
+   procedure Finalize
+      (Clef : in out Clef_T)
+   is
    begin
       Clef.C1 := Champ_De_Bits_T'(others => False);
       Clef.C2 := Champ_De_Bits_T'(others => False);
@@ -74,7 +78,9 @@ package body Des_P.Clef_P.Clef_56_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Adjust (Clef : in out Clef_T) is
+   procedure Adjust
+      (Clef : in out Clef_T)
+   is
    begin
       null;
    end Adjust;

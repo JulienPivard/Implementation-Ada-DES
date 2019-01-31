@@ -14,8 +14,8 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P is
    overriding
    procedure Construire_Clef
       (
-         Constructeur : in out Faiseur_Clef_T;
-         Clef : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
+         Constructeur   : in out Faiseur_Clef_T;
+         Clef           : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class
       )
    is
       type Table_Pc_2_T is

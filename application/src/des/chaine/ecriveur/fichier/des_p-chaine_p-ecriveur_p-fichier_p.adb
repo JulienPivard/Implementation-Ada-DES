@@ -7,7 +7,7 @@ package body Des_P.Chaine_P.Ecriveur_P.Fichier_P is
    procedure Ouvrir_Fichier
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Nom : String
+         Nom      : String
       )
    is
    begin
@@ -27,7 +27,7 @@ package body Des_P.Chaine_P.Ecriveur_P.Fichier_P is
    procedure Ecrire
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Brut : C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     : C_Bloc_64_R.Bloc_64_Brut_T
       )
    is
    begin

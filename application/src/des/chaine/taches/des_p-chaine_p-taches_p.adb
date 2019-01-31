@@ -3,9 +3,12 @@ with Des_P.Bloc_P.Bloc_64_P;
 package body Des_P.Chaine_P.Taches_P is
 
    ---------------------------------------------------------------------------
-   procedure Lanceur_Taches (Chaine : Chaine_T);
+   procedure Lanceur_Taches
+      (Chaine : Chaine_T);
 
-   procedure Lanceur_Taches (Chaine : Chaine_T) is
+   procedure Lanceur_Taches
+      (Chaine : Chaine_T)
+   is
 
       ------------------------------------------------------------------
 
@@ -36,8 +39,8 @@ package body Des_P.Chaine_P.Taches_P is
                   --  Écrit le brut dans le fichier.
                   Ecrire_Donnee_Sortie :
                   declare
-                     Brut : constant C_Bloc_64_R.Bloc_64_Brut_T
-                        := C_64.Transformer_En_Brut (E);
+                     Brut : constant C_Bloc_64_R.Bloc_64_Brut_T :=
+                        C_64.Transformer_En_Brut (E);
                   begin
                      Ecriveur.all.Ecrire (Brut);
                   end Ecrire_Donnee_Sortie;
@@ -114,8 +117,8 @@ package body Des_P.Chaine_P.Taches_P is
             );
          entry Filtrer
             (
-               Table : Table_Bloc_T;
-               Numero : Numero_Filtre_T
+               Table    : Table_Bloc_T;
+               Numero   : Numero_Filtre_T
             );
       end Etage_Corps_T;
 
@@ -239,8 +242,8 @@ package body Des_P.Chaine_P.Taches_P is
       end Etage_Lecture;
 
       task body Etage_Lecture is
-         C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
-         J : Indice_T;
+         C_64  : C_Bloc_64_R.Faiseur_Bloc_T;
+         J     : Indice_T;
       begin
          accept Lire;
          --  Lancement de la lecture du fichier, filtrage et écriture dans
@@ -317,9 +320,9 @@ package body Des_P.Chaine_P.Taches_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       )
    is
       Nom_Alternatif : constant String := Nom_Fichier & "." & Extension;

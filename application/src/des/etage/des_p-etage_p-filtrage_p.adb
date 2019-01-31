@@ -1,7 +1,9 @@
 package body Des_P.Etage_P.Filtrage_P is
 
    ---------------------------------------------------------------------------
-   function Construire_Etage_Sans_Successeur return Etage_T is
+   function Construire_Etage_Sans_Successeur
+      return Etage_T
+   is
       Etage : Etage_T;
    begin
       Etage.Filtre := Des_P.Filtre_P.Holder_P.Empty_Holder;
@@ -22,14 +24,20 @@ package body Des_P.Etage_P.Filtrage_P is
 
    ---------------------------------------------------------------------------
    overriding
-   function Possede_Filtre (Etage : Etage_T) return Boolean is
+   function Possede_Filtre
+      (Etage : Etage_T)
+      return Boolean
+   is
    begin
       return not Etage.Filtre.Is_Empty;
    end Possede_Filtre;
 
    ---------------------------------------------------------------------------
    overriding
-   function Possede_Successeur (Etage : Etage_T) return Boolean is
+   function Possede_Successeur
+      (Etage : Etage_T)
+      return Boolean
+   is
    begin
       return not Etage.Successeur.Is_Empty;
    end Possede_Successeur;
@@ -38,8 +46,8 @@ package body Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Ajouter_Successeur
       (
-         Etage : in out Etage_T;
-         Successeur : Etage_Abstrait_T'Class
+         Etage       : in out Etage_T;
+         Successeur  : Etage_Abstrait_T'Class
       )
    is
    begin
@@ -56,8 +64,8 @@ package body Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Modifier_Successeur
       (
-         Etage : in out Etage_T;
-         Successeur : Etage_Abstrait_T'Class
+         Etage       : in out Etage_T;
+         Successeur  : Etage_Abstrait_T'Class
       )
    is
    begin
@@ -68,8 +76,8 @@ package body Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Modifier_Filtre
       (
-         Etage : in out Etage_T;
-         Filtre : Des_P.Filtre_P.Filtre_Interface_T'Class
+         Etage    : in out Etage_T;
+         Filtre   : Des_P.Filtre_P.Filtre_Interface_T'Class
       )
    is
    begin
@@ -81,7 +89,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Iterer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
    begin
@@ -99,7 +107,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Filtrer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
    begin

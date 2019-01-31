@@ -25,7 +25,7 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut : Bloc_64_Brut_T
+         Brut         : Bloc_64_Brut_T
       );
    --  Raffine le brut de 64 bits pour construire le bloc de 64 bits.
    --  @param Constructeur
@@ -45,7 +45,7 @@ is
    function Transformer_En_Brut
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc : Bloc_64_T
+         Bloc         : Bloc_64_T
       )
       return Bloc_64_Brut_T;
    --  Transforme un bloc de 64 bits en son équivalent en brut.

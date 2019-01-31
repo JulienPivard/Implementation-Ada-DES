@@ -17,7 +17,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut : Bloc_64_Brut_T
+         Brut         : Bloc_64_Brut_T
       )
    is
       package Faiseur_32_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
@@ -44,7 +44,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       --  Transformation du bloc de 64 bits.
       Resultat : Bloc_Intermediaire_T with Address => Brut'Address;
 
-      C_32 : Faiseur_32_R.Faiseur_Bloc_T;
+      C_32     : Faiseur_32_R.Faiseur_Bloc_T;
    begin
       --  Construction du premier bloc de 32
       C_32.Preparer_Nouveau_Bloc;
@@ -70,7 +70,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
    function Transformer_En_Brut
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc : Bloc_64_T
+         Bloc         : Bloc_64_T
       )
       return Bloc_64_Brut_T
    is

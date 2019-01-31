@@ -1,7 +1,9 @@
 package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
 
    ---------------------------------------------------------------------------
-   procedure Permutation_Entrante (Bloc : in out Bloc_64_T) is
+   procedure Permutation_Entrante
+      (Bloc : in out Bloc_64_T)
+   is
       --  La table de permutation IP
       Table : constant Table_Permutations_T :=
          Table_Permutations_T'
@@ -26,7 +28,9 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
    end Permutation_Entrante;
 
    ---------------------------------------------------------------------------
-   procedure Permutation_Sortante (Bloc : in out Bloc_64_T) is
+   procedure Permutation_Sortante
+      (Bloc : in out Bloc_64_T)
+   is
       --  La table de permutation IP-1
       Table : constant Table_Permutations_T :=
          Table_Permutations_T'

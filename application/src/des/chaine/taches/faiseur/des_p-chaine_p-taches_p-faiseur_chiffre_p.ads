@@ -23,9 +23,9 @@ package Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P is
    overriding
    procedure Initialiser
       (
-         Constructeur : in out Faiseur_Chiffrement_T;
-         Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class;
-         Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class
+         Constructeur   : in out Faiseur_Chiffrement_T;
+         Faiseur_56     : Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48     : Faiseur_48_I_R.Faiseur_Interface_T'Class
       );
    --  Initialise une nouvelle chaine vide.
    --  @param Constructeur
@@ -38,8 +38,8 @@ package Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P is
    overriding
    procedure Construire
       (
-         Constructeur : in out Faiseur_Chiffrement_T;
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Constructeur   : in out Faiseur_Chiffrement_T;
+         Clef           : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       );
    --  Construit la chaine de filtre avec la clef.
    --  @param Constructeur

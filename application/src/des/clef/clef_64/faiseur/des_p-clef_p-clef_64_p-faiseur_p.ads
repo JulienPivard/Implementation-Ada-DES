@@ -28,8 +28,8 @@ is
    overriding
    procedure Construire_Clef
       (
-         Constructeur : in out Faiseur_Clef_T;
-         Brut : Interface_R.Clef_64_Brut_T
+         Constructeur   : in out Faiseur_Clef_T;
+         Brut           : Interface_R.Clef_64_Brut_T
       );
    --  Construit la clefs de 64 bits avec le brut de 64 bits.
    --  @param Constructeur

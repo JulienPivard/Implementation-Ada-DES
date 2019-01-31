@@ -9,7 +9,8 @@ package Des_P.Filtre_P.Fabrique_P.Chiffre_P is
    --  Une fabrique de filtre de chiffrement.
 
    overriding
-   function Fabriquer_Entree (Fabrique : Fabrique_T)
+   function Fabriquer_Entree
+      (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class;
    --  Fabrique un filtre de permutation initial.
    --  @param Fabrique
@@ -20,7 +21,7 @@ package Des_P.Filtre_P.Fabrique_P.Chiffre_P is
    function Fabriquer_Corps
       (
          Fabrique : Fabrique_T;
-         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Clef     : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class;
    --  Fabrique un filtre principal.
@@ -31,7 +32,8 @@ package Des_P.Filtre_P.Fabrique_P.Chiffre_P is
    --  @return Un filtre principal.
 
    overriding
-   function Fabriquer_Sortie (Fabrique : Fabrique_T)
+   function Fabriquer_Sortie
+      (Fabrique : Fabrique_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class;
    --  Fabrique un filtre de permutation initial inverse.
    --  @param Fabrique

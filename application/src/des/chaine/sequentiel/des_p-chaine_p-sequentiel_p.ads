@@ -20,9 +20,9 @@ package Des_P.Chaine_P.Sequentiel_P is
    overriding
    procedure Filtrer
       (
-         Chaine : Chaine_T;
+         Chaine      : Chaine_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       );
    --  Lance le filtrage du fichier avec la clef. La version chiffré ou
    --  déchiffré est écrite dans un autre fichier avec l'extension chiffre ou
@@ -38,8 +38,8 @@ private
 
    procedure Execution
       (
-         Chaine : Chaine_T;
-         Brut : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
+         Chaine   : Chaine_T;
+         Brut     : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
       );
    --  Execute le filtrage du fichier.
    --  @param Chaine

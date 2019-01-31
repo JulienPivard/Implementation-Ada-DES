@@ -15,9 +15,9 @@ is
 
    procedure Ecrire_Bit
       (
-         B : in out Bloc_Interface_T;
+         B        : in out Bloc_Interface_T;
          Position : Intervalle_T;
-         Bit : Bit_T
+         Bit      : Bit_T
       )
    is abstract;
    --  Écrit le bit à la position demandé dans le bloc de 48.
@@ -30,7 +30,7 @@ is
 
    function Lire_Bit
       (
-         B : Bloc_Interface_T;
+         B        : Bloc_Interface_T;
          Position : Intervalle_T
       )
       return Bit_T

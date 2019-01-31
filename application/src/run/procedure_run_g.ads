@@ -13,7 +13,7 @@ private with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 --  @group Principal
 generic
 
-   Extension : String;
+   Extension   : String;
    Nom_Version : String;
    --  Constructeur de chaine de chiffrement.
    type Faiseur_Chiffrement_G_T is new
@@ -31,9 +31,9 @@ package Procedure_Run_G is
 
    procedure Executer_Chiffrement
       (
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
+         Clef        : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
          Nom_Fichier : String;
-         Action : Action_T
+         Action      : Action_T
       );
    --  Initialise et exécute le filtrage sur le fichier.
    --  @param Clef
@@ -68,8 +68,8 @@ private
 
    function Init_Chaine
       (
-         Faiseur : in out Faiseur_I_R.Faiseur_Interface_T'Class;
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Faiseur  : in out Faiseur_I_R.Faiseur_Interface_T'Class;
+         Clef     : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;
    --  Initialise une chaine de chiffrement ou de déchiffrement.

@@ -18,7 +18,7 @@ is
 
    procedure Decaler_Bits_A_Gauche
       (
-         Clef : in out Clef_Interface_T;
+         Clef        : in out Clef_Interface_T;
          Nb_Decalage : Decalage_T := 1
       )
    is abstract;
@@ -30,7 +30,7 @@ is
 
    procedure Decaler_Bits_A_Droite
       (
-         Clef : in out Clef_Interface_T;
+         Clef        : in out Clef_Interface_T;
          Nb_Decalage : Decalage_T := 1
       )
    is abstract;
@@ -42,7 +42,7 @@ is
 
    function Lire_Bit
       (
-         Clef : Clef_Interface_T;
+         Clef     : Clef_Interface_T;
          Position : Intervalle_T
       )
       return Bit_T

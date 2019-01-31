@@ -6,8 +6,8 @@ package body Des_P.Filtre_P.Sortie_P.Dechiffre_P is
    overriding
    procedure Filtrer
       (
-         Filtre : Sortie_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Filtre   : Sortie_T;
+         Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
       pragma Unreferenced (Filtre);

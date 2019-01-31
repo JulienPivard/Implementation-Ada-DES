@@ -2,21 +2,27 @@ package body Des_P.Bloc_P.Bloc_32_P is
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Initialize (B : in out Bloc_32_T) is
+   procedure Initialize
+      (B : in out Bloc_32_T)
+   is
    begin
       B.Bits := Tableau_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Finalize (B : in out Bloc_32_T) is
+   procedure Finalize
+      (B : in out Bloc_32_T)
+   is
    begin
       null;
    end Finalize;
 
    ---------------------------------------------------------------------------
    overriding
-   procedure Adjust (B : in out Bloc_32_T) is
+   procedure Adjust
+      (B : in out Bloc_32_T)
+   is
    begin
       null;
    end Adjust;
@@ -24,9 +30,9 @@ package body Des_P.Bloc_P.Bloc_32_P is
    ---------------------------------------------------------------------------
    procedure Ecrire_Bit
       (
-         B : in out Bloc_32_T;
+         B        : in out Bloc_32_T;
          Position : Intervalle_T;
-         Bit : Bit_T
+         Bit      : Bit_T
       )
    is
    begin
@@ -36,7 +42,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
    ---------------------------------------------------------------------------
    function Lire_Bit
       (
-         B : Bloc_32_T;
+         B        : Bloc_32_T;
          Position : Intervalle_T
       )
       return Bit_T
@@ -46,7 +52,10 @@ package body Des_P.Bloc_P.Bloc_32_P is
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
-   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T is
+   function "xor"
+      (Bloc, Autre : Bloc_32_T)
+      return Bloc_32_T
+   is
       Resultat : Bloc_32_T;
    begin
       Resultat.Bits := Bloc.Bits xor Autre.Bits;

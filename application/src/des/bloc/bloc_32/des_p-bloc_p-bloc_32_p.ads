@@ -15,28 +15,31 @@ is
    --  Représente un bloc de 32 bits.
 
    overriding
-   procedure Initialize (B : in out Bloc_32_T);
+   procedure Initialize
+      (B : in out Bloc_32_T);
    --  Création d'un bloc de 32 bits avec la valeur 0.
    --  @param B
    --  Le bloc de 32 bits.
 
    overriding
-   procedure Finalize (B : in out Bloc_32_T);
+   procedure Finalize
+      (B : in out Bloc_32_T);
    --  Supprime le bloc.
    --  @param B
    --  Le bloc de 32 bits.
 
    overriding
-   procedure Adjust (B : in out Bloc_32_T);
+   procedure Adjust
+      (B : in out Bloc_32_T);
    --  Ajuste le contenu après l'affectation.
    --  @param B
    --  Le bloc de 32 bits.
 
    procedure Ecrire_Bit
       (
-         B : in out Bloc_32_T;
+         B        : in out Bloc_32_T;
          Position : Intervalle_T;
-         Bit : Bit_T
+         Bit      : Bit_T
       )
       with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 32.
@@ -49,7 +52,7 @@ is
 
    function Lire_Bit
       (
-         B : Bloc_32_T;
+         B        : Bloc_32_T;
          Position : Intervalle_T
       )
       return Bit_T
@@ -61,7 +64,9 @@ is
    --  La position du bit qu'on veut lire.
    --  @return Le bit demandé.
 
-   function "xor" (Bloc, Autre : Bloc_32_T) return Bloc_32_T
+   function "xor"
+      (Bloc, Autre : Bloc_32_T)
+      return Bloc_32_T
       with Inline;
    --  Effectue un xor bit à bit entre les deux blocs de 32.
    --  @param Bloc

@@ -9,7 +9,7 @@ package Gerer_Options_P is
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
 
-   Nb_Args : constant Natural := Ada.Command_Line.Argument_Count;
+   Nb_Args     : constant Natural := Ada.Command_Line.Argument_Count;
    Nb_Args_Max : constant Natural := 3;
 
    subtype Args_En_Trop_T is Integer range Nb_Args_Max + 1 .. Nb_Args;

@@ -15,9 +15,9 @@ is
 
    procedure Filtrer
       (
-         Chaine : Chaine_Interface_T;
+         Chaine      : Chaine_Interface_T;
          Nom_Fichier : String;
-         Extension : String
+         Extension   : String
       )
    is abstract;
    --  Lance le filtrage du fichier avec la clef. La version chiffré ou

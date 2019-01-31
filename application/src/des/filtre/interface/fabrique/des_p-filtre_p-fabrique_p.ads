@@ -16,7 +16,8 @@ is
    type Fabrique_Interface_T is interface;
    --  L'interface de la fabrique de filtre.
 
-   function Fabriquer_Entree (Fabrique : Fabrique_Interface_T)
+   function Fabriquer_Entree
+      (Fabrique : Fabrique_Interface_T)
       return Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class
    is abstract;
    --  Fabrique un filtre de permutation initial.
@@ -27,7 +28,7 @@ is
    function Fabriquer_Corps
       (
          Fabrique : Fabrique_Interface_T;
-         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Clef     : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
       return Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class
    is abstract;
@@ -38,7 +39,8 @@ is
    --  La clef de 48 bits
    --  @return Un filtre principal.
 
-   function Fabriquer_Sortie (Fabrique : Fabrique_Interface_T)
+   function Fabriquer_Sortie
+      (Fabrique : Fabrique_Interface_T)
       return Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class
    is abstract;
    --  Fabrique un filtre de permutation initial inverse.

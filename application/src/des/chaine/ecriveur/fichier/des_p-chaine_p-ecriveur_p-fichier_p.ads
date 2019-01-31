@@ -6,15 +6,14 @@
 --  @group Écriveur
 package Des_P.Chaine_P.Ecriveur_P.Fichier_P is
 
-   type Ecriveur_Fichier_T
-   is limited new Ecriveur_T with private;
+   type Ecriveur_Fichier_T is limited new Ecriveur_T with private;
    --  Écrit dans le fichier le bloc donné.
 
    overriding
    procedure Ouvrir_Fichier
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Nom : String
+         Nom      : String
       );
    --  Ouvre le fichier.
    --  @param Ecriveur
@@ -26,7 +25,7 @@ package Des_P.Chaine_P.Ecriveur_P.Fichier_P is
    procedure Ecrire
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Brut : C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     : C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
    --  Écrit la donnée dans le fichier.

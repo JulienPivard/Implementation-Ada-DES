@@ -55,9 +55,9 @@ is
 
    procedure Ecrire_Bit
       (
-         Bloc : in out Bloc_64_T;
+         Bloc     : in out Bloc_64_T;
          Position : Intervalle_T;
-         Bit : Bit_T
+         Bit      : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 64.
    --  @param Bloc
@@ -69,7 +69,7 @@ is
 
    function Lire_Bit
       (
-         Bloc : Bloc_64_T;
+         Bloc     : Bloc_64_T;
          Position : Intervalle_T
       )
       return Bit_T;
@@ -82,10 +82,10 @@ is
 
    procedure Ecrire_Bit
       (
-         Bloc : in out Bloc_64_T;
+         Bloc        : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
-         Bit : Bit_T
+         Position    : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+         Bit         : Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc
    --  gauche ou droite de 32 bits du bloc de 64.
@@ -100,9 +100,9 @@ is
 
    function Lire_Bit
       (
-         Bloc : Bloc_64_T;
+         Bloc        : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Position : Des_P.Bloc_P.Bloc_32_P.Intervalle_T
+         Position    : Des_P.Bloc_P.Bloc_32_P.Intervalle_T
       )
       return Bit_T;
    --  Lit le bit à la position demandé dans le bloc
@@ -117,9 +117,9 @@ is
 
    procedure Ecrire_Bloc
       (
-         Bloc : in out Bloc_64_T;
+         Bloc        : in out Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T;
-         Bloc_32 : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+         Bloc_32     : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
       )
       with Inline;
    --  Écrit le bloc de 32 bits à droite ou à gauche dans le
@@ -133,7 +133,7 @@ is
 
    function Lire_Bloc
       (
-         Bloc : Bloc_64_T;
+         Bloc        : Bloc_64_T;
          Bloc_G_Ou_D : Position_Bloc_T
       )
       return Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
@@ -158,7 +158,7 @@ private
 
    function "+"
       (
-         Left : Position_Bloc_T;
+         Left  : Position_Bloc_T;
          Right : Decalage_T
       )
       return Position_Bloc_T
@@ -173,7 +173,7 @@ private
 
    function "+"
       (
-         Left : Decalage_T;
+         Left  : Decalage_T;
          Right : Position_Bloc_T
       )
       return Position_Bloc_T

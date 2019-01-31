@@ -15,7 +15,7 @@ is
 
    function Lire_Bit
       (
-         Clef : Clef_Interface_T;
+         Clef     : Clef_Interface_T;
          Position : Intervalle_T
       )
       return Bit_T

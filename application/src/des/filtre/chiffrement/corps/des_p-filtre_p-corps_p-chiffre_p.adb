@@ -6,11 +6,11 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
    overriding
    procedure Filtrer
       (
-         Filtre : Corps_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Filtre   : Corps_T;
+         Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
-      Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
+      Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T          := Bloc.Lire_Bloc
          (Des_P.Bloc_P.Bloc_64_P.Gauche);
       Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
          (Des_P.Bloc_P.Bloc_64_P.Droite);
@@ -18,9 +18,9 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
       use type Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       --  Passage du bloc de gauche dans la fonction f
-      Resultat_F := Fonction_F (Droite, Filtre.Clef.Element);
+      Resultat_F  := Fonction_F (Droite, Filtre.Clef.Element);
 
-      Gauche := Gauche xor Resultat_F;
+      Gauche      := Gauche xor Resultat_F;
 
       --  On remet les blocs à leur place.
       Bloc.Ecrire_Bloc (Des_P.Bloc_P.Bloc_64_P.Gauche, Gauche);
@@ -33,8 +33,8 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
    overriding
    procedure Modifier_Clef
       (
-         Filtre : in out Corps_T;
-         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Filtre   : in out Corps_T;
+         Clef     : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
    is
    begin

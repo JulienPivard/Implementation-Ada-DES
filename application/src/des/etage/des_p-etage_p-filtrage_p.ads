@@ -16,7 +16,8 @@ package Des_P.Etage_P.Filtrage_P is
    type Etage_T is new Etage_Abstrait_T with private;
    --  Un étage du standard DES.
 
-   function Construire_Etage_Sans_Successeur return Etage_T;
+   function Construire_Etage_Sans_Successeur
+      return Etage_T;
    --  Construit un étage sans successeur.
    --  @return Un nouvel étage sans successeur.
 
@@ -51,8 +52,8 @@ package Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Ajouter_Successeur
       (
-         Etage : in out Etage_T;
-         Successeur : Etage_Abstrait_T'Class
+         Etage       : in out Etage_T;
+         Successeur  : Etage_Abstrait_T'Class
       );
    --  Ajoute un successeur à l'étage.
    --  Si l'étage possède déjà un successeur alors on invoque
@@ -65,8 +66,8 @@ package Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Modifier_Successeur
       (
-         Etage : in out Etage_T;
-         Successeur : Etage_Abstrait_T'Class
+         Etage       : in out Etage_T;
+         Successeur  : Etage_Abstrait_T'Class
       );
    --  Modifie le successeur de l'étage.
    --  @param Etage
@@ -77,8 +78,8 @@ package Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Modifier_Filtre
       (
-         Etage : in out Etage_T;
-         Filtre : Des_P.Filtre_P.Filtre_Interface_T'Class
+         Etage    : in out Etage_T;
+         Filtre   : Des_P.Filtre_P.Filtre_Interface_T'Class
       );
    --  Modifie le filtre de l'étage.
    --  @param Etage
@@ -90,7 +91,7 @@ package Des_P.Etage_P.Filtrage_P is
    procedure Iterer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Pre => Etage.Possede_Filtre;
    --  Déclenche les filtre en cascade jusqu'à ce qu'il n'y ai
@@ -105,7 +106,7 @@ private
    procedure Filtrer
       (
          Etage : Etage_T;
-         Bloc : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
+         Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Pre => Etage.Possede_Filtre;
    --  Filtre le bloc de 64 bits avec une clef.
@@ -122,8 +123,8 @@ private
 
    type Etage_T is new Etage_Abstrait_T with
       record
-         Filtre : Des_P.Filtre_P.Holder_P.Holder;
-         Successeur : Holder_P.Holder;
+         Filtre      : Des_P.Filtre_P.Holder_P.Holder;
+         Successeur  : Holder_P.Holder;
       end record;
 
 end Des_P.Etage_P.Filtrage_P;
