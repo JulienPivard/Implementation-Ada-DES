@@ -2,7 +2,7 @@
 --  Accède en lecture à un fichier.
 --  @description
 --  Gestion de la lecture dans les fichiers. Se charge
---  d'éviter les lecteur multiple dans le fichier d'entrée.
+--  de centraliser la lecture dans les fichiers.
 --  @group Lecteur
 package Des_P.Chaine_P.Lecteur_P.Fichier_P is
 

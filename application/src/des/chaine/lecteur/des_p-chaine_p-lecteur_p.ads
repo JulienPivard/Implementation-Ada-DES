@@ -5,8 +5,8 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  @summary
 --  Lit le flux d'entrée.
 --  @description
---  Gestion de la lecture dans les fichiers ou objet. Se charge
---  d'éviter les lectures multiple dans le fichier d'entrée.
+--  Gestion de la lecture dans les fichiers ou objets. Se charge
+--  de centraliser la lecture.
 --  @group Lecteur
 package Des_P.Chaine_P.Lecteur_P is
 
@@ -14,11 +14,10 @@ package Des_P.Chaine_P.Lecteur_P is
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    type Lecteur_T is limited interface;
-   --  Un lecteur de donnée protégée. Nécessaire à cause
-   --  de son utilisation dans des taches.
+   --  Un lecteur de donnée. Nécessaire pour centraliser.
 
    type Lecteur_A is not null access all Lecteur_T'Class;
-   --  Pointeur sur un lecteur protégé.
+   --  Pointeur sur un lecteur.
 
    procedure Ouvrir_Fichier
       (

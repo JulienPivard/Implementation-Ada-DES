@@ -3,8 +3,10 @@ with System.Multiprocessors;
 --  @summary
 --  Limiteur de nombre de jetons.
 --  @description
---  Gère et compte le nombre de jetons total. Permet de bloquer la création
---  de nouveaux jetons et ainsi d'optimiser le travail des tâches.
+--  Un jeton est une table de blocs de 64 bits.
+--  Gère et compte le nombre de jetons total. Permet de bloquer
+--  la création de nouveaux jetons et ainsi d'optimiser le
+--  travail des versions parallèle.
 --  @group Objets Protégé
 package Des_P.Chaine_P.Limiteur_Jetons_P is
 

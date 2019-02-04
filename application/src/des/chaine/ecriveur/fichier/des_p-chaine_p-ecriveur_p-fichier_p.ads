@@ -2,7 +2,7 @@
 --  Accède en écriture à un fichier.
 --  @description
 --  Gestion de l'écriture dans les fichiers. Se charge
---  d'éviter les écritures multiple dans le fichier de sortie.
+--  de centraliser les écritures dans le fichier de sortie.
 --  @group Écriveur
 package Des_P.Chaine_P.Ecriveur_P.Fichier_P is
 

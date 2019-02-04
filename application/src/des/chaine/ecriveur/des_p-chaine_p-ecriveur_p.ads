@@ -6,7 +6,7 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  Point d'accès au flux de sortie.
 --  @description
 --  Gestion de l'écriture dans les fichiers ou objets. Se charge
---  d'éviter les écritures multiple.
+--  de centraliser les écritures.
 --  @group Écriveur
 package Des_P.Chaine_P.Ecriveur_P is
 
@@ -14,11 +14,10 @@ package Des_P.Chaine_P.Ecriveur_P is
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    type Ecriveur_T is limited interface;
-   --  Un écriveur de donnée protégée. Nécessaire à cause
-   --  de son utilisation dans des taches.
+   --  Un écriveur de donnée. Nécessaire pour centraliser.
 
    type Ecriveur_A is not null access all Ecriveur_T'Class;
-   --  Pointeur sur un écriveur protégé.
+   --  Pointeur sur un écriveur.
 
    procedure Ouvrir_Fichier
       (

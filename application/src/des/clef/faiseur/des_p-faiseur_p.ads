@@ -6,9 +6,10 @@ with Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
 with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
 
 --  @summary
---  Faiseur simplifié de chaine.
+--  Faiseur simplifié de clef.
 --  @description
---  Interface de Constructeur de chaine de filtres.
+--  Rassemble les constructeur de clef pour simplifier la
+--  construction de clef de chaque taille.
 --  @group Constructeur
 package Des_P.Faiseur_P is
 

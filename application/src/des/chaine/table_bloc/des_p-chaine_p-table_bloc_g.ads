@@ -3,7 +3,7 @@ with Des_P.Bloc_P.Bloc_64_P;
 private generic
 
    type Indice_G is range <>;
-   --  Les indices des table de blocs.
+   --  Les indices des tables de blocs.
 
 --  @summary
 --  Des tables de blocs de données.
@@ -14,7 +14,7 @@ private generic
 package Des_P.Chaine_P.Table_Bloc_G is
 
    type Indice_T is new Indice_G;
-   --  Les indices des table de blocs.
+   --  Les indices des tables de blocs.
 
    type Table_Bloc_T is array (Indice_T range <>)
       of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
