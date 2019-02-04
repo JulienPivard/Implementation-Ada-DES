@@ -13,6 +13,8 @@ private with Des_P.Filtre_P.Corps_P.Holder_P;
 private with Des_P.Filtre_P.Entree_P.Holder_P;
 private with Des_P.Filtre_P.Sortie_P.Holder_P;
 
+private with Des_P.Chaine_P.Instances_Table_Bloc_P;
+
 --  @summary
 --  Chaine de filtres parallèle.
 --  @description
@@ -46,19 +48,19 @@ package Des_P.Chaine_P.Ravenscar_P is
 
 private
 
-   package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
-   package Limiteur_R  renames Des_P.Chaine_P.Limiteur_Jetons_P;
+   package C_Bloc_64_R  renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
+   package Limiteur_R   renames Des_P.Chaine_P.Limiteur_Jetons_P;
+   package Table_Bloc_R renames Instances_Table_Bloc_P.Table_Bloc_Ravenscar_P;
 
-   type Indice_T is range 1 .. 512;
-   --  Les indices des table de blocs.
-   type Table_Bloc_T is array (Indice_T range <>)
-      of Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-   --  Tableaux de blocs de 64 pour regrouper les données
-   --  et augmenter la charge de travail par tâches et ainsi
-   --  améliorer les temps d'exécution
+   use type Table_Bloc_R.Table_Bloc_T;
+   use type Table_Bloc_R.Indice_T;
+
+   subtype Indice_T     is Table_Bloc_R.Indice_T;
+   subtype Table_Bloc_T is Table_Bloc_R.Table_Bloc_T;
 
    package Table_Holder_P is new
-      Ada.Containers.Indefinite_Holders (Element_Type => Table_Bloc_T);
+      Ada.Containers.Indefinite_Holders
+         (Element_Type => Table_Bloc_R.Table_Bloc_T);
 
    type Donnee_T is
       record
@@ -72,7 +74,7 @@ private
       (
          D                 : in out Donnee_T;
          Procedure_Filtre  : not null access procedure
-            (Table : in out Table_Bloc_T)
+            (Table : in out Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
    --  Applique le filtre à la données.
@@ -85,7 +87,7 @@ private
       (
          D                    : Donnee_T;
          Procedure_Appliquee  : not null access procedure
-            (Table : Table_Bloc_T)
+            (Table : Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
    --  Applique le filtre à la données.
@@ -97,7 +99,7 @@ private
    procedure Ecrire_Table
       (
          D : in out Donnee_T;
-         T : Table_Bloc_T
+         T : Table_Bloc_R.Table_Bloc_T
       )
       with Inline;
    --  Modifie la table stockée dans la donnée
