@@ -10,7 +10,7 @@ private with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P.Holder_P;
 --  Constructeur de chaine de filtres.
 --  @description
 --  Constructeur de chaine de filtres de déchiffrement.
---  @group Chaine Constructeur
+--  @group Chaine Constructeur Déchiffrement
 package Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
 
    type Faiseur_Dechiffrement_T is new

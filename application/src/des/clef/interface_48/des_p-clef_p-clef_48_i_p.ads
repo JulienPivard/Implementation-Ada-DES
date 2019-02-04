@@ -2,7 +2,7 @@
 --  Une clef abstraite de 48 bits.
 --  @description
 --  La représentation d'une clef de 48 bits dans le standard DES.
---  @group Clef
+--  @group Clef 48
 package Des_P.Clef_P.Clef_48_I_P
    with Pure
 is

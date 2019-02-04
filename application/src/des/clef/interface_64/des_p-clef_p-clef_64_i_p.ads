@@ -2,7 +2,7 @@
 --  Une clef abstraite de 64 bits.
 --  @description
 --  La représentation d'une clef de 64 bits dans le standard DES.
---  @group Clef
+--  @group Clef 64
 package Des_P.Clef_P.Clef_64_I_P
    with Pure
 is

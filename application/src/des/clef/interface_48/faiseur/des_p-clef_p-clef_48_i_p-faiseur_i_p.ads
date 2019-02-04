@@ -7,7 +7,7 @@ limited with Des_P.Clef_P.Clef_56_I_P;
 --  Cette clef sera composé de 48 bits provenant de la
 --  clef de 56. Le constructeur va sélectionner ces bits
 --  selon le tableau PC-2 du standard DES.
---  @group Clef Constructeur
+--  @group Clef Constructeur 48
 package Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P
    with Pure
 is

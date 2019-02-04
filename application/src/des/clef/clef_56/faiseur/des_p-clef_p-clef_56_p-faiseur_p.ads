@@ -9,7 +9,7 @@ with Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;
 --  Cette clef sera composé de 56 bits provenant de la
 --  clef de 64. Le constructeur va sélectionner ces bits
 --  selon le tableau PC-1 du standard DES.
---  @group Clef Constructeur
+--  @group Clef Constructeur 56
 package Des_P.Clef_P.Clef_56_P.Faiseur_P
    with Pure
 is

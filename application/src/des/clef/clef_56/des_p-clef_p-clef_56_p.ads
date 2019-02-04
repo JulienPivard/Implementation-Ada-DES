@@ -4,7 +4,7 @@ with Des_P.Clef_P.Clef_56_I_P;
 --  La clef de 56 bits permettant de chiffrer les données.
 --  @description
 --  La représentation d'une clef de 56 bits, dans le standard DES.
---  @group Clef
+--  @group Clef 56
 package Des_P.Clef_P.Clef_56_P
    with Pure
 is

@@ -5,7 +5,7 @@ with Des_P.Chaine_P.Table_Bloc_G;
 --  @description
 --  Les instances pour les versions parallèles des tables
 --  de blocs.
---  @group Chaine
+--  @group Chaine Table Blocs
 private package Des_P.Chaine_P.Instances_Table_Bloc_P is
 
    type Indice_Ravenscar_T is range 1 .. 512;

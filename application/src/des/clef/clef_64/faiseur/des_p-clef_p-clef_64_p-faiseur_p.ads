@@ -5,7 +5,7 @@ with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 --  Le constructeur concret de clef de 64 bits.
 --  @description
 --  Construit une clef de 64 bits à partir d'un brut de 64 bits.
---  @group Clef Constructeur
+--  @group Clef Constructeur 64
 package Des_P.Clef_P.Clef_64_P.Faiseur_P
    with Pure
 is

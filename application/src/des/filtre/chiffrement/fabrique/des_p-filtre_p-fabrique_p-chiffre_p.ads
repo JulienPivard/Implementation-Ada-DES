@@ -2,7 +2,7 @@
 --  Une fabrique abstraite de filtre de chiffrement.
 --  @description
 --  Fabrique de filtres qui permet de fabriquer des filtres de chiffrement.
---  @group Filtre Fabrique Chiffrement
+--  @group Filtre Fabrique
 package Des_P.Filtre_P.Fabrique_P.Chiffre_P is
 
    type Fabrique_T is new Fabrique_Interface_T with private;
