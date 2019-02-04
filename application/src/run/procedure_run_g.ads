@@ -4,13 +4,6 @@ with Des_P.Chaine_P.Faiseur_I_P;
 private with Des_P.Clef_P.Clef_56_P.Faiseur_P;
 private with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
---  @summary
---  Une suite d'opérations d'initialisation utilisé par le client.
---  @description
---  Un groupe de procédure et de fonction pour faciliter les
---  manipulations par le client. L'initialisation de la chaine
---  et des différents filtres.
---  @group Principal
 generic
 
    Extension   : String;
@@ -22,6 +15,13 @@ generic
    type Faiseur_Dechiffrement_G_T is new
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with private;
 
+--  @summary
+--  Une suite d'opérations d'initialisation utilisé par le client.
+--  @description
+--  Un groupe de procédure et de fonction pour faciliter les
+--  manipulations par le client. L'initialisation de la chaine
+--  et des différents filtres.
+--  @group Principal
 package Procedure_Run_G is
 
    type Action_T is (Chiffrer, Dechiffrer);
