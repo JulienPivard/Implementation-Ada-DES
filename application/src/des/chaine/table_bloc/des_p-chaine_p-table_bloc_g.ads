@@ -5,6 +5,12 @@ private generic
    type Indice_G is range <>;
    --  Les indices des table de blocs.
 
+--  @summary
+--  Des tables de blocs de données.
+--  @description
+--  Les blocs sont regroupé avec des tables pour accélérer le traitement
+--  par les versions parallèle.
+--  @group Chaine
 package Des_P.Chaine_P.Table_Bloc_G is
 
    type Indice_T is new Indice_G;
