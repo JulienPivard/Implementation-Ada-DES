@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 08 février[02] 2019
+# Dernière modification : Samedi 09 février[02] 2019
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	:= 1.9.3
+MAKEFILE_V	:= 1.9.4
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -17,6 +17,7 @@ GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
 ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
     PATH		:= $(GNAT_BIN_PERSO):$(PATH)
+    $(info  Utilisation de bin GNAT personnalisé)
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
     PATH		:= $(GNAT_BIN_MACOS):$(PATH)
 else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
