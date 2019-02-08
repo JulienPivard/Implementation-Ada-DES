@@ -1,6 +1,22 @@
 --  vim:nospell filetype=ada
 --  http://docs.adacore.com/asis-docs/html/gnatcheck_rm/gnatcheck_rm.html
 
+--  Pour désactiver une règle sur une zone de code restreinte
+--  L'entourer de ces deux pragmas :
+--  pragma Annotate
+--     (
+--        gnatcheck,
+--        Exempt_On,
+--        "Nom_Regle",
+--        "Justification"
+--     );
+--  pragma Annotate
+--     (
+--        gnatcheck,
+--        Exempt_Off,
+--        "Nom_Regle"
+--     );
+
 --------------------------
 --  Feature Usage Rule  --
 --------------------------
@@ -144,7 +160,7 @@
 --  +RPositional_Actuals_For_Defaulted_Parameters
 --  Signal toutes les utilisation de pos pour les types enumération
 --  +RPOS_On_Enumeration_Types
---  +RPositional_Components
++RPositional_Components
 +RPositional_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +RPositional_Parameters
