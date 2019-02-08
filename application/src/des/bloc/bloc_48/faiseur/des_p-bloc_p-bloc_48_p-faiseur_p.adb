@@ -21,6 +21,13 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P is
          of Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
 
       --  La table de sélection E pour étendre le bloc de 32 bits
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table_E : constant Table_Selection_E_T :=
          Table_Selection_E_T'
          (
@@ -32,6 +39,12 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P is
             20, 21, 22, 23, 24, 25,
             24, 25, 26, 27, 28, 29,
             28, 29, 30, 31, 32,  1
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
    begin
       --  Remplissage du bloc de 48 avec le bloc de 32.

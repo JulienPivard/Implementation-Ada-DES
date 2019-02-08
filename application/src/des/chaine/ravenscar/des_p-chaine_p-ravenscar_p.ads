@@ -355,6 +355,13 @@ private
    type Table_Filtreur_T is array (Numero_Filtre_T)
       of access Filtre_Corps_Protegee_T;
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Positional_Components",
+         "Tableau trop grand pour positionner toutes les valeurs"
+      );
    Table_Filtreur : Table_Filtreur_T :=
       Table_Filtreur_T'
       (
@@ -374,6 +381,12 @@ private
          Filtreur_Corps_14'Access,
          Filtreur_Corps_15'Access,
          Filtreur_Corps_16'Access
+      );
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Positional_Components"
       );
    --  Table contenant les modificateurs de filtre.
 

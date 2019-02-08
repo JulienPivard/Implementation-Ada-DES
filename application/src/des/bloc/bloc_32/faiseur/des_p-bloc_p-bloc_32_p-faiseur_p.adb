@@ -32,6 +32,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    is
       type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
       --  La table de permutations P.
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table_P : constant Table_Permutations_T :=
          Table_Permutations_T'
          (
@@ -43,6 +50,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             32, 27,  3,  9,
             19, 13, 30,  6,
             22, 11,  4, 25
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
    begin
       for I in Intervalle_T loop
@@ -63,6 +76,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          with Size => 48, Pack;
 
       --  Extraction de la table de 48 bits pour pouvoir la manipuler.
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table_48_Bits : constant Table_48_Bits_T :=
       Table_48_Bits_T'
       (
@@ -83,6 +103,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          Brut.Lire_Bit (43), Brut.Lire_Bit (44), Brut.Lire_Bit (45),
          Brut.Lire_Bit (46), Brut.Lire_Bit (47), Brut.Lire_Bit (48)
       );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
       --  Le numéro de la colonne.
       type Colonne_T is mod 2**4
@@ -177,42 +203,74 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  Transforme le tableau de bits en un octet.
       Ligne_Intermediaire_1 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_1, Bloc_Intermediaire.Fin_1, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_1,
+            2        => Bloc_Intermediaire.Fin_1,
+            others   => 0
+         );
       Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
 
       Ligne_Intermediaire_2 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_2, Bloc_Intermediaire.Fin_2, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_2,
+            2        => Bloc_Intermediaire.Fin_2,
+            others   => 0
+         );
       Ligne_2 : Ligne_T with Address => Ligne_Intermediaire_2'Address;
 
       Ligne_Intermediaire_3 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_3, Bloc_Intermediaire.Fin_3, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_3,
+            2        => Bloc_Intermediaire.Fin_3,
+            others   => 0
+         );
       Ligne_3 : Ligne_T with Address => Ligne_Intermediaire_3'Address;
 
       Ligne_Intermediaire_4 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_4, Bloc_Intermediaire.Fin_4, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_4,
+            2        => Bloc_Intermediaire.Fin_4,
+            others   => 0
+         );
       Ligne_4 : Ligne_T with Address => Ligne_Intermediaire_4'Address;
 
       Ligne_Intermediaire_5 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_5, Bloc_Intermediaire.Fin_5, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_5,
+            2        => Bloc_Intermediaire.Fin_5,
+            others   => 0
+         );
       Ligne_5 : Ligne_T with Address => Ligne_Intermediaire_5'Address;
 
       Ligne_Intermediaire_6 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_6, Bloc_Intermediaire.Fin_6, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_6,
+            2        => Bloc_Intermediaire.Fin_6,
+            others   => 0
+         );
       Ligne_6 : Ligne_T with Address => Ligne_Intermediaire_6'Address;
 
       Ligne_Intermediaire_7 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_7, Bloc_Intermediaire.Fin_7, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_7,
+            2        => Bloc_Intermediaire.Fin_7,
+            others   => 0
+         );
       Ligne_7 : Ligne_T with Address => Ligne_Intermediaire_7'Address;
 
       Ligne_Intermediaire_8 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
-         (Bloc_Intermediaire.Debut_8, Bloc_Intermediaire.Fin_8, others => 0);
+         (
+            1        => Bloc_Intermediaire.Debut_8,
+            2        => Bloc_Intermediaire.Fin_8,
+            others   => 0
+         );
       Ligne_8 : Ligne_T with Address => Ligne_Intermediaire_8'Address;
 
       --  La valeur contenu dans le tableau au
@@ -222,6 +280,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       type Table_De_Selection_T is array (Ligne_T, Colonne_T) of Valeur_T;
 
       --  Les tables de sélection recommandé dans le standard de S1 à S8
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S1 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -232,7 +297,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (15, 12, 08, 02, 04, 09, 01, 07, 05, 11, 03, 14, 10, 00, 06, 13)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S2 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -243,7 +321,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (13, 08, 10, 01, 03, 15, 04, 02, 11, 06, 07, 12, 00, 05, 14, 09)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S3 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -254,7 +345,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (01, 10, 13, 00, 06, 09, 08, 07, 04, 15, 14, 03, 11, 05, 02, 12)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S4 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -265,7 +369,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (03, 15, 00, 06, 10, 01, 13, 08, 09, 04, 05, 11, 12, 07, 02, 14)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S5 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -276,7 +393,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (11, 08, 12, 07, 01, 14, 02, 13, 06, 15, 00, 09, 10, 04, 05, 03)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S6 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -287,7 +417,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (04, 03, 02, 12, 09, 05, 15, 10, 11, 14, 01, 07, 06, 00, 08, 13)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S7 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -298,7 +441,20 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (06, 11, 13, 08, 01, 04, 10, 07, 09, 05, 00, 15, 14, 02, 03, 12)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
+         );
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       S8 : constant Table_De_Selection_T :=
          Table_De_Selection_T'
          (
@@ -308,6 +464,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             (07, 11, 04, 01, 09, 12, 14, 02, 00, 06, 10, 13, 15, 03, 05, 08),
             (02, 01, 14, 07, 04, 10, 08, 13, 15, 12, 09, 00, 03, 05, 06, 11)
          --   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
 
       --  Tableau de 8 blocs de 8 bits.
@@ -320,14 +482,14 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       Bloc_Tmp : constant Bloc_32_Intermediaire_T :=
          Bloc_32_Intermediaire_T'
          (
-            S1 (Ligne_1, Bloc_Intermediaire.Colonne_1),
-            S2 (Ligne_2, Bloc_Intermediaire.Colonne_2),
-            S3 (Ligne_3, Bloc_Intermediaire.Colonne_3),
-            S4 (Ligne_4, Bloc_Intermediaire.Colonne_4),
-            S5 (Ligne_5, Bloc_Intermediaire.Colonne_5),
-            S6 (Ligne_6, Bloc_Intermediaire.Colonne_6),
-            S7 (Ligne_7, Bloc_Intermediaire.Colonne_7),
-            S8 (Ligne_8, Bloc_Intermediaire.Colonne_8)
+            0 => S1 (Ligne_1, Bloc_Intermediaire.Colonne_1),
+            1 => S2 (Ligne_2, Bloc_Intermediaire.Colonne_2),
+            2 => S3 (Ligne_3, Bloc_Intermediaire.Colonne_3),
+            3 => S4 (Ligne_4, Bloc_Intermediaire.Colonne_4),
+            4 => S5 (Ligne_5, Bloc_Intermediaire.Colonne_5),
+            5 => S6 (Ligne_6, Bloc_Intermediaire.Colonne_6),
+            6 => S7 (Ligne_7, Bloc_Intermediaire.Colonne_7),
+            7 => S8 (Ligne_8, Bloc_Intermediaire.Colonne_8)
          );
 
       --  Le tableau de 8 bloc de 8 bits est transformé en un bloc

@@ -38,9 +38,22 @@ private
    type Table_Decalage_T is array (Numero_Filtre_T)
       of Des_P.Clef_P.Clef_56_I_P.Decalage_T;
 
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_On,
+         "Positional_Components",
+         "Tableau trop grand pour positionner toutes les valeurs"
+      );
    Table_Decalage : constant Table_Decalage_T :=
       Table_Decalage_T'
       (1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1);
+   pragma Annotate
+      (
+         gnatcheck,
+         Exempt_Off,
+         "Positional_Components"
+      );
    --  Table pour connaitre le nombre de décalages à appliquer à la clef
 
 end Des_P.Chaine_P;

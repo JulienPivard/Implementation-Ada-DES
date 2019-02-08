@@ -101,8 +101,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       Resultat : Bloc_Intermediaire_T :=
          Bloc_Intermediaire_T'
          (
-            C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Gauche)),
-            C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Droite))
+            Bloc_1 => C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Gauche)),
+            Bloc_2 => C_32.Transformer_En_Brut (Bloc.Lire_Bloc (Droite))
          );
       --  Transformation du bloc de deux fois 32 en un seul de 64.
       Brut : Bloc_64_Brut_T with Address => Resultat'Address;

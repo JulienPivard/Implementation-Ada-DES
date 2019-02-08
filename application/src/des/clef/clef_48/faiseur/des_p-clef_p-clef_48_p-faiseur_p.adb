@@ -22,6 +22,13 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P is
          array (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
          of Des_P.Clef_P.Clef_56_I_P.Intervalle_T;
       --  Tiré du tableau de correspondance PC-2 de DES.
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       T : constant Table_Pc_2_T :=
          Table_Pc_2_T'
          (
@@ -33,6 +40,12 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P is
             30, 40, 51, 45, 33, 48,
             44, 49, 39, 56, 34, 53,
             46, 42, 50, 36, 29, 32
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
    begin
       --  Applique la table de correspondance à la clef de 56

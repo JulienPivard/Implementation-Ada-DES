@@ -5,6 +5,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
       (Bloc : in out Bloc_64_T)
    is
       --  La table de permutation IP
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table : constant Table_Permutations_T :=
          Table_Permutations_T'
          (
@@ -16,6 +23,12 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
             59, 51, 43, 35, 27, 19, 11, 3,
             61, 53, 45, 37, 29, 21, 13, 5,
             63, 55, 47, 39, 31, 23, 15, 7
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
       --  On copie le bloc dans un nouveau bloc pour
       --  conserver la configuration initial du bloc.
@@ -32,6 +45,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
       (Bloc : in out Bloc_64_T)
    is
       --  La table de permutation IP-1
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Components",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table : constant Table_Permutations_T :=
          Table_Permutations_T'
          (
@@ -43,6 +63,12 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
             35, 3, 43, 11, 51, 19, 59, 27,
             34, 2, 42, 10, 50, 18, 58, 26,
             33, 1, 41,  9, 49, 17, 57, 25
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Components"
          );
       --  On copie le bloc dans un nouveau bloc pour
       --  conserver la configuration initial du bloc.
