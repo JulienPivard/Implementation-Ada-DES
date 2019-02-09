@@ -25,12 +25,13 @@
 +R Anonymous_Subtypes
 --  Les blocs de code dans des blocs (declare)
 --  +R Blocks
+--  Fixe le niveau de complexité des programmes Iniline
 +R Complex_Inlined_Subprograms:2
---  Signal toutes les expressions conditionnel
+--  Signal toutes les expressions conditionnel Ada 2012
 --  +R Conditional_Expressions
---  Signal toutes les occurrences de type controllé
+--  Signal toutes les occurrences de type contrôlé
 --  +R Controlled_Type_Declarations
---  Les déclarations dans des sous blocs
+--  Les déclarations local dans des blocs
 --  +R Declarations_In_Blocks
 --  Niveau maximum d'imbrication d'appel de sous-programme inline
 +R Deeply_Nested_Inlining:2
@@ -40,6 +41,7 @@
 --  +R Discriminated_Records
 --  Signal toutes les clauses de représentations pour les énumérations
 --  +R Enumeration_Representation_Clauses
+--  Les intervalles complet de type : A'First .. A'Last
 +R Explicit_Full_Discrete_Ranges
 --  Ada 2012 les déclarations de fonctions implementation dans la spec
 --  +R Expression_Functions
@@ -47,7 +49,9 @@
 --  +R Fixed_Equality_Checks
 --  Signal tous de tests d'égalités entre deux flottants
 +R Float_Equality_Checks
+--  Procédure qui sont écriture avec le même style que des fonctions
 +R Function_Style_Procedures
+--  Définition de générique dans le corps d'un sous programme
 +R Generics_In_Subprograms
 --  Dans les paramètre le mot in doit être écrit explicitement
 --  +R Implicit_IN_Mode_Parameters
@@ -63,10 +67,12 @@
 --  Les littéraux numérique doivent être écrit dans des constantes
 --  +R Numeric_Literals:ALL
 --  +R Numeric_Literals:Statements_Only
+-R Numeric_Literals
 --  Ordre des paramètres des fonctions et procédures : in, access, in out, out
 --  +R Parameters_Out_Of_Order
+--  Sous type défini avec un prédicat
 +R Predicate_Testing
---  Signal toutes les occurrences d'expressions quantifié
+--  Signal toutes les occurrences d'expressions quantifié Ada 2012
 --  +R Quantified_Expressions
 --  Signal toutes levées d'exceptions de la lib std
 +R Raising_Predefined_Exceptions
@@ -74,25 +80,31 @@
 --  +R Representation_Specifications
 --  Toutes les déclarations de pointeurs de sous programmes
 --  +R Subprogram_Access
+--  Tous les paramètres out qui ne sont pas modifié
 +R Unassigned_OUT_Parameters
 --  Signal toutes les fonction qui retourne un tableau non contrains.
 --  +R Unconstrained_Array_Returns
+--  Utilisation d'instruction exit sans la partie condition
 +R Unconditional_Exits
 
 -----------------------
 --  SPARK Ada Rules  --
 -----------------------
+--  Comparaison de valeurs booléenne.
 +R Boolean_Relational_Operators
 +R Expanded_Loop_Exit_Names
 --  Les attributs qui ne sont pas dans le sous ensemble spark
 --  +R Non_SPARK_Attributes
 --  Le type parent du type dérivé n'est pas tagged
 --  +R Non_Tagged_Derived_Types
+--  L'instruction exit ne permet que de sortir de la boucle qui l'entoure
+--  immédiatement
 +R Outer_Loop_Exits
 --  Opérateurs de bases surchargé
 --  +R Overloaded_Operators
 --  Signal tous les intervalles de tableaux
 --  +R Slices
+--  Tous les intervalles défini avec des types universelles
 +R Universal_Ranges
 
 ---------------------------
@@ -101,18 +113,23 @@
 --  Object Orientation  --
 --  Appels direct aux primitives
 --  +R Direct_Calls_To_Primitives
+--  Défini le nombre de parents maximum
 +R Too_Many_Parents:2
+--  Composant dont les composants sont accessible publiquement
 +R Visible_Components
 
 --  Portability  --
+--  Interdiction de l'usage de certains attributs
 --  +R Forbidden_Attributes:ALL
---  Interdiction d'attributs tels que 'Img
+--  Interdiction d'attributs tels que 'Img avec :GNAT
 --  +R Forbidden_Attributes:GNAT
 --  Permet d'interdire certains pragama
 --  +R Forbidden_Pragmas:ALL
 +R Forbidden_Pragmas:Unchecked_Conversion
 --  Demande de fixer la plus petite valeur dans les points fixe.
 +R Implicit_SMALL_For_Fixed_Point_Types
+--  Les record qui ont une clause de représentation mais où
+--  l'ordre des bits n'est pas spécifié
 +R No_Scalar_Storage_Order_Specified
 --  Référence explicite à un type prédéfini
 --  +R Predefined_Numeric_Types
@@ -121,76 +138,105 @@
 --  +R Separate_Numeric_Error_Handlers
 
 --  Program Structure  --
+--  Profondeur de déclaration d'une unitée générique.
 +R Deeply_Nested_Generics:2
 +R Local_Packages
+--  Potentiel propagation d'exception hors de leur domaine de visibilité
 +R Non_Visible_Exceptions
+--  Visibilité des exception déclenché par des routines
 +R Raising_External_Exceptions
 
 --  Programming Practice  --
 +R Anonymous_Arrays
+--  Les instructions case qui peuvent etre remplacé par un if
 +R Binary_Case_Statements
 --  Signal tous les record dont les composants ont une expression par défaut
 --  +R Default_Values_For_Record_Components
 --  Dérive un nouveau type depuis un type prédéfini
 --  +R Deriving_From_Predefined_Type
+--  Utilisation de l'attribut Range dans une instruction case
 +R Enumeration_Ranges_In_CASE_Statements
+--  Utilisation des exception pour controler le flots d'exécution
 +R Exceptions_As_Control_Flow
+--  Présence de l'instruction exit dans une boucle for ou while
 +R Exits_From_Conditional_Loops
+--  Un exit sans nom dans une boucle sans nom
 +R EXIT_Statements_With_No_Loop_Name
+--  Déclaration de variables global
 --  +R Global_Variables
+--  Utilisation de GOTO
 +R GOTO_Statements
 --  Signal toutes les utilisations de return dans une procedure
 --  et toutes les utilisations de plus d'un return dans une fonction
 +R Improper_Returns
+--  Le nombre maximum de paramètres
 +R Maximum_Parameters:6
 --  Signal tous les sous programme déclaré dans un autre.
 --  +R Nested_Subprograms
+--  Pas d'utilisation de and et de or en version courte
 +R Non_Short_Circuit_Operators
 --  Signal toutes les utilisation de null
 +R Null_Paths
+--  Toutes les déclarations d'objets anonymes comme les pointeurs ou les
+--  tableaux
 +R Objects_Of_Anonymous_Types
+--  L'utilisation du mot clef others dans les agrégats
 --  +R OTHERS_In_Aggregates
 +R OTHERS_In_CASE_Statements
 +R OTHERS_In_Exception_Handlers
+--  Profondeur d'imbrication des structures de contrôles
 +R Overly_Nested_Control_Structures:4
 --  Lors de l'initialisation, signal tous les arguments passé par
 --  position dans un généric, si celui ci à une valeur par défaut.
 +R Positional_Actuals_For_Defaulted_Generic_Parameters
---  Les paramètres doivent être donné avec leur nom
+--  Les paramètres avec une valeur par défaut
+--  doivent être donné avec leur nom
 --  +R Positional_Actuals_For_Defaulted_Parameters
 --  Signal toutes les utilisation de pos pour les types enumération
 --  +R POS_On_Enumeration_Types
+--  Dans les composants les valeurs doivent être donné avec leur nom
 +R Positional_Components
+--  Dans les générique les valeurs doivent être donné avec leur nom
 +R Positional_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
 --  +R Positional_Parameters
 --  Signal tous les sous-programme recursif
 --  +R Recursive_Subprograms
+--  Conversion d'adresses sans contrôle
 +R Unchecked_Address_Conversions
+--  Utilisation de valeurs non contrôlé dans des paramètres
 +R Unchecked_Conversions_As_Actuals
+--  Signal toutes les variables global qui ne sont pas initialisées
 +R Uninitialized_Global_Variables
 --  Les blocs et les boucles non nommé
 +R Unnamed_Blocks_And_Loops
+--  Utilisation de l'instruction use package
 +R USE_PACKAGE_Clauses
 
 --  Readability  --
+--  La casse des identifier
 +R Identifier_Casing:Type=mixed
 +R Identifier_Casing:Enum=mixed
 +R Identifier_Casing:Constant=mixed
 +R Identifier_Casing:Exception=mixed
 +R Identifier_Casing:Others=mixed
 +R Identifier_Casing:Exclude=exception_case
+--  Le suffixe des identifier
 --  +R Identifier_Suffixes:Default
 +R Identifier_Suffixes:Type_Suffix=_T
 +R Identifier_Suffixes:Access_Suffix=_A
 --  +R Identifier_Suffixes:Constant_Suffix=_C
 +R Identifier_Suffixes:Renaming_Suffix=_R
 --  +R Identifier_Suffixes:Access_Obj_Suffix=_O
+--  Le préfixe des identifier
 +R Identifier_Prefixes:Exclusive
 --  Pour les objets le premier paramètre est This
 --  +R Misnamed_Controlling_Parameters
+--  Pas de commentaire sur l'instruction begin
 +R Uncommented_BEGIN_In_Package_Bodies
 
 --  Tasking  --
+--  Définition d'entrées multiple dans un objets protégé
 +R Multiple_Entries_In_Protected_Definitions
+--  Définition d'objets volatile sans clause d'adresse.
 +R Volatile_Objects_Without_Address_Clauses
