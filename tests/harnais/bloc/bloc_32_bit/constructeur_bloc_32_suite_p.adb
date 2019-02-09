@@ -1,11 +1,12 @@
 with AUnit.Test_Caller;
 
 with Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P;
-use  Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P;
 
 package body Constructeur_Bloc_32_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -19,42 +20,42 @@ package body Constructeur_Bloc_32_Suite_P is
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Preparation bloc vide",
-         Test_Preparation'Access
+         Scenario_R.Test_Preparation'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Construction d'un bloc a partir d'un brut",
-         Test_Construction_Avec_Brut'Access
+         Scenario_R.Test_Construction_Avec_Brut'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Construction d'un bloc a partir d'un bloc de 32 bits",
-         Test_Construction_Avec_Bloc_32'Access
+         Scenario_R.Test_Construction_Avec_Bloc_32'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Construction d'un bloc a partir d'un bloc de 48 bits",
-         Test_Construction_Avec_Bloc_48'Access
+         Scenario_R.Test_Construction_Avec_Bloc_48'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Recuperation d'un bloc fini",
-         Test_Recuperation'Access
+         Scenario_R.Test_Recuperation'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Transformation d'un bloc en un brut",
-         Test_Transformation_Brut'Access
+         Scenario_R.Test_Transformation_Brut'Access
          )
       );
 

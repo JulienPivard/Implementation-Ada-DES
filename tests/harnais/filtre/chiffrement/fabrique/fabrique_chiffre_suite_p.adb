@@ -1,11 +1,12 @@
 with AUnit.Test_Caller;
 
 with Des_P.Filtre_P.Fabrique_P.Chiffre_P.Test_P;
-use  Des_P.Filtre_P.Fabrique_P.Chiffre_P.Test_P;
 
 package body Fabrique_Chiffre_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames Des_P.Filtre_P.Fabrique_P.Chiffre_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -19,21 +20,21 @@ package body Fabrique_Chiffre_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Fabrication entree",
-            Test_Fabrication_Entree'Access
+            Scenario_R.Test_Fabrication_Entree'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Fabrication corps",
-            Test_Fabrication_Corps'Access
+            Scenario_R.Test_Fabrication_Corps'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Fabrication sortie",
-            Test_Fabrication_Sortie'Access
+            Scenario_R.Test_Fabrication_Sortie'Access
             )
          );
 

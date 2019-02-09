@@ -1,11 +1,12 @@
 with AUnit.Test_Caller;
 
 with Des_P.Clef_P.Clef_48_P.Test_P;
-use  Des_P.Clef_P.Clef_48_P.Test_P;
 
 package body Clef_48_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames Des_P.Clef_P.Clef_48_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -19,14 +20,14 @@ package body Clef_48_Suite_P is
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Lecture de bit d'une clef predefinie",
-         Test_Lecture_Bit'Access
+         Scenario_R.Test_Lecture_Bit'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Lecture de bit d'une clef aleatoire",
-         Test_Bits_Aleatoire'Access
+         Scenario_R.Test_Bits_Aleatoire'Access
          )
       );
 

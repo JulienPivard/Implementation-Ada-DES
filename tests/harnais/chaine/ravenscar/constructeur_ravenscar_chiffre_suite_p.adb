@@ -1,11 +1,13 @@
 with AUnit.Test_Caller;
 
 with Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P.Test_P;
-use  Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P.Test_P;
 
 package body Constructeur_Ravenscar_Chiffre_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames
+      Des_P.Chaine_P.Ravenscar_P.Faiseur_Chiffre_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -20,21 +22,21 @@ package body Constructeur_Ravenscar_Chiffre_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Initialisation chaine vide",
-            Test_Initialisation'Access
+            Scenario_R.Test_Initialisation'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Construction chaine",
-            Test_Construction'Access
+            Scenario_R.Test_Construction'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "Recuperation chaine construite",
-            Test_Recuperation'Access
+            Scenario_R.Test_Recuperation'Access
             )
          );
 

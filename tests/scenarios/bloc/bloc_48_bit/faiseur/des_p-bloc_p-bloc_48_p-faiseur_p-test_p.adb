@@ -5,7 +5,8 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      use Des_P.Bloc_P.Bloc_32_P;
+      use type Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+
       c : Faiseur_Bloc_T;
       b : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       I : Des_P.Bloc_P.Bloc_32_P.Intervalle_T :=

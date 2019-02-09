@@ -1,11 +1,12 @@
 with AUnit.Test_Caller;
 
 with Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P;
-use  Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P;
 
 package body Permutations_64_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -19,14 +20,14 @@ package body Permutations_64_Suite_P is
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "IP",
-            Test_Permutations_Entrantes'Access
+            Scenario_R.Test_Permutations_Entrantes'Access
             )
          );
 
       ptr_test_suite.all.Add_Test
          (Caller.Create
             (nom_test & "IP-1",
-            Test_Permutations_Sortantes'Access
+            Scenario_R.Test_Permutations_Sortantes'Access
             )
          );
 

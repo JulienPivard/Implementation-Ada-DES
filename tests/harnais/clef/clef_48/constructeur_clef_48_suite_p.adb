@@ -1,11 +1,12 @@
 with AUnit.Test_Caller;
 
 with Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P;
-use  Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P;
 
 package body Constructeur_Clef_48_Suite_P is
 
-   package Caller is new AUnit.Test_Caller (Test_Fixt_T);
+   package Scenario_R renames Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P;
+
+   package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 
    ---------------------------------------------------------------------------
    function Fonc_Suite
@@ -19,21 +20,21 @@ package body Constructeur_Clef_48_Suite_P is
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Preparation d'une clef de 48 vide",
-         Test_Preparation'Access
+         Scenario_R.Test_Preparation'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Construction d'une clef de 48",
-         Test_Construire'Access
+         Scenario_R.Test_Construire'Access
          )
       );
 
       ptr_test_suite.all.Add_Test
       (Caller.Create
          (nom_test & "Recuperation de la clef de 48 construite",
-         Test_Recuperation'Access
+         Scenario_R.Test_Recuperation'Access
          )
       );
 
