@@ -9,7 +9,7 @@ package Des_P.Bloc_P.Bloc_32_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         bloc : Bloc_32_T;
+         Bloc : Bloc_32_T;
       end record;
 
    overriding

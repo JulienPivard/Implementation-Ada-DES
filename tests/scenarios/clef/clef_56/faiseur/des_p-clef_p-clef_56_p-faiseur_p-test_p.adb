@@ -4,12 +4,12 @@ with Des_P.Clef_P.Clef_56_I_P;
 
 package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
 
-   --  La clef de 64 bits:
+   --  La Clef de 64 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  1    5    9    13   17   21   25   29
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  33   37   41   45   49   53   57   61
-   champ_bits_de_depart : constant
+   Champ_Bits_De_Depart : constant
    Des_P.Clef_P.Clef_64_Simplifie_P.Tableau_Bits_T :=
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
@@ -18,11 +18,11 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
          others => True
       );
 
-   --  La bits clef de 56 bits attendu après construction avec la
-   --  clef de 64 bits ci-dessus.
+   --  La bits Clef de 56 bits attendu après construction avec la
+   --  Clef de 64 bits ci-dessus.
    --  1111 1111 1111 1111 1111 1111 1111
    --  0000 0000 0000 0000 0000 0000 1111
-   resultat_attendu : constant array
+   Resultat_Attendu : constant array
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -39,12 +39,12 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      constr : Faiseur_Clef_T;
-      clef : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
+      Constr : Faiseur_Clef_T;
+      Clef : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
-      clef.Init (champ_bits_de_depart);
-      T.clef_64 := clef;
-      T.constructeur := constr;
+      Clef.Init (Champ_Bits_De_Depart);
+      T.Clef_64 := Clef;
+      T.Constructeur := Constr;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -59,19 +59,19 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
-      bit_attendu : constant Bit_T := False;
+      Bit_Attendu : constant Bit_T := False;
    begin
-      T.constructeur.Preparer_Nouvelle_Clef;
+      T.Constructeur.Preparer_Nouvelle_Clef;
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
-            bit_lu : constant Bit_T := T.constructeur.Clef.Lire_Bit (I);
+            Bit_Lu : constant Bit_T := T.Constructeur.Clef.Lire_Bit (I);
          begin
             AUnit.Assertions.Assert
             (
-               bit_lu = bit_attendu,
+               Bit_Lu = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut " & bit_lu'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut " & Bit_Lu'Img &
+               " au lieu de " & Bit_Attendu'Img
             );
          end;
       end loop;
@@ -80,19 +80,19 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Construire (T : in out Test_Fixt_T) is
    begin
-      T.constructeur.Preparer_Nouvelle_Clef;
-      T.constructeur.Construire_Clef (T.clef_64);
+      T.Constructeur.Preparer_Nouvelle_Clef;
+      T.Constructeur.Construire_Clef (T.Clef_64);
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
-            bit_attendu : constant Bit_T := resultat_attendu (I);
-            bit_lu : constant Bit_T := T.constructeur.Clef.Lire_Bit (I);
+            Bit_Attendu : constant Bit_T := Resultat_Attendu (I);
+            Bit_Lu : constant Bit_T := T.Constructeur.Clef.Lire_Bit (I);
          begin
             AUnit.Assertions.Assert
             (
-               bit_lu = bit_attendu,
+               Bit_Lu = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut " & bit_lu'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut " & Bit_Lu'Img &
+               " au lieu de " & Bit_Attendu'Img
             );
          end;
       end loop;
@@ -100,22 +100,22 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
-      clef_construite : Clef_T;
+      Clef_Construite : Clef_T;
    begin
-      T.constructeur.Preparer_Nouvelle_Clef;
-      T.constructeur.Construire_Clef (T.clef_64);
-      clef_construite := T.constructeur.Recuperer_Clef;
+      T.Constructeur.Preparer_Nouvelle_Clef;
+      T.Constructeur.Construire_Clef (T.Clef_64);
+      Clef_Construite := T.Constructeur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
-            bit_attendu : constant Bit_T := resultat_attendu (I);
-            bit_lu : constant Bit_T := clef_construite.Lire_Bit (I);
+            Bit_Attendu : constant Bit_T := Resultat_Attendu (I);
+            Bit_Lu : constant Bit_T := Clef_Construite.Lire_Bit (I);
          begin
             AUnit.Assertions.Assert
             (
-               bit_lu = bit_attendu,
+               Bit_Lu = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut " & bit_lu'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut " & Bit_Lu'Img &
+               " au lieu de " & Bit_Attendu'Img
             );
          end;
       end loop;

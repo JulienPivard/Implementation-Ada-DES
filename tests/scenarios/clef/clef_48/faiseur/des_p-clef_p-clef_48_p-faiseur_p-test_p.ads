@@ -8,8 +8,8 @@ package Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : Faiseur_Clef_T;
-         clef_56 : Des_P.Clef_P.Clef_56_Simplifie_P.Clef_S_T;
+         Constructeur : Faiseur_Clef_T;
+         Clef_56 : Des_P.Clef_P.Clef_56_Simplifie_P.Clef_S_T;
       end record;
 
    package Clef_56_I_R renames Des_P.Clef_P.Clef_56_I_P;

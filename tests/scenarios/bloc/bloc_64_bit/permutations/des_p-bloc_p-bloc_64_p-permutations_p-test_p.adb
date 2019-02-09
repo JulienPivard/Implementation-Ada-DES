@@ -5,9 +5,9 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      b : Bloc_64_T;
+      B : Bloc_64_T;
    begin
-      T.bloc := b;
+      T.Bloc := B;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -27,7 +27,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      depart : constant array (Intervalle_T) of Bit_T :=
+      Depart : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -38,10 +38,10 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False
          );
-      --  Valeur attendu
+      --  Valeur Attendu
       --  11111111 11111111 00000000 00000000
       --  11111111 11111111 00000000 00000000
-      attendu : constant array (Intervalle_T) of Bit_T :=
+      Attendu : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, True, True, True, True,
             True, True, True, True, True, True, True, True,
@@ -54,22 +54,22 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
          );
    begin
       for I in Intervalle_T loop
-         T.bloc.Ecrire_Bit (I, depart (I));
+         T.Bloc.Ecrire_Bit (I, Depart (I));
       end loop;
 
-      Permutation_Entrante (T.bloc);
+      Permutation_Entrante (T.Bloc);
 
       for I in Intervalle_T loop
          declare
-            b : constant Bit_T := T.bloc.Lire_Bit (I);
-            bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
-            bit_attendu : constant Bit_IO_T := (if attendu (I) then 1 else 0);
+            B : constant Bit_T := T.Bloc.Lire_Bit (I);
+            Bit_Resulta : constant Bit_IO_T := (if B then 1 else 0);
+            Bit_Attendu : constant Bit_IO_T := (if Attendu (I) then 1 else 0);
          begin
             AUnit.Assertions.Assert
-               (bit_resulta = bit_attendu,
+               (Bit_Resulta = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut : " & bit_resulta'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut : " & Bit_Resulta'Img &
+               " au lieu de " & Bit_Attendu'Img
                );
          end;
       end loop;
@@ -83,7 +83,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      depart : constant array (Intervalle_T) of Bit_T :=
+      Depart : constant array (Intervalle_T) of Bit_T :=
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -97,7 +97,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Valeur attendue
       --  00000000 00000000 00000000 00000000
       --  11111111 11111111 11111111 11111111
-      attendu : constant array (Intervalle_T) of Bit_T :=
+      Attendu : constant array (Intervalle_T) of Bit_T :=
          (
             False, False, False, False, False, False, False, False,
             False, False, False, False, False, False, False, False,
@@ -110,22 +110,22 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
          );
    begin
       for I in Intervalle_T loop
-         T.bloc.Ecrire_Bit (I, depart (I));
+         T.Bloc.Ecrire_Bit (I, Depart (I));
       end loop;
 
-      Permutation_Sortante (T.bloc);
+      Permutation_Sortante (T.Bloc);
 
       for I in Intervalle_T loop
          declare
-            b : constant Bit_T := T.bloc.Lire_Bit (I);
-            bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
-            bit_attendu : constant Bit_IO_T := (if attendu (I) then 1 else 0);
+            B : constant Bit_T := T.Bloc.Lire_Bit (I);
+            Bit_Resulta : constant Bit_IO_T := (if B then 1 else 0);
+            Bit_Attendu : constant Bit_IO_T := (if Attendu (I) then 1 else 0);
          begin
             AUnit.Assertions.Assert
-               (bit_resulta = bit_attendu,
+               (Bit_Resulta = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut : " & bit_resulta'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut : " & Bit_Resulta'Img &
+               " au lieu de " & Bit_Attendu'Img
                );
          end;
       end loop;

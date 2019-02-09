@@ -13,10 +13,10 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
       use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
    begin
       loop
-         T.bloc.Ecrire_Bit (I, True);
+         T.Bloc.Ecrire_Bit (I, True);
          exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
          I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
-         T.bloc.Ecrire_Bit (I, False);
+         T.Bloc.Ecrire_Bit (I, False);
          exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
          I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
       end loop;
@@ -34,42 +34,42 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Xor_G_D (T : in out Test_Fixt_T) is
-      bit_resulta, bit_attendu : Bit_IO_T;
-      bloc_resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      Bit_Resulta, Bit_Attendu : Bit_IO_T;
+      Bloc_Resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
-      bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
+      Bloc_Resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.Bloc xor Clef);
 
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
+         Bit_Resulta := (if Bloc_Resultat.Lire_Bit (I) then 1 else 0);
+         Bit_Attendu := (if T.Bloc.Lire_Bit (I) xor True then 1 else 0);
 
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
+            (Bit_Resulta = Bit_Attendu,
             "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Resulta'Img &
+            " au lieu de " & Bit_Attendu'Img
             );
       end loop;
    end Test_Xor_G_D;
 
    ---------------------------------------------------------------------------
    procedure Test_Xor_D_G (T : in out Test_Fixt_T) is
-      bit_resulta, bit_attendu : Bit_IO_T;
-      bloc_resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+      Bit_Resulta, Bit_Attendu : Bit_IO_T;
+      Bloc_Resultat : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       Clef : Des_P.Clef_P.Clef_48_Simple_P.Clef_S_T;
    begin
-      bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
+      Bloc_Resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.Bloc xor Clef);
 
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
+         Bit_Resulta := (if Bloc_Resultat.Lire_Bit (I) then 1 else 0);
+         Bit_Attendu := (if T.Bloc.Lire_Bit (I) xor True then 1 else 0);
 
          AUnit.Assertions.Assert
-            (bit_resulta = bit_attendu,
+            (Bit_Resulta = Bit_Attendu,
             "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Resulta'Img &
+            " au lieu de " & Bit_Attendu'Img
             );
       end loop;
    end Test_Xor_D_G;

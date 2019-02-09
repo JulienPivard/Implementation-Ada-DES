@@ -9,7 +9,7 @@ package Des_P.Bloc_Xor_Clef_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         bloc : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
+         Bloc : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       end record;
 
    overriding

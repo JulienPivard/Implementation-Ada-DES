@@ -11,7 +11,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
    --  Nombre de départ
    --  00001111 00001111 00001111 00001111
    --  00001111 00001111 00001111 00001111
-   depart : constant array
+   Depart : constant array
       (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
       of Des_P.Bloc_P.Bit_T :=
       (
@@ -34,7 +34,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
    begin
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
-         Bloc.Ecrire_Bit (I, depart (I));
+         Bloc.Ecrire_Bit (I, Depart (I));
       end loop;
 
       T.Filtre := Filtre;
@@ -62,7 +62,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
       --  Valeur attendu
       --  00001111 00001111 00001111 00001111
       --  00010100 01010111 11010011 10110101
-      attendu : constant array
+      Attendu : constant array
          (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
          of Des_P.Bloc_P.Bit_T :=
          (
@@ -98,15 +98,15 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
          declare
-            b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
-            bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
-            bit_attendu : constant Bit_IO_T := (if attendu (I) then 1 else 0);
+            B : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
+            Bit_Resulta : constant Bit_IO_T := (if B then 1 else 0);
+            Bit_Attendu : constant Bit_IO_T := (if Attendu (I) then 1 else 0);
          begin
             AUnit.Assertions.Assert
-               (bit_resulta = bit_attendu,
+               (Bit_Resulta = Bit_Attendu,
                "Le bit " & I'Img &
-               " vaut : " & bit_resulta'Img &
-               " au lieu de " & bit_attendu'Img
+               " vaut : " & Bit_Resulta'Img &
+               " au lieu de " & Bit_Attendu'Img
                );
          end;
       end loop;

@@ -11,7 +11,7 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
    --  1    5    9    13   17   21   25   29
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  33   37   41   45   49   53   57   61
-   bits_64_attendu : constant Tableau_Bits_T :=
+   Bits_64_Attendu : constant Tableau_Bits_T :=
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
          Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
@@ -24,16 +24,16 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
-      clef_64 : Clef_T;
+      Clef_64 : Clef_T;
    begin
-      clef_64.Bits :=
+      Clef_64.Bits :=
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
          Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
          Intervalle_7_T | Intervalle_8_T => False,
          others => True
       );
-      T.clef_64 := clef_64;
+      T.Clef_64 := Clef_64;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -52,18 +52,18 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
    procedure Test_Lecture_Bit
       (T : in out Test_Fixt_T)
    is
-      bit_lu : Bit_T;
-      bit_attendu : Bit_T;
+      Bit_Lu : Bit_T;
+      Bit_Attendu : Bit_T;
    begin
       for I in Des_P.Clef_P.Clef_64_I_P.Intervalle_T loop
-         bit_lu := T.clef_64.Lire_Bit (I);
-         bit_attendu := bits_64_attendu (I);
+         Bit_Lu := T.Clef_64.Lire_Bit (I);
+         Bit_Attendu := Bits_64_Attendu (I);
          AUnit.Assertions.Assert
          (
-            bit_lu = bit_attendu,
+            Bit_Lu = Bit_Attendu,
             "Le bit " & I'Img &
-            " vaut : " & bit_lu'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Lu'Img &
+            " au lieu de " & Bit_Attendu'Img
          );
       end loop;
    end Test_Lecture_Bit;
@@ -72,28 +72,28 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
    procedure Test_Bits_Aleatoire
       (T : in out Test_Fixt_T)
    is
-      b : Bit_T;
+      B : Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
-      generateur : Bit_Aleatoire.Generator;
-      bits_attendu : Tableau_Bits_T;
-      bit_lu : Bit_T;
-      bit_attendu : Bit_T;
+      Generateur : Bit_Aleatoire.Generator;
+      Bits_Attendu : Tableau_Bits_T;
+      Bit_Lu : Bit_T;
+      Bit_Attendu : Bit_T;
    begin
-      Bit_Aleatoire.Reset (generateur);
+      Bit_Aleatoire.Reset (Generateur);
       for I in Des_P.Clef_P.Clef_64_I_P.Intervalle_T loop
-         b := Bit_Aleatoire.Random (generateur);
-         bits_attendu (I) := b;
-         T.clef_64.Bits (I) := b;
+         B := Bit_Aleatoire.Random (Generateur);
+         Bits_Attendu (I) := B;
+         T.Clef_64.Bits (I) := B;
       end loop;
       for I in Des_P.Clef_P.Clef_64_I_P.Intervalle_T loop
-         bit_lu := T.clef_64.Lire_Bit (I);
-         bit_attendu := bits_attendu (I);
+         Bit_Lu := T.Clef_64.Lire_Bit (I);
+         Bit_Attendu := Bits_Attendu (I);
          AUnit.Assertions.Assert
          (
-            bit_lu = bit_attendu,
+            Bit_Lu = Bit_Attendu,
             "Le bit " & I'Img &
-            " vaut : " & bit_lu'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Lu'Img &
+            " au lieu de " & Bit_Attendu'Img
          );
       end loop;
    end Test_Bits_Aleatoire;

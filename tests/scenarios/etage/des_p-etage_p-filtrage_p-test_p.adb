@@ -114,7 +114,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_R.Filtre_Simple_T;
-      attendu, resultat : Boolean;
+      Attendu, Resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
@@ -127,17 +127,17 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
-         resultat := Bloc.Lire_Bit (I);
+         Resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
-            attendu := False;
+            Attendu := False;
          else
-            attendu := True;
+            Attendu := True;
          end if;
          AUnit.Assertions.Assert
-            (resultat = attendu,
+            (Resultat = Attendu,
             "Le bit : " & I'Img &
-            " vaut : " & resultat'Img &
-            " au lieu de : " & attendu'Img
+            " vaut : " & Resultat'Img &
+            " au lieu de : " & Attendu'Img
             );
       end loop;
    end Test_Filtrer_Sans_Successeur;
@@ -149,7 +149,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_R.Filtre_Simple_T;
-      attendu, resultat : Boolean;
+      Attendu, Resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
@@ -162,17 +162,17 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage.Modifier_Filtre (Filtre);
       Etage.Filtrer (Bloc);
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
-         resultat := Bloc.Lire_Bit (I);
+         Resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
-            attendu := False;
+            Attendu := False;
          else
-            attendu := True;
+            Attendu := True;
          end if;
          AUnit.Assertions.Assert
-            (resultat = attendu,
+            (Resultat = Attendu,
             "Le bit : " & I'Img &
-            " vaut : " & resultat'Img &
-            " au lieu de : " & attendu'Img
+            " vaut : " & Resultat'Img &
+            " au lieu de : " & Attendu'Img
             );
       end loop;
    end Test_Filtrer_Avec_Successeur;
@@ -185,7 +185,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_R.Filtre_Simple_T;
-      attendu, resultat : Boolean;
+      Attendu, Resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
@@ -198,17 +198,17 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage.Modifier_Filtre (Filtre);
       Etage.Iterer (Bloc);
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
-         resultat := Bloc.Lire_Bit (I);
+         Resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
-            attendu := False;
+            Attendu := False;
          else
-            attendu := True;
+            Attendu := True;
          end if;
          AUnit.Assertions.Assert
-            (resultat = attendu,
+            (Resultat = Attendu,
             "Le bit : " & I'Img &
-            " vaut : " & resultat'Img &
-            " au lieu de : " & attendu'Img
+            " vaut : " & Resultat'Img &
+            " au lieu de : " & Attendu'Img
             );
       end loop;
    end Test_Iterer_Sans_Successeur;
@@ -220,7 +220,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage : Etage_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
       Filtre : Filtre_Simple_R.Filtre_Simple_T;
-      attendu, resultat : Boolean;
+      Attendu, Resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
@@ -235,17 +235,17 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       Etage.Modifier_Successeur (T.Etage);
       Etage.Iterer (Bloc);
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
-         resultat := Bloc.Lire_Bit (I);
+         Resultat := Bloc.Lire_Bit (I);
          if (I mod 2) = 0 then
-            attendu := True;
+            Attendu := True;
          else
-            attendu := False;
+            Attendu := False;
          end if;
          AUnit.Assertions.Assert
-            (resultat = attendu,
+            (Resultat = Attendu,
             "Le bit : " & I'Img &
-            " vaut : " & resultat'Img &
-            " au lieu de : " & attendu'Img
+            " vaut : " & Resultat'Img &
+            " au lieu de : " & Attendu'Img
             );
       end loop;
    end Test_Iterer_Avec_Successeur;

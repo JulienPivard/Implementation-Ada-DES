@@ -19,7 +19,7 @@ package Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
    --  0 0111 1
    --  1 1111 0
    --  1 0110 1
-   resultat_attendu : constant array
+   Resultat_Attendu : constant array
       (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T) of Bit_T :=
          (
             False, True, True, True, False, False,
@@ -34,8 +34,8 @@ package Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : Faiseur_Bloc_T;
-         brut : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+         Constructeur : Faiseur_Bloc_T;
+         Brut         : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       end record;
 
    overriding

@@ -8,9 +8,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      b : Bloc_48_T;
+      B : Bloc_48_T;
    begin
-      T.bloc := b;
+      T.Bloc := B;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -26,17 +26,17 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    procedure Test_Initialisation
       (T : in out Test_Fixt_T)
    is
-      b : constant Bit_T := False;
+      B : constant Bit_T := False;
    begin
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          declare
-            valeur_bit : constant Bit_IO_T :=
-               (if T.bloc.Bits (I) then 1 else 0);
+            Valeur_Bit : constant Bit_IO_T :=
+               (if T.Bloc.Bits (I) then 1 else 0);
          begin
             AUnit.Assertions.Assert
-               (T.bloc.Bits (I) = b,
+               (T.Bloc.Bits (I) = B,
                "Le bit " & I'Img &
-               " vaut : " & valeur_bit'Img &
+               " vaut : " & Valeur_Bit'Img &
                " au lieu de 0"
                );
          end;
@@ -52,40 +52,40 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (
-               (for all E of T.bloc.Bits => E = False),
+               (for all E of T.Bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
-         T.bloc.Ecrire_Bit (I, True);
+         T.Bloc.Ecrire_Bit (I, True);
          Nb_Bit_A_Un := 0;
          for J in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
             declare
                use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
-               b : constant Bit_T := J = I;
-               valeur_attendu : constant Bit_IO_T := (if b then 1 else 0);
+               B : constant Bit_T := J = I;
+               Valeur_Attendu : constant Bit_IO_T := (if B then 1 else 0);
                --  valeur trouvée interne
-               v_t_i : constant Bit_T := T.bloc.Bits (J);
+               V_T_I : constant Bit_T := T.Bloc.Bits (J);
                --  valeur trouvée lue
-               v_t_l : constant Bit_T := T.bloc.Lire_Bit (J);
+               V_T_L : constant Bit_T := T.Bloc.Lire_Bit (J);
 
-               v_t_i_io : constant Bit_IO_T := (if v_t_i then 1 else 0);
-               v_t_l_io : constant Bit_IO_T := (if v_t_l then 1 else 0);
+               V_T_I_IO : constant Bit_IO_T := (if V_T_I then 1 else 0);
+               V_T_L_IO : constant Bit_IO_T := (if V_T_L then 1 else 0);
             begin
-               if v_t_l then
+               if V_T_L then
                   Nb_Bit_A_Un := Nb_Bit_A_Un + 1;
                end if;
                AUnit.Assertions.Assert
                   (
-                     v_t_i = b,
+                     V_T_I = B,
                      "Le bit interne " & J'Img &
-                     " vaut : " & v_t_i_io'Img &
-                     " au lieu de " & valeur_attendu'Img
+                     " vaut : " & V_T_I_IO'Img &
+                     " au lieu de " & Valeur_Attendu'Img
                   );
                AUnit.Assertions.Assert
                   (
-                     v_t_l = b,
+                     V_T_L = B,
                      "Le bit lu " & J'Img &
-                     " vaut : " & v_t_l_io'Img &
-                     " au lieu de " & valeur_attendu'Img
+                     " vaut : " & V_T_L_IO'Img &
+                     " au lieu de " & Valeur_Attendu'Img
                   );
             end;
          end loop;
@@ -95,10 +95,10 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
                "Le nombre de bit a 1 devrait etre 1 et pas " &
                Nb_Bit_A_Un'Img
             );
-         T.bloc.Ecrire_Bit (I, False);
+         T.Bloc.Ecrire_Bit (I, False);
          AUnit.Assertions.Assert
             (
-               (for all E of T.bloc.Bits => E = False),
+               (for all E of T.Bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
       end loop;
@@ -108,37 +108,37 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    procedure Test_Change_Bits_Aleatoirement
       (T : in out Test_Fixt_T)
    is
-      attendu : Tableau_Bits_T;
+      Attendu : Tableau_Bits_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
-      generateur : Bit_Aleatoire.Generator;
+      Generateur : Bit_Aleatoire.Generator;
    begin
 
-      Bit_Aleatoire.Reset (generateur);
+      Bit_Aleatoire.Reset (Generateur);
 
       --  Génère un grand nombre de configuration aléatoire
       for C in Interval_Nb_Conf_Genere_T loop
 
          for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
             declare
-               b : constant Bit_T := Bit_Aleatoire.Random (generateur);
+               B : constant Bit_T := Bit_Aleatoire.Random (Generateur);
             begin
-               T.bloc.Ecrire_Bit (I, b);
-               attendu (I) := b;
+               T.Bloc.Ecrire_Bit (I, B);
+               Attendu (I) := B;
             end;
          end loop;
 
          for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
             declare
-               valeur_bit_resulta : constant Bit_IO_T :=
-                  (if T.bloc.Lire_Bit (I) then 1 else 0);
-               valeur_bit_attendu : constant Bit_IO_T :=
-                  (if attendu (I) then 1 else 0);
+               Valeur_Bit_Resulta : constant Bit_IO_T :=
+                  (if T.Bloc.Lire_Bit (I) then 1 else 0);
+               Valeur_Bit_Attendu : constant Bit_IO_T :=
+                  (if Attendu (I) then 1 else 0);
             begin
                AUnit.Assertions.Assert
-                  (T.bloc.Lire_Bit (I) = attendu (I),
+                  (T.Bloc.Lire_Bit (I) = Attendu (I),
                   "Le bit " & I'Img &
-                  " vaut : " & valeur_bit_resulta'Img &
-                  " au lieu de " & valeur_bit_attendu'Img
+                  " vaut : " & Valeur_Bit_Resulta'Img &
+                  " au lieu de " & Valeur_Bit_Attendu'Img
                   );
             end;
          end loop;

@@ -6,7 +6,7 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
    type Bit_IO_T is range 0 .. 1;
 
    --  valeur du brut
-   brut_attendu : constant Bloc_32_Brut_T :=
+   Brut_Attendu : constant Bloc_32_Brut_T :=
       2#0000_1111_0000_1111_0000_1111_0000_1111#;
    --   32   28   24   20   16   12   8    4
 
@@ -16,7 +16,7 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
    subtype Intervalle_4_T is Intervalle_T range 25 .. 28;
 
    --  11110000_11110000_11110000_11110000
-   resultat_attendu : constant array
+   Resultat_Attendu : constant array
       (Intervalle_T) of Bit_T :=
          (
             Intervalle_1_T | Intervalle_2_T |
@@ -26,7 +26,7 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : Faiseur_Bloc_T;
+         Constructeur : Faiseur_Bloc_T;
       end record;
 
    overriding

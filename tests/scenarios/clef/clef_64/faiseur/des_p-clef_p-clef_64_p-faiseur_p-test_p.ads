@@ -5,7 +5,7 @@ package Des_P.Clef_P.Clef_64_P.Faiseur_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         constructeur : Faiseur_Clef_T;
+         Constructeur : Faiseur_Clef_T;
       end record;
 
    package Clef_64_I_R renames Des_P.Clef_P.Clef_64_I_P;

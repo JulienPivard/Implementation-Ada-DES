@@ -7,48 +7,48 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       use type Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
 
-      c : Faiseur_Bloc_T;
-      b : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+      C : Faiseur_Bloc_T;
+      B : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       I : Des_P.Bloc_P.Bloc_32_P.Intervalle_T :=
          Des_P.Bloc_P.Bloc_32_P.Intervalle_T'First;
    begin
-      c.Preparer_Nouveau_Bloc;
-      T.constructeur := c;
+      C.Preparer_Nouveau_Bloc;
+      T.Constructeur := C;
       Construit_Bloc_32 :
       --  1110 0111 1111 0110
       --  1110 0111 1111 0110
       loop
          for J in Intervalle_1_T loop
-            b.Ecrire_Bit (I, True);
+            B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
-         b.Ecrire_Bit (I, False);
+         B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
-         b.Ecrire_Bit (I, False);
+         B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
          for J in Intervalle_2_T loop
-            b.Ecrire_Bit (I, True);
+            B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
-         b.Ecrire_Bit (I, False);
+         B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
          for J in Intervalle_3_T loop
-            b.Ecrire_Bit (I, True);
+            B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
          end loop;
 
-         b.Ecrire_Bit (I, False);
+         B.Ecrire_Bit (I, False);
          exit Construit_Bloc_32 when
             I = Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last;
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
       end loop Construit_Bloc_32;
-      T.brut := b;
+      T.Brut := B;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -63,15 +63,15 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Preparation (T : in out Test_Fixt_T) is
-      b : constant Bit_T := False;
-      valeur_bit : Bit_IO_T;
+      B : constant Bit_T := False;
+      Valeur_Bit : Bit_IO_T;
    begin
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         valeur_bit := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
+         Valeur_Bit := (if T.Constructeur.Bloc.Lire_Bit (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.constructeur.Bloc.Lire_Bit (I) = b,
+            (T.Constructeur.Bloc.Lire_Bit (I) = B,
             "Le bit " & I'Img &
-            " vaut : " & valeur_bit'Img &
+            " vaut : " & Valeur_Bit'Img &
             " au lieu de 0"
             );
       end loop;
@@ -79,36 +79,36 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Construction (T : in out Test_Fixt_T) is
-      bit_resulta, bit_attendu : Bit_IO_T;
+      Bit_Resulta, Bit_Attendu : Bit_IO_T;
    begin
-      T.constructeur.Construire_Bloc (T.brut);
+      T.Constructeur.Construire_Bloc (T.Brut);
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         bit_resulta := (if T.constructeur.Bloc.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if resultat_attendu (I) then 1 else 0);
+         Bit_Resulta := (if T.Constructeur.Bloc.Lire_Bit (I) then 1 else 0);
+         Bit_Attendu := (if Resultat_Attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (T.constructeur.Bloc.Lire_Bit (I) = resultat_attendu (I),
+            (T.Constructeur.Bloc.Lire_Bit (I) = Resultat_Attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Resulta'Img &
+            " au lieu de " & Bit_Attendu'Img
             );
       end loop;
    end Test_Construction;
 
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
-      bloc_resultat : Bloc_48_T;
-      bit_resulta, bit_attendu : Bit_IO_T;
+      Bloc_Resultat : Bloc_48_T;
+      Bit_Resulta, Bit_Attendu : Bit_IO_T;
    begin
-      T.constructeur.Construire_Bloc (T.brut);
-      bloc_resultat := T.constructeur.Recuperer_Bloc;
+      T.Constructeur.Construire_Bloc (T.Brut);
+      Bloc_Resultat := T.Constructeur.Recuperer_Bloc;
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
-         bit_attendu := (if resultat_attendu (I) then 1 else 0);
+         Bit_Resulta := (if Bloc_Resultat.Lire_Bit (I) then 1 else 0);
+         Bit_Attendu := (if Resultat_Attendu (I) then 1 else 0);
          AUnit.Assertions.Assert
-            (bloc_resultat.Lire_Bit (I) = resultat_attendu (I),
+            (Bloc_Resultat.Lire_Bit (I) = Resultat_Attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & bit_resulta'Img &
-            " au lieu de " & bit_attendu'Img
+            " vaut : " & Bit_Resulta'Img &
+            " au lieu de " & Bit_Attendu'Img
             );
       end loop;
    end Test_Recuperation;

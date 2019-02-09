@@ -5,7 +5,7 @@ package Des_P.Clef_P.Clef_48_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         clef : Clef_T;
+         Clef : Clef_T;
       end record;
 
    package Clef_48_I_R renames Des_P.Clef_P.Clef_48_I_P;

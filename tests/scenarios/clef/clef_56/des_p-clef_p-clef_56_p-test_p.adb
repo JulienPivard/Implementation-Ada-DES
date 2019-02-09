@@ -8,7 +8,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
 
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56 : constant array
+   C56 : constant array
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -20,7 +20,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
 
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_1_decalage : constant array
+   C56_1_Decalage : constant array
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -32,7 +32,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
 
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_2_decalage : constant array
+   C56_2_Decalage : constant array
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -44,7 +44,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
 
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   c56_3_decalage : constant array
+   C56_3_Decalage : constant array
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -58,7 +58,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_0_decalage : constant array
+   C48_0_Decalage : constant array
       (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -76,7 +76,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_1_decalage : constant array
+   C48_1_Decalage : constant array
       (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -94,7 +94,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_2_decalage : constant array
+   C48_2_Decalage : constant array
       (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -112,7 +112,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   c48_3_decalage : constant array
+   C48_3_Decalage : constant array
       (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
       of Bit_T :=
          (
@@ -135,26 +135,26 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       subtype Intervalle_2_T is Clef_56_I_R.Decalage_T range 8 .. 11;
       subtype Intervalle_3_T is Clef_56_I_R.Decalage_T range 16 .. 19;
       subtype Intervalle_4_T is Clef_56_I_R.Decalage_T range 24 .. 27;
-      clef_56 : Clef_T;
+      Clef_56 : Clef_T;
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
-      champ1 : constant Champ_De_Bits_T :=
+      Champ1 : constant Champ_De_Bits_T :=
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T => False,
             others => True
          );
       --  0000 1111 0000 1111 0000 1111 0000
-      champ2 : constant Champ_De_Bits_T :=
+      Champ2 : constant Champ_De_Bits_T :=
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T => True,
             others => False
          );
    begin
-      clef_56.C1 := champ1;
-      clef_56.C2 := champ2;
-      T.clef_56 := clef_56;
+      Clef_56.C1 := Champ1;
+      Clef_56.C2 := Champ2;
+      T.Clef_56 := Clef_56;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -173,27 +173,27 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Decaler_0_Bit_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decaler_Bits_A_Gauche
          (Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last + 1);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decaler_Bits_A_Gauche
          (-(Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last) - 1);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_Decaler_0_Bit_A_Gauche;
 
@@ -201,30 +201,30 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Decaler_1_Bit_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1;
+      Decalage_Attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (decalage_attendu);
+      T.Clef_56.Decaler_Bits_A_Gauche (Decalage_Attendu);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last + 2);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (-(Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last));
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_Decaler_1_Bit_A_Gauche;
 
@@ -232,30 +232,30 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Decaler_2_Bit_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 2;
+      Decalage_Attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 2;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (decalage_attendu);
+      T.Clef_56.Decaler_Bits_A_Gauche (Decalage_Attendu);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last + 3);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (-(Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last) + 1);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_Decaler_2_Bit_A_Gauche;
 
@@ -263,30 +263,30 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Decaler_3_Bit_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 3;
+      Decalage_Attendu : constant Des_P.Clef_P.Clef_56_I_P.Decalage_T := 3;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (decalage_attendu);
+      T.Clef_56.Decaler_Bits_A_Gauche (Decalage_Attendu);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last + 4);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decalage := 0;
-      T.clef_56.Decaler_Bits_A_Gauche
+      T.Clef_56.Decalage := 0;
+      T.Clef_56.Decaler_Bits_A_Gauche
          (-(Des_P.Clef_P.Clef_56_I_P.Decalage_T'Last) + 2);
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_Decaler_3_Bit_A_Gauche;
 
@@ -294,15 +294,15 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_1_Decalage_Successif_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 1;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 1;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_1_Decalage_Successif_A_Gauche;
 
@@ -310,15 +310,15 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_1_Decalage_Successif_A_Droite
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 27;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 27;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_1_Decalage_Successif_A_Droite;
 
@@ -326,22 +326,22 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_2_Decalage_Successif_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 1;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 1;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 2;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 2;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_2_Decalage_Successif_A_Gauche;
 
@@ -349,22 +349,22 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_2_Decalage_Successif_A_Droite
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 27;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 27;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 26;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 26;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_2_Decalage_Successif_A_Droite;
 
@@ -372,29 +372,29 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_3_Decalage_Successif_A_Gauche
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 1;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 1;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 2;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 2;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Gauche;
-      decalage_attendu := 3;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      Decalage_Attendu := 3;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_3_Decalage_Successif_A_Gauche;
 
@@ -402,29 +402,29 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_3_Decalage_Successif_A_Droite
       (T : in out Test_Fixt_T)
    is
-      decalage_attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
+      Decalage_Attendu : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 0;
       use type Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    begin
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 27;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 27;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 26;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 26;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
-      T.clef_56.Decaler_Bits_A_Droite (1);
-      decalage_attendu := 25;
+      T.Clef_56.Decaler_Bits_A_Droite (1);
+      Decalage_Attendu := 25;
       AUnit.Assertions.Assert
-         (T.clef_56.Decalage = decalage_attendu,
-         "Le decalage est de " & T.clef_56.Decalage'Img &
-         " au lieu de " & decalage_attendu'Img
+         (T.Clef_56.Decalage = Decalage_Attendu,
+         "Le decalage est de " & T.Clef_56.Decalage'Img &
+         " au lieu de " & Decalage_Attendu'Img
          );
    end Test_3_Decalage_Successif_A_Droite;
 
@@ -435,10 +435,10 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    begin
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56 (I),
+            (T.Clef_56.Lire_Bit (I) = C56 (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56 (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56 (I)'Img
             );
       end loop;
    end Test_Lire_Bit_Sans_Decalage;
@@ -448,13 +448,13 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (1);
+      T.Clef_56.Decaler_Bits_A_Gauche (1);
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_1_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_1_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_1_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_1_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_1_Decalage;
@@ -464,13 +464,13 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (2);
+      T.Clef_56.Decaler_Bits_A_Gauche (2);
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_2_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_2_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_2_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_2_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_2_Decalage;
@@ -480,13 +480,13 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (3);
+      T.Clef_56.Decaler_Bits_A_Gauche (3);
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_3_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_3_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_3_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_3_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_3_Decalage;
@@ -496,13 +496,13 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_1_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_1_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_1_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_1_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_1_Decalage_Successif;
@@ -512,14 +512,14 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
-      T.clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_2_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_2_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_2_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_2_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_2_Decalage_Successif;
@@ -529,15 +529,15 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
-      T.clef_56.Decaler_Bits_A_Gauche;
-      T.clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
       for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef_56.Lire_Bit (I) = c56_3_decalage (I),
+            (T.Clef_56.Lire_Bit (I) = C56_3_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef_56.Lire_Bit (I)'Img &
-            " au lieu de " & c56_3_decalage (I)'Img
+            " vaut : " & T.Clef_56.Lire_Bit (I)'Img &
+            " au lieu de " & C56_3_Decalage (I)'Img
             );
       end loop;
    end Test_Lire_Bit_3_Decalage_Successif;
@@ -546,17 +546,17 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Construire_Clef_48_0_Decalages
       (T : in out Test_Fixt_T)
    is
-      c : Des_P.Clef_P.Clef_48_P.Clef_T;
+      C : Des_P.Clef_P.Clef_48_P.Clef_T;
    begin
       T.Faiseur.Preparer_Nouvelle_Clef;
-      T.Faiseur.Construire_Clef (T.clef_56);
-      c := T.Faiseur.Recuperer_Clef;
+      T.Faiseur.Construire_Clef (T.Clef_56);
+      C := T.Faiseur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (c.Lire_Bit (I) = c48_0_decalage (I),
+            (C.Lire_Bit (I) = C48_0_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & c.Lire_Bit (I)'Img &
-            " au lieu de " & c48_0_decalage (I)'Img
+            " vaut : " & C.Lire_Bit (I)'Img &
+            " au lieu de " & C48_0_Decalage (I)'Img
             );
       end loop;
    end Test_Construire_Clef_48_0_Decalages;
@@ -565,18 +565,18 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Construire_Clef_48_1_Decalages
       (T : in out Test_Fixt_T)
    is
-      c : Des_P.Clef_P.Clef_48_P.Clef_T;
+      C : Des_P.Clef_P.Clef_48_P.Clef_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche;
+      T.Clef_56.Decaler_Bits_A_Gauche;
       T.Faiseur.Preparer_Nouvelle_Clef;
-      T.Faiseur.Construire_Clef (T.clef_56);
-      c := T.Faiseur.Recuperer_Clef;
+      T.Faiseur.Construire_Clef (T.Clef_56);
+      C := T.Faiseur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (c.Lire_Bit (I) = c48_1_decalage (I),
+            (C.Lire_Bit (I) = C48_1_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & c.Lire_Bit (I)'Img &
-            " au lieu de " & c48_1_decalage (I)'Img
+            " vaut : " & C.Lire_Bit (I)'Img &
+            " au lieu de " & C48_1_Decalage (I)'Img
             );
       end loop;
    end Test_Construire_Clef_48_1_Decalages;
@@ -585,18 +585,18 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Construire_Clef_48_2_Decalages
       (T : in out Test_Fixt_T)
    is
-      c : Des_P.Clef_P.Clef_48_P.Clef_T;
+      C : Des_P.Clef_P.Clef_48_P.Clef_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (2);
+      T.Clef_56.Decaler_Bits_A_Gauche (2);
       T.Faiseur.Preparer_Nouvelle_Clef;
-      T.Faiseur.Construire_Clef (T.clef_56);
-      c := T.Faiseur.Recuperer_Clef;
+      T.Faiseur.Construire_Clef (T.Clef_56);
+      C := T.Faiseur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (c.Lire_Bit (I) = c48_2_decalage (I),
+            (C.Lire_Bit (I) = C48_2_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & c.Lire_Bit (I)'Img &
-            " au lieu de " & c48_2_decalage (I)'Img
+            " vaut : " & C.Lire_Bit (I)'Img &
+            " au lieu de " & C48_2_Decalage (I)'Img
             );
       end loop;
    end Test_Construire_Clef_48_2_Decalages;
@@ -605,18 +605,18 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Test_Construire_Clef_48_3_Decalages
       (T : in out Test_Fixt_T)
    is
-      c : Des_P.Clef_P.Clef_48_P.Clef_T;
+      C : Des_P.Clef_P.Clef_48_P.Clef_T;
    begin
-      T.clef_56.Decaler_Bits_A_Gauche (3);
+      T.Clef_56.Decaler_Bits_A_Gauche (3);
       T.Faiseur.Preparer_Nouvelle_Clef;
-      T.Faiseur.Construire_Clef (T.clef_56);
-      c := T.Faiseur.Recuperer_Clef;
+      T.Faiseur.Construire_Clef (T.Clef_56);
+      C := T.Faiseur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (c.Lire_Bit (I) = c48_3_decalage (I),
+            (C.Lire_Bit (I) = C48_3_Decalage (I),
             "Le bit " & I'Img &
-            " vaut : " & c.Lire_Bit (I)'Img &
-            " au lieu de " & c48_3_decalage (I)'Img
+            " vaut : " & C.Lire_Bit (I)'Img &
+            " au lieu de " & C48_3_Decalage (I)'Img
             );
       end loop;
    end Test_Construire_Clef_48_3_Decalages;

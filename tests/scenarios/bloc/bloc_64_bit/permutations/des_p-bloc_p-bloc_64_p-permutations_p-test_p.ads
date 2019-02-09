@@ -7,7 +7,7 @@ package Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         bloc : Bloc_64_T;
+         Bloc : Bloc_64_T;
       end record;
 
    overriding

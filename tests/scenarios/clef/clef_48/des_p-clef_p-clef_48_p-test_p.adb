@@ -11,7 +11,7 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
       C : Clef_T;
    begin
       C.Bits := (others => False);
-      T.clef := C;
+      T.Clef := C;
    end Set_Up;
 
    ---------------------------------------------------------------------------
@@ -26,14 +26,14 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Lecture_Bit (T : in out Test_Fixt_T) is
-      bits_attendu : constant Tableau_Bits_T :=
+      Bits_Attendu : constant Tableau_Bits_T :=
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,
             others => True
          );
    begin
-      T.clef.Bits :=
+      T.Clef.Bits :=
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,
@@ -41,33 +41,33 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
          );
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef.Lire_Bit (I) = bits_attendu (I),
+            (T.Clef.Lire_Bit (I) = Bits_Attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef.Lire_Bit (I)'Img &
-            " au lieu de " & bits_attendu (I)'Img
+            " vaut : " & T.Clef.Lire_Bit (I)'Img &
+            " au lieu de " & Bits_Attendu (I)'Img
             );
       end loop;
    end Test_Lecture_Bit;
 
    ---------------------------------------------------------------------------
    procedure Test_Bits_Aleatoire (T : in out Test_Fixt_T) is
-      b : Bit_T;
+      B : Bit_T;
       package Bit_Aleatoire is new Ada.Numerics.Discrete_Random (Bit_T);
-      generateur : Bit_Aleatoire.Generator;
-      bits_attendu : Tableau_Bits_T;
+      Generateur : Bit_Aleatoire.Generator;
+      Bits_Attendu : Tableau_Bits_T;
    begin
-      Bit_Aleatoire.Reset (generateur);
+      Bit_Aleatoire.Reset (Generateur);
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
-         b := Bit_Aleatoire.Random (generateur);
-         bits_attendu (I) := b;
-         T.clef.Bits (I) := b;
+         B := Bit_Aleatoire.Random (Generateur);
+         Bits_Attendu (I) := B;
+         T.Clef.Bits (I) := B;
       end loop;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
-            (T.clef.Lire_Bit (I) = bits_attendu (I),
+            (T.Clef.Lire_Bit (I) = Bits_Attendu (I),
             "Le bit " & I'Img &
-            " vaut : " & T.clef.Lire_Bit (I)'Img &
-            " au lieu de " & bits_attendu (I)'Img
+            " vaut : " & T.Clef.Lire_Bit (I)'Img &
+            " au lieu de " & Bits_Attendu (I)'Img
             );
       end loop;
    end Test_Bits_Aleatoire;
