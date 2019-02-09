@@ -12,6 +12,7 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  33   37   41   45   49   53   57   61
    Bits_64_Attendu : constant Tableau_Bits_T :=
+      Tableau_Bits_T'
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
          Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
@@ -27,12 +28,13 @@ package body Des_P.Clef_P.Clef_64_P.Test_P is
       Clef_64 : Clef_T;
    begin
       Clef_64.Bits :=
-      (
-         Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
-         Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
-         Intervalle_7_T | Intervalle_8_T => False,
-         others => True
-      );
+         Tableau_Bits_T'
+         (
+            Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+            Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
+            Intervalle_7_T | Intervalle_8_T => False,
+            others => True
+         );
       T.Clef_64 := Clef_64;
    end Set_Up;
 

@@ -139,6 +139,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
       Champ1 : constant Champ_De_Bits_T :=
+         Champ_De_Bits_T'
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T => False,
@@ -146,6 +147,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
          );
       --  0000 1111 0000 1111 0000 1111 0000
       Champ2 : constant Champ_De_Bits_T :=
+         Champ_De_Bits_T'
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T => True,

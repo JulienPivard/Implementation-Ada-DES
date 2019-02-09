@@ -28,14 +28,14 @@ package body Des_P.Clef_P.Clef_64_Simplifie_P is
    overriding
    procedure Initialize (Clef : in out Clef_S_T) is
    begin
-      Clef.Champ := (others => False);
+      Clef.Champ := Tableau_Bits_T'(others => False);
    end Initialize;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Finalize (Clef : in out Clef_S_T) is
    begin
-      Clef.Champ := (others => False);
+      Clef.Champ := Tableau_Bits_T'(others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------

@@ -54,9 +54,10 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Construction (T : in out Test_Fixt_T) is
+      package Clef_Simple_R renames Des_P.Clef_P.Clef_64_Simplifie_P;
       C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
-      C_64.Init ((others => False));
+      C_64.Init (Clef_Simple_R.Tableau_Bits_T'(others => False));
       T.C.Construire (C_64);
       AUnit.Assertions.Assert
          (
@@ -80,10 +81,11 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Recuperation (T : in out Test_Fixt_T) is
+      package Clef_Simple_R renames Des_P.Clef_P.Clef_64_Simplifie_P;
       C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
       Chaine : Chaine_T;
    begin
-      C_64.Init ((others => False));
+      C_64.Init (Clef_Simple_R.Tableau_Bits_T'(others => False));
       T.C.Construire (C_64);
       Chaine := Chaine_T (T.C.Recuperer_Chaine);
       AUnit.Assertions.Assert

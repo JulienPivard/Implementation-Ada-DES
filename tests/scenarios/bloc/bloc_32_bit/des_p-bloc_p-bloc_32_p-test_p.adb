@@ -163,6 +163,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
       I, J : Intervalle_T;
       Valeur : Bit_T;
       Attendu : constant Tableau_Bits_T :=
+         Tableau_Bits_T'
          (
             False, False, False, False, True, True, True, True,
             True, True, True, True, False, False, False, False,

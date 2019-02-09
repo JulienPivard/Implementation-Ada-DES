@@ -78,8 +78,8 @@ package body Des_P.Filtre_P.Corps_P.Dechiffre_P.Test_P is
       --  Valeur attendu
       --  11111000 X0011000 0X110X10 X011 1101 00X10X11 00X10010 11000X11
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T := T.Bloc;
-      Champs_48 : constant
-      Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
+      Champs_48 : constant Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
+         Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T'
          (
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True,

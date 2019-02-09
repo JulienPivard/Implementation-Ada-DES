@@ -10,7 +10,7 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
    procedure Set_Up (T : in out Test_Fixt_T) is
       C : Clef_T;
    begin
-      C.Bits := (others => False);
+      C.Bits := Tableau_Bits_T'(others => False);
       T.Clef := C;
    end Set_Up;
 
@@ -27,13 +27,14 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Lecture_Bit (T : in out Test_Fixt_T) is
       Bits_Attendu : constant Tableau_Bits_T :=
+         Tableau_Bits_T'
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,
             others => True
          );
    begin
-      T.Clef.Bits :=
+      T.Clef.Bits := Tableau_Bits_T'
          (
             Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
             Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,

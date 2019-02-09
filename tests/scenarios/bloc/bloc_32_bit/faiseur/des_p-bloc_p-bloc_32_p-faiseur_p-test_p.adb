@@ -112,7 +112,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
       Brut : Des_P.Bloc_P.Bloc_48_P.Bloc_48_T;
       Res_Attendu : Bloc_32_T;
    begin
-      Res_Attendu.Bits :=
+      Res_Attendu.Bits := Tableau_Bits_T'
          (
             True, True, True, False,
             False, False, False, True,

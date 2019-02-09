@@ -8,6 +8,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    Champ_Bits_De_Depart : constant
    Des_P.Clef_P.Clef_56_Simplifie_P.Champ_De_Bits_T :=
+      Des_P.Clef_P.Clef_56_Simplifie_P.Champ_De_Bits_T'
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
          Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
@@ -20,6 +21,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
    Resultat_Attendu : constant Tableau_Bits_T :=
+      Tableau_Bits_T'
       (
          True, False, False, True, False, True,
          False, False, True, True, True, False,

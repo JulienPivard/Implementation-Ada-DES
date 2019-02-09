@@ -54,6 +54,7 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
             True, False, True, True, True, False, True, False
          );
       C : constant Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T :=
+         Des_P.Clef_P.Clef_48_Simplifie_P.Champ_De_Bits_T'
          (
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True,
