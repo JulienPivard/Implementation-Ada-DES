@@ -61,6 +61,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
    begin
       C_64.Init ((others => False));
       T.C.Construire (C_64);
+      Construction_Estages :
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Explorer_R.Lire_Etage_Suivant (T.C.Chaine.Tete);
@@ -104,7 +105,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
             "Il y a : " & C'Img &
             " estages, au lieu de 17"
             );
-      end;
+      end Construction_Estages;
    end Test_Construction;
 
    ---------------------------------------------------------------------------
@@ -115,6 +116,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
       C_64.Init ((others => False));
       T.C.Construire (C_64);
       Chaine := Chaine_T (T.C.Recuperer_Chaine);
+      Recuperation_Et_Verification_Estage :
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
             Explorer_R.Lire_Etage_Suivant (Chaine.Tete);
@@ -158,7 +160,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
             "Il y a : " & C'Img &
             " estages, au lieu de 17"
             );
-      end;
+      end Recuperation_Et_Verification_Estage;
    end Test_Recuperation;
 
 end Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P;

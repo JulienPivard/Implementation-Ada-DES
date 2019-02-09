@@ -44,6 +44,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_1_Generateur'Access;
       Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Original);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -69,10 +70,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          T.Chaine.Filtre_Sortie :=
             Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
@@ -96,7 +98,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_1;
 
    ---------------------------------------------------------------------------
@@ -108,6 +110,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_1_Generateur'Access;
       Lecteur_1_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -135,10 +138,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          T.Chaine.Filtre_Sortie :=
             Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
@@ -162,7 +166,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiff_1;
 
    ---------------------------------------------------------------------------
@@ -174,6 +178,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_2048_Generateur'Access;
       Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Original);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -198,10 +203,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          --  Ajoute le filtre de sortie.
          T.Chaine.Filtre_Sortie := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
@@ -225,7 +231,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_2048;
 
    ---------------------------------------------------------------------------
@@ -237,6 +243,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_2048_Generateur'Access;
       Lecteur_2048_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -264,10 +271,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          T.Chaine.Filtre_Sortie :=
             Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
@@ -291,7 +299,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiff_2048;
 
    ---------------------------------------------------------------------------
@@ -303,6 +311,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_8192_Generateur'Access;
       Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Original);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -327,10 +336,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          --  Ajoute le filtre de sortie.
          T.Chaine.Filtre_Sortie := Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
@@ -354,7 +364,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_8192;
 
    ---------------------------------------------------------------------------
@@ -366,6 +376,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       Ecriveur := Ecriveur_8192_Generateur'Access;
       Lecteur_8192_Generateur.Changer_Brut_Genere (Brut_Attendu);
 
+      Initialisation_Chaine_Filtres :
       declare
          Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef (Const_56, T.Clef);
@@ -393,10 +404,11 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
          T.Chaine.Filtre_Sortie :=
             Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
                (Fabrique.Fabriquer_Sortie);
-      end;
+      end Initialisation_Chaine_Filtres;
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
@@ -420,7 +432,7 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiff_8192;
 
 end Des_P.Chaine_P.Taches_P.Test_P;

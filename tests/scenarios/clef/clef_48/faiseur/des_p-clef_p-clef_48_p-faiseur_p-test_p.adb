@@ -56,6 +56,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
    begin
       T.Constructeur.Preparer_Nouvelle_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
+         Verification_Bit_Init :
          declare
             Bit_Lu : constant Bit_T := T.Constructeur.Clef.Lire_Bit (I);
          begin
@@ -64,7 +65,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
             "Le bit " & I'Img &
             " vaut " & Bit_Lu'Img &
             " au lieu de " & Bit_Attendu'Img);
-         end;
+         end Verification_Bit_Init;
       end loop;
    end Test_Preparation;
 
@@ -74,6 +75,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
       T.Constructeur.Preparer_Nouvelle_Clef;
       T.Constructeur.Construire_Clef (T.Clef_56);
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
+         Verification_Bit :
          declare
             Bit_Lu : constant Bit_T := T.Constructeur.Clef.Lire_Bit (I);
             Bit_Attendu : constant Bit_T := Resultat_Attendu (I);
@@ -83,7 +85,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
             "Le bit " & I'Img &
             " vaut " & Bit_Lu'Img &
             " au lieu de " & Bit_Attendu'Img);
-         end;
+         end Verification_Bit;
       end loop;
    end Test_Construire;
 
@@ -95,6 +97,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
       T.Constructeur.Construire_Clef (T.Clef_56);
       Clef_Construite := T.Constructeur.Recuperer_Clef;
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
+         Verification_Bit :
          declare
             Bit_Lu : constant Bit_T := Clef_Construite.Lire_Bit (I);
             Bit_Attendu : constant Bit_T := Resultat_Attendu (I);
@@ -104,7 +107,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P.Test_P is
             "Le bit " & I'Img &
             " vaut " & Bit_Lu'Img &
             " au lieu de " & Bit_Attendu'Img);
-         end;
+         end Verification_Bit;
       end loop;
    end Test_Recuperation;
 

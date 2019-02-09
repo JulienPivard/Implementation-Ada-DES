@@ -58,6 +58,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
@@ -81,7 +82,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_1;
 
    ---------------------------------------------------------------------------
@@ -100,6 +101,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_1_P.Reception_Blocs_T :=
             Ecriveur_1_Generateur.Lire_Resultat;
@@ -123,7 +125,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiffre_1;
 
    ---------------------------------------------------------------------------
@@ -142,6 +144,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
@@ -165,7 +168,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_2048;
 
    ---------------------------------------------------------------------------
@@ -184,6 +187,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_2048_P.Reception_Blocs_T :=
             Ecriveur_2048_Generateur.Lire_Resultat;
@@ -207,7 +211,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiffre_2048;
 
    ---------------------------------------------------------------------------
@@ -226,6 +230,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
@@ -249,7 +254,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Chiffre_8192;
 
    ---------------------------------------------------------------------------
@@ -268,6 +273,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
       T.Chaine.Filtrer (Nom_Fichier, Extension);
 
+      Verification_Resultat_Chaine_Filtre :
       declare
          R : constant Generateur_Ecriveur_8192_P.Reception_Blocs_T :=
             Ecriveur_8192_Generateur.Lire_Resultat;
@@ -291,7 +297,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
                );
             I := Natural'Succ (I);
          end loop;
-      end;
+      end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiffre_8192;
 
    ---------------------------------------------------------------------------
@@ -303,17 +309,19 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T :=
             Brut_Initial;
    begin
+      Verification_Resultat_Filtre_1 :
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_C : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
+         Ajout_Estage_1 :
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
             Etage.Modifier_Filtre (F_C.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
-         end;
+         end Ajout_Estage_1;
          T.Chaine.Tete := Tete;
          T.Chaine.Execution (Brut_Utilise);
          AUnit.Assertions.Assert
@@ -321,19 +329,21 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Initial'Img
             );
-      end;
+      end Verification_Resultat_Filtre_1;
 
+      Verification_Resultat_Filtre_2 :
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_D : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
+         Ajout_Estage_2 :
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
             Etage.Modifier_Filtre (F_D.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
-         end;
+         end Ajout_Estage_2;
          T.Chaine.Tete := Tete;
          T.Chaine.Execution (Brut_Utilise);
          AUnit.Assertions.Assert
@@ -341,7 +351,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Initial'Img
             );
-      end;
+      end Verification_Resultat_Filtre_2;
    end Test_Execution_2_Filtres;
 
    ---------------------------------------------------------------------------
@@ -355,6 +365,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    begin
       Const_56.Preparer_Nouvelle_Clef;
       Const_56.Construire_Clef (T.Clef);
+      Initialisation_Chaine_Filtres_Chiffrer :
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_C : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
@@ -366,6 +377,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             Const_48.Preparer_Nouvelle_Clef;
             Const_48.Construire_Clef (Clef_56);
+            Ajout_Filtres_Chiffrer :
             declare
                C_48 : constant Des_P.Clef_P.Clef_48_P.Clef_T :=
                   Const_48.Recuperer_Clef;
@@ -375,14 +387,15 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             begin
                E.Modifier_Filtre (F);
                Tete.Ajouter_Successeur (E);
-            end;
+            end Ajout_Filtres_Chiffrer;
          end loop;
+         Ajout_Dernier_Estage_Chiffrer :
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
             Etage.Modifier_Filtre (F_C.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
-         end;
+         end Ajout_Dernier_Estage_Chiffrer;
          T.Chaine.Tete := Tete;
          T.Chaine.Execution (Brut_Utilise);
          AUnit.Assertions.Assert
@@ -390,10 +403,11 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Attendu'Img
             );
-      end;
+      end Initialisation_Chaine_Filtres_Chiffrer;
 
       Const_56.Preparer_Nouvelle_Clef;
       Const_56.Construire_Clef (T.Clef);
+      Initialisation_Chaine_Filtres_Dechiffrer :
       declare
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
          F_D : Des_P.Filtre_P.Fabrique_P.Dechiffre_P.Fabrique_T;
@@ -404,6 +418,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          for I in reverse Numero_Filtre_T loop
             Const_48.Preparer_Nouvelle_Clef;
             Const_48.Construire_Clef (Clef_56);
+            Ajout_Filtres_Dechiffrer :
             declare
                C_48 : constant Des_P.Clef_P.Clef_48_P.Clef_T :=
                   Const_48.Recuperer_Clef;
@@ -413,15 +428,16 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             begin
                E.Modifier_Filtre (F);
                Tete.Ajouter_Successeur (E);
-            end;
+            end Ajout_Filtres_Dechiffrer;
             Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
          end loop;
+         Ajout_Dernier_Estage_Dechiffrer :
          declare
             Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
          begin
             Etage.Modifier_Filtre (F_D.Fabriquer_Sortie);
             Tete.Ajouter_Successeur (Etage);
-         end;
+         end Ajout_Dernier_Estage_Dechiffrer;
          T.Chaine.Tete := Tete;
          T.Chaine.Execution (Brut_Utilise);
          AUnit.Assertions.Assert
@@ -429,7 +445,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
             "Brut : " & Brut_Utilise'Img &
             " au lieu de " & Brut_Initial'Img
             );
-      end;
+      end Initialisation_Chaine_Filtres_Dechiffrer;
    end Test_Execution_18_Filtres;
 
 end Des_P.Chaine_P.Sequentiel_P.Test_P;

@@ -97,6 +97,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
       T.Filtre.Filtrer (Bloc);
 
       for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
+         Verification_Bit :
          declare
             B : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             Bit_Resulta : constant Bit_IO_T := (if B then 1 else 0);
@@ -108,7 +109,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
                " vaut : " & Bit_Resulta'Img &
                " au lieu de " & Bit_Attendu'Img
                );
-         end;
+         end Verification_Bit;
       end loop;
 
    end Test_Chiffrement_Niveau_1;

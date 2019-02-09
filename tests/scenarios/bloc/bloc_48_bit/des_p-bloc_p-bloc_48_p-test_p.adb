@@ -29,6 +29,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       B : constant Bit_T := False;
    begin
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
+         Verification_Bit_Init :
          declare
             Valeur_Bit : constant Bit_IO_T :=
                (if T.Bloc.Bits (I) then 1 else 0);
@@ -39,7 +40,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
                " vaut : " & Valeur_Bit'Img &
                " au lieu de 0"
                );
-         end;
+         end Verification_Bit_Init;
       end loop;
    end Test_Initialisation;
 
@@ -49,6 +50,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
    is
       Nb_Bit_A_Un : Natural;
    begin
+      Parcours_Tous_Les_Bits :
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (
@@ -57,7 +59,9 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
             );
          T.Bloc.Ecrire_Bit (I, True);
          Nb_Bit_A_Un := 0;
+         Verifie_Tous_Les_Bits :
          for J in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
+            Extraire_Bit_En_Valeur :
             declare
                use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
                B : constant Bit_T := J = I;
@@ -87,8 +91,8 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
                      " vaut : " & V_T_L_IO'Img &
                      " au lieu de " & Valeur_Attendu'Img
                   );
-            end;
-         end loop;
+            end Extraire_Bit_En_Valeur;
+         end loop Verifie_Tous_Les_Bits;
          AUnit.Assertions.Assert
             (
                Nb_Bit_A_Un = 1,
@@ -101,7 +105,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
                (for all E of T.Bloc.Bits => E = False),
                "Tous les bits devraient etre faux"
             );
-      end loop;
+      end loop Parcours_Tous_Les_Bits;
    end Test_Modification_Un_Bit_Par_Un_Bit;
 
    ---------------------------------------------------------------------------
@@ -116,18 +120,23 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
       Bit_Aleatoire.Reset (Generateur);
 
       --  Génère un grand nombre de configuration aléatoire
+      Compteur_Nombre_Configurations_Aleatoire :
       for C in Interval_Nb_Conf_Genere_T loop
 
+         Generateur_Configuration :
          for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
+            Generateur_De_Bit :
             declare
                B : constant Bit_T := Bit_Aleatoire.Random (Generateur);
             begin
                T.Bloc.Ecrire_Bit (I, B);
                Attendu (I) := B;
-            end;
-         end loop;
+            end Generateur_De_Bit;
+         end loop Generateur_Configuration;
 
+         Verificateur_Configuration :
          for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
+            Verification_Bit_Par_Bit :
             declare
                Valeur_Bit_Resulta : constant Bit_IO_T :=
                   (if T.Bloc.Lire_Bit (I) then 1 else 0);
@@ -140,10 +149,10 @@ package body Des_P.Bloc_P.Bloc_48_P.Test_P is
                   " vaut : " & Valeur_Bit_Resulta'Img &
                   " au lieu de " & Valeur_Bit_Attendu'Img
                   );
-            end;
-         end loop;
+            end Verification_Bit_Par_Bit;
+         end loop Verificateur_Configuration;
 
-      end loop;
+      end loop Compteur_Nombre_Configurations_Aleatoire;
 
    end Test_Change_Bits_Aleatoirement;
 

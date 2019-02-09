@@ -14,14 +14,15 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
    begin
       C.Preparer_Nouveau_Bloc;
       T.Constructeur := C;
+      --  1110 0111 1111 0110
+      --  1110 0111 1111 0110
       Construit_Bloc_32 :
-      --  1110 0111 1111 0110
-      --  1110 0111 1111 0110
       loop
+         Init_Premier_Intervalle :
          for J in Intervalle_1_T loop
             B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
-         end loop;
+         end loop Init_Premier_Intervalle;
 
          B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
@@ -29,18 +30,20 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
          B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
+         Init_Second_Intervalle :
          for J in Intervalle_2_T loop
             B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
-         end loop;
+         end loop Init_Second_Intervalle;
 
          B.Ecrire_Bit (I, False);
          I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
 
+         Init_Troisieme_Intervalle :
          for J in Intervalle_3_T loop
             B.Ecrire_Bit (I, True);
             I := Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Succ (I);
-         end loop;
+         end loop Init_Troisieme_Intervalle;
 
          B.Ecrire_Bit (I, False);
          exit Construit_Bloc_32 when
