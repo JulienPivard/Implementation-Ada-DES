@@ -11,15 +11,15 @@ with Des_P.Clef_P.Clef_64_Simplifie_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
 
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
+   package Faiseur_56_R renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
+   package Faiseur_48_R renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
       C : Faiseur_Dechiffrement_T;
-      F_56 : Faiseur_56_P.Faiseur_Clef_T;
-      F_48 : Faiseur_48_P.Faiseur_Clef_T;
+      F_56 : Faiseur_56_R.Faiseur_Clef_T;
+      F_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       C.Initialiser (F_56, F_48);
       T.C := C;

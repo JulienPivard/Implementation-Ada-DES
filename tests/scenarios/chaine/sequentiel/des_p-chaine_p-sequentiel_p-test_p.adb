@@ -14,12 +14,12 @@ with Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
 
 package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
-   package Faiseur_Chiffrement_P renames
+   package Faiseur_Chiffrement_R renames
       Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P;
-   package Faiseur_Dechiffrement_P renames
+   package Faiseur_Dechiffrement_R renames
       Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P;
-   package Faiseur_56_P renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
-   package Faiseur_48_P renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
+   package Faiseur_56_R renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
+   package Faiseur_48_R renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
    ---------------------------------------------------------------------------
    overriding
@@ -44,9 +44,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
    ---------------------------------------------------------------------------
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Chiffre_1 (T : in out Test_Fixt_T) is
-      Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Chiffre : Faiseur_Chiffrement_R.Faiseur_Chiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_1_Generateur'Access;
       Ecriveur := Ecriveur_1_Generateur'Access;
@@ -87,9 +87,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Dechiffre_1 (T : in out Test_Fixt_T) is
-      Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Dechiffre : Faiseur_Dechiffrement_R.Faiseur_Dechiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_1_Generateur'Access;
       Ecriveur := Ecriveur_1_Generateur'Access;
@@ -130,9 +130,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Chiffre_2048 (T : in out Test_Fixt_T) is
-      Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Chiffre : Faiseur_Chiffrement_R.Faiseur_Chiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_2048_Generateur'Access;
       Ecriveur := Ecriveur_2048_Generateur'Access;
@@ -173,9 +173,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Dechiffre_2048 (T : in out Test_Fixt_T) is
-      Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Dechiffre : Faiseur_Dechiffrement_R.Faiseur_Dechiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_2048_Generateur'Access;
       Ecriveur := Ecriveur_2048_Generateur'Access;
@@ -216,9 +216,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Chiffre_8192 (T : in out Test_Fixt_T) is
-      Const_Chiffre : Faiseur_Chiffrement_P.Faiseur_Chiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Chiffre : Faiseur_Chiffrement_R.Faiseur_Chiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_8192_Generateur'Access;
       Ecriveur := Ecriveur_8192_Generateur'Access;
@@ -259,9 +259,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
 
    ---------------------------------------------------------------------------
    procedure Test_Filtre_Dechiffre_8192 (T : in out Test_Fixt_T) is
-      Const_Dechiffre : Faiseur_Dechiffrement_P.Faiseur_Dechiffrement_T;
-      Const_56 : Faiseur_56_P.Faiseur_Clef_T;
-      Const_48 : Faiseur_48_P.Faiseur_Clef_T;
+      Const_Dechiffre : Faiseur_Dechiffrement_R.Faiseur_Dechiffrement_T;
+      Const_56 : Faiseur_56_R.Faiseur_Clef_T;
+      Const_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       Lecteur  := Lecteur_8192_Generateur'Access;
       Ecriveur := Ecriveur_8192_Generateur'Access;
