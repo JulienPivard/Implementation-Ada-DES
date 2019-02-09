@@ -7,17 +7,17 @@ package body Suite_De_Tests_Ravenscar_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
    begin
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Chaine_Ravenscar_Suite_P.Fonc_Suite);
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Constructeur_Ravenscar_Chiffre_Suite_P.Fonc_Suite);
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Constructeur_Ravenscar_Dechiffre_Suite_P.Fonc_Suite);
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
    end Fonc_Suite;
 
 end Suite_De_Tests_Ravenscar_P;

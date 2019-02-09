@@ -33,6 +33,7 @@ procedure Main_Test_Harnais is
       (Suite_De_Tests_Ravenscar_P.Fonc_Suite);
 
    Options : constant AUnit.Options.AUnit_Options :=
+      AUnit.Options.AUnit_Options'
       (
          Global_Timer     => True,
          Test_Case_Timer  => True,

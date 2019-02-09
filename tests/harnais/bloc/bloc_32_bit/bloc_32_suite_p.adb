@@ -12,40 +12,40 @@ package body Bloc_32_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test bloc de 32 bits) ";
+      Nom_Test : constant String := "(Test bloc de 32 bits) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Initialisation bloc vide",
+            (Nom_Test & "Initialisation bloc vide",
             Scenario_R.Test_Initialisation'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification 1 bit par 1 bit",
+            (Nom_Test & "Modification 1 bit par 1 bit",
             Scenario_R.Test_Modification_Un_Bit_Par_Un_Bit'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Bits change aleatoirement",
+            (Nom_Test & "Bits change aleatoirement",
             Scenario_R.Test_Change_Bits_Aleatoirement'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Ou Exclusif",
+            (Nom_Test & "Ou Exclusif",
             Scenario_R.Test_Ou_Exclusif'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

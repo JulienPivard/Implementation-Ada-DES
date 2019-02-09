@@ -12,26 +12,26 @@ package body Clef_64_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test clef 64 bits) ";
+      Nom_Test : constant String := "(Test clef 64 bits) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Lecture de bits predefini.",
+         (Nom_Test & "Lecture de bits predefini.",
          Scenario_R.Test_Lecture_Bit'Access
          )
       );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Lecture de bits genere aleatoirement.",
+         (Nom_Test & "Lecture de bits genere aleatoirement.",
          Scenario_R.Test_Bits_Aleatoire'Access
          )
       );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

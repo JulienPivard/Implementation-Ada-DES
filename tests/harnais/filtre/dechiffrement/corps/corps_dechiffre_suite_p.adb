@@ -12,19 +12,19 @@ package body Corps_Dechiffre_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre dechiffrement principal) ";
+      Nom_Test : constant String := "(Tests filtre dechiffrement principal) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "1er niveau de filtre",
+            (Nom_Test & "1er niveau de filtre",
             Scenario_R.Test_Dechiffrement_Niveau_1'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

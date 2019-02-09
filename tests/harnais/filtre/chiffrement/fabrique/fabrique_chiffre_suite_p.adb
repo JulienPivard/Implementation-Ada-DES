@@ -12,33 +12,33 @@ package body Fabrique_Chiffre_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests fabrique chiffrement abstraite) ";
+      Nom_Test : constant String := "(Tests fabrique chiffrement abstraite) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Fabrication entree",
+            (Nom_Test & "Fabrication entree",
             Scenario_R.Test_Fabrication_Entree'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Fabrication corps",
+            (Nom_Test & "Fabrication corps",
             Scenario_R.Test_Fabrication_Corps'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Fabrication sortie",
+            (Nom_Test & "Fabrication sortie",
             Scenario_R.Test_Fabrication_Sortie'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

@@ -12,26 +12,26 @@ package body Permutations_64_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test permutations bloc de 64 bits) ";
+      Nom_Test : constant String := "(Test permutations bloc de 64 bits) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "IP",
+            (Nom_Test & "IP",
             Scenario_R.Test_Permutations_Entrantes'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "IP-1",
+            (Nom_Test & "IP-1",
             Scenario_R.Test_Permutations_Sortantes'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

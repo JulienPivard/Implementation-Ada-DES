@@ -12,26 +12,26 @@ package body Corps_Chiffre_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Tests filtre chiffrement principal) ";
+      Nom_Test : constant String := "(Tests filtre chiffrement principal) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "1er niveau de filtre",
+            (Nom_Test & "1er niveau de filtre",
             Scenario_R.Test_Chiffrement_Niveau_1'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Modification de la clef de 48",
+            (Nom_Test & "Modification de la clef de 48",
             Scenario_R.Test_Modifier_Clef_48'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

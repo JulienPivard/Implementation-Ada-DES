@@ -13,34 +13,34 @@ package body Constructeur_Ravenscar_Dechiffre_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String :=
+      Nom_Test : constant String :=
          "(Tests constructeur ravenscar dechiffrement) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Initialisation chaine vide",
+            (Nom_Test & "Initialisation chaine vide",
             Scenario_R.Test_Initialisation'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Construction chaine",
+            (Nom_Test & "Construction chaine",
             Scenario_R.Test_Construction'Access
             )
          );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
          (Caller.Create
-            (nom_test & "Recuperation chaine construite",
+            (Nom_Test & "Recuperation chaine construite",
             Scenario_R.Test_Recuperation'Access
             )
          );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 

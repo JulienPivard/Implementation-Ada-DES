@@ -12,33 +12,33 @@ package body Constructeur_Clef_64_Suite_P is
    function Fonc_Suite
       return AUnit.Test_Suites.Access_Test_Suite
    is
-      ptr_test_suite : constant AUnit.Test_Suites.Access_Test_Suite :=
+      Ptr_Test_Suite : constant AUnit.Test_Suites.Access_Test_Suite :=
          AUnit.Test_Suites.New_Suite;
-      nom_test : constant String := "(Test constructeur clef 64 bits) ";
+      Nom_Test : constant String := "(Test constructeur clef 64 bits) ";
    begin
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Preparation d'une clef de 64 vide",
+         (Nom_Test & "Preparation d'une clef de 64 vide",
          Scenario_R.Test_Preparation'Access
          )
       );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Construction d'une clef de 64",
+         (Nom_Test & "Construction d'une clef de 64",
          Scenario_R.Test_Construire'Access
          )
       );
 
-      ptr_test_suite.all.Add_Test
+      Ptr_Test_Suite.all.Add_Test
       (Caller.Create
-         (nom_test & "Recuperation de la clef de 64 construite",
+         (Nom_Test & "Recuperation de la clef de 64 construite",
          Scenario_R.Test_Recuperation'Access
          )
       );
 
-      return ptr_test_suite;
+      return Ptr_Test_Suite;
 
    end Fonc_Suite;
 
