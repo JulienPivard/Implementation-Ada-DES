@@ -201,6 +201,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  Rassemble le bit de début et de fin
       --  pour former le numéro de la ligne.
       --  Transforme le tableau de bits en un octet.
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_1 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -208,8 +215,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_1,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_2 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -217,8 +237,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_2,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_2 : Ligne_T with Address => Ligne_Intermediaire_2'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_3 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -226,8 +259,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_3,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_3 : Ligne_T with Address => Ligne_Intermediaire_3'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_4 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -235,8 +281,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_4,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_4 : Ligne_T with Address => Ligne_Intermediaire_4'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_5 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -244,8 +303,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_5,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_5 : Ligne_T with Address => Ligne_Intermediaire_5'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_6 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -253,8 +325,21 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_6,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_6 : Ligne_T with Address => Ligne_Intermediaire_6'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_7 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
@@ -262,14 +347,33 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             2        => Bloc_Intermediaire.Fin_7,
             others   => 0
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
+         );
       Ligne_7 : Ligne_T with Address => Ligne_Intermediaire_7'Address;
 
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "OTHERS_In_Aggregates",
+            "Initialisation de tableau"
+         );
       Ligne_Intermediaire_8 : constant Ligne_Intermediaire_T :=
          Ligne_Intermediaire_T'
          (
             1        => Bloc_Intermediaire.Debut_8,
             2        => Bloc_Intermediaire.Fin_8,
             others   => 0
+         );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "OTHERS_In_Aggregates"
          );
       Ligne_8 : Ligne_T with Address => Ligne_Intermediaire_8'Address;
 
