@@ -27,13 +27,19 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
    ---------------------------------------------------------------------------
    procedure Test_Lecture_Bit (T : in out Test_Fixt_T) is
       bits_attendu : constant Tableau_Bits_T :=
-         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
-         33 .. 36 | 41 .. 44 => False, others => True);
+         (
+            Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+            Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,
+            others => True
+         );
    begin
       T.clef.Bits :=
-         (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
-         33 .. 36 | 41 .. 44 => False, others => True);
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+         (
+            Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+            Intervalle_4_T | Intervalle_5_T | Intervalle_6_T => False,
+            others => True
+         );
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &
@@ -51,12 +57,12 @@ package body Des_P.Clef_P.Clef_48_P.Test_P is
       bits_attendu : Tableau_Bits_T;
    begin
       Bit_Aleatoire.Reset (generateur);
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          b := Bit_Aleatoire.Random (generateur);
          bits_attendu (I) := b;
          T.clef.Bits (I) := b;
       end loop;
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef.Lire_Bit (I) = bits_attendu (I),
             "Le bit " & I'Img &

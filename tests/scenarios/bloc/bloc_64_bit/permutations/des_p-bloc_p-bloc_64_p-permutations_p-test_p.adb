@@ -53,13 +53,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
             False, False, False, False, False, False, False, False
          );
    begin
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          T.bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
       Permutation_Entrante (T.bloc);
 
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          declare
             b : constant Bit_T := T.bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);
@@ -109,13 +109,13 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
             True, True, True, True, True, True, True, True
          );
    begin
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          T.bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
       Permutation_Sortante (T.bloc);
 
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          declare
             b : constant Bit_T := T.bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);

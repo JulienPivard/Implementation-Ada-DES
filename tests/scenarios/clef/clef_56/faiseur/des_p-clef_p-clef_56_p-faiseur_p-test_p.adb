@@ -11,8 +11,12 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    --  33   37   41   45   49   53   57   61
    champ_bits_de_depart : constant
    Des_P.Clef_P.Clef_64_Simplifie_P.Tableau_Bits_T :=
-      (1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 | 33 .. 36 |
-      41 .. 44 | 49 .. 52 | 57 .. 60 => False, others => True);
+      (
+         Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+         Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |
+         Intervalle_7_T | Intervalle_8_T => False,
+         others => True
+      );
 
    --  La bits clef de 56 bits attendu après construction avec la
    --  clef de 64 bits ci-dessus.
@@ -58,7 +62,7 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
       bit_attendu : constant Bit_T := False;
    begin
       T.constructeur.Preparer_Nouvelle_Clef;
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
             bit_lu : constant Bit_T := T.constructeur.Clef.Lire_Bit (I);
          begin
@@ -78,7 +82,7 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    begin
       T.constructeur.Preparer_Nouvelle_Clef;
       T.constructeur.Construire_Clef (T.clef_64);
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
             bit_attendu : constant Bit_T := resultat_attendu (I);
             bit_lu : constant Bit_T := T.constructeur.Clef.Lire_Bit (I);
@@ -101,7 +105,7 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
       T.constructeur.Preparer_Nouvelle_Clef;
       T.constructeur.Construire_Clef (T.clef_64);
       clef_construite := T.constructeur.Recuperer_Clef;
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          declare
             bit_attendu : constant Bit_T := resultat_attendu (I);
             bit_lu : constant Bit_T := clef_construite.Lire_Bit (I);

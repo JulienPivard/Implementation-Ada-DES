@@ -362,7 +362,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Const_48 : Des_P.Clef_P.Clef_48_P.Faiseur_P.Faiseur_Clef_T;
       begin
          Tete.Modifier_Filtre (F_C.Fabriquer_Entree);
-         for I in Numero_Filtre_T'Range loop
+         for I in Numero_Filtre_T loop
             Clef_56.Decaler_Bits_A_Gauche (Table_Decalage (I));
             Const_48.Preparer_Nouvelle_Clef;
             Const_48.Construire_Clef (Clef_56);
@@ -401,7 +401,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Test_P is
          Const_48 : Des_P.Clef_P.Clef_48_P.Faiseur_P.Faiseur_Clef_T;
       begin
          Tete.Modifier_Filtre (F_D.Fabriquer_Entree);
-         for I in reverse Numero_Filtre_T'Range loop
+         for I in reverse Numero_Filtre_T loop
             Const_48.Preparer_Nouvelle_Clef;
             Const_48.Construire_Clef (Clef_56);
             declare

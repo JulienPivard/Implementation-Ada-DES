@@ -4,8 +4,10 @@ generic
 
 package Des_P.Chaine_P.Ecriveur_P.Generateur_G is
 
+   subtype Intervalle_Table_Blocs_T is Natural range 0 .. Nombre_De_Blocs - 1;
+
    type Reception_Blocs_T is array
-      (0 .. Nombre_De_Blocs - 1)
+      (Intervalle_Table_Blocs_T)
       of C_Bloc_64_R.Bloc_64_Brut_T;
 
    ---------------------------------------

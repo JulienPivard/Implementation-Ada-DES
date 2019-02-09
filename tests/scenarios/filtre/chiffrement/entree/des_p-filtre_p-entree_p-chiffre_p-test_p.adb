@@ -61,13 +61,13 @@ package body Des_P.Filtre_P.Entree_P.Chiffre_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
    begin
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
       T.Filtre.Filtrer (Bloc);
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
          declare
             b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);

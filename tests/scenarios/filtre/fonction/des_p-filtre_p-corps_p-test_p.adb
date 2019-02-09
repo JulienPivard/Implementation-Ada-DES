@@ -22,7 +22,7 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
       Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
 
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
       T.Bloc := Bloc;
@@ -70,7 +70,7 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
 
       Bloc := Fonction_F (T.Bloc, Clef);
 
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);

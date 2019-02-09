@@ -5,6 +5,8 @@ package Des_P.Bloc_P.Bloc_32_P.Test_P is
 
    type Bit_IO_T is range 0 .. 1;
 
+   type Interval_Nb_Conf_Genere_T is range 1 .. 128;
+
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
          bloc : Bloc_32_T;

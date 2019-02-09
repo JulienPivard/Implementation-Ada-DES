@@ -10,12 +10,18 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
       2#0000_1111_0000_1111_0000_1111_0000_1111#;
    --   32   28   24   20   16   12   8    4
 
+   subtype Intervalle_1_T is Intervalle_T range 1 .. 4;
+   subtype Intervalle_2_T is Intervalle_T range 9 .. 12;
+   subtype Intervalle_3_T is Intervalle_T range 17 .. 20;
+   subtype Intervalle_4_T is Intervalle_T range 25 .. 28;
+
    --  11110000_11110000_11110000_11110000
    resultat_attendu : constant array
       (Intervalle_T) of Bit_T :=
          (
-            1 .. 4 | 9 .. 12 | 17 .. 20 |
-            25 .. 28 => True, others => False
+            Intervalle_1_T | Intervalle_2_T |
+            Intervalle_3_T | Intervalle_4_T => True,
+            others => False
          );
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with

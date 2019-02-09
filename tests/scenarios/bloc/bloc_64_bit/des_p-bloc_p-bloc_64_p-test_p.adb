@@ -34,7 +34,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          "Le decalage vaut " & T.bloc.Decalage'Img &
          " au lieu de 0 apres 0 decalages."
          );
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          declare
             valeur_bit : constant Bit_IO_T :=
                (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -111,10 +111,10 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          --  Remplissage avec des bits aléatoire
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                b : constant Bit_T := Bit_Aleatoire.Random (generateur);
             begin
@@ -124,7 +124,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -157,10 +157,10 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          --  Remplissage avec des bits aléatoire
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                b : Bit_T;
             begin
@@ -174,7 +174,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -214,7 +214,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          AUnit.Assertions.Assert
             (T.bloc.Decalage = 0,
@@ -223,7 +223,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Remplissage avec des bits aléatoire
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                b : Bit_T;
             begin
@@ -239,7 +239,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -264,7 +264,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -301,7 +301,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          AUnit.Assertions.Assert
             (T.bloc.Decalage = 0,
@@ -310,7 +310,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Remplissage avec des bits aléatoire
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                b : Bit_T;
             begin
@@ -324,7 +324,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -356,7 +356,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -401,7 +401,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          AUnit.Assertions.Assert
             (T.bloc.Decalage = 0,
@@ -410,7 +410,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Remplissage avec des bits aléatoire
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                b : constant Bit_T := Bit_Aleatoire.Random (generateur);
             begin
@@ -425,7 +425,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -450,7 +450,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -476,7 +476,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -513,7 +513,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
          AUnit.Assertions.Assert
             (T.bloc.Decalage = 0,
@@ -522,7 +522,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Remplissage avec des bits aléatoire
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                b : Bit_T;
             begin
@@ -536,7 +536,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          end loop;
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -568,7 +568,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -602,7 +602,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
             );
 
          --  Vérification du contenu.
-         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+         for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
             declare
                bit_resulta, bit_attendu : Bit_IO_T;
             begin
@@ -653,7 +653,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -669,7 +669,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -712,7 +712,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -729,7 +729,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -772,7 +772,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -788,7 +788,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -816,7 +816,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -861,7 +861,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -878,7 +878,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -904,7 +904,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -933,7 +933,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -978,7 +978,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -994,7 +994,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1022,7 +1022,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1052,7 +1052,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       --  Vérification du contenu.
       lu_gauche := T.bloc.Lire_Bloc (Gauche);
       lu_droite := T.bloc.Lire_Bloc (Droite);
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1097,7 +1097,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
          );
 
       --  Remplissage avec des bits aléatoire
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             b : Bit_T;
          begin
@@ -1114,7 +1114,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1140,7 +1140,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1169,7 +1169,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1197,7 +1197,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Intervertir_Blocs;
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin
@@ -1226,7 +1226,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Test_P is
       T.bloc.Ecrire_Bloc (Droite, ecrit_droite);
 
       --  Vérification du contenu.
-      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_32_P.Intervalle_T loop
          declare
             bit_resulta, bit_attendu : Bit_IO_T;
          begin

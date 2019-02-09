@@ -25,7 +25,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
    procedure Test_Initialisation (T : in out Test_Fixt_T) is
       b : constant Bit_T := False;
    begin
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          declare
             valeur_bit : constant Bit_IO_T :=
                (if T.bloc.Bits (I) then 1 else 0);
@@ -110,9 +110,9 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
       Bit_Aleatoire.Reset (generateur);
 
       --  Génère un grand nombre de configuration aléatoire
-      for C in 0 .. 128 loop
+      for C in Interval_Nb_Conf_Genere_T loop
 
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                b : constant Bit_T := Bit_Aleatoire.Random (generateur);
             begin
@@ -121,7 +121,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
             end;
          end loop;
 
-         for I in Intervalle_T'Range loop
+         for I in Intervalle_T loop
             declare
                valeur_bit_resulta : constant Bit_IO_T :=
                   (if T.bloc.Lire_Bit (I) then 1 else 0);
@@ -205,7 +205,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Test_P is
 
       T.bloc := B1 xor B2;
 
-      for I in Intervalle_T'Range loop
+      for I in Intervalle_T loop
          declare
             valeur_bit_resulta : constant Bit_IO_T :=
                (if T.bloc.Lire_Bit (I) then 1 else 0);

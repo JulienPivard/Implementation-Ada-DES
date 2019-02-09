@@ -12,8 +12,9 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
-            1 .. 4 | 9 .. 12 | 17 .. 20 | 25 .. 28 |
-            33 .. 36 | 41 .. 44 | 49 .. 52 => False,
+            Intervalle_01_T | Intervalle_02_T | Intervalle_03_T |
+            Intervalle_04_T | Intervalle_05_T | Intervalle_06_T |
+            Intervalle_07_T => False,
             others => True
          );
 
@@ -23,8 +24,9 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
-            1 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 28 |
-            32 .. 35 | 40 .. 43 | 48 .. 51 => False,
+            Intervalle_11_T | Intervalle_12_T | Intervalle_13_T |
+            Intervalle_14_T | Intervalle_15_T | Intervalle_16_T |
+            Intervalle_17_T => False,
             others => True
          );
 
@@ -34,8 +36,9 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
-            1 .. 2 | 7 .. 10 | 15 .. 18 | 23 .. 28 |
-            31 .. 34 | 39 .. 42 | 47 .. 50 => False,
+            Intervalle_21_T | Intervalle_22_T | Intervalle_23_T |
+            Intervalle_24_T | Intervalle_25_T | Intervalle_26_T |
+            Intervalle_27_T => False,
             others => True
          );
 
@@ -45,8 +48,9 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
       of Bit_T :=
          (
-            1 .. 1 | 6 .. 9 | 14 .. 17 | 22 .. 28 |
-            30 .. 33 | 38 .. 41 | 46 .. 49 => False,
+            Intervalle_31_T | Intervalle_32_T | Intervalle_33_T |
+            Intervalle_34_T | Intervalle_35_T | Intervalle_36_T |
+            Intervalle_37_T => False,
             others => True
          );
 
@@ -127,14 +131,26 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    procedure Set_Up
       (T : in out Test_Fixt_T)
    is
+      subtype Intervalle_1_T is Clef_56_I_R.Decalage_T range 0 .. 3;
+      subtype Intervalle_2_T is Clef_56_I_R.Decalage_T range 8 .. 11;
+      subtype Intervalle_3_T is Clef_56_I_R.Decalage_T range 16 .. 19;
+      subtype Intervalle_4_T is Clef_56_I_R.Decalage_T range 24 .. 27;
       clef_56 : Clef_T;
       --  1111 0000 1111 0000 1111 0000 1111
       --  0    4    8    12   16   20   24
       champ1 : constant Champ_De_Bits_T :=
-         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => False, others => True);
+         (
+            Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+            Intervalle_4_T => False,
+            others => True
+         );
       --  0000 1111 0000 1111 0000 1111 0000
       champ2 : constant Champ_De_Bits_T :=
-         (0 .. 3 | 8 .. 11 | 16 .. 19 | 24 .. 27 => True, others => False);
+         (
+            Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
+            Intervalle_4_T => True,
+            others => False
+         );
    begin
       clef_56.C1 := champ1;
       clef_56.C2 := champ2;
@@ -417,7 +433,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       (T : in out Test_Fixt_T)
    is
    begin
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56 (I),
             "Le bit " & I'Img &
@@ -433,7 +449,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    is
    begin
       T.clef_56.Decaler_Bits_A_Gauche (1);
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_1_decalage (I),
             "Le bit " & I'Img &
@@ -449,7 +465,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    is
    begin
       T.clef_56.Decaler_Bits_A_Gauche (2);
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_2_decalage (I),
             "Le bit " & I'Img &
@@ -465,7 +481,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    is
    begin
       T.clef_56.Decaler_Bits_A_Gauche (3);
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_3_decalage (I),
             "Le bit " & I'Img &
@@ -481,7 +497,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    is
    begin
       T.clef_56.Decaler_Bits_A_Gauche;
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_1_decalage (I),
             "Le bit " & I'Img &
@@ -498,7 +514,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
    begin
       T.clef_56.Decaler_Bits_A_Gauche;
       T.clef_56.Decaler_Bits_A_Gauche;
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_2_decalage (I),
             "Le bit " & I'Img &
@@ -516,7 +532,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       T.clef_56.Decaler_Bits_A_Gauche;
       T.clef_56.Decaler_Bits_A_Gauche;
       T.clef_56.Decaler_Bits_A_Gauche;
-      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_56_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (T.clef_56.Lire_Bit (I) = c56_3_decalage (I),
             "Le bit " & I'Img &
@@ -535,7 +551,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       T.Faiseur.Preparer_Nouvelle_Clef;
       T.Faiseur.Construire_Clef (T.clef_56);
       c := T.Faiseur.Recuperer_Clef;
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (c.Lire_Bit (I) = c48_0_decalage (I),
             "Le bit " & I'Img &
@@ -555,7 +571,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       T.Faiseur.Preparer_Nouvelle_Clef;
       T.Faiseur.Construire_Clef (T.clef_56);
       c := T.Faiseur.Recuperer_Clef;
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (c.Lire_Bit (I) = c48_1_decalage (I),
             "Le bit " & I'Img &
@@ -575,7 +591,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       T.Faiseur.Preparer_Nouvelle_Clef;
       T.Faiseur.Construire_Clef (T.clef_56);
       c := T.Faiseur.Recuperer_Clef;
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (c.Lire_Bit (I) = c48_2_decalage (I),
             "Le bit " & I'Img &
@@ -595,7 +611,7 @@ package body Des_P.Clef_P.Clef_56_P.Test_P is
       T.Faiseur.Preparer_Nouvelle_Clef;
       T.Faiseur.Construire_Clef (T.clef_56);
       c := T.Faiseur.Recuperer_Clef;
-      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
          AUnit.Assertions.Assert
             (c.Lire_Bit (I) = c48_3_decalage (I),
             "Le bit " & I'Img &

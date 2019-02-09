@@ -32,7 +32,7 @@ package body Des_P.Filtre_P.Corps_P.Dechiffre_P.Test_P is
       Clef : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
          Bloc.Ecrire_Bit (I, depart (I));
       end loop;
 
@@ -95,7 +95,7 @@ package body Des_P.Filtre_P.Corps_P.Dechiffre_P.Test_P is
       T.Filtre.Modifier_Clef (Clef_48);
       T.Filtre.Filtrer (Bloc);
 
-      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_64_P.Intervalle_T loop
          declare
             b : constant Des_P.Bloc_P.Bit_T := Bloc.Lire_Bit (I);
             bit_resulta : constant Bit_IO_T := (if b then 1 else 0);

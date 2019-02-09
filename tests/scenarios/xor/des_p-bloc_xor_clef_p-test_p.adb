@@ -40,7 +40,7 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
    begin
       bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
 
-      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 
@@ -61,7 +61,7 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
    begin
       bloc_resultat := Des_P.Bloc_P.Bloc_48_P.Bloc_48_T (T.bloc xor Clef);
 
-      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Range loop
+      for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
          bit_resulta := (if bloc_resultat.Lire_Bit (I) then 1 else 0);
          bit_attendu := (if T.bloc.Lire_Bit (I) xor True then 1 else 0);
 

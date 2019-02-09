@@ -5,6 +5,10 @@ package Des_P.Bloc_P.Bloc_48_P.Faiseur_P.Test_P is
 
    type Bit_IO_T is range 0 .. 1;
 
+   type Intervalle_1_T is range 1 .. 3;
+   type Intervalle_2_T is range 1 .. 7;
+   type Intervalle_3_T is range 1 .. 2;
+
    --  Les valeurs attendues
    --  0 1110 0
    --  0 0111 1
