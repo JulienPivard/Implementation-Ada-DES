@@ -1,8 +1,5 @@
 with AUnit.Assertions;
 
-with Des_P.Filtre_P.Filtre_Simple_P;
-use  Des_P.Filtre_P.Filtre_Simple_P;
-
 package body Des_P.Etage_P.Filtrage_P.Test_P is
 
    ---------------------------------------------------------------------------
@@ -64,7 +61,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    is
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
    begin
       AUnit.Assertions.Assert
          (
@@ -94,7 +91,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       (T : in out Test_Fixt_T)
    is
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
    begin
       AUnit.Assertions.Assert
          (
@@ -116,7 +113,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
       attendu, resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
@@ -151,7 +148,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    is
       Etage : Etage_T := Construire_Etage_Avec_Successeur (T.Etage);
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
       attendu, resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
@@ -187,7 +184,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
       pragma Unreferenced (T);
       Etage : Etage_T := Construire_Etage_Sans_Successeur;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
       attendu, resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin
@@ -222,7 +219,7 @@ package body Des_P.Etage_P.Filtrage_P.Test_P is
    is
       Etage : Etage_T;
       Bloc : Des_P.Bloc_P.Bloc_64_P.Bloc_64_T;
-      Filtre : Filtre_Simple_T;
+      Filtre : Filtre_Simple_R.Filtre_Simple_T;
       attendu, resultat : Boolean;
       use type Des_P.Bloc_P.Bloc_64_P.Intervalle_T;
    begin

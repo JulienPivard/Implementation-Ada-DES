@@ -1,7 +1,6 @@
 with AUnit.Assertions;
 
 with Des_P.Etage_P.Filtrage_P;
-with Des_P.Etage_P.Filtrage_P.Explorer_P;
 with Des_P.Filtre_P.Entree_P.Dechiffre_P;
 with Des_P.Filtre_P.Corps_P.Dechiffre_P;
 with Des_P.Filtre_P.Sortie_P.Dechiffre_P;
@@ -63,9 +62,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
       C_64.Init ((others => False));
       T.C.Construire (C_64);
       declare
-         use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
-            Lire_Etage_Suivant (T.C.Chaine.Tete);
+            Explorer_R.Lire_Etage_Suivant (T.C.Chaine.Tete);
          C : Integer := 1;
       begin
          AUnit.Assertions.Assert
@@ -73,7 +71,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
             "L'étage : " & C'Img & " ne possede pas de filtre"
             );
          AUnit.Assertions.Assert
-            (Lire_Filtre (T.C.Chaine.Tete) in
+            (Explorer_R.Lire_Filtre (T.C.Chaine.Tete) in
             Des_P.Filtre_P.Entree_P.Dechiffre_P.Entree_T,
             "L'estage : " & C'Img & " n'est pas une entree"
             );
@@ -85,19 +83,19 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
                "L'étage : " & C'Img & " ne possede pas de filtre"
                );
             AUnit.Assertions.Assert
-               (Lire_Filtre (Etage) in
+               (Explorer_R.Lire_Filtre (Etage) in
                Des_P.Filtre_P.Corps_P.Dechiffre_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             C := C + 1;
-            Etage := Lire_Etage_Suivant (Etage);
+            Etage := Explorer_R.Lire_Etage_Suivant (Etage);
          end loop Verif_Successeur;
          AUnit.Assertions.Assert
             (Etage.Possede_Filtre,
             "L'étage : " & C'Img & " ne possede pas de filtre"
             );
          AUnit.Assertions.Assert
-            (Lire_Filtre (Etage) in
+            (Explorer_R.Lire_Filtre (Etage) in
             Des_P.Filtre_P.Sortie_P.Dechiffre_P.Sortie_T,
             "L'estage : " & C'Img & " n'est pas une sortie"
             );
@@ -118,9 +116,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
       T.C.Construire (C_64);
       Chaine := Chaine_T (T.C.Recuperer_Chaine);
       declare
-         use Des_P.Etage_P.Filtrage_P.Explorer_P;
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T :=
-            Lire_Etage_Suivant (Chaine.Tete);
+            Explorer_R.Lire_Etage_Suivant (Chaine.Tete);
          C : Integer := 1;
       begin
          AUnit.Assertions.Assert
@@ -128,7 +125,7 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
             "L'étage : " & C'Img & " ne possede pas de filtre"
             );
          AUnit.Assertions.Assert
-            (Lire_Filtre (Chaine.Tete) in
+            (Explorer_R.Lire_Filtre (Chaine.Tete) in
             Des_P.Filtre_P.Entree_P.Dechiffre_P.Entree_T,
             "L'estage : " & C'Img & " n'est pas une entree"
             );
@@ -140,19 +137,19 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P.Test_P is
                "L'étage : " & C'Img & " ne possede pas de filtre"
                );
             AUnit.Assertions.Assert
-               (Lire_Filtre (Etage) in
+               (Explorer_R.Lire_Filtre (Etage) in
                Des_P.Filtre_P.Corps_P.Dechiffre_P.Corps_T,
                "L'estage : " & C'Img & " n'est pas un corps"
                );
             C := C + 1;
-            Etage := Lire_Etage_Suivant (Etage);
+            Etage := Explorer_R.Lire_Etage_Suivant (Etage);
          end loop Verif_Successeur;
          AUnit.Assertions.Assert
             (Etage.Possede_Filtre,
             "L'étage : " & C'Img & " ne possede pas de filtre"
             );
          AUnit.Assertions.Assert
-            (Lire_Filtre (Etage) in
+            (Explorer_R.Lire_Filtre (Etage) in
             Des_P.Filtre_P.Sortie_P.Dechiffre_P.Sortie_T,
             "L'estage : " & C'Img & " n'est pas une sortie"
             );

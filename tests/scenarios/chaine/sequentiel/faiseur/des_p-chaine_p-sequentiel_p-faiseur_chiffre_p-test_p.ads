@@ -1,7 +1,11 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
+with Des_P.Etage_P.Filtrage_P.Explorer_P;
+
 package Des_P.Chaine_P.Sequentiel_P.Faiseur_Chiffre_P.Test_P is
+
+   package Explorer_R renames Des_P.Etage_P.Filtrage_P.Explorer_P;
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
