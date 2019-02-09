@@ -17,9 +17,12 @@ package Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Test_P is
    subtype Intervalle_7_T is Intervalle_T range 49 .. 52;
    subtype Intervalle_8_T is Intervalle_T range 57 .. 60;
 
+   type Tableau_Bits_Resultat_T is array (Intervalle_T) of Bit_T;
+
    --  valeur du brut
    --  64     56       48       40       32       24       16       8
-   Resultat_Attendu : array (Intervalle_T) of Bit_T :=
+   Resultat_Attendu : Tableau_Bits_Resultat_T :=
+      Tableau_Bits_Resultat_T'
       (
          Intervalle_1_T | Intervalle_2_T | Intervalle_3_T |
          Intervalle_4_T | Intervalle_5_T | Intervalle_6_T |

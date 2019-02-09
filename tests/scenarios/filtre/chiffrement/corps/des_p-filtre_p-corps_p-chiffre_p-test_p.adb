@@ -8,12 +8,14 @@ with Des_P.Clef_P.Clef_48_Simple_P;
 
 package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
 
+   package Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P;
+
+   type Bits_Bloc_64_T is array (Bloc_64_R.Intervalle_T) of Des_P.Bloc_P.Bit_T;
+
    --  Nombre de départ
    --  00001111 00001111 00001111 00001111
    --  00001111 00001111 00001111 00001111
-   Depart : constant array
-      (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
-      of Des_P.Bloc_P.Bit_T :=
+   Depart : constant Bits_Bloc_64_T := Bits_Bloc_64_T'
       (
          False, False, False, False, True, True, True, True,
          False, False, False, False, True, True, True, True,
@@ -62,9 +64,8 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P.Test_P is
       --  Valeur attendu
       --  00001111 00001111 00001111 00001111
       --  00010100 01010111 11010011 10110101
-      Attendu : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
-         of Des_P.Bloc_P.Bit_T :=
+      Attendu : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             False, False, False, False, True, True, True, True,
             False, False, False, False, True, True, True, True,

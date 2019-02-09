@@ -1,130 +1,123 @@
 with AUnit.Assertions;
 
-with Des_P.Clef_P.Clef_56_I_P;
-with Des_P.Clef_P.Clef_48_I_P;
 with Des_P.Clef_P.Clef_48_P;
 
 package body Des_P.Clef_P.Clef_56_P.Test_P is
 
+   type Bits_Clef_56_T is array (Clef_56_I_R.Intervalle_T) of Bit_T;
+   type Bits_Clef_48_T is array (Clef_48_I_R.Intervalle_T) of Bit_T;
+
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   C56 : constant array
-      (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            Intervalle_01_T | Intervalle_02_T | Intervalle_03_T |
-            Intervalle_04_T | Intervalle_05_T | Intervalle_06_T |
-            Intervalle_07_T => False,
-            others => True
-         );
+   C56 : constant Bits_Clef_56_T :=
+      Bits_Clef_56_T'
+      (
+         Intervalle_01_T | Intervalle_02_T | Intervalle_03_T |
+         Intervalle_04_T | Intervalle_05_T | Intervalle_06_T |
+         Intervalle_07_T => False,
+         others => True
+      );
 
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   C56_1_Decalage : constant array
-      (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            Intervalle_11_T | Intervalle_12_T | Intervalle_13_T |
-            Intervalle_14_T | Intervalle_15_T | Intervalle_16_T |
-            Intervalle_17_T => False,
-            others => True
-         );
+   C56_1_Decalage : constant Bits_Clef_56_T :=
+      Bits_Clef_56_T'
+      (
+         Intervalle_11_T | Intervalle_12_T | Intervalle_13_T |
+         Intervalle_14_T | Intervalle_15_T | Intervalle_16_T |
+         Intervalle_17_T => False,
+         others => True
+      );
 
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   C56_2_Decalage : constant array
-      (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            Intervalle_21_T | Intervalle_22_T | Intervalle_23_T |
-            Intervalle_24_T | Intervalle_25_T | Intervalle_26_T |
-            Intervalle_27_T => False,
-            others => True
-         );
+   C56_2_Decalage : constant Bits_Clef_56_T :=
+      Bits_Clef_56_T'
+      (
+         Intervalle_21_T | Intervalle_22_T | Intervalle_23_T |
+         Intervalle_24_T | Intervalle_25_T | Intervalle_26_T |
+         Intervalle_27_T => False,
+         others => True
+      );
 
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  1    5    9    13   17   21   25   29   33   37   41   45   49   53
-   C56_3_Decalage : constant array
-      (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            Intervalle_31_T | Intervalle_32_T | Intervalle_33_T |
-            Intervalle_34_T | Intervalle_35_T | Intervalle_36_T |
-            Intervalle_37_T => False,
-            others => True
-         );
+   C56_3_Decalage : constant Bits_Clef_56_T :=
+      Bits_Clef_56_T'
+      (
+         Intervalle_31_T | Intervalle_32_T | Intervalle_33_T |
+         Intervalle_34_T | Intervalle_35_T | Intervalle_36_T |
+         Intervalle_37_T => False,
+         others => True
+      );
 
    --  La clef de 56 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000 1111 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   C48_0_Decalage : constant array
-      (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            True, False, False, True, False, True,
-            False, False, True, True, True, False,
-            True, False, False, False, False, True,
-            True, True, False, False, True, False,
-            False, False, True, True, True, True,
-            True, True, False, True, False, True,
-            False, False, True, True, False, True,
-            True, False, False, False, True, True
-         );
+   C48_0_Decalage : constant Bits_Clef_48_T :=
+      Bits_Clef_48_T'
+      (
+         True, False, False, True, False, True,
+         False, False, True, True, True, False,
+         True, False, False, False, False, True,
+         True, True, False, False, True, False,
+         False, False, True, True, True, True,
+         True, True, False, True, False, True,
+         False, False, True, True, False, True,
+         True, False, False, False, True, True
+      );
 
    --  La clef de 56 bits:
    --  1110 0001 1110 0001 1110 0001 1111 0001 1110 0001 1110 0001 1110 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   C48_1_Decalage : constant array
-      (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            True, False, False, False, False, True,
-            False, False, True, True, True, False,
-            True, False, True, True, False, False,
-            False, True, False, True, True, True,
-            False, True, True, True, True, True,
-            True, False, False, True, False, False,
-            True, False, True, True, False, True,
-            True, False, False, True, True, False
-         );
+   C48_1_Decalage : constant Bits_Clef_48_T :=
+      Bits_Clef_48_T'
+      (
+         True, False, False, False, False, True,
+         False, False, True, True, True, False,
+         True, False, True, True, False, False,
+         False, True, False, True, True, True,
+         False, True, True, True, True, True,
+         True, False, False, True, False, False,
+         True, False, True, True, False, True,
+         True, False, False, True, True, False
+      );
 
    --  La clef de 56 bits:
    --  1100 0011 1100 0011 1100 0011 1111 0011 1100 0011 1100 0011 1100 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   C48_2_Decalage : constant array
-      (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            True, False, True, False, False, True,
-            True, False, False, True, True, False,
-            False, True, True, True, False, False,
-            False, False, False, True, True, True,
-            False, True, False, True, False, True,
-            True, False, True, True, False, False,
-            True, False, False, True, False, True,
-            True, False, False, True, True, False
-         );
+   C48_2_Decalage : constant Bits_Clef_48_T :=
+      Bits_Clef_48_T'
+      (
+         True, False, True, False, False, True,
+         True, False, False, True, True, False,
+         False, True, True, True, False, False,
+         False, False, False, True, True, True,
+         False, True, False, True, False, True,
+         True, False, True, True, False, False,
+         True, False, False, True, False, True,
+         True, False, False, True, True, False
+      );
 
    --  La clef de 56 bits:
    --  1000 0111 1000 0111 1000 0111 1111 0111 1000 0111 1000 0111 1000 0000
    --  Donne la sous clef suivante :
    --  0110 1011 0001 0111 1000 1101 1100 0000 1010 1100 1001 1100
-   C48_3_Decalage : constant array
-      (Des_P.Clef_P.Clef_48_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            False, False, True, False, False, True,
-            True, False, False, False, True, True,
-            False, True, True, True, False, False,
-            False, False, False, True, True, True,
-            False, True, False, True, False, True,
-            False, False, True, True, False, False,
-            True, False, False, True, True, True,
-            False, True, True, True, True, False
-         );
+   C48_3_Decalage : constant Bits_Clef_48_T :=
+      Bits_Clef_48_T'
+      (
+         False, False, True, False, False, True,
+         True, False, False, False, True, True,
+         False, True, True, True, False, False,
+         False, False, False, True, True, True,
+         False, True, False, True, False, True,
+         False, False, True, True, False, False,
+         True, False, False, True, True, True,
+         False, True, True, True, True, False
+      );
 
    ---------------------------------------------------------------------------
    overriding

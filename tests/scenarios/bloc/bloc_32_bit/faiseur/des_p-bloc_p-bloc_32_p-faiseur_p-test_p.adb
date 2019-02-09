@@ -65,7 +65,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
    is
       Bit_Resulta, Bit_Attendu : Bit_IO_T;
       B : Bloc_32_T;
-      Res_Attendu : constant array (Intervalle_T) of Bit_T :=
+      Res_Attendu : constant Tableau_Bits_Resultat_T :=
+         Tableau_Bits_Resultat_T'
          (
             False, False, True, False,
             False, True, True, True,

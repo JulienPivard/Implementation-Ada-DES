@@ -10,6 +10,10 @@ package Des_P.Filtre_P.Entree_P.Dechiffre_P.Test_P is
          Filtre : Entree_T;
       end record;
 
+   type Tableau_Bits_64_T is array
+      (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
+      of Des_P.Bloc_P.Bit_T;
+
    overriding
    procedure Set_Up (T : in out Test_Fixt_T);
 

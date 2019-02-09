@@ -12,14 +12,17 @@ package body Des_P.Bloc_Xor_Clef_P.Test_P is
          Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'First;
       use type Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
    begin
+      Construction_Bloc :
       loop
          T.Bloc.Ecrire_Bit (I, True);
-         exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
+         exit Construction_Bloc when
+            I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
          I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
          T.Bloc.Ecrire_Bit (I, False);
-         exit when I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
+         exit Construction_Bloc when
+            I = Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Last;
          I := Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T'Succ (I);
-      end loop;
+      end loop Construction_Bloc;
    end Set_Up;
 
    ---------------------------------------------------------------------------

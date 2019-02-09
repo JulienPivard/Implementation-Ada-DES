@@ -27,7 +27,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      Depart : constant array (Intervalle_T) of Bit_T :=
+      Depart : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -41,7 +42,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Valeur Attendu
       --  11111111 11111111 00000000 00000000
       --  11111111 11111111 00000000 00000000
-      Attendu : constant array (Intervalle_T) of Bit_T :=
+      Attendu : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             True, True, True, True, True, True, True, True,
             True, True, True, True, True, True, True, True,
@@ -84,7 +86,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      Depart : constant array (Intervalle_T) of Bit_T :=
+      Depart : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -98,7 +101,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
       --  Valeur attendue
       --  00000000 00000000 00000000 00000000
       --  11111111 11111111 11111111 11111111
-      Attendu : constant array (Intervalle_T) of Bit_T :=
+      Attendu : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             False, False, False, False, False, False, False, False,
             False, False, False, False, False, False, False, False,

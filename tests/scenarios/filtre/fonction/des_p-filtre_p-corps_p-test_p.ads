@@ -10,6 +10,10 @@ package Des_P.Filtre_P.Corps_P.Test_P is
          Bloc : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
       end record;
 
+   type Tableau_Bits_32_T is array
+      (Des_P.Bloc_P.Bloc_32_P.Intervalle_T)
+      of Des_P.Bloc_P.Bit_T;
+
    overriding
    procedure Set_Up (T : in out Test_Fixt_T);
 

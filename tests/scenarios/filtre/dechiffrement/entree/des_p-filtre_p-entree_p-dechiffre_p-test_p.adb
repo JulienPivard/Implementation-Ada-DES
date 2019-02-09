@@ -29,9 +29,8 @@ package body Des_P.Filtre_P.Entree_P.Dechiffre_P.Test_P is
       --  Nombre de départ
       --  11110000 11110000 11110000 11110000
       --  11110000 11110000 11110000 11110000
-      Depart : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
-         of Des_P.Bloc_P.Bit_T :=
+      Depart : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             True, True, True, True, False, False, False, False,
             True, True, True, True, False, False, False, False,
@@ -45,9 +44,8 @@ package body Des_P.Filtre_P.Entree_P.Dechiffre_P.Test_P is
       --  Valeur attendu
       --  11111111 11111111 00000000 00000000
       --  11111111 11111111 00000000 00000000
-      Attendu : constant array
-         (Des_P.Bloc_P.Bloc_64_P.Intervalle_T)
-         of Des_P.Bloc_P.Bit_T :=
+      Attendu : constant Tableau_Bits_64_T :=
+         Tableau_Bits_64_T'
          (
             True, True, True, True, True, True, True, True,
             True, True, True, True, True, True, True, True,

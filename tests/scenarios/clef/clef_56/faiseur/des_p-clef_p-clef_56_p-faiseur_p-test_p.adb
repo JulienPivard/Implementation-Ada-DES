@@ -4,6 +4,10 @@ with Des_P.Clef_P.Clef_56_I_P;
 
 package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
 
+   package Clef_56_I_R renames Des_P.Clef_P.Clef_56_I_P;
+
+   type Bits_Clef_56_T is array (Clef_56_I_R.Intervalle_T) of Bit_T;
+
    --  La Clef de 64 bits:
    --  1111 0000 1111 0000 1111 0000 1111 0000
    --  1    5    9    13   17   21   25   29
@@ -23,19 +27,18 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P.Test_P is
    --  Clef de 64 bits ci-dessus.
    --  1111 1111 1111 1111 1111 1111 1111
    --  0000 0000 0000 0000 0000 0000 1111
-   Resultat_Attendu : constant array
-      (Des_P.Clef_P.Clef_56_I_P.Intervalle_T)
-      of Bit_T :=
-         (
-            False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False,
-            False, False, False, False, False, False, False,
-            True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True,
-            True, True, True, True, True, True, True,
-            True, True, True, False, False, False, False
-         );
+   Resultat_Attendu : constant Bits_Clef_56_T :=
+      Bits_Clef_56_T'
+      (
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         False, False, False, False, False, False, False,
+         True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True,
+         True, True, True, True, True, True, True,
+         True, True, True, False, False, False, False
+      );
 
    ---------------------------------------------------------------------------
    overriding

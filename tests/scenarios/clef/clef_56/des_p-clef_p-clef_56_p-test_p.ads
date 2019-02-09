@@ -2,6 +2,7 @@ with AUnit;
 with AUnit.Test_Fixtures;
 
 with Des_P.Clef_P.Clef_48_P.Faiseur_P;
+with Des_P.Clef_P.Clef_48_I_P;
 
 package Des_P.Clef_P.Clef_56_P.Test_P is
 
@@ -11,6 +12,7 @@ package Des_P.Clef_P.Clef_56_P.Test_P is
          Faiseur : Des_P.Clef_P.Clef_48_P.Faiseur_P.Faiseur_Clef_T;
       end record;
 
+   package Clef_48_I_R renames Des_P.Clef_P.Clef_48_I_P;
    package Clef_56_I_R renames Des_P.Clef_P.Clef_56_I_P;
 
    --  Intervalles sans décalages.

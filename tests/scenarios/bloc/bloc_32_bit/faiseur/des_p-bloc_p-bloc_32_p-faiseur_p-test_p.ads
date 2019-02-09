@@ -15,14 +15,16 @@ package Des_P.Bloc_P.Bloc_32_P.Faiseur_P.Test_P is
    subtype Intervalle_3_T is Intervalle_T range 17 .. 20;
    subtype Intervalle_4_T is Intervalle_T range 25 .. 28;
 
+   type Tableau_Bits_Resultat_T is array (Intervalle_T) of Bit_T;
+
    --  11110000_11110000_11110000_11110000
-   Resultat_Attendu : constant array
-      (Intervalle_T) of Bit_T :=
-         (
-            Intervalle_1_T | Intervalle_2_T |
-            Intervalle_3_T | Intervalle_4_T => True,
-            others => False
-         );
+   Resultat_Attendu : constant Tableau_Bits_Resultat_T :=
+      Tableau_Bits_Resultat_T'
+      (
+         Intervalle_1_T | Intervalle_2_T |
+         Intervalle_3_T | Intervalle_4_T => True,
+         others => False
+      );
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record

@@ -4,11 +4,14 @@ with Des_P.Clef_P.Clef_48_Simplifie_P;
 
 package body Des_P.Filtre_P.Corps_P.Test_P is
 
+   package Bloc_32_R renames Des_P.Bloc_P.Bloc_32_P;
+
+   type Bits_Bloc_32_T is array (Bloc_32_R.Intervalle_T) of Des_P.Bloc_P.Bit_T;
+
    --  Nombre de départ
    --  11110000 11110000 11110000 11110000
-   Depart : constant array
-      (Des_P.Bloc_P.Bloc_32_P.Intervalle_T)
-      of Des_P.Bloc_P.Bit_T :=
+   Depart : constant Bits_Bloc_32_T :=
+      Bits_Bloc_32_T'
       (
          False, False, False, False, True, True, True, True,
          False, False, False, False, True, True, True, True,
@@ -44,9 +47,8 @@ package body Des_P.Filtre_P.Corps_P.Test_P is
       --  Valeur attendu
       --  00011011 01011000
       --  11011100 10111010
-      Attendu : constant array
-         (Des_P.Bloc_P.Bloc_32_P.Intervalle_T)
-         of Des_P.Bloc_P.Bit_T :=
+      Attendu : constant Tableau_Bits_32_T :=
+         Tableau_Bits_32_T'
          (
             False, False, False, True, True, False, True, True,
             False, True, False, True, True, False, False, False,

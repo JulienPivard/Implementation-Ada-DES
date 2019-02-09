@@ -10,6 +10,8 @@ package Des_P.Bloc_P.Bloc_64_P.Permutations_P.Test_P is
          Bloc : Bloc_64_T;
       end record;
 
+   type Tableau_Bits_64_T is array (Intervalle_T) of Bit_T;
+
    overriding
    procedure Set_Up (T : in out Test_Fixt_T);
 
