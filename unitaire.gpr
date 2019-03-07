@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 29 juin[06] 2018
+--  Dernière modification : Jeudi 07 mars[03] 2019
 --  auteur : PIVARD Julien
 with "aunit";
 with "application/build.gpr";
@@ -74,6 +74,9 @@ project Unitaire is
          --  gnateE : Génère des informations supplémentaires
          --  dans les exceptions
          "-gnateE",
+         --  Active les vérification de la stack pour éviter les stacks
+         --  overflow.
+         "-fstack-check",
          --  gnatif pour pouvoir utiliser les accents dans
          --  les noms de variables.
          "-gnatif"

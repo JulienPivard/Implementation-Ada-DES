@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 09 février[02] 2019
+--  Dernière modification : Jeudi 07 mars[03] 2019
 --  Auteur : PIVARD Julien
 
 project Build is
@@ -91,6 +91,9 @@ project Build is
          --  gnateE : Génère des informations supplémentaires
          --  dans les exceptions
          "-gnateE",
+         --  Active les vérification de la stack pour éviter les stacks
+         --  overflow.
+         "-fstack-check",
          --  gnatif pour pouvoir utiliser les accents dans
          --  les noms de variables.
          "-gnatif"
@@ -98,9 +101,19 @@ project Build is
 
    --  gnatu : Liste toutes les unitées utilisé pour cette compilation
    --  gnatv : Active le mode verbose
+   --  gnatR : Pour afficher informations de représentation pour les
+   --          types et objets déclarés [0|1|2|3]
+   --  0 : Rien
+   --  1 : les informations de taille et d'alignement sont listées
+   --       pour les types tableau et de record déclarés.
+   --  2 : les informations de taille et d'alignement sont listées
+   --       pour tous les types et objets déclarés.
+   --  3 : inclut des expressions symboliques pour les valeurs qui
+   --       sont calculées au moment de l'exécution pour toute une
+   --       variété de record
    case Verbeux is
       when "oui" =>
-         Options := Options & ("-gnatu", "-gnatv");
+         Options := Options & ("-gnatu", "-gnatv", "-gnatR3");
       when "non" =>
          null;
    end case;

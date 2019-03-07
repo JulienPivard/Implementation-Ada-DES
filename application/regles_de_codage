@@ -239,4 +239,6 @@
 --  Définition d'entrées multiple dans un objets protégé
 +R Multiple_Entries_In_Protected_Definitions
 --  Définition d'objets volatile sans clause d'adresse.
+--  Souvent utilisé pour s'interfacer avec l'adresse mémoire
+--  d'un matériel.
 +R Volatile_Objects_Without_Address_Clauses
