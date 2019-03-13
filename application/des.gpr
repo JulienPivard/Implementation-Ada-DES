@@ -1,7 +1,7 @@
---  Dernière modification : Jeudi 07 mars[03] 2019
+--  Dernière modification : Mercredi 13 mars[03] 2019
 --  Auteur : PIVARD Julien
 
-project Build is
+project Des is
 
    --  Les énumérations sont des types accepté.
    type Mode_Compilation_T    is ("debug", "release");
@@ -252,4 +252,4 @@ project Build is
    package Linker is   --<<<  pour le linker
    end Linker;
 
-end Build;
+end Des;
