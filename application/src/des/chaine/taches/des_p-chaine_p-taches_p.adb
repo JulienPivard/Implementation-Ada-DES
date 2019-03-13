@@ -1,3 +1,8 @@
+--  Pour indiquer qu'une autre tache peut prendre le pas
+--  sur celle en cours. Équivalent à un delay 0.0 dans
+--  d'ancien code sources.
+with Ada.Dispatching;
+
 with Des_P.Bloc_P.Bloc_64_P;
 
 package body Des_P.Chaine_P.Taches_P is
@@ -49,6 +54,9 @@ package body Des_P.Chaine_P.Taches_P is
             or
                terminate;
             end select;
+
+            Ada.Dispatching.Yield;
+
          end loop Selection_Action_Estage;
       end Etage_Ecriture;
 
@@ -105,6 +113,9 @@ package body Des_P.Chaine_P.Taches_P is
                --  Renvoie du bloc vers l'étage d'écriture.
                Etage_Ecriture.Ecrire (T);
             end Ecrire_Donnee_Sortie;
+
+            Ada.Dispatching.Yield;
+
          end loop Selection_Action_Estage;
       end Etage_Sortie;
 
@@ -175,6 +186,9 @@ package body Des_P.Chaine_P.Taches_P is
                   Chaine_Corps (N_Tmp).Filtrer (T, N_Tmp);
                end if;
             end Filtrage_Des_Donnees;
+
+            Ada.Dispatching.Yield;
+
          end loop Selection_Action_Estage;
       end Etage_Corps_T;
 
@@ -232,6 +246,9 @@ package body Des_P.Chaine_P.Taches_P is
                Chaine_Corps (Numero_Filtre_T'First).Filtrer
                   (T, Numero_Filtre_T'First);
             end Lecture_Des_Donnees;
+
+            Ada.Dispatching.Yield;
+
          end loop Selection_Action_Estage;
       end Etage_Entree;
 
@@ -289,6 +306,8 @@ package body Des_P.Chaine_P.Taches_P is
                   Etage_Entree.Filtrer (Table (Indice_Tmp_T));
                end Filtrage;
             end Creation_Grappe;
+
+            Ada.Dispatching.Yield;
 
             --  La fin du fichier à été atteinte.
             exit Lecture_Fichier when Lecteur.all.Est_Fini;

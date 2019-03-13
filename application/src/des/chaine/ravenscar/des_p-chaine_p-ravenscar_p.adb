@@ -1,3 +1,8 @@
+--  Pour indiquer qu'une autre tache peut prendre le pas
+--  sur celle en cours. Équivalent à un delay 0.0 dans
+--  d'ancien code sources.
+with Ada.Dispatching;
+
 package body Des_P.Chaine_P.Ravenscar_P is
 
    ---------------------------------------------------------------------------
@@ -390,6 +395,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
             --  Signal que la donnée à été bien écrite et peut être lue.
             Autorisateur_Debut.Autoriser;
 
+            Ada.Dispatching.Yield;
+
             --  La fin du fichier à été atteinte.
             exit Lecture_Fichier when Lecteur.all.Est_Fini;
          end loop Lecture_Fichier;
@@ -450,6 +457,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
                exit Filtrage when Est_Derniere (D);
             end Transmission_Donnee_Bloc_Suivant;
 
+            Ada.Dispatching.Yield;
+
          end loop Filtrage;
 
          --  Quand tout le travail est fini la tâche attend ici qu'elles
@@ -509,6 +518,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
                exit Filtrage when Est_Derniere (D);
             end Transmission_Donnee_Bloc_Suivant;
 
+            Ada.Dispatching.Yield;
+
          end loop Filtrage;
 
          --  Quand tout le travail est fini la tâche attend ici qu'elles
@@ -566,6 +577,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
                exit Filtrage when Est_Derniere (D);
             end Transmission_Donnee_Bloc_Suivant;
 
+            Ada.Dispatching.Yield;
+
          end loop Filtrage;
 
          --  Quand tout le travail est fini la tâche attend ici qu'elles
@@ -622,6 +635,8 @@ package body Des_P.Chaine_P.Ravenscar_P is
 
                exit Ecriture_Fichier when Est_Derniere (D);
             end Transmission_Donnee_Bloc_Suivant;
+
+            Ada.Dispatching.Yield;
 
          end loop Ecriture_Fichier;
 
