@@ -160,7 +160,7 @@ Une description de la structure du projet.
 .
 ├── README.md
 ├── application/
-│   ├── build.gpr                   # La configuration du projet
+│   ├── des.gpr                   # La configuration du projet
 │   ├── exception_case              # Les exceptions de nommage
 │   ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
 │   │                               # est un multiple de 64 bits.
@@ -175,7 +175,7 @@ Une description de la structure du projet.
 ├── makefile
 ├── makefile.conf   # Configuration des variables pour les tests unitaires
 ├── tests/          # Les sources des tests unitaires
-└── unitaire.gpr    # La configuration des tests unitaires du projet
+└── des_unitaire.gpr    # La configuration des tests unitaires du projet
 ```
 
 ## Tests unitaires
