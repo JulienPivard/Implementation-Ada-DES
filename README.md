@@ -160,18 +160,20 @@ Une description de la structure du projet.
 .
 ├── README.md
 ├── config
-│   ├── exception_case          # Les exceptions de nommage
+│   ├── exception_case      # Les exceptions de nommage
 │   ├── lorem.txt
-│   ├── regles_de_codage        # Les règles de code pour gnatcheck
-│   └── test.txt                # Un fichier de tests
+│   ├── makefile.checks     # Vérifications des variables de
+│   │                       # la configuration
+│   ├── makefile.template   # Des cibles commune utilisés par
+│   │                       # tous les makefiles
+│   ├── regles_de_codage    # Les règles de code pour gnatcheck
+│   └── test.txt            # Un fichier de tests
+│
 ├── des.gpr                     # La configuration du projet
 ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
 │                               # est un multiple de 64 bits.
 ├── makefile
-├── makefile.checks     # Vérifications des variables de la configuration
 ├── makefile.conf       # Configuration spécifique au projet.
-├── makefile.template   # Des cibles commune utilisés par tous les
-│                       # makefile
 ├── src                 # Les sources de l'application
 └── tests_unitaires
     ├── des_unitaire.gpr    # La configuration des tests unitaires

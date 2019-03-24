@@ -10,7 +10,7 @@ SHELL		:= /bin/sh
 srcdir		:= .
 
 include ./makefile.conf
-include ../makefile.template
+include ../config/makefile.template
 
 ###############
 .PHONY: runapp

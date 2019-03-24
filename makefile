@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 09 février[02] 2019
+# Dernière modification : Dimanche 24 mars[03] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -10,8 +10,8 @@ SHELL		:= /bin/sh
 srcdir		:= .
 
 include ./makefile.conf
-include ./makefile.checks
-include ./makefile.template
+include ./config/makefile.checks
+include ./config/makefile.template
 
 ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
     DEPEND	= $(CIBLECOMPILE)
