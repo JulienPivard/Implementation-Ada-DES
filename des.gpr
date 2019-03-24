@@ -231,7 +231,8 @@ project Des is
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
    package Check is
-      for Default_Switches ("ada") use ("-rules", "-from=regles_de_codage");
+      for Default_Switches ("ada") use
+         ("-rules", "-from=./config/regles_de_codage");
    end Check;
 
    --  Les options pour gnatprove

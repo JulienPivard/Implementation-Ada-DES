@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Dimanche 10 juin[06] 2018
+# Dernière modification : Dimanche 24 mars[03] 2019
 
 ###############################################################################
 #                   ___                             __                        #
@@ -548,7 +548,7 @@ function vide ()
 function remplir_fichier ()
 {
     local -r FIC="${1}"
-    local -r FICHIER_LOREM="lorem.txt"
+    local -r FICHIER_LOREM="./config/lorem.txt"
     local -ri TAILLE_FIC="${2}"
 
     # Traitement de la différence de gestion de l'affichage de
