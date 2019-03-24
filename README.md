@@ -186,9 +186,11 @@ Une description de la structure du projet.
 
 ### Compilation
 
-La compilation des tests unitaires se fait à la racine du projet en tapant :
+La compilation des tests unitaires se fait dans le dossier
+**tests\_unitaires** du projet en tapant :
 
 ```sh
+cd tests_unitaires
 make
 ```
 
@@ -197,23 +199,26 @@ make
 Le lancement des tests unitaires :
 
 ```sh
+# dans le dossier tests_unitaires
 make run
 ```
 
 ou
 
 ```sh
+# dans le dossier tests_unitaires
 ./bin/test_unitaire_executable
 ```
+
+qui est équivalent.
 
 ## Application
 
 ### Compilation
 
-La compilation de l'application se fait dans le dossier **application** :
+La compilation de l'application se fait à la racine.
 
 ```sh
-cd ./application
 make
 ```
 
@@ -315,7 +320,7 @@ Pour générer le fichier de 1,8 Mo qui a été utilisé pour les tests, tapez
 la commande
 
 ```
-./application/genererFichierAleatoire.sh -f autre.test -t 1.8M
+./genererFichierAleatoire.sh -f autre.test -t 1.8M
 ```
 
 #### Version Débogue
