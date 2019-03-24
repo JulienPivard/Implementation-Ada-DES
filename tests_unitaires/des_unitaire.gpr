@@ -1,7 +1,7 @@
---  Dernière modification : Mercredi 13 mars[03] 2019
+--  Dernière modification : Dimanche 24 mars[03] 2019
 --  auteur : PIVARD Julien
 with "aunit";
-with "application/des.gpr";
+with "../des.gpr";
 
 project Des_Unitaire is
 

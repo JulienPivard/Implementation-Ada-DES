@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 13 octobre[10] 2018
+# Dernière modification : Dimanche 24 mars[03] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -10,12 +10,12 @@ SHELL		:= /bin/sh
 srcdir		:= .
 
 include ./makefile.conf
-include ./application/makefile.template
+include ../makefile.template
 
 ###############
 .PHONY: runapp
 runapp:
-	$(MAKE) -C application run
+	$(MAKE) -C ../ run
 
 ###################
 .PHONY: $(CIBLECOMPILE)
@@ -31,7 +31,7 @@ cleanall: clean
 	@echo "  "
 	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
 	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C application clean
+	$(MAKE) -C ../ clean
 	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
@@ -41,7 +41,7 @@ distcleanall: distclean
 	@echo "  "
 	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
 	@echo " ━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C application distclean
+	$(MAKE) -C ../ distclean
 	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
