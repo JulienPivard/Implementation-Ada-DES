@@ -1,4 +1,4 @@
---  Dernière modification : Mercredi 13 mars[03] 2019
+--  Dernière modification : Dimanche 24 mars[03] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -76,6 +76,7 @@ project Des is
          --  avec le tag error:
          "-gnatU",
          "-gnat2012",
+         --  Vérification du style utilisé.
          --  gnatyy équivaut à 3aAbcefhiklmnprst
          "-gnatyy",
          "-gnatyBdOSux",
@@ -91,6 +92,8 @@ project Des is
          --  gnateE : Génère des informations supplémentaires
          --  dans les exceptions
          "-gnateE",
+         --  Vérification des dépassements numériques.
+         "-gnato",
          --  Active les vérification de la stack pour éviter les stacks
          --  overflow.
          "-fstack-check",
