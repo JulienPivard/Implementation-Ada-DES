@@ -88,6 +88,26 @@ cleandoc:
 	$(RM) $(OPTRM) doc
 
 ###################
+.PHONY: cleanall
+cleanall: clean
+	@echo "  "
+	@echo "  "
+	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	$(MAKE) -C tests_unitaires/ clean
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+###################
+.PHONY: distcleanall
+distcleanall: distclean
+	@echo "  "
+	@echo "  "
+	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
+	@echo " ━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
+	$(MAKE) -C tests_unitaires/  distclean
+	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+###################
 .PHONY: help
 help:
 	@echo "Liste des commandes :"

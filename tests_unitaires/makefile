@@ -12,37 +12,12 @@ srcdir		:= .
 include ./makefile.conf
 include ../config/makefile.template
 
-###############
-.PHONY: runapp
-runapp:
-	$(MAKE) -C ../ run
-
 ###################
 .PHONY: $(CIBLECOMPILE)
 $(CIBLECOMPILE): build
 	@echo " ────────────────────────────────────────────"
 	@echo " [OK] Compilation des tests unitaires terminé"
 	@echo "  "
-
-###################
-.PHONY: cleanall
-cleanall: clean
-	@echo "  "
-	@echo "  "
-	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C ../ clean
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-###################
-.PHONY: distcleanall
-distcleanall: distclean
-	@echo "  "
-	@echo "  "
-	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo " ━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C ../ distclean
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
 .PHONY: help
