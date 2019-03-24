@@ -7,7 +7,6 @@ project Des is
    type Mode_Compilation_T    is ("debug", "release");
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
-   type Personnalisee_T       is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
@@ -15,10 +14,9 @@ project Des is
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : Mode_Compilation_T    := External ("mode", "debug");
-   Verbeux           : Verbeux_T             := External ("verb", "non");
-   Strict            : Strict_T              := External ("stri", "non");
-   Personnalisee     : Personnalisee_T       := External ("peso", "non");
+   Mode_Compilation  : Mode_Compilation_T    := External ("mode",    "debug");
+   Verbeux           : Verbeux_T             := External ("verbeux", "non");
+   Strict            : Strict_T              := External ("strict",  "non");
 
    Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
       External ("warn_sont_err", "non");
@@ -148,18 +146,6 @@ project Des is
    package Documentation is
 
       for Documentation_Dir use "doc";
-
-      case Strict is
-         when "oui" =>
-            null;
-         when "non" =>
-            case Personnalisee is
-               when "oui" =>
-                  for Doc_Pattern use "^<";
-               when "non" =>
-                  null;
-            end case;
-      end case;
 
    end Documentation;
 
