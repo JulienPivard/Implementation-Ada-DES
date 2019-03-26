@@ -164,6 +164,8 @@ project Des is
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
+      --  Active la recompilation si un drapeau change
+      for Default_Switches ("ada") use ("-s");
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
@@ -225,7 +227,7 @@ project Des is
    --  statistics    - Same as provers, plus timing and steps information
    ----------------------------------------------------------------------------
    package Prove is
-      for Switches use ("--report=fail");
+      for Default_Switches use ("--report=fail");
    end Prove;
 
    --  Uniquement pour ada.
