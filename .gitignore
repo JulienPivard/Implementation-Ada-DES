@@ -1,8 +1,11 @@
-tags
+# Fichiers généré par la compilation
 obj/
 bin/
 doc/
+tags
 *.chiffre
 *.dechiffre
 *.pdf
 *.test
+# Fichiers généré par pretty print
+*.pp
