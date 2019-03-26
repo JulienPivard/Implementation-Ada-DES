@@ -30,7 +30,7 @@ project Des_Unitaire is
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
-   package Naming is   --<<<  Pour changer les noms
+   package Naming is
 
       --  Pour lier le nom dans le code et le nom du fichier de spec
       --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
@@ -39,7 +39,7 @@ project Des_Unitaire is
 
    end Naming;
 
-   package Builder is  --<<<  pour gprbuild
+   package Builder is
 
       --  Pour changer le nom du binaire de main_test_harnais à
       --  test_unitaire_executable après le use.
@@ -47,7 +47,7 @@ project Des_Unitaire is
 
    end Builder;
 
-   package Compiler is --<<<  pour le compiler
+   package Compiler is
 
       for Default_Switches ("Ada") use Options;
 
@@ -56,10 +56,10 @@ project Des_Unitaire is
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
    --  initialiser les variables globales ...
-   package Binder is   --<<<  pour le binder
+   package Binder is
    end Binder;
 
-   package Linker is   --<<<  pour le linker
+   package Linker is
    end Linker;
 
 end Des_Unitaire;
