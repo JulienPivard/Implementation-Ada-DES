@@ -236,6 +236,22 @@ project Des is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
+
+      case Mode_Compilation is
+         when "debug" =>
+            for Default_Switches ("Ada") use
+               (
+                  --  Active le stockage de la pile d'appel
+                  --  de l'exception.
+                  "-E",
+                  --  Active l'affichage lisible du tracé des
+                  --  exceptions. Utile en conjonction avec -g
+                  "-Es"
+               );
+         when "release" =>
+            null;
+      end case;
+
    end Binder;
 
    --  Configuration pour le Linker
