@@ -83,6 +83,11 @@ check:
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
+.PHONY: pretty
+pretty:
+	gnatpp -P$(GPR) $(Fic)
+
+###################
 .PHONY: cleandoc
 cleandoc:
 	$(RM) $(OPTRM) doc
