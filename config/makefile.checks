@@ -19,6 +19,16 @@ ifeq ($(ACTIVER_AFFICHER_LA_STACK), )
     ACTIVER_AFFICHER_LA_STACK	= false
 endif
 
+# On notifie si le nom de l'app n'est pas changé
+ifeq ($(NOMAPP), nomapplication)
+    $(info makefile.conf:60:        Le nom du programme [NOMAPP] doit être changé)
+endif
+
+# On notifie si le nom de l'app est vide.
+ifeq ($(NOMAPP), )
+    $(info makefile.conf:60:        Le nom du programme [NOMAPP] est vide)
+endif
+
 # On vérifie que ACTIVER_DEBUG vaut bien [true|false]
 ifneq ($(ACTIVER_DEBUG), true)
   ifneq ($(ACTIVER_DEBUG), false)
@@ -52,16 +62,6 @@ ifneq ($(ACTIVER_AFFICHER_LA_STACK), true)
   ifneq ($(ACTIVER_AFFICHER_LA_STACK), false)
     $(error Dans makefile.conf:80: [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
   endif
-endif
-
-# On notifie si le nom de l'app n'est pas changé
-ifeq ($(NOMAPP), nomapplication)
-    $(info makefile.conf:60:        Le nom du programme [NOMAPP] doit être changé)
-endif
-
-# On notifie si le nom de l'app est vide.
-ifeq ($(NOMAPP), )
-    $(info makefile.conf:60:        Le nom du programme [NOMAPP] est vide)
 endif
 
 # Pour activer le mode debug
