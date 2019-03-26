@@ -5,9 +5,11 @@ project Des is
 
    --  Les énumérations sont des types accepté.
    type Mode_Compilation_T    is ("debug", "release");
+
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
+   type Afficher_La_Stack_T   is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
@@ -18,11 +20,14 @@ project Des is
    Verbeux           : Verbeux_T             := External ("verbeux", "non");
    Strict            : Strict_T              := External ("strict",  "non");
 
+   Afficher_La_Stack : Afficher_La_Stack_T         :=
+      External ("afficher_utilisation_stack",  "non");
    Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
       External ("warn_sont_err", "non");
 
    --  Le nom du fichier qui contient la procédure principale.
-   Fichiers_Principaux := ("client_sequentiel.adb");
+   Fichiers_Principaux := ();
+   Fichiers_Principaux := Fichiers_Principaux & ("client_sequentiel.adb");
    Fichiers_Principaux := Fichiers_Principaux & ("client_taches.adb");
    Fichiers_Principaux := Fichiers_Principaux & ("client_ravenscar.adb");
 
@@ -227,7 +232,7 @@ project Des is
    --  statistics    - Same as provers, plus timing and steps information
    ----------------------------------------------------------------------------
    package Prove is
-      for Default_Switches use ("--report=fail");
+      for Default_Switches ("ada") use ("--report=fail");
    end Prove;
 
    --  Uniquement pour ada.
@@ -236,10 +241,11 @@ project Des is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
+      Options_Binder := ();
 
       case Mode_Compilation is
          when "debug" =>
-            for Default_Switches ("Ada") use
+            Options_Binder :=
                (
                   --  Active le stockage de la pile d'appel
                   --  de l'exception.
@@ -251,7 +257,19 @@ project Des is
          when "release" =>
             null;
       end case;
+      case Afficher_La_Stack is
+         when "oui" =>
+            Options_Binder := Options_Binder &
+               (
+                  --  Active l'enregistrement dynamique de
+                  --  l'usage de la pile.
+                  "-u100"
+               );
+         when "non" =>
+            null;
+      end case;
 
+      for Default_Switches ("Ada") use Options_Binder;
    end Binder;
 
    --  Configuration pour le Linker
