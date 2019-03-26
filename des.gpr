@@ -249,4 +249,16 @@ project Des is
       end case;
    end Linker;
 
+   --  Configuration pour GPS.
+   ----------------------------------------------------------------------------
+   package Ide is
+      for Vcs_Kind use "Git";
+   end Ide;
+
+   --  Indique quel makefile utiliser.
+   ----------------------------------------------------------------------------
+   package Make is
+      for Makefile use "makefile";
+   end Make;
+
 end Des;
