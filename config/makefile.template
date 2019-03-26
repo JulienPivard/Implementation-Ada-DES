@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	:= 2.0.0
+MAKEFILE_V	:= 2.1.0
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -80,7 +80,7 @@ ifneq ($(VARNOMFICHIER), )
    endif
 endif
 
-ifeq ($(shell which cloc), )
+ifeq ($(shell which cloc 2>/dev/null), )
     TECHNIQUE_COMPTAGE	= avec_find
 else
     TECHNIQUE_COMPTAGE	= avec_cloc
@@ -96,7 +96,7 @@ avec_find:
 
 .PHONY: avec_cloc
 avec_cloc:
-	cloc --exclude-dir=obj,bin --by-percent cmb .
+	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIERSRC)
 
 ###################
 .PHONY: compterdetail
@@ -108,4 +108,4 @@ avec_find_detail:
 
 .PHONY: avec_cloc_detail
 avec_cloc_detail:
-	cloc --exclude-dir=obj,bin --by-file-by-lang .
+	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIERSRC)
