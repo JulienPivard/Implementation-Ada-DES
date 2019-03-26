@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 24 mars[03] 2019
+--  Dernière modification : Mardi 26 mars[03] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -74,7 +74,7 @@ project Des is
          --  avec le tag error:
          "-gnatU",
          "-gnat2012",
-         --  Vérification du style utilisé.
+         --  Vérification du style utilisé (longueur de ligne, espacement ...).
          --  gnatyy équivaut à 3aAbcefhiklmnprst
          "-gnatyy",
          "-gnatyBdOSux",
@@ -92,8 +92,8 @@ project Des is
          "-gnateE",
          --  Vérification des dépassements numériques.
          "-gnato",
-         --  Active les vérification de la stack pour éviter les stacks
-         --  overflow.
+         --  Active les vérification de la stack pour éviter les
+         --  stacks overflow.
          "-fstack-check",
          --  gnatif pour pouvoir utiliser les accents dans
          --  les noms de variables.
@@ -161,20 +161,9 @@ project Des is
 
    end Naming;
 
-   --  package Binder          for command BIND (invoking gnatbind)
-   --  package Check           for command CHECK (invoking gnatcheck)
-   --  package Compiler        for command COMP or COMPILE
-   --  package Cross_Reference for command XREF (invoking gnatxref)
-   --  package Eliminate       for command ELIM (invoking gnatelim)
-   --  package Finder          for command FIND (invoking gnatfind)
-   --  package Gnatls          for command LS or LIST (invoking gnatls)
-   --  package Gnatstub        for command STUB (invoking gnatstub)
-   --  package Linker          for command LINK (invoking gnatlink)
-   --  package Check           for command CHECK (invoking gnatcheck)
-   --  package Metrics         for command METRIC (invoking gnatmetric)
-   --  package Pretty_Printer  for command PP or PRETTY (invoking gnatpp)
+   --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
-   package Builder is  --<<<  pour gprbuild
+   package Builder is
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
@@ -186,8 +175,9 @@ project Des is
 
    end Builder;
 
+   --  Configuration pour le compiler
    ----------------------------------------------------------------------------
-   package Compiler is --<<<  pour le compiler
+   package Compiler is
 
       case Mode_Compilation is
          when "debug" =>
@@ -201,15 +191,21 @@ project Des is
 
    end Compiler;
 
+   --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
-   package Cross_Reference is  --<<<  Pour gnatxref
+   package Cross_Reference is
 
       for Default_Switches ("Ada") use
          (
+            --  Affiche le type du parent pour chaque type dérivé rencontré.
+            "-d",
+            --  Le nom du fichier est précédé par le dossier du
+            --  fichier source.
             "-f",
-            "-v",
+            --  N'affiche que les symboles inutilisé.
             "-u",
-            "-d"
+            --  Génère un fichier de tag utilisable par vim
+            "-v"
          );
 
    end Cross_Reference;
@@ -227,6 +223,7 @@ project Des is
    --  all           - Report all results of proving checks
    --  provers       - Same as all, plus prover usage information
    --  statistics    - Same as provers, plus timing and steps information
+   ----------------------------------------------------------------------------
    package Prove is
       for Switches use ("--report=fail");
    end Prove;
@@ -234,12 +231,14 @@ project Des is
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
    --  initialiser les variables globales ...
+   --  Configuration pour le binder
    ----------------------------------------------------------------------------
-   package Binder is   --<<<  pour le binder
+   package Binder is
    end Binder;
 
+   --  Configuration pour le Linker
    ----------------------------------------------------------------------------
-   package Linker is   --<<<  pour le linker
+   package Linker is
    end Linker;
 
 end Des;
