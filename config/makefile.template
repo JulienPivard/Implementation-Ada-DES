@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 mars[03] 2019
+# Dernière modification : Mardi 26 mars[03] 2019
 
 ###################
 # Point d'entrée #
@@ -58,7 +58,7 @@ clean:
 	@echo " ┌──────────────────────────────────────────────────────────────┐"
 	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) obj
+	-$(RM) $(OPTRM) "./$(CHEMIN_OBJET)"
 	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
@@ -67,7 +67,7 @@ distclean: clean
 	@echo " ┌──────────────────────────────────────────────────────────────┐"
 	@echo " │ Effacement des fichiers executable généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) bin
+	-$(RM) $(OPTRM) "./$(CHEMIN_EXEC)"
 	@echo " ────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
