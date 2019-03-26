@@ -29,4 +29,4 @@ help:
 	@echo " - run		: Execute les tests unitaires"
 	@echo " - runapp	: Execute l'application"
 	@echo " - clean	: Efface tous les fichiers généré par la compilation des tests unitaires sauf les exécutables."
-	@echo " - distclean	: Efface tous les fichiers généré par la compilation des testes unitaires."
+	@echo " - distclean	: Efface tous les fichiers généré par la compilation des tests unitaires."

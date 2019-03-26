@@ -157,7 +157,7 @@ project Des is
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
    ----------------------------------------------------------------------------
-   package Naming is   --<<<  Pour changer les noms
+   package Naming is
 
       --  Pour lier le nom dans le code et le nom du fichier de spec
       --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
@@ -232,7 +232,7 @@ project Des is
    --  statistics    - Same as provers, plus timing and steps information
    ----------------------------------------------------------------------------
    package Prove is
-      for Default_Switches ("ada") use ("--report=fail");
+      for Default_Switches ("Ada") use ("--report=fail");
    end Prove;
 
    --  Uniquement pour ada.
@@ -245,7 +245,7 @@ project Des is
 
       case Mode_Compilation is
          when "debug" =>
-            Options_Binder :=
+            Options_Binder := Options_Binder &
                (
                   --  Active le stockage de la pile d'appel
                   --  de l'exception.
@@ -275,12 +275,14 @@ project Des is
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
    package Linker is
+
       case Mode_Compilation is
          when "debug" =>
             for Default_Switches ("ada") use ("-g");
          when "release" =>
             null;
       end case;
+
    end Linker;
 
    --  Configuration pour le formatage de sources
