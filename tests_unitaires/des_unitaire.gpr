@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 24 mars[03] 2019
+--  Dernière modification : Mardi 26 mars[03] 2019
 --  auteur : PIVARD Julien
 with "aunit";
 with "../des.gpr";
@@ -7,6 +7,7 @@ project Des_Unitaire is
 
    Fichier_Principal             := "main_test_harnais.adb";
    Nom_Executable                := "test_unitaire_executable";
+   Nom_Sous_Dossier_Compil       := "tests_unitaire";
 
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use (Fichier_Principal);
@@ -16,8 +17,8 @@ project Des_Unitaire is
    --  Le ** permet d'inclure tous les sous répertoire.
    for Source_Dirs               use ("src_tests_unitaire/**");
 
-   for Object_Dir                use "obj/";
-   for Exec_Dir                  use "bin/";
+   for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
+   for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    Options :=

@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 mars[03] 2019
+# Dernière modification : Mardi 26 mars[03] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -86,26 +86,6 @@ check:
 .PHONY: cleandoc
 cleandoc:
 	$(RM) $(OPTRM) doc
-
-###################
-.PHONY: cleanall
-cleanall: clean
-	@echo "  "
-	@echo "  "
-	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━ temporaires ━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C tests_unitaires/ clean
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-###################
-.PHONY: distcleanall
-distcleanall: distclean
-	@echo "  "
-	@echo "  "
-	@echo " ━━━━━━━━━━━━━━━━ Effacement des sous répertoires ━━━━━━━━━━━━━━━━"
-	@echo " ━━━━━━━━━━━━━━━━━━━ temporaires et exécutable ━━━━━━━━━━━━━━━━━━━"
-	$(MAKE) -C tests_unitaires/  distclean
-	@echo " ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ fin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 ###################
 .PHONY: help
