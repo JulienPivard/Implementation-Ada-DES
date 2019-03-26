@@ -241,6 +241,12 @@ project Des is
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
    package Linker is
+      case Mode_Compilation is
+         when "debug" =>
+            for Default_Switches ("ada") use ("-g");
+         when "release" =>
+            null;
+      end case;
    end Linker;
 
 end Des;
