@@ -315,8 +315,9 @@ Des résultats concret de temps d'exécutions de l'application exécuté sur
 différents processeurs, pour donner une idée des performances de
 l'application.
 * OS : GNU/linux avec CPU : Intel Pentium P6000; 1.87GHz; 2 core;
-  1 thread/core : https://ark.intel.com/fr/products/49058/Intel-Pentium-Processor-P6000-3M-Cache-1_86-GHz
-* OS : MacOS avec CPU : Intel Core i5; 2,7GHz; 2 core; 2 thread/core : https://ark.intel.com/fr/products/85212/Intel-Core-i5-5200U-Processor-3M-Cache-up-to-2_70-GHz
+  1 thread/core : [Site ark Intel Pentium](https://ark.intel.com/fr/products/49058/Intel-Pentium-Processor-P6000-3M-Cache-1_86-GHz)
+* OS : MacOS avec CPU : Intel Core i5; 2,7GHz; 2 core; 2 thread/core :
+  [Site ark Intel Core i5](https://ark.intel.com/fr/products/85212/Intel-Core-i5-5200U-Processor-3M-Cache-up-to-2_70-GHz)
 
 Pour générer le fichier de 1,8 Mo qui a été utilisé pour les tests, tapez
 la commande
