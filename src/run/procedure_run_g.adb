@@ -58,7 +58,7 @@ package body Procedure_Run_G is
          Duree_IO.Put    (Duree_Exact, 0, 4);
          Ada.Text_IO.Put_Line (" s");
 
-         --  Affichage en minuttes.
+         --  Affichage en minutes.
          if Duree_Exact > 60.0 then
             Ada.Text_IO.Put (Indentation);
             Temps_IO.Put    (Duree / Minuttes, 0);
