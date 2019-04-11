@@ -191,7 +191,7 @@
 +R Positional_Actuals_For_Defaulted_Generic_Parameters
 --  Les paramètres avec une valeur par défaut
 --  doivent être donné avec leur nom
--R Positional_Actuals_For_Defaulted_Parameters
++R Positional_Actuals_For_Defaulted_Parameters
 --  Signal toutes les utilisation de pos pour les types enumération
 -R POS_On_Enumeration_Types
 --  Dans les composants les valeurs doivent être donné avec leur nom
@@ -199,7 +199,7 @@
 --  Dans les générique les valeurs doivent être donné avec leur nom
 +R Positional_Generic_Parameters
 --  Les paramètres doivent être donné avec leur nom
--R Positional_Parameters
++R Positional_Parameters:All
 --  Signal tous les sous-programme recursif
 -R Recursive_Subprograms
 --  Conversion d'adresses sans contrôle
