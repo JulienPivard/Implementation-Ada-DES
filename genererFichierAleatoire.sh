@@ -355,8 +355,8 @@ function demander_utilisateur ()
         #}}}
 
 # affichage_echappee                {{{
-printf '%q ' test >/dev/null 2>&1
-[[ "${?}" -eq 0 ]] && declare -r AFFICHAGE_ECHAPPE='printfq'
+printf '%q ' test >/dev/null 2>&1 && AFFICHAGE_ECHAPPE='printfq' || AFFICHAGE_ECHAPPE=''
+declare -r AFFICHAGE_ECHAPPE
 function affichage_echappee ()
 {
     if [[ "${AFFICHAGE_ECHAPPE}" == 'printfq' ]]
@@ -396,12 +396,7 @@ function executer_commande ()
     printf >&2 "${NEUTRE}\n"
 
     # Exécute la commande
-    if "${@}"
-    then
-        local -r Code_Erreur=0
-    else
-        local -r Code_Erreur="${?}"
-    fi
+    "${@}" && local -r Code_Erreur=0 || local -r Code_Erreur="${?}"
 
     if [[ "${Code_Erreur}" -ne 0 ]]
     then
