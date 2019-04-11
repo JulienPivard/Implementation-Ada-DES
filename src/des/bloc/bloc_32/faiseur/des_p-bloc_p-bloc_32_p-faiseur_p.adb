@@ -83,6 +83,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             "Positional_Components",
             "Tableau trop grand pour positionner toutes les valeurs"
          );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_On,
+            "Positional_Parameters",
+            "Tableau trop grand pour positionner toutes les valeurs"
+         );
       Table_48_Bits : constant Table_48_Bits_T :=
       Table_48_Bits_T'
       (
@@ -103,6 +110,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          Bloc.Lire_Bit (43), Bloc.Lire_Bit (44), Bloc.Lire_Bit (45),
          Bloc.Lire_Bit (46), Bloc.Lire_Bit (47), Bloc.Lire_Bit (48)
       );
+      pragma Annotate
+         (
+            gnatcheck,
+            Exempt_Off,
+            "Positional_Parameters"
+         );
       pragma Annotate
          (
             gnatcheck,
