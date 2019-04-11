@@ -5,6 +5,8 @@ doc/
 tags
 # Fichier généré par pretty print.
 *.pp
+# Fichier temporaire de gnat.
+.\#*\#
 # Fichier généré par le chiffrement
 *.chiffre
 *.dechiffre
