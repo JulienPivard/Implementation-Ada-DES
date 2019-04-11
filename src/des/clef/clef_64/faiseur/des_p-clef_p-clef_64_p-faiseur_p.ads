@@ -62,6 +62,7 @@ private
       Interface_R.Faiseur_Interface_T with
       record
          Clef : Clef_T;
+         --  La clef en cours de construction.
       end record;
 
 end Des_P.Clef_P.Clef_64_P.Faiseur_P;

@@ -46,6 +46,8 @@ private
    type Ecriveur_Fichier_T is limited new Ecriveur_T with
       record
          Resultat : Fichier_64_IO.File_Type;
+         --  Le fichier dans lequel on va écrire les blocs chiffré
+         --  ou déchiffré.
       end record;
 
 end Des_P.Chaine_P.Ecriveur_P.Fichier_P;

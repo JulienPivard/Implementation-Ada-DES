@@ -109,13 +109,11 @@ private
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Pre => Etage.Possede_Filtre;
-   --  Filtre le bloc de 64 bits avec une clef.
+   --  Filtre le bloc de 64 bits avec une clef correspondant à l'étage.
    --  @param Etage
-   --  L'étage.
+   --  L'étage contenant la clef.
    --  @param Bloc
    --  Le bloc de 64 bits.
-   --  @param Clef
-   --  la clef de 56 bits.
 
    package Holder_P is new
       Ada.Containers.Indefinite_Holders
@@ -124,7 +122,10 @@ private
    type Etage_T is new Etage_Abstrait_T with
       record
          Filtre      : Des_P.Filtre_P.Holder_P.Holder;
+         --  Chaque étage dispose d'un filtre dans lequel vont passer
+         --  les blocs.
          Successeur  : Holder_P.Holder;
+         --  Contient l'étage suivant auquel transmettre le bloc.
       end record;
 
 end Des_P.Etage_P.Filtrage_P;

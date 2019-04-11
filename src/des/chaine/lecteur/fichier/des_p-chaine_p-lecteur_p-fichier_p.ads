@@ -58,6 +58,7 @@ private
    type Lecteur_Fichier_T is limited new Lecteur_T with
       record
          Fichier : Fichier_64_IO.File_Type;
+         --  Le fichier qui va etre lu bloc par bloc.
       end record;
 
 end Des_P.Chaine_P.Lecteur_P.Fichier_P;

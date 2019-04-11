@@ -89,8 +89,11 @@ private
       Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T with
       record
          Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T;
+         --  Le nombre de décalage à appliquer aux bits de la clef.
          C1       : Champ_De_Bits_T;
+         --  Un tableau de bits de la première moitié de la clef.
          C2       : Champ_De_Bits_T;
+         --  Un tableau de bits de la seconde moitié de la clef.
       end record;
 
 end Des_P.Clef_P.Clef_56_P;

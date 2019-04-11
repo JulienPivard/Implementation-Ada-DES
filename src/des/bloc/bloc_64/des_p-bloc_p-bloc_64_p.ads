@@ -196,7 +196,10 @@ private
    type Bloc_64_T is new Bloc_Abstrait_T with
       record
          Blocs_32 : Tableau_Bloc_T;
+         --  Les deux blocs de 32 bits qui composent celui de 64.
          Decalage : Decalage_T;
+         --  Décalage permettant de simuler l'échange des blocs
+         --  de gauche et de droite.
       end record;
 
 end Des_P.Bloc_P.Bloc_64_P;

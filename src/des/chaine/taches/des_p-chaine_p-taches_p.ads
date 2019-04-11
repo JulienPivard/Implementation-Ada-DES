@@ -84,11 +84,19 @@ private
    type Chaine_T is new Chaine_Interface_T with
       record
          Filtre_Entree : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
+         --  Le premier filtre dans lequel vont passer les blocs.
          Filtres_Corps : Table_Filtre_T;
+         --  Un tableau des filtres suivant le schémas de feistel.
          Filtre_Sortie : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
+         --  Le dernier filtre dans lequel vont passer les blocs
+         --  avant d'être écrit dans le fichier de sortie.
          Max_Grappes   : Limiteur_R.Max_Grappes_T :=
             Limiteur_R.Max_Grappes_T'First;
+         --  Le nombre maximum de grappes de blocs en même temps dans
+         --  le pipeline.
          Modifier_Max_Grappes : Boolean := False;
+         --  On souhaite que la modification du nombre de
+         --  grappes soit prise en compte par la chaine.
       end record;
 
 end Des_P.Chaine_P.Taches_P;

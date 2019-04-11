@@ -59,6 +59,8 @@ private
       Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T with
       record
          Bits : Tableau_Bits_T;
+         --  Les bits de la clef stocké dans un tableau pour en faciliter
+         --  l'accès et la manipulation.
       end record;
 
 end Des_P.Clef_P.Clef_48_P;

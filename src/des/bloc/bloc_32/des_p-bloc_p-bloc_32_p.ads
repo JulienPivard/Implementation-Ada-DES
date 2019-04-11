@@ -90,6 +90,8 @@ private
    type Bloc_32_T is new Bloc_Abstrait_T with
       record
          Bits : Tableau_Bits_T;
+         --  Les bits du bloc stocké dans un tableau pour en faciliter
+         --  l'accès et la manipulation.
       end record;
 
 end Des_P.Bloc_P.Bloc_32_P;

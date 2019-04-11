@@ -62,8 +62,11 @@ private
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with
       record
          Chaine      : Chaine_T;
+         --  La chaine d'étage en cours d'initialisation.
          Faiseur_56  : Faiseur_56_I_R.Holder_P.Holder;
+         --  Le constructeur de clefs de 56 bits.
          Faiseur_48  : Faiseur_48_I_R.Holder_P.Holder;
+         --  Le constructeur de clefs de 48 bits.
       end record;
 
 end Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;

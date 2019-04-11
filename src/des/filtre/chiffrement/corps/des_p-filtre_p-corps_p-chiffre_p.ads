@@ -46,6 +46,7 @@ private
       P_Chiffrement_R.Chiffrement_Interface_T with
       record
          Clef : Des_P.Clef_P.Clef_48_I_P.Holder_P.Holder;
+         --  La clef précalculée associée à cet étage.
       end record;
 
 end Des_P.Filtre_P.Corps_P.Chiffre_P;

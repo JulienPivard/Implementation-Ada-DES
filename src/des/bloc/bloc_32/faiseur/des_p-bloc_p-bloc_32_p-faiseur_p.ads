@@ -86,6 +86,7 @@ private
    type Faiseur_Bloc_T is tagged
       record
          Bloc : Bloc_32_T;
+         --  Le bloc en cours de construction.
       end record;
 
 end Des_P.Bloc_P.Bloc_32_P.Faiseur_P;

@@ -50,6 +50,7 @@ private
    type Chaine_T is new Chaine_Interface_T with
       record
          Tete : Des_P.Etage_P.Filtrage_P.Etage_T;
+         --  Le premier étage de la chaine de filtres.
       end record;
 
    package Lecteure_R renames Des_P.Chaine_P.Lecteur_P;

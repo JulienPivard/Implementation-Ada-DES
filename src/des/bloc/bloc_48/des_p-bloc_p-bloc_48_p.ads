@@ -83,6 +83,8 @@ private
       Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with
       record
          Bits : Tableau_Bits_T;
+         --  Les bits du bloc stocké dans un tableau pour en faciliter
+         --  l'accès et la manipulation.
       end record;
 
 end Des_P.Bloc_P.Bloc_48_P;
