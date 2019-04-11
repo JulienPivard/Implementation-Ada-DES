@@ -20,9 +20,9 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
       --  Initialise une chaine vide.
       Constructeur.Chaine     := C;
       Constructeur.Faiseur_56 :=
-         Faiseur_56_I_R.Holder_P.To_Holder (Faiseur_56);
+         Faiseur_56_I_R.Holder_P.To_Holder (New_Item => Faiseur_56);
       Constructeur.Faiseur_48 :=
-         Faiseur_48_I_R.Holder_P.To_Holder (Faiseur_48);
+         Faiseur_48_I_R.Holder_P.To_Holder (New_Item => Faiseur_48);
    end Initialiser;
 
    ---------------------------------------------------------------------------
@@ -44,10 +44,14 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
          Constructeur.Faiseur_48.Element;
       --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
-         Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
+         Des_P.Faiseur_P.Faire_Clef
+            (
+               Faiseur => Faiseur_56,
+               Clef    => Clef
+            );
    begin
       --  Ajoute à la tète le filtre d'entrée.
-      Tete.Modifier_Filtre (Fabrique.Fabriquer_Entree);
+      Tete.Modifier_Filtre (Filtre => Fabrique.Fabriquer_Entree);
 
       --  Ajoute le filtre de corps à chaque filtre.
       for I in reverse Numero_Filtre_T loop
@@ -58,14 +62,20 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
             --  qui lui est spécifique.
             F : constant Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class :=
                Fabrique.Fabriquer_Corps
-                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56));
+                  (
+                     Clef => Des_P.Faiseur_P.Faire_Clef
+                        (
+                           Faiseur => Faiseur_48,
+                           Clef    => Clef_56
+                        )
+                  );
          begin
-            E.Modifier_Filtre (F);
+            E.Modifier_Filtre (Filtre => F);
             --  Ajoute l'étage à la fin de la chaine.
-            Tete.Ajouter_Successeur (E);
+            Tete.Ajouter_Successeur (Successeur => E);
          end Initialisation_Filtre;
          --  Décalage à gauche pour le déchiffrement.
-         Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
+         Clef_56.Decaler_Bits_A_Droite (Nb_Decalage => Table_Decalage (I));
       end loop;
 
       --  Ajoute le filtre de sortie au dernier étage.
@@ -73,8 +83,8 @@ package body Des_P.Chaine_P.Sequentiel_P.Faiseur_Dechiffre_P is
       declare
          Etage : Des_P.Etage_P.Filtrage_P.Etage_T;
       begin
-         Etage.Modifier_Filtre (Fabrique.Fabriquer_Sortie);
-         Tete.Ajouter_Successeur (Etage);
+         Etage.Modifier_Filtre (Filtre => Fabrique.Fabriquer_Sortie);
+         Tete.Ajouter_Successeur (Successeur => Etage);
       end Lier_Filtre_Et_Etage_Sortie;
 
       --  Change la tète de la chaine.

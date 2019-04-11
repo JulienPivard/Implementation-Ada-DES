@@ -20,7 +20,7 @@ package body Des_P.Filtre_P.Corps_P is
    begin
       --  Extension du bloc de 32 en bloc de 48.
       C_48.Preparer_Nouveau_Bloc;
-      C_48.Construire_Bloc (Bloc);
+      C_48.Construire_Bloc (Brut => Bloc);
       B_48 := C_48.Recuperer_Bloc;
 
       --  Bloc de 48 xor Clef de 48.
@@ -29,12 +29,12 @@ package body Des_P.Filtre_P.Corps_P is
 
       --  Réduction du bloc de 48 à un bloc de 32.
       C_32.Preparer_Nouveau_Bloc;
-      C_32.Construire_Bloc (B_48);
+      C_32.Construire_Bloc (Bloc => B_48);
       B := C_32.Recuperer_Bloc;
 
       --  Permutation du bloc de 32 par la table P.
       C_32.Preparer_Nouveau_Bloc;
-      C_32.Construire_Bloc (B);
+      C_32.Construire_Bloc (Bloc => B);
       B := C_32.Recuperer_Bloc;
 
       return B;

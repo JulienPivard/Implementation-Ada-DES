@@ -13,12 +13,20 @@ package body Des_P.Chaine_P.Ecriveur_P.Fichier_P is
    begin
       --  Ouvre le fichier pour écrire si il existe et écrase le contenu
       --  sinon il est créé.
-      if Ada.Directories.Exists (Nom) then
+      if Ada.Directories.Exists (Name => Nom) then
          Fichier_64_IO.Open
-            (Ecriveur.Resultat, Fichier_64_IO.Out_File, Nom);
+            (
+               File => Ecriveur.Resultat,
+               Mode => Fichier_64_IO.Out_File,
+               Name => Nom
+            );
       else
          Fichier_64_IO.Create
-            (Ecriveur.Resultat, Fichier_64_IO.Out_File, Nom);
+            (
+               File => Ecriveur.Resultat,
+               Mode => Fichier_64_IO.Out_File,
+               Name => Nom
+            );
       end if;
    end Ouvrir_Fichier;
 
@@ -31,7 +39,11 @@ package body Des_P.Chaine_P.Ecriveur_P.Fichier_P is
       )
    is
    begin
-      Fichier_64_IO.Write (Ecriveur.Resultat, Brut);
+      Fichier_64_IO.Write
+         (
+            File => Ecriveur.Resultat,
+            Item => Brut
+         );
    end Ecrire;
 
    ---------------------------------------------------------------------------
@@ -40,7 +52,7 @@ package body Des_P.Chaine_P.Ecriveur_P.Fichier_P is
       (Ecriveur : in out Ecriveur_Fichier_T)
    is
    begin
-      Fichier_64_IO.Close (Ecriveur.Resultat);
+      Fichier_64_IO.Close (File => Ecriveur.Resultat);
    end Fermer_Fichier;
 
 end Des_P.Chaine_P.Ecriveur_P.Fichier_P;

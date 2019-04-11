@@ -12,7 +12,8 @@ package body Des_P.Filtre_P.Sortie_P.Dechiffre_P is
    is
       pragma Unreferenced (Filtre);
    begin
-      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Sortante (Bloc);
+      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Sortante
+         (Bloc => Bloc);
    end Filtrer;
 
 end Des_P.Filtre_P.Sortie_P.Dechiffre_P;

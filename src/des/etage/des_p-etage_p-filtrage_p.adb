@@ -18,7 +18,7 @@ package body Des_P.Etage_P.Filtrage_P is
       Etage : Etage_T;
    begin
       Etage.Filtre := Des_P.Filtre_P.Holder_P.Empty_Holder;
-      Etage.Modifier_Successeur (Successeur);
+      Etage.Modifier_Successeur (Successeur => Successeur);
       return Etage;
    end Construire_Etage_Avec_Successeur;
 
@@ -54,9 +54,10 @@ package body Des_P.Etage_P.Filtrage_P is
       --  Si l'étage possède un successeur on ajoute le successeur
       --  au successeur de cet étage.
       if Etage.Possede_Successeur then
-         Etage.Successeur.Reference.Ajouter_Successeur (Successeur);
+         Etage.Successeur.Reference.Ajouter_Successeur
+            (Successeur => Successeur);
       else
-         Etage.Modifier_Successeur (Successeur);
+         Etage.Modifier_Successeur (Successeur => Successeur);
       end if;
    end Ajouter_Successeur;
 
@@ -69,7 +70,7 @@ package body Des_P.Etage_P.Filtrage_P is
       )
    is
    begin
-      Etage.Successeur := Holder_P.To_Holder (Successeur);
+      Etage.Successeur := Holder_P.To_Holder (New_Item => Successeur);
    end Modifier_Successeur;
 
    ---------------------------------------------------------------------------
@@ -81,7 +82,7 @@ package body Des_P.Etage_P.Filtrage_P is
       )
    is
    begin
-      Etage.Filtre := Des_P.Filtre_P.Holder_P.To_Holder (Filtre);
+      Etage.Filtre := Des_P.Filtre_P.Holder_P.To_Holder (New_Item => Filtre);
    end Modifier_Filtre;
 
    ---------------------------------------------------------------------------
@@ -95,9 +96,9 @@ package body Des_P.Etage_P.Filtrage_P is
    begin
       --  Si l'étage possède un successeur on transmet le bloc au
       --  successeur pour le filtrer.
-      Etage.Filtrer (Bloc);
+      Etage.Filtrer (Bloc => Bloc);
       if Etage.Possede_Successeur then
-         Etage.Successeur.Element.Iterer (Bloc);
+         Etage.Successeur.Element.Iterer (Bloc => Bloc);
       end if;
    end Iterer;
 
@@ -111,10 +112,10 @@ package body Des_P.Etage_P.Filtrage_P is
       )
    is
    begin
-      if not Possede_Filtre (Etage) then
+      if not Possede_Filtre (Etage => Etage) then
          raise Pas_De_Filtre_E;
       end if;
-      Etage.Filtre.Element.Filtrer (Bloc);
+      Etage.Filtre.Element.Filtrer (Bloc => Bloc);
    end Filtrer;
 
 end Des_P.Etage_P.Filtrage_P;

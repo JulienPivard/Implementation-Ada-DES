@@ -51,7 +51,7 @@ package body Des_P.Clef_P.Clef_48_P.Faiseur_P is
       --  Applique la table de correspondance à la clef de 56
       --  pour en tirer une clef de 48
       for I in Des_P.Clef_P.Clef_48_I_P.Intervalle_T loop
-         Constructeur.Clef.Bits (I) := Clef.Lire_Bit (T (I));
+         Constructeur.Clef.Bits (I) := Clef.Lire_Bit (Position => T (I));
       end loop;
    end Construire_Clef;
 

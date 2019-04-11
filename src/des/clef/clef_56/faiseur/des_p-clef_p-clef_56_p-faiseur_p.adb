@@ -55,8 +55,8 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P is
       --  Rempli la clef de 56 à partir de la clef de 64 en
       --  suivant les tableaux de correspondance.
       for I in Intervalle_Demi_Clef_T loop
-         Constructeur.Clef.C1 (I) := Clef.Lire_Bit (T1 (I));
-         Constructeur.Clef.C2 (I) := Clef.Lire_Bit (T2 (I));
+         Constructeur.Clef.C1 (I) := Clef.Lire_Bit (Position => T1 (I));
+         Constructeur.Clef.C2 (I) := Clef.Lire_Bit (Position => T2 (I));
       end loop;
    end Construire_Clef;
 

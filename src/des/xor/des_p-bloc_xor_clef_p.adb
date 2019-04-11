@@ -20,11 +20,13 @@ package body Des_P.Bloc_Xor_Clef_P is
                Des_P.Clef_P.Clef_48_I_P.Intervalle_T (I);
             --  Le bit résultat du xor.
             Bit : constant Des_P.Bloc_P.Bit_T :=
-               Gauche.Lire_Bit (I) xor Droite.Lire_Bit (I_Bis);
+               Gauche.Lire_Bit (Position => I)
+               xor
+               Droite.Lire_Bit (Position => I_Bis);
          begin
             --  On écrit ce bit dans le bloc résultat à la même
             --  position que dans le bloc et la clef d'origine.
-            B.Ecrire_Bit (I, Bit);
+            B.Ecrire_Bit (Position => I, Bit => Bit);
          end Ou_Exclusif;
       end loop;
       return B;

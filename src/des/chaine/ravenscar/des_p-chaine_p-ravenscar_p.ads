@@ -490,161 +490,161 @@ private
 
    subtype Etage_01_02_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_01'Access,
-         Autorisateur_01'Access,
-         Donnee_01'Access,
-         Autorisateur_02'Access,
-         Donnee_02'Access
+         Filtreur               => Filtreur_Corps_01'Access,
+         Autorisateur_Reception => Autorisateur_01'Access,
+         Donnee_Recue           => Donnee_01'Access,
+         Autorisateur_Envoyee   => Autorisateur_02'Access,
+         Donnee_A_Envoyer       => Donnee_02'Access
       );
    Etage_Corps_01 : Etage_01_02_T;
 
    subtype Etage_02_03_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_02'Access,
-         Autorisateur_02'Access,
-         Donnee_02'Access,
-         Autorisateur_03'Access,
-         Donnee_03'Access
+         Filtreur               => Filtreur_Corps_02'Access,
+         Autorisateur_Reception => Autorisateur_02'Access,
+         Donnee_Recue           => Donnee_02'Access,
+         Autorisateur_Envoyee   => Autorisateur_03'Access,
+         Donnee_A_Envoyer       => Donnee_03'Access
       );
    Etage_Corps_02 : Etage_02_03_T;
 
    subtype Etage_03_04_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_03'Access,
-         Autorisateur_03'Access,
-         Donnee_03'Access,
-         Autorisateur_04'Access,
-         Donnee_04'Access
+         Filtreur               => Filtreur_Corps_03'Access,
+         Autorisateur_Reception => Autorisateur_03'Access,
+         Donnee_Recue           => Donnee_03'Access,
+         Autorisateur_Envoyee   => Autorisateur_04'Access,
+         Donnee_A_Envoyer       => Donnee_04'Access
       );
    Etage_Corps_03 : Etage_03_04_T;
 
    subtype Etage_04_05_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_04'Access,
-         Autorisateur_04'Access,
-         Donnee_04'Access,
-         Autorisateur_05'Access,
-         Donnee_05'Access
+         Filtreur               => Filtreur_Corps_04'Access,
+         Autorisateur_Reception => Autorisateur_04'Access,
+         Donnee_Recue           => Donnee_04'Access,
+         Autorisateur_Envoyee   => Autorisateur_05'Access,
+         Donnee_A_Envoyer       => Donnee_05'Access
       );
    Etage_Corps_04 : Etage_04_05_T;
 
    subtype Etage_05_06_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_05'Access,
-         Autorisateur_05'Access,
-         Donnee_05'Access,
-         Autorisateur_06'Access,
-         Donnee_06'Access
+         Filtreur               => Filtreur_Corps_05'Access,
+         Autorisateur_Reception => Autorisateur_05'Access,
+         Donnee_Recue           => Donnee_05'Access,
+         Autorisateur_Envoyee   => Autorisateur_06'Access,
+         Donnee_A_Envoyer       => Donnee_06'Access
       );
    Etage_Corps_05 : Etage_05_06_T;
 
    subtype Etage_06_07_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_06'Access,
-         Autorisateur_06'Access,
-         Donnee_06'Access,
-         Autorisateur_07'Access,
-         Donnee_07'Access
+         Filtreur               => Filtreur_Corps_06'Access,
+         Autorisateur_Reception => Autorisateur_06'Access,
+         Donnee_Recue           => Donnee_06'Access,
+         Autorisateur_Envoyee   => Autorisateur_07'Access,
+         Donnee_A_Envoyer       => Donnee_07'Access
       );
    Etage_Corps_06 : Etage_06_07_T;
 
    subtype Etage_07_08_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_07'Access,
-         Autorisateur_07'Access,
-         Donnee_07'Access,
-         Autorisateur_08'Access,
-         Donnee_08'Access
+         Filtreur               => Filtreur_Corps_07'Access,
+         Autorisateur_Reception => Autorisateur_07'Access,
+         Donnee_Recue           => Donnee_07'Access,
+         Autorisateur_Envoyee   => Autorisateur_08'Access,
+         Donnee_A_Envoyer       => Donnee_08'Access
       );
    Etage_Corps_07 : Etage_07_08_T;
 
    subtype Etage_08_09_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_08'Access,
-         Autorisateur_08'Access,
-         Donnee_08'Access,
-         Autorisateur_09'Access,
-         Donnee_09'Access
+         Filtreur               => Filtreur_Corps_08'Access,
+         Autorisateur_Reception => Autorisateur_08'Access,
+         Donnee_Recue           => Donnee_08'Access,
+         Autorisateur_Envoyee   => Autorisateur_09'Access,
+         Donnee_A_Envoyer       => Donnee_09'Access
       );
    Etage_Corps_08 : Etage_08_09_T;
 
    subtype Etage_09_10_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_09'Access,
-         Autorisateur_09'Access,
-         Donnee_09'Access,
-         Autorisateur_10'Access,
-         Donnee_10'Access
+         Filtreur               => Filtreur_Corps_09'Access,
+         Autorisateur_Reception => Autorisateur_09'Access,
+         Donnee_Recue           => Donnee_09'Access,
+         Autorisateur_Envoyee   => Autorisateur_10'Access,
+         Donnee_A_Envoyer       => Donnee_10'Access
       );
    Etage_Corps_09 : Etage_09_10_T;
 
    subtype Etage_10_11_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_10'Access,
-         Autorisateur_10'Access,
-         Donnee_10'Access,
-         Autorisateur_11'Access,
-         Donnee_11'Access
+         Filtreur               => Filtreur_Corps_10'Access,
+         Autorisateur_Reception => Autorisateur_10'Access,
+         Donnee_Recue           => Donnee_10'Access,
+         Autorisateur_Envoyee   => Autorisateur_11'Access,
+         Donnee_A_Envoyer       => Donnee_11'Access
       );
    Etage_Corps_10 : Etage_10_11_T;
 
    subtype Etage_11_12_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_11'Access,
-         Autorisateur_11'Access,
-         Donnee_11'Access,
-         Autorisateur_12'Access,
-         Donnee_12'Access
+         Filtreur               => Filtreur_Corps_11'Access,
+         Autorisateur_Reception => Autorisateur_11'Access,
+         Donnee_Recue           => Donnee_11'Access,
+         Autorisateur_Envoyee   => Autorisateur_12'Access,
+         Donnee_A_Envoyer       => Donnee_12'Access
       );
    Etage_Corps_11 : Etage_11_12_T;
 
    subtype Etage_12_13_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_12'Access,
-         Autorisateur_12'Access,
-         Donnee_12'Access,
-         Autorisateur_13'Access,
-         Donnee_13'Access
+         Filtreur               => Filtreur_Corps_12'Access,
+         Autorisateur_Reception => Autorisateur_12'Access,
+         Donnee_Recue           => Donnee_12'Access,
+         Autorisateur_Envoyee   => Autorisateur_13'Access,
+         Donnee_A_Envoyer       => Donnee_13'Access
       );
    Etage_Corps_12 : Etage_12_13_T;
 
    subtype Etage_13_14_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_13'Access,
-         Autorisateur_13'Access,
-         Donnee_13'Access,
-         Autorisateur_14'Access,
-         Donnee_14'Access
+         Filtreur               => Filtreur_Corps_13'Access,
+         Autorisateur_Reception => Autorisateur_13'Access,
+         Donnee_Recue           => Donnee_13'Access,
+         Autorisateur_Envoyee   => Autorisateur_14'Access,
+         Donnee_A_Envoyer       => Donnee_14'Access
       );
    Etage_Corps_13 : Etage_13_14_T;
 
    subtype Etage_14_15_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_14'Access,
-         Autorisateur_14'Access,
-         Donnee_14'Access,
-         Autorisateur_15'Access,
-         Donnee_15'Access
+         Filtreur               => Filtreur_Corps_14'Access,
+         Autorisateur_Reception => Autorisateur_14'Access,
+         Donnee_Recue           => Donnee_14'Access,
+         Autorisateur_Envoyee   => Autorisateur_15'Access,
+         Donnee_A_Envoyer       => Donnee_15'Access
       );
    Etage_Corps_14 : Etage_14_15_T;
 
    subtype Etage_15_16_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_15'Access,
-         Autorisateur_15'Access,
-         Donnee_15'Access,
-         Autorisateur_16'Access,
-         Donnee_16'Access
+         Filtreur               => Filtreur_Corps_15'Access,
+         Autorisateur_Reception => Autorisateur_15'Access,
+         Donnee_Recue           => Donnee_15'Access,
+         Autorisateur_Envoyee   => Autorisateur_16'Access,
+         Donnee_A_Envoyer       => Donnee_16'Access
       );
    Etage_Corps_15 : Etage_15_16_T;
 
    subtype Etage_16_17_T is Etage_Corps_Tache_T
       (
-         Filtreur_Corps_16'Access,
-         Autorisateur_16'Access,
-         Donnee_16'Access,
-         Autorisateur_17'Access,
-         Donnee_17'Access
+         Filtreur               => Filtreur_Corps_16'Access,
+         Autorisateur_Reception => Autorisateur_16'Access,
+         Donnee_Recue           => Donnee_16'Access,
+         Autorisateur_Envoyee   => Autorisateur_17'Access,
+         Donnee_A_Envoyer       => Donnee_17'Access
       );
    Etage_Corps_16 : Etage_16_17_T;
 

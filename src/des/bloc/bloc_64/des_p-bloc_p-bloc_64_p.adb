@@ -72,7 +72,13 @@ package body Des_P.Bloc_P.Bloc_64_P is
       --  On écrit le bits dans le bloc déterminé.
       --  La prise en compte du décalage se fait
       --  directement dans la méthode appelé.
-      Ecrire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32, Bit);
+      Ecrire_Bit
+         (
+            Bloc        => Bloc,
+            Bloc_G_Ou_D => G_Ou_D,
+            Position    => P_Dans_Intervalle_32,
+            Bit         => Bit
+         );
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
@@ -106,7 +112,12 @@ package body Des_P.Bloc_P.Bloc_64_P is
       --  On lit le bits dans le bloc déterminé.
       --  La prise en compte du décalage se fait
       --  directement dans la méthode appelé.
-      return Lire_Bit (Bloc, G_Ou_D, P_Dans_Intervalle_32);
+      return Lire_Bit
+         (
+            Bloc         => Bloc,
+            Bloc_G_Ou_D  => G_Ou_D,
+            Position     => P_Dans_Intervalle_32
+         );
    end Lire_Bit;
 
    ---------------------------------------------------------------------------
@@ -121,7 +132,11 @@ package body Des_P.Bloc_P.Bloc_64_P is
    begin
       --  Écrit directement le bit dans le bloc
       --  en tenant compte du décalage.
-      Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Ecrire_Bit (Position, Bit);
+      Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Ecrire_Bit
+         (
+            Position  => Position,
+            Bit       => Bit
+         );
    end Ecrire_Bit;
 
    ---------------------------------------------------------------------------
@@ -136,7 +151,8 @@ package body Des_P.Bloc_P.Bloc_64_P is
    begin
       --  Lit directement le bit dans le bloc
       --  en tenant compte du décalage.
-      return Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Lire_Bit (Position);
+      return Bloc.Blocs_32 (Bloc_G_Ou_D + Bloc.Decalage).Lire_Bit
+         (Position => Position);
    end Lire_Bit;
 
    ---------------------------------------------------------------------------

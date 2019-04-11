@@ -12,7 +12,8 @@ package body Des_P.Filtre_P.Entree_P.Dechiffre_P is
    is
       pragma Unreferenced (Filtre);
    begin
-      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante (Bloc);
+      Des_P.Bloc_P.Bloc_64_P.Permutations_P.Permutation_Entrante
+         (Bloc => Bloc);
    end Filtrer;
 
 end Des_P.Filtre_P.Entree_P.Dechiffre_P;

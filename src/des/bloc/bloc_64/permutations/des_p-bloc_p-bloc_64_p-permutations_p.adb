@@ -36,7 +36,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
    begin
       --  Écrit les permutations dans le nouveau bloc.
       for I in Intervalle_T loop
-         Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
+         Bloc.Ecrire_Bit
+            (
+               Position => I,
+               Bit      => B.Lire_Bit (Position => Table (I))
+            );
       end loop;
    end Permutation_Entrante;
 
@@ -76,7 +80,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Permutations_P is
    begin
       --  Écrit les permutations dans le nouveau bloc.
       for I in Intervalle_T loop
-         Bloc.Ecrire_Bit (I, B.Lire_Bit (Table (I)));
+         Bloc.Ecrire_Bit
+            (
+               Position => I,
+               Bit      => B.Lire_Bit (Position => Table (I))
+            );
       end loop;
    end Permutation_Sortante;
 

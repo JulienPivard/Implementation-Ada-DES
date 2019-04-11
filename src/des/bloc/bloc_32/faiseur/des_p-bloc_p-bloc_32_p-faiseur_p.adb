@@ -600,7 +600,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  de 32 bits brut.
       Bloc_Brut : Bloc_32_Brut_T with Address => Bloc_Tmp'Address;
    begin
-      Construire_Bloc (Constructeur, Bloc_Brut);
+      Construire_Bloc
+         (
+            Constructeur   => Constructeur,
+            Brut           => Bloc_Brut
+         );
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------

@@ -18,20 +18,20 @@ package body Des_P.Chaine_P.Sequentiel_P is
 
       --  Si le fichier à écrire existe il est ouvert et écrasé
       --  sinon il est créé.
-      Ecriveur.all.Ouvrir_Fichier (Nom_Alternatif);
+      Ecriveur.all.Ouvrir_Fichier (Nom => Nom_Alternatif);
       --  Ouverture du fichier à lire.
-      Lecteur.all.Ouvrir_Fichier (Nom_Fichier);
+      Lecteur.all.Ouvrir_Fichier (Nom => Nom_Fichier);
 
       Lecture_Fichier :
       loop
          exit Lecture_Fichier when Lecteur.all.Est_Fini;
          --  Récupération du brut.
-         Lecteur.all.Lire (Brut);
+         Lecteur.all.Lire (Brut => Brut);
 
-         Chaine.Execution (Brut);
+         Chaine.Execution (Brut => Brut);
 
          --  Écriture du brut dans le fichier.
-         Ecriveur.all.Ecrire (Brut);
+         Ecriveur.all.Ecrire (Brut => Brut);
       end loop Lecture_Fichier;
 
       --  Fermeture des fichiers.
@@ -55,14 +55,14 @@ package body Des_P.Chaine_P.Sequentiel_P is
    begin
       --  Construction du bloc de 64 bits.
       C_64.Preparer_Nouveau_Bloc;
-      C_64.Construire_Bloc (Brut);
+      C_64.Construire_Bloc (Brut => Brut);
       Bloc := C_64.Recuperer_Bloc;
 
       --  Lancement du chiffrement déchiffrement.
-      Chaine.Tete.Iterer (Bloc);
+      Chaine.Tete.Iterer (Bloc => Bloc);
 
       --  Récupération du brut après l'avoir modifié.
-      Brut := C_64.Transformer_En_Brut (Bloc);
+      Brut := C_64.Transformer_En_Brut (Bloc => Bloc);
    end Execution;
 
 end Des_P.Chaine_P.Sequentiel_P;

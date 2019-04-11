@@ -9,7 +9,12 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
       )
    is
    begin
-      Fichier_64_IO.Open (Lecteur.Fichier, Fichier_64_IO.In_File, Nom);
+      Fichier_64_IO.Open
+         (
+            File => Lecteur.Fichier,
+            Mode => Fichier_64_IO.In_File,
+            Name => Nom
+         );
    end Ouvrir_Fichier;
 
    ---------------------------------------------------------------------------
@@ -21,7 +26,11 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
       )
    is
    begin
-      Fichier_64_IO.Read (Lecteur.Fichier, Brut);
+      Fichier_64_IO.Read
+         (
+            File => Lecteur.Fichier,
+            Item => Brut
+         );
    end Lire;
 
    ---------------------------------------------------------------------------
@@ -31,7 +40,7 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
       return Boolean
    is
    begin
-      return Fichier_64_IO.End_Of_File (Lecteur.Fichier);
+      return Fichier_64_IO.End_Of_File (File => Lecteur.Fichier);
    end Est_Fini;
 
    ---------------------------------------------------------------------------
@@ -40,7 +49,7 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
       (Lecteur : in out Lecteur_Fichier_T)
    is
    begin
-      Fichier_64_IO.Close (Lecteur.Fichier);
+      Fichier_64_IO.Close (File => Lecteur.Fichier);
    end Fermer_Fichier;
 
 end Des_P.Chaine_P.Lecteur_P.Fichier_P;

@@ -16,11 +16,11 @@ package body Procedure_Run_G is
       use type Ada.Real_Time.Time;
 
       Faiseur  : Faiseur_I_R.Faiseur_Interface_T'Class            :=
-         Init_Faiseur_Chaine (Action);
+         Init_Faiseur_Chaine (Action => Action);
       Chaine   : constant Des_P.Chaine_P.Chaine_Interface_T'Class :=
-         Init_Chaine (Faiseur, Clef);
+         Init_Chaine (Faiseur => Faiseur, Clef => Clef);
 
-      Extension   : constant String := Init_Extension (Action);
+      Extension_F : constant String := Init_Extension (Action => Action);
       Debut, Fin  : Ada.Real_Time.Time;
    begin
       --  Note le début du temps.
@@ -28,17 +28,17 @@ package body Procedure_Run_G is
       --  Filtre le fichier.
       Chaine.Filtrer
          (
-            Nom_Fichier,
-            Extension
+            Nom_Fichier => Nom_Fichier,
+            Extension   => Extension_F
          );
       --  Note la fin du temps.
       Fin := Ada.Real_Time.Clock;
 
       --------------------------------------
-      Ada.Text_IO.New_Line (1);
+      Ada.Text_IO.New_Line (Spacing => 1);
       --  Affiche le temps de filtrage du fichier.
-      Ada.Text_IO.Put ("Temps " & Nom_Version & " : ");
-      Ada.Text_IO.New_Line (1);
+      Ada.Text_IO.Put (Item => "Temps " & Nom_Version & " : ");
+      Ada.Text_IO.New_Line (Spacing => 1);
       --  Conversion du temps pour faciliter l'affichage.
 
       Affichage_Temps :
@@ -46,7 +46,7 @@ package body Procedure_Run_G is
          type Temps_T is new Natural;
 
          Duree_Exact : constant Duration  :=
-            Ada.Real_Time.To_Duration (Fin - Debut);
+            Ada.Real_Time.To_Duration (TS => Fin - Debut);
          Duree       : constant Temps_T   := Temps_T (Duree_Exact);
          Minuttes    : constant Temps_T   := 60;
          Indentation : constant String    := "         ";
@@ -54,17 +54,17 @@ package body Procedure_Run_G is
          package Duree_IO is new Ada.Text_IO.Fixed_IO    (Duration);
          package Temps_IO is new Ada.Text_IO.Integer_IO  (Temps_T);
       begin
-         Ada.Text_IO.Put (Indentation);
-         Duree_IO.Put    (Duree_Exact, 0, 4);
-         Ada.Text_IO.Put_Line (" s");
+         Ada.Text_IO.Put (Item => Indentation);
+         Duree_IO.Put    (Item => Duree_Exact, Fore => 0, Aft => 4);
+         Ada.Text_IO.Put_Line (Item => " s");
 
          --  Affichage en minutes.
          if Duree_Exact > 60.0 then
-            Ada.Text_IO.Put (Indentation);
-            Temps_IO.Put    (Duree / Minuttes, 0);
-            Ada.Text_IO.Put (" min et ");
-            Temps_IO.Put    (Duree mod Minuttes, 0);
-            Ada.Text_IO.Put_Line (" s");
+            Ada.Text_IO.Put (Item => Indentation);
+            Temps_IO.Put    (Item => Duree / Minuttes, Width => 0);
+            Ada.Text_IO.Put (Item => " min et ");
+            Temps_IO.Put    (Item => Duree mod Minuttes, Width => 0);
+            Ada.Text_IO.Put_Line (Item => " s");
          end if;
 
          --  Affichage en heures.
@@ -73,15 +73,16 @@ package body Procedure_Run_G is
             declare
                Heures : constant Temps_T := 3600;
             begin
-               Ada.Text_IO.Put (Indentation);
-               Temps_IO.Put    (Duree / Heures, 0);
-               Ada.Text_IO.Put (" h et ");
-               Temps_IO.Put    ((Duree mod Heures) / Minuttes, 0);
-               Ada.Text_IO.Put_Line (" m");
+               Ada.Text_IO.Put (Item => Indentation);
+               Temps_IO.Put    (Item => Duree / Heures, Width => 0);
+               Ada.Text_IO.Put (Item => " h et ");
+               Temps_IO.Put
+                  (Item => (Duree mod Heures) / Minuttes, Width => 0);
+               Ada.Text_IO.Put_Line (Item => " m");
             end Decoupage_En_Heures;
          end if;
       end Affichage_Temps;
-      Ada.Text_IO.New_Line (1);
+      Ada.Text_IO.New_Line (Spacing => 1);
       --------------------------------------
    end Executer_Chiffrement;
 
@@ -131,13 +132,13 @@ package body Procedure_Run_G is
       return Des_P.Chaine_P.Chaine_Interface_T'Class
    is
       C_64 : constant Des_P.Clef_P.Clef_64_I_P.Holder_P.Holder :=
-         Des_P.Clef_P.Clef_64_I_P.Holder_P.To_Holder (Clef);
+         Des_P.Clef_P.Clef_64_I_P.Holder_P.To_Holder (New_Item => Clef);
       F_56 : Faiseur_56_R.Faiseur_Clef_T;
       F_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
       --  Les 3 instructions pour construire une nouvelle chaine
-      Faiseur.Initialiser (F_56, F_48);
-      Faiseur.Construire  (C_64.Element);
+      Faiseur.Initialiser (Faiseur_56 => F_56, Faiseur_48 => F_48);
+      Faiseur.Construire  (Clef => C_64.Element);
       return Faiseur.Recuperer_Chaine;
    end Init_Chaine;
 

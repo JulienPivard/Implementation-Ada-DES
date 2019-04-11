@@ -22,9 +22,9 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
    begin
       Constructeur.Chaine     := C;
       Constructeur.Faiseur_56 :=
-         Faiseur_56_I_R.Holder_P.To_Holder (Faiseur_56);
+         Faiseur_56_I_R.Holder_P.To_Holder (New_Item => Faiseur_56);
       Constructeur.Faiseur_48 :=
-         Faiseur_48_I_R.Holder_P.To_Holder (Faiseur_48);
+         Faiseur_48_I_R.Holder_P.To_Holder (New_Item => Faiseur_48);
    end Initialiser;
 
    ---------------------------------------------------------------------------
@@ -44,7 +44,11 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
          Constructeur.Faiseur_48.Element;
       --  Construction de la clef de 56.
       Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
-         Des_P.Faiseur_P.Faire_Clef (Faiseur_56, Clef);
+         Des_P.Faiseur_P.Faire_Clef
+            (
+               Faiseur => Faiseur_56,
+               Clef    => Clef
+            );
       --  Le décalage est inversé donc il faut deux compteurs.
       J : Numero_Filtre_T := Numero_Filtre_T'First;
    begin
@@ -56,18 +60,24 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
       --  Ajoute le filtre d'entrée à la chaine.
       Constructeur.Chaine.Filtre_Entree :=
          Des_P.Filtre_P.Entree_P.Holder_P.To_Holder
-            (Fabrique.Fabriquer_Entree);
+            (New_Item => Fabrique.Fabriquer_Entree);
 
       for I in reverse Numero_Filtre_T loop
          --  Initialise le filtre J avec la clef de 48 I.
          Constructeur.Chaine.Filtres_Corps (J) :=
             Des_P.Filtre_P.Corps_P.Holder_P.To_Holder
                (
-                  Fabrique.Fabriquer_Corps
-                  (Des_P.Faiseur_P.Faire_Clef (Faiseur_48, Clef_56))
+                  New_Item => Fabrique.Fabriquer_Corps
+                  (
+                     Clef => Des_P.Faiseur_P.Faire_Clef
+                     (
+                        Faiseur => Faiseur_48,
+                        Clef    => Clef_56
+                     )
+                  )
                );
          --  Décalage à gauche pour le déchiffrement.
-         Clef_56.Decaler_Bits_A_Droite (Table_Decalage (I));
+         Clef_56.Decaler_Bits_A_Droite (Nb_Decalage => Table_Decalage (I));
          --  Incrémentation de la position dans le tableau de filtre de corps.
          if J /= Numero_Filtre_T'Last then
             J := Numero_Filtre_T'Succ (J);
@@ -77,7 +87,7 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
       --  Ajoute le filtre de sortie.
       Constructeur.Chaine.Filtre_Sortie :=
          Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder
-            (Fabrique.Fabriquer_Sortie);
+            (New_Item => Fabrique.Fabriquer_Sortie);
    end Construire;
 
    ---------------------------------------------------------------------------
