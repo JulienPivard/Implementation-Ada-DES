@@ -180,7 +180,8 @@ function nettoyage_fin_script ()
     test_cmd_exist tput && tput cnorm
     exit;
 }
-# On ferme le script à la rencontre d'un exit. Sera toujours exécutée en dernière
+# On ferme le script à la rencontre d'un exit.
+# Sera toujours exécutée en dernière
 trap 'nettoyage_fin_script' EXIT
 
         #}}}
@@ -214,7 +215,6 @@ function maj_taille ()
         #}}}
 
 maj_taille
-
 trap 'maj_taille' WINCH
 
     #}}}
@@ -418,9 +418,8 @@ function executer_commande ()
         #}}}
 
 # Affichage simplifié des erreurs   {{{
-# L'argument 1 affiche le texte en rouge
-# L'argument 2 est fait pour afficher le contenu d'une variable
-# L'argument 3 affiche le texte en rouge à la suite de l'argument 2
+# Affichage : Affiche en couleur rouge arg1; en violet gras [arg2];
+# arg3 en rouge...
 function afficher_erreur ()
 {
     [[ -n "${1}" ]] || exit "${E_ARG_AFF_ERR_M}";
@@ -617,8 +616,8 @@ function remplir_fichier ()
 # afficher_aide                     {{{
 declare -r NOM_SCRIPT=`basename "${0}"`
 declare -r USAGE="\
-Usage : ${NOM_SCRIPT} [-h]
-   ou : ${NOM_SCRIPT} -f <nom_fichier_sortie> -t <taille>[BKMG]
+ Usage : ${NOM_SCRIPT} [-h]
+    ou : ${NOM_SCRIPT} -f <nom_fichier_sortie> -t <taille>[BKMG]
 
 Générateur de fichier au contenu 'aléatoire' dont la taille
 est multiple de 64 bits.
@@ -626,12 +625,12 @@ est multiple de 64 bits.
 Options :
     -h --help
         Affiche l'aide et quitte.
-     -t --taille
+    -t --taille
         La taille du fichier en octets
         Ou la taille en B (Octets), K (Kilo), M (Mega), G (Giga)
-     -f --fichier
+    -f --fichier
         Le nom du fichier à créer
-     -h --help
+    -h --help
         Affiche l'aide et quitte
 
 Exemple :
