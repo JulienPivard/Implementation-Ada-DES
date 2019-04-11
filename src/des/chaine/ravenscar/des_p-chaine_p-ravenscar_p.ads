@@ -74,67 +74,67 @@ private
 
    procedure Filtrer
       (
-         D                 : in out Donnee_T;
+         Grappe_De_Donnees : in out Donnee_T;
          Procedure_Filtre  : not null access procedure
-            (Table : in out Table_Bloc_R.Table_Bloc_T)
+            (Table_De_Donnees : in out Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
    --  Applique le filtre aux données, peut les modifier.
-   --  @param D
+   --  @param Grappe_De_Donnees
    --  La donnée à laquelle appliquer le filtre.
    --  @param Procedure_Filtre
    --  Le filtre à appliquer.
-   --  @param Table
+   --  @param Table_De_Donnees
    --  Le tableau de données à modifier.
 
    procedure Appliquer
       (
-         D                    : Donnee_T;
-         Procedure_Appliquee  : not null access procedure
-            (Table : Table_Bloc_R.Table_Bloc_T)
+         Grappe_De_Donnees      : Donnee_T;
+         Procedure_A_Appliquer  : not null access procedure
+            (Table_De_Donnees : Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
    --  Applique la procédure aux données sans les modifier.
-   --  @param D
+   --  @param Grappe_De_Donnees
    --  La donnée à laquelle appliquer le filtre.
-   --  @param Procedure_Filtre
+   --  @param Procedure_A_Appliquer
    --  Le filtre à appliquer.
-   --  @param Table
+   --  @param Table_De_Donnees
    --  Le tableau de données à manipuler.
 
    procedure Ecrire_Table
       (
-         D : in out Donnee_T;
-         T : Table_Bloc_R.Table_Bloc_T
+         Grappe_De_Donnees : in out Donnee_T;
+         Table_De_Donnees  : Table_Bloc_R.Table_Bloc_T
       )
       with Inline;
    --  Modifie la table stockée dans la grappe de données.
-   --  @param D
+   --  @param Grappe_De_Donnees
    --  La grappe de données.
-   --  @param T
+   --  @param Table_De_Donnees
    --  La table de données.
 
    procedure Ecrire_Est_Derniere
       (
-         D     : in out Donnee_T;
-         Fini  : Boolean
+         Grappe_De_Donnees : in out Donnee_T;
+         Fini              : Boolean
       )
       with Inline;
    --  Signal que la grappe de données est la dernière.
-   --  @param D
+   --  @param Grappe_De_Donnees
    --  La donnée.
    --  @param Fini
    --  La grappe de données est la dernière.
 
    function Est_Derniere
-      (D : Donnee_T)
+      (Grappe_De_Donnees : Donnee_T)
       return Boolean
-   is (D.Est_Derniere_Grappe)
+   is (Grappe_De_Donnees.Est_Derniere_Grappe)
       with Inline;
    --  Indique si la grappe de données est la dernière.
-   --  @param D
+   --  @param Grappe_De_Donnees
    --  La grappe de données.
-   --  @return La donnée est la dernière grappe.
+   --  @return La grappe de données est la dernière.
 
    package Donnee_Holder_P is new
       Ada.Containers.Indefinite_Holders (Element_Type => Donnee_T);
@@ -148,7 +148,7 @@ private
       --  Communique la demande de mise à off des tâches.
       --  @return Les tâches doivent s'arrêter.
    private
-      Signal : Boolean := False;
+      Arreter_Application : Boolean := False;
       --  Drapeau de fin de programme.
    end Avorter_Protegee;
    --  Signal pour mettre fin à toutes les tâches en cours.
@@ -171,7 +171,7 @@ private
    private
       Nb_Tache_Lancee   : Compteur_Tache_T  := Compteur_Tache_T'First;
       --  Compteur du nombre de tâches qui sont passé par la barrière.
-      Signal            : Boolean           := False;
+      Autoriser_Relance : Boolean           := False;
       --  Drapeau d'autorisation de passage.
    end Autorisation_Rearmement_Protegee;
    --  Bloque les tâches une fois qu'elles ont fini de chiffrer tous les
@@ -190,9 +190,9 @@ private
          with Inline;
       --  Accorde l'autorisation de démarrer aux tâches en attente.
    private
-      Nb_Tache_Lancee   : Compteur_Tache_T   := Compteur_Tache_T'First;
+      Nb_Tache_Lancee    : Compteur_Tache_T   := Compteur_Tache_T'First;
       --  Compteur du nombre de tâches qui ont passé la barrière.
-      Signal            : Boolean            := False;
+      Demarrage_Autorise : Boolean            := False;
       --  Drapeau d'autorisation de démarrer.
    end Demarreur_Protegee;
    --  Bloque le démarrage des tâches. Tant que le signal de démarrage n'est
@@ -209,7 +209,7 @@ private
       --  Signal que le chiffrement ou le déchiffrement de tous les
       --  blocs est fini.
    private
-      Signal : Boolean := False;
+      Est_Fini : Boolean := False;
       --  Drapeaux de signal de fin de traitement.
    end Fin_Protegee;
    --  Permet de signaler à la procédure appelante que toutes les tâches
@@ -248,9 +248,9 @@ private
       --  Permet de récupérer le filtre.
       --  @return Le filtre.
    private
-      Signal   : Boolean                        := False;
+      Filtre_Initialise : Boolean                        := False;
       --  Un filtre à été configuré.
-      Filtre_H : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
+      Filtre_H          : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
       --  Stock le filtre.
    end Filtre_Entree_Protegee;
    --  Permet de changer le filtre utilisé par le premier
@@ -272,9 +272,9 @@ private
       --  Permet de récupérer le filtre.
       --  @return Le filtre.
    private
-      Signal   : Boolean                        := False;
+      Filtre_Initialise : Boolean                        := False;
       --  Un filtre à été configuré.
-      Filtre_H : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
+      Filtre_H          : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
       --  Stock le filtre.
    end Filtre_Sortie_Protegee;
    --  Permet de changer le filtre utilisé par le dernier
@@ -296,9 +296,9 @@ private
       --  Permet de récupérer le filtre.
       --  @return Le filtre.
    private
-      Signal   : Boolean                       := False;
+      Filtre_Initialise : Boolean                       := False;
       --  Un filtre à été configuré.
-      Filtre_H : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
+      Filtre_H          : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
       --  Stock le filtre.
    end Filtre_Corps_Protegee_T;
    --  Permet de changer le filtre utilisé par les étages de
@@ -314,7 +314,7 @@ private
          with Inline;
       --  Signal qu'une grappe de blocs est disponible.
    private
-      Signal : Boolean := False;
+      Bloc_Disponnible : Boolean := False;
       --  Drapeau de grappe de blocs disponible.
    end Autorisation_Protegee_T;
    --  Barrière pour indiquer à la tâche suivante qu'un nouveau bloc
@@ -323,19 +323,19 @@ private
    ---------------------------------------
 
    protected type Donnee_Protegee_T is
-      entry Ecrire_Donnee_Entree (Table : Donnee_T);
+      entry Ecrire_Donnee_Entree (Grappe_De_Donnees : Donnee_T);
       --  Écrit la grappe de données.
       --  @param Grappe_De_Donnees
       --  La grappe de données à transmettre.
-      procedure Lire_Donnee      (Table : out Donnee_T)
+      procedure Lire_Donnee      (Grappe_De_Donnees : out Donnee_T)
          with Inline;
       --  Récupère la grappe de données.
       --  @param Grappe_De_Donnees
       --  La grappe de données à récupérer.
    private
-      Signal : Boolean := True;
+      Bloc_Disponnible  : Boolean := True;
       --  Drapeau de blocs disponible.
-      Donnee : Donnee_T;
+      Donnee            : Donnee_T;
       --  La donnée stocké.
    end Donnee_Protegee_T;
    --  Barrière destinée à transmettre le bloc à la tâche suivante

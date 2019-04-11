@@ -44,7 +44,7 @@ is
 
    function Transformer_En_Brut
       (
-         Constructeur : in out Faiseur_Bloc_T;
+         Constructeur : Faiseur_Bloc_T;
          Bloc         : Bloc_64_T
       )
       return Bloc_64_Brut_T;

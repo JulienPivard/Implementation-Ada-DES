@@ -34,8 +34,7 @@ package body Gerer_Options_P is
    end Afficher_Aide;
 
    ---------------------------------------------------------------------------
-   procedure Verifier_Nombre_Arguments
-   is
+   procedure Verifier_Nombre_Arguments is
    begin
 
       --  Aucun arguments en entrée

@@ -38,24 +38,24 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Bloc_32_T
+         Bloc         : Bloc_32_T
       );
    --  Construit un bloc de 32 bits par permutation de la table P
    --  à partir d'un autre bloc de même taille.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
-   --  @param Brut
+   --  @param Bloc
    --  L'autre bloc de 32 bits.
 
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
+         Bloc         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       );
    --  Construit un bloc de 32 bits réduction d'un bloc de 48 bits.
    --  @param Constructeur
    --  Le constructeur de bloc de 32 bits.
-   --  @param Brut
+   --  @param Bloc
    --  le bloc de 48 bits.
 
    function Recuperer_Bloc

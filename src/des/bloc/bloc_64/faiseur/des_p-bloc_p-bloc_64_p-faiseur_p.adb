@@ -69,7 +69,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
    ---------------------------------------------------------------------------
    function Transformer_En_Brut
       (
-         Constructeur : in out Faiseur_Bloc_T;
+         Constructeur : Faiseur_Bloc_T;
          Bloc         : Bloc_64_T
       )
       return Bloc_64_Brut_T

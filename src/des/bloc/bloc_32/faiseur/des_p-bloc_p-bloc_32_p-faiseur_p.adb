@@ -27,7 +27,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Bloc_32_T
+         Bloc         : Bloc_32_T
       )
    is
       type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
@@ -59,7 +59,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          );
    begin
       for I in Intervalle_T loop
-         Constructeur.Bloc.Bits (I) := Brut.Bits (Table_P (I));
+         Constructeur.Bloc.Bits (I) := Bloc.Bits (Table_P (I));
       end loop;
    end Construire_Bloc;
 
@@ -67,7 +67,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
+         Bloc         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       )
    is
       type Table_48_Bits_T is array
@@ -86,22 +86,22 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       Table_48_Bits : constant Table_48_Bits_T :=
       Table_48_Bits_T'
       (
-         Brut.Lire_Bit (1), Brut.Lire_Bit (2), Brut.Lire_Bit (3),
-         Brut.Lire_Bit (4), Brut.Lire_Bit (5), Brut.Lire_Bit (6),
-         Brut.Lire_Bit (7), Brut.Lire_Bit (8), Brut.Lire_Bit (9),
-         Brut.Lire_Bit (10), Brut.Lire_Bit (11), Brut.Lire_Bit (12),
-         Brut.Lire_Bit (13), Brut.Lire_Bit (14), Brut.Lire_Bit (15),
-         Brut.Lire_Bit (16), Brut.Lire_Bit (17), Brut.Lire_Bit (18),
-         Brut.Lire_Bit (19), Brut.Lire_Bit (20), Brut.Lire_Bit (21),
-         Brut.Lire_Bit (22), Brut.Lire_Bit (23), Brut.Lire_Bit (24),
-         Brut.Lire_Bit (25), Brut.Lire_Bit (26), Brut.Lire_Bit (27),
-         Brut.Lire_Bit (28), Brut.Lire_Bit (29), Brut.Lire_Bit (30),
-         Brut.Lire_Bit (31), Brut.Lire_Bit (32), Brut.Lire_Bit (33),
-         Brut.Lire_Bit (34), Brut.Lire_Bit (35), Brut.Lire_Bit (36),
-         Brut.Lire_Bit (37), Brut.Lire_Bit (38), Brut.Lire_Bit (39),
-         Brut.Lire_Bit (40), Brut.Lire_Bit (41), Brut.Lire_Bit (42),
-         Brut.Lire_Bit (43), Brut.Lire_Bit (44), Brut.Lire_Bit (45),
-         Brut.Lire_Bit (46), Brut.Lire_Bit (47), Brut.Lire_Bit (48)
+         Bloc.Lire_Bit (1),  Bloc.Lire_Bit (2),  Bloc.Lire_Bit (3),
+         Bloc.Lire_Bit (4),  Bloc.Lire_Bit (5),  Bloc.Lire_Bit (6),
+         Bloc.Lire_Bit (7),  Bloc.Lire_Bit (8),  Bloc.Lire_Bit (9),
+         Bloc.Lire_Bit (10), Bloc.Lire_Bit (11), Bloc.Lire_Bit (12),
+         Bloc.Lire_Bit (13), Bloc.Lire_Bit (14), Bloc.Lire_Bit (15),
+         Bloc.Lire_Bit (16), Bloc.Lire_Bit (17), Bloc.Lire_Bit (18),
+         Bloc.Lire_Bit (19), Bloc.Lire_Bit (20), Bloc.Lire_Bit (21),
+         Bloc.Lire_Bit (22), Bloc.Lire_Bit (23), Bloc.Lire_Bit (24),
+         Bloc.Lire_Bit (25), Bloc.Lire_Bit (26), Bloc.Lire_Bit (27),
+         Bloc.Lire_Bit (28), Bloc.Lire_Bit (29), Bloc.Lire_Bit (30),
+         Bloc.Lire_Bit (31), Bloc.Lire_Bit (32), Bloc.Lire_Bit (33),
+         Bloc.Lire_Bit (34), Bloc.Lire_Bit (35), Bloc.Lire_Bit (36),
+         Bloc.Lire_Bit (37), Bloc.Lire_Bit (38), Bloc.Lire_Bit (39),
+         Bloc.Lire_Bit (40), Bloc.Lire_Bit (41), Bloc.Lire_Bit (42),
+         Bloc.Lire_Bit (43), Bloc.Lire_Bit (44), Bloc.Lire_Bit (45),
+         Bloc.Lire_Bit (46), Bloc.Lire_Bit (47), Bloc.Lire_Bit (48)
       );
       pragma Annotate
          (
