@@ -428,38 +428,25 @@ private
    type Table_Filtreur_T is array (Numero_Filtre_T)
       of access Filtre_Corps_Protegee_T;
 
-   pragma Annotate
-      (
-         gnatcheck,
-         Exempt_On,
-         "Positional_Components",
-         "Tableau trop grand pour positionner toutes les valeurs"
-      );
    Table_Filtreur : Table_Filtreur_T :=
       Table_Filtreur_T'
       (
-         Filtreur_Corps_01'Access,
-         Filtreur_Corps_02'Access,
-         Filtreur_Corps_03'Access,
-         Filtreur_Corps_04'Access,
-         Filtreur_Corps_05'Access,
-         Filtreur_Corps_06'Access,
-         Filtreur_Corps_07'Access,
-         Filtreur_Corps_08'Access,
-         Filtreur_Corps_09'Access,
-         Filtreur_Corps_10'Access,
-         Filtreur_Corps_11'Access,
-         Filtreur_Corps_12'Access,
-         Filtreur_Corps_13'Access,
-         Filtreur_Corps_14'Access,
-         Filtreur_Corps_15'Access,
-         Filtreur_Corps_16'Access
-      );
-   pragma Annotate
-      (
-         gnatcheck,
-         Exempt_Off,
-         "Positional_Components"
+         1  => Filtreur_Corps_01'Access,
+         2  => Filtreur_Corps_02'Access,
+         3  => Filtreur_Corps_03'Access,
+         4  => Filtreur_Corps_04'Access,
+         5  => Filtreur_Corps_05'Access,
+         6  => Filtreur_Corps_06'Access,
+         7  => Filtreur_Corps_07'Access,
+         8  => Filtreur_Corps_08'Access,
+         9  => Filtreur_Corps_09'Access,
+         10 => Filtreur_Corps_10'Access,
+         11 => Filtreur_Corps_11'Access,
+         12 => Filtreur_Corps_12'Access,
+         13 => Filtreur_Corps_13'Access,
+         14 => Filtreur_Corps_14'Access,
+         15 => Filtreur_Corps_15'Access,
+         16 => Filtreur_Corps_16'Access
       );
    --  Table contenant les modificateurs de filtre.
 
