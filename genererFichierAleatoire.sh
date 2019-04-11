@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Dimanche 24 mars[03] 2019
+# Dernière modification : Jeudi 11 avril[04] 2019
 
 ###############################################################################
 #                   ___                             __                        #
@@ -465,6 +465,18 @@ exit "${ERREUR}";' ERR
 
     #}}}
 
+# Informations système              {{{
+# Vérifie si le script à été lancé avec bash
+[[ -z "${BASH_VERSION}" ]] && BASH_MAJOR_VERSION='0' || BASH_MAJOR_VERSION="${BASH_VERSINFO[0]}"
+declare -r BASH_MAJOR_VERSION
+
+declare -r SYSTEM="$(uname -s)"
+[[ "${SYSTEM}" = 'Darwin' ]] && OS='MacOS' || OS="$(uname -o)"
+declare -r OS
+declare -r MACHINE="$(uname -m)"
+
+    #}}}
+
 #}}}
 
 # Retirer l'extension %.* un % par extension à retirer.
@@ -698,11 +710,29 @@ function traitement_option_f ()
 #}}}
 
 declare -r FICHIER_LOG_EXECUTION="./.log_${NOM_SCRIPT%.*}.log"
-printf >>"${FICHIER_LOG_EXECUTION}" '%s\n%s\n' '---------------------' "`date '+%F %T'`"
+cat <<EOF >>"${FICHIER_LOG_EXECUTION}"
+---------------------------------- : `date '+%F %T'`
+--  System             : ${SYSTEM}
+--  Operating System   : ${OS}
+--  Machine            : ${MACHINE}
+--  BASH major version : ${BASH_MAJOR_VERSION}
+----------------------------------
+EOF
 
 ####################################################
 #{{{             Gestion des options               #
 ####################################################
+
+# Si on a des arguments
+if [[ "${#}" -gt 0 ]]
+then
+    printf >>"${FICHIER_LOG_EXECUTION}" '%s\n' 'Script appelé avec les options : '
+    affichage_echappee >>"${FICHIER_LOG_EXECUTION}" "${@}"
+    printf >>"${FICHIER_LOG_EXECUTION}" '\n'
+else
+    printf >>"${FICHIER_LOG_EXECUTION}" '%s\n' 'Script appelé sans options'
+fi
+printf >>"${FICHIER_LOG_EXECUTION}" '\n'
 
 #  Affiche l'aide si aucun arguments n'est donné
 if [[ "${#}" -eq 0 ]]
