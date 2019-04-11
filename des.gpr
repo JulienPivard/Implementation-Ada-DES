@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 26 mars[03] 2019
+--  Dernière modification : Jeudi 11 avril[04] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -146,7 +146,6 @@ project Des is
    --  puis
    --    install_name_tool -change <@executable_path/lib.dylib>
    --       </opt/local/lib/lib.dylib> <exefile>
-   --  Les commentaires qui commencent par "--<" sont de la documentation
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    package Documentation is
 
@@ -221,7 +220,7 @@ project Des is
    ----------------------------------------------------------------------------
    package Check is
       for Default_Switches ("ada") use
-         ("-rules", "-from=./config/regles_de_codage");
+         ("-rules", "-from=config/regles_de_codage");
    end Check;
 
    --  Les options pour gnatprove
@@ -311,7 +310,7 @@ project Des is
             --  Les pragma doivent suivre la règle de casse mixte.
             "--pragma-mixed-case",
             --  Les exceptions aux règles de casse.
-            "--dictionary=./config/exception_case",
+            "--dictionary=config/exception_case",
             --  Indentation des commentaires suit les règles de gnat.
             "--comments-gnat-indentation",
             --  Obligatoirement deux espaces avant un caractère non blanc.
@@ -353,7 +352,7 @@ project Des is
             --  Fin de ligne unix.
             "--eol=unix",
             --  Défini l'encodage des caractères du fichier.
-            "---wide-character-encoding=8",
+            "--wide-character-encoding=8",
             --  Pas de tabulation dans les commentaires.
             "-N"
          );
