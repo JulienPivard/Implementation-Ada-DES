@@ -1,4 +1,4 @@
---  Dernière modification : Jeudi 11 avril[04] 2019
+--  Dernière modification : Vendredi 12 avril[04] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -83,8 +83,8 @@ project Des is
          --  gnatyy équivaut à 3aAbcefhiklmnprst
          "-gnatyy",
          "-gnatyBdOSux",
-         --  gnatw.e active les avertissements pour les
-         --  variables non utilisé.
+         --  gnatw.e active tous les avertissements comme gnatwa, mais aussi
+         --  ceux qui sont considéré comme optionnel.
          "-gnatw.e",
          --  gnatw.Y désactive le message qui dit que la
          --  spec nécessite un corps.
