@@ -14,7 +14,7 @@ private with Generateur_Ecriveur_1_P;
 private with Generateur_Ecriveur_2048_P;
 private with Generateur_Ecriveur_8192_P;
 
-package Des_P.Chaine_P.Taches_P.Test_P is
+package Des_P.Chaine_P.Tasches_P.Test_P is
 
    Brut_Original : constant
    Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T :=
@@ -80,4 +80,4 @@ private
       Generateur_Ecriveur_8192_P.Ecriveur_Generateur_T;
    --  Un écriveur de fichier classique.
 
-end Des_P.Chaine_P.Taches_P.Test_P;
+end Des_P.Chaine_P.Tasches_P.Test_P;

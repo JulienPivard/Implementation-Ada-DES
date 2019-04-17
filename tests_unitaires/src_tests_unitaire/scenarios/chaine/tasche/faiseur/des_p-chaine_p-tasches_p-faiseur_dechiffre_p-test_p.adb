@@ -6,7 +6,7 @@ with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
 with Des_P.Clef_P.Clef_64_Simplifie_P;
 
-package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
+package body Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P.Test_P is
 
    package Faiseur_56_R renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
    package Faiseur_48_R renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
@@ -14,7 +14,7 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
    ---------------------------------------------------------------------------
    overriding
    procedure Set_Up (T : in out Test_Fixt_T) is
-      C : Faiseur_Chiffrement_T;
+      C : Faiseur_Dechiffrement_T;
       F_56 : Faiseur_56_R.Faiseur_Clef_T;
       F_48 : Faiseur_48_R.Faiseur_Clef_T;
    begin
@@ -33,10 +33,9 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
    ---------------------------------------------------------------------------
    --                              scénarios                                --
    ---------------------------------------------------------------------------
+
    ---------------------------------------------------------------------------
-   procedure Test_Initialisation
-      (T : in out Test_Fixt_T)
-   is
+   procedure Test_Initialisation (T : in out Test_Fixt_T) is
       C : Chaine_T;
    begin
       AUnit.Assertions.Assert
@@ -54,9 +53,7 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
    end Test_Initialisation;
 
    ---------------------------------------------------------------------------
-   procedure Test_Construction
-      (T : in out Test_Fixt_T)
-   is
+   procedure Test_Construction (T : in out Test_Fixt_T) is
       package Clef_Simple_R renames Des_P.Clef_P.Clef_64_Simplifie_P;
       C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
    begin
@@ -83,9 +80,7 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
    end Test_Construction;
 
    ---------------------------------------------------------------------------
-   procedure Test_Recuperation
-      (T : in out Test_Fixt_T)
-   is
+   procedure Test_Recuperation (T : in out Test_Fixt_T) is
       package Clef_Simple_R renames Des_P.Clef_P.Clef_64_Simplifie_P;
       C_64 : Des_P.Clef_P.Clef_64_Simplifie_P.Clef_S_T;
       Chaine : Chaine_T;
@@ -113,4 +108,4 @@ package body Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
          );
    end Test_Recuperation;
 
-end Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P;
+end Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P.Test_P;

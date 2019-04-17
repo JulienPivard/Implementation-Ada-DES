@@ -11,7 +11,7 @@ private with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P.Holder_P;
 --  @description
 --  Constructeur de chaine de filtres de déchiffrement.
 --  @group Chaine Constructeur Déchiffrement
-package Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P is
+package Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P is
 
    type Faiseur_Dechiffrement_T is new
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with private;
@@ -69,4 +69,4 @@ private
          --  Le constructeur de clefs de 48 bits.
       end record;
 
-end Des_P.Chaine_P.Taches_P.Faiseur_Dechiffre_P;
+end Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P;

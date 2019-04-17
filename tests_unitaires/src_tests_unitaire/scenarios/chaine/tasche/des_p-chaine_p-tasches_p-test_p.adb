@@ -9,7 +9,7 @@ with Des_P.Filtre_P.Fabrique_P.Chiffre_P;
 with Des_P.Filtre_P.Fabrique_P.Dechiffre_P;
 with Des_P.Faiseur_P;
 
-package body Des_P.Chaine_P.Taches_P.Test_P is
+package body Des_P.Chaine_P.Tasches_P.Test_P is
 
    package Faiseur_56_R renames Des_P.Clef_P.Clef_56_P.Faiseur_P;
    package Faiseur_48_R renames Des_P.Clef_P.Clef_48_P.Faiseur_P;
@@ -435,4 +435,4 @@ package body Des_P.Chaine_P.Taches_P.Test_P is
       end Verification_Resultat_Chaine_Filtre;
    end Test_Filtre_Dechiff_8192;
 
-end Des_P.Chaine_P.Taches_P.Test_P;
+end Des_P.Chaine_P.Tasches_P.Test_P;

@@ -21,7 +21,7 @@ private with Des_P.Chaine_P.Instances_Table_Bloc_P;
 --  Permet de gérer la chaine de filtre par laquelle vont passer
 --  tout les blocs de données du fichier pour être manipulé.
 --  @group Chaine
-package Des_P.Chaine_P.Taches_P is
+package Des_P.Chaine_P.Tasches_P is
 
    type Chaine_T is new Chaine_Interface_T with private;
    --  La chaine de filtres parallèle.
@@ -99,4 +99,4 @@ private
          --  grappes soit prise en compte par la chaine.
       end record;
 
-end Des_P.Chaine_P.Taches_P;
+end Des_P.Chaine_P.Tasches_P;

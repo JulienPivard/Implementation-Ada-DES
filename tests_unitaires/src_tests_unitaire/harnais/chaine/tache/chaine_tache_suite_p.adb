@@ -1,10 +1,10 @@
 with AUnit.Test_Caller;
 
-with Des_P.Chaine_P.Taches_P.Test_P;
+with Des_P.Chaine_P.Tasches_P.Test_P;
 
 package body Chaine_Tache_Suite_P is
 
-   package Scenario_R renames Des_P.Chaine_P.Taches_P.Test_P;
+   package Scenario_R renames Des_P.Chaine_P.Tasches_P.Test_P;
 
    package Caller is new AUnit.Test_Caller (Scenario_R.Test_Fixt_T);
 

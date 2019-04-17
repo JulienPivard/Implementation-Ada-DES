@@ -1,11 +1,11 @@
 with AUnit;
 with AUnit.Test_Fixtures;
 
-package Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
+package Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P.Test_P is
 
    type Test_Fixt_T is new AUnit.Test_Fixtures.Test_Fixture with
       record
-         C : Faiseur_Chiffrement_T;
+         C : Faiseur_Dechiffrement_T;
       end record;
 
    overriding
@@ -23,4 +23,4 @@ package Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P is
    procedure Test_Recuperation
       (T : in out Test_Fixt_T);
 
-end Des_P.Chaine_P.Taches_P.Faiseur_Chiffre_P.Test_P;
+end Des_P.Chaine_P.Tasches_P.Faiseur_Dechiffre_P.Test_P;

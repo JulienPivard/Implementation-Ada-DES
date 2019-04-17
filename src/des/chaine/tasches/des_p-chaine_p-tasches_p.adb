@@ -5,7 +5,7 @@ with Ada.Dispatching;
 
 with Des_P.Bloc_P.Bloc_64_P;
 
-package body Des_P.Chaine_P.Taches_P is
+package body Des_P.Chaine_P.Tasches_P is
 
    ---------------------------------------------------------------------------
    procedure Lanceur_Taches
@@ -359,4 +359,4 @@ package body Des_P.Chaine_P.Taches_P is
       Ecriveur.all.Fermer_Fichier;
    end Filtrer;
 
-end Des_P.Chaine_P.Taches_P;
+end Des_P.Chaine_P.Tasches_P;
