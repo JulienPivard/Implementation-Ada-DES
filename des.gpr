@@ -1,4 +1,4 @@
---  Dernière modification : Vendredi 12 avril[04] 2019
+--  Dernière modification : Mercredi 17 avril[04] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -168,16 +168,30 @@ project Des is
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
    package Builder is
-      --  Active la recompilation si un drapeau change
-      for Default_Switches ("ada") use ("-s");
+      --  -s : Active la recompilation si un drapeau change
+      --  -m : Recompilation minimum.
+      --  -k : Va le plus loin possible lors de la compilation même si elle
+      --       échoue.
+      --  -g : Active le mode debug.
+      --  -C : Utilise un fichier de mapping pour améliorer les performances.
+      --  -gantQ : Génère les ali et l'arbre de fichier même si la
+      --           compilation échoue.
+      Options_Builder := ("-s", "-C");
 
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
-         when "debug" | "release" =>
-            for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
-            for Executable ("client_taches.adb")      use "executable_taches";
-            for Executable ("client_ravenscar.adb")   use "executable_ravenscar";
+         when "debug" =>
+            Options_Builder := Options_Builder & ("-g");
+         when "release" =>
+            null;
       end case;
+
+      for Default_Switches ("ada") use Options_Builder;
+
+      --  Pour changer le nom du binaire de client à executable après le use.
+      for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
+      for Executable ("client_taches.adb")      use "executable_taches";
+      for Executable ("client_ravenscar.adb")   use "executable_ravenscar";
 
    end Builder;
 
