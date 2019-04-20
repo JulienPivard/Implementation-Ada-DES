@@ -6,13 +6,16 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  Gestion de la lecture dans les fichiers ou objets. Se charge
 --  de centraliser la lecture.
 --  @group Lecteur
-package Des_P.Chaine_P.Lecteur_P is
+package Des_P.Chaine_P.Lecteur_P
+   with Preelaborate
+is
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
    type Lecteur_T is limited interface;
    --  Un lecteur de donnée. Nécessaire pour centraliser.
 
+   --  Interdit l'utilisation du pragma Pure.
    type Lecteur_A is not null access all Lecteur_T'Class;
    --  Pointeur sur un lecteur.
 

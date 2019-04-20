@@ -6,13 +6,16 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  Gestion de l'écriture dans les fichiers ou objets. Se charge
 --  de centraliser les écritures.
 --  @group Écriveur
-package Des_P.Chaine_P.Ecriveur_P is
+package Des_P.Chaine_P.Ecriveur_P
+   with Preelaborate
+is
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
    type Ecriveur_T is limited interface;
    --  Un écriveur de donnée. Nécessaire pour centraliser.
 
+   --  Interdit l'utilisation du pragma Pure.
    type Ecriveur_A is not null access all Ecriveur_T'Class;
    --  Pointeur sur un écriveur.
 
