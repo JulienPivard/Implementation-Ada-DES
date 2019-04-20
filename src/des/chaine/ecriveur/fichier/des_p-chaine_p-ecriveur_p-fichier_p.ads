@@ -1,3 +1,6 @@
+with Ada.Sequential_IO;
+--  Interdit l'utilisation de preelaborate.
+
 --  @summary
 --  Accède en écriture à un fichier.
 --  @description
@@ -5,6 +8,8 @@
 --  de centraliser les écritures dans le fichier de sortie.
 --  @group Écriveur
 package Des_P.Chaine_P.Ecriveur_P.Fichier_P is
+
+   package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    type Ecriveur_Fichier_T is limited new Ecriveur_T with private;
    --  Écrit dans le fichier le bloc donné.

@@ -1,3 +1,6 @@
+with Ada.Sequential_IO;
+--  Interdit l'utilisation de preelaborate.
+
 --  @summary
 --  Accède en lecture à un fichier.
 --  @description
@@ -5,6 +8,8 @@
 --  de centraliser la lecture dans les fichiers.
 --  @group Lecteur
 package Des_P.Chaine_P.Lecteur_P.Fichier_P is
+
+   package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    type Lecteur_Fichier_T
    is limited new Lecteur_T with private;

@@ -1,5 +1,3 @@
-with Ada.Sequential_IO;
-
 with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 
 --  @summary
@@ -11,7 +9,6 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 package Des_P.Chaine_P.Lecteur_P is
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
-   package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 
    type Lecteur_T is limited interface;
    --  Un lecteur de donnée. Nécessaire pour centraliser.
