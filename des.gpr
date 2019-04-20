@@ -103,6 +103,10 @@ project Des is
          --  Active les vérification de la stack pour éviter les
          --  stacks overflow.
          "-fstack-check",
+         --  gnatel Active les messages d'informations signalant les
+         --  ajout implicite de pragma Elaborate et Elaborate_All
+         --  dans le code.
+         "-gnatel",
          --  gnatif pour pouvoir utiliser les accents dans
          --  les noms de variables.
          "-gnatif"
