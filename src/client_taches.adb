@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 11 avril[04] 2019
+--           Dernière modification : Samedi 20 avril[04] 2019
 --                                                                          --
 ------------------------------------------------------------------------------
 
@@ -10,6 +10,8 @@ with Ada.Command_Line;
 with Des_P.Clef_P.Clef_64_P;
 with Procedure_Run_Taches_P;
 with Gerer_Options_P;
+
+pragma Elaborate_All (Procedure_Run_Taches_P);
 
 ---------------------------------------------------------------------------
 procedure Client_Taches is

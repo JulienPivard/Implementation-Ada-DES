@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 --                                                                          --
 --                          Auteur : PIVARD Julien                          --
---           Dernière modification : Jeudi 11 avril[04] 2019
+--           Dernière modification : Samedi 20 avril[04] 2019
 --                                                                          --
 ------------------------------------------------------------------------------
 pragma Profile (Ravenscar);
@@ -12,6 +12,8 @@ with Des_P.Clef_P.Clef_64_P;
 with Procedure_Run_Ravenscar_P;
 with Des_P.Chaine_P.Ravenscar_P;
 with Gerer_Options_P;
+
+pragma Elaborate_All (Procedure_Run_Ravenscar_P);
 
 ---------------------------------------------------------------------------
 procedure Client_Ravenscar is

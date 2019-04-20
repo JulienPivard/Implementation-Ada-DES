@@ -15,6 +15,8 @@ private with Des_P.Filtre_P.Sortie_P.Holder_P;
 
 private with Des_P.Chaine_P.Instances_Table_Bloc_P;
 
+pragma Elaborate_All (Des_P.Chaine_P.Limiteur_Jetons_P);
+
 --  @summary
 --  Chaine de filtres parallèle.
 --  @description

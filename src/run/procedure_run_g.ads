@@ -4,6 +4,8 @@ with Des_P.Chaine_P.Faiseur_I_P;
 private with Des_P.Clef_P.Clef_56_P.Faiseur_P;
 private with Des_P.Clef_P.Clef_48_P.Faiseur_P;
 
+--  Pas de Pure ou de Preelaborate ou de Elaborate_Body, sinon
+--  un conflit de déclaration se déclenche dans la spec du client.
 generic
 
    Extension   : String;
