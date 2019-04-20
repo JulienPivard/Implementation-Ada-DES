@@ -36,10 +36,15 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
    private
       Nb_Blocs_Genere : Nombre_Grappes_T :=
          Nombre_Grappes_T'First;
+      --  Le nombre de blocs en cours de traitement dans le pipeline.
       Nb_Max_Blocs    : Max_Grappes_T    :=
          System.Multiprocessors.Number_Of_CPUs;
+      --  Le nombre maximum de blocs qui peuvent être traité en
+      --  même temps dans le pipeline.
       Autorisee       : Boolean          :=
          True;
+      --  Le limiteur autorise un nouveau bloc à entrer dans
+      --  le pipeline de tâches.
    end Limiteur_Protegee;
    --  Limite le nombre maximum de grappes de blocs
    --  à un même moment dans le pipeline.

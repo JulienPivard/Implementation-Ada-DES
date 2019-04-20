@@ -12,7 +12,7 @@ with Des_P.Clef_P.Clef_64_P;
 package Gerer_Options_P is
 
    Options_Incorrect_E : exception;
-   --  Une erreur c'est produit durant la lecture des options.
+   --  Une erreur c'est produite durant la lecture des options.
 
    package W_W_IO_R renames Ada.Wide_Wide_Text_IO;
 

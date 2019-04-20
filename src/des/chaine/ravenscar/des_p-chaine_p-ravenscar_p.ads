@@ -408,25 +408,58 @@ private
    --  La tâche de filtre principaux.
 
    Filtreur_Corps_01 : aliased Filtre_Corps_Protegee_T;
+   --  1er Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_02 : aliased Filtre_Corps_Protegee_T;
+   --  2eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_03 : aliased Filtre_Corps_Protegee_T;
+   --  3eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_04 : aliased Filtre_Corps_Protegee_T;
+   --  4eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_05 : aliased Filtre_Corps_Protegee_T;
+   --  5eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_06 : aliased Filtre_Corps_Protegee_T;
+   --  6eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_07 : aliased Filtre_Corps_Protegee_T;
+   --  7eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_08 : aliased Filtre_Corps_Protegee_T;
+   --  8eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_09 : aliased Filtre_Corps_Protegee_T;
+   --  9eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_10 : aliased Filtre_Corps_Protegee_T;
+   --  10eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_11 : aliased Filtre_Corps_Protegee_T;
+   --  11eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_12 : aliased Filtre_Corps_Protegee_T;
+   --  12eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_13 : aliased Filtre_Corps_Protegee_T;
+   --  13eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_14 : aliased Filtre_Corps_Protegee_T;
+   --  14eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_15 : aliased Filtre_Corps_Protegee_T;
+   --  15eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
    Filtreur_Corps_16 : aliased Filtre_Corps_Protegee_T;
-   --  Les modificateurs de filtre.
+   --  16eme Modificateur de filtre de la partie principal
+   --  de l'algorithme D.E.S.
 
    type Table_Filtreur_T is array (Numero_Filtre_T)
       of access Filtre_Corps_Protegee_T;
+   --  Un tableau de modificateur de filtres, pour faciliter
+   --  leur manipulations.
 
    Table_Filtreur : Table_Filtreur_T :=
       Table_Filtreur_T'
@@ -451,42 +484,74 @@ private
    --  Table contenant les modificateurs de filtre.
 
    Donnee_01 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_02 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_03 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_04 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_05 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_06 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_07 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_08 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_09 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_10 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_11 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_12 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_13 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_14 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_15 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_16 : aliased Donnee_Protegee_T;
+   --  Un transmetteur de données entre les tâches principales.
    Donnee_17 : aliased Donnee_Protegee_T;
-   --  Les transmetteurs de données entre les tâches principales
+   --  Un transmetteur de données entre les tâches principales.
 
    Autorisateur_01 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_02 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_03 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_04 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_05 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_06 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_07 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_08 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_09 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_10 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_11 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_12 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_13 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_14 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_15 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_16 : aliased Autorisation_Protegee_T;
+   --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_17 : aliased Autorisation_Protegee_T;
-   --  Les autorisation de lecture de données entre les tâches principales.
+   --  Autorise la tâche suivante à lire la donnée.
 
    subtype Etage_01_02_T is Etage_Corps_Tache_T
       (
@@ -496,7 +561,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_02'Access,
          Donnee_A_Envoyer       => Donnee_02'Access
       );
+   --  Lie les étages 1 et 2 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_01 : Etage_01_02_T;
+   --  La tâche 1 du pipeline.
 
    subtype Etage_02_03_T is Etage_Corps_Tache_T
       (
@@ -506,7 +573,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_03'Access,
          Donnee_A_Envoyer       => Donnee_03'Access
       );
+   --  Lie les étages 2 et 3 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_02 : Etage_02_03_T;
+   --  La tâche 2 du pipeline.
 
    subtype Etage_03_04_T is Etage_Corps_Tache_T
       (
@@ -516,7 +585,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_04'Access,
          Donnee_A_Envoyer       => Donnee_04'Access
       );
+   --  Lie les étages 3 et 4 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_03 : Etage_03_04_T;
+   --  La tâche 3 du pipeline.
 
    subtype Etage_04_05_T is Etage_Corps_Tache_T
       (
@@ -526,7 +597,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_05'Access,
          Donnee_A_Envoyer       => Donnee_05'Access
       );
+   --  Lie les étages 4 et 5 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_04 : Etage_04_05_T;
+   --  La tâche 4 du pipeline.
 
    subtype Etage_05_06_T is Etage_Corps_Tache_T
       (
@@ -536,7 +609,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_06'Access,
          Donnee_A_Envoyer       => Donnee_06'Access
       );
+   --  Lie les étages 5 et 6 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_05 : Etage_05_06_T;
+   --  La tâche 5 du pipeline.
 
    subtype Etage_06_07_T is Etage_Corps_Tache_T
       (
@@ -546,7 +621,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_07'Access,
          Donnee_A_Envoyer       => Donnee_07'Access
       );
+   --  Lie les étages 6 et 7 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_06 : Etage_06_07_T;
+   --  La tâche 6 du pipeline.
 
    subtype Etage_07_08_T is Etage_Corps_Tache_T
       (
@@ -556,7 +633,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_08'Access,
          Donnee_A_Envoyer       => Donnee_08'Access
       );
+   --  Lie les étages 7 et 8 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_07 : Etage_07_08_T;
+   --  La tâche 7 du pipeline.
 
    subtype Etage_08_09_T is Etage_Corps_Tache_T
       (
@@ -566,7 +645,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_09'Access,
          Donnee_A_Envoyer       => Donnee_09'Access
       );
+   --  Lie les étages 8 et 9 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_08 : Etage_08_09_T;
+   --  La tâche 8 du pipeline.
 
    subtype Etage_09_10_T is Etage_Corps_Tache_T
       (
@@ -576,7 +657,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_10'Access,
          Donnee_A_Envoyer       => Donnee_10'Access
       );
+   --  Lie les étages 9 et 10 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_09 : Etage_09_10_T;
+   --  La tâche 9 du pipeline.
 
    subtype Etage_10_11_T is Etage_Corps_Tache_T
       (
@@ -586,7 +669,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_11'Access,
          Donnee_A_Envoyer       => Donnee_11'Access
       );
+   --  Lie les étages 10 et 11 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_10 : Etage_10_11_T;
+   --  La tâche 10 du pipeline.
 
    subtype Etage_11_12_T is Etage_Corps_Tache_T
       (
@@ -596,7 +681,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_12'Access,
          Donnee_A_Envoyer       => Donnee_12'Access
       );
+   --  Lie les étages 11 et 12 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_11 : Etage_11_12_T;
+   --  La tâche 11 du pipeline.
 
    subtype Etage_12_13_T is Etage_Corps_Tache_T
       (
@@ -606,7 +693,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_13'Access,
          Donnee_A_Envoyer       => Donnee_13'Access
       );
+   --  Lie les étages 12 et 13 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_12 : Etage_12_13_T;
+   --  La tâche 12 du pipeline.
 
    subtype Etage_13_14_T is Etage_Corps_Tache_T
       (
@@ -616,7 +705,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_14'Access,
          Donnee_A_Envoyer       => Donnee_14'Access
       );
+   --  Lie les étages 13 et 14 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_13 : Etage_13_14_T;
+   --  La tâche 13 du pipeline.
 
    subtype Etage_14_15_T is Etage_Corps_Tache_T
       (
@@ -626,7 +717,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_15'Access,
          Donnee_A_Envoyer       => Donnee_15'Access
       );
+   --  Lie les étages 14 et 15 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_14 : Etage_14_15_T;
+   --  La tâche 14 du pipeline.
 
    subtype Etage_15_16_T is Etage_Corps_Tache_T
       (
@@ -636,7 +729,9 @@ private
          Autorisateur_Envoyee   => Autorisateur_16'Access,
          Donnee_A_Envoyer       => Donnee_16'Access
       );
+   --  Lie les étages 15 et 16 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_15 : Etage_15_16_T;
+   --  La tâche 15 du pipeline.
 
    subtype Etage_16_17_T is Etage_Corps_Tache_T
       (
@@ -646,6 +741,8 @@ private
          Autorisateur_Envoyee   => Autorisateur_17'Access,
          Donnee_A_Envoyer       => Donnee_17'Access
       );
+   --  Lie les étages 16 et 17 du pipeline de chiffrement/déchiffrement.
    Etage_Corps_16 : Etage_16_17_T;
+   --  La tâche 16 du pipeline.
 
 end Des_P.Chaine_P.Ravenscar_P;
