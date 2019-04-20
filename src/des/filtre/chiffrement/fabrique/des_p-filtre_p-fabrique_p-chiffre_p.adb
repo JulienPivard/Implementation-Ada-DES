@@ -1,5 +1,6 @@
 with Des_P.Filtre_P.Entree_P.Chiffre_P;
 with Des_P.Filtre_P.Corps_P.Chiffre_P;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 with Des_P.Filtre_P.Sortie_P.Chiffre_P;
 
 package body Des_P.Filtre_P.Fabrique_P.Chiffre_P is

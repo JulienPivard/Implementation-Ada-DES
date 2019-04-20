@@ -21,7 +21,9 @@ private with Des_P.Chaine_P.Instances_Table_Bloc_P;
 --  Permet de gérer la chaine de filtre par laquelle vont passer
 --  tout les blocs de données du fichier pour être manipulé.
 --  @group Chaine
-package Des_P.Chaine_P.Ravenscar_P is
+package Des_P.Chaine_P.Ravenscar_P
+   with Elaborate_Body
+is
 
    type Chaine_T is new Chaine_Interface_T with private;
    --  La chaine de filtres parallèle.
@@ -61,6 +63,8 @@ private
    package Table_Holder_P is new
       Ada.Containers.Indefinite_Holders
          (Element_Type => Table_Bloc_R.Table_Bloc_T);
+   --  @private
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
    type Donnee_T is
       record
@@ -138,6 +142,8 @@ private
 
    package Donnee_Holder_P is new
       Ada.Containers.Indefinite_Holders (Element_Type => Donnee_T);
+   --  @private
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
    ---------------------------------------
 
@@ -156,11 +162,12 @@ private
    --  ne peuvent être stoppé qu'a un seul moment de l'exécution, lors
    --  de l'envoie du signal du demarreur_protegee.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    type Compteur_Tache_T is range 0 .. 20;
    --  Destiné à compter le nombre de tâches.
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    protected Autorisation_Rearmement_Protegee is
       entry Attendre_Entree;
       --  Demande aux tâches d'attendre ici avant de pouvoir
@@ -182,7 +189,7 @@ private
    --  demarreur_protegee ne se referme.
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    protected Demarreur_Protegee is
       entry Attendre_Entree;
       --  Barrière de synchronisation du démarrage de tâches.
@@ -200,7 +207,7 @@ private
    --  la barrière elle est refermée en attendant le prochain départ.
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    protected Fin_Protegee is
       entry Attendre_Entree;
       --  Barrière de synchronisation pour la tâche principal.
@@ -218,22 +225,26 @@ private
    package Lecteure_R renames Des_P.Chaine_P.Lecteur_P;
    package Ecriveur_R renames Des_P.Chaine_P.Ecriveur_P;
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Ecriveur_Fichier : aliased Ecriveur_R.Fichier_P.Ecriveur_Fichier_T;
    --  Un écriveur de fichier classique.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Lecteur_Fichier  : aliased Lecteure_R.Fichier_P.Lecteur_Fichier_T;
    --  Un lecteur de fichier classique.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Ecriveur : Ecriveur_R.Ecriveur_A := Ecriveur_Fichier'Access;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Lecteur  : Lecteure_R.Lecteur_A  := Lecteur_Fichier'Access;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    protected Filtre_Entree_Protegee is
       entry Attendre_Entree;
       --  Tant qu'aucun filtre n'est donné les tâches sont mise
@@ -257,7 +268,7 @@ private
    --  étage de chiffrement.
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    protected Filtre_Sortie_Protegee is
       entry Attendre_Entree;
       --  Tant qu'aucun filtre n'est donné les tâches sont mise
@@ -371,27 +382,39 @@ private
 
    ---------------------------------------
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Donnee_Debut : Donnee_Protegee_T;
    --  La donnée transmise par la tâche lectrice, du fichier à chiffrer,
    --  à la tâche de filtre d'entré.
+
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Donnee_Fin   : Donnee_Protegee_T;
    --  La donnée transmise par la tâche de dernier filtre
    --  à la tâche écrivaine, du fichier chiffré.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Autorisateur_Debut : Autorisation_Protegee_T;
    --  Signal d'autorisation de lecture de la donnée de la tâche
    --  lectrice à la tâche de filtre d'entrée.
+
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Autorisateur_Fin   : Autorisation_Protegee_T;
    --  Signal d'autorisation de lecture de la donnée de la tâche
    --  de filtre de sortie à la tâche écrivaine.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Lecteur_Tache;
    --  La tâche lectrice.
+
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Ecriture_Tache;
    --  La tâche écrivaine.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Entree_Tache;
    --  La tâche de premier filtre.
+
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Sortie_Tache;
    --  La tâche de dernier filtre.
 
@@ -407,6 +430,7 @@ private
    end Etage_Corps_Tache_T;
    --  La tâche de filtre principaux.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Filtreur_Corps_01 : aliased Filtre_Corps_Protegee_T;
    --  1er Modificateur de filtre de la partie principal
    --  de l'algorithme D.E.S.
@@ -461,6 +485,7 @@ private
    --  Un tableau de modificateur de filtres, pour faciliter
    --  leur manipulations.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Table_Filtreur : Table_Filtreur_T :=
       Table_Filtreur_T'
       (
@@ -483,6 +508,7 @@ private
       );
    --  Table contenant les modificateurs de filtre.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Donnee_01 : aliased Donnee_Protegee_T;
    --  Un transmetteur de données entre les tâches principales.
    Donnee_02 : aliased Donnee_Protegee_T;
@@ -518,6 +544,7 @@ private
    Donnee_17 : aliased Donnee_Protegee_T;
    --  Un transmetteur de données entre les tâches principales.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Autorisateur_01 : aliased Autorisation_Protegee_T;
    --  Autorise la tâche suivante à lire la donnée.
    Autorisateur_02 : aliased Autorisation_Protegee_T;
@@ -553,6 +580,7 @@ private
    Autorisateur_17 : aliased Autorisation_Protegee_T;
    --  Autorise la tâche suivante à lire la donnée.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_01_02_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_01'Access,
@@ -565,6 +593,7 @@ private
    Etage_Corps_01 : Etage_01_02_T;
    --  La tâche 1 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_02_03_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_02'Access,
@@ -577,6 +606,7 @@ private
    Etage_Corps_02 : Etage_02_03_T;
    --  La tâche 2 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_03_04_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_03'Access,
@@ -589,6 +619,7 @@ private
    Etage_Corps_03 : Etage_03_04_T;
    --  La tâche 3 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_04_05_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_04'Access,
@@ -601,6 +632,7 @@ private
    Etage_Corps_04 : Etage_04_05_T;
    --  La tâche 4 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_05_06_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_05'Access,
@@ -613,6 +645,7 @@ private
    Etage_Corps_05 : Etage_05_06_T;
    --  La tâche 5 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_06_07_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_06'Access,
@@ -625,6 +658,7 @@ private
    Etage_Corps_06 : Etage_06_07_T;
    --  La tâche 6 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_07_08_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_07'Access,
@@ -637,6 +671,7 @@ private
    Etage_Corps_07 : Etage_07_08_T;
    --  La tâche 7 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_08_09_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_08'Access,
@@ -649,6 +684,7 @@ private
    Etage_Corps_08 : Etage_08_09_T;
    --  La tâche 8 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_09_10_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_09'Access,
@@ -661,6 +697,7 @@ private
    Etage_Corps_09 : Etage_09_10_T;
    --  La tâche 9 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_10_11_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_10'Access,
@@ -673,6 +710,7 @@ private
    Etage_Corps_10 : Etage_10_11_T;
    --  La tâche 10 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_11_12_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_11'Access,
@@ -685,6 +723,7 @@ private
    Etage_Corps_11 : Etage_11_12_T;
    --  La tâche 11 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_12_13_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_12'Access,
@@ -697,6 +736,7 @@ private
    Etage_Corps_12 : Etage_12_13_T;
    --  La tâche 12 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_13_14_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_13'Access,
@@ -709,6 +749,7 @@ private
    Etage_Corps_13 : Etage_13_14_T;
    --  La tâche 13 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_14_15_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_14'Access,
@@ -721,6 +762,7 @@ private
    Etage_Corps_14 : Etage_14_15_T;
    --  La tâche 14 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_15_16_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_15'Access,
@@ -733,6 +775,7 @@ private
    Etage_Corps_15 : Etage_15_16_T;
    --  La tâche 15 du pipeline.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    subtype Etage_16_17_T is Etage_Corps_Tache_T
       (
          Filtreur               => Filtreur_Corps_16'Access,

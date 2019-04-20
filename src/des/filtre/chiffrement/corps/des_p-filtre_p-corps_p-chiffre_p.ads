@@ -1,6 +1,7 @@
 with Des_P.Filtre_P.Chiffre_Interface_P;
 
 private with Des_P.Clef_P.Clef_48_I_P.Holder_P;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
 --  @summary
 --  Représentation du filtre de permutation principal de chiffrement DES.
@@ -8,7 +9,9 @@ private with Des_P.Clef_P.Clef_48_I_P.Holder_P;
 --  Filtre de chiffrement permutation principal qui va servir à paramétrer le
 --  reste des étages.
 --  @group Filtre Chiffrement
-package Des_P.Filtre_P.Corps_P.Chiffre_P is
+package Des_P.Filtre_P.Corps_P.Chiffre_P
+   with Elaborate_Body
+is
 
    package P_Chiffrement_R renames Des_P.Filtre_P.Chiffre_Interface_P;
 

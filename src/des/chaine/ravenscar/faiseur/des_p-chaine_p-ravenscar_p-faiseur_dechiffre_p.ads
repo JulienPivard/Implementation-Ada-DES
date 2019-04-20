@@ -11,7 +11,9 @@ private with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P.Holder_P;
 --  @description
 --  Constructeur de chaine de filtres de déchiffrement.
 --  @group Chaine Constructeur Déchiffrement
-package Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P is
+package Des_P.Chaine_P.Ravenscar_P.Faiseur_Dechiffre_P
+   with Elaborate_Body
+is
 
    type Faiseur_Dechiffrement_T is new
       Des_P.Chaine_P.Faiseur_I_P.Faiseur_Interface_T with private;

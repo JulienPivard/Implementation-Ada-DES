@@ -9,7 +9,9 @@ private with Des_P.Filtre_P.Holder_P;
 --  @description
 --  Un étage de DES paramétré par un filtre.
 --  @group Étage
-package Des_P.Etage_P.Filtrage_P is
+package Des_P.Etage_P.Filtrage_P
+   with Elaborate_Body
+is
 
    Pas_De_Filtre_E : exception;
 
@@ -118,6 +120,8 @@ private
    package Holder_P is new
       Ada.Containers.Indefinite_Holders
          (Element_Type => Etage_Abstrait_T'Class);
+   --  @private
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
    type Etage_T is new Etage_Abstrait_T with
       record

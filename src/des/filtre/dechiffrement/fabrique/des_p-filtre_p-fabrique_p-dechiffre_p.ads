@@ -3,7 +3,9 @@
 --  @description
 --  Fabrique de filtres qui permet de fabriquer des filtres de déchiffrement.
 --  @group Filtre Fabrique
-package Des_P.Filtre_P.Fabrique_P.Dechiffre_P is
+package Des_P.Filtre_P.Fabrique_P.Dechiffre_P
+   with Elaborate_Body
+is
 
    type Fabrique_T is new Fabrique_Interface_T with private;
    --  Une fabrique de filtre de déchiffrement.

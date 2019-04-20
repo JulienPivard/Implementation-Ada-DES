@@ -7,7 +7,9 @@ with Ada.Sequential_IO;
 --  Gestion de la lecture dans les fichiers. Se charge
 --  de centraliser la lecture dans les fichiers.
 --  @group Lecteur
-package Des_P.Chaine_P.Lecteur_P.Fichier_P is
+package Des_P.Chaine_P.Lecteur_P.Fichier_P
+   with Elaborate_Body
+is
 
    package Fichier_64_IO is new Ada.Sequential_IO (C_Bloc_64_R.Bloc_64_Brut_T);
 

@@ -8,7 +8,9 @@ with System.Multiprocessors;
 --  la création de nouveaux jetons et ainsi d'optimiser le
 --  travail des versions parallèle.
 --  @group Objets Protégé
-package Des_P.Chaine_P.Limiteur_Jetons_P is
+package Des_P.Chaine_P.Limiteur_Jetons_P
+   with Elaborate_Body
+is
 
    subtype Nombre_Grappes_T is System.Multiprocessors.CPU_Range;
    --  Le nombre de grappes possible dans le pipeline
@@ -18,7 +20,7 @@ package Des_P.Chaine_P.Limiteur_Jetons_P is
    --  dans le pipeline
 
    ---------------------------------------
-
+   --  Interdit l'utilisation d'un pragma Preelaborate
    protected Limiteur_Protegee is
       entry Generer_Bloc_Entree;
       --  Signal qu'une grappe à été générée.

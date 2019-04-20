@@ -1,10 +1,13 @@
 with Ada.Text_IO;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 with Ada.Directories;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
 with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 with Des_P.Clef_P.Clef_64_P.Faiseur_P;
 
 with Des_P.Faiseur_P;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 
 package body Gerer_Options_P is
 

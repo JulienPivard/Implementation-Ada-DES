@@ -11,7 +11,9 @@ with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
 --  Rassemble les constructeur de clef pour simplifier la
 --  construction de clef de chaque taille.
 --  @group Clef Constructeur
-package Des_P.Faiseur_P is
+package Des_P.Faiseur_P
+   with Elaborate_Body
+is
 
    package Faiseur_64_I_R renames Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
    package Faiseur_56_I_R renames Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P;

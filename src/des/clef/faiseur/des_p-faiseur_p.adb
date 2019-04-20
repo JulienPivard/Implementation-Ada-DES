@@ -1,5 +1,7 @@
 with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P.Holder_P;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 with Des_P.Clef_P.Clef_56_I_P.Faiseur_I_P.Holder_P;
+--  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 with Des_P.Clef_P.Clef_56_I_P.Holder_P;
 
 package body Des_P.Faiseur_P is

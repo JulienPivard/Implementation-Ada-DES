@@ -12,7 +12,9 @@ private with Des_P.Chaine_P.Ecriveur_P.Fichier_P;
 --  Permet de gérer la chaine de filtre par laquelle vont passer
 --  tout les blocs de données du fichier pour être manipulé.
 --  @group Chaine
-package Des_P.Chaine_P.Sequentiel_P is
+package Des_P.Chaine_P.Sequentiel_P
+   with Elaborate_Body
+is
 
    type Chaine_T is new Chaine_Interface_T with private;
    --  Une chaine de filtre séquentiel.
@@ -56,16 +58,20 @@ private
    package Lecteure_R renames Des_P.Chaine_P.Lecteur_P;
    package Ecriveur_R renames Des_P.Chaine_P.Ecriveur_P;
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Ecriveur_Fichier : aliased Ecriveur_R.Fichier_P.Ecriveur_Fichier_T;
    --  Un écriveur de fichier classique.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Lecteur_Fichier  : aliased Lecteure_R.Fichier_P.Lecteur_Fichier_T;
    --  Un lecteur de fichier classique.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Ecriveur : Ecriveur_R.Ecriveur_A := Ecriveur_Fichier'Access;
    --  L'écriveur de donnée effectif peut être changé
    --  par le biais de cette variable.
 
+   --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Lecteur  : Lecteure_R.Lecteur_A  := Lecteur_Fichier'Access;
    --  Le lecteur de donnée effectif peut être changé
    --  par le biais de cette variable.
