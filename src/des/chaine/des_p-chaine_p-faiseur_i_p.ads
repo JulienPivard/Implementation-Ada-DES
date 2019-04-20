@@ -7,7 +7,9 @@ with Des_P.Clef_P.Clef_48_I_P.Faiseur_I_P;
 --  @description
 --  Interface de Constructeur de chaine de filtres.
 --  @group Chaine Constructeur
-package Des_P.Chaine_P.Faiseur_I_P is
+package Des_P.Chaine_P.Faiseur_I_P
+   with Pure
+is
 
    --  L'interface de constructeur.
    type Faiseur_Interface_T is interface;

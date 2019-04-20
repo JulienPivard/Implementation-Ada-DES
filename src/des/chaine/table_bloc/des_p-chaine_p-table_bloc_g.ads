@@ -11,7 +11,9 @@ private generic
 --  Les blocs sont regroupé avec des tables pour accélérer le traitement
 --  par les versions parallèle.
 --  @group Chaine Table Blocs
-package Des_P.Chaine_P.Table_Bloc_G is
+package Des_P.Chaine_P.Table_Bloc_G
+   with Pure
+is
 
    type Indice_T is new Indice_G;
    --  Les indices des tables de blocs.
