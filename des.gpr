@@ -1,4 +1,4 @@
---  Dernière modification : Mercredi 17 avril[04] 2019
+--  Dernière modification : Samedi 20 avril[04] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -10,6 +10,7 @@ project Des is
    type Strict_T              is ("non", "oui");
    type Sorte_Avertissement_T is ("non", "oui");
    type Afficher_La_Stack_T   is ("non", "oui");
+   type Afficher_Ordre_Elab_T is ("non", "oui");
 
    --  Le premier paramètre est le nom de la variable.
    --  Le second paramètre est la valeur par défaut.
@@ -20,10 +21,12 @@ project Des is
    Verbeux           : Verbeux_T             := External ("verbeux", "non");
    Strict            : Strict_T              := External ("strict",  "non");
 
-   Afficher_La_Stack : Afficher_La_Stack_T         :=
+   Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
-   Warn_Deviennent_Erreurs : Sorte_Avertissement_T :=
+   Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
       External ("warn_sont_err", "non");
+   Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
+      External ("afficher_ordre_elaboration", "non");
 
    --  Le nom du fichier qui contient la procédure principale.
    Fichiers_Principaux := ();
@@ -270,6 +273,7 @@ project Des is
          when "release" =>
             null;
       end case;
+      -----------------------------------------------
       case Afficher_La_Stack is
          when "oui" =>
             Options_Binder := Options_Binder &
@@ -278,6 +282,15 @@ project Des is
                   --  l'usage de la pile.
                   "-u100"
                );
+         when "non" =>
+            null;
+      end case;
+      -----------------------------------------------
+      case Afficher_Ordre_Elaboration is
+         when "oui" =>
+            --  -l Affiche l'ordre d'élaboration choisi et fournis une
+            --  forme plus lisible
+            Options_Binder := Options_Binder & ("-l");
          when "non" =>
             null;
       end case;
