@@ -84,6 +84,7 @@ package body Des_P.Chaine_P.Tasches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         pragma Unmodified (F_Tmp);
          Selection_Action_Estage :
          loop
             select
@@ -149,6 +150,7 @@ package body Des_P.Chaine_P.Tasches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         pragma Unmodified (F_Tmp);
          Selection_Action_Estage :
          loop
             select
@@ -217,6 +219,7 @@ package body Des_P.Chaine_P.Tasches_P is
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
+         pragma Unmodified (F_Tmp);
          Selection_Action_Estage :
          loop
             select
