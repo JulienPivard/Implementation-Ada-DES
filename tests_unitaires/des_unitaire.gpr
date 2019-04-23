@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 26 mars[03] 2019
+--  Dernière modification : Mardi 23 avril[04] 2019
 --  auteur : PIVARD Julien
 with "aunit";
 with "../des.gpr";
@@ -20,12 +20,15 @@ project Des_Unitaire is
    for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
    for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
 
-   Options :=
+   Options := Des.Options &
       (
          --  -gnata active les assertions. Pragma assert, debug, Check,
          --  Precondition, et Postcondition
-         "-gnata"
-      ) & Des.Options;
+         "-gnata",
+         --  Désactive l'affichage des messages indiquant l'ajout
+         --  implicite de pragma d'élaboration lors de la compilation.
+         "-gnateL"
+      );
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
