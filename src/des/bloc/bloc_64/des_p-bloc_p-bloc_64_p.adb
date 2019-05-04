@@ -9,9 +9,9 @@ package body Des_P.Bloc_P.Bloc_64_P is
       G, D : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       --  Remise à zéro du décalage.
-      Bloc.Decalage                          := 0;
-      Bloc.Blocs_32 (Gauche + Bloc.Decalage) := G;
-      Bloc.Blocs_32 (Droite + Bloc.Decalage) := D;
+      Bloc.Decalage           := 0;
+      Bloc.Blocs_32 (Gauche)  := G;
+      Bloc.Blocs_32 (Droite)  := D;
    end Initialize;
 
    ---------------------------------------------------------------------------

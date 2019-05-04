@@ -15,7 +15,7 @@ package body Des_P.Bloc_P.Bloc_32_P is
       (B : in out Bloc_32_T)
    is
    begin
-      null;
+      B.Bits := Tableau_Bits_T'(others => False);
    end Finalize;
 
    ---------------------------------------------------------------------------
