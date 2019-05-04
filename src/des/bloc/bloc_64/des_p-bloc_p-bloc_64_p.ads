@@ -197,7 +197,7 @@ private
       record
          Blocs_32 : Tableau_Bloc_T;
          --  Les deux blocs de 32 bits qui composent celui de 64.
-         Decalage : Decalage_T;
+         Decalage : Decalage_T := Decalage_T'First;
          --  Décalage permettant de simuler l'échange des blocs
          --  de gauche et de droite.
       end record;
