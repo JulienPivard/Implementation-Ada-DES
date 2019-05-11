@@ -31,8 +31,13 @@ is
    Priorite_Moyenne : constant System.Priority :=
       (System.Priority'Last - System.Priority'First) / 2;
 
-   subtype Priorite_Tasches_T is System.Priority;
+   subtype Priorite_Tasches_T is System.Priority
+      range System.Priority'First .. Priorite_Moyenne;
    --  L'intervalle des priorités des tâches.
+
+   Priorite_Par_Defaut_Tasche : constant Priorite_Tasches_T :=
+      (Priorite_Tasches_T'Last - Priorite_Tasches_T'First) / 2;
+   --  Priorité par défaut d'une tâche.
 
    Priorite_Tasche_Ecriture : constant Priorite_Tasches_T := 20;
    Priorite_Tasche_Sortie   : constant Priorite_Tasches_T := 20;
