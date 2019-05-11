@@ -4,8 +4,11 @@
 with Ada.Dispatching;
 
 with Des_P.Bloc_P.Bloc_64_P;
+with Des_P.Chaine_P.Conf_Tasches_P;
 
 package body Des_P.Chaine_P.Tasches_P is
+
+   package Config_R renames Des_P.Chaine_P.Conf_Tasches_P;
 
    ---------------------------------------------------------------------------
    procedure Lanceur_Taches
@@ -17,7 +20,11 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task Etage_Ecriture is
+      task Etage_Ecriture
+         with
+            Storage_Size   => Config_R.Taille_Tasche_Ecriture,
+            Priority       => Config_R.Priorite_Tasche_Ecriture
+      is
          entry Ecrire
             (
                Table : Table_Bloc_T
@@ -62,7 +69,11 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task Etage_Sortie is
+      task Etage_Sortie
+         with
+            Storage_Size   => Config_R.Taille_Tasche_Sortie,
+            Priority       => Config_R.Priorite_Tasche_Sortie
+      is
          entry Modifier_Filtre
             (
                Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder
@@ -122,7 +133,11 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task type Etage_Corps_T is
+      task type Etage_Corps_T
+         with
+            Storage_Size   => Config_R.Taille_Tasche_Corps,
+            Priority       => Config_R.Priorite_Tasche_Corps
+      is
          entry Modifier_Filtre
             (
                Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
@@ -197,7 +212,11 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task Etage_Entree is
+      task Etage_Entree
+         with
+            Storage_Size   => Config_R.Taille_Tasche_Entree,
+            Priority       => Config_R.Priorite_Tasche_Entree
+      is
          entry Modifier_Filtre
             (
                Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder
@@ -258,7 +277,11 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task Etage_Lecture is
+      task Etage_Lecture
+         with
+            Storage_Size   => Config_R.Taille_Tasche_Lecture,
+            Priority       => Config_R.Priorite_Tasche_Lecture
+      is
          entry Lire;
       end Etage_Lecture;
 
