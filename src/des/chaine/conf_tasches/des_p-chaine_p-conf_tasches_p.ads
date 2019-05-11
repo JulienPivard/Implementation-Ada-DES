@@ -26,8 +26,13 @@ is
    Taille_Tasche_Lecture  : constant Taille_Tasches_T :=
       Taille_Page * 1024;
 
+   use type System.Priority;
+
+   Priorite_Moyenne : constant System.Priority :=
+      (System.Priority'Last - System.Priority'First) / 2;
+
    subtype Priorite_Tasches_T is System.Priority;
-   --  Les priorité des tâches.
+   --  L'intervalle des priorités des tâches.
 
    Priorite_Tasche_Ecriture : constant Priorite_Tasches_T := 20;
    Priorite_Tasche_Sortie   : constant Priorite_Tasches_T := 20;
