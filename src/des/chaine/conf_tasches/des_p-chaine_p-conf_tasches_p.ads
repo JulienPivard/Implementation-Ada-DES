@@ -39,10 +39,15 @@ is
       (Priorite_Tasches_T'Last - Priorite_Tasches_T'First) / 2;
    --  Priorité par défaut d'une tâche.
 
-   Priorite_Tasche_Ecriture : constant Priorite_Tasches_T := 20;
-   Priorite_Tasche_Sortie   : constant Priorite_Tasches_T := 20;
-   Priorite_Tasche_Corps    : constant Priorite_Tasches_T := 20;
-   Priorite_Tasche_Entree   : constant Priorite_Tasches_T := 20;
-   Priorite_Tasche_Lecture  : constant Priorite_Tasches_T := 20;
+   Priorite_Tasche_Ecriture : constant Priorite_Tasches_T :=
+      Priorite_Par_Defaut_Tasche;
+   Priorite_Tasche_Sortie   : constant Priorite_Tasches_T :=
+      Priorite_Par_Defaut_Tasche;
+   Priorite_Tasche_Corps    : constant Priorite_Tasches_T :=
+      Priorite_Par_Defaut_Tasche;
+   Priorite_Tasche_Entree   : constant Priorite_Tasches_T :=
+      Priorite_Par_Defaut_Tasche;
+   Priorite_Tasche_Lecture  : constant Priorite_Tasches_T :=
+      Priorite_Par_Defaut_Tasche;
 
 end Des_P.Chaine_P.Conf_Tasches_P;
