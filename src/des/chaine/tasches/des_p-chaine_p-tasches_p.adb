@@ -20,7 +20,7 @@ package body Des_P.Chaine_P.Tasches_P is
 
       ------------------------------------------------------------------
 
-      task Etage_Ecriture
+      task Estage_Escriture
          with
             Storage_Size   => Config_R.Taille_Tasche_Ecriture,
             Priority       => Config_R.Priorite_Tasche_Ecriture
@@ -29,9 +29,9 @@ package body Des_P.Chaine_P.Tasches_P is
             (
                Table : Table_Bloc_T
             );
-      end Etage_Ecriture;
+      end Estage_Escriture;
 
-      task body Etage_Ecriture is
+      task body Estage_Escriture is
          T_Tmp : Table_Holder_P.Holder;
          C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
       begin
@@ -65,11 +65,11 @@ package body Des_P.Chaine_P.Tasches_P is
             Ada.Dispatching.Yield;
 
          end loop Selection_Action_Estage;
-      end Etage_Ecriture;
+      end Estage_Escriture;
 
       ------------------------------------------------------------------
 
-      task Etage_Sortie
+      task Estage_Sortie
          with
             Storage_Size   => Config_R.Taille_Tasche_Sortie,
             Priority       => Config_R.Priorite_Tasche_Sortie
@@ -82,9 +82,9 @@ package body Des_P.Chaine_P.Tasches_P is
             (
                Table : Table_Bloc_T
             );
-      end Etage_Sortie;
+      end Estage_Sortie;
 
-      task body Etage_Sortie is
+      task body Estage_Sortie is
          T_Tmp : Table_Holder_P.Holder;
          F_Tmp : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
       begin
@@ -123,17 +123,17 @@ package body Des_P.Chaine_P.Tasches_P is
                   F_Tmp.Element.Filtrer (Bloc => E);
                end loop Parcours_Blocs;
                --  Renvoie du bloc vers l'étage d'écriture.
-               Etage_Ecriture.Ecrire (Table => T);
+               Estage_Escriture.Ecrire (Table => T);
             end Ecrire_Donnee_Sortie;
 
             Ada.Dispatching.Yield;
 
          end loop Selection_Action_Estage;
-      end Etage_Sortie;
+      end Estage_Sortie;
 
       ------------------------------------------------------------------
 
-      task type Etage_Corps_T
+      task type Estage_Corps_T
          with
             Storage_Size   => Config_R.Taille_Tasche_Corps,
             Priority       => Config_R.Priorite_Tasche_Corps
@@ -147,13 +147,13 @@ package body Des_P.Chaine_P.Tasches_P is
                Table    : Table_Bloc_T;
                Numero   : Numero_Filtre_T
             );
-      end Etage_Corps_T;
+      end Estage_Corps_T;
 
       --  La chaine de corps de filtre.
-      type Chaine_Corps_T is array (Numero_Filtre_T) of Etage_Corps_T;
+      type Chaine_Corps_T is array (Numero_Filtre_T) of Estage_Corps_T;
       Chaine_Corps : Chaine_Corps_T;
 
-      task body Etage_Corps_T is
+      task body Estage_Corps_T is
          T_Tmp : Table_Holder_P.Holder;
          N_Tmp : Numero_Filtre_T;
          F_Tmp : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
@@ -197,7 +197,7 @@ package body Des_P.Chaine_P.Tasches_P is
                --  Si l'étage est le dernier on envoie vers la
                --  tache de sortie et vers une tache de corps sinon.
                if N_Tmp = Numero_Filtre_T'Last then
-                  Etage_Sortie.Filtrer (Table => T);
+                  Estage_Sortie.Filtrer (Table => T);
                else
                   N_Tmp := Numero_Filtre_T'Succ (N_Tmp);
                   Chaine_Corps (N_Tmp).Filtrer
@@ -208,11 +208,11 @@ package body Des_P.Chaine_P.Tasches_P is
             Ada.Dispatching.Yield;
 
          end loop Selection_Action_Estage;
-      end Etage_Corps_T;
+      end Estage_Corps_T;
 
       ------------------------------------------------------------------
 
-      task Etage_Entree
+      task Estage_Entree
          with
             Storage_Size   => Config_R.Taille_Tasche_Entree,
             Priority       => Config_R.Priorite_Tasche_Entree
@@ -225,9 +225,9 @@ package body Des_P.Chaine_P.Tasches_P is
             (
                Table : Table_Bloc_T
             );
-      end Etage_Entree;
+      end Estage_Entree;
 
-      task body Etage_Entree is
+      task body Estage_Entree is
          T_Tmp : Table_Holder_P.Holder;
          F_Tmp : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
       begin
@@ -273,19 +273,19 @@ package body Des_P.Chaine_P.Tasches_P is
             Ada.Dispatching.Yield;
 
          end loop Selection_Action_Estage;
-      end Etage_Entree;
+      end Estage_Entree;
 
       ------------------------------------------------------------------
 
-      task Etage_Lecture
+      task Estage_Lecture
          with
             Storage_Size   => Config_R.Taille_Tasche_Lecture,
             Priority       => Config_R.Priorite_Tasche_Lecture
       is
          entry Lire;
-      end Etage_Lecture;
+      end Estage_Lecture;
 
-      task body Etage_Lecture is
+      task body Estage_Lecture is
          C_64  : C_Bloc_64_R.Faiseur_Bloc_T;
          J     : Indice_T;
       begin
@@ -330,7 +330,7 @@ package body Des_P.Chaine_P.Tasches_P is
                declare
                   subtype Indice_Tmp_T is Indice_T range Indice_T'First .. J;
                begin
-                  Etage_Entree.Filtrer (Table => Table (Indice_Tmp_T));
+                  Estage_Entree.Filtrer (Table => Table (Indice_Tmp_T));
                end Filtrage;
             end Creation_Grappe;
 
@@ -340,7 +340,7 @@ package body Des_P.Chaine_P.Tasches_P is
             exit Lecture_Fichier when Lecteur.all.Est_Fini;
 
          end loop Lecture_Fichier;
-      end Etage_Lecture;
+      end Estage_Lecture;
 
       ------------------------------------------------------------------
 
@@ -352,13 +352,13 @@ package body Des_P.Chaine_P.Tasches_P is
             (Nb => Chaine.Max_Grappes);
       end if;
       --  Initialisation des taches avec le filtre
-      Etage_Entree.Modifier_Filtre (Filtre => Chaine.Filtre_Entree);
+      Estage_Entree.Modifier_Filtre (Filtre => Chaine.Filtre_Entree);
       for I in Numero_Filtre_T loop
          Chaine_Corps (I).Modifier_Filtre (Filtre => Chaine.Filtres_Corps (I));
       end loop;
-      Etage_Sortie.Modifier_Filtre (Filtre => Chaine.Filtre_Sortie);
+      Estage_Sortie.Modifier_Filtre (Filtre => Chaine.Filtre_Sortie);
 
-      Etage_Lecture.Lire;
+      Estage_Lecture.Lire;
 
    end Lanceur_Taches;
 
