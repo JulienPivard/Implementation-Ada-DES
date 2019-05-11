@@ -14,6 +14,7 @@ private with Des_P.Filtre_P.Entree_P.Holder_P;
 private with Des_P.Filtre_P.Sortie_P.Holder_P;
 
 private with Des_P.Chaine_P.Instances_Table_Bloc_P;
+private with Des_P.Chaine_P.Conf_Tasches_P;
 
 pragma Elaborate_All (Des_P.Chaine_P.Limiteur_Jetons_P);
 
@@ -55,6 +56,7 @@ private
    package C_Bloc_64_R  renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
    package Limiteur_R   renames Des_P.Chaine_P.Limiteur_Jetons_P;
    package Table_Bloc_R renames Instances_Table_Bloc_P.Table_Bloc_Ravenscar_P;
+   package Config_R     renames Des_P.Chaine_P.Conf_Tasches_P;
 
    use type Table_Bloc_R.Table_Bloc_T;
    use type Table_Bloc_R.Indice_T;
@@ -165,6 +167,7 @@ private
    --  de l'envoie du signal du demarreur_protegee.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
+
    type Compteur_Tache_T is range 0 .. 20;
    --  Destiné à compter le nombre de tâches.
 
@@ -405,19 +408,31 @@ private
    --  de filtre de sortie à la tâche écrivaine.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   task Etage_Lecteur_Tache;
+   task Etage_Lecteur_Tache
+      with
+         Storage_Size => Config_R.Taille_Tasche_Lecture,
+         Priority     => Config_R.Priorite_Tasche_Lecture;
    --  La tâche chargé de lire le fichier donné en entré.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   task Etage_Ecriture_Tache;
+   task Etage_Ecriture_Tache
+      with
+         Storage_Size => Config_R.Taille_Tasche_Ecriture,
+         Priority     => Config_R.Priorite_Tasche_Ecriture;
    --  La tâche chargé d'écrire dans le fichier en sortie.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   task Etage_Entree_Tache;
+   task Etage_Entree_Tache
+      with
+         Storage_Size => Config_R.Taille_Tasche_Entree,
+         Priority     => Config_R.Priorite_Tasche_Entree;
    --  La tâche appliquant le premier filtre aux blocs de données.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   task Etage_Sortie_Tache;
+   task Etage_Sortie_Tache
+      with
+         Storage_Size => Config_R.Taille_Tasche_Sortie,
+         Priority     => Config_R.Priorite_Tasche_Sortie;
    --  La tâche appliquant le dernier filtre aux blocs de données.
 
    task type Etage_Corps_Tache_T
@@ -428,6 +443,9 @@ private
          Autorisateur_Envoyee   : access Autorisation_Protegee_T;
          Donnee_A_Envoyer       : access Donnee_Protegee_T
       )
+      with
+         Storage_Size => Config_R.Taille_Tasche_Corps,
+         Priority     => Config_R.Priorite_Tasche_Corps
    is
    end Etage_Corps_Tache_T;
    --  La tâche appliquant les filtres principaux.
