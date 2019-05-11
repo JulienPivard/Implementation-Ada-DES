@@ -1,6 +1,7 @@
 with Des_P.Bloc_P.Bloc_64_P;
 
-private generic
+private
+generic
 
    type Indice_G is range <>;
    --  Les indices des tables de blocs.

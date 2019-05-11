@@ -1,12 +1,13 @@
 with Des_P.Chaine_P.Table_Bloc_G;
 
+private
 --  @summary
 --  Les instances des versions parallèle.
 --  @description
 --  Les instances pour les versions parallèles des tables
 --  de blocs.
 --  @group Chaine Table Blocs
-private package Des_P.Chaine_P.Instances_Table_Bloc_P
+package Des_P.Chaine_P.Instances_Table_Bloc_P
    with Pure
 is
 
