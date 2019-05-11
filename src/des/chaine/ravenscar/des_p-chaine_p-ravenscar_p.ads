@@ -453,13 +453,24 @@ private
          Priority     => Config_R.Priorite_Tasche_Sortie;
    --  La tâche appliquant le dernier filtre aux blocs de données.
 
+   type Filtre_Corps_Protegee_A is not null access all Filtre_Corps_Protegee_T;
+   --  Un pointeurs sur un objet protégé contenant un filtre de corps.
+
+   type Autorisation_Protegee_A is not null access all Autorisation_Protegee_T;
+   --  Un pointeurs sur un objet protégé servant à synchroniser les
+   --  tâches entre elle pour se communiquer des blocs de données.
+
+   type Donnee_Protegee_A       is not null access all Donnee_Protegee_T;
+   --  Un pointeurs sur un objet protégé servant à transférer les
+   --  blocs de données entre deux tâches.
+
    task type Etage_Corps_Tache_T
       (
-         Filtreur               : access Filtre_Corps_Protegee_T;
-         Autorisateur_Reception : access Autorisation_Protegee_T;
-         Donnee_Recue           : access Donnee_Protegee_T;
-         Autorisateur_Envoyee   : access Autorisation_Protegee_T;
-         Donnee_A_Envoyer       : access Donnee_Protegee_T
+         Filtreur               : Filtre_Corps_Protegee_A;
+         Autorisateur_Reception : Autorisation_Protegee_A;
+         Donnee_Recue           : Donnee_Protegee_A;
+         Autorisateur_Envoyee   : Autorisation_Protegee_A;
+         Donnee_A_Envoyer       : Donnee_Protegee_A
       )
       with
          Storage_Size => Config_R.Taille_Tasche_Corps,
@@ -519,7 +530,7 @@ private
    --  de l'algorithme D.E.S.
 
    type Table_Filtreur_T is array (Numero_Filtre_T)
-      of access Filtre_Corps_Protegee_T;
+      of Filtre_Corps_Protegee_A;
    --  Un tableau de modificateur de filtres, pour faciliter
    --  leur manipulations.
 
