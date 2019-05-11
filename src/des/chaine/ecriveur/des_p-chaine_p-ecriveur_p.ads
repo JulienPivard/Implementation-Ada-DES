@@ -7,7 +7,7 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  de centraliser les écritures.
 --  @group Écriveur
 package Des_P.Chaine_P.Ecriveur_P
-   with Preelaborate
+   with Pure
 is
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
@@ -16,7 +16,8 @@ is
    --  Un écriveur de donnée. Nécessaire pour centraliser.
 
    --  Interdit l'utilisation du pragma Pure.
-   type Ecriveur_A is not null access all Ecriveur_T'Class;
+   type Ecriveur_A is not null access all Ecriveur_T'Class
+      with Storage_Size => 0;
    --  Pointeur sur un écriveur.
 
    procedure Ouvrir_Fichier

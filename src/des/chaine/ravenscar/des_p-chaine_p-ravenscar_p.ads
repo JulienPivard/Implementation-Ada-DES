@@ -453,14 +453,17 @@ private
          Priority     => Config_R.Priorite_Tasche_Sortie;
    --  La tâche appliquant le dernier filtre aux blocs de données.
 
-   type Filtre_Corps_Protegee_A is not null access all Filtre_Corps_Protegee_T;
+   type Filtre_Corps_Protegee_A is not null access all Filtre_Corps_Protegee_T
+      with Storage_Size => 0;
    --  Un pointeurs sur un objet protégé contenant un filtre de corps.
 
-   type Autorisation_Protegee_A is not null access all Autorisation_Protegee_T;
+   type Autorisation_Protegee_A is not null access all Autorisation_Protegee_T
+      with Storage_Size => 0;
    --  Un pointeurs sur un objet protégé servant à synchroniser les
    --  tâches entre elle pour se communiquer des blocs de données.
 
-   type Donnee_Protegee_A       is not null access all Donnee_Protegee_T;
+   type Donnee_Protegee_A       is not null access all Donnee_Protegee_T
+      with Storage_Size => 0;
    --  Un pointeurs sur un objet protégé servant à transférer les
    --  blocs de données entre deux tâches.
 

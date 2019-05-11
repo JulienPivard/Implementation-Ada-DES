@@ -7,7 +7,7 @@ with Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
 --  de centraliser la lecture.
 --  @group Lecteur
 package Des_P.Chaine_P.Lecteur_P
-   with Preelaborate
+   with Pure
 is
 
    package C_Bloc_64_R renames Des_P.Bloc_P.Bloc_64_P.Faiseur_P;
@@ -16,7 +16,8 @@ is
    --  Un lecteur de donnée. Nécessaire pour centraliser.
 
    --  Interdit l'utilisation du pragma Pure.
-   type Lecteur_A is not null access all Lecteur_T'Class;
+   type Lecteur_A is not null access all Lecteur_T'Class
+      with Storage_Size => 0;
    --  Pointeur sur un lecteur.
 
    procedure Ouvrir_Fichier
