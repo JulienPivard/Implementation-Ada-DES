@@ -50,4 +50,34 @@ is
    Priorite_Tasche_Lecture  : constant Priorite_Tasches_T :=
       Priorite_Par_Defaut_Tasche;
 
+   subtype Priorite_Objet_Protege_T is System.Priority
+      range Priorite_Moyenne .. System.Priority'Last;
+   --  L'intervalle des priorité des objets protégé.
+
+   Priorite_Par_Defaut_Objet_Protege : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First
+      +
+      ((Priorite_Objet_Protege_T'Last - Priorite_Objet_Protege_T'First) / 2);
+   --  Priorité par défaut d'un objet protégé.
+
+   Priorite_Objet_Avorter        : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Rearmement     : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Demarreur      : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Signale_Fin    : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Filtre_Entree  : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Filtre_Sortie  : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+   Priorite_Objet_Filtre_Corps   : constant Priorite_Objet_Protege_T :=
+      Priorite_Objet_Protege_T'First;
+
+   Priorite_Objet_Autorisation   : constant Priorite_Objet_Protege_T :=
+      Priorite_Par_Defaut_Objet_Protege;
+   Priorite_Objet_Donnees        : constant Priorite_Objet_Protege_T :=
+      Priorite_Par_Defaut_Objet_Protege;
+
 end Des_P.Chaine_P.Conf_Tasches_P;

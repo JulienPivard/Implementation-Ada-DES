@@ -151,7 +151,9 @@ private
 
    ---------------------------------------
 
-   protected Avorter_Protegee is
+   protected Avorter_Protegee
+      with Priority => Config_R.Priorite_Objet_Avorter
+   is
       procedure Avorter;
       --  Demande aux tâches de mettre fin à leur cycle.
       function Avorter return Boolean;
@@ -173,7 +175,9 @@ private
 
    ---------------------------------------
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   protected Autorisation_Rearmement_Protegee is
+   protected Autorisation_Rearmement_Protegee
+      with Priority => Config_R.Priorite_Objet_Rearmement
+   is
       entry Attendre_Entree;
       --  Demande aux tâches d'attendre ici avant de pouvoir
       --  retourner devant la barrière du démarreur protégé.
@@ -195,7 +199,9 @@ private
 
    ---------------------------------------
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   protected Demarreur_Protegee is
+   protected Demarreur_Protegee
+      with Priority => Config_R.Priorite_Objet_Demarreur
+   is
       entry Attendre_Entree;
       --  Barrière de synchronisation du démarrage de tâches.
       procedure Demarrer
@@ -213,7 +219,9 @@ private
 
    ---------------------------------------
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   protected Fin_Protegee is
+   protected Fin_Protegee
+      with Priority => Config_R.Priorite_Objet_Signale_Fin
+   is
       entry Attendre_Entree;
       --  Barrière de synchronisation pour la tâche principal.
       procedure Fini
@@ -250,7 +258,9 @@ private
 
    ---------------------------------------
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   protected Filtre_Entree_Protegee is
+   protected Filtre_Entree_Protegee
+      with Priority => Config_R.Priorite_Objet_Filtre_Entree
+   is
       entry Attendre_Entree;
       --  Tant qu'aucun filtre n'est donné les tâches sont mise
       --  en pause.
@@ -274,7 +284,9 @@ private
 
    ---------------------------------------
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
-   protected Filtre_Sortie_Protegee is
+   protected Filtre_Sortie_Protegee
+      with Priority => Config_R.Priorite_Objet_Filtre_Sortie
+   is
       entry Attendre_Entree;
       --  Tant qu'aucun filtre n'est donné les tâches sont mise
       --  en pause.
@@ -298,7 +310,9 @@ private
 
    ---------------------------------------
 
-   protected type Filtre_Corps_Protegee_T is
+   protected type Filtre_Corps_Protegee_T
+      with Priority => Config_R.Priorite_Objet_Filtre_Corps
+   is
       entry Attendre_Entree;
       --  Tant qu'aucun filtre n'est donné les tâches sont mise
       --  en pause.
@@ -322,7 +336,9 @@ private
 
    ---------------------------------------
 
-   protected type Autorisation_Protegee_T is
+   protected type Autorisation_Protegee_T
+      with Priority => Config_R.Priorite_Objet_Autorisation
+   is
       entry Attendre_Entree;
       --  Tant qu'aucune grappe de blocs n'est disponible
       --  les tâches attendent ici.
@@ -338,7 +354,9 @@ private
 
    ---------------------------------------
 
-   protected type Donnee_Protegee_T is
+   protected type Donnee_Protegee_T
+      with Priority => Config_R.Priorite_Objet_Donnees
+   is
       entry Ecrire_Donnee_Entree (Grappe_De_Donnees : Donnee_T);
       --  Écrit la grappe de données.
       --  @param Grappe_De_Donnees
