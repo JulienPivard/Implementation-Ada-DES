@@ -406,19 +406,19 @@ private
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Lecteur_Tache;
-   --  La tâche lectrice.
+   --  La tâche chargé de lire le fichier donné en entré.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Ecriture_Tache;
-   --  La tâche écrivaine.
+   --  La tâche chargé d'écrire dans le fichier en sortie.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Entree_Tache;
-   --  La tâche de premier filtre.
+   --  La tâche appliquant le premier filtre aux blocs de données.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Sortie_Tache;
-   --  La tâche de dernier filtre.
+   --  La tâche appliquant le dernier filtre aux blocs de données.
 
    task type Etage_Corps_Tache_T
       (
@@ -430,7 +430,7 @@ private
       )
    is
    end Etage_Corps_Tache_T;
-   --  La tâche de filtre principaux.
+   --  La tâche appliquant les filtres principaux.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    Filtreur_Corps_01 : aliased Filtre_Corps_Protegee_T;
