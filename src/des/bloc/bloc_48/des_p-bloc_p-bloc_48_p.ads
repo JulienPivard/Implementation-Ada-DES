@@ -10,8 +10,10 @@ package Des_P.Bloc_P.Bloc_48_P
    with Pure
 is
 
+   package Interface_R renames Des_P.Bloc_P.Bloc_48_I_P;
+
    type Bloc_48_T is new Bloc_Abstrait_T and
-      Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with private;
+      Interface_R.Bloc_Interface_T with private;
    --  Représente un bloc de 32 bits.
 
    overriding
@@ -39,7 +41,7 @@ is
    procedure Ecrire_Bit
       (
          B        : in out Bloc_48_T;
-         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T;
+         Position : Interface_R.Intervalle_T;
          Bit      : Bit_T
       )
       with Inline;
@@ -55,7 +57,7 @@ is
    function Lire_Bit
       (
          B        : Bloc_48_T;
-         Position : Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T
+         Position : Interface_R.Intervalle_T
       )
       return Bit_T
       with Inline;
@@ -68,13 +70,12 @@ is
 
 private
 
-   type Tableau_Bits_T is array
-      (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T)
-      of Bit_T with Size => 48, Pack;
+   type Tableau_Bits_T is array (Interface_R.Intervalle_T) of Bit_T
+      with Size => 48, Pack;
    --  Le tableau de bits. Une case par bit.
 
    type Bloc_48_T is new Bloc_Abstrait_T and
-      Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with
+      Interface_R.Bloc_Interface_T with
       record
          Bits : Tableau_Bits_T;
          --  Les bits du bloc stocké dans un tableau pour en faciliter
