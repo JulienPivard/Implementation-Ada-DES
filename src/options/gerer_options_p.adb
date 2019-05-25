@@ -50,10 +50,10 @@ package body Gerer_Options_P is
             File => W_W_IO_R.Standard_Error,
             Item => "  Déchiffre le ficher avec la clef."
          );
-      W_W_IO_R.Put_Line
+      W_W_IO_R.New_Line
          (
-            File => W_W_IO_R.Standard_Error,
-            Item => ""
+            File     => W_W_IO_R.Standard_Error,
+            Spacing  => 1
          );
    end Afficher_Aide;
 
@@ -72,15 +72,11 @@ package body Gerer_Options_P is
       elsif Nb_Args > Nb_Args_Max then
 
          Afficher_Aide;
-         W_W_IO_R.Put
-            (
-               File => W_W_IO_R.Standard_Error,
-               Item => "Trop d'arguments. "
-            );
          W_W_IO_R.Put_Line
             (
                File => W_W_IO_R.Standard_Error,
-               Item => "Les arguments suivants sont invalide : "
+               Item => "Trop d'arguments. " &
+                  "Les arguments suivants sont invalide : "
             );
 
          for I in Args_En_Trop_T loop
@@ -117,6 +113,7 @@ package body Gerer_Options_P is
    is
       Chiffre_Dechiffre : constant String :=
          Ada.Command_Line.Argument (Number => 1);
+
       Action : Action_T;
    begin
       --  L'argument optionnel -c ou -d à été donné
@@ -136,20 +133,12 @@ package body Gerer_Options_P is
             Action := Dechiffrer;
 
          else
-            W_W_IO_R.Put
-               (
-                  File => W_W_IO_R.Standard_Error,
-                  Item => "L'argument ["
-               );
-            Ada.Text_IO.Put
+            Ada.Text_IO.Put_Line
                (
                   File => Ada.Text_IO.Standard_Error,
-                  Item => Chiffre_Dechiffre
-               );
-            W_W_IO_R.Put_Line
-               (
-                  File => W_W_IO_R.Standard_Error,
-                  Item => "] n'est pas valable"
+                  Item => "L'argument [" &
+                     Chiffre_Dechiffre &
+                     "] n'est pas valable"
                );
             Ada.Command_Line.Set_Exit_Status
                (Code => Ada.Command_Line.Failure);
@@ -166,11 +155,10 @@ package body Gerer_Options_P is
    function Lire_Option_Clef
       return Des_P.Clef_P.Clef_64_P.Clef_T
    is
-      Position_Clef : constant Positive :=
-         (if Nb_Args = 3 then 3 else 2);
-      Clef_Brut : constant String :=
+      Position_Clef : constant Positive := (if Nb_Args = 3 then 3 else 2);
+      Clef_Brut     : constant String   :=
          Ada.Command_Line.Argument (Number => Position_Clef);
-      Taille_Clef : constant Natural := Clef_Brut'Size;
+      Taille_Clef   : constant Natural  := Clef_Brut'Size;
    begin
       --  La clef est un bloc de 64 bits
       if Taille_Clef /= 64 then
@@ -185,20 +173,11 @@ package body Gerer_Options_P is
                Item => "   La taille de la clef doit " &
                   "être de 8 octets exactement."
             );
-         Ada.Text_IO.Put
-            (
-               File => Ada.Text_IO.Standard_Error,
-               Item => "   Taille actuelle de la clef : "
-            );
-         Ada.Text_IO.Put
-            (
-               File => Ada.Text_IO.Standard_Error,
-               Item => Taille_Clef'Img
-            );
          Ada.Text_IO.Put_Line
             (
                File => Ada.Text_IO.Standard_Error,
-               Item => " octets."
+               Item => "   Taille actuelle de la clef : " &
+                  Taille_Clef'Img & " octets."
             );
 
          Ada.Command_Line.Set_Exit_Status (Code => Ada.Command_Line.Failure);
@@ -209,10 +188,11 @@ package body Gerer_Options_P is
       declare
          package Clef_I_R renames Des_P.Clef_P.Clef_64_I_P;
 
-         F_C_64 : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
+         F_C_64    : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
          Brut_Clef : Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
             with Address => Clef_Brut'Address;
-         Clef_I : constant Clef_I_R.Clef_Interface_T'Class :=
+
+         Clef_I    : constant Clef_I_R.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef
                (
                   Faiseur => F_C_64,
@@ -230,9 +210,8 @@ package body Gerer_Options_P is
    function Lire_Option_Nom_Fichier
       return String
    is
-      Position_Nom_Fic : constant Positive :=
-         (if Nb_Args = 3 then 2 else 1);
-      Nom_Fichier : constant String :=
+      Position_Nom_Fic : constant Positive := (if Nb_Args = 3 then 2 else 1);
+      Nom_Fichier      : constant String   :=
          Ada.Command_Line.Argument (Number => Position_Nom_Fic);
    begin
       --  Vérification de l'existence du fichier
@@ -242,20 +221,10 @@ package body Gerer_Options_P is
                File => W_W_IO_R.Standard_Error,
                Item => "██████ Erreur !"
             );
-         W_W_IO_R.Put
-            (
-               File => W_W_IO_R.Standard_Error,
-               Item => "   Le fichier ["
-            );
-         Ada.Text_IO.Put
+         Ada.Text_IO.Put_Line
             (
                File => Ada.Text_IO.Standard_Error,
-               Item => Nom_Fichier
-            );
-         W_W_IO_R.Put_Line
-            (
-               File => W_W_IO_R.Standard_Error,
-               Item => "] n'existe pas"
+               Item => "   Le fichier [" & Nom_Fichier & "] n'existe pas"
             );
 
          Ada.Command_Line.Set_Exit_Status
@@ -288,9 +257,7 @@ package body Gerer_Options_P is
             Ada.Text_IO.Put_Line
                (
                   File => Ada.Text_IO.Standard_Error,
-                  Item => "   " &
-                     Octets_En_Trop'Img &
-                     " Octets de trop."
+                  Item => "   " & Octets_En_Trop'Img & " Octets de trop."
                );
 
             Ada.Command_Line.Set_Exit_Status
