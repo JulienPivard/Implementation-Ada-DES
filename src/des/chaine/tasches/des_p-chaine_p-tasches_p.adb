@@ -21,9 +21,7 @@ package body Des_P.Chaine_P.Tasches_P is
       ------------------------------------------------------------------
 
       task Estage_Escriture
-         with
-            Storage_Size   => Config_R.Taille_Tasche_Ecriture,
-            Priority       => Config_R.Priorite_Tasche_Ecriture
+         with Priority => Config_R.Priorite_Tasche_Ecriture
       is
          entry Ecrire
             (
@@ -70,9 +68,7 @@ package body Des_P.Chaine_P.Tasches_P is
       ------------------------------------------------------------------
 
       task Estage_Sortie
-         with
-            Storage_Size   => Config_R.Taille_Tasche_Sortie,
-            Priority       => Config_R.Priorite_Tasche_Sortie
+         with Priority => Config_R.Priorite_Tasche_Sortie
       is
          entry Modifier_Filtre
             (
@@ -134,9 +130,7 @@ package body Des_P.Chaine_P.Tasches_P is
       ------------------------------------------------------------------
 
       task type Estage_Corps_T
-         with
-            Storage_Size   => Config_R.Taille_Tasche_Corps,
-            Priority       => Config_R.Priorite_Tasche_Corps
+         with Priority => Config_R.Priorite_Tasche_Corps
       is
          entry Modifier_Filtre
             (
@@ -213,9 +207,7 @@ package body Des_P.Chaine_P.Tasches_P is
       ------------------------------------------------------------------
 
       task Estage_Entree
-         with
-            Storage_Size   => Config_R.Taille_Tasche_Entree,
-            Priority       => Config_R.Priorite_Tasche_Entree
+         with Priority => Config_R.Priorite_Tasche_Entree
       is
          entry Modifier_Filtre
             (
@@ -278,9 +270,7 @@ package body Des_P.Chaine_P.Tasches_P is
       ------------------------------------------------------------------
 
       task Estage_Lecture
-         with
-            Storage_Size   => Config_R.Taille_Tasche_Lecture,
-            Priority       => Config_R.Priorite_Tasche_Lecture
+         with Priority => Config_R.Priorite_Tasche_Lecture
       is
          entry Lire;
       end Estage_Lecture;

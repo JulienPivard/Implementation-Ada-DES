@@ -427,30 +427,22 @@ private
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Lecteur_Tache
-      with
-         Storage_Size => Config_R.Taille_Tasche_Lecture,
-         Priority     => Config_R.Priorite_Tasche_Lecture;
+      with Priority => Config_R.Priorite_Tasche_Lecture;
    --  La tâche chargé de lire le fichier donné en entré.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Ecriture_Tache
-      with
-         Storage_Size => Config_R.Taille_Tasche_Ecriture,
-         Priority     => Config_R.Priorite_Tasche_Ecriture;
+      with Priority => Config_R.Priorite_Tasche_Ecriture;
    --  La tâche chargé d'écrire dans le fichier en sortie.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Entree_Tache
-      with
-         Storage_Size => Config_R.Taille_Tasche_Entree,
-         Priority     => Config_R.Priorite_Tasche_Entree;
+      with Priority => Config_R.Priorite_Tasche_Entree;
    --  La tâche appliquant le premier filtre aux blocs de données.
 
    --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
    task Etage_Sortie_Tache
-      with
-         Storage_Size => Config_R.Taille_Tasche_Sortie,
-         Priority     => Config_R.Priorite_Tasche_Sortie;
+      with Priority => Config_R.Priorite_Tasche_Sortie;
    --  La tâche appliquant le dernier filtre aux blocs de données.
 
    type Filtre_Corps_Protegee_A is not null access all Filtre_Corps_Protegee_T
@@ -475,9 +467,7 @@ private
          Autorisateur_Envoyee   : Autorisation_Protegee_A;
          Donnee_A_Envoyer       : Donnee_Protegee_A
       )
-      with
-         Storage_Size => Config_R.Taille_Tasche_Corps,
-         Priority     => Config_R.Priorite_Tasche_Corps
+      with Priority => Config_R.Priorite_Tasche_Corps
    is
    end Etage_Corps_Tache_T;
    --  La tâche appliquant les filtres principaux.

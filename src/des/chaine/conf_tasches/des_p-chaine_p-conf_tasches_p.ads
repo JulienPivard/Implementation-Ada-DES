@@ -4,27 +4,11 @@ private
 --  @summary
 --  Rassemble la configuration des tâches.
 --  @description
---  Défini la taille de chaque tâche ainsi que leur priorité.
+--  Défini la priorité de chaque tâches.
 --  @group Configuration Tâches
 package Des_P.Chaine_P.Conf_Tasches_P
    with Pure
 is
-
-   type Taille_Tasches_T is range 0 .. Integer'Last;
-   --  La taille d'une tâche.
-
-   Taille_Page : constant Taille_Tasches_T := 64;
-
-   Taille_Tasche_Ecriture : constant Taille_Tasches_T :=
-      Taille_Page * 1024;
-   Taille_Tasche_Sortie   : constant Taille_Tasches_T :=
-      Taille_Page * 1024;
-   Taille_Tasche_Corps    : constant Taille_Tasches_T :=
-      Taille_Page * 1024;
-   Taille_Tasche_Entree   : constant Taille_Tasches_T :=
-      Taille_Page * 1024;
-   Taille_Tasche_Lecture  : constant Taille_Tasches_T :=
-      Taille_Page * 1024;
 
    use type System.Priority;
 
