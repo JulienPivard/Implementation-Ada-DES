@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 20 avril[04] 2019
+--  Dernière modification : Samedi 25 mai[05] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -92,6 +92,9 @@ project Des is
          --  gnatw.Y désactive le message qui dit que la
          --  spec nécessite un corps.
          "-gnatw.Y",
+         --  gnatw.N désactive le message qui dit qu'une
+         --  variable a l'aspect Atomic
+         "-gnatw.N",
          --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
          --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
          "-gnatW8",
@@ -208,9 +211,13 @@ project Des is
 
       case Mode_Compilation is
          when "debug" =>
+            --  -gnateP Transforme les erreurs de catégorisation des
+            --  dépendances en avertissements. Une unité Pure ne peut
+            --  pas importer une unité Preelaborate.
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
-            for Default_Switches ("Ada") use Options & ("-g", "-gnata");
+            for Default_Switches ("Ada") use
+               Options & ("-g", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
@@ -341,7 +348,7 @@ project Des is
             --  Les pragma doivent suivre la règle de casse mixte.
             "--pragma-mixed-case",
             --  Les exceptions aux règles de casse.
-            "--dictionary=config/exception_case",
+            "--dictionary=./config/exception_case",
             --  Indentation des commentaires suit les règles de gnat.
             "--comments-gnat-indentation",
             --  Obligatoirement deux espaces avant un caractère non blanc.
