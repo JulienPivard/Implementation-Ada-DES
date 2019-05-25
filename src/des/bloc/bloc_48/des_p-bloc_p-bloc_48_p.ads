@@ -72,12 +72,6 @@ private
       (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T)
       of Bit_T with Size => 48, Pack;
    --  Le tableau de bits. Une case par bit.
-   --  La taille du tableau est fixée à 48 bits dans un soucis
-   --  de faciliter la manipulation par l'implémentation.
-   --  Initialement le choix s'était porté sur un simple tableau
-   --  mais forcer sa représentation en taille fixe a permis
-   --  l'utilisation de méthode de création plus fiable,
-   --  notamment pour ne pas fausser l'ordre des bits lu.
 
    type Bloc_48_T is new Bloc_Abstrait_T and
       Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T with

@@ -201,14 +201,15 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  Représentation final de la ligne.
       type Ligne_T is mod 2**2
          with Size => 8;
-      --  Représentation intermédiaire de la ligne.
+
       --  La taille de la table utilisée est déterminée par la taille réel
       --  du type vers lequel la conversion est faite pour éviter
       --  des bits parasites au delà des deux que l'ont veut convertir.
       subtype Indice_Intermediaire_T is Natural range 1 .. Ligne_T'Base'Size;
+
+      --  Représentation intermédiaire de la ligne.
       type Ligne_Intermediaire_T is array
-         (Indice_Intermediaire_T)
-         of Debut_Fin_T
+         (Indice_Intermediaire_T) of Debut_Fin_T
          with Size => Ligne_T'Base'Size, Pack;
 
       --  Rassemble le bit de début et de fin
