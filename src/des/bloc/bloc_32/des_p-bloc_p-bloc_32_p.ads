@@ -77,8 +77,7 @@ is
 
 private
 
-   type Tableau_Bits_T is array (Intervalle_T) of Bit_T
-      with Size => 32, Pack;
+   type Tableau_Bits_T is array (Intervalle_T) of Bit_T;
    --  Le tableau de bits. Une case par bit.
    --  La taille du tableau est fixée à 32 bits dans un soucis
    --  de faciliter la manipulation par l'implémentation.

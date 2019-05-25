@@ -49,7 +49,8 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P is
    begin
       --  Remplissage du bloc de 48 avec le bloc de 32.
       for I in Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T loop
-         Constructeur.Bloc.Bits (I) := Brut.Lire_Bit (Position => Table_E (I));
+         Constructeur.Bloc.Bits (I) :=
+            Brut.Lire_Bit (Position => Table_E (I));
       end loop;
    end Construire_Bloc;
 

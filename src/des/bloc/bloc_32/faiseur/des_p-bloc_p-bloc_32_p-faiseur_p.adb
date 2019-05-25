@@ -18,9 +18,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
          Brut         : Bloc_32_Brut_T
       )
    is
-      Resultat : Tableau_Bits_T with Address => Brut'Address;
+      type Table_Tmp_T is new Tableau_Bits_T
+         with Size => 32, Pack;
+
+      Resultat : Table_Tmp_T with Address => Brut'Address;
    begin
-      Constructeur.Bloc.Bits := Resultat;
+      Constructeur.Bloc.Bits := Tableau_Bits_T (Resultat);
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------
@@ -639,8 +642,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       return Bloc_32_Brut_T
    is
       pragma Unreferenced (Constructeur);
+
+      type Table_Tmp_T is new Tableau_Bits_T
+         with Size => 32, Pack;
+
+      Tmp : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
       --  Le tableau de 32 bits est transformé en un bloc de 32 bits.
-      Brut : Bloc_32_Brut_T with Address => Bloc.Bits'Address;
+      Brut : Bloc_32_Brut_T with Address => Tmp'Address;
    begin
       return Brut;
    end Transformer_En_Brut;

@@ -70,8 +70,7 @@ is
 
 private
 
-   type Tableau_Bits_T is array (Interface_R.Intervalle_T) of Bit_T
-      with Size => 48, Pack;
+   type Tableau_Bits_T is array (Interface_R.Intervalle_T) of Bit_T;
    --  Le tableau de bits. Une case par bit.
 
    type Bloc_48_T is new Bloc_Abstrait_T and

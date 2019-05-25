@@ -52,8 +52,7 @@ is
 private
 
    type Tableau_Bits_T is array
-      (Des_P.Clef_P.Clef_64_I_P.Intervalle_T) of Bit_T
-      with Size => 64, Pack;
+      (Des_P.Clef_P.Clef_64_I_P.Intervalle_T) of Bit_T;
    --  Tableau des bits de la clef. Un bit par case.
    --  Cette représentation à été choisie pour faciliter la
    --  construction depuis la forme brut des bits.
