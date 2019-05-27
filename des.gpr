@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 25 mai[05] 2019
+--  Dernière modification : Lundi 27 mai[05] 2019
 --  Auteur : PIVARD Julien
 
 project Des is
@@ -217,7 +217,7 @@ project Des is
             --  -gnata active les assertions. Pragma : assert, debug,
             --  Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use
-               Options & ("-g", "-gnata", "-gnateP");
+               Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
