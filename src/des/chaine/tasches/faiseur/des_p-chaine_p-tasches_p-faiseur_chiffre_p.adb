@@ -13,8 +13,8 @@ package body Des_P.Chaine_P.Tasches_P.Faiseur_Chiffre_P is
    procedure Initialiser
       (
          Constructeur   : in out Faiseur_Chiffrement_T;
-         Faiseur_56     : Faiseur_56_I_R.Faiseur_Interface_T'Class;
-         Faiseur_48     : Faiseur_48_I_R.Faiseur_Interface_T'Class
+         Faiseur_56     :        Faiseur_56_I_R.Faiseur_Interface_T'Class;
+         Faiseur_48     :        Faiseur_48_I_R.Faiseur_Interface_T'Class
       )
    is
       C : Chaine_T;
@@ -31,19 +31,19 @@ package body Des_P.Chaine_P.Tasches_P.Faiseur_Chiffre_P is
    overriding
    procedure Construire
       (
-         Constructeur   : in out Faiseur_Chiffrement_T;
-         Clef           : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Constructeur : in out Faiseur_Chiffrement_T;
+         Clef         :        Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
    is
       --  La fabrique de filtre de chiffrement.
-      Fabrique : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
+      Fabrique   : Des_P.Filtre_P.Fabrique_P.Chiffre_P.Fabrique_T;
       --  Les constructeurs de clef.
       Faiseur_56 : Faiseur_56_I_R.Faiseur_Interface_T'Class :=
          Constructeur.Faiseur_56.Element;
       Faiseur_48 : Faiseur_48_I_R.Faiseur_Interface_T'Class :=
          Constructeur.Faiseur_48.Element;
       --  Construction de la clef de 56.
-      Clef_56 : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
+      Clef_56    : Des_P.Clef_P.Clef_56_I_P.Clef_Interface_T'Class :=
          Des_P.Faiseur_P.Faire_Clef
             (
                Faiseur => Faiseur_56,
@@ -51,7 +51,7 @@ package body Des_P.Chaine_P.Tasches_P.Faiseur_Chiffre_P is
             );
    begin
       --  Initialise le lecteur de fichier.
-      Lecteur := Lecteur_Fichier'Access;
+      Lecteur  := Lecteur_Fichier'Access;
       --  Initialise l'écriveur de fichier.
       Ecriveur := Ecriveur_Fichier'Access;
 

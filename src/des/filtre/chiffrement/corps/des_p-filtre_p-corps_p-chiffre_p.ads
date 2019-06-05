@@ -22,7 +22,7 @@ is
    overriding
    procedure Filtrer
       (
-         Filtre   : Corps_T;
+         Filtre   :        Corps_T;
          Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       );
    --  Filtre le bloc de 64 bits avec la clef de 48 bits.
@@ -35,7 +35,7 @@ is
    procedure Modifier_Clef
       (
          Filtre   : in out Corps_T;
-         Clef     : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Clef     :        Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       );
    --  Modifie la clef du filtre.
    --  @param Filtre

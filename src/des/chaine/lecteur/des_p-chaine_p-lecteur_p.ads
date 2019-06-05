@@ -23,7 +23,7 @@ is
    procedure Ouvrir_Fichier
       (
          Lecteur  : in out Lecteur_T;
-         Nom      : String
+         Nom      :        String
       )
    is abstract;
    --  Ouvre le fichier.
@@ -35,7 +35,7 @@ is
    procedure Lire
       (
          Lecteur  : in out Lecteur_T;
-         Brut     : out C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     :    out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
    --  Lit la donnée dans le fichier.

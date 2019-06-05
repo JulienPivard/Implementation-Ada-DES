@@ -88,9 +88,7 @@ package body Procedure_Run_G is
 
    ---------------------------------------------------------------------------
    function Init_Faiseur_Chaine
-      (
-         Action : Action_T
-      )
+      (Action : Action_T)
       return Faiseur_I_R.Faiseur_Interface_T'Class
    is
       Const_Chiffre : Faiseur_Chiffrement_G_T;
@@ -108,9 +106,7 @@ package body Procedure_Run_G is
 
    ---------------------------------------------------------------------------
    function Init_Extension
-      (
-         Action : Action_T
-      )
+      (Action : Action_T)
       return String
    is
    begin
@@ -127,7 +123,7 @@ package body Procedure_Run_G is
    function Init_Chaine
       (
          Faiseur  : in out Faiseur_I_R.Faiseur_Interface_T'Class;
-         Clef     : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Clef     :        Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class
    is
@@ -139,6 +135,7 @@ package body Procedure_Run_G is
       --  Les 3 instructions pour construire une nouvelle chaine
       Faiseur.Initialiser (Faiseur_56 => F_56, Faiseur_48 => F_48);
       Faiseur.Construire  (Clef => C_64.Element);
+
       return Faiseur.Recuperer_Chaine;
    end Init_Chaine;
 

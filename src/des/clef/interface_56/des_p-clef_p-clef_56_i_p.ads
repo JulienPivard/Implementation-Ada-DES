@@ -19,7 +19,7 @@ is
    procedure Decaler_Bits_A_Gauche
       (
          Clef        : in out Clef_Interface_T;
-         Nb_Decalage : Decalage_T := 1
+         Nb_Decalage :        Decalage_T := 1
       )
    is abstract;
    --  Décale (par une rotation) les bits de la clef vers la gauche
@@ -31,7 +31,7 @@ is
    procedure Decaler_Bits_A_Droite
       (
          Clef        : in out Clef_Interface_T;
-         Nb_Decalage : Decalage_T := 1
+         Nb_Decalage :        Decalage_T := 1
       )
    is abstract;
    --  Décale (par une rotation) les bits de la clef vers la droite

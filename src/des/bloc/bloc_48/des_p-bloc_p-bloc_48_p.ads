@@ -41,8 +41,8 @@ is
    procedure Ecrire_Bit
       (
          B        : in out Bloc_48_T;
-         Position : Interface_R.Intervalle_T;
-         Bit      : Bit_T
+         Position :        Interface_R.Intervalle_T;
+         Bit      :        Bit_T
       )
       with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 48.

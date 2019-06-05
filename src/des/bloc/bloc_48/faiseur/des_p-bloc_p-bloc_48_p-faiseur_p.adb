@@ -13,7 +13,7 @@ package body Des_P.Bloc_P.Bloc_48_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+         Brut         :        Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
       )
    is
       type Table_Selection_E_T is array

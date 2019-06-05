@@ -17,7 +17,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Bloc_64_Brut_T
+         Brut         :        Bloc_64_Brut_T
       )
    is
       package Faiseur_32_R renames Des_P.Bloc_P.Bloc_32_P.Faiseur_P;

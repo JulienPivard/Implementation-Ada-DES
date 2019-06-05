@@ -14,7 +14,7 @@ is
 
    procedure Filtrer
       (
-         Filtre   : Filtre_Interface_T;
+         Filtre   :        Filtre_Interface_T;
          Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is abstract;

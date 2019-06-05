@@ -25,7 +25,7 @@ is
    procedure Construire_Clef
       (
          Constructeur   : in out Faiseur_Interface_T;
-         Brut           : Clef_64_Brut_T
+         Brut           :        Clef_64_Brut_T
       )
    is abstract;
    --  Construit la clefs de 64 bits avec le brut de 64 bits.

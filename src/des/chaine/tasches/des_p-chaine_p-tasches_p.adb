@@ -24,22 +24,18 @@ package body Des_P.Chaine_P.Tasches_P is
          with Priority => Config_R.Priorite_Tasche_Ecriture
       is
          entry Ecrire
-            (
-               Table : Table_Bloc_T
-            );
+            (Table : Table_Bloc_T);
       end Estage_Escriture;
 
       task body Estage_Escriture is
          T_Tmp : Table_Holder_P.Holder;
-         C_64 : C_Bloc_64_R.Faiseur_Bloc_T;
+         C_64  : C_Bloc_64_R.Faiseur_Bloc_T;
       begin
          Selection_Action_Estage :
          loop
             select
                accept Ecrire
-                  (
-                     Table : Table_Bloc_T
-                  )
+                  (Table : Table_Bloc_T)
                do
                   T_Tmp := Table_Holder_P.To_Holder (New_Item => Table);
                end Ecrire;
@@ -71,13 +67,9 @@ package body Des_P.Chaine_P.Tasches_P is
          with Priority => Config_R.Priorite_Tasche_Sortie
       is
          entry Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder
-            );
+            (Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder);
          entry Filtrer
-            (
-               Table : Table_Bloc_T
-            );
+            (Table : Table_Bloc_T);
       end Estage_Sortie;
 
       task body Estage_Sortie is
@@ -85,9 +77,7 @@ package body Des_P.Chaine_P.Tasches_P is
          F_Tmp : Des_P.Filtre_P.Sortie_P.Holder_P.Holder;
       begin
          accept Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder
-            )
+            (Filtre : Des_P.Filtre_P.Sortie_P.Holder_P.Holder)
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
@@ -96,9 +86,7 @@ package body Des_P.Chaine_P.Tasches_P is
          loop
             select
                accept Filtrer
-                  (
-                     Table : Table_Bloc_T
-                  )
+                  (Table : Table_Bloc_T)
                do
                   T_Tmp := Table_Holder_P.To_Holder (New_Item => Table);
                end Filtrer;
@@ -133,9 +121,7 @@ package body Des_P.Chaine_P.Tasches_P is
          with Priority => Config_R.Priorite_Tasche_Corps
       is
          entry Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
-            );
+            (Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder);
          entry Filtrer
             (
                Table    : Table_Bloc_T;
@@ -153,9 +139,7 @@ package body Des_P.Chaine_P.Tasches_P is
          F_Tmp : Des_P.Filtre_P.Corps_P.Holder_P.Holder;
       begin
          accept Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder
-            )
+            (Filtre : Des_P.Filtre_P.Corps_P.Holder_P.Holder)
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
@@ -210,13 +194,9 @@ package body Des_P.Chaine_P.Tasches_P is
          with Priority => Config_R.Priorite_Tasche_Entree
       is
          entry Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder
-            );
+            (Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder);
          entry Filtrer
-            (
-               Table : Table_Bloc_T
-            );
+            (Table : Table_Bloc_T);
       end Estage_Entree;
 
       task body Estage_Entree is
@@ -224,9 +204,7 @@ package body Des_P.Chaine_P.Tasches_P is
          F_Tmp : Des_P.Filtre_P.Entree_P.Holder_P.Holder;
       begin
          accept Modifier_Filtre
-            (
-               Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder
-            )
+            (Filtre : Des_P.Filtre_P.Entree_P.Holder_P.Holder)
          do
             F_Tmp := Filtre;
          end Modifier_Filtre;
@@ -235,9 +213,7 @@ package body Des_P.Chaine_P.Tasches_P is
          loop
             select
                accept Filtrer
-                  (
-                     Table : Table_Bloc_T
-                  )
+                  (Table : Table_Bloc_T)
                do
                   T_Tmp := Table_Holder_P.To_Holder (New_Item => Table);
                end Filtrer;

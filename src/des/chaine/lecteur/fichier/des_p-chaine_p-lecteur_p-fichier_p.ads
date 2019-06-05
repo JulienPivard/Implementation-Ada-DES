@@ -21,7 +21,7 @@ is
    procedure Ouvrir_Fichier
       (
          Lecteur  : in out Lecteur_Fichier_T;
-         Nom      : String
+         Nom      :        String
       );
    --  Ouvre le fichier.
    --  @param Lecteur
@@ -33,7 +33,7 @@ is
    procedure Lire
       (
          Lecteur  : in out Lecteur_Fichier_T;
-         Brut     : out C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     :    out C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
    --  Lit la donnée dans le fichier.

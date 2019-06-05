@@ -19,7 +19,7 @@ is
    overriding
    procedure Filtrer
       (
-         Filtre   : Sortie_T;
+         Filtre   :        Sortie_T;
          Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Inline;

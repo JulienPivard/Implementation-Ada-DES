@@ -55,7 +55,7 @@ is
    procedure Ajouter_Successeur
       (
          Etage       : in out Etage_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       );
    --  Ajoute un successeur à l'étage.
    --  Si l'étage possède déjà un successeur alors on invoque
@@ -69,7 +69,7 @@ is
    procedure Modifier_Successeur
       (
          Etage       : in out Etage_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       );
    --  Modifie le successeur de l'étage.
    --  @param Etage
@@ -81,7 +81,7 @@ is
    procedure Modifier_Filtre
       (
          Etage    : in out Etage_T;
-         Filtre   : Des_P.Filtre_P.Filtre_Interface_T'Class
+         Filtre   :        Des_P.Filtre_P.Filtre_Interface_T'Class
       );
    --  Modifie le filtre de l'étage.
    --  @param Etage
@@ -92,7 +92,7 @@ is
    overriding
    procedure Iterer
       (
-         Etage : Etage_T;
+         Etage :        Etage_T;
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Pre => Etage.Possede_Filtre;
@@ -107,7 +107,7 @@ private
 
    procedure Filtrer
       (
-         Etage : Etage_T;
+         Etage :        Etage_T;
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
       with Pre => Etage.Possede_Filtre;

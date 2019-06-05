@@ -27,7 +27,7 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Bloc_32_Brut_T
+         Brut         :        Bloc_32_Brut_T
       );
    --  Raffine le brut de 32 bits pour construire le bloc de 32 bits.
    --  @param Constructeur
@@ -38,7 +38,7 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Bloc_32_T
+         Bloc         :        Bloc_32_T
       );
    --  Construit un bloc de 32 bits par permutation de la table P
    --  à partir d'un autre bloc de même taille.
@@ -50,7 +50,7 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
+         Bloc         :        Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       );
    --  Construit un bloc de 32 bits réduction d'un bloc de 48 bits.
    --  @param Constructeur
@@ -70,7 +70,7 @@ is
    function Transformer_En_Brut
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Bloc_32_T
+         Bloc         :        Bloc_32_T
       )
       return Bloc_32_Brut_T
       with Inline;

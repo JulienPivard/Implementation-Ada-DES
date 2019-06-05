@@ -46,7 +46,7 @@ package body Des_P.Chaine_P.Sequentiel_P is
    ---------------------------------------------------------------------------
    procedure Execution
       (
-         Chaine   : Chaine_T;
+         Chaine   :        Chaine_T;
          Brut     : in out Des_P.Bloc_P.Bloc_64_P.Faiseur_P.Bloc_64_Brut_T
       )
    is

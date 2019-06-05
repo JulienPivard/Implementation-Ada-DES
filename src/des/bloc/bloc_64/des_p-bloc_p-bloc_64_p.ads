@@ -56,8 +56,8 @@ is
    procedure Ecrire_Bit
       (
          Bloc     : in out Bloc_64_T;
-         Position : Intervalle_T;
-         Bit      : Bit_T
+         Position :        Intervalle_T;
+         Bit      :        Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc de 64.
    --  @param Bloc
@@ -83,9 +83,9 @@ is
    procedure Ecrire_Bit
       (
          Bloc        : in out Bloc_64_T;
-         Bloc_G_Ou_D : Position_Bloc_T;
-         Position    : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
-         Bit         : Bit_T
+         Bloc_G_Ou_D :        Position_Bloc_T;
+         Position    :        Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
+         Bit         :        Bit_T
       );
    --  Écrit le bit à la position demandé dans le bloc
    --  gauche ou droite de 32 bits du bloc de 64.
@@ -118,8 +118,8 @@ is
    procedure Ecrire_Bloc
       (
          Bloc        : in out Bloc_64_T;
-         Bloc_G_Ou_D : Position_Bloc_T;
-         Bloc_32     : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+         Bloc_G_Ou_D :        Position_Bloc_T;
+         Bloc_32     :        Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
       )
       with Inline;
    --  Écrit le bloc de 32 bits à droite ou à gauche dans le

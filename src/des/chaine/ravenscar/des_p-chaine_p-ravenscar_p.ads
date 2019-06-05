@@ -83,7 +83,7 @@ private
    procedure Filtrer
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Procedure_Filtre  : not null access procedure
+         Procedure_Filtre  :        not null access procedure
             (Table_De_Donnees : in out Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
@@ -99,7 +99,7 @@ private
       (
          Grappe_De_Donnees      : Donnee_T;
          Procedure_A_Appliquer  : not null access procedure
-            (Table_De_Donnees : Table_Bloc_R.Table_Bloc_T)
+            (Table_De_Donnees :        Table_Bloc_R.Table_Bloc_T)
       )
       with Inline;
    --  Applique la procédure aux données sans les modifier.
@@ -113,7 +113,7 @@ private
    procedure Ecrire_Table
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Table_De_Donnees  : Table_Bloc_R.Table_Bloc_T
+         Table_De_Donnees  :        Table_Bloc_R.Table_Bloc_T
       )
       with Inline;
    --  Modifie la table stockée dans la grappe de données.
@@ -125,7 +125,7 @@ private
    procedure Ecrire_Est_Derniere
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Fini              : Boolean
+         Fini              :        Boolean
       )
       with Inline;
    --  Signal que la grappe de données est la dernière.

@@ -32,7 +32,7 @@ is
    procedure Construire_Clef
       (
          Constructeur : in out Faiseur_Clef_T;
-         Clef : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Clef         :        Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       );
    --  Construit la clefs de 56 bits avec la clef de 64.
    --  @param Constructeur

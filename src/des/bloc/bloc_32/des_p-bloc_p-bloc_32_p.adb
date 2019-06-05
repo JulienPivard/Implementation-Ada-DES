@@ -31,8 +31,8 @@ package body Des_P.Bloc_P.Bloc_32_P is
    procedure Ecrire_Bit
       (
          B        : in out Bloc_32_T;
-         Position : Intervalle_T;
-         Bit      : Bit_T
+         Position :        Intervalle_T;
+         Bit      :        Bit_T
       )
    is
    begin

@@ -20,7 +20,7 @@ is
    procedure Ouvrir_Fichier
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Nom      : String
+         Nom      :        String
       );
    --  Ouvre le fichier.
    --  @param Ecriveur
@@ -32,7 +32,7 @@ is
    procedure Ecrire
       (
          Ecriveur : in out Ecriveur_Fichier_T;
-         Brut     : C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     :        C_Bloc_64_R.Bloc_64_Brut_T
       )
       with Inline;
    --  Écrit la donnée dans le fichier.

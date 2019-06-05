@@ -34,7 +34,7 @@ is
    procedure Ajouter_Successeur
       (
          Etage       : in out Etage_Abstrait_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       )
    is abstract;
    --  Ajoute un successeur à l'étage.
@@ -48,7 +48,7 @@ is
    procedure Modifier_Successeur
       (
          Etage       : in out Etage_Abstrait_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       )
    is abstract;
    --  Modifie le successeur de l'étage.
@@ -60,7 +60,7 @@ is
    procedure Modifier_Filtre
       (
          Etage    : in out Etage_Abstrait_T;
-         Filtre   : Des_P.Filtre_P.Filtre_Interface_T'Class
+         Filtre   :        Des_P.Filtre_P.Filtre_Interface_T'Class
       )
    is abstract;
    --  Modifie le filtre de l'étage.
@@ -71,7 +71,7 @@ is
 
    procedure Iterer
       (
-         Etage : Etage_Abstrait_T;
+         Etage :        Etage_Abstrait_T;
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is abstract;

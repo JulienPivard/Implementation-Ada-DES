@@ -64,7 +64,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    procedure Filtrer
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Procedure_Filtre  : not null access procedure
+         Procedure_Filtre  :        not null access procedure
             (Table_De_Donnees : in out Table_Bloc_R.Table_Bloc_T)
       )
    is
@@ -78,7 +78,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
       (
          Grappe_De_Donnees      : Donnee_T;
          Procedure_A_Appliquer  : not null access procedure
-            (Table_De_Donnees : Table_Bloc_R.Table_Bloc_T)
+            (Table_De_Donnees :        Table_Bloc_R.Table_Bloc_T)
       )
    is
    begin
@@ -90,7 +90,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    procedure Ecrire_Table
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Table_De_Donnees  : Table_Bloc_R.Table_Bloc_T
+         Table_De_Donnees  :        Table_Bloc_R.Table_Bloc_T
       )
    is
    begin
@@ -102,7 +102,7 @@ package body Des_P.Chaine_P.Ravenscar_P is
    procedure Ecrire_Est_Derniere
       (
          Grappe_De_Donnees : in out Donnee_T;
-         Fini              : Boolean
+         Fini              :        Boolean
       )
    is
    begin

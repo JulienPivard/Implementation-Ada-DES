@@ -71,7 +71,7 @@ private
    function Init_Chaine
       (
          Faiseur  : in out Faiseur_I_R.Faiseur_Interface_T'Class;
-         Clef     : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
+         Clef     :        Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class
       )
       return Des_P.Chaine_P.Chaine_Interface_T'Class;
    --  Initialise une chaine de chiffrement ou de déchiffrement.

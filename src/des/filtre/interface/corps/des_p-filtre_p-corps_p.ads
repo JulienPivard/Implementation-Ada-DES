@@ -16,8 +16,8 @@ is
 
    procedure Modifier_Clef
       (
-         Filtre : in out Corps_Abstrait_T;
-         Clef : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Filtre   : in out Corps_Abstrait_T;
+         Clef     :        Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
    is abstract;
    --  Modifie le numéro du filtre.

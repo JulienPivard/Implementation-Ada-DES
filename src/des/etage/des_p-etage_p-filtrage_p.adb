@@ -47,7 +47,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Ajouter_Successeur
       (
          Etage       : in out Etage_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       )
    is
    begin
@@ -66,7 +66,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Modifier_Successeur
       (
          Etage       : in out Etage_T;
-         Successeur  : Etage_Abstrait_T'Class
+         Successeur  :        Etage_Abstrait_T'Class
       )
    is
    begin
@@ -78,7 +78,7 @@ package body Des_P.Etage_P.Filtrage_P is
    procedure Modifier_Filtre
       (
          Etage    : in out Etage_T;
-         Filtre   : Des_P.Filtre_P.Filtre_Interface_T'Class
+         Filtre   :        Des_P.Filtre_P.Filtre_Interface_T'Class
       )
    is
    begin
@@ -89,7 +89,7 @@ package body Des_P.Etage_P.Filtrage_P is
    overriding
    procedure Iterer
       (
-         Etage : Etage_T;
+         Etage :        Etage_T;
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
@@ -107,7 +107,7 @@ package body Des_P.Etage_P.Filtrage_P is
    ---------------------------------------------------------------------------
    procedure Filtrer
       (
-         Etage : Etage_T;
+         Etage :        Etage_T;
          Bloc  : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is

@@ -38,8 +38,8 @@ is
    procedure Ecrire_Bit
       (
          B        : in out Bloc_32_T;
-         Position : Intervalle_T;
-         Bit      : Bit_T
+         Position :        Intervalle_T;
+         Bit      :        Bit_T
       )
       with Inline;
    --  Écrit le bit à la position demandé dans le bloc de 32.

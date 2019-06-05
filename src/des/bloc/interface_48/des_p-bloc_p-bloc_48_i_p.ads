@@ -16,8 +16,8 @@ is
    procedure Ecrire_Bit
       (
          B        : in out Bloc_Interface_T;
-         Position : Intervalle_T;
-         Bit      : Bit_T
+         Position :        Intervalle_T;
+         Bit      :        Bit_T
       )
    is abstract;
    --  Écrit le bit à la position demandé dans le bloc de 48.

@@ -5,7 +5,7 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
    procedure Ouvrir_Fichier
       (
          Lecteur  : in out Lecteur_Fichier_T;
-         Nom      : String
+         Nom      :        String
       )
    is
    begin
@@ -22,7 +22,7 @@ package body Des_P.Chaine_P.Lecteur_P.Fichier_P is
    procedure Lire
       (
          Lecteur  : in out Lecteur_Fichier_T;
-         Brut     : out C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     :    out C_Bloc_64_R.Bloc_64_Brut_T
       )
    is
    begin

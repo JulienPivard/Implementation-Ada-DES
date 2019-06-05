@@ -17,7 +17,7 @@ is
    procedure Decaler_Bits_A_Gauche
       (
          Clef        : in out Clef_T;
-         Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
+         Nb_Decalage :        Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
       with Inline;
    --  Décale les bits de la clef vers la gauche
@@ -30,7 +30,7 @@ is
    procedure Decaler_Bits_A_Droite
       (
          Clef        : in out Clef_T;
-         Nb_Decalage : Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
+         Nb_Decalage :        Des_P.Clef_P.Clef_56_I_P.Decalage_T := 1
       )
       with Inline;
    --  Décale les bits de la clef vers la droite

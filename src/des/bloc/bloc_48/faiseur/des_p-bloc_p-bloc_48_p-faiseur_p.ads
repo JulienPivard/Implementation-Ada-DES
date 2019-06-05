@@ -22,7 +22,7 @@ is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
+         Brut         :        Des_P.Bloc_P.Bloc_32_P.Bloc_32_T
       );
    --  Construit le bloc de 48 bits en étendant un bloc de 32 bits.
    --  @param Constructeur

@@ -15,7 +15,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Brut         : Bloc_32_Brut_T
+         Brut         :        Bloc_32_Brut_T
       )
    is
       type Table_Tmp_T is new Tableau_Bits_T
@@ -30,7 +30,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Bloc_32_T
+         Bloc         :        Bloc_32_T
       )
    is
       type Table_Permutations_T is array (Intervalle_T) of Intervalle_T;
@@ -70,7 +70,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    procedure Construire_Bloc
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
+         Bloc         :        Des_P.Bloc_P.Bloc_48_I_P.Bloc_Interface_T'Class
       )
    is
       type Table_48_Bits_T is array
@@ -637,7 +637,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
    function Transformer_En_Brut
       (
          Constructeur : in out Faiseur_Bloc_T;
-         Bloc         : Bloc_32_T
+         Bloc         :        Bloc_32_T
       )
       return Bloc_32_Brut_T
    is
@@ -646,7 +646,7 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       type Table_Tmp_T is new Tableau_Bits_T
          with Size => 32, Pack;
 
-      Tmp : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
+      Tmp  : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
       --  Le tableau de 32 bits est transformé en un bloc de 32 bits.
       Brut : Bloc_32_Brut_T with Address => Tmp'Address;
    begin

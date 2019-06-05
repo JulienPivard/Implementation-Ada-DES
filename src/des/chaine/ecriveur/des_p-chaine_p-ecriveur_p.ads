@@ -23,7 +23,7 @@ is
    procedure Ouvrir_Fichier
       (
          Ecriveur : in out Ecriveur_T;
-         Nom      : String
+         Nom      :        String
       )
    is abstract;
    --  Ouvre le fichier.
@@ -35,7 +35,7 @@ is
    procedure Ecrire
       (
          Ecriveur : in out Ecriveur_T;
-         Brut     : C_Bloc_64_R.Bloc_64_Brut_T
+         Brut     :        C_Bloc_64_R.Bloc_64_Brut_T
       )
    is abstract;
    --  Écrit la donnée dans le fichier.

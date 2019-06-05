@@ -6,15 +6,17 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
    overriding
    procedure Filtrer
       (
-         Filtre   : Corps_T;
+         Filtre   :        Corps_T;
          Bloc     : in out Des_P.Bloc_P.Bloc_64_P.Bloc_64_T
       )
    is
-      Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T          := Bloc.Lire_Bloc
-         (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Gauche);
-      Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T := Bloc.Lire_Bloc
-         (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Droite);
+      Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T          :=
+         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Gauche);
+      Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T :=
+         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Droite);
+
       Resultat_F : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
+
       use type Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       --  Passage du bloc de gauche dans la fonction f
@@ -42,7 +44,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
    procedure Modifier_Clef
       (
          Filtre   : in out Corps_T;
-         Clef     : Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
+         Clef     :        Des_P.Clef_P.Clef_48_I_P.Clef_Interface_T'Class
       )
    is
    begin
