@@ -204,9 +204,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Entree_P.Entree_Abstrait_T'Class)
       is
+         package Entree_R renames Des_P.Filtre_P.Entree_P.Holder_P;
       begin
-         Filtre_H          :=
-            Des_P.Filtre_P.Entree_P.Holder_P.To_Holder (New_Item => Filtre);
+         Filtre_H          := Entree_R.To_Holder (New_Item => Filtre);
          Filtre_Initialise := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
@@ -234,9 +234,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Corps_P.Corps_Abstrait_T'Class)
       is
+         package Corps_R renames Des_P.Filtre_P.Corps_P.Holder_P;
       begin
-         Filtre_H          :=
-            Des_P.Filtre_P.Corps_P.Holder_P.To_Holder (New_Item => Filtre);
+         Filtre_H          := Corps_R.To_Holder (New_Item => Filtre);
          Filtre_Initialise := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
@@ -272,9 +272,9 @@ package body Des_P.Chaine_P.Ravenscar_P is
       procedure Changer_Filtre
          (Filtre : Des_P.Filtre_P.Sortie_P.Sortie_Abstrait_T'Class)
       is
+         package Sortie_R renames Des_P.Filtre_P.Sortie_P.Holder_P;
       begin
-         Filtre_H          :=
-            Des_P.Filtre_P.Sortie_P.Holder_P.To_Holder (New_Item => Filtre);
+         Filtre_H          := Sortie_R.To_Holder (New_Item => Filtre);
          Filtre_Initialise := not Filtre_H.Is_Empty;
       end Changer_Filtre;
 
