@@ -51,11 +51,12 @@ package body Des_P.Bloc_P.Bloc_64_P is
    is
       --  Le bit demandé est à gauche par défaut.
       G_Ou_D : Position_Bloc_T := Gauche;
-      P : Intervalle_T := Position;
+      P      : Intervalle_T    := Position;
+
       --  La position dans l'intervalle de 32 bits.
       P_Dans_Intervalle_32 : Des_P.Bloc_P.Bloc_32_P.Intervalle_T;
       --  La valeur maximal de l'intervalle de 32 bits.
-      Limite : constant Intervalle_T :=
+      Limite               : constant Intervalle_T :=
          Intervalle_T (Des_P.Bloc_P.Bloc_32_P.Intervalle_T'Last);
    begin
       --  Si la position demandé est supérieur à la position
