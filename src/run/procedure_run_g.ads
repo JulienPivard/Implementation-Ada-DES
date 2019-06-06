@@ -26,6 +26,9 @@ generic
 --  @group Principal
 package Procedure_Run_G is
 
+   subtype Nom_Fichier_T is String;
+   --  Représentation d'un nom de fichier.
+
    type Action_T is (Chiffrer, Dechiffrer);
    --  L'action à effectuer sur le fichier.
    --  @value Chiffrer L'action de chiffrer.
@@ -34,7 +37,7 @@ package Procedure_Run_G is
    procedure Executer_Chiffrement
       (
          Clef        : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
-         Nom_Fichier : String;
+         Nom_Fichier : Nom_Fichier_T;
          Action      : Action_T
       );
    --  Initialise et exécute le filtrage sur le fichier.

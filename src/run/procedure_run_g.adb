@@ -9,7 +9,7 @@ package body Procedure_Run_G is
    procedure Executer_Chiffrement
       (
          Clef        : Des_P.Clef_P.Clef_64_I_P.Clef_Interface_T'Class;
-         Nom_Fichier : String;
+         Nom_Fichier : Nom_Fichier_T;
          Action      : Action_T
       )
    is
