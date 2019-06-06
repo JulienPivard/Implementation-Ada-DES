@@ -11,9 +11,9 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
       )
    is
       Gauche : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T          :=
-         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Gauche);
+         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.A_Gauche);
       Droite : constant Des_P.Bloc_P.Bloc_32_P.Bloc_32_T :=
-         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Droite);
+         Bloc.Lire_Bloc (Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.A_Droite);
 
       Resultat_F : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
 
@@ -31,7 +31,7 @@ package body Des_P.Filtre_P.Corps_P.Chiffre_P is
       --  On remet les blocs à leur place.
       Bloc.Ecrire_Bloc
          (
-            Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.Gauche,
+            Bloc_G_Ou_D => Des_P.Bloc_P.Bloc_64_P.A_Gauche,
             Bloc_32     => Gauche
          );
 

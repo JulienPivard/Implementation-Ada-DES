@@ -16,7 +16,7 @@ is
    type Bloc_64_T is new Bloc_Abstrait_T with private;
    --  Représente un bloc de 64 bits.
 
-   type Position_Bloc_T is (Gauche, Droite);
+   type Position_Bloc_T is (A_Gauche, A_Droite);
    --  Désigne le bloc de 32 bits de gauche ou le bloc de droite.
    --  @value Gauche
    --  Le bloc de 32 bits de gauche.
@@ -152,8 +152,8 @@ private
 
    for Position_Bloc_T use
       (
-         Gauche => Decalage_T'First,
-         Droite => Decalage_T'Last
+         A_Gauche => Decalage_T'First,
+         A_Droite => Decalage_T'Last
       );
 
    function "+"

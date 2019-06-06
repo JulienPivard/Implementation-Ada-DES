@@ -9,9 +9,9 @@ package body Des_P.Bloc_P.Bloc_64_P is
       G, D : Des_P.Bloc_P.Bloc_32_P.Bloc_32_T;
    begin
       --  Remise à zéro du décalage.
-      Bloc.Decalage           := 0;
-      Bloc.Blocs_32 (Gauche)  := G;
-      Bloc.Blocs_32 (Droite)  := D;
+      Bloc.Decalage             := 0;
+      Bloc.Blocs_32 (A_Gauche)  := G;
+      Bloc.Blocs_32 (A_Droite)  := D;
    end Initialize;
 
    ---------------------------------------------------------------------------
@@ -50,7 +50,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       )
    is
       --  Le bit demandé est à gauche par défaut.
-      G_Ou_D : Position_Bloc_T := Gauche;
+      G_Ou_D : Position_Bloc_T := A_Gauche;
       P      : Intervalle_T    := Position;
 
       --  La position dans l'intervalle de 32 bits.
@@ -64,7 +64,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       --  la ramener dans l'intervalle et on retient que le
       --  bit demandé est dans le bloc de droite.
       if Position > Limite then
-         G_Ou_D := Droite;
+         G_Ou_D := A_Droite;
          P      := P - Limite;
       end if;
       --  Conversion de la position de l'intervalle 64 bits
@@ -91,7 +91,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       return Bit_T
    is
       --  Le bit demandé est à gauche par défaut.
-      G_Ou_D : Position_Bloc_T := Gauche;
+      G_Ou_D : Position_Bloc_T := A_Gauche;
       P      : Intervalle_T    := Position;
 
       --  La position dans l'intervalle de 32 bits.
@@ -105,7 +105,7 @@ package body Des_P.Bloc_P.Bloc_64_P is
       --  la ramener dans l'intervalle et on retient que le
       --  bit demandé est dans le bloc de droite.
       if Position > Limite then
-         G_Ou_D   := Droite;
+         G_Ou_D   := A_Droite;
          P        := P - Limite;
       end if;
       --  Conversion de la position de l'intervalle 64 bits

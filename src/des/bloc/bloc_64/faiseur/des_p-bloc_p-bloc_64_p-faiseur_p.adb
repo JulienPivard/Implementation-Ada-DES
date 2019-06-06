@@ -49,12 +49,12 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       --  Construction du premier bloc de 32
       C_32.Preparer_Nouveau_Bloc;
       C_32.Construire_Bloc (Brut => Resultat.Bloc_1);
-      Constructeur.Bloc.Blocs_32 (Gauche) := C_32.Recuperer_Bloc;
+      Constructeur.Bloc.Blocs_32 (A_Gauche) := C_32.Recuperer_Bloc;
 
       --  Construction du deuxième bloc de 32
       C_32.Preparer_Nouveau_Bloc;
       C_32.Construire_Bloc (Brut => Resultat.Bloc_2);
-      Constructeur.Bloc.Blocs_32 (Droite) := C_32.Recuperer_Bloc;
+      Constructeur.Bloc.Blocs_32 (A_Droite) := C_32.Recuperer_Bloc;
    end Construire_Bloc;
 
    ---------------------------------------------------------------------------
@@ -102,9 +102,9 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
          Bloc_Intermediaire_T'
          (
             Bloc_1 => C_32.Transformer_En_Brut
-               (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => Gauche)),
+               (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => A_Gauche)),
             Bloc_2 => C_32.Transformer_En_Brut
-               (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => Droite))
+               (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => A_Droite))
          );
       --  Transformation du bloc de deux fois 32 en un seul de 64.
       Brut : Bloc_64_Brut_T with Address => Resultat'Address;
