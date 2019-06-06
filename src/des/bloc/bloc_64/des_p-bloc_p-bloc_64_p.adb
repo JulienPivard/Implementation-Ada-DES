@@ -186,17 +186,17 @@ package body Des_P.Bloc_P.Bloc_64_P is
    ---------------------------------------------------------------------------
    function "+"
       (
-         Left  : Position_Bloc_T;
-         Right : Decalage_T
+         Gauche : Position_Bloc_T;
+         Droite : Decalage_T
       )
       return Position_Bloc_T
    is
       --  Convertit la position (G ou D) en une valeur numérique.
       Cote_Tmp             : constant Decalage_T :=
-         Position_Bloc_T'Pos (Left);
+         Position_Bloc_T'Pos (Gauche);
       --  Addition de la valeur de la position avec le décalage.
       Cote_Apres_Decalage  : constant Decalage_T :=
-         Cote_Tmp + Right;
+         Cote_Tmp + Droite;
    begin
       --  Conversion de la valeur obtenue en position G ou D.
       return Position_Bloc_T'Val (Cote_Apres_Decalage);
@@ -205,13 +205,13 @@ package body Des_P.Bloc_P.Bloc_64_P is
    ---------------------------------------------------------------------------
    function "+"
       (
-         Left  : Decalage_T;
-         Right : Position_Bloc_T
+         Gauche : Decalage_T;
+         Droite : Position_Bloc_T
       )
       return Position_Bloc_T
    is
    begin
-      return Right + Left;
+      return Droite + Gauche;
    end "+";
 
 end Des_P.Bloc_P.Bloc_64_P;

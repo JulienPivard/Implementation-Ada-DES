@@ -158,32 +158,32 @@ private
 
    function "+"
       (
-         Left  : Position_Bloc_T;
-         Right : Decalage_T
+         Gauche : Position_Bloc_T;
+         Droite : Decalage_T
       )
       return Position_Bloc_T
       with Inline;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
-   --  @param Left
-   --  La partie gauche de l'opérande.
-   --  @param Right
-   --  La partie droite de l'opérande.
+   --  @param Gauche
+   --  L'opérande de gauche.
+   --  @param Droite
+   --  L'opérande de droite.
    --  @return Le coté décalé.
 
    function "+"
       (
-         Left  : Decalage_T;
-         Right : Position_Bloc_T
+         Gauche : Decalage_T;
+         Droite : Position_Bloc_T
       )
       return Position_Bloc_T
       with Inline;
    --  Permet de décaler les cotés gauche et droite selon un
    --  décalage numérique modulaire.
-   --  @param Left
-   --  La partie gauche de l'opérande.
-   --  @param Right
-   --  La partie droite de l'opérande.
+   --  @param Gauche
+   --  L'opérande de gauche.
+   --  @param Droite
+   --  L'opérande de droite.
    --  @return Le coté décalé.
 
    type Tableau_Bloc_T is array (Position_Bloc_T)
