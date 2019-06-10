@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 20 avril[04] 2019
+# Dernière modification : Lundi 10 juin[06] 2019
 
 # Les options sont désactivée si vide
 ifeq ($(ACTIVER_DEBUG), )
@@ -114,4 +114,9 @@ ifeq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
     AFFICHER_ORDRE_ELABORATION	= oui
 else
     AFFICHER_ORDRE_ELABORATION	= non
+endif
+
+# Vérification du niveau de preuve
+ifeq ($(NIVEAU_PREUVE), )
+    NIVEAU_PREUVE	= 0
 endif

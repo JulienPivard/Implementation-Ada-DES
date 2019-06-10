@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mardi 26 mars[03] 2019
+# Dernière modification : Samedi 01 juin[06] 2019
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -75,7 +75,7 @@ doc:
 ###################
 .PHONY: prove
 prove:
-	gnatprove -P$(GPR) $(OPTGPR)
+	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
 
 ###################
 .PHONY: check
