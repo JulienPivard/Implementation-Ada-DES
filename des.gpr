@@ -113,6 +113,9 @@ project Des is
          --  gnatel : Active les messages d'informations signalant les
          --           ajout implicite de pragma Elaborate et
          --           Elaborate_All dans le code.
+         "-gnatw.d",
+         --  gnatw.d : Ajoute un tag au message de warning et d'info
+         --            pour savoir quel réglages provoque le message.
          "-gnatif"
          --  gnatif : pour pouvoir utiliser les accents dans
          --           les noms de variables.
