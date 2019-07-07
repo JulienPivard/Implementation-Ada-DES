@@ -1,6 +1,8 @@
---  Dernière modification : Lundi 27 mai[05] 2019
+--  Dernière modification : Dimanche 07 juillet[07] 2019
 --  Auteur : PIVARD Julien
 
+--  https://gcc.gnu.org/releases.html
+--  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
 project Des is
 
    --  Les énumérations sont des types accepté.
@@ -73,46 +75,47 @@ project Des is
    --  x : vérifie les parenthèses inutile
    Options :=
       (
-         --  gnatef est la pour afficher le chemin complet des
-         --  fichiers dans les messages erreurs et avertissements.
          "-gnatef",
-         --  gnatf Affiche toutes les erreurs.
+         --  gnatef : est la pour afficher le chemin complet des
+         --           fichiers dans les messages erreurs et avertissements.
          "-gnatf",
-         --  gnatU : Permet de marquer les messages erreurs
-         --  avec le tag error:
+         --  gnatf : Affiche toutes les erreurs.
          "-gnatU",
+         --  gnatU : Permet de marquer les messages erreurs
+         --          avec le tag error:
          "-gnat2012",
-         --  Vérification du style utilisé (longueur de ligne, espacement ...).
-         --  gnatyy équivaut à 3aAbcefhiklmnprst
+         --  Vérification du style utilisé (longueur ligne, espacement ...).
          "-gnatyy",
+         --  gnatyy : équivaut à 3aAbcefhiklmnprst
          "-gnatyBdOSux",
-         --  gnatw.e active tous les avertissements comme gnatwa, mais aussi
-         --  ceux qui sont considéré comme optionnel.
          "-gnatw.e",
-         --  gnatw.Y désactive le message qui dit que la
-         --  spec nécessite un corps.
+         --  gnatw.e : active tous les avertissements comme gnatwa, mais aussi
+         --            ceux qui sont considéré comme optionnel.
          "-gnatw.Y",
-         --  gnatw.N désactive le message qui dit qu'une
-         --  variable a l'aspect Atomic
+         --  gnatw.Y : désactive le message qui dit que la
+         --            spec nécessite un corps.
          "-gnatw.N",
-         --  gnatW8 Pour que l'encodage du code source se fasse en UTF8
-         --  Similaire à ajouter le pragma Wide_Character_Encoding (UTF8)
+         --  gnatw.N : désactive le message qui dit qu'une
+         --            variable a l'aspect Atomic
          "-gnatW8",
-         --  gnateE : Génère des informations supplémentaires
-         --  dans les exceptions
+         --  gnatW8 : Pour que l'encodage du code source se fasse en UTF8
+         --           Similaire à ajouter le
+         --           pragma Wide_Character_Encoding (UTF8)
          "-gnateE",
-         --  Vérification des dépassements numériques.
+         --  gnateE : Génère des informations supplémentaires
+         --           dans les exceptions
          "-gnato",
-         --  Active les vérification de la stack pour éviter les
-         --  stacks overflow.
+         --  gnato : Vérification des dépassements numériques.
          "-fstack-check",
-         --  gnatel Active les messages d'informations signalant les
-         --  ajout implicite de pragma Elaborate et Elaborate_All
-         --  dans le code.
+         --  fstack-check : Active les vérification de la stack pour
+         --                 éviter les stacks overflow.
          "-gnatel",
-         --  gnatif pour pouvoir utiliser les accents dans
-         --  les noms de variables.
+         --  gnatel : Active les messages d'informations signalant les
+         --           ajout implicite de pragma Elaborate et
+         --           Elaborate_All dans le code.
          "-gnatif"
+         --  gnatif : pour pouvoir utiliser les accents dans
+         --           les noms de variables.
       );
 
    --  gnatu : Liste toutes les unitées utilisé pour cette compilation
@@ -196,7 +199,8 @@ project Des is
             null;
       end case;
 
-      for Default_Switches ("ada") use Options_Builder;
+      for Default_Switches ("ada")     use Options_Builder;
+      --  for Global_Configuration_Pragmas use "./build.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
@@ -222,6 +226,7 @@ project Des is
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
+      --  for Local_Configuration_Pragmas use "./build.adc";
 
    end Compiler;
 
@@ -299,8 +304,8 @@ project Des is
       -----------------------------------------------
       case Afficher_Ordre_Elaboration is
          when "oui" =>
-            --  -l Affiche l'ordre d'élaboration choisi et fournis une
-            --  forme plus lisible
+            --  -l : Affiche l'ordre d'élaboration choisi et fournis une
+            --       forme plus lisible
             Options_Binder := Options_Binder & ("-l");
          when "non" =>
             null;
