@@ -47,6 +47,8 @@ project Des is
    for Object_Dir                use "obj/" & Mode_Compilation;
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
+   for Create_Missing_Dirs       use "True";
+
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
    --  gnaty : les options
    --  3 : taille indentation
