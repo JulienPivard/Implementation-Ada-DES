@@ -273,7 +273,9 @@ project Des is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
-      Options_Binder := ();
+      --  -r : Affiche la liste des restrictions (pragma Restriction)
+      --       qui peuvent être appliqué aux unité courante.
+      Options_Binder := ("-r");
 
       case Mode_Compilation is
          when "debug" =>
