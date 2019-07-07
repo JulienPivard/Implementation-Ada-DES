@@ -306,7 +306,9 @@ project Des is
          when "oui" =>
             --  -l : Affiche l'ordre d'élaboration choisi et fournis une
             --       forme plus lisible
-            Options_Binder := Options_Binder & ("-l");
+            --  -e : Affiche la liste complète de l'ordre d'élaboration
+            --       choisi par le compilateur et la raison de cet ordre.
+            Options_Binder := Options_Binder & ("-l", "-e");
          when "non" =>
             null;
       end case;
