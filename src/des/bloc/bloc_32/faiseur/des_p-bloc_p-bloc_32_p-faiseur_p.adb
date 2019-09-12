@@ -19,7 +19,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       )
    is
       type Table_Tmp_T is new Tableau_Bits_T
-         with Size => 32, Pack;
+         with
+            Size                 => 32,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       Resultat : Table_Tmp_T with Address => Brut'Address;
    begin
@@ -76,7 +79,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       type Table_48_Bits_T is array
          (Des_P.Bloc_P.Bloc_48_I_P.Intervalle_T)
          of Bit_T
-         with Size => 48, Pack;
+         with
+            Size                 => 48,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       --  Extraction de la table de 48 bits pour pouvoir la manipuler.
       pragma Annotate
@@ -213,7 +219,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  Représentation intermédiaire de la ligne.
       type Ligne_Intermediaire_T is array
          (Indice_Intermediaire_T) of Debut_Fin_T
-         with Size => Ligne_T'Base'Size, Pack;
+         with
+            Size                 => Ligne_T'Base'Size,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       --  Rassemble le bit de début et de fin
       --  pour former le numéro de la ligne.
@@ -596,7 +605,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       --  Tableau de 8 blocs de 8 bits.
       subtype Indice_32_Tmp_T is Natural range 0 .. 7;
       type Bloc_32_Intermediaire_T is array (Indice_32_Tmp_T) of Valeur_T
-         with Size => 32, Pack;
+         with
+            Size                 => 32,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       --  Table de 8 valeurs qui va contenir les résultats
       --  des tables de sélection.
@@ -644,7 +656,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       pragma Unreferenced (Constructeur);
 
       type Table_Tmp_T is new Tableau_Bits_T
-         with Size => 32, Pack;
+         with
+            Size                 => 32,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       Tmp  : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
       --  Le tableau de 32 bits est transformé en un bloc de 32 bits.

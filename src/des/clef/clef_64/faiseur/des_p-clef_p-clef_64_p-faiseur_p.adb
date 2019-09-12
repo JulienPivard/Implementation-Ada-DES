@@ -1,3 +1,5 @@
+with System;
+
 package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
 
    ---------------------------------------------------------------------------
@@ -19,7 +21,10 @@ package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
       )
    is
       type Table_Tmp_T is new Tableau_Bits_T
-         with Size => 64, Pack;
+         with
+            Size                 => 64,
+            Pack                 => True,
+            Scalar_Storage_Order => System.Low_Order_First;
 
       Resultat : Table_Tmp_T with Address => Brut'Address;
    begin
