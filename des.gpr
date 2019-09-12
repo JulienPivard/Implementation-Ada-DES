@@ -205,7 +205,7 @@ project Des is
       end case;
 
       for Default_Switches ("ada")     use Options_Builder;
-      --  for Global_Configuration_Pragmas use "./build.adc";
+      --  for Global_Configuration_Pragmas use "./gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
@@ -231,7 +231,7 @@ project Des is
             --  -gnatn Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
-      --  for Local_Configuration_Pragmas use "./build.adc";
+      --  for Local_Configuration_Pragmas use "./gnat.adc";
 
    end Compiler;
 
