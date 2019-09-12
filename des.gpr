@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 07 juillet[07] 2019
+--  Dernière modification : Jeudi 12 septembre[09] 2019
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -280,7 +280,14 @@ project Des is
    package Binder is
       --  -r : Affiche la liste des restrictions (pragma Restriction)
       --       qui peuvent être appliqué aux unité courante.
-      Options_Binder := ("-r");
+      Options_Binder := ();
+
+      case Verbeux is
+         when "oui" =>
+            Options_Binder := Options_Binder & ("-r");
+         when "non" =>
+            null;
+      end case;
 
       case Mode_Compilation is
          when "debug" =>

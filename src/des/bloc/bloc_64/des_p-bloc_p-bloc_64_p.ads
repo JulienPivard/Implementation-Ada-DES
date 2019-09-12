@@ -18,9 +18,9 @@ is
 
    type Position_Bloc_T is (A_Gauche, A_Droite);
    --  Désigne le bloc de 32 bits de gauche ou le bloc de droite.
-   --  @value Gauche
+   --  @value A_Gauche
    --  Le bloc de 32 bits de gauche.
-   --  @value Droite
+   --  @value A_Droite
    --  Le bloc de 32 bits de droite.
 
    overriding
