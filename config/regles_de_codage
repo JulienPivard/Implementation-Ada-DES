@@ -61,7 +61,7 @@
 --  Marque tous les programmes au niveau des librairie y compris les générique
 -R Library_Level_Subprograms
 --  Signal tous les tests d'appartenance des types taggé avec in
-+R Membership_Tests
++R Membership_Tests:Except_Assertions
 --  Agrégats dont le type n'est pas précisé par qualification (Truc_T'(Valeur))
 +R Non_Qualified_Aggregates
 --  Les littéraux numérique doivent être écrit dans des constantes
@@ -71,7 +71,7 @@
 --  Ordre des paramètres des fonctions et procédures : in, access, in out, out
 -R Parameters_Out_Of_Order
 --  Sous type défini avec un prédicat
-+R Predicate_Testing
++R Predicate_Testing:Except_Assertions
 --  Signal toutes les occurrences d'expressions quantifié Ada 2012
 -R Quantified_Expressions
 --  Signal toutes levées d'exceptions de la lib std
