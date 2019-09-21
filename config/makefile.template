@@ -8,7 +8,7 @@
 .PHONY: all
 all: $(CIBLECOMPILE)
 
-MAKEFILE_V	:= 2.1.3
+MAKEFILE_V	:= 2.1.5
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
