@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 07 juillet[07] 2019
+# Dernière modification : Samedi 21 septembre[09] 2019
 
 ###################
 # Point d'entrée #
@@ -99,8 +99,8 @@ avec_cloc:
 	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIERSRC)
 
 ###################
-.PHONY: compterdetail
-compterdetail: $(TECHNIQUE_COMPTAGE)_detail
+.PHONY: compter_detail
+compter_detail: $(TECHNIQUE_COMPTAGE)_detail
 
 .PHONY: avec_find_detail
 avec_find_detail:
