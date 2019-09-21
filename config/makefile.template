@@ -109,3 +109,8 @@ avec_find_detail:
 .PHONY: avec_cloc_detail
 avec_cloc_detail:
 	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIERSRC)
+
+# Afficher toutes les cibles disponible
+.PHONY: afficher_nom_cibles
+afficher_nom_cibles:
+	@grep $(MAKEFILE_LIST) -i -e "^[a-zA-Z_\-]*:" | awk 'BEGIN {FS = ":"}; {printf "%s - %s\n", $$1, $$2}'
