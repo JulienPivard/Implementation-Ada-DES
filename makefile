@@ -40,7 +40,7 @@ $(CIBLECOMPILE): build
 
 ###################
 .PHONY: chiffrer
-chiffrer: $(DEPEND)
+chiffrer: $(DEPEND) $(VARNOMFICHIER)
 	@echo "───────────────────────────────"
 	@echo "Chiffrement"
 	$(EXECUTABLE_SEQ) $(ARGSCHIFFRE)
@@ -48,8 +48,18 @@ chiffrer: $(DEPEND)
 	$(EXECUTABLE_RAV) $(ARGSCHIFFRE)
 
 ###################
+$(NOM_FIC_CHIFFRE_S): chiffrer
+
+###################
+$(NOM_FIC_CHIFFRE_T): chiffrer
+
+###################
+$(NOM_FIC_CHIFFRE_R): chiffrer
+
+###################
 .PHONY: dechiffrer
-dechiffrer: $(DEPEND)
+dechiffrer: $(DEPEND) $(NOM_FIC_CHIFFRE_S) \
+	$(NOM_FIC_CHIFFRE_T) $(NOM_FIC_CHIFFRE_R)
 	@echo "───────────────────────────────"
 	@echo "Déchiffrement"
 	$(EXECUTABLE_SEQ) $(ARGSDECHIFFRES)
@@ -57,8 +67,19 @@ dechiffrer: $(DEPEND)
 	$(EXECUTABLE_RAV) $(ARGSDECHIFFRER)
 
 ###################
+$(NOM_FIC_DECHIFFRE_S): dechiffrer
+
+###################
+$(NOM_FIC_DECHIFFRE_T): dechiffrer
+
+###################
+$(NOM_FIC_DECHIFFRE_R): dechiffrer
+
+###################
 .PHONY: fichier_comparer
-fichier_comparer:
+fichier_comparer: $(DEPEND) $(NOM_FIC_DECHIFFRE_S) $(NOM_FIC_DECHIFFRE_T) \
+	$(NOM_FIC_DECHIFFRE_R) $(NOM_FIC_CHIFFRE_S) $(NOM_FIC_CHIFFRE_T) \
+	$(NOM_FIC_CHIFFRE_R)
 	@echo "Comparaison : "
 	-diff $(VARNOMFICHIER) $(NOM_FIC_DECHIFFRE_S)
 	-diff $(VARNOMFICHIER) $(NOM_FIC_DECHIFFRE_T)
