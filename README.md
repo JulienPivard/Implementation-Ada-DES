@@ -166,8 +166,7 @@ Une description de la structure du projet.
 │   │                       # la configuration
 │   ├── makefile.template   # Des cibles commune utilisés par
 │   │                       # tous les makefiles
-│   ├── regles_de_codage    # Les règles de code pour gnatcheck
-│   └── test.txt            # Un fichier de tests
+│   └── regles_de_codage    # Les règles de code pour gnatcheck
 │
 ├── des.gpr                     # La configuration du projet
 ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
@@ -175,6 +174,8 @@ Une description de la structure du projet.
 ├── makefile
 ├── makefile.conf       # Configuration spécifique au projet.
 ├── src                 # Les sources de l'application
+├── test.txt            # Un fichier de tests
+│
 └── tests_unitaires
     ├── des_unitaire.gpr    # La configuration des tests unitaires
     │                       # du projet
