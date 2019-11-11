@@ -190,7 +190,10 @@ package body Gerer_Options_P is
 
          F_C_64    : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
          Brut_Clef : Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
-            with Address => Clef_Brut'Address;
+            with
+               Address    => Clef_Brut'Address,
+               Import     => True,
+               Convention => Ada;
 
          Clef_I    : constant Clef_I_R.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef

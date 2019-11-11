@@ -24,7 +24,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
 
-      Resultat : Table_Tmp_T with Address => Brut'Address;
+      Resultat : Table_Tmp_T
+         with
+            Address    => Brut'Address,
+            Import     => True,
+            Convention => Ada;
    begin
       Constructeur.Bloc.Bits := Tableau_Bits_T (Resultat);
    end Construire_Bloc;
@@ -205,7 +209,10 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       --  Transformation du tableau en bloc de bits.
       Bloc_Intermediaire : Bloc_Intermediaire_T
-         with Address => Table_48_Bits'Address;
+         with
+            Address    => Table_48_Bits'Address,
+            Import     => True,
+            Convention => Ada;
 
       --  Représentation final de la ligne.
       type Ligne_T is mod 2**2
@@ -247,7 +254,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_1 : Ligne_T with Address => Ligne_Intermediaire_1'Address;
+      Ligne_1 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_1'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -269,7 +280,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_2 : Ligne_T with Address => Ligne_Intermediaire_2'Address;
+      Ligne_2 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_2'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -291,7 +306,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_3 : Ligne_T with Address => Ligne_Intermediaire_3'Address;
+      Ligne_3 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_3'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -313,7 +332,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_4 : Ligne_T with Address => Ligne_Intermediaire_4'Address;
+      Ligne_4 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_4'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -335,7 +358,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_5 : Ligne_T with Address => Ligne_Intermediaire_5'Address;
+      Ligne_5 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_5'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -357,7 +384,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_6 : Ligne_T with Address => Ligne_Intermediaire_6'Address;
+      Ligne_6 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_6'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -379,7 +410,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_7 : Ligne_T with Address => Ligne_Intermediaire_7'Address;
+      Ligne_7 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_7'Address,
+            Import     => True,
+            Convention => Ada;
 
       pragma Annotate
          (
@@ -401,7 +436,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_8 : Ligne_T with Address => Ligne_Intermediaire_8'Address;
+      Ligne_8 : Ligne_T
+         with
+            Address    => Ligne_Intermediaire_8'Address,
+            Import     => True,
+            Convention => Ada;
 
       --  La valeur contenu dans le tableau au
       --  croisement de la ligne et de la colonne.
@@ -627,7 +666,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       --  Le tableau de 8 bloc de 8 bits est transformé en un bloc
       --  de 32 bits brut.
-      Bloc_Brut : Bloc_32_Brut_T with Address => Bloc_Tmp'Address;
+      Bloc_Brut : Bloc_32_Brut_T
+         with
+            Address    => Bloc_Tmp'Address,
+            Import     => True,
+            Convention => Ada;
    begin
       Construire_Bloc
          (
@@ -663,7 +706,11 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
 
       Tmp  : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
       --  Le tableau de 32 bits est transformé en un bloc de 32 bits.
-      Brut : Bloc_32_Brut_T with Address => Tmp'Address;
+      Brut : Bloc_32_Brut_T
+         with
+            Address    => Tmp'Address,
+            Import     => True,
+            Convention => Ada;
    begin
       return Brut;
    end Transformer_En_Brut;

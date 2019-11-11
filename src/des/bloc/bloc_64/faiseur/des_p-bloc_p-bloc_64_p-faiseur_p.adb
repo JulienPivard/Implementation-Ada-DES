@@ -42,7 +42,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
       --  Transformation du bloc de 64 bits.
-      Resultat : Bloc_Intermediaire_T with Address => Brut'Address;
+      Resultat : Bloc_Intermediaire_T
+         with
+            Address    => Brut'Address,
+            Import     => True,
+            Convention => Ada;
 
       C_32     : Faiseur_32_R.Faiseur_Bloc_T;
    begin
@@ -107,7 +111,11 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
                (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => A_Droite))
          );
       --  Transformation du bloc de deux fois 32 en un seul de 64.
-      Brut : Bloc_64_Brut_T with Address => Resultat'Address;
+      Brut : Bloc_64_Brut_T
+         with
+            Address    => Resultat'Address,
+            Import     => True,
+            Convention => Ada;
    begin
       return Brut;
    end Transformer_En_Brut;

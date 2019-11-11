@@ -26,7 +26,11 @@ package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
 
-      Resultat : Table_Tmp_T with Address => Brut'Address;
+      Resultat : Table_Tmp_T
+         with
+            Address    => Brut'Address,
+            Import     => True,
+            Convention => Ada;
    begin
       Constructeur.Clef.Bits := Tableau_Bits_T (Resultat);
    end Construire_Clef;
