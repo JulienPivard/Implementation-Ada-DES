@@ -1,0 +1,10 @@
+--  vim:filetype=ada
+--  Dernière modification : Vendredi 04 octobre[10] 2019
+--  Auteur : PIVARD Julien
+
+pragma Initialize_Scalars;
+--  Initialise les scalaire sans valeur initial à une valeur prédéfinie,
+--  invalide si possible, ou une valeur définie dans le pragma.
+
+--  pragma Profile                      (Ravenscar);
+--  pragma Partition_Elaboration_Policy (Sequential);
