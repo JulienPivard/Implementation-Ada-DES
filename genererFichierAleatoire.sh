@@ -2,7 +2,7 @@
 # vim:foldmethod=marker:foldlevel=0
 # Changer les droits avec chmod u+x fichier
 
-# Dernière modification : Jeudi 11 avril[04] 2019
+# Dernière modification : Dimanche 17 novembre[11] 2019
 
 ###############################################################################
 #                   ___                             __                        #
@@ -18,6 +18,7 @@
 #                          écrit par : PIVARD Julien                          #
 #                       contact : pivardjulien@gmail.com                      #
 #                                  01/03/2018                                 #
+#                               Licence : GPLv3                               #
 #                                                                             #
 #              Générateur de fichier de taille multiple de 64 bits            #
 #(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)(=^.^=)#
@@ -459,7 +460,8 @@ exit "${ERREUR}";' ERR
 
     #}}}
 
-# Informations système              {{{
+#{{{            Informations système               #
+####################################################
 # Vérifie si le script à été lancé avec bash
 [[ -z "${BASH_VERSION}" ]] && BASH_MAJOR_VERSION='0' || BASH_MAJOR_VERSION="${BASH_VERSINFO[0]}"
 declare -r BASH_MAJOR_VERSION
