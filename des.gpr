@@ -207,7 +207,7 @@ project Des is
             null;
       end case;
 
-      for Default_Switches ("ada")     use Options_Builder;
+      for Default_Switches ("ada")              use Options_Builder;
       --  for Global_Configuration_Pragmas use "./config/gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
