@@ -758,7 +758,7 @@ do
         -)
             LONG_OPTARG="${OPTARG#*=}"
             case "${OPTARG}" in
-                taille )
+                taille=?* )
                     traitement_option_t "${LONG_OPTARG}"
                     ;;
                 fichier=?* )
