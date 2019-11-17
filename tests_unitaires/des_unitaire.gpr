@@ -1,4 +1,4 @@
---  Dernière modification : Mardi 23 avril[04] 2019
+--  Dernière modification : Dimanche 17 novembre[11] 2019
 --  auteur : PIVARD Julien
 with "aunit";
 with "../des.gpr";
@@ -32,6 +32,7 @@ project Des_Unitaire is
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
+   ----------------------------------------------------------------------------
    package Naming is
 
       --  Pour lier le nom dans le code et le nom du fichier de spec
@@ -40,7 +41,9 @@ project Des_Unitaire is
       --for Body ("MyPack.MyChild") use "mypack.mychild.body";
 
    end Naming;
+   ----------------------------------------------------------------------------
 
+   ----------------------------------------------------------------------------
    package Builder is
 
       --  Pour changer le nom du binaire de main_test_harnais à
@@ -48,20 +51,27 @@ project Des_Unitaire is
       for Executable ("main_test_harnais.adb") use Nom_Executable;
 
    end Builder;
+   ----------------------------------------------------------------------------
 
+   ----------------------------------------------------------------------------
    package Compiler is
 
       for Default_Switches ("Ada") use Options;
 
    end Compiler;
+   ----------------------------------------------------------------------------
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
    --  initialiser les variables globales ...
+   ----------------------------------------------------------------------------
    package Binder is
    end Binder;
+   ----------------------------------------------------------------------------
 
+   ----------------------------------------------------------------------------
    package Linker is
    end Linker;
+   ----------------------------------------------------------------------------
 
 end Des_Unitaire;

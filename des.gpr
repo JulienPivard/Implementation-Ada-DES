@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 11 novembre[11] 2019
+--  Dernière modification : Dimanche 17 novembre[11] 2019
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -165,11 +165,13 @@ project Des is
    --    install_name_tool -change <@executable_path/lib.dylib>
    --       </opt/local/lib/lib.dylib> <exefile>
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
+   ----------------------------------------------------------------------------
    package Documentation is
 
       for Documentation_Dir use "doc";
 
    end Documentation;
+   ----------------------------------------------------------------------------
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
@@ -182,6 +184,7 @@ project Des is
       --for Body ("MyPack.MyChild") use "mypack.mychild.body";
 
    end Naming;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gprbuild
    ----------------------------------------------------------------------------
@@ -213,6 +216,7 @@ project Des is
       for Executable ("client_ravenscar.adb")   use "executable_ravenscar";
 
    end Builder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
@@ -234,6 +238,7 @@ project Des is
       for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
@@ -253,6 +258,7 @@ project Des is
          );
 
    end Cross_Reference;
+   ----------------------------------------------------------------------------
 
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
@@ -260,6 +266,7 @@ project Des is
       for Default_Switches ("ada") use
          ("-rules", "-from=config/regles_de_codage");
    end Check;
+   ----------------------------------------------------------------------------
 
    --  Les options pour gnatprove
    --  report mode
@@ -271,6 +278,7 @@ project Des is
    package Prove is
       for Default_Switches ("Ada") use ("--report=fail");
    end Prove;
+   ----------------------------------------------------------------------------
 
    --  Uniquement pour ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
@@ -329,6 +337,7 @@ project Des is
 
       for Default_Switches ("Ada") use Options_Binder;
    end Binder;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
@@ -342,6 +351,7 @@ project Des is
       end case;
 
    end Linker;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour le formatage de sources
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
@@ -416,17 +426,20 @@ project Des is
             "-N"
          );
    end Pretty_Printer;
+   ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.
    ----------------------------------------------------------------------------
    package Ide is
       for Vcs_Kind use "Git";
    end Ide;
+   ----------------------------------------------------------------------------
 
    --  Indique quel makefile utiliser.
    ----------------------------------------------------------------------------
    package Make is
       for Makefile use "makefile";
    end Make;
+   ----------------------------------------------------------------------------
 
 end Des;
