@@ -169,12 +169,12 @@ Une description de la structure du projet.
 │   └── regles_de_codage    # Les règles de code pour gnatcheck
 │
 ├── des.gpr                     # La configuration du projet
+├── fichier_test.txt            # Un fichier de tests
 ├── genererFichierAleatoire.sh  # Générateur de fichier dont la taille
 │                               # est un multiple de 64 bits.
 ├── makefile
 ├── makefile.conf       # Configuration spécifique au projet.
 ├── src                 # Les sources de l'application
-├── test.txt            # Un fichier de tests
 │
 └── tests_unitaires
     ├── des_unitaire.gpr    # La configuration des tests unitaires
