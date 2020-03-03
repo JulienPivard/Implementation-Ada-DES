@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 17 novembre[11] 2019
+--  Dernière modification : Mardi 03 mars[03] 2020
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -142,7 +142,7 @@ project Des is
          null;
    end case;
 
-   --  gnatg applique -gnatwae et -gnatyg pour coller au style du code GNAT
+   --  gnatg : applique -gnatwae et -gnatyg pour coller au style du code GNAT
    case Strict is
       when "oui" =>
          Options := Options & ("-gnatg");
@@ -150,6 +150,7 @@ project Des is
          null;
    end case;
 
+   --  -gnatwe : Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
          Options := Options & ("-gnatwe");
@@ -193,7 +194,6 @@ project Des is
       --  -m : Recompilation minimum.
       --  -k : Va le plus loin possible lors de la compilation même si elle
       --       échoue.
-      --  -g : Active le mode debug.
       --  -C : Utilise un fichier de mapping pour améliorer les performances.
       --  -gantQ : Génère les ali et l'arbre de fichier même si la
       --           compilation échoue.
@@ -202,6 +202,7 @@ project Des is
       --  Pour changer le nom du binaire de client à executable après le use.
       case Mode_Compilation is
          when "debug" =>
+            --  -g : Active le mode debug.
             Options_Builder := Options_Builder & ("-g");
          when "release" =>
             null;
@@ -224,15 +225,15 @@ project Des is
 
       case Mode_Compilation is
          when "debug" =>
-            --  -gnateP Transforme les erreurs de catégorisation des
-            --  dépendances en avertissements. Une unité Pure ne peut
-            --  pas importer une unité Preelaborate.
-            --  -gnata active les assertions. Pragma : assert, debug,
-            --  Check, Precondition, et Postcondition
+            --  -gnateP : Transforme les erreurs de catégorisation des
+            --            dépendances en avertissements. Une unité Pure
+            --            ne peut pas importer une unité Preelaborate.
+            --  -gnata : active les assertions. Pragma : assert, debug,
+            --           Check, Precondition, et Postcondition
             for Default_Switches ("Ada") use
                Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
-            --  -gnatn Active les pragma Inline (optimisation)
+            --  -gnatn : Active les pragma Inline (optimisation)
             for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
       end case;
       for Local_Configuration_Pragmas use "./config/gnat.adc";
@@ -246,15 +247,16 @@ project Des is
 
       for Default_Switches ("Ada") use
          (
-            --  Affiche le type du parent pour chaque type dérivé rencontré.
             "-d",
-            --  Le nom du fichier est précédé par le dossier du
-            --  fichier source.
+            --  -d : Affiche le type du parent pour chaque type
+            --       dérivé rencontré.
             "-f",
-            --  N'affiche que les symboles inutilisé.
+            --  -f : Le nom du fichier est précédé par le dossier
+            --       du fichier source.
             "-u",
-            --  Génère un fichier de tag utilisable par vim
+            --  -u : N'affiche que les symboles inutilisé.
             "-v"
+            --  -v : Génère un fichier de tag utilisable par vim.
          );
 
    end Cross_Reference;
@@ -286,12 +288,12 @@ project Des is
    --  Configuration pour le binder
    ----------------------------------------------------------------------------
    package Binder is
-      --  -r : Affiche la liste des restrictions (pragma Restriction)
-      --       qui peuvent être appliqué aux unité courante.
       Options_Binder := ();
 
       case Verbeux is
          when "oui" =>
+            --  -r : Affiche la liste des restrictions (pragma Restriction)
+            --       qui peuvent être appliqué aux unité courante.
             Options_Binder := Options_Binder & ("-r");
          when "non" =>
             null;
@@ -299,13 +301,13 @@ project Des is
 
       case Mode_Compilation is
          when "debug" =>
+            --  -E : Active le stockage de la pile d'appel
+            --       de l'exception.
+            --  -Es : Active l'affichage lisible du tracé des
+            --        exceptions. Utile en conjonction avec -g
             Options_Binder := Options_Binder &
                (
-                  --  Active le stockage de la pile d'appel
-                  --  de l'exception.
                   "-E",
-                  --  Active l'affichage lisible du tracé des
-                  --  exceptions. Utile en conjonction avec -g
                   "-Es"
                );
          when "release" =>
@@ -316,9 +318,9 @@ project Des is
          when "oui" =>
             Options_Binder := Options_Binder &
                (
-                  --  Active l'enregistrement dynamique de
-                  --  l'usage de la pile.
                   "-u100"
+                  --  -u100 : Active l'enregistrement dynamique de
+                  --          l'usage de la pile.
                );
          when "non" =>
             null;
@@ -359,71 +361,71 @@ project Des is
    package Pretty_Printer is
       for Switches ("ada") use
          (
-            --  Active l'alignement des constructions :, :=, =>, at.
             "--alignment",
-            --  les noms doivent suivre la règle de casse mixte.
+            --  Active l'alignement des constructions :, :=, =>, at.
             "--name-mixed-case",
-            --  Les attributs doivent suivre la règle de casse mixte.
+            --  les noms doivent suivre la règle de casse mixte.
             "--attribute-mixed-case",
-            --  Les mots clef doivent être en minuscule.
+            --  Les attributs doivent suivre la règle de casse mixte.
             "--keyword-lower-case",
+            --  Les mots clef doivent être en minuscule.
+            "--enum-mixed-case",
             --  Les énumérations doivent suivre la règle de casse mixte.
             --  Outrepasse l'option -n
-            "--enum-mixed-case",
+            "--type-mixed-case",
             --  Les noms des type doivent suivre la règle de casse mixte.
             --  Outrepasse l'option -n
-            "--type-mixed-case",
+            "--number-mixed-case",
             --  Les noms des nombres doivent suivre la règle de casse mixte.
             --  Outrepasse l'option -n
-            "--number-mixed-case",
-            --  Les pragma doivent suivre la règle de casse mixte.
             "--pragma-mixed-case",
-            --  Les exceptions aux règles de casse.
+            --  Les pragma doivent suivre la règle de casse mixte.
             "--dictionary=./config/exception_case",
-            --  Indentation des commentaires suit les règles de gnat.
+            --  Les exceptions aux règles de casse.
             "--comments-gnat-indentation",
-            --  Obligatoirement deux espaces avant un caractère non blanc.
+            --  Indentation des commentaires suit les règles de gnat.
             "--comments-gnat-beginning",
-            --  N'ajoute pas l'identifiant en commentaire sur la ligne du end
+            --  Obligatoirement deux espaces avant un caractère non blanc.
             "--no-end-id",
-            --  loop et then sont mis sur une ligne séparé.
+            --  N'ajoute pas l'identifiant en commentaire sur la ligne du end
             "--separate-loop-then",
-            --  Les instructions avec use commencent sur une nouvelle ligne.
+            --  loop et then sont mis sur une ligne séparé.
             "--use-on-new-line",
-            --  Insère des lignes vide quand il le juge utile.
+            --  Les instructions avec use commencent sur une nouvelle ligne.
             "--insert-blank-lines",
-            --  Longueur maximum d'une ligne.
+            --  Insère des lignes vide quand il le juge utile.
             "--max-line-length=80",
-            --  Hauteur des indentations.
+            --  Longueur maximum d'une ligne.
             "--indentation=3",
-            --  Hauteur des indentations pour les continuité de lignes.
+            --  Hauteur des indentations.
             "--indent-continuation=3",
-            --  Ajoute des _ tous les x caractères 10000 => 10_000
+            --  Hauteur des indentations pour les continuité de lignes.
             "--decimal-grouping=3",
-            --  Ajoute des _ ce qui donne : 16#1000FFFE# => 16#1000_FFFE#
+            --  Ajoute des _ tous les x caractères 10000 => 10_000
             "--based-grouping=4",
-            --  Passe à la ligne avant la déclaration d'un record
+            --  Ajoute des _ ce qui donne : 16#1000FFFE# => 16#1000_FFFE#
             "--split-line-before-record",
+            --  Passe à la ligne avant la déclaration d'un record
+            "--split-line-before-op",
             --  Coupe la ligne avant l'opérateur dans les opérations si
             --  il y a besoin de couper.
-            "--split-line-before-op",
+            "--call_threshold=1",
             --  Si le nombre de paramètres associatif est supérieur alors
             --  on passe une ligne pour chacun.
-            "--call_threshold=1",
-            --  Même chose mais pour les paramètres sans association.
             "--par_threshold=1",
-            --  Chaque paramètres d'un agrégat associatif est sur sa ligne.
+            --  Même chose mais pour les paramètres sans association.
             "--vertical-named-aggregates",
-            --  Passe des lignes supplémentaires dans les case.
+            --  Chaque paramètres d'un agrégat associatif est sur sa ligne.
             "--vertical-case-alternatives",
-            --  Le fichier d'origine est sauvegardé.
+            --  Passe des lignes supplémentaires dans les case.
             "--replace-force-backup",
-            --  Fin de ligne unix.
+            --  Le fichier d'origine est sauvegardé.
             "--eol=unix",
-            --  Défini l'encodage des caractères du fichier.
+            --  Fin de ligne unix.
             "--wide-character-encoding=8",
-            --  Pas de tabulation dans les commentaires.
+            --  Défini l'encodage des caractères du fichier.
             "-N"
+            --  Pas de tabulation dans les commentaires.
          );
    end Pretty_Printer;
    ----------------------------------------------------------------------------
