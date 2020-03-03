@@ -305,11 +305,7 @@ project Des is
             --       de l'exception.
             --  -Es : Active l'affichage lisible du tracé des
             --        exceptions. Utile en conjonction avec -g
-            Options_Binder := Options_Binder &
-               (
-                  "-E",
-                  "-Es"
-               );
+            Options_Binder := Options_Binder & ("-E", "-Es");
          when "release" =>
             null;
       end case;
