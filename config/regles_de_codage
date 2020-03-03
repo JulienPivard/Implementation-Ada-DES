@@ -34,7 +34,7 @@
 --  Les déclarations local dans des blocs
 -R Declarations_In_Blocks
 --  Niveau maximum d'imbrication d'appel de sous-programme inline
-+R Deeply_Nested_Inlining:2
++R Deeply_Nested_Inlining:5
 --  Signal tous les paramètres avec des valeurs par défaut
 -R Default_Parameters
 --  Les structures avec un discriminant
@@ -233,7 +233,7 @@
 --  Pour les objets le premier paramètre est This
 -R Misnamed_Controlling_Parameters
 --  Pas de commentaire sur l'instruction begin
-+R Uncommented_BEGIN_In_Package_Bodies
+-R Uncommented_BEGIN_In_Package_Bodies
 
 --  Tasking  --
 --  Définition d'entrées multiple dans un objets protégé
