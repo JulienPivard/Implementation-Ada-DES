@@ -1,3 +1,5 @@
+with Ada.Unchecked_Conversion;
+
 with System;
 
 with Des_P.Bloc_P.Bloc_32_P.Faiseur_P;
@@ -41,12 +43,15 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
       for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
+      function Bloc_Brut_Vers_Bloc_Intermed is new Ada.Unchecked_Conversion
+         (
+            Source => Bloc_64_Brut_T,
+            Target => Bloc_Intermediaire_T
+         );
+
       --  Transformation du bloc de 64 bits.
-      Resultat : Bloc_Intermediaire_T
-         with
-            Address    => Brut'Address,
-            Import     => True,
-            Convention => Ada;
+      Resultat : constant Bloc_Intermediaire_T :=
+         Bloc_Brut_Vers_Bloc_Intermed (S => Brut);
 
       C_32     : Faiseur_32_R.Faiseur_Bloc_T;
    begin
@@ -100,9 +105,15 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
       for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
+      function Bloc_Intermed_Vers_Bloc_Brut is new Ada.Unchecked_Conversion
+         (
+            Source => Bloc_Intermediaire_T,
+            Target => Bloc_64_Brut_T
+         );
+
       C_32 : Faiseur_32_R.Faiseur_Bloc_T;
       --  Rassemblement des deux blocs de 32 bits brut.
-      Bloc_Intermediaire : Bloc_Intermediaire_T :=
+      Bloc_Intermediaire : constant Bloc_Intermediaire_T :=
          Bloc_Intermediaire_T'
          (
             Bloc_1 => C_32.Transformer_En_Brut
@@ -111,11 +122,8 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
                (Bloc => Bloc.Lire_Bloc (Bloc_G_Ou_D => A_Droite))
          );
       --  Transformation du bloc de deux fois 32 en un seul de 64.
-      Brut : Bloc_64_Brut_T
-         with
-            Address    => Bloc_Intermediaire'Address,
-            Import     => True,
-            Convention => Ada;
+      Brut : constant Bloc_64_Brut_T :=
+         Bloc_Intermed_Vers_Bloc_Brut (S => Bloc_Intermediaire);
    begin
       return Brut;
    end Transformer_En_Brut;

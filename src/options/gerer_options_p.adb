@@ -2,6 +2,7 @@ with Ada.Text_IO;
 --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
 with Ada.Directories;
 --  Interdit l'utilisation d'un pragma Pure ou Preelaborate
+with Ada.Unchecked_Conversion;
 
 with Des_P.Clef_P.Clef_64_I_P.Faiseur_I_P;
 with Des_P.Clef_P.Clef_64_P.Faiseur_P;
@@ -188,13 +189,16 @@ package body Gerer_Options_P is
       declare
          package Clef_I_R renames Des_P.Clef_P.Clef_64_I_P;
 
+         function Clef_Vers_Brut is new Ada.Unchecked_Conversion
+            (
+               Source => String,
+               Target => Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
+            );
+
          F_C_64    : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
 
-         Brut_Clef : Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
-            with
-               Address    => Clef'Address,
-               Import     => True,
-               Convention => Ada;
+         Brut_Clef : constant Clef_I_R.Faiseur_I_P.Clef_64_Brut_T :=
+            Clef_Vers_Brut (S => Clef);
          Clef_I    : constant Clef_I_R.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef
                (

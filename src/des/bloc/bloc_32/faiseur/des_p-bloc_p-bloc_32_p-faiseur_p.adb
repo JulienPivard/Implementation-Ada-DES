@@ -1,3 +1,5 @@
+with Ada.Unchecked_Conversion;
+
 with System;
 
 package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
@@ -24,11 +26,13 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
 
-      Resultat : Table_Tmp_T
-         with
-            Address    => Brut'Address,
-            Import     => True,
-            Convention => Ada;
+      function Brut_Vers_Table_Tmp is new Ada.Unchecked_Conversion
+         (
+            Source => Bloc_32_Brut_T,
+            Target => Table_Tmp_T
+         );
+
+      Resultat : constant Table_Tmp_T := Brut_Vers_Table_Tmp (S => Brut);
    begin
       Constructeur.Bloc.Bits := Tableau_Bits_T (Resultat);
    end Construire_Bloc;
@@ -207,12 +211,15 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
       for Bloc_Intermediaire_T'Bit_Order            use System.Low_Order_First;
       for Bloc_Intermediaire_T'Scalar_Storage_Order use System.Low_Order_First;
 
+      function Table_48_Vers_Bloc_Intermed is new Ada.Unchecked_Conversion
+         (
+            Source => Table_48_Bits_T,
+            Target => Bloc_Intermediaire_T
+         );
+
       --  Transformation du tableau en bloc de bits.
-      Bloc_Intermediaire : Bloc_Intermediaire_T
-         with
-            Address    => Table_48_Bits'Address,
-            Import     => True,
-            Convention => Ada;
+      Bloc_Intermediaire : constant Bloc_Intermediaire_T :=
+         Table_48_Vers_Bloc_Intermed (S => Table_48_Bits);
 
       --  Représentation final de la ligne.
       type Ligne_T is mod 2**2
@@ -230,6 +237,12 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Size                 => Ligne_T'Base'Size,
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
+
+      function Ligne_Intermed_Vers_Ligne is new Ada.Unchecked_Conversion
+         (
+            Source => Ligne_Intermediaire_T,
+            Target => Ligne_T
+         );
 
       --  Rassemble le bit de début et de fin
       --  pour former le numéro de la ligne.
@@ -254,11 +267,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_1 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_1'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_1 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_1);
 
       pragma Annotate
          (
@@ -280,11 +290,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_2 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_2'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_2 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_2);
 
       pragma Annotate
          (
@@ -306,11 +313,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_3 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_3'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_3 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_3);
 
       pragma Annotate
          (
@@ -332,11 +336,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_4 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_4'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_4 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_4);
 
       pragma Annotate
          (
@@ -358,11 +359,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_5 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_5'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_5 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_5);
 
       pragma Annotate
          (
@@ -384,11 +382,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_6 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_6'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_6 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_6);
 
       pragma Annotate
          (
@@ -410,11 +405,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_7 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_7'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_7 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_7);
 
       pragma Annotate
          (
@@ -436,11 +428,8 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Exempt_Off,
             "OTHERS_In_Aggregates"
          );
-      Ligne_8 : Ligne_T
-         with
-            Address    => Ligne_Intermediaire_8'Address,
-            Import     => True,
-            Convention => Ada;
+      Ligne_8 : constant Ligne_T :=
+         Ligne_Intermed_Vers_Ligne (S => Ligne_Intermediaire_8);
 
       --  La valeur contenu dans le tableau au
       --  croisement de la ligne et de la colonne.
@@ -664,13 +653,16 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             7 => S8 (Ligne_8, Bloc_Intermediaire.Colonne_8)
          );
 
+      function Bloc_Tmp_Vers_Bloc_Brut is new Ada.Unchecked_Conversion
+         (
+            Source => Bloc_32_Intermediaire_T,
+            Target => Bloc_32_Brut_T
+         );
+
       --  Le tableau de 8 bloc de 8 bits est transformé en un bloc
       --  de 32 bits brut.
-      Bloc_Brut : Bloc_32_Brut_T
-         with
-            Address    => Bloc_Tmp'Address,
-            Import     => True,
-            Convention => Ada;
+      Bloc_Brut : constant Bloc_32_Brut_T :=
+         Bloc_Tmp_Vers_Bloc_Brut (S => Bloc_Tmp);
    begin
       Construire_Bloc
          (
@@ -704,13 +696,15 @@ package body Des_P.Bloc_P.Bloc_32_P.Faiseur_P is
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
 
-      Tmp  : Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
+      function Table_Tmp_Vers_Bloc_Brut is new Ada.Unchecked_Conversion
+         (
+            Source => Table_Tmp_T,
+            Target => Bloc_32_Brut_T
+         );
+
+      Tmp  : constant Table_Tmp_T := Table_Tmp_T (Bloc.Bits);
       --  Le tableau de 32 bits est transformé en un bloc de 32 bits.
-      Brut : Bloc_32_Brut_T
-         with
-            Address    => Tmp'Address,
-            Import     => True,
-            Convention => Ada;
+      Brut : constant Bloc_32_Brut_T := Table_Tmp_Vers_Bloc_Brut (S => Tmp);
    begin
       return Brut;
    end Transformer_En_Brut;

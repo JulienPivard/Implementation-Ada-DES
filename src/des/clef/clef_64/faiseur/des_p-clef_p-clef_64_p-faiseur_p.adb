@@ -1,3 +1,5 @@
+with Ada.Unchecked_Conversion;
+
 with System;
 
 package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
@@ -26,11 +28,13 @@ package body Des_P.Clef_P.Clef_64_P.Faiseur_P is
             Pack                 => True,
             Scalar_Storage_Order => System.Low_Order_First;
 
-      Resultat : Table_Tmp_T
-         with
-            Address    => Brut'Address,
-            Import     => True,
-            Convention => Ada;
+      function Brut_Vers_Table_Tmp is new Ada.Unchecked_Conversion
+         (
+            Source => Interface_R.Clef_64_Brut_T,
+            Target => Table_Tmp_T
+         );
+
+      Resultat : constant Table_Tmp_T := Brut_Vers_Table_Tmp (S => Brut);
    begin
       Constructeur.Clef.Bits := Tableau_Bits_T (Resultat);
    end Construire_Clef;
