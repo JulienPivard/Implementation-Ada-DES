@@ -156,9 +156,9 @@ package body Gerer_Options_P is
       return Des_P.Clef_P.Clef_64_P.Clef_T
    is
       Position_Clef : constant Positive := (if Nb_Args = 3 then 3 else 2);
-      Clef_Brut     : constant String   :=
+      Clef          : constant String   :=
          Ada.Command_Line.Argument (Number => Position_Clef);
-      Taille_Clef   : constant Natural  := Clef_Brut'Size;
+      Taille_Clef   : constant Natural  := Clef'Size;
    begin
       --  La clef est un bloc de 64 bits
       if Taille_Clef /= 64 then
@@ -189,12 +189,12 @@ package body Gerer_Options_P is
          package Clef_I_R renames Des_P.Clef_P.Clef_64_I_P;
 
          F_C_64    : Des_P.Clef_P.Clef_64_P.Faiseur_P.Faiseur_Clef_T;
+
          Brut_Clef : Clef_I_R.Faiseur_I_P.Clef_64_Brut_T
             with
-               Address    => Clef_Brut'Address,
+               Address    => Clef'Address,
                Import     => True,
                Convention => Ada;
-
          Clef_I    : constant Clef_I_R.Clef_Interface_T'Class :=
             Des_P.Faiseur_P.Faire_Clef
                (

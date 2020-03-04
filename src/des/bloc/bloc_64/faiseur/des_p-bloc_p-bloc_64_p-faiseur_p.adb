@@ -102,7 +102,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
 
       C_32 : Faiseur_32_R.Faiseur_Bloc_T;
       --  Rassemblement des deux blocs de 32 bits brut.
-      Resultat : Bloc_Intermediaire_T :=
+      Bloc_Intermediaire : Bloc_Intermediaire_T :=
          Bloc_Intermediaire_T'
          (
             Bloc_1 => C_32.Transformer_En_Brut
@@ -113,7 +113,7 @@ package body Des_P.Bloc_P.Bloc_64_P.Faiseur_P is
       --  Transformation du bloc de deux fois 32 en un seul de 64.
       Brut : Bloc_64_Brut_T
          with
-            Address    => Resultat'Address,
+            Address    => Bloc_Intermediaire'Address,
             Import     => True,
             Convention => Ada;
    begin
