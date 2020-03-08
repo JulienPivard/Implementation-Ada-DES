@@ -26,7 +26,7 @@
 --  Les blocs de code dans des blocs (declare)
 -R Blocks
 --  Fixe le niveau de complexité des programmes Iniline
-+R Complex_Inlined_Subprograms:2
++R Complex_Inlined_Subprograms:5
 --  Signal toutes les expressions conditionnel Ada 2012
 -R Conditional_Expressions
 --  Signal toutes les occurrences de type contrôlé
