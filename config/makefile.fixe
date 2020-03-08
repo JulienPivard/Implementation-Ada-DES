@@ -1,0 +1,44 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Samedi 07 mars[03] 2020
+
+###############
+# Partie Fixe #
+###############
+
+COMPILATEUR	= gprbuild
+OPTCOMPILATEUR	= -d# -p
+CC		= $(COMPILATEUR) $(OPTCOMPILATEUR)
+
+RM		= rm
+OPTRM		= -vrf
+
+SORTIEDOC	= --output=$(FORMAT)
+# Options possible pour la compilation de la documentation.
+# -w Affiche des warnings pour tout toutes les docs oublié.
+# -l Cherche avant les déclarations plutôt que après.
+# -p Ajoute les private dans la documentation.
+OPTDOCUMENT	= -w --enable-build --no-subprojects $(SORTIEDOC)
+
+NOM_OPT_MODE	= -Xmode
+NOM_OPT_VERB	= -Xverbeux
+NOM_OPT_STRI	= -Xstrict
+NOM_OPT_WARN	= -Xwarn_sont_err
+NOM_OPT_STAK	= -Xafficher_utilisation_stack
+NOM_OPT_ELAB	= -Xafficher_ordre_elaboration
+
+OPT_GPR_PROD	= $(NOM_OPT_MODE)=release \
+		  $(NOM_OPT_VERB)=non $(NOM_OPT_STRI)=non \
+		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non
+
+GPR_MODE	= $(NOM_OPT_MODE)=$(MODE)
+GPR_VERBEUX	= $(NOM_OPT_VERB)=$(VERBEUX)
+GPR_STRICT	= $(NOM_OPT_STRI)=$(STRICT)
+GPR_W_SONT_E	= $(NOM_OPT_WARN)=$(WARN_DEVIENNENT_ERREURS)
+GPR_AFFICHE_S	= $(NOM_OPT_STAK)=$(AFFICHER_LA_STACK)
+GPR_AFFICHE_E	= $(NOM_OPT_ELAB)=$(AFFICHER_ORDRE_ELABORATION)
+
+OPTGPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
+		  $(GPR_AFFICHE_S) $(GPR_AFFICHE_E)
+
+OPTCOMPTAGE	= -l #-w
