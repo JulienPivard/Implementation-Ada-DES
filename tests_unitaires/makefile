@@ -9,6 +9,7 @@ SHELL		:= /bin/sh
 
 srcdir		:= .
 
+include ../config/makefile.fixe
 include ./makefile.conf
 include ../config/makefile.template
 
