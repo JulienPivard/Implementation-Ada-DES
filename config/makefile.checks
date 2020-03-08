@@ -24,18 +24,18 @@ endif
 
 # On notifie si le nom de l'app n'est pas changé
 ifeq ($(NOMAPP), nomapplication)
-    $(info makefile.conf:62:        Le nom du programme [NOMAPP] doit être changé)
+    $(info makefile.conf:62: ***    Le nom du programme [NOMAPP] doit être changé)
 endif
 
 # On notifie si le nom de l'app est vide.
 ifeq ($(NOMAPP), )
-    $(info makefile.conf:62:        Le nom du programme [NOMAPP] est vide)
+    $(info makefile.conf:62: ***    Le nom du programme [NOMAPP] est vide)
 endif
 
 # On vérifie que ACTIVER_DEBUG vaut bien [true|false]
 ifneq ($(ACTIVER_DEBUG), true)
   ifneq ($(ACTIVER_DEBUG), false)
-    $(info Dans makefile.conf:66: [ACTIVER_DEBUG] doit être true ou false)
+    $(info makefile.conf:66: *** [ACTIVER_DEBUG] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -43,7 +43,7 @@ endif
 # On vérifie que ACTIVER_VERB vaut bien [true|false]
 ifneq ($(ACTIVER_VERB), true)
   ifneq ($(ACTIVER_VERB), false)
-    $(info Dans makefile.conf:70: [ACTIVER_VERB] doit être true ou false)
+    $(info makefile.conf:70: *** [ACTIVER_VERB] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -51,7 +51,7 @@ endif
 # On vérifie que ACTIVER_STRICT vaut bien [true|false]
 ifneq ($(ACTIVER_STRICT), true)
   ifneq ($(ACTIVER_STRICT), false)
-    $(info Dans makefile.conf:74: [ACTIVER_STRICT] doit être true ou false)
+    $(info makefile.conf:74: *** [ACTIVER_STRICT] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -59,7 +59,7 @@ endif
 # On vérifie que ACTIVER_WARN_SONT_ERREURS vaut bien [true|false]
 ifneq ($(ACTIVER_WARN_SONT_ERREURS), true)
   ifneq ($(ACTIVER_WARN_SONT_ERREURS), false)
-    $(info Dans makefile.conf:78: [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
+    $(info makefile.conf:78: *** [ACTIVER_WARN_SONT_ERREURS] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -67,7 +67,7 @@ endif
 # On vérifie que ACTIVER_AFFICHER_LA_STACK vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_LA_STACK), true)
   ifneq ($(ACTIVER_AFFICHER_LA_STACK), false)
-    $(info Dans makefile.conf:82: [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
+    $(info makefile.conf:82: *** [ACTIVER_AFFICHER_LA_STACK] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -75,7 +75,7 @@ endif
 # On vérifie que ACTIVER_AFFICHER_ORDRE_ELABORATION vaut bien [true|false]
 ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
   ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), false)
-    $(info Dans makefile.conf:87: [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
+    $(info makefile.conf:87: *** [ACTIVER_AFFICHER_ORDRE_ELABORATION] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
