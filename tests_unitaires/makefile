@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 21 septembre[09] 2019
+# Dernière modification : Samedi 07 mars[03] 2020
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -13,8 +13,8 @@ include ./makefile.conf
 include ../config/makefile.template
 
 ###################
-.PHONY: $(CIBLECOMPILE)
-$(CIBLECOMPILE): build
+.PHONY: compiler
+compiler: build
 	@echo " ────────────────────────────────────────────"
 	@echo " [OK] Compilation des tests unitaires terminé"
 	@echo "  "
@@ -25,7 +25,7 @@ help:
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile les tests unitaire."
 	@echo "    - build"
-	@echo "    - $(CIBLECOMPILE)"
+	@echo "    - compiler"
 	@echo " - run			: Execute les tests unitaires"
 	@echo " "
 	@echo " -  clean		: Efface tous les fichiers généré par la compilation des tests unitaires sauf les exécutables."

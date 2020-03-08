@@ -1,12 +1,12 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 07 mars[03] 2020
+# Dernière modification : Dimanche 08 mars[03] 2020
 
 ###################
 # Point d'entrée #
 ###################
 .PHONY: all
-all: $(CIBLECOMPILE)
+all: compiler
 
 MAKEFILE_V	:= 2.1.12
 
@@ -27,7 +27,7 @@ endif
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
 ifeq ($(wildcard $(EXECUTABLE)), )
-    DEPEND	= $(CIBLECOMPILE)
+    DEPEND	= compiler
 else
     DEPEND	=
 endif

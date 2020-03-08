@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 07 mars[03] 2020
+# Dernière modification : Dimanche 08 mars[03] 2020
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -15,26 +15,26 @@ include ./config/makefile.checks
 include ./config/makefile.template
 
 ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
-    DEPEND	= $(CIBLECOMPILE)
+    DEPEND	= compiler
 else
     DEPEND	=
 endif
 
 ifeq ($(wildcard $(EXECUTABLE_TAC)), )
-    DEPEND	= $(CIBLECOMPILE)
+    DEPEND	= compiler
 else
     DEPEND	=
 endif
 
 ifeq ($(wildcard $(EXECUTABLE_RAV)), )
-    DEPEND	= $(CIBLECOMPILE)
+    DEPEND	= compiler
 else
     DEPEND	=
 endif
 
 ###################
-.PHONY: $(CIBLECOMPILE)
-$(CIBLECOMPILE): build
+.PHONY: compiler
+compiler: build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
@@ -125,7 +125,7 @@ help:
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
-	@echo "    - $(CIBLECOMPILE)"
+	@echo "    - compiler"
 	@echo " - prod			: Compile avec l'option release active."
 	@echo " - run			: Execute l'application avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
