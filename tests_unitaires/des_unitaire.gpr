@@ -20,6 +20,8 @@ project Des_Unitaire is
    for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
    for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
 
+   for Create_Missing_Dirs       use "True";
+
    Options := Des.Options &
       (
          --  -gnata active les assertions. Pragma assert, debug, Check,
