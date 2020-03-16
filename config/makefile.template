@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 08 mars[03] 2020
+# Dernière modification : Lundi 16 mars[03] 2020
 
 ###################
 # Point d'entrée #
@@ -8,7 +8,7 @@
 .PHONY: all
 all: compiler
 
-MAKEFILE_V	:= 2.2.3
+MAKEFILE_V	:= 2.2.5
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin

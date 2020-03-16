@@ -117,10 +117,6 @@ project Des is
          "-fstack-check",
          --  fstack-check : Active les vérification de la stack pour
          --                 éviter les stacks overflow.
-         "-gnatel",
-         --  gnatel : Active les messages d'informations signalant les
-         --           ajout implicite de pragma Elaborate et
-         --           Elaborate_All dans le code.
          "-gnatw.d",
          --  gnatw.d : Ajoute un tag au message de warning et d'info
          --            pour savoir quel réglages provoque le message.
@@ -144,6 +140,16 @@ project Des is
    case Verbeux is
       when "oui" =>
          Options := Options & ("-gnatu", "-gnatv", "-gnatR3");
+      when "non" =>
+         null;
+   end case;
+
+   --  gnatel : Active les messages d'informations signalant les
+   --           ajout implicite de pragma Elaborate et
+   --           Elaborate_All dans le code.
+   case Afficher_Ordre_Elaboration is
+      when "oui" =>
+         Options := Options & ("-gnatel");
       when "non" =>
          null;
    end case;
