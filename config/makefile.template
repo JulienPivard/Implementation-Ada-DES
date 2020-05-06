@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 16 mars[03] 2020
+# Dernière modification : Mercredi 06 mai[05] 2020
 
 ###################
 # Point d'entrée #
@@ -80,12 +80,12 @@ distclean: clean
 	@echo " ────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
-	-$(RM) $(OPTRM) ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S) \
-	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S) \
-	                ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T) \
-	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T) \
-	                ./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R) \
-	                ./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)
+	-$(RM) $(OPTRM) "./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S)" \
+	                "./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S)" \
+	                "./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_T)" \
+	                "./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T)" \
+	                "./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_R)" \
+	                "./$(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)"
    endif
 endif
 
