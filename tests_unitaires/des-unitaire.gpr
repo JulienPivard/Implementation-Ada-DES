@@ -1,9 +1,9 @@
---  Dernière modification : Dimanche 17 novembre[11] 2019
+--  Dernière modification : Jeudi 16 juillet[07] 2020
 --  auteur : PIVARD Julien
 with "aunit";
 with "../des.gpr";
 
-project Des_Unitaire is
+project Des.Unitaire is
 
    Fichier_Principal             := "main_test_harnais.adb";
    Nom_Executable                := "test_unitaire_executable";
@@ -63,4 +63,4 @@ project Des_Unitaire is
    package Ide    renames Des.Ide;
    ----------------------------------------------------------------------------
 
-end Des_Unitaire;
+end Des.Unitaire;
