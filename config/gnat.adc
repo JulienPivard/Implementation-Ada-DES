@@ -1,5 +1,5 @@
 --  vim:filetype=ada
---  Dernière modification : Lundi 16 mars[03] 2020
+--  Dernière modification : Samedi 20 février[02] 2021
 --  Auteur : PIVARD Julien
 
 pragma Initialize_Scalars;
@@ -24,3 +24,10 @@ pragma Overflow_Mode
 
 --  pragma Profile                      (Ravenscar);
 --  pragma Partition_Elaboration_Policy (Sequential);
+
+pragma License (Modified_GPL);
+--  Licence appliquée au code, valeur possible :
+--   - Unrestricted (Compatible avec tout)
+--   - GPL           (Ne peut pas etre inclut par des Restricted)
+--   - Modified_GPL  (Peut etre inclut par des restricted)
+--   - Restricted    (Ne peut pas inclure de GPL)
