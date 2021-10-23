@@ -147,6 +147,8 @@ help:
 	@echo "    - avec_find_detail"
 	@echo "    - avec_cloc_detail"
 	@echo " "
+	@echo " - maj_sous_modules	: Met à jour les sous modules"
+	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
 	@echo " "
 	@echo " - chiffrer		: Chiffre le fichier donné par VARNOMFICHIER dans makefile.conf:100"
