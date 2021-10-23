@@ -1,4 +1,4 @@
---  Dernière modification : Lundi 16 mars[03] 2020
+--  Dernière modification : Samedi 23 octobre[10] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -6,7 +6,7 @@
 project Des is
 
    --  Les énumérations sont des types accepté.
-   type Mode_Compilation_T    is ("debug", "release");
+   type Mode_Compilation_T    is ("debug",  "dev", "release");
 
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
@@ -19,7 +19,7 @@ project Des is
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : Mode_Compilation_T    := External ("mode",    "debug");
+   Mode_Compilation  : Mode_Compilation_T    := External ("mode",    "dev");
    Verbeux           : Verbeux_T             := External ("verbeux", "non");
    Strict            : Strict_T              := External ("strict",  "non");
 
@@ -216,7 +216,7 @@ project Des is
          when "debug" =>
             --  -g : Active le mode debug.
             Options_Builder := Options_Builder & ("-g");
-         when "release" =>
+         when "release" | "dev" =>
             null;
       end case;
 
@@ -236,18 +236,25 @@ project Des is
    package Compiler is
 
       case Mode_Compilation is
+         when "dev" =>
+            --  -gnateP : Transforme les erreurs de catégorisation des
+            --            dépendances en avertissements. Une unité Pure
+            --            ne peut pas importer une unité Preelaborate.
+            --  -gnata : active les assertions. Pragma : assert, debug,
+            --           Check, Precondition, et Postcondition
+            Options := Options & ("-O0", "-gnata", "-gnateP");
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
             --            dépendances en avertissements. Une unité Pure
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            for Default_Switches ("Ada") use
-               Options & ("-g", "-O0", "-gnata", "-gnateP");
+            Options := Options & ("-g", "-O0", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
-            for Default_Switches ("Ada") use Options & ("-O3", "-gnatn");
+            Options := Options & ("-O3", "-gnatn");
       end case;
+      for Default_Switches ("Ada")    use Options;
       for Local_Configuration_Pragmas use "./config/gnat.adc";
 
    end Compiler;
@@ -312,6 +319,10 @@ project Des is
       end case;
 
       case Mode_Compilation is
+         when "dev" =>
+            --  -E : Active le stockage de la pile d'appel
+            --       de l'exception.
+            Options_Binder := Options_Binder & ("-E");
          when "debug" =>
             --  -E : Active le stockage de la pile d'appel
             --       de l'exception.
@@ -356,7 +367,7 @@ project Des is
       case Mode_Compilation is
          when "debug" =>
             for Default_Switches ("ada") use ("-g");
-         when "release" =>
+         when "release" | "dev" =>
             null;
       end case;
 

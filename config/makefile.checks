@@ -4,7 +4,7 @@
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
-    MODE_COMPILE	= false
+    MODE_COMPILE	= dev
 endif
 ifeq ($(ACTIVER_VERB), )
     ACTIVER_VERB	= false
@@ -33,10 +33,12 @@ ifeq ($(NOMAPP), )
 endif
 
 # On vérifie que MODE_COMPILE vaut bien [true|false]
-ifneq ($(MODE_COMPILE), true)
-  ifneq ($(MODE_COMPILE), false)
-    $(info makefile.conf:39: *** [MODE_COMPILE] doit être true ou false)
-    $(error Compilation impossible)
+ifneq ($(MODE_COMPILE), dev)
+  ifneq ($(MODE_COMPILE), rel)
+    ifneq ($(MODE_COMPILE), deb)
+      $(info makefile.conf:39: *** [MODE_COMPILE] doit être dev rel, ou deb)
+      $(error Compilation impossible)
+    endif
   endif
 endif
 
@@ -81,10 +83,12 @@ ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
 endif
 
 # Pour activer le mode debug
-ifeq ($(MODE_COMPILE), true)
+ifeq ($(MODE_COMPILE), deb)
     MODE	= debug
-else
+else ifeq ($(MODE_COMPILE), rel)
     MODE	= release
+else
+    MODE	= dev
 endif
 
 # Pour activer le mode verbose
