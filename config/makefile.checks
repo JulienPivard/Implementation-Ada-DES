@@ -130,3 +130,37 @@ endif
 ifeq ($(NIVEAU_PREUVE), )
     NIVEAU_PREUVE	= 0
 endif
+
+# Vérification de la configuration du mode d'exécution
+ifeq ($(MODE_EXECUTION_PREUVE), )
+    MODE_EXECUTION_PREUVE	= check
+endif
+
+# Vérification de la configuration des messages
+ifeq ($(AFFICHAGE_MESSAGES), )
+    AFFICHAGE_MESSAGES	= fail
+endif
+
+# Vérification de la valeur du niveau de preuve
+ifeq ($(NIVEAU_PREUVE), $(filter $(NIVEAU_PREUVE), 0 1 2 3 4))
+    NIVEAU	= --level=$(NIVEAU_PREUVE)
+else
+    $(info makefile.conf:58 *** [NIVEAU_PREUVE] Le niveau doit etre entre 0 et 4)
+    $(error Compilation impossible)
+endif
+
+# Vérification de la valeur de l'affichage des messages de gnatprove
+ifneq ($(AFFICHAGE_MESSAGES), $(filter $(AFFICHAGE_MESSAGES), fail all provers statistics))
+    $(info makefile.conf:61: *** [AFFICHAGE_MESSAGES] doit être fail, all, provers ou statistics)
+    $(error Compilation impossible)
+else
+    RAPPORT	= --report=$(AFFICHAGE_MESSAGES)
+endif
+
+# Vérification de la valeur du mode d'exaction de gnatprove
+ifneq ($(MODE_EXECUTION_PREUVE), $(filter $(MODE_EXECUTION_PREUVE), check check_all stone flow bronze prove all silver gold))
+    $(info makefile.conf:68: *** [MODE_EXECUTION_PREUVE] doit être check, check_all/stone, flow/bronze, prove ou all/silver/gold)
+    $(error Compilation impossible)
+else
+    MODE_EXE	= --mode=$(MODE_EXECUTION_PREUVE)
+endif
