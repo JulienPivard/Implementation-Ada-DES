@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 08 mars[03] 2020
+# Dernière modification : Vendredi 11 juin[06] 2021
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -14,6 +14,8 @@ include ./makefile.conf
 include ./config/makefile.checks
 include ./config/makefile.template
 
+# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
+# en dépendance.
 ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
     DEPEND	= compiler
 else
@@ -112,7 +114,7 @@ check:
 ###################
 .PHONY: pretty
 pretty:
-	gnatpp -P$(GPR) $(Fic)
+	gnatpp -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
@@ -130,13 +132,13 @@ help:
 	@echo " - run			: Execute l'application avec les paramètres défini."
 	@echo " - doc			: Génère la documentation du programme."
 	@echo " "
-	@echo " -  clean		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
+	@echo " - clean 		: Efface tous les fichiers généré par le compilateur sauf les exécutables."
 	@echo " - distclean		: Efface tous les fichiers généré par le compilateur."
 	@echo " - cleandoc		: Supprime la documentation généré."
 	@echo " "
 	@echo " -  check		: Lance la vérification des règles de programmation sur les sources."
 	@echo " -  prove		: Exécute l'outil gnatprove sur les fichiers sources."
-	@echo " - pretty		: Reformate le fichier désigné par Fic=/nom/du/fichier."
+	@echo " - pretty		: Reformate le fichier désigné par Fichier=/nom/du/fichier."
 	@echo " "
 	@echo " - compter		: Compte le nombre de lignes de code source."
 	@echo "    - avec_find"

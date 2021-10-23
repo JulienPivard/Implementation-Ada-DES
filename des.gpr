@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 23 octobre[10] 2021
+--  Dernière modification : Dimanche 24 octobre[10] 2021
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -19,18 +19,17 @@ project Des is
    --  À utiliser avec
    --  -d pour afficher la progression et -p pour créer les dossier
    --  gprbuild -d -p -Pbuild.gpr -Xmode=release
-   Mode_Compilation  : Mode_Compilation_T    := External ("mode",    "dev");
-   Verbeux           : Verbeux_T             := External ("verbeux", "non");
-   Strict            : Strict_T              := External ("strict",  "non");
+   Mode_Compilation  : Mode_Compilation_T := External ("mode",    "dev");
+   Verbeux           : Verbeux_T          := External ("verbeux", "non");
+   Strict            : Strict_T           := External ("strict",  "non");
 
    Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
    Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
-      External ("warn_sont_err", "non");
+      External ("warn_sont_err",               "non");
    Afficher_Ordre_Elaboration : Afficher_Ordre_Elab_T :=
-      External ("afficher_ordre_elaboration", "non");
+      External ("afficher_ordre_elaboration",  "non");
 
-   --  Le nom du fichier qui contient la procédure principale.
    Fichiers_Principaux := ();
    Fichiers_Principaux := Fichiers_Principaux & ("client_sequentiel.adb");
    Fichiers_Principaux := Fichiers_Principaux & ("client_taches.adb");
@@ -47,6 +46,7 @@ project Des is
    for Object_Dir                use "obj/" & Mode_Compilation;
    for Exec_Dir                  use "bin/" & Mode_Compilation;
 
+   --  for Target                    use "powerpc-wrs-vxworks";
    for Create_Missing_Dirs       use "True";
 
    --  https://gcc.gnu.org/onlinedocs/gcc-4.7.4/gnat_ugn_unw/index.html
@@ -67,12 +67,11 @@ project Des is
    --  m : Taille maximum des lignes 79
    --  n : Vérifie la casse des noms standard
    --  O : Override doit être marqué
+   --  p : vérifie la casse des pragma
    --  r : Vérifie que la casse des identificateurs est cohérente tout le long
    --  s : Vérifie que tout corps possède une partie spécification séparée
    --  S : Pas de code sur la même ligne que then ou else
    --  t : Les espaces dans les lignes
-   --  n : vérifie la casse des entités standard
-   --  p : vérifie la casse des pragma
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
    Options :=
@@ -86,8 +85,9 @@ project Des is
          --  gnatU : Permet de marquer les messages erreurs
          --          avec le tag error:
          "-gnat2012",
-         --  Vérification du style utilisé (longueur ligne, espacement ...).
+         --  Active les fonctionnalité Ada 2012.
          "-gnatyy",
+         --  Vérification du style utilisé (longueur ligne, espacement ...).
          --  gnatyy : équivaut à 3aAbcefhiklmnprst
          "-gnatyBdOSux",
          "-gnatw.e",
@@ -180,9 +180,7 @@ project Des is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
-
       for Documentation_Dir use "doc";
-
    end Documentation;
    ----------------------------------------------------------------------------
 
@@ -190,12 +188,10 @@ project Des is
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
    ----------------------------------------------------------------------------
    package Naming is
-
       --  Pour lier le nom dans le code et le nom du fichier de spec
       --for Spec ("MyPack.MyChild") use "mypack.mychild.spec";
       --  Même chose mais pour le corps.
       --for Body ("MyPack.MyChild") use "mypack.mychild.body";
-
    end Naming;
    ----------------------------------------------------------------------------
 
@@ -220,21 +216,20 @@ project Des is
             null;
       end case;
 
-      for Default_Switches ("ada")              use Options_Builder;
+      for Default_Switches ("Ada")  use Options_Builder;
       --  for Global_Configuration_Pragmas use "./config/gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
       for Executable ("client_taches.adb")      use "executable_taches";
       for Executable ("client_ravenscar.adb")   use "executable_ravenscar";
-
+      --  for Executable_Suffix         use ".exe";
    end Builder;
    ----------------------------------------------------------------------------
 
    --  Configuration pour le compiler
    ----------------------------------------------------------------------------
    package Compiler is
-
       case Mode_Compilation is
          when "dev" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
@@ -254,16 +249,15 @@ project Des is
             --  -gnatn : Active les pragma Inline (optimisation)
             Options := Options & ("-O3", "-gnatn");
       end case;
+
       for Default_Switches ("Ada")    use Options;
       for Local_Configuration_Pragmas use "./config/gnat.adc";
-
    end Compiler;
    ----------------------------------------------------------------------------
 
    --  Configuration pour gnatxref
    ----------------------------------------------------------------------------
    package Cross_Reference is
-
       for Default_Switches ("Ada") use
          (
             "-d",
@@ -277,14 +271,13 @@ project Des is
             "-v"
             --  -v : Génère un fichier de tag utilisable par vim.
          );
-
    end Cross_Reference;
    ----------------------------------------------------------------------------
 
    --  Pour vérifier que les règles de codage sont bien suivis :
    ----------------------------------------------------------------------------
    package Check is
-      for Default_Switches ("ada") use
+      for Default_Switches ("Ada") use
          ("-rules", "-from=config/regles_de_codage");
    end Check;
    ----------------------------------------------------------------------------
@@ -301,7 +294,7 @@ project Des is
    end Prove;
    ----------------------------------------------------------------------------
 
-   --  Uniquement pour ada.
+   --  Uniquement pour Ada.
    --  Vas créer des fichiers « sources » pour élaborer les interruptions
    --  initialiser les variables globales ...
    --  Configuration pour le binder
@@ -317,7 +310,7 @@ project Des is
          when "non" =>
             null;
       end case;
-
+      -----------------------------------------------
       case Mode_Compilation is
          when "dev" =>
             --  -E : Active le stockage de la pile d'appel
@@ -363,14 +356,12 @@ project Des is
    --  Configuration pour le Linker
    ----------------------------------------------------------------------------
    package Linker is
-
       case Mode_Compilation is
          when "debug" =>
-            for Default_Switches ("ada") use ("-g");
+            for Default_Switches ("Ada") use ("-g");
          when "release" | "dev" =>
             null;
       end case;
-
    end Linker;
    ----------------------------------------------------------------------------
 
@@ -378,7 +369,7 @@ project Des is
    --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
    ----------------------------------------------------------------------------
    package Pretty_Printer is
-      for Switches ("ada") use
+      for Switches ("Ada") use
          (
             "--alignment",
             --  Active l'alignement des constructions :, :=, =>, at.

@@ -1,13 +1,13 @@
---  Dernière modification : Jeudi 16 juillet[07] 2020
+--  Dernière modification : Dimanche 24 octobre[10] 2021
 --  auteur : PIVARD Julien
 with "aunit";
 with "../des.gpr";
 
 project Des.Unitaire is
 
-   Fichier_Principal             := "main_test_harnais.adb";
-   Nom_Executable                := "test_unitaire_executable";
-   Nom_Sous_Dossier_Compil       := "tests_unitaire";
+   Fichier_Principal       := "main_test_harnais.adb";
+   Nom_Executable          := "test_unitaire_executable";
+   Nom_Sous_Dossier_Compil := "tests_unitaire";
 
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use (Fichier_Principal);

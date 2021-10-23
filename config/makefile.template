@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Mercredi 06 mai[05] 2020
+# Dernière modification : Vendredi 18 juin[06] 2021
 
 ###################
 # Point d'entrée #
@@ -17,12 +17,14 @@ GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
 ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
     PATH		:= $(GNAT_BIN_PERSO):$(PATH)
-    $(info  Utilisation de bin GNAT personnalisé)
+    $(info  Utilisation de bin GNAT personnalisé [$(GNAT_BIN_PERSO)])
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
     PATH		:= $(GNAT_BIN_MACOS):$(PATH)
 else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
     PATH		:= $(GNAT_BIN_LINUX):$(PATH)
 endif
+
+$(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
