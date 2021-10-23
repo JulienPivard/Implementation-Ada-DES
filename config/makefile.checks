@@ -1,10 +1,10 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 08 mars[03] 2020
+# Dernière modification : Samedi 23 octobre[10] 2021
 
 # Les options sont désactivée si vide
-ifeq ($(ACTIVER_DEBUG), )
-    ACTIVER_DEBUG	= false
+ifeq ($(MODE_COMPILE), )
+    MODE_COMPILE	= false
 endif
 ifeq ($(ACTIVER_VERB), )
     ACTIVER_VERB	= false
@@ -32,10 +32,10 @@ ifeq ($(NOMAPP), )
     $(info makefile.conf:35: ***    Le nom du programme [NOMAPP] est vide)
 endif
 
-# On vérifie que ACTIVER_DEBUG vaut bien [true|false]
-ifneq ($(ACTIVER_DEBUG), true)
-  ifneq ($(ACTIVER_DEBUG), false)
-    $(info makefile.conf:39: *** [ACTIVER_DEBUG] doit être true ou false)
+# On vérifie que MODE_COMPILE vaut bien [true|false]
+ifneq ($(MODE_COMPILE), true)
+  ifneq ($(MODE_COMPILE), false)
+    $(info makefile.conf:39: *** [MODE_COMPILE] doit être true ou false)
     $(error Compilation impossible)
   endif
 endif
@@ -81,7 +81,7 @@ ifneq ($(ACTIVER_AFFICHER_ORDRE_ELABORATION), true)
 endif
 
 # Pour activer le mode debug
-ifeq ($(ACTIVER_DEBUG), true)
+ifeq ($(MODE_COMPILE), true)
     MODE	= debug
 else
     MODE	= release
