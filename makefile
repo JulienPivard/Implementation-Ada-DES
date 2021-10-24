@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 11 juin[06] 2021
+# Dernière modification : Dimanche 24 octobre[10] 2021
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -16,7 +16,7 @@ include ./config/makefile.template
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
-ifeq ($(wildcard $(EXECUTABLE_SEQ)), )
+ifeq ($(wildcard $(RESLT_COMPIL)), )
     DEPEND	= compiler
 else
     DEPEND	=
@@ -51,7 +51,7 @@ prod:
 chiffrer: $(DEPEND) $(VARNOMFICHIER)
 	@echo "───────────────────────────────"
 	@echo "Chiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSCHIFFRE)
+	$(RESLT_COMPIL) $(ARGSCHIFFRE)
 	$(EXECUTABLE_TAC) $(ARGSCHIFFRE)
 	$(EXECUTABLE_RAV) $(ARGSCHIFFRE)
 
@@ -70,7 +70,7 @@ dechiffrer: $(DEPEND) $(NOM_FIC_CHIFFRE_S) \
 	$(NOM_FIC_CHIFFRE_T) $(NOM_FIC_CHIFFRE_R)
 	@echo "───────────────────────────────"
 	@echo "Déchiffrement"
-	$(EXECUTABLE_SEQ) $(ARGSDECHIFFRES)
+	$(RESLT_COMPIL) $(ARGSDECHIFFRES)
 	$(EXECUTABLE_TAC) $(ARGSDECHIFFRET)
 	$(EXECUTABLE_RAV) $(ARGSDECHIFFRER)
 

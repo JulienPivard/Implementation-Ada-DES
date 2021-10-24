@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 23 octobre[10] 2021
+# Dernière modification : Dimanche 24 octobre[10] 2021
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )

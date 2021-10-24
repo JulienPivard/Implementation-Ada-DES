@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 18 juin[06] 2021
+# Dernière modification : Dimanche 24 octobre[10] 2021
 
 ###################
 # Point d'entrée #
@@ -28,7 +28,7 @@ $(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
-ifeq ($(wildcard $(EXECUTABLE)), )
+ifeq ($(wildcard $(CHEMIN_RESLT)), )
     DEPEND	= compiler
 else
     DEPEND	=
@@ -38,7 +38,7 @@ ifeq ($(CHEMIN_OBJET), )
     $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
 endif
-ifeq ($(CHEMIN_EXEC), )
+ifeq ($(CHEMIN_RESLT), )
     $(info makefile.conf:12: *** Le nom du dossier des exécutables est vide)
     $(error Compilation impossible)
 endif
@@ -46,7 +46,7 @@ endif
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(EXECUTABLE) $(ARGUMENTSAPPLI)
+	$(CHEMIN_RESLT) $(ARGUMENTSAPPLI)
 
 ###################
 .PHONY: version_makefile
@@ -78,7 +78,7 @@ distclean: clean
 	@echo " ┌──────────────────────────────────────────────────────────────┐"
 	@echo " │ Effacement des fichiers executable généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) "./$(CHEMIN_EXEC)"
+	-$(RM) $(OPTRM) "./$(CHEMIN_RESLT)"
 	@echo " ────────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
