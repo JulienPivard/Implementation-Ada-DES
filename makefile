@@ -109,7 +109,7 @@ doc: $(FAIRE_INITIALISATION)
 ###################
 .PHONY: prove
 prove: $(FAIRE_INITIALISATION)
-	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
+	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
