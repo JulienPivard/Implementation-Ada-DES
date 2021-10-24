@@ -39,7 +39,7 @@ ifeq ($(CHEMIN_OBJET), )
     $(error Compilation impossible)
 endif
 ifeq ($(CHEMIN_RESLT), )
-    $(info makefile.conf:12: *** Le nom du dossier des exécutables est vide)
+    $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
     $(error Compilation impossible)
 endif
 
@@ -75,11 +75,11 @@ clean:
 ###################
 .PHONY: distclean
 distclean: clean
-	@echo " ┌──────────────────────────────────────────────────────────────┐"
-	@echo " │ Effacement des fichiers executable généré par la compilation │"
-	@echo " └──────────────────────────────────────────────────────────────┘"
+	@echo " ┌───────────────────────────────────────────────────────────┐"
+	@echo " │ Effacement des fichiers exe/lib généré par la compilation │"
+	@echo " └───────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) "./$(CHEMIN_RESLT)"
-	@echo " ────────────────────────────────────────────────────────────────"
+	@echo " ─────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
 	-$(RM) $(OPTRM) "./$(VARNOMFICHIER).$(EXTENSION_CHIFFRE_S)" \
