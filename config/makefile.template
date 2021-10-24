@@ -34,6 +34,11 @@ ifeq ($(CHEMIN_RESLT), )
     $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
     $(error Compilation impossible)
 endif
+ifeq ($(CHEMIN_ALI), )
+    $(info makefile.conf:13: *** Le nom du dossier des ali est vide)
+    $(error Compilation impossible)
+endif
+
 # On liste les sous modules en éliminant le premier caractère si c'est + ou U
 # + signal un sous module mis à jour. U signal un conflit de merge.
 PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
@@ -46,6 +51,12 @@ endif
 
 $(info )
 
+###################
+.PHONY: version
+version:
+	$(COMPILATEUR) --version
+	gnatmake --version
+	gnat --version
 
 ###################
 .PHONY: version_makefile
