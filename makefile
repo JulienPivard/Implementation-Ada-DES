@@ -48,7 +48,7 @@ compiler: build
 
 ###################
 .PHONY: prod
-prod:
+prod: $(FAIRE_INITIALISATION)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 
 ###################
@@ -103,22 +103,22 @@ fichier_comparer: $(DEPEND) $(NOM_FIC_DECHIFFRE_S) $(NOM_FIC_DECHIFFRE_T) \
 
 ###################
 .PHONY: doc
-doc:
+doc: $(FAIRE_INITIALISATION)
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
-prove:
+prove: $(FAIRE_INITIALISATION)
 	gnatprove -P$(GPR) $(OPTGPR) --level=$(NIVEAU_PREUVE) --report=all
 
 ###################
 .PHONY: check
-check:
+check: $(FAIRE_INITIALISATION)
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
-pretty:
+pretty: $(FAIRE_INITIALISATION)
 	gnatpp -P$(GPR) $(Fichier)
 
 ###################

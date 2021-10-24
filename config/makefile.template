@@ -84,7 +84,7 @@ maj_sous_modules:
 
 ###################
 .PHONY: build
-build:
+build: $(FAIRE_INITIALISATION)
 	@echo "  "
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
