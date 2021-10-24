@@ -35,6 +35,11 @@ else
 endif
 
 ###################
+.PHONY: run
+run: $(DEPEND)
+	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+
+###################
 .PHONY: compiler
 compiler: build
 	@echo " ───────────────────────────────"

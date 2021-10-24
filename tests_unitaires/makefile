@@ -13,6 +13,14 @@ include ../config/makefile.fixe
 include ./makefile.conf
 include ../config/makefile.template
 
+# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
+# en dépendance.
+ifeq ($(wildcard $(RESLT_COMPIL)), )
+    DEPEND	= compiler
+else
+    DEPEND	=
+endif
+
 ###################
 .PHONY: compiler
 compiler: build

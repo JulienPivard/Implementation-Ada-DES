@@ -26,14 +26,6 @@ endif
 
 $(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
 
-# Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
-# en dépendance.
-ifeq ($(wildcard $(CHEMIN_RESLT)), )
-    DEPEND	= compiler
-else
-    DEPEND	=
-endif
-
 ifeq ($(CHEMIN_OBJET), )
     $(info makefile.conf:11: *** Le nom du dossier des objets est vide)
     $(error Compilation impossible)
@@ -42,16 +34,42 @@ ifeq ($(CHEMIN_RESLT), )
     $(info makefile.conf:12: *** Le nom du dossier des exe/lib est vide)
     $(error Compilation impossible)
 endif
+# On liste les sous modules en éliminant le premier caractère si c'est + ou U
+# + signal un sous module mis à jour. U signal un conflit de merge.
+PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
 
-###################
-.PHONY: run
-run: $(DEPEND)
-	$(CHEMIN_RESLT) $(ARGUMENTSAPPLI)
+ifeq ([$(PRES_SOUS_MODULES)], [])
+    FAIRE_INITIALISATION	:=
+else
+    FAIRE_INITIALISATION	:= initialiser_sous_modules
+endif
+
+$(info )
+
 
 ###################
 .PHONY: version_makefile
 version_makefile:
 	@echo $(MAKEFILE_V)
+
+###################
+.PHONY: initialiser_sous_modules
+initialiser_sous_modules:
+	git submodule init
+	git submodule update
+
+###################
+.PHONY: maj_sous_modules
+maj_sous_modules:
+	git submodule foreach git pull origin master
+	@echo
+	git submodule foreach git rebase master
+	@echo
+	git submodule foreach git checkout master
+	@echo
+	git submodule foreach git pull
+	@echo
+	git submodule summary
 
 ###################
 .PHONY: build
@@ -70,6 +88,7 @@ clean:
 	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
 	-$(RM) $(OPTRM) "./$(CHEMIN_OBJET)"
+	-$(RM) $(OPTRM) "./$(CHEMIN_ALI)"
 	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
