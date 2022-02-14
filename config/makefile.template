@@ -44,7 +44,7 @@ endif
 ifeq ($(wildcard .git), )
     PRES_SOUS_MODULES	:=
 else
-PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
+    PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
 endif
 
 ifeq ([$(PRES_SOUS_MODULES)], [])
@@ -61,6 +61,7 @@ version:
 	$(COMPILATEUR) --version
 	gnatmake --version
 	gnat --version
+	gnatls -v
 
 ###################
 .PHONY: version_makefile
@@ -72,6 +73,7 @@ version_makefile:
 initialiser_sous_modules:
 	git submodule init
 	git submodule update
+	git submodule foreach git checkout master
 
 ###################
 .PHONY: maj_sous_modules
@@ -89,11 +91,14 @@ maj_sous_modules:
 ###################
 .PHONY: build
 build: $(FAIRE_INITIALISATION)
-	@echo "  "
+	@echo " "
+	gnatls -v
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
 	$(CC) -P$(GPR) $(OPTGPR)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
