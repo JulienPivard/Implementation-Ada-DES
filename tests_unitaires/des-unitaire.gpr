@@ -1,7 +1,7 @@
---  Dernière modification : Dimanche 24 octobre[10] 2021
+--  Dernière modification : Lundi 14 février[02] 2022
 --  auteur : PIVARD Julien
 with "aunit";
-with "../des.gpr";
+with "../gnat/des.gpr";
 
 project Des.Unitaire is
 
