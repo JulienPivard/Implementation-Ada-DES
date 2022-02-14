@@ -1,12 +1,12 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 octobre[10] 2021
+# Dernière modification : Lundi 14 février[02] 2022
 
 ###############
 # Partie Fixe #
 ###############
 
-GPR		= des.gpr
+GPR		= gnat/des.gpr
 
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
@@ -82,6 +82,9 @@ MODE_EXECUTION_PREUVE	= all
 #  . flow, bronze      - Prouve que l'initialisation et le flot de données sont correct.
 #  . prove             - Prouve l'absence d'erreurs d'exécution et de contrat
 #  . all, silver, gold
+
+# NIVEAU_OPTIMI = [defaut|0|1|2|3]
+NIVEAU_OPTIMI		= defaut
 
 # Fixer les arguments qui seront donné en entré de l'application
 # lors de l'exécution
