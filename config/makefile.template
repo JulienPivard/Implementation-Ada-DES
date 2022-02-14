@@ -8,7 +8,7 @@
 .PHONY: all
 all: compiler
 
-MAKEFILE_V	:= 2.4.0
+MAKEFILE_V	:= 2.6.1
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
@@ -20,8 +20,10 @@ ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
     $(info  Utilisation de bin GNAT personnalisé [$(GNAT_BIN_PERSO)])
 else ifneq ($(wildcard $(GNAT_BIN_MACOS)), )
     PATH		:= $(GNAT_BIN_MACOS):$(PATH)
+    $(info  Utilisation de bin GNAT MacOS [$(GNAT_BIN_MACOS)])
 else ifneq ($(wildcard $(GNAT_BIN_LINUX)), )
     PATH		:= $(GNAT_BIN_LINUX):$(PATH)
+    $(info  Utilisation de bin GNAT Linux [$(GNAT_BIN_LINUX)])
 endif
 
 $(info Valeur de GPR_CONFIG=[${GPR_CONFIG}])
@@ -58,6 +60,11 @@ $(info )
 ###################
 .PHONY: version
 version:
+	which $(COMPILATEUR)
+	which gnatmake
+	which gnat
+	which gnatls
+	@echo " "
 	$(COMPILATEUR) --version
 	gnatmake --version
 	gnat --version
@@ -91,6 +98,8 @@ maj_sous_modules:
 ###################
 .PHONY: build
 build: $(FAIRE_INITIALISATION)
+	which $(COMPILATEUR)
+	which gnatls
 	@echo " "
 	gnatls -v
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
