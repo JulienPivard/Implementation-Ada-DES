@@ -1,4 +1,4 @@
---  Dernière modification : Dimanche 24 octobre[10] 2021
+--  Dernière modification : Lundi 14 février[02] 2022
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
@@ -7,6 +7,8 @@ project Des is
 
    --  Les énumérations sont des types accepté.
    type Mode_Compilation_T    is ("debug",  "dev", "release");
+
+   type Niveau_Optimisation_T is ("defaut", "O0", "O1", "O2", "O3");
 
    type Verbeux_T             is ("non", "oui");
    type Strict_T              is ("non", "oui");
@@ -23,6 +25,8 @@ project Des is
    Verbeux           : Verbeux_T          := External ("verbeux", "non");
    Strict            : Strict_T           := External ("strict",  "non");
 
+   Niveau_Optimisation        : Niveau_Optimisation_T :=
+      External ("niv_opti",                 "defaut");
    Afficher_La_Stack          : Afficher_La_Stack_T   :=
       External ("afficher_utilisation_stack",  "non");
    Warn_Deviennent_Erreurs    : Sorte_Avertissement_T :=
@@ -41,10 +45,10 @@ project Des is
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
-   for Source_Dirs               use ("src/**");
+   for Source_Dirs               use ("../src/**");
 
-   for Object_Dir                use "obj/" & Mode_Compilation;
-   for Exec_Dir                  use "bin/" & Mode_Compilation;
+   for Object_Dir                use "../obj/" & Mode_Compilation;
+   for Exec_Dir                  use "../bin/" & Mode_Compilation;
 
    --  for Target                    use "powerpc-wrs-vxworks";
    for Create_Missing_Dirs       use "True";
@@ -180,7 +184,7 @@ project Des is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
-      for Documentation_Dir use "doc";
+      for Documentation_Dir use "../doc";
    end Documentation;
    ----------------------------------------------------------------------------
 
@@ -217,7 +221,7 @@ project Des is
       end case;
 
       for Default_Switches ("Ada")  use Options_Builder;
-      --  for Global_Configuration_Pragmas use "./config/gnat.adc";
+      --  for Global_Configuration_Pragmas use "./gnat.adc";
 
       --  Pour changer le nom du binaire de client à executable après le use.
       for Executable ("client_sequentiel.adb")  use "executable_sequentiel";
@@ -237,21 +241,39 @@ project Des is
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-O0", "-gnata", "-gnateP");
+            Options := Options & ("-gnata", "-gnateP");
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
             --            dépendances en avertissements. Une unité Pure
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-g", "-O0", "-gnata", "-gnateP");
+            Options := Options & ("-g", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
-            Options := Options & ("-O3", "-gnatn");
+            Options := Options & ("-gnatn");
+      end case;
+
+      case Niveau_Optimisation is
+         when "defaut" =>
+            case Mode_Compilation is
+               when "dev" | "debug" =>
+                  Options := Options & ("-O0");
+               when "release"       =>
+                  Options := Options & ("-O3");
+            end case;
+         when "O0" =>
+            Options := Options & ("-O0");
+         when "O1" =>
+            Options := Options & ("-O1");
+         when "O2" =>
+            Options := Options & ("-O2");
+         when "O3" =>
+            Options := Options & ("-O3");
       end case;
 
       for Default_Switches ("Ada")    use Options;
-      for Local_Configuration_Pragmas use "./config/gnat.adc";
+      for Local_Configuration_Pragmas use "./gnat.adc";
    end Compiler;
    ----------------------------------------------------------------------------
 
@@ -278,7 +300,7 @@ project Des is
    ----------------------------------------------------------------------------
    package Check is
       for Default_Switches ("Ada") use
-         ("-rules", "-from=config/regles_de_codage");
+         ("-rules", "-from=./regles_de_codage");
    end Check;
    ----------------------------------------------------------------------------
 
@@ -390,7 +412,7 @@ project Des is
             --  Outrepasse l'option -n
             "--pragma-mixed-case",
             --  Les pragma doivent suivre la règle de casse mixte.
-            "--dictionary=./config/exception_case",
+            "--dictionary=./exception_case",
             --  Les exceptions aux règles de casse.
             "--comments-gnat-indentation",
             --  Indentation des commentaires suit les règles de gnat.
