@@ -1,12 +1,20 @@
 # Dossiers fichiers généré par la compilation.
 obj/
+ali/
 bin/
+lib/
 doc/
 tags
+
 # Fichier généré par pretty print.
 *.pp
+
 # Fichier temporaire de gnat.
 .\#*\#
+
+# Autres fichiers hors du projet
+makefile.conf
+
 # Fichier généré par le chiffrement
 *.chiffre
 *.dechiffre
