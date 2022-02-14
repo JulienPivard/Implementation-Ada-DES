@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Vendredi 26 juin[06] 2020
+# Dernière modification : Dimanche 16 janvier[01] 2022
 
 ###############
 # Partie Fixe #
@@ -26,10 +26,12 @@ NOM_OPT_STRI	= -Xstrict
 NOM_OPT_WARN	= -Xwarn_sont_err
 NOM_OPT_STAK	= -Xafficher_utilisation_stack
 NOM_OPT_ELAB	= -Xafficher_ordre_elaboration
+NOM_NIV_OPTI	= -Xniv_opti
 
 OPT_GPR_PROD	= $(NOM_OPT_MODE)=release \
 		  $(NOM_OPT_VERB)=non $(NOM_OPT_STRI)=non \
-		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non
+		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non \
+		  $(NOM_NIV_OPTI)=defaut
 
 GPR_MODE	= $(NOM_OPT_MODE)=$(MODE)
 GPR_VERBEUX	= $(NOM_OPT_VERB)=$(VERBEUX)
@@ -37,8 +39,9 @@ GPR_STRICT	= $(NOM_OPT_STRI)=$(STRICT)
 GPR_W_SONT_E	= $(NOM_OPT_WARN)=$(WARN_DEVIENNENT_ERREURS)
 GPR_AFFICHE_S	= $(NOM_OPT_STAK)=$(AFFICHER_LA_STACK)
 GPR_AFFICHE_E	= $(NOM_OPT_ELAB)=$(AFFICHER_ORDRE_ELABORATION)
+GPR_NIV_OPTI	= $(NOM_NIV_OPTI)=$(NIV_OPTI)
 
 OPTGPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
-		  $(GPR_AFFICHE_S) $(GPR_AFFICHE_E)
+		  $(GPR_AFFICHE_S) $(GPR_AFFICHE_E) $(GPR_NIV_OPTI)
 
 OPTCOMPTAGE	= -l #-w
