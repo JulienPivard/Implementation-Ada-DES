@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 16 janvier[01] 2022
+# Dernière modification : Lundi 14 février[02] 2022
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
@@ -37,8 +37,8 @@ endif
 
 # On vérifie que MODE_COMPILE vaut bien [dev|deb|rel]
 ifneq ($(MODE_COMPILE), $(filter $(MODE_COMPILE), dev deb rel))
-      $(info makefile.conf:39: *** [MODE_COMPILE] doit être dev rel, ou deb)
-      $(error Compilation impossible)
+  $(info makefile.conf:39: *** [MODE_COMPILE] doit être dev rel, ou deb)
+  $(error Compilation impossible)
 endif
 
 # On vérifie que NIVEAU_OPTIMI vaut bien [defaut|0|1|2|3]
