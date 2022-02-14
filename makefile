@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 octobre[10] 2021
+# Dernière modification : Lundi 14 février[02] 2022
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -10,7 +10,11 @@ SHELL		:= /bin/sh
 srcdir		:= .
 
 include ./config/makefile.fixe
+ifeq ($(wildcard makefile.conf), )
+    include ./config/makefile.conf.tmpl
+else
 include ./makefile.conf
+endif
 include ./config/makefile.checks
 include ./config/makefile.template
 
@@ -35,6 +39,15 @@ else
 endif
 
 ###################
+config/makefile.conf.tmpl:
+
+###################
+makefile.conf: config/makefile.conf.tmpl
+	cp ./config/makefile.conf.tmpl ./makefile.conf
+	chmod u+w ./makefile.conf
+	@echo " "
+
+###################
 .PHONY: run
 run: $(DEPEND)
 	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
@@ -50,6 +63,9 @@ compiler: build
 .PHONY: prod
 prod: $(FAIRE_INITIALISATION)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
+	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
 .PHONY: chiffrer
@@ -104,6 +120,7 @@ fichier_comparer: $(DEPEND) $(NOM_FIC_DECHIFFRE_S) $(NOM_FIC_DECHIFFRE_T) \
 ###################
 .PHONY: doc
 doc: $(FAIRE_INITIALISATION)
+	gnatls -v
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
