@@ -13,7 +13,7 @@ include ./config/makefile.fixe
 ifeq ($(wildcard makefile.conf), )
     include ./config/makefile.conf.tmpl
 else
-include ./makefile.conf
+    include ./makefile.conf
 endif
 include ./config/makefile.checks
 include ./config/makefile.template
@@ -54,14 +54,14 @@ run: $(DEPEND)
 
 ###################
 .PHONY: compiler
-compiler: build
+compiler: makefile.conf build
 	@echo " ───────────────────────────────"
 	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
-prod: $(FAIRE_INITIALISATION)
+prod: makefile.conf $(FAIRE_INITIALISATION)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 	@echo " ─────────────────────────────────────────────────────────────────"
 	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
@@ -69,7 +69,7 @@ prod: $(FAIRE_INITIALISATION)
 
 ###################
 .PHONY: chiffrer
-chiffrer: $(DEPEND) $(VARNOMFICHIER)
+chiffrer: makefile.conf $(DEPEND) $(VARNOMFICHIER)
 	@echo "───────────────────────────────"
 	@echo "Chiffrement"
 	$(RESLT_COMPIL) $(ARGSCHIFFRE)
@@ -87,7 +87,7 @@ $(NOM_FIC_CHIFFRE_R): chiffrer
 
 ###################
 .PHONY: dechiffrer
-dechiffrer: $(DEPEND) $(NOM_FIC_CHIFFRE_S) \
+dechiffrer: makefile.conf $(DEPEND) $(NOM_FIC_CHIFFRE_S) \
 	$(NOM_FIC_CHIFFRE_T) $(NOM_FIC_CHIFFRE_R)
 	@echo "───────────────────────────────"
 	@echo "Déchiffrement"
@@ -119,33 +119,33 @@ fichier_comparer: $(DEPEND) $(NOM_FIC_DECHIFFRE_S) $(NOM_FIC_DECHIFFRE_T) \
 
 ###################
 .PHONY: doc
-doc: $(FAIRE_INITIALISATION)
+doc: makefile.conf $(FAIRE_INITIALISATION)
 	gnatls -v
 	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
 
 ###################
 .PHONY: prove
-prove: $(FAIRE_INITIALISATION)
+prove: makefile.conf $(FAIRE_INITIALISATION)
 	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
-check: $(FAIRE_INITIALISATION)
+check: makefile.conf $(FAIRE_INITIALISATION)
 	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
-pretty: $(FAIRE_INITIALISATION)
+pretty: makefile.conf $(FAIRE_INITIALISATION)
 	gnatpp -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
-cleandoc:
+cleandoc: makefile.conf
 	$(RM) $(OPTRM) doc
 
 ###################
 .PHONY: help
-help:
+help: makefile.conf
 	@echo "Liste des commandes :"
 	@echo " - all			: Compile l'application."
 	@echo "    - build"
