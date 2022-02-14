@@ -220,7 +220,7 @@
 +R Identifier_Casing:Constant=mixed
 +R Identifier_Casing:Exception=mixed
 +R Identifier_Casing:Others=mixed
-+R Identifier_Casing:Exclude=config/exception_case
++R Identifier_Casing:Exclude=gnat/exception_case
 --  Le suffixe des identifier
 --  +R Identifier_Suffixes:Default
 +R Identifier_Suffixes:Type_Suffix=_T
