@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 octobre[10] 2021
+# Dernière modification : Lundi 14 février[02] 2022
 
 ###################
 # Point d'entrée #
@@ -41,7 +41,11 @@ endif
 
 # On liste les sous modules en éliminant le premier caractère si c'est + ou U
 # + signal un sous module mis à jour. U signal un conflit de merge.
+ifeq ($(wildcard .git), )
+    PRES_SOUS_MODULES	:=
+else
 PRES_SOUS_MODULES	:= $(shell git submodule | cut -c 1-1 | tr -d "+ uU")
+endif
 
 ifeq ([$(PRES_SOUS_MODULES)], [])
     FAIRE_INITIALISATION	:=
