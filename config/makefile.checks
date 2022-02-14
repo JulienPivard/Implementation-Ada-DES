@@ -1,10 +1,13 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 24 octobre[10] 2021
+# Dernière modification : Dimanche 16 janvier[01] 2022
 
 # Les options sont désactivée si vide
 ifeq ($(MODE_COMPILE), )
     MODE_COMPILE	= dev
+endif
+ifeq ($(NIVEAU_OPTIMI), )
+    NIVEAU_OPTIMI	= defaut
 endif
 ifeq ($(ACTIVER_VERB), )
     ACTIVER_VERB	= false
@@ -40,6 +43,12 @@ ifneq ($(MODE_COMPILE), dev)
       $(error Compilation impossible)
     endif
   endif
+endif
+
+# On vérifie que NIVEAU_OPTIMI vaut bien [defaut|0|1|2|3]
+ifneq ($(NIVEAU_OPTIMI), $(filter $(NIVEAU_OPTIMI), defaut 0 1 2 3))
+  $(info makefile.conf:76: *** [NIVEAU_OPTIMI] doit être defaut ou 0, 1, 2, 3)
+  $(error Compilation impossible)
 endif
 
 # On vérifie que ACTIVER_VERB vaut bien [true|false]
@@ -89,6 +98,19 @@ else ifeq ($(MODE_COMPILE), rel)
     MODE	= release
 else
     MODE	= dev
+endif
+
+# Pour activer un niveau d'optimisation particulier
+ifeq ($(NIVEAU_OPTIMI), 0)
+    NIV_OPTI	= O0
+else ifeq ($(NIVEAU_OPTIMI), 1)
+    NIV_OPTI	= O1
+else ifeq ($(NIVEAU_OPTIMI), 2)
+    NIV_OPTI	= O2
+else ifeq ($(NIVEAU_OPTIMI), 3)
+    NIV_OPTI	= O3
+else
+    NIV_OPTI	= defaut
 endif
 
 # Pour activer le mode verbose
@@ -142,11 +164,11 @@ ifeq ($(AFFICHAGE_MESSAGES), )
 endif
 
 # Vérification de la valeur du niveau de preuve
-ifeq ($(NIVEAU_PREUVE), $(filter $(NIVEAU_PREUVE), 0 1 2 3 4))
-    NIVEAU	= --level=$(NIVEAU_PREUVE)
-else
+ifneq ($(NIVEAU_PREUVE), $(filter $(NIVEAU_PREUVE), 0 1 2 3 4))
     $(info makefile.conf:58 *** [NIVEAU_PREUVE] Le niveau doit etre entre 0 et 4)
     $(error Compilation impossible)
+else
+    NIVEAU	= --level=$(NIVEAU_PREUVE)
 endif
 
 # Vérification de la valeur de l'affichage des messages de gnatprove
