@@ -79,8 +79,7 @@ private
    subtype Intervalle_Demi_Clef_T is Des_P.Clef_P.Clef_56_I_P.Decalage_T;
    --  L'intervalle des demi tableau de bits de la clef.
 
-   type Champ_De_Bits_T is array
-      (Intervalle_Demi_Clef_T) of Bit_T;
+   type Champ_De_Bits_T is array (Intervalle_Demi_Clef_T) of Bit_T;
    --  Les bits de la clef de 56 sont divisée en deux groupes
    --  de même taille.
    --  Tableau des bits de la clef. Intervalle de 0 à 27

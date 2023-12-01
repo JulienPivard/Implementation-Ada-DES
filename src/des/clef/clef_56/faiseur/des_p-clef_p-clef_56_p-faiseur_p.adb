@@ -29,16 +29,14 @@ package body Des_P.Clef_P.Clef_56_P.Faiseur_P is
             "Positional_Components",
             "Tableau trop grand pour positionner toutes les valeurs"
          );
-      T1 : constant Table_Pc_1_T :=
-         Table_Pc_1_T'
+      T1 : constant Table_Pc_1_T := Table_Pc_1_T'
          (
             57, 49, 41, 33, 25, 17,  9,
              1, 58, 50, 42, 34, 26, 18,
             10,  2, 59, 51, 43, 35, 27,
             19, 11,  3, 60, 52, 44, 36
          );
-      T2 : constant Table_Pc_1_T :=
-         Table_Pc_1_T'
+      T2 : constant Table_Pc_1_T := Table_Pc_1_T'
          (
             63, 55, 47, 39, 31, 23, 15,
              7, 62, 54, 46, 38, 30, 22,
