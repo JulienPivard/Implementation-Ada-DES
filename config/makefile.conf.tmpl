@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 14 février[02] 2022
+# Dernière modification : Samedi 25 mai[05] 2024
 
 ###############
 # Partie Fixe #
@@ -11,9 +11,9 @@ GPR		= gnat/des.gpr
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
 CHEMIN_ALI	= ali
-EXECUTABLE_SEQ	= ./bin/$(MODE)/executable_sequentiel
-EXECUTABLE_TAC	= ./bin/$(MODE)/executable_taches
-EXECUTABLE_RAV	= ./bin/$(MODE)/executable_ravenscar
+EXECUTABLE_SEQ	= ./$(CHEMIN_RESLT)/$(MODE)/executable_sequentiel
+EXECUTABLE_TAC	= ./$(CHEMIN_RESLT)/$(MODE)/executable_taches
+EXECUTABLE_RAV	= ./$(CHEMIN_RESLT)/$(MODE)/executable_ravenscar
 
 EXTENSION_CHIFFRE_S	= sequ.chiffre
 EXTENSION_CHIFFRE_T	= task.chiffre
