@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 14 février[02] 2022
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 ###################
 # Point d'entrée #
@@ -8,11 +8,10 @@
 .PHONY: all
 all: compiler
 
-MAKEFILE_V	:= 2.6.1
+MAKEFILE_V	:= 3.0.0
 
 # Ajout du chemin du compilateur gnat dans le path
 GNAT_BIN_LINUX			:= /usr/gnat/bin
-
 GNAT_BIN_MACOS			:= /usr/local/gnat/bin
 
 ifneq ($(wildcard $(GNAT_BIN_PERSO)), )
@@ -61,14 +60,14 @@ $(info )
 .PHONY: version
 version:
 	which $(COMPILATEUR)
-	which gnatmake
-	which gnat
-	which gnatls
+	which $(GNATMAKE)
+	which $(GNAT_GNAT)
+	which $(GNATLS)
 	@echo " "
 	$(COMPILATEUR) --version
-	gnatmake --version
-	gnat --version
-	gnatls -v
+	$(GNATMAKE) --version
+	$(GNAT_GNAT) --version
+	$(GNATLS) -v
 
 ###################
 .PHONY: version_makefile
@@ -87,9 +86,9 @@ initialiser_sous_modules:
 maj_sous_modules:
 	git submodule foreach git pull origin master
 	@echo
-	git submodule foreach git rebase master
-	@echo
 	git submodule foreach git checkout master
+	@echo
+	git submodule foreach git rebase master
 	@echo
 	git submodule foreach git pull
 	@echo
@@ -99,15 +98,15 @@ maj_sous_modules:
 .PHONY: build
 build: $(FAIRE_INITIALISATION)
 	which $(COMPILATEUR)
-	which gnatls
+	which $(GNATLS)
 	@echo " "
-	gnatls -v
+	$(GNATLS) -v
 	@echo " ┌───────────────────────────────────────────────────────────────┐"
 	@echo " │                  Lancement de la compilation                  │"
 	@echo " └───────────────────────────────────────────────────────────────┘"
-	$(CC) -P$(GPR) $(OPTGPR)
+	$(CC) -P$(GPR) $(OPT_GPR)
 	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL)] en mode [ $(shell echo $(MODE) | tr '[:lower:]' '[:upper:]') ]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
@@ -116,8 +115,8 @@ clean:
 	@echo " ┌──────────────────────────────────────────────────────────────┐"
 	@echo " │ Effacement des fichiers temporaire généré par la compilation │"
 	@echo " └──────────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) "./$(CHEMIN_OBJET)"
-	-$(RM) $(OPTRM) "./$(CHEMIN_ALI)"
+	-$(RM) $(OPT_RM) "./$(CHEMIN_OBJET)"
+	-$(RM) $(OPT_RM) "./$(CHEMIN_ALI)"
 	@echo " ────────────────────────────────────────────────────────────────"
 
 ###################
@@ -126,7 +125,7 @@ distclean: clean
 	@echo " ┌───────────────────────────────────────────────────────────┐"
 	@echo " │ Effacement des fichiers exe/lib généré par la compilation │"
 	@echo " └───────────────────────────────────────────────────────────┘"
-	-$(RM) $(OPTRM) "./$(CHEMIN_RESLT)"
+	-$(RM) $(OPT_RM) "./$(CHEMIN_RESLT)"
 	@echo " ─────────────────────────────────────────────────────────────"
 ifneq ($(VARNOMFICHIER), )
     ifneq ($(wildcard $(VARNOMFICHIER).*), )
@@ -151,11 +150,11 @@ compter: $(TECHNIQUE_COMPTAGE)
 
 .PHONY: avec_find
 avec_find:
-	find $(DOSSIERSRC) -type f | xargs cat | wc $(OPTCOMPTAGE)
+	find $(DOSSIER_SRC) -type f | xargs cat | wc $(OPT_COMPTAGE)
 
 .PHONY: avec_cloc
 avec_cloc:
-	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIERSRC)
+	cloc --exclude-dir=obj,bin --by-percent cmb $(DOSSIER_SRC)
 
 ###################
 .PHONY: compter_detail
@@ -163,11 +162,11 @@ compter_detail: $(TECHNIQUE_COMPTAGE)_detail
 
 .PHONY: avec_find_detail
 avec_find_detail:
-	find $(DOSSIERSRC) -type f | xargs wc $(OPTCOMPTAGE)
+	find $(DOSSIER_SRC) -type f | xargs wc $(OPT_COMPTAGE)
 
 .PHONY: avec_cloc_detail
 avec_cloc_detail:
-	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIERSRC)
+	cloc --exclude-dir=obj,bin --by-file-by-lang $(DOSSIER_SRC)
 
 # Afficher toutes les cibles disponible
 .PHONY: afficher_nom_cibles

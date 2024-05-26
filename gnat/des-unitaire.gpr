@@ -1,4 +1,4 @@
---  Dernière modification : Samedi 25 mai[05] 2024
+--  Dernière modification : Dimanche 26 mai[05] 2024
 --  auteur : PIVARD Julien
 with "aunit";
 with "des.gpr";
@@ -8,27 +8,17 @@ project Des.Unitaire is
    Nom_Sous_Dossier_Compil := "tests_unitaire";
 
    --  Le nom du fichier qui contient la procédure principale.
-   for Main                      use ("main_test_harnais.adb");
+   for Main                      use ("executeur_de_tests.adb");
 
    --  Pour ignorer des fichiers sources de la compilation
    for Ignore_Source_Sub_Dirs    use (".git");
    --  Le ** permet d'inclure tous les sous répertoire.
-   for Source_Dirs               use ("../src/src_tests_unitaire/**");
+   for Source_Dirs               use ("../tests_unitaire_src/**");
 
    for Object_Dir                use "../obj/" & Nom_Sous_Dossier_Compil;
    for Exec_Dir                  use "../bin/" & Nom_Sous_Dossier_Compil;
 
    for Create_Missing_Dirs       use "True";
-
-   Options := Des.Options &
-      (
-         --  -gnata active les assertions. Pragma assert, debug, Check,
-         --  Precondition, et Postcondition
-         "-gnata",
-         --  Désactive l'affichage des messages indiquant l'ajout
-         --  implicite de pragma d'élaboration lors de la compilation.
-         "-gnateL"
-      );
 
    --  Pour un bon tuto
    --  https://docs.adacore.com/gprbuild-docs/html/gprbuild_ug.html
@@ -42,22 +32,42 @@ project Des.Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Builder is
+   package Builder extends Des.Builder is
       --  Pour changer le nom du binaire de main_test_harnais à
-      --  test_unitaire_executable après le use.
-      for Executable ("main_test_harnais.adb") use "test_unitaire_executable";
+      --  tests_unitaire_exe après le use.
+      for Executable ("executeur_de_tests.adb") use "tests_unitaire_exe";
    end Builder;
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Compiler is
-      for Default_Switches ("Ada") use Options;
+   package Compiler extends Des.Compiler is
+      Options_Compiler := Des.Options_Compiler &
+         (
+            "-gnata",
+            --  -gnata active les assertions. Pragma assert, debug, Check,
+            --  Precondition, et Postcondition
+            "-gnateL",
+            --  Désactive l'affichage des messages indiquant l'ajout
+            --  implicite de pragma d'élaboration lors de la compilation.
+            "-fprofile-arcs",
+            --  Pour la couverture de tests.
+            "-ftest-coverage",
+            --  Pour la couverture de tests.
+            "-gnateS"
+            --  Génère les fichiers SCO (Source Coverage Obligation)
+         );
+      for Default_Switches ("Ada") use Options_Compiler;
    end Compiler;
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
+   package Linker extends Des.Linker is
+      for Default_Switches ("Ada") use ("-fprofile-arcs");
+   end Linker;
+   ----------------------------------------------------------------------------
+
+   ----------------------------------------------------------------------------
    package Binder renames Des.Binder;
-   package Linker renames Des.Linker;
    package Ide    renames Des.Ide;
    ----------------------------------------------------------------------------
 

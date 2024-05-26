@@ -1,12 +1,13 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Samedi 25 mai[05] 2024
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 ###############
 # Partie Fixe #
 ###############
 
-GPR		= gnat/des.gpr
+NOM_DU_GPR	= des
+GPR		= gnat/$(NOM_DU_GPR).gpr
 
 CHEMIN_OBJET	= obj
 CHEMIN_RESLT	= bin
@@ -22,7 +23,7 @@ EXTENSION_DECHIFFRE_S	= $(EXTENSION_CHIFFRE_S).sequ.dechiffre
 EXTENSION_DECHIFFRE_T	= $(EXTENSION_CHIFFRE_T).task.dechiffre
 EXTENSION_DECHIFFRE_R	= $(EXTENSION_CHIFFRE_R).rave.dechiffre
 
-RESLT_COMPIL	= $(EXECUTABLE_SEQ)
+RESLT_COMPIL		= $(EXECUTABLE_SEQ)
 
 #############################################
 # Les modifications sont à faire en dessous #
@@ -32,7 +33,7 @@ RESLT_COMPIL	= $(EXECUTABLE_SEQ)
 FORMAT		= html
 
 # Fixer le nom de l'application
-NOMAPP		= DES
+NOM_APP		= DES
 
 # Pour activer le mode debug -> deb | release -> rel | développement -> dev
 # MODE_COMPILE = [dev|deb|rel]
@@ -96,7 +97,7 @@ NOM_FIC_DECHIFFRE_S	= $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_S)
 NOM_FIC_DECHIFFRE_T	= $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_T)
 NOM_FIC_DECHIFFRE_R	= $(VARNOMFICHIER).$(EXTENSION_DECHIFFRE_R)
 
-ARGUMENTSAPPLI	= -c $(VARNOMFICHIER) lovecrft
+ARGUMENTS_APPLI	= -c $(VARNOMFICHIER) lovecrft
 ARGSCHIFFRE	= --chiffrer $(VARNOMFICHIER) lovecrft
 ARGSDECHIFFRES	= --dechiffrer $(NOM_FIC_CHIFFRE_S) lovecrft
 ARGSDECHIFFRET	= --dechiffrer $(NOM_FIC_CHIFFRE_T) lovecrft
@@ -106,4 +107,4 @@ ARGSDECHIFFRER	= --dechiffrer $(NOM_FIC_CHIFFRE_R) lovecrft
 GNAT_BIN_PERSO	=
 
 # Emplacement des sources
-DOSSIERSRC	= src
+DOSSIER_SRC	= src

@@ -1,24 +1,24 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 16 janvier[01] 2022
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 ###############
 # Partie Fixe #
 ###############
 
 COMPILATEUR	= gprbuild
-OPTCOMPILATEUR	= -d# -p
-CC		= $(COMPILATEUR) $(OPTCOMPILATEUR)
+OPT_COMPILATEUR	= -d# -p
+CC		= $(COMPILATEUR) $(OPT_COMPILATEUR)
 
 RM		= rm
-OPTRM		= -vrf
+OPT_RM		= -vrf
 
-SORTIEDOC	= --output=$(FORMAT)
+SORTIE_DOC	= --output=$(FORMAT)
 # Options possible pour la compilation de la documentation.
 # -w Affiche des warnings pour tout toutes les docs oublié.
 # -l Cherche avant les déclarations plutôt que après.
 # -p Ajoute les private dans la documentation.
-OPTDOCUMENT	= -w --enable-build --no-subprojects $(SORTIEDOC)
+OPT_DOCUMENT	= -w --enable-build --no-subprojects $(SORTIE_DOC)
 
 NOM_OPT_MODE	= -Xmode
 NOM_OPT_VERB	= -Xverbeux
@@ -33,6 +33,8 @@ OPT_GPR_PROD	= $(NOM_OPT_MODE)=release \
 		  $(NOM_OPT_STAK)=non $(NOM_OPT_ELAB)=non \
 		  $(NOM_NIV_OPTI)=defaut
 
+RESLT_COMPIL_PROD	= ./bin/release/executable
+
 GPR_MODE	= $(NOM_OPT_MODE)=$(MODE)
 GPR_VERBEUX	= $(NOM_OPT_VERB)=$(VERBEUX)
 GPR_STRICT	= $(NOM_OPT_STRI)=$(STRICT)
@@ -41,7 +43,15 @@ GPR_AFFICHE_S	= $(NOM_OPT_STAK)=$(AFFICHER_LA_STACK)
 GPR_AFFICHE_E	= $(NOM_OPT_ELAB)=$(AFFICHER_ORDRE_ELABORATION)
 GPR_NIV_OPTI	= $(NOM_NIV_OPTI)=$(NIV_OPTI)
 
-OPTGPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
+OPT_GPR		= $(GPR_MODE) $(GPR_VERBEUX) $(GPR_STRICT) $(GPR_W_SONT_E) \
 		  $(GPR_AFFICHE_S) $(GPR_AFFICHE_E) $(GPR_NIV_OPTI)
 
-OPTCOMPTAGE	= -l #-w
+OPT_COMPTAGE	= -l #-w
+
+GNATCHECK	:= gnatcheck
+GNATLS		:= gnatls
+GNATMAKE	:= gnatmake
+GNATPP		:= gnatpp
+GNATPROVE	:= gnatprove
+GNAT_DOC	:= gnatdoc
+GNAT_GNAT	:= gnat

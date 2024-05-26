@@ -1,0 +1,37 @@
+# vim: nofoldenable: list:
+# PIVARD Julien
+# Dernière modification : Dimanche 26 mai[05] 2024
+
+include ./$(DOSSIER_MAKE)/makefile_tests_unitaires.conf
+ifeq ($(wildcard $(RESLT_COMPIL_TESTS)), )
+    DEPEND_TESTS	= compiler_tests_unitaires
+else
+    DEPEND_TESTS	=
+endif
+
+###################
+.PHONY: tests_unitaires
+tests_unitaires: compiler_tests_unitaires
+	@echo " ────────────────────────────────────────────"
+	@echo " [OK] Compilation des tests unitaires terminé"
+	@echo "  "
+
+###################
+.PHONY: run_tests_unitaires
+run_tests_unitaires: $(DEPEND_TESTS)
+	$(RESLT_COMPIL_TESTS) $(ARGUMENTS_APPLI_TESTS)
+
+###################
+.PHONY: compiler_tests_unitaires
+compiler_tests_unitaires:
+	which $(COMPILATEUR)
+	which $(GNATLS)
+	@echo " "
+	$(GNATLS) -v
+	@echo " ┌───────────────────────────────────────────────────────────────┐"
+	@echo " │                  Lancement de la compilation                  │"
+	@echo " └───────────────────────────────────────────────────────────────┘"
+	$(CC) -P$(GPR_TESTS) $(OPT_GPR)
+	@echo " ─────────────────────────────────────────────────────────────────"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_TESTS)] en mode [$(shell echo $(MODE) | tr '[:lower:]' '[:upper:]')]"
+	@echo " ─────────────────────────────────────────────────────────────────"

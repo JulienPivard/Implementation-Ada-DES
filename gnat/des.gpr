@@ -1,11 +1,10 @@
---  Dernière modification : Lundi 14 février[02] 2022
+--  Dernière modification : Dimanche 26 mai[05] 2024
 --  Auteur : PIVARD Julien
 
 --  https://gcc.gnu.org/releases.html
 --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
 project Des is
 
-   --  Les énumérations sont des types accepté.
    type Mode_Compilation_T    is ("debug",  "dev", "release");
 
    type Niveau_Optimisation_T is ("defaut", "O0", "O1", "O2", "O3");
@@ -39,6 +38,8 @@ project Des is
    Fichiers_Principaux := Fichiers_Principaux & ("client_taches.adb");
    Fichiers_Principaux := Fichiers_Principaux & ("client_ravenscar.adb");
 
+   --  Le langage du code source de la librairie.
+   for Languages                 use ("Ada");
    --  Le nom du fichier qui contient la procédure principale.
    for Main                      use Fichiers_Principaux;
 
@@ -78,7 +79,7 @@ project Des is
    --  t : Les espaces dans les lignes
    --  u : vérifie les lignes vide
    --  x : vérifie les parenthèses inutile
-   Options :=
+   Options_Compiler :=
       (
          "-gnatef",
          --  gnatef : est la pour afficher le chemin complet des
@@ -143,7 +144,8 @@ project Des is
    --       variété de record
    case Verbeux is
       when "oui" =>
-         Options := Options & ("-gnatu", "-gnatv", "-gnatR3");
+         Options_Compiler :=
+            Options_Compiler & ("-gnatu", "-gnatv", "-gnatR3");
       when "non" =>
          null;
    end case;
@@ -153,7 +155,7 @@ project Des is
    --           Elaborate_All dans le code.
    case Afficher_Ordre_Elaboration is
       when "oui" =>
-         Options := Options & ("-gnatel");
+         Options_Compiler := Options_Compiler & ("-gnatel");
       when "non" =>
          null;
    end case;
@@ -161,7 +163,7 @@ project Des is
    --  gnatg : applique -gnatwae et -gnatyg pour coller au style du code GNAT
    case Strict is
       when "oui" =>
-         Options := Options & ("-gnatg");
+         Options_Compiler := Options_Compiler & ("-gnatg");
       when "non" =>
          null;
    end case;
@@ -169,7 +171,7 @@ project Des is
    --  -gnatwe : Les avertissements deviennent des erreurs
    case Warn_Deviennent_Erreurs is
       when "oui" =>
-         Options := Options & ("-gnatwe");
+         Options_Compiler := Options_Compiler & ("-gnatwe");
       when "non" =>
          null;
    end case;
@@ -184,7 +186,8 @@ project Des is
    --  http://docs.adacore.com/gnatdoc-docs/users_guide/_build/html/gnatdoc.htm
    ----------------------------------------------------------------------------
    package Documentation is
-      for Documentation_Dir use "../doc";
+      for Ignored_Subprojects use ("gnatcoll");
+      for Documentation_Dir   use "../doc";
    end Documentation;
    ----------------------------------------------------------------------------
 
@@ -241,38 +244,38 @@ project Des is
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-gnata", "-gnateP");
+            Options_Compiler := Options_Compiler & ("-gnata", "-gnateP");
          when "debug" =>
             --  -gnateP : Transforme les erreurs de catégorisation des
             --            dépendances en avertissements. Une unité Pure
             --            ne peut pas importer une unité Preelaborate.
             --  -gnata : active les assertions. Pragma : assert, debug,
             --           Check, Precondition, et Postcondition
-            Options := Options & ("-g", "-gnata", "-gnateP");
+            Options_Compiler := Options_Compiler & ("-g", "-gnata", "-gnateP");
          when "release" =>
             --  -gnatn : Active les pragma Inline (optimisation)
-            Options := Options & ("-gnatn");
+            Options_Compiler := Options_Compiler & ("-gnatn");
       end case;
 
       case Niveau_Optimisation is
          when "defaut" =>
             case Mode_Compilation is
                when "dev" | "debug" =>
-                  Options := Options & ("-O0");
+                  Options_Compiler := Options_Compiler & ("-O0");
                when "release"       =>
-                  Options := Options & ("-O3");
+                  Options_Compiler := Options_Compiler & ("-O3");
             end case;
          when "O0" =>
-            Options := Options & ("-O0");
+            Options_Compiler := Options_Compiler & ("-O0");
          when "O1" =>
-            Options := Options & ("-O1");
+            Options_Compiler := Options_Compiler & ("-O1");
          when "O2" =>
-            Options := Options & ("-O2");
+            Options_Compiler := Options_Compiler & ("-O2");
          when "O3" =>
-            Options := Options & ("-O3");
+            Options_Compiler := Options_Compiler & ("-O3");
       end case;
 
-      for Default_Switches ("Ada")    use Options;
+      for Default_Switches ("Ada")    use Options_Compiler;
       for Local_Configuration_Pragmas use "./gnat.adc";
    end Compiler;
    ----------------------------------------------------------------------------
@@ -385,81 +388,6 @@ project Des is
             null;
       end case;
    end Linker;
-   ----------------------------------------------------------------------------
-
-   --  Configuration pour le formatage de sources
-   --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp
-   ----------------------------------------------------------------------------
-   package Pretty_Printer is
-      for Default_Switches ("Ada") use
-         (
-            "--alignment",
-            --  Active l'alignement des constructions :, :=, =>, at.
-            "--name-mixed-case",
-            --  les noms doivent suivre la règle de casse mixte.
-            "--attribute-mixed-case",
-            --  Les attributs doivent suivre la règle de casse mixte.
-            "--keyword-lower-case",
-            --  Les mots clef doivent être en minuscule.
-            "--enum-mixed-case",
-            --  Les énumérations doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--type-mixed-case",
-            --  Les noms des type doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--number-mixed-case",
-            --  Les noms des nombres doivent suivre la règle de casse mixte.
-            --  Outrepasse l'option -n
-            "--pragma-mixed-case",
-            --  Les pragma doivent suivre la règle de casse mixte.
-            "--dictionary=./exception_case",
-            --  Les exceptions aux règles de casse.
-            "--comments-gnat-indentation",
-            --  Indentation des commentaires suit les règles de gnat.
-            "--comments-gnat-beginning",
-            --  Obligatoirement deux espaces avant un caractère non blanc.
-            "--no-end-id",
-            --  N'ajoute pas l'identifiant en commentaire sur la ligne du end
-            "--separate-loop-then",
-            --  loop et then sont mis sur une ligne séparé.
-            "--use-on-new-line",
-            --  Les instructions avec use commencent sur une nouvelle ligne.
-            "--insert-blank-lines",
-            --  Insère des lignes vide quand il le juge utile.
-            "--max-line-length=80",
-            --  Longueur maximum d'une ligne.
-            "--indentation=3",
-            --  Hauteur des indentations.
-            "--indent-continuation=3",
-            --  Hauteur des indentations pour les continuité de lignes.
-            "--decimal-grouping=3",
-            --  Ajoute des _ tous les x caractères 10000 => 10_000
-            "--based-grouping=4",
-            --  Ajoute des _ ce qui donne : 16#1000FFFE# => 16#1000_FFFE#
-            "--split-line-before-record",
-            --  Passe à la ligne avant la déclaration d'un record
-            "--split-line-before-op",
-            --  Coupe la ligne avant l'opérateur dans les opérations si
-            --  il y a besoin de couper.
-            "--call_threshold=1",
-            --  Si le nombre de paramètres associatif est supérieur alors
-            --  on passe une ligne pour chacun.
-            "--par_threshold=1",
-            --  Même chose mais pour les paramètres sans association.
-            "--vertical-named-aggregates",
-            --  Chaque paramètres d'un agrégat associatif est sur sa ligne.
-            "--vertical-case-alternatives",
-            --  Passe des lignes supplémentaires dans les case.
-            "--replace-force-backup",
-            --  Le fichier d'origine est sauvegardé.
-            "--eol=unix",
-            --  Fin de ligne unix.
-            "--wide-character-encoding=8",
-            --  Défini l'encodage des caractères du fichier.
-            "-N"
-            --  Pas de tabulation dans les commentaires.
-         );
-   end Pretty_Printer;
    ----------------------------------------------------------------------------
 
    --  Configuration pour GPS.

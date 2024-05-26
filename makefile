@@ -1,6 +1,6 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Lundi 14 février[02] 2022
+# Dernière modification : Dimanche 26 mai[05] 2024
 
 SHELL		:= /bin/sh
 .DEFAULT_GOAL	:= all
@@ -9,14 +9,19 @@ SHELL		:= /bin/sh
 
 srcdir		:= .
 
-include ./config/makefile.fixe
+DOSSIER_MAKE	:= dossier_makefiles
+
+include ./$(DOSSIER_MAKE)/makefile.fixe
 ifeq ($(wildcard makefile.conf), )
-    include ./config/makefile.conf.tmpl
+    include ./$(DOSSIER_MAKE)/makefile.conf.tmpl
 else
     include ./makefile.conf
 endif
-include ./config/makefile.checks
-include ./config/makefile.template
+include ./$(DOSSIER_MAKE)/makefile.checks
+include ./dossier_makefiles/makefile.template
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
+    include ./$(DOSSIER_MAKE)/makefile_tests_unitaires
+endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
@@ -39,32 +44,33 @@ else
 endif
 
 ###################
-config/makefile.conf.tmpl:
+$(DOSSIER_MAKE)/makefile.conf.tmpl:
 
 ###################
-makefile.conf: config/makefile.conf.tmpl
-	cp ./config/makefile.conf.tmpl ./makefile.conf
+makefile.conf: $(DOSSIER_MAKE)/makefile.conf.tmpl
+	cp ./$(DOSSIER_MAKE)/makefile.conf.tmpl ./makefile.conf
 	chmod u+w ./makefile.conf
 	@echo " "
 
 ###################
 .PHONY: run
 run: $(DEPEND)
-	$(RESLT_COMPIL) $(ARGUMENTSAPPLI)
+	$(RESLT_COMPIL) $(ARGUMENTS_APPLI)
 
 ###################
 .PHONY: compiler
 compiler: makefile.conf build
 	@echo " ───────────────────────────────"
-	@echo " [OK] Compilation du programme : [ $(NOMAPP) ] terminé"
+	@echo " [OK] Compilation du programme : [ $(NOM_APP) ] terminé"
 	@echo "  "
 
 ###################
 .PHONY: prod
 prod: makefile.conf $(FAIRE_INITIALISATION)
+	which $(COMPILATEUR)
 	$(CC) -P$(GPR) $(OPT_GPR_PROD)
 	@echo " ─────────────────────────────────────────────────────────────────"
-	@echo " Résultat écrit dans [$(RESLT_COMPIL)]"
+	@echo " Résultat écrit dans [$(RESLT_COMPIL_PROD)]"
 	@echo " ─────────────────────────────────────────────────────────────────"
 
 ###################
@@ -120,28 +126,31 @@ fichier_comparer: $(DEPEND) $(NOM_FIC_DECHIFFRE_S) $(NOM_FIC_DECHIFFRE_T) \
 ###################
 .PHONY: doc
 doc: makefile.conf $(FAIRE_INITIALISATION)
-	gnatls -v
-	gnatdoc -P$(GPR) $(OPTGPR) $(OPTDOCUMENT)
+	which $(GNAT_DOC)
+	$(GNAT_DOC) -P$(GPR) $(OPT_GPR) $(OPT_DOCUMENT)
 
 ###################
 .PHONY: prove
 prove: makefile.conf $(FAIRE_INITIALISATION)
-	gnatprove -P$(GPR) $(OPTGPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
+	which $(GNATPROVE)
+	$(GNATPROVE) -P$(GPR) $(OPT_GPR) $(NIVEAU) $(RAPPORT) $(MODE_EXE)
 
 ###################
 .PHONY: check
 check: makefile.conf $(FAIRE_INITIALISATION)
-	gnatcheck -P$(GPR) $(OPTGPR) $(OPT_CHECK)
+	which $(GNATCHECK)
+	$(GNATCHECK) -P$(GPR) $(OPT_GPR) $(OPT_CHECK)
 
 ###################
 .PHONY: pretty
 pretty: makefile.conf $(FAIRE_INITIALISATION)
-	gnatpp -P$(GPR) $(Fichier)
+	which $(GNATPP)
+	$(GNATPP) -P$(GPR) $(Fichier)
 
 ###################
 .PHONY: cleandoc
 cleandoc: makefile.conf
-	$(RM) $(OPTRM) doc
+	$(RM) $(OPT_RM) doc
 
 ###################
 .PHONY: help
@@ -172,7 +181,9 @@ help: makefile.conf
 	@echo " - maj_sous_modules	: Met à jour les sous modules"
 	@echo " "
 	@echo " - version_makefile	: La version des makefiles."
+ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
 	@echo " "
-	@echo " - chiffrer		: Chiffre le fichier donné par VARNOMFICHIER dans makefile.conf:100"
-	@echo " - dechiffrer		: Déchiffre les fichiers du chiffrement"
-	@echo " - fichier_comparer	: Compare les versions chiffrées et déchiffrées entre elles"
+	@echo " - tests_unitaires	: Compile les tests unitaire."
+	@echo "    - compiler_tests_unitaires"
+	@echo " - run_tests_unitaires	: Execute les tests unitaires."
+endif
