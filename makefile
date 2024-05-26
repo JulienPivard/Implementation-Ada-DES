@@ -19,9 +19,7 @@ else
 endif
 include ./$(DOSSIER_MAKE)/makefile.checks
 include ./dossier_makefiles/makefile.template
-ifneq  ($(wildcard ./$(DOSSIER_MAKE)/makefile_tests_unitaires), )
     include ./$(DOSSIER_MAKE)/makefile_tests_unitaires
-endif
 
 # Vérifie si le binaire existe. Sinon il ajoute la cible de compilation
 # en dépendance.
