@@ -3,7 +3,7 @@
 with "aunit";
 with "des.gpr";
 
-project Des.Unitaire is
+project DES.Unitaire is
 
    Nom_Sous_Dossier_Compil := "tests_unitaire";
 
@@ -32,7 +32,7 @@ project Des.Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Builder extends Des.Builder is
+   package Builder extends DES.Builder is
       --  Pour changer le nom du binaire de main_test_harnais à
       --  tests_unitaire_exe après le use.
       for Executable ("executeur_de_tests.adb") use "tests_unitaire_exe";
@@ -40,8 +40,8 @@ project Des.Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Compiler extends Des.Compiler is
-      Options_Compiler := Des.Options_Compiler &
+   package Compiler extends DES.Compiler is
+      Options_Compiler := DES.Options_Compiler &
          (
             "-gnata",
             --  -gnata active les assertions. Pragma assert, debug, Check,
@@ -61,14 +61,14 @@ project Des.Unitaire is
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Linker extends Des.Linker is
+   package Linker extends DES.Linker is
       for Default_Switches ("Ada") use ("-fprofile-arcs");
    end Linker;
    ----------------------------------------------------------------------------
 
    ----------------------------------------------------------------------------
-   package Binder renames Des.Binder;
-   package Ide    renames Des.Ide;
+   package Binder renames DES.Binder;
+   package Ide    renames DES.Ide;
    ----------------------------------------------------------------------------
 
-end Des.Unitaire;
+end DES.Unitaire;

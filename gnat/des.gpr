@@ -3,7 +3,7 @@
 
 --  https://gcc.gnu.org/releases.html
 --  https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/elaboration_order_handling_in_gnat.html
-project Des is
+project DES is
 
    type Mode_Compilation_T    is ("debug",  "dev", "release");
 
@@ -404,4 +404,4 @@ project Des is
    end Make;
    ----------------------------------------------------------------------------
 
-end Des;
+end DES;
