@@ -10,20 +10,20 @@ else
 endif
 
 ###################
-.PHONY: tests_unitaires
-tests_unitaires: compiler_tests_unitaires
+.PHONY: tests_unitaire
+tests_unitaire: compiler_tests_unitaire
 	@echo " ────────────────────────────────────────────"
 	@echo " [OK] Compilation des tests unitaires terminé"
 	@echo "  "
 
 ###################
-.PHONY: run_tests_unitaires
-run_tests_unitaires: $(DEPEND_TESTS)
+.PHONY: run_tests_unitaire
+run_tests_unitaire: $(DEPEND_TESTS)
 	$(RESLT_COMPIL_TESTS) $(ARGUMENTS_APPLI_TESTS)
 
 ###################
-.PHONY: compiler_tests_unitaires
-compiler_tests_unitaires:
+.PHONY: compiler_tests_unitaire
+compiler_tests_unitaire:
 	which $(COMPILATEUR)
 	which $(GNATLS)
 	@echo " "
