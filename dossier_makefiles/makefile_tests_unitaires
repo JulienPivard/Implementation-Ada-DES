@@ -1,10 +1,10 @@
 # vim: nofoldenable: list:
 # PIVARD Julien
-# Dernière modification : Dimanche 26 mai[05] 2024
+# Dernière modification : Lundi 27 mai[05] 2024
 
 include ./$(DOSSIER_MAKE)/makefile_tests_unitaires.conf
 ifeq ($(wildcard $(RESLT_COMPIL_TESTS)), )
-    DEPEND_TESTS	= compiler_tests_unitaires
+    DEPEND_TESTS	= compiler_tests_unitaire
 else
     DEPEND_TESTS	=
 endif
